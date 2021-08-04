@@ -1,7 +1,7 @@
 {
-  "name": "@docusaurus/theme-classic",
+  "name": "docusaurus-theme-nonepress",
   "version": "2.0.0-beta.4",
-  "description": "Classic theme for Docusaurus",
+  "description": "Nonepress theme for Docusaurus",
   "main": "lib/index.js",
   "types": "src/types.d.ts",
   "publishConfig": {
@@ -9,13 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/docusaurus.git",
-    "directory": "packages/docusaurus-theme-classic"
+    "url": "https://github.com/yanyongyu/docusaurus-theme-nonepress.git"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc --noEmit && yarn babel && yarn prettier",
-    "babel": "cross-env BABEL_ENV=lib babel src -d lib --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
+    "build": "tsc --noEmit && npm run babel && npm run prettier",
+    "babel": "cross-env BABEL_ENV=lib npx babel src -d lib --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
     "prettier": "prettier --write \"**/*.{js,ts,jsx,tsc}\"",
     "update-code-translations": "node -e 'require(\"./update-code-translations.js\").run()'"
   },
@@ -36,16 +35,20 @@
     "globby": "^11.0.2",
     "lodash": "^4.17.20",
     "postcss": "^8.2.15",
+    "postcss-import": "^14.0.2",
     "prism-react-renderer": "^1.2.1",
     "prismjs": "^1.23.0",
     "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
     "@docusaurus/module-type-aliases": "^2.0.0-beta.4",
     "@tsconfig/docusaurus": "^1.0.2",
     "@types/react": "^17.0.15",
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
+    "cross-env": "^7.0.3",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {

@@ -52,7 +52,10 @@ export default function docusaurusThemeClassic(
     },
 
     getClientModules() {
-      const modules = [path.resolve(__dirname, "./prism-include-languages")];
+      const modules = [
+        path.resolve(__dirname, "./styles.css"),
+        path.resolve(__dirname, "./prism-include-languages"),
+      ];
 
       if (customCss) {
         if (Array.isArray(customCss)) {

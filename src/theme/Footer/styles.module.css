@@ -1,0 +1,9 @@
+.docusaurus-footer-link {
+  margin-left: .25rem;
+  opacity: 1;
+}
+
+.docusaurus-footer-link svg {
+  height: 1rem;
+  width: 1rem;
+}
