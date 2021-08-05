@@ -14,7 +14,7 @@ const ContextReplacementPlugin = requireFromDocusaurusCore(
 );
 
 type PluginOptions = {
-  customCss?: string & string[];
+  customCss?: string | string[];
   tailwindConfig?: any;
 };
 
@@ -113,3 +113,5 @@ export default function docusaurusThemeClassic(
     },
   };
 }
+
+export { validateThemeConfig } from "./validateThemeConfig";

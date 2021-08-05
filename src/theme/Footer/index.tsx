@@ -1,9 +1,15 @@
 import React from "react";
 
 import styles from "./styles.module.css";
+import { ThemeConfig, useThemeConfig } from "../../useThemeConfig";
 
-class Footer extends React.Component {
+class Footer extends React.Component<{ themeConfig: ThemeConfig }> {
   render() {
+    const { themeConfig } = this.props;
+    const { footer } = themeConfig;
+
+    const { copyright } = footer || {};
+
     return (
       <footer
         className="bg-light-note dark:bg-gray-900"
@@ -16,7 +22,7 @@ class Footer extends React.Component {
           <div className="xl:grid xl:grid-cols-3 xl:gap-8"></div>
           <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-600">
             <p className="flex flex-col text-base opacity-60 md:items-center md:justify-center xl:text-center">
-              <span>Copyright &copy;</span>
+              {copyright && <span>{copyright}</span>}
               <span className="flex items-center justify-start md:justify-center">
                 Powered by
                 <a
@@ -83,4 +89,4 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer;
+export default useThemeConfig(Footer);
