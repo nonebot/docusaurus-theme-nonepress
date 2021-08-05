@@ -1,8 +1,9 @@
 import path from "path";
 import Module from "module";
-import { PrismTheme } from "prism-react-renderer";
-import { DocusaurusContext, Plugin } from "@docusaurus/types";
 import type { AcceptedPlugin } from "postcss";
+import { DocusaurusContext, Plugin } from "@docusaurus/types";
+
+import { ThemeConfig } from "./useThemeConfig";
 
 // @ts-ignore
 const createRequire = Module.createRequire || Module.createRequireFromPath;
@@ -13,21 +14,7 @@ const ContextReplacementPlugin = requireFromDocusaurusCore(
   "webpack/lib/ContextReplacementPlugin"
 );
 
-type PluginOptions = {
-  customCss?: string | string[];
-  tailwindConfig?: any;
-};
-
-type PrismConfig = {
-  theme?: PrismTheme;
-  darkTheme?: PrismTheme;
-  defaultLanguage?: string;
-  additionalLanguages?: string[];
-};
-
-type ThemeConfig = {
-  prism: PrismConfig;
-};
+type PluginOptions = {};
 
 export default function docusaurusThemeClassic(
   context: DocusaurusContext,
@@ -37,8 +24,11 @@ export default function docusaurusThemeClassic(
     siteConfig: { themeConfig: roughlyTypedThemeConfig },
   } = context;
   const themeConfig = (roughlyTypedThemeConfig || {}) as ThemeConfig;
-  const { prism: { additionalLanguages = [] } = {} } = themeConfig;
-  const { customCss, tailwindConfig } = options;
+  const {
+    customCss,
+    tailwindConfig,
+    prism: { additionalLanguages = [] } = {},
+  } = themeConfig;
 
   return {
     name: "docusaurus-theme-nonepress",

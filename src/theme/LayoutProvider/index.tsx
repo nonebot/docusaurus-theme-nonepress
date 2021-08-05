@@ -1,10 +1,8 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-class LayoutProvider extends React.Component {
-  render() {
-    const { children } = this.props;
-    return <>{children}</>;
-  }
+import ThemeProvider from "@theme/ThemeProvider";
+
+export default function LayoutProvider(props: PropsWithChildren<{}>) {
+  const { children } = this.props;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }
-
-export default LayoutProvider;

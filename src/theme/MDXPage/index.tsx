@@ -1,9 +1,5 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-class MDXPage extends React.Component {
-  render() {
-    return <></>;
-  }
+export default function MDXPage(props: PropsWithChildren<{}>) {
+  return <></>;
 }
-
-export default MDXPage;

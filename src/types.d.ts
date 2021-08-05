@@ -1,11 +1,30 @@
 /// <reference types="@docusaurus/module-type-aliases" />
 
-import React from "react";
+declare module "@theme/hooks/useTheme" {
+  export type useThemeReturns = {
+    readonly isDarkTheme: boolean;
+    readonly setLightTheme: () => void;
+    readonly setDarkTheme: () => void;
+  };
 
-declare module "@theme/Navbar" {
-  export default class Navbar extends React.Component {}
+  const useTheme: () => useThemeReturns;
+  export default useTheme;
 }
 
-declare module "@theme/Content" {
-  export default class Content extends React.Component {}
+declare module "@theme/hooks/useThemeContext" {
+  export type ThemeContextProps = {
+    isDarkTheme: boolean;
+    setLightTheme: () => void;
+    setDarkTheme: () => void;
+  };
+
+  export default function useThemeContext(): ThemeContextProps;
+}
+
+declare module "@theme/ThemeContext" {
+  import type { Context } from "react";
+  import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
+
+  const ThemeContext: Context<ThemeContextProps | undefined>;
+  export default ThemeContext;
 }

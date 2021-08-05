@@ -1,9 +1,5 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-class DocItem extends React.Component {
-  render() {
-    return <></>;
-  }
+export default function DocItem(props: PropsWithChildren<{}>) {
+  return <></>;
 }
-
-export default DocItem;

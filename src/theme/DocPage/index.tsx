@@ -1,9 +1,5 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-class DocPage extends React.Component {
-  render() {
-    return <></>;
-  }
+export default function DocPage(props: PropsWithChildren<{}>) {
+  return <></>;
 }
-
-export default DocPage;

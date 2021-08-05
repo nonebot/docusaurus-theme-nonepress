@@ -1,10 +1,6 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-class Content extends React.Component {
-  render() {
-    const { children } = this.props;
-    return <div id="content">{children}</div>;
-  }
+export default function Content(props: PropsWithChildren<{}>) {
+  const { children } = props;
+  return <div id="content">{children}</div>;
 }
-
-export default Content;

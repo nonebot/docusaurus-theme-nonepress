@@ -1,0 +1,11 @@
+.themedImage {
+  display: none;
+}
+
+html.light .themedImage--light {
+  display: initial;
+}
+
+html.dark .themedImage--dark {
+  display: initial;
+}
