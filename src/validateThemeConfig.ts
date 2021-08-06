@@ -1,4 +1,4 @@
-import { Joi } from "@docusaurus/utils-validation";
+import { Joi, URISchema } from "@docusaurus/utils-validation";
 
 const DEFAULT_COLOR_MODE_CONFIG = {
   defaultMode: "light",
@@ -61,6 +61,24 @@ export const LogoSchema = Joi.object({
 
 export const FooterSchema = Joi.object({
   copyright: Joi.string(),
+  links: Joi.array().items(
+    Joi.object({
+      title: Joi.string(),
+      items: Joi.array().items(
+        Joi.object({
+          to: Joi.string(),
+          href: URISchema,
+          html: Joi.string(),
+          label: Joi.string(),
+        })
+          .xor("to", "href", "html")
+          .with("to", "label")
+          .with("href", "label")
+          .nand("html", "label")
+          .unknown()
+      ),
+    }).default([])
+  ),
 }).optional();
 
 export const PrismSchema = Joi.object({

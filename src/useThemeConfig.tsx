@@ -29,8 +29,14 @@ export type LogoConfig = {
   target?: string;
 };
 
+export type FooterLinkConfig = {
+  title?: string;
+  items?: Array<{ to: string; href: string; html: string; label: string }>;
+};
+
 export type FooterConfig = {
   copyright?: string;
+  links?: Array<FooterLinkConfig>;
 };
 
 export type PrismConfig = {

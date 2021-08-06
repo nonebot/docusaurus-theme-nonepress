@@ -2,10 +2,10 @@
   display: none;
 }
 
-html.light .themedImage--light {
+:global html.light :local .themedImage--light {
   display: initial;
 }
 
-html.dark .themedImage--dark {
+:global html.dark :local .themedImage--dark {
   display: initial;
 }
