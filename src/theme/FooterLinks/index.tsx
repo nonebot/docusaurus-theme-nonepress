@@ -2,7 +2,9 @@ import React, { PropsWithChildren } from "react";
 
 import Logo from "@theme/Logo";
 
-export default function FooterLinks(props: PropsWithChildren<{}>) {
+export default function FooterLinks(
+  props: PropsWithChildren<unknown>
+): JSX.Element {
   return (
     <div className="xl:grid xl:grid-cols-3 xl:gap-8">
       <div className="space-y-8 xl:col-span-1">

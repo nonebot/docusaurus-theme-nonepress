@@ -4,21 +4,22 @@ import type { AcceptedPlugin } from "postcss";
 import { DocusaurusContext, Plugin } from "@docusaurus/types";
 
 import { ThemeConfig } from "./useThemeConfig";
+import defaultTailwindConfig from "./tailwind.config";
 
-// @ts-ignore
-const createRequire = Module.createRequire || Module.createRequireFromPath;
-const requireFromDocusaurusCore = createRequire(
+const requireFromDocusaurusCore = Module.createRequire(
   require.resolve("@docusaurus/core/package.json")
 );
 const ContextReplacementPlugin = requireFromDocusaurusCore(
   "webpack/lib/ContextReplacementPlugin"
 );
 
-type PluginOptions = {};
+// type PluginOptions = {
+//   [key: string]: never;
+// };
 
 export default function docusaurusThemeClassic(
-  context: DocusaurusContext,
-  options: PluginOptions = {}
+  context: DocusaurusContext
+  // options: PluginOptions = {}
 ): Plugin<void> {
   const {
     siteConfig: { themeConfig: roughlyTypedThemeConfig },
@@ -77,11 +78,16 @@ export default function docusaurusThemeClassic(
     },
 
     configurePostCss(postCssOptions: { plugins: AcceptedPlugin[] }) {
+      const { purge = [] } = tailwindConfig;
+      if (Array.isArray(purge)) {
+        purge.unshift(...defaultTailwindConfig.purge);
+      } else {
+        purge.content.unshift(...defaultTailwindConfig.purge);
+      }
+      tailwindConfig.purge = purge;
       postCssOptions.plugins.unshift(
         require("postcss-import"),
-        require("tailwindcss")(
-          tailwindConfig || require.resolve("./tailwind.config.js")
-        ),
+        require("tailwindcss")(tailwindConfig),
         require("autoprefixer")
       );
 

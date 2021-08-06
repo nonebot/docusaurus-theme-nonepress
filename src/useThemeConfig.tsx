@@ -1,4 +1,3 @@
-import React from "react";
 import { PrismTheme } from "prism-react-renderer";
 import { DocusaurusContext } from "@docusaurus/types";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -47,7 +46,7 @@ export type ThemeConfig = {
   logo: LogoConfig;
   footer?: FooterConfig;
   prism?: PrismConfig;
-  tailwindConfig?: any;
+  tailwindConfig?: { [key: string]: any };
   customCss?: string | string[];
 };
 

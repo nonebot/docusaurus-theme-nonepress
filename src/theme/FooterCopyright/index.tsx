@@ -4,7 +4,9 @@ import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import useThemeConfig from "../../useThemeConfig";
 
-export default function FooterCopyright(props: PropsWithChildren<{}>) {
+export default function FooterCopyright(
+  props: PropsWithChildren<{}>
+): JSX.Element {
   const themeConfig = useThemeConfig();
   const { footer: { copyright } = {} } = themeConfig;
 
@@ -20,7 +22,7 @@ export default function FooterCopyright(props: PropsWithChildren<{}>) {
             className={styles["docusaurus-footer-link"]}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-              <g fill="none" fill-rule="evenodd">
+              <g fill="none" fillRule="evenodd">
                 <path fill="#FFF" d="M99 52h84v34H99z" />
                 <path
                   d="M23 163c-7.398 0-13.843-4.027-17.303-10A19.886 19.886 0 003 163c0 11.046 8.954 20 20 20h20v-20H23z"

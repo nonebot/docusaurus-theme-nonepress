@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from "react";
 import FooterLinks from "@theme/FooterLinks";
 import FooterCopyright from "@theme/FooterCopyright";
 
-export default function Footer(props: PropsWithChildren<{}>) {
+export default function Footer(props: PropsWithChildren<{}>): JSX.Element {
   return (
     <footer
       className="bg-light-note dark:bg-gray-900"

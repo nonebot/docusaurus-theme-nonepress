@@ -10,7 +10,7 @@ import { ThemeConfig } from "../../useThemeConfig";
 
 export default function Logo(
   props: PropsWithChildren<{ imageClassName: string }>
-) {
+): JSX.Element {
   const { imageClassName, ...propsRest } = props;
   const {
     isClient,

@@ -12,7 +12,7 @@ type Props = PropsWithChildren<{
   alt?: string;
 }>;
 
-export default function ThemedImage(props: Props) {
+export default function ThemedImage(props: Props): JSX.Element {
   const { isClient } = useDocusaurusContext();
   const { isDarkTheme } = useThemeContext();
   const { sources, className = "", alt = "", ...propsRest } = props;
