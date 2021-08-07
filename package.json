@@ -27,6 +27,7 @@
     "@docusaurus/utils": "^2.0.0-beta.4",
     "@docusaurus/utils-common": "^2.0.0-beta.4",
     "@docusaurus/utils-validation": "^2.0.0-beta.4",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
     "autoprefixer": "^10.3.1",

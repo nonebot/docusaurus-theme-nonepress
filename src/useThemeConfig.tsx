@@ -1,5 +1,5 @@
 import { PrismTheme } from "prism-react-renderer";
-import { DocusaurusContext } from "@docusaurus/types";
+import { DocusaurusContext, DocusaurusConfig } from "@docusaurus/types";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 export type ColorModeConfig = {
@@ -31,12 +31,29 @@ export type LogoConfig = {
 
 export type FooterLinkConfig = {
   title?: string;
-  items?: Array<{ to: string; href: string; html: string; label: string }>;
+  icon?: string;
+  items?: Array<{
+    to?: string;
+    href?: string;
+    html?: string;
+    label?: string;
+    icon?: string;
+    prependBaseUrlToHref?: boolean;
+  }>;
+};
+
+export type FooterIconLinkConfig = {
+  icon: string;
+  to?: string;
+  href?: string;
+  description?: string;
+  prependBaseUrlToHref?: boolean;
 };
 
 export type FooterConfig = {
   copyright?: string;
   links?: Array<FooterLinkConfig>;
+  iconLinks?: Array<FooterIconLinkConfig>;
 };
 
 export type PrismConfig = {
@@ -56,7 +73,11 @@ export type ThemeConfig = {
   customCss?: string | string[];
 };
 
-export default function useThemeConfig(): ThemeConfig {
+export function useSiteConfig(): DocusaurusConfig {
   const ctx = useDocusaurusContext() as DocusaurusContext;
-  return ctx.siteConfig.themeConfig as ThemeConfig;
+  return ctx.siteConfig;
+}
+
+export default function useThemeConfig(): ThemeConfig {
+  return useSiteConfig().themeConfig as ThemeConfig;
 }

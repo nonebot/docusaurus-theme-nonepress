@@ -44,6 +44,7 @@ export default function docusaurusThemeClassic(
 
     getClientModules() {
       const modules = [
+        "@fortawesome/fontawesome-free/js/all.min",
         path.resolve(__dirname, "./styles.css"),
         path.resolve(__dirname, "./prism-include-languages"),
       ];

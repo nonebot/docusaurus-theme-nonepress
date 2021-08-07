@@ -61,20 +61,37 @@ export const LogoSchema = Joi.object({
 
 export const FooterSchema = Joi.object({
   copyright: Joi.string(),
+  iconLinks: Joi.array()
+    .items(
+      Joi.object({
+        icon: Joi.string().required(),
+        to: Joi.string(),
+        href: Joi.string(),
+        description: Joi.string(),
+        prependBaseUrlToHref: Joi.boolean(),
+      })
+        .xor("to", "href")
+        .unknown()
+    )
+    .default([]),
   links: Joi.array().items(
     Joi.object({
       title: Joi.string(),
+      icon: Joi.string(),
       items: Joi.array().items(
         Joi.object({
           to: Joi.string(),
           href: URISchema,
           html: Joi.string(),
           label: Joi.string(),
+          icon: Joi.string(),
+          prependBaseUrlToHref: Joi.boolean(),
         })
           .xor("to", "href", "html")
           .with("to", "label")
           .with("href", "label")
           .nand("html", "label")
+          .nand("html", "icon")
           .unknown()
       ),
     }).default([])
