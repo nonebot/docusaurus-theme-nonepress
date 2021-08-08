@@ -44,6 +44,7 @@
     "postcss-import": "^14.0.2",
     "prism-react-renderer": "^1.2.1",
     "prismjs": "^1.23.0",
+    "react-cool-onclickoutside": "^1.6.2",
     "tailwindcss": "^2.2.7"
   },
   "devDependencies": {

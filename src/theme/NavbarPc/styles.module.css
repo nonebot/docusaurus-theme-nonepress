@@ -1,3 +1,7 @@
 :global :root {
   --ifm-z-index-fixed: 50
 }
+
+.version-selected .version-selected-tag {
+  display: hidden;
+}

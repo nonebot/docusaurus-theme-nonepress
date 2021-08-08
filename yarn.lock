@@ -6825,6 +6825,11 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-cool-onclickoutside@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.nlark.com/react-cool-onclickoutside/download/react-cool-onclickoutside-1.6.2.tgz#e100e6fe577c325fba1a1cb23d6faa84f335ffc6"
+  integrity sha1-4QDm/ld8Ml+6GhyyPW+qhPM1/8Y=
+
 react-dev-utils@^11.0.1:
   version "11.0.4"
   resolved "https://registry.nlark.com/react-dev-utils/download/react-dev-utils-11.0.4.tgz#a7ccb60257a1ca2e0efe7a83e38e6700d17aa37a"

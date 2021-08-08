@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useReducer, useRef } from "react";
 
+import clsx from "clsx";
 import algoliaSearch from "algoliasearch/lite";
 import algoliaSearchHelper from "algoliasearch-helper";
-import clsx from "clsx";
 
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";

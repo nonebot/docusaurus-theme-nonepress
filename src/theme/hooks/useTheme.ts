@@ -53,7 +53,7 @@ const useTheme = (): useThemeReturns => {
   }, []);
   const toggleTheme = useCallback(() => {
     setTheme(theme === themes.dark ? themes.light : themes.dark);
-    storeTheme(theme === themes.dark ? themes.dark : themes.light);
+    storeTheme(theme === themes.dark ? themes.light : themes.dark);
   }, [theme]);
 
   useEffect(() => {

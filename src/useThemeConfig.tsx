@@ -34,7 +34,24 @@ export type LogoConfig = {
 };
 
 export type NavbarItem = {
-  type: string;
+  type?: string;
+  label?: string;
+  icon?: string;
+  className?: string;
+};
+
+export type NavbarLink = NavbarItem & {
+  to?: string;
+  href?: string;
+  prependBaseUrlToHref?: boolean;
+};
+
+export type NavbarDropdown = NavbarItem & {
+  items: Array<NavbarLink>;
+};
+
+export type NavbarDocsMenu = NavbarItem & {
+  type: "docsMenu";
 };
 
 export type NavbarConfig = {
@@ -81,7 +98,7 @@ export type ThemeConfig = {
   docs: DocsConfig;
   metadatas?: Array<MetadataConfig>;
   logo: LogoConfig;
-  navbar: NavbarConfig;
+  navbar?: NavbarConfig;
   footer?: FooterConfig;
   prism?: PrismConfig;
   tailwindConfig?: { [key: string]: any };

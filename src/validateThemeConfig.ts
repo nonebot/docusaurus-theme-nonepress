@@ -70,19 +70,15 @@ export const DocsSchema = Joi.object({
 
 const NavbarItemBaseSchema = Joi.object({
   label: Joi.string(),
+  icon: Joi.string(),
   className: Joi.string(),
-})
-  // We allow any unknown attributes on the links
-  // (users may need additional attributes like target, aria-role, data-customAttribute...)
-  .unknown();
+}).unknown();
 
+// simple link
 const DefaultNavbarItemSchema = NavbarItemBaseSchema.append({
   to: Joi.string(),
   href: URISchema,
-  activeBasePath: Joi.string(),
-  activeBaseRegex: Joi.string(),
   prependBaseUrlToHref: Joi.bool(),
-  // This is only triggered in case of a nested dropdown
   items: Joi.forbidden().messages({
     "any.unknown": "Nested dropdowns are not allowed",
   }),
@@ -91,19 +87,6 @@ const DefaultNavbarItemSchema = NavbarItemBaseSchema.append({
   .messages({
     "object.xor": 'One and only one between "to" and "href" should be provided',
   });
-
-const DocsVersionNavbarItemSchema = NavbarItemBaseSchema.append({
-  type: Joi.string().equal("docsVersion").required(),
-  to: Joi.string(),
-  docsPluginId: Joi.string(),
-});
-
-const DocItemSchema = NavbarItemBaseSchema.append({
-  type: Joi.string().equal("doc").required(),
-  docId: Joi.string().required(),
-  docsPluginId: Joi.string(),
-  activeSidebarClassName: Joi.string().default("navbar__link--active"),
-});
 
 const itemWithType = (type) => {
   // because equal(undefined) is not supported :/
@@ -117,30 +100,12 @@ const itemWithType = (type) => {
     .required();
 };
 
+// dropdown
 const DropdownSubitemSchema = Joi.object().when(Joi.ref("."), {
   switch: [
     {
-      is: itemWithType("docsVersion"),
-      then: DocsVersionNavbarItemSchema,
-    },
-    {
-      is: itemWithType("doc"),
-      then: DocItemSchema,
-    },
-    {
       is: itemWithType(undefined),
       then: DefaultNavbarItemSchema,
-    },
-    {
-      is: Joi.alternatives().try(
-        itemWithType("dropdown"),
-        itemWithType("docsVersionDropdown"),
-        itemWithType("localeDropdown"),
-        itemWithType("search")
-      ),
-      then: Joi.forbidden().messages({
-        "any.unknown": "Nested dropdowns are not allowed",
-      }),
     },
   ],
   otherwise: Joi.forbidden().messages({
@@ -152,49 +117,20 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
   items: Joi.array().items(DropdownSubitemSchema).required(),
 });
 
-const DocsVersionDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
-  type: Joi.string().equal("docsVersionDropdown").required(),
-  docsPluginId: Joi.string(),
-  dropdownActiveClassDisabled: Joi.boolean(),
-  dropdownItemsBefore: Joi.array().items(DropdownSubitemSchema).default([]),
-  dropdownItemsAfter: Joi.array().items(DropdownSubitemSchema).default([]),
-});
-
-const LocaleDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
-  type: Joi.string().equal("localeDropdown").required(),
-  dropdownItemsBefore: Joi.array().items(DropdownSubitemSchema).default([]),
-  dropdownItemsAfter: Joi.array().items(DropdownSubitemSchema).default([]),
-});
-
-const SearchItemSchema = Joi.object({
-  type: Joi.string().equal("search").required(),
+// docs menu
+const DocsMenuDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
+  type: Joi.string().equal("docsMenu").required(),
 });
 
 export const NavbarItemSchema = Joi.object().when(Joi.ref("."), {
   switch: [
     {
-      is: itemWithType("docsVersion"),
-      then: DocsVersionNavbarItemSchema,
-    },
-    {
       is: itemWithType("dropdown"),
       then: DropdownNavbarItemSchema,
     },
     {
-      is: itemWithType("docsVersionDropdown"),
-      then: DocsVersionDropdownNavbarItemSchema,
-    },
-    {
-      is: itemWithType("doc"),
-      then: DocItemSchema,
-    },
-    {
-      is: itemWithType("localeDropdown"),
-      then: LocaleDropdownNavbarItemSchema,
-    },
-    {
-      is: itemWithType("search"),
-      then: SearchItemSchema,
+      is: itemWithType("docsMenu"),
+      then: DocsMenuDropdownNavbarItemSchema,
     },
     {
       is: itemWithType(undefined),
