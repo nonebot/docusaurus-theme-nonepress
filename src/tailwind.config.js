@@ -7,4 +7,10 @@ if (siteDir) {
 }
 module.exports = {
   purge: purge,
+  variants: {
+    extend: {
+      translate: ["dark"],
+      opacity: ["dark"],
+    },
+  },
 };

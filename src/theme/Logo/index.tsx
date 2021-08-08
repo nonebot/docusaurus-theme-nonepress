@@ -11,7 +11,7 @@ import { ThemeConfig } from "../../useThemeConfig";
 export default function Logo(
   props: PropsWithChildren<{ imageClassName: string }>
 ): JSX.Element {
-  const { imageClassName, ...propsRest } = props;
+  const { imageClassName, children, ...propsRest } = props;
   const {
     isClient,
     siteConfig: { themeConfig },
@@ -37,6 +37,7 @@ export default function Logo(
           alt={logo.alt}
         />
       )}
+      {children}
     </Link>
   );
 }

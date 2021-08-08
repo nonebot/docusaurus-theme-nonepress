@@ -1,10 +1,50 @@
 /// <reference types="@docusaurus/module-type-aliases" />
 
+declare module "@theme/hooks/useDocs" {
+  import {
+    GlobalPluginData,
+    GlobalVersion,
+  } from "@docusaurus/plugin-content-docs/lib/types";
+  import {
+    ActivePlugin,
+    ActiveDocContext,
+    DocVersionSuggestions,
+    GetActivePluginOptions,
+  } from "@docusaurus/plugin-content-docs/lib/client/docsClientUtils";
+  export const useAllDocsData: () => Record<string, GlobalPluginData>;
+  export const useDocsData: (pluginId: string | undefined) => GlobalPluginData;
+  export const useActivePlugin: (
+    options?: GetActivePluginOptions
+  ) => ActivePlugin | undefined;
+  export const useActivePluginAndVersion: (
+    options?: GetActivePluginOptions
+  ) =>
+    | {
+        activePlugin: ActivePlugin;
+        activeVersion: GlobalVersion | undefined;
+      }
+    | undefined;
+  export const useVersions: (pluginId: string | undefined) => GlobalVersion[];
+  export const useLatestVersion: (
+    pluginId: string | undefined
+  ) => GlobalVersion;
+  export const useActiveVersion: (
+    pluginId: string | undefined
+  ) => GlobalVersion | undefined;
+  export const useActiveDocContext: (
+    pluginId: string | undefined
+  ) => ActiveDocContext;
+  export const useDocVersionSuggestions: (
+    pluginId: string | undefined
+  ) => DocVersionSuggestions;
+}
+
 declare module "@theme/hooks/useTheme" {
   export type useThemeReturns = {
     readonly isDarkTheme: boolean;
     readonly setLightTheme: () => void;
     readonly setDarkTheme: () => void;
+    readonly toggleTheme: () => void;
   };
 
   const useTheme: () => useThemeReturns;
@@ -16,6 +56,7 @@ declare module "@theme/hooks/useThemeContext" {
     isDarkTheme: boolean;
     setLightTheme: () => void;
     setDarkTheme: () => void;
+    toggleTheme: () => void;
   };
 
   export default function useThemeContext(): ThemeContextProps;

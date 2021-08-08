@@ -6,10 +6,12 @@ import ThemeContext from "@theme/ThemeContext";
 export default function ThemeProvider(
   props: PropsWithChildren<unknown>
 ): JSX.Element {
-  const { isDarkTheme, setLightTheme, setDarkTheme } = useTheme();
+  const { isDarkTheme, setLightTheme, setDarkTheme, toggleTheme } = useTheme();
 
   return (
-    <ThemeContext.Provider value={{ isDarkTheme, setLightTheme, setDarkTheme }}>
+    <ThemeContext.Provider
+      value={{ isDarkTheme, setLightTheme, setDarkTheme, toggleTheme }}
+    >
       {props.children}
     </ThemeContext.Provider>
   );

@@ -1,16 +1,20 @@
 import { PrismTheme } from "prism-react-renderer";
-import { DocusaurusContext, DocusaurusConfig } from "@docusaurus/types";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { DocusaurusContext, DocusaurusConfig } from "@docusaurus/types";
 
 export type ColorModeConfig = {
   defaultMode?: "light" | "dark";
   disableSwitch?: boolean;
   switchConfig?: {
     darkIcon?: string;
-    darkIconStyle?: string;
+    darkIconText?: string;
     lightIcon?: string;
-    lightIconStyle?: string;
+    lightIconText?: string;
   };
+};
+
+export type DocsConfig = {
+  versionPersistence?: "localStorage" | "none";
 };
 
 export type MetadataConfig = {
@@ -27,6 +31,15 @@ export type LogoConfig = {
   srcDark?: string;
   href?: string;
   target?: string;
+};
+
+export type NavbarItem = {
+  type: string;
+};
+
+export type NavbarConfig = {
+  hideOnScroll?: boolean;
+  items?: Array<NavbarItem>;
 };
 
 export type FooterLinkConfig = {
@@ -65,8 +78,10 @@ export type PrismConfig = {
 
 export type ThemeConfig = {
   colorMode?: ColorModeConfig;
+  docs: DocsConfig;
   metadatas?: Array<MetadataConfig>;
   logo: LogoConfig;
+  navbar: NavbarConfig;
   footer?: FooterConfig;
   prism?: PrismConfig;
   tailwindConfig?: { [key: string]: any };

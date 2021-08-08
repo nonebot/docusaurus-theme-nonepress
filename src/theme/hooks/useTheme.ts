@@ -51,6 +51,10 @@ const useTheme = (): useThemeReturns => {
     setTheme(themes.dark);
     storeTheme(themes.dark);
   }, []);
+  const toggleTheme = useCallback(() => {
+    setTheme(theme === themes.dark ? themes.light : themes.dark);
+    storeTheme(theme === themes.dark ? themes.dark : themes.light);
+  }, [theme]);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", coerceToTheme(theme));
@@ -77,6 +81,7 @@ const useTheme = (): useThemeReturns => {
     isDarkTheme: theme === themes.dark,
     setLightTheme,
     setDarkTheme,
+    toggleTheme,
   };
 };
 

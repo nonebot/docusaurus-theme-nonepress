@@ -13,6 +13,34 @@ const ContextReplacementPlugin = requireFromDocusaurusCore(
   "webpack/lib/ContextReplacementPlugin"
 );
 
+const ThemeStorageKey = "theme";
+const noFlashColorMode = ({ defaultMode = "light" }) => {
+  return `(function() {
+  var defaultMode = "${defaultMode}";
+
+  function setDataThemeAttribute(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.remove("dark", "light");
+    document.documentElement.classList.add(theme);
+  }
+
+  function getStoredTheme() {
+    var theme = null;
+    try {
+      theme = localStorage.getItem("${ThemeStorageKey}");
+    } catch (err) {}
+    return theme;
+  }
+
+  var storedTheme = getStoredTheme();
+  if (storedTheme !== null) {
+    setDataThemeAttribute(storedTheme);
+  } else {
+    setDataThemeAttribute(defaultMode === "dark" ? "dark" : "light");
+  }
+})();`;
+};
+
 // type PluginOptions = {
 //   [key: string]: never;
 // };
@@ -26,6 +54,7 @@ export default function docusaurusThemeClassic(
   } = context;
   const themeConfig = (roughlyTypedThemeConfig || {}) as ThemeConfig;
   const {
+    colorMode,
     customCss,
     tailwindConfig,
     prism: { additionalLanguages = [] } = {},
@@ -79,13 +108,15 @@ export default function docusaurusThemeClassic(
     },
 
     configurePostCss(postCssOptions: { plugins: AcceptedPlugin[] }) {
-      const { purge = [] } = tailwindConfig;
+      const { purge = [], presets = [] } = tailwindConfig;
       if (Array.isArray(purge)) {
         purge.unshift(...defaultTailwindConfig.purge);
       } else {
         purge.content.unshift(...defaultTailwindConfig.purge);
       }
+      presets.unshift(defaultTailwindConfig);
       tailwindConfig.purge = purge;
+      tailwindConfig.presets = presets;
       postCssOptions.plugins.unshift(
         require("postcss-import"),
         require("tailwindcss")(tailwindConfig),
@@ -98,13 +129,13 @@ export default function docusaurusThemeClassic(
     injectHtmlTags() {
       return {
         preBodyTags: [
-          // {
-          //   tagName: "script",
-          //   attributes: {
-          //     type: "text/javascript",
-          //   },
-          //   innerHTML: `${noFlashColorMode(colorMode)}`,
-          // },
+          {
+            tagName: "script",
+            attributes: {
+              type: "text/javascript",
+            },
+            innerHTML: `${noFlashColorMode(colorMode)}`,
+          },
         ],
       };
     },
