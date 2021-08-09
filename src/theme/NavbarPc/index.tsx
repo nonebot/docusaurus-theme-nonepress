@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import React, { PropsWithChildren, useCallback, useState } from "react";
 
-import styles from "./styles.module.css";
 import Logo from "@theme/Logo";
 import Link from "@docusaurus/Link";
+import styles from "./styles.module.css";
 import SearchBar from "@theme/SearchBar";
+import NavbarItem from "@theme/NavbarItem";
 import useThemeConfig from "../../useThemeConfig";
 import useOnclickOutside from "react-cool-onclickoutside";
 import useThemeContext from "@theme/hooks/useThemeContext";
@@ -142,6 +143,7 @@ export default function NavbarPc(
       disableSwitch,
       switchConfig: { darkIcon, darkIconText, lightIcon, lightIconText },
     },
+    navbar: { hideOnScroll, items },
   } = useThemeConfig();
   const colorModeToggle = useColorModeToggle();
 
@@ -195,7 +197,11 @@ export default function NavbarPc(
           </button>
         </div>
         <nav className="hidden md:flex">
-          <ul className="md:flex md:items-center md:space-x-10"></ul>
+          <ul className="md:flex md:items-center md:space-x-10">
+            {items.map((item, index) => (
+              <NavbarItem key={index} item={item} />
+            ))}
+          </ul>
         </nav>
       </div>
     </div>
