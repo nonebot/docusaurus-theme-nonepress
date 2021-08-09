@@ -120,7 +120,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
                 aria-label="Selected"
                 className={clsx(
                   styles["version-selected-tag"],
-                  "absolute left-2.5 bg-indigo-400 flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-indigo-300"
+                  "invisible absolute left-2.5 bg-indigo-400 flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-indigo-300"
                 )}
               ></span>
               <span className="flex-grow font-medium inline-block truncate">
