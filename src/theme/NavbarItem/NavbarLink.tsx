@@ -6,9 +6,17 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { NavbarLink as NavLink } from "../../useThemeConfig";
 
 export default function NavbarLink(
-  props: PropsWithChildren<NavLink>
+  props: PropsWithChildren<NavLink & { linkClassName?: string }>
 ): JSX.Element {
-  const { to, href, label, icon, prependBaseUrlToHref, className } = props;
+  const {
+    to,
+    href,
+    label,
+    icon,
+    prependBaseUrlToHref,
+    className,
+    linkClassName,
+  } = props;
   const toUrl = useBaseUrl(to);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
@@ -22,12 +30,16 @@ export default function NavbarLink(
           : {
               to: toUrl,
             })}
-        className={clsx(
-          "self-center transition duration-300 opacity-60 hover:opacity-100",
-          icon ? "text-3xl" : "text-sm font-medium uppercase"
-        )}
+        className={
+          linkClassName ||
+          clsx(
+            "self-center transition duration-300 opacity-60 hover:opacity-100",
+            !label ? "text-3xl" : "text-sm font-medium uppercase"
+          )
+        }
       >
-        {icon ? <i className={icon}></i> : label}
+        {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+        <span className="truncate">{label}</span>
       </Link>
     </li>
   );

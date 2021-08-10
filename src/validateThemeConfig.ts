@@ -114,8 +114,15 @@ const DropdownSubitemSchema = Joi.object().when(Joi.ref("."), {
 });
 
 const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
+  to: Joi.string(),
+  href: URISchema,
+  prependBaseUrlToHref: Joi.bool(),
   items: Joi.array().items(DropdownSubitemSchema).required(),
-});
+})
+  .xor("href", "to")
+  .messages({
+    "object.xor": 'One and only one between "to" and "href" should be provided',
+  });
 
 // docs menu
 const DocsMenuDropdownNavbarItemSchema = NavbarItemBaseSchema.append({

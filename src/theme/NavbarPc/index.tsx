@@ -31,7 +31,7 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
 }
 
 function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
-  const [showDropdown, setShowDropdown] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
   const ref = useOnclickOutside(
     () => {
       setShowDropdown(false);

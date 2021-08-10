@@ -47,6 +47,9 @@ export type NavbarLink = NavbarItem & {
 };
 
 export type NavbarDropdown = NavbarItem & {
+  to?: string;
+  href?: string;
+  prependBaseUrlToHref?: boolean;
   items: Array<NavbarLink>;
 };
 

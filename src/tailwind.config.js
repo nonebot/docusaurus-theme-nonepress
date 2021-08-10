@@ -1,3 +1,6 @@
+const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 const siteDir = process.env.DOCUSAURUS_SITE_DIR;
 const purge = [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`];
 if (siteDir) {
@@ -7,6 +10,16 @@ if (siteDir) {
 }
 module.exports = {
   purge: purge,
+  darkMode: "class",
+  theme: {
+    colors: {
+      ...defaultTheme.colors,
+      gray: colors.blueGray,
+      "light-note": "#f7f9ff",
+      "light-note-darker": "#f2f6ff",
+      "dark-note-darker": "#28394d",
+    },
+  },
   variants: {
     extend: {
       translate: ["dark"],
