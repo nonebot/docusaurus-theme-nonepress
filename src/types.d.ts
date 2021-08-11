@@ -39,6 +39,18 @@ declare module "@theme/hooks/useDocs" {
   ) => DocVersionSuggestions;
 }
 
+declare module "@theme/hooks/useTransition" {
+  import { RefObject } from "react";
+  export type useTransitionReturns<T> = {
+    readonly element: RefObject<T>;
+    readonly active: boolean;
+    readonly enter: () => Promise<void>;
+    readonly leave: () => Promise<void>;
+  };
+  const useTransition: <T>() => useTransitionReturns<T>;
+  export default useTransition;
+}
+
 declare module "@theme/hooks/useTheme" {
   export type useThemeReturns = {
     readonly isDarkTheme: boolean;
