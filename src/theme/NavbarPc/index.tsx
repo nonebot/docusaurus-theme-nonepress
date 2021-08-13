@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 import SearchBar from "@theme/SearchBar";
 import NavbarItem from "@theme/NavbarItem";
 import useThemeConfig from "../../useThemeConfig";
+import useTransition from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
 import useThemeContext from "@theme/hooks/useThemeContext";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
@@ -31,10 +32,11 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
 }
 
 function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const { element, active, transitionClasses, enter, leave } =
+    useTransition<HTMLUListElement>();
   const ref = useOnclickOutside(
     () => {
-      setShowDropdown(false);
+      leave();
     },
     {
       ignoreClass: "ignore-version-dropdown",
@@ -84,7 +86,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
         type="button"
         ref={ref}
         onClick={() => {
-          setShowDropdown(!showDropdown);
+          active ? leave() : enter();
         }}
         className="bg-light-note relative flex items-center w-full border border-gray-300 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:bg-opacity-50 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
         aria-haspopup="listbox"
@@ -103,10 +105,18 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
         </span>
       </button>
       <ul
+        ref={element}
         className={clsx(
           "absolute z-10 mt-1 w-full bg-light-note shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
-          showDropdown ? "ignore-version-dropdown" : "hidden"
+          active ? "ignore-version-dropdown" : "hidden",
+          transitionClasses
         )}
+        data-transition-enter-active="duration-200 ease-out"
+        data-transition-enter-from="opacity-0"
+        data-transition-enter-to="opacity-100"
+        data-transition-leave-active="duration-100 ease-in"
+        data-transition-leave-from="opacity-100"
+        data-transition-leave-to="opacity-0"
       >
         {items.map((version, index) => (
           <li key={index} className="cursor-default select-none relative">

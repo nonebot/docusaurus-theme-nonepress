@@ -44,6 +44,7 @@ declare module "@theme/hooks/useTransition" {
   export type useTransitionReturns<T> = {
     readonly element: RefObject<T>;
     readonly active: boolean;
+    readonly transitionClasses: Array<string>;
     readonly enter: () => Promise<void>;
     readonly leave: () => Promise<void>;
   };

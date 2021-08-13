@@ -34,51 +34,59 @@ function afterTransition(element: RefObject<HTMLElement>): Promise<void> {
   });
 }
 
-async function runTransition(
-  element: RefObject<HTMLElement>,
-  dir: "enter" | "leave"
-): Promise<void> {
-  const activeClasses = getTransitionClasses(element, `${dir}-active`);
-  const fromClasses = getTransitionClasses(element, `${dir}-from`);
-  const toClasses = getTransitionClasses(element, `${dir}-to`);
-
-  element.current.classList.add(...activeClasses);
-  element.current.classList.add(...fromClasses);
-
-  await nextFrame();
-
-  element.current.classList.remove(...fromClasses);
-  element.current.classList.add(...toClasses);
-
-  await afterTransition(element);
-
-  element.current.classList.remove(...toClasses);
-  element.current.classList.remove(...activeClasses);
-}
-
 export default function useTransition<
   T extends HTMLElement
 >(): useTransitionReturns<T> {
   const element = useRef<T>(null);
   const [active, setActive] = useState(false);
+  const [transitionClasses, setTransition] = useState<Array<string>>([]);
+
+  const runTransition = useCallback(
+    async (dir: "enter" | "leave") => {
+      const activeClasses = getTransitionClasses(element, `${dir}-active`);
+      const fromClasses = getTransitionClasses(element, `${dir}-from`);
+      const toClasses = getTransitionClasses(element, `${dir}-to`);
+
+      // element.current.classList.add(...activeClasses);
+      // element.current.classList.add(...fromClasses);
+      setTransition([...activeClasses, ...fromClasses]);
+
+      await nextFrame();
+
+      // element.current.classList.remove(...fromClasses);
+      // element.current.classList.add(...toClasses);
+      setTransition([...activeClasses, ...toClasses]);
+
+      await afterTransition(element);
+
+      // element.current.classList.remove(...toClasses);
+      // element.current.classList.remove(...activeClasses);
+      setTransition([]);
+    },
+    [element, setTransition]
+  );
 
   const enter = useCallback(async () => {
-    element.current.classList.remove("hidden");
-    await runTransition(element, "enter");
     setActive(true);
-  }, [element, setActive]);
+    await runTransition("enter");
+  }, [setActive]);
 
   const leave = useCallback(async () => {
-    await runTransition(element, "leave");
+    await runTransition("leave");
     setActive(false);
-  }, [element, setActive]);
+  }, [setActive]);
+
+  // const runCallback = useCallback(
+  //   async (dir: "enter" | "leave") => {
+  //     await runTransition(element, dir);
+  //   },
+  //   [element]
+  // );
 
   // useEffect(() => {
-  //   console.log(shouldEnter);
-  //   if (shouldEnter) {
-  //     setShouldEnter(false);
-  //     runTransition(element, "enter");
+  //   if (active) {
+  //     runCallback("enter");
   //   }
-  // }, [shouldEnter]);
-  return { element, active, enter, leave };
+  // }, [active]);
+  return { element, active, transitionClasses, enter, leave };
 }
