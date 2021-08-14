@@ -1,10 +1,17 @@
 import path from "path";
 import Module from "module";
 import type { AcceptedPlugin } from "postcss";
-import { DocusaurusContext, Plugin } from "@docusaurus/types";
+import { LoadContext, Plugin } from "@docusaurus/types";
 
 import { ThemeConfig } from "./useThemeConfig";
+import { normalizeUrl } from "@docusaurus/utils";
 import defaultTailwindConfig from "./tailwind.config";
+import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
+import pluginContentDoc from "@docusaurus/plugin-content-docs/lib/index";
+import {
+  PluginOptions,
+  LoadedContent,
+} from "@docusaurus/plugin-content-docs/lib/types";
 
 const requireFromDocusaurusCore = Module.createRequire(
   require.resolve("@docusaurus/core/package.json")
@@ -41,16 +48,13 @@ const noFlashColorMode = ({ defaultMode = "light" }) => {
 })();`;
 };
 
-// type PluginOptions = {
-//   [key: string]: never;
-// };
-
 export default function docusaurusThemeClassic(
-  context: DocusaurusContext
-  // options: PluginOptions = {}
-): Plugin<void> {
+  context: LoadContext,
+  options: PluginOptions
+): Plugin<LoadedContent> {
   const {
     siteConfig: { themeConfig: roughlyTypedThemeConfig },
+    baseUrl,
   } = context;
   const themeConfig = (roughlyTypedThemeConfig || {}) as ThemeConfig;
   const {
@@ -59,6 +63,7 @@ export default function docusaurusThemeClassic(
     tailwindConfig,
     prism: { additionalLanguages = [] } = {},
   } = themeConfig;
+  const docsPluginInstance = pluginContentDoc(context, options);
 
   return {
     name: "docusaurus-theme-nonepress",
@@ -89,7 +94,7 @@ export default function docusaurusThemeClassic(
       return modules;
     },
 
-    configureWebpack() {
+    configureWebpack(_config, isServer, utils, content) {
       const prismLanguages = additionalLanguages
         .map((lang) => `prism-${lang}`)
         .join("|");
@@ -126,6 +131,17 @@ export default function docusaurusThemeClassic(
       return postCssOptions;
     },
 
+    loadContent: docsPluginInstance.loadContent,
+
+    async contentLoaded({ content, actions }) {
+      const { loadedVersions } = content;
+      const { setGlobalData } = actions;
+
+      setGlobalData<GlobalPluginData>({
+        versions: loadedVersions,
+      });
+    },
+
     injectHtmlTags() {
       return {
         preBodyTags: [
@@ -143,3 +159,4 @@ export default function docusaurusThemeClassic(
 }
 
 export { validateThemeConfig } from "./validateThemeConfig";
+export { validateOptions } from "@docusaurus/plugin-content-docs/lib/index";

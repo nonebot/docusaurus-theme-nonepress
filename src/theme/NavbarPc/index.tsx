@@ -78,6 +78,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
     activeDocContext.activeVersion ?? preferredVersion ?? latestVersion;
 
   if (items.length <= 1) {
+    // return <></>;
   }
 
   return (
@@ -98,7 +99,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
           className="absolute left-3.5 bg-indigo-400 flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-indigo-300"
         ></span>
         <span className="block truncate font-medium">
-          {dropdownVersion.name}
+          {dropdownVersion.label}
         </span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
           <i className="text-lg opacity-60 fas fa-sort"></i>

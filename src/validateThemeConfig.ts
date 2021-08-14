@@ -36,11 +36,11 @@ const ColorModeSchema = Joi.object({
   disableSwitch: Joi.bool().default(DEFAULT_COLOR_MODE_CONFIG.disableSwitch),
   switchConfig: Joi.object({
     darkIcon: Joi.string(),
-    darkIconText: Joi.object().default(
+    darkIconText: Joi.string().default(
       DEFAULT_COLOR_MODE_CONFIG.switchConfig.darkIconText
     ),
     lightIcon: Joi.string(),
-    lightIconText: Joi.object().default(
+    lightIconText: Joi.string().default(
       DEFAULT_COLOR_MODE_CONFIG.switchConfig.lightIconText
     ),
   }).default(DEFAULT_COLOR_MODE_CONFIG.switchConfig),
@@ -127,6 +127,7 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
 // docs menu
 const DocsMenuDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("docsMenu").required(),
+  pathPrefix: Joi.string().optional(),
 });
 
 export const NavbarItemSchema = Joi.object().when(Joi.ref("."), {

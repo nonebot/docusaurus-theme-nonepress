@@ -2,9 +2,10 @@
 
 declare module "@theme/hooks/useDocs" {
   import {
-    GlobalPluginData,
     GlobalVersion,
+    GlobalPluginData,
   } from "@docusaurus/plugin-content-docs/lib/types";
+  import { GlobalPluginData as GlobalLoadedDocs } from "docusaurus-theme-nonepress/types";
   import {
     ActivePlugin,
     ActiveDocContext,
@@ -37,6 +38,9 @@ declare module "@theme/hooks/useDocs" {
   export const useDocVersionSuggestions: (
     pluginId: string | undefined
   ) => DocVersionSuggestions;
+  export const useLoadedVersions: (
+    pluginId: string | undefined
+  ) => GlobalLoadedDocs;
 }
 
 declare module "@theme/hooks/useTransition" {
@@ -81,4 +85,11 @@ declare module "@theme/ThemeContext" {
 
   const ThemeContext: Context<ThemeContextProps | undefined>;
   export default ThemeContext;
+}
+
+declare module "docusaurus-theme-nonepress/types" {
+  import { LoadedVersion } from "@docusaurus/plugin-content-docs/lib/types";
+  export type GlobalPluginData = {
+    versions: Array<LoadedVersion>;
+  };
 }

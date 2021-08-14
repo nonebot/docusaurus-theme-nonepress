@@ -24,6 +24,8 @@ module.exports = {
     extend: {
       translate: ["dark"],
       opacity: ["dark"],
+      borderWidth: ["dark"],
+      borderColor: ["dark"],
     },
   },
 };

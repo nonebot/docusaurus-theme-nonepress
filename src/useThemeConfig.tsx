@@ -55,6 +55,7 @@ export type NavbarDropdown = NavbarItem & {
 
 export type NavbarDocsMenu = NavbarItem & {
   type: "docsMenu";
+  pathPrefix?: string;
 };
 
 export type NavbarConfig = {
