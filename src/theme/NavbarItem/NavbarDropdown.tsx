@@ -44,8 +44,8 @@ export default function NavbarDropdown(
         ref={element}
         className={clsx(
           "absolute z-10 top-0 mt-9 -translate-x-1/2 left-1/2 bg-light-note shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
-          active ? "" : "hidden",
-          transitionClasses
+          transitionClasses,
+          { hidden: !active }
         )}
         data-transition-enter-active="duration-200 ease-out"
         data-transition-enter-from="opacity-0 scale-95"

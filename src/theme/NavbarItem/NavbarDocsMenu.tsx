@@ -106,8 +106,8 @@ export default function NavbarDocsMenu(
         ref={element}
         className={clsx(
           "absolute z-10 top-0 left-1/2 transform -translate-x-1/2 mt-8 pt-2 px-2 w-screen max-w-md sm:px-0 lg:max-w-3xl",
-          active ? "" : "hidden",
-          transitionClasses
+          transitionClasses,
+          { hidden: !active }
         )}
         data-transition-enter-active="duration-200 ease-out"
         data-transition-enter-from="opacity-0 scale-95"

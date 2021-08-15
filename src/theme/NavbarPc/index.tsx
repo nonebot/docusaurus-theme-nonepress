@@ -154,13 +154,13 @@ export default function NavbarPc(
       disableSwitch,
       switchConfig: { darkIcon, darkIconText, lightIcon, lightIconText },
     },
-    navbar: { hideOnScroll, items },
+    navbar: { items },
   } = useThemeConfig();
   const colorModeToggle = useColorModeToggle();
   const { openMobileMenu } = props;
 
   return (
-    <div className="absolute max-w-7xl mx-auto px-4 top-0 left-0 right-0 z-30 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 z-30 sm:px-6 lg:px-8">
       <div className="relative flex justify-end items-center py-6 md:space-x-10">
         <div className="flex flex-grow justify-start lg:w-0 lg:flex-1">
           <Logo imageClassName="h-8 w-auto sm:h-10">

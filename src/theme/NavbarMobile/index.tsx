@@ -31,8 +31,8 @@ export default function NavbarMobile(
       aria-orientation="vertical"
       className={clsx(
         "absolute top-0 inset-x-0 p-2 transition transform origin-top-right z-40 md:hidden",
-        active ? "" : "hidden",
-        transitionClasses
+        transitionClasses,
+        { hidden: !active }
       )}
       data-transition-enter-active="duration-150 ease-out"
       data-transition-enter-from="opacity-0 scale-95"

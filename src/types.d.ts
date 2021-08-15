@@ -79,6 +79,29 @@ declare module "@theme/hooks/useThemeContext" {
   export default function useThemeContext(): ThemeContextProps;
 }
 
+declare module "@theme/hooks/useHideableNavbar" {
+  export type useHideableNavbarReturns = {
+    readonly navbarRef: (node: HTMLElement | null) => void;
+    readonly isNavbarVisible: boolean;
+  };
+
+  const useHideableNavbar: (hideOnScroll: boolean) => useHideableNavbarReturns;
+  export default useHideableNavbar;
+}
+
+declare module "@theme/hooks/useScrollPosition" {
+  export type ScrollPosition = { scrollX: number; scrollY: number };
+
+  const useScrollPosition: (
+    effect: (
+      position: ScrollPosition,
+      lastPosition: ScrollPosition | null
+    ) => void,
+    deps?: unknown[]
+  ) => void;
+  export default useScrollPosition;
+}
+
 declare module "@theme/ThemeContext" {
   import type { Context } from "react";
   import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
