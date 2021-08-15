@@ -14,6 +14,7 @@ module.exports = {
   theme: {
     colors: {
       ...defaultTheme.colors,
+      inherit: "inherit",
       gray: colors.blueGray,
       "light-note": "#f7f9ff",
       "light-note-darker": "#f2f6ff",

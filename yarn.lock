@@ -1524,6 +1524,11 @@
   resolved "https://registry.nlark.com/@polka/url/download/@polka/url-1.0.0-next.15.tgz#6a9d143f7f4f49db2d782f9e1c8839a29b43ae23"
   integrity sha1-ap0UP39PSdsteC+eHIg5optDriM=
 
+"@seznam/compose-react-refs@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npm.taobao.org/@seznam/compose-react-refs/download/@seznam/compose-react-refs-1.0.6.tgz#6ec4e70bdd6e32f8e70b4100f27267cf306bd8df"
+  integrity sha1-bsTnC91uMvjnC0EA8nJnzzBr2N8=
+
 "@sideway/address@^4.1.0":
   version "4.1.2"
   resolved "https://registry.nlark.com/@sideway/address/download/@sideway/address-4.1.2.tgz?cache=0&sync_timestamp=1620367945721&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40sideway%2Faddress%2Fdownload%2F%40sideway%2Faddress-4.1.2.tgz#811b84333a335739d3969cfc434736268170cad1"

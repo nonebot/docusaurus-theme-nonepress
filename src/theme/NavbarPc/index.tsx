@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useCallback, useState } from "react";
+import React, { PropsWithChildren, useCallback } from "react";
 
 import Logo from "@theme/Logo";
 import Link from "@docusaurus/Link";
@@ -147,7 +147,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
 }
 
 export default function NavbarPc(
-  props: PropsWithChildren<unknown>
+  props: PropsWithChildren<{ openMobileMenu: () => void }>
 ): JSX.Element {
   const {
     colorMode: {
@@ -157,6 +157,7 @@ export default function NavbarPc(
     navbar: { hideOnScroll, items },
   } = useThemeConfig();
   const colorModeToggle = useColorModeToggle();
+  const { openMobileMenu } = props;
 
   return (
     <div className="absolute max-w-7xl mx-auto px-4 top-0 left-0 right-0 z-30 sm:px-6 lg:px-8">
@@ -199,6 +200,7 @@ export default function NavbarPc(
         )}
         <div className="-mr-2 -my-2 md:hidden">
           <button
+            onClick={openMobileMenu}
             type="button"
             className="rounded-md p-2 inline-flex items-center justify-center transition opacity-60 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
             aria-expanded="false"
