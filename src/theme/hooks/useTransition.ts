@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect, RefObject } from "react";
+import { useRef, useState, useCallback, RefObject } from "react";
 
 import { useTransitionReturns } from "@theme/hooks/useTransition";
 
@@ -34,9 +34,7 @@ function afterTransition(element: RefObject<HTMLElement>): Promise<void> {
   });
 }
 
-export default function useTransition<
-  T extends HTMLElement
->(): useTransitionReturns<T> {
+const useTransition = <T extends HTMLElement>(): useTransitionReturns<T> => {
   const element = useRef<T>(null);
   const [active, setActive] = useState(false);
   const [transitionClasses, setTransition] = useState<Array<string>>([]);
@@ -47,20 +45,14 @@ export default function useTransition<
       const fromClasses = getTransitionClasses(element, `${dir}-from`);
       const toClasses = getTransitionClasses(element, `${dir}-to`);
 
-      // element.current.classList.add(...activeClasses);
-      // element.current.classList.add(...fromClasses);
       setTransition([...activeClasses, ...fromClasses]);
 
       await nextFrame();
 
-      // element.current.classList.remove(...fromClasses);
-      // element.current.classList.add(...toClasses);
       setTransition([...activeClasses, ...toClasses]);
 
       await afterTransition(element);
 
-      // element.current.classList.remove(...toClasses);
-      // element.current.classList.remove(...activeClasses);
       setTransition([]);
     },
     [element, setTransition]
@@ -76,17 +68,7 @@ export default function useTransition<
     setActive(false);
   }, [setActive]);
 
-  // const runCallback = useCallback(
-  //   async (dir: "enter" | "leave") => {
-  //     await runTransition(element, dir);
-  //   },
-  //   [element]
-  // );
-
-  // useEffect(() => {
-  //   if (active) {
-  //     runCallback("enter");
-  //   }
-  // }, [active]);
   return { element, active, transitionClasses, enter, leave };
-}
+};
+
+export default useTransition;

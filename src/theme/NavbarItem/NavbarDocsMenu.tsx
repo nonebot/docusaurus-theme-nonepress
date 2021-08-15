@@ -1,10 +1,8 @@
 import clsx from "clsx";
-import { orderBy } from "lodash";
+import { sortBy } from "lodash";
 import React, { PropsWithChildren } from "react";
 
 import Link from "@docusaurus/Link";
-import NavbarItem from "@theme/NavbarItem";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import useTransition from "@theme/hooks/useTransition";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import { NavbarDocsMenu as NavDocsMenu } from "../../useThemeConfig";
@@ -27,7 +25,7 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
 export default function NavbarDocsMenu(
   props: PropsWithChildren<NavDocsMenu>
 ): JSX.Element {
-  const { label, icon, className, pathPrefix } = props;
+  const { label, icon, className, idPrefix } = props;
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLDivElement>();
 
@@ -51,9 +49,14 @@ export default function NavbarDocsMenu(
       (version) => version.versionName === dropdownVersion.name
     );
     const activeDocs = activeVersionData.docs.filter(
-      (doc) => doc.frontMatter.weight && doc.slug.startsWith(pathPrefix || "")
+      (doc) => doc.frontMatter.weight && doc.id.startsWith(idPrefix || "")
     );
-    const docLinks = activeDocs.map((doc) => {});
+    const sortedDocs = sortBy(activeDocs, (doc) => doc.weight);
+    const docLinks = sortedDocs.map((doc) => ({
+      title: doc.title,
+      description: doc.description,
+      to: doc.permalink,
+    }));
 
     return docLinks;
   }
@@ -114,7 +117,22 @@ export default function NavbarDocsMenu(
         data-transition-leave-to="opacity-0 scale-95"
       >
         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-          <div className="relative grid auto-cols-fr gap-6 bg-light-note px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-3 dark:bg-gray-700"></div>
+          <div className="relative grid auto-cols-fr gap-6 bg-light-note px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-3 dark:bg-gray-700">
+            {items.map((doc, index) => {
+              <Link
+                key={index}
+                to={doc.to}
+                className="-m-3 p-3 flex items-start rounded-lg whitespace-nowrap hover:bg-light-note-darker transition ease-in-out duration-150 dark:hover:bg-dark-note-darker"
+              >
+                <div className="max-w-full">
+                  <p className="text-base font-medium">{doc.title}</p>
+                  <p className="mt-1 text-sm overflow-hidden overflow-ellipsis opacity-60">
+                    {doc.description}
+                  </p>
+                </div>
+              </Link>;
+            })}
+          </div>
           {versionItems && (
             <div className="p-5 bg-light-note-darker sm:p-8 dark:bg-dark-note-darker">
               <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-2">
