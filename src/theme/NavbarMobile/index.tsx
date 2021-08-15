@@ -15,10 +15,10 @@ export default function NavbarMobile(
   const ref = useOnclickOutside(
     () => {
       leave();
+    },
+    {
+      ignoreClass: "ignore-mobile-menu",
     }
-    // {
-    //   ignoreClass: "ignore-mobile-menu",
-    // }
   );
   const {
     navbar: { items },
