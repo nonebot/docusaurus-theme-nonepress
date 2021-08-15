@@ -14,9 +14,14 @@ import {
   useActiveDocContext,
 } from "@theme/hooks/useDocs";
 import {
-  GlobalVersion,
   GlobalDoc,
+  GlobalVersion,
+  DocFrontMatter,
 } from "@docusaurus/plugin-content-docs/lib/types";
+
+type CustomDocFrontMatter = DocFrontMatter & {
+  options: { menu: { weight: number } };
+};
 
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
@@ -49,9 +54,13 @@ export default function NavbarDocsMenu(
       (version) => version.versionName === dropdownVersion.name
     );
     const activeDocs = activeVersionData.docs.filter(
-      (doc) => doc.frontMatter.weight && doc.id.startsWith(idPrefix || "")
+      (doc) =>
+        (doc.frontMatter as CustomDocFrontMatter).options.menu.weight &&
+        doc.id.startsWith(idPrefix || "")
     );
-    const sortedDocs = sortBy(activeDocs, [(doc) => doc.frontMatter.weight]);
+    const sortedDocs = sortBy(activeDocs, [
+      (doc) => (doc.frontMatter as CustomDocFrontMatter).options.menu.weight,
+    ]);
     const docLinks = sortedDocs.map((doc) => ({
       title: doc.title,
       description: doc.description,
