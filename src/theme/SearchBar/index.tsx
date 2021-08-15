@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useMemo } from "react";
 
+import "./styles.module.css";
 import Link from "@docusaurus/Link";
 import Head from "@docusaurus/Head";
 import { createPortal } from "react-dom";
@@ -10,7 +11,6 @@ import useSearchQuery from "@theme/hooks/useSearchQuery";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
 import useAlgoliaContextualFacetFilters from "@theme/hooks/useAlgoliaContextualFacetFilters";
-import styles from "./styles.module.css";
 
 let DocSearchModal = null;
 
@@ -158,7 +158,7 @@ function DocSearch({ contextualSearch, ...props }) {
         />
       </Head>
 
-      <div className={styles.searchBox}>
+      <div className="flex self-center relative order-last md:order-none mr-5 md:mr-0">
         <DocSearchButton
           onTouchStart={importDocSearchModalIfNeeded}
           onFocus={importDocSearchModalIfNeeded}

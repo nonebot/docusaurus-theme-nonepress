@@ -6,6 +6,7 @@ import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import SearchBar from "@theme/SearchBar";
 import NavbarItem from "@theme/NavbarItem";
+import ThemeSwitcher from "@theme/ThemeSwitcher";
 import useThemeConfig from "../../useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -82,7 +83,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
   }
 
   return (
-    <div className="self-end mr-8 w-28 relative md:mr-0">
+    <div className="self-end mr-5 w-28 relative md:mr-0">
       <button
         type="button"
         ref={ref}
@@ -167,38 +168,10 @@ export default function NavbarPc(
             <span className="sr-only">Home</span>
           </Logo>
         </div>
-        <div className="search-container hidden w-36 self-center relative lg:flex">
-          <SearchBar />
-        </div>
+        <SearchBar />
         <NavbarDocsVersion />
-        {!disableSwitch && (
-          <button
-            type="button"
-            className="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 mr-8 border-2 border-transparent rounded-full cursor-pointer transition-all ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 dark:focus:ring-blue-200 dark:bg-gray-900 md:mr-0"
-            role="switch"
-            aria-checked="false"
-            onClick={colorModeToggle.toggle}
-          >
-            <span className="sr-only">Use dark theme</span>
-            <span className="translate-x-0 pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 dark:bg-gray-700 dark:translate-x-5">
-              <span className="opacity-100 ease-in duration-200 absolute inset-0 h-full w-full flex items-center justify-center transition-opacity dark:opacity-0">
-                {lightIcon ? (
-                  <i className={clsx("w-3 h-3", lightIcon)}></i>
-                ) : (
-                  lightIconText
-                )}
-              </span>
-              <span className="opacity-0 ease-out duration-100 absolute inset-0 h-full w-full flex items-center justify-center transition-opacity dark:opacity-100">
-                {darkIcon ? (
-                  <i className={clsx("w-3 h-3", lightIcon)}></i>
-                ) : (
-                  darkIconText
-                )}
-              </span>
-            </span>
-          </button>
-        )}
-        <div className="-mr-2 -my-2 md:hidden">
+        <ThemeSwitcher className="mr-0 hidden md:inline-flex" />
+        <div className="-mr-2 -my-2 md:hidden order-last">
           <button
             onClick={openMobileMenu}
             type="button"

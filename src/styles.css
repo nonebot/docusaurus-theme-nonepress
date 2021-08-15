@@ -2,18 +2,17 @@
 
 body {
   --tw-bg-opacity: 1;
-  background-color: rgba(240,244,252,var(--tw-bg-opacity));
-  font-family: Inter var,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
-  font-size: .9rem;
   --tw-text-opacity: 1;
+  font-size: .9rem;
   color: rgba(9,61,141,var(--tw-text-opacity));
+  background-color: rgba(240,244,252,var(--tw-bg-opacity));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 html.dark body {
   --tw-bg-opacity: 1;
-  background-color: rgba(30,41,59,var(--tw-bg-opacity));
   --tw-text-opacity: 1;
+  background-color: rgba(30,41,59,var(--tw-bg-opacity));
   color: rgba(208,212,252,var(--tw-text-opacity));
 }

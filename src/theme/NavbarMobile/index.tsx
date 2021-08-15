@@ -1,12 +1,20 @@
 import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useCallback } from "react";
 import composeRefs from "@seznam/compose-react-refs";
 
 import Logo from "@theme/Logo";
 import NavbarItem from "@theme/NavbarItem";
+import ThemeSwitcher from "@theme/ThemeSwitcher";
 import useThemeConfig from "../../useThemeConfig";
-import { useTransitionReturns } from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
+import useThemeContext from "@theme/hooks/useThemeContext";
+import { useTransitionReturns } from "@theme/hooks/useTransition";
+
+function useColorModeToggle() {
+  const { isDarkTheme, toggleTheme } = useThemeContext();
+  const toggle = useCallback(() => toggleTheme(), [toggleTheme]);
+  return { isDarkTheme, toggle };
+}
 
 export default function NavbarMobile(
   props: PropsWithChildren<useTransitionReturns<HTMLDivElement>>
@@ -21,8 +29,13 @@ export default function NavbarMobile(
     }
   );
   const {
+    colorMode: {
+      disableSwitch,
+      switchConfig: { darkIcon, darkIconText, lightIcon, lightIconText },
+    },
     navbar: { items },
   } = useThemeConfig();
+  const colorModeToggle = useColorModeToggle();
 
   return (
     <div
@@ -43,9 +56,10 @@ export default function NavbarMobile(
     >
       <div className="relative max-h-screen rounded-lg shadow-md rel bg-light-note ring-1 ring-black ring-opacity-5 overflow-auto dark:bg-gray-700">
         <div className="sticky top-0 bg-inherit px-5 pt-4 flex items-center justify-between">
-          <div>
+          <div className="flex flex-grow justify-start">
             <Logo imageClassName="h-8 w-auto" />
           </div>
+          <ThemeSwitcher className="inline-flex mr-5" />
           <div className="-mr-2">
             <button
               type="button"
