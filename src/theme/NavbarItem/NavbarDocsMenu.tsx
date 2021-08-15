@@ -51,7 +51,7 @@ export default function NavbarDocsMenu(
     const activeDocs = activeVersionData.docs.filter(
       (doc) => doc.frontMatter.weight && doc.id.startsWith(idPrefix || "")
     );
-    const sortedDocs = sortBy(activeDocs, (doc) => doc.weight);
+    const sortedDocs = sortBy(activeDocs, [(doc) => doc.frontMatter.weight]);
     const docLinks = sortedDocs.map((doc) => ({
       title: doc.title,
       description: doc.description,
@@ -118,7 +118,7 @@ export default function NavbarDocsMenu(
       >
         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
           <div className="relative grid auto-cols-fr gap-6 bg-light-note px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-3 dark:bg-gray-700">
-            {items.map((doc, index) => {
+            {items.map((doc, index) => (
               <Link
                 key={index}
                 to={doc.to}
@@ -130,8 +130,8 @@ export default function NavbarDocsMenu(
                     {doc.description}
                   </p>
                 </div>
-              </Link>;
-            })}
+              </Link>
+            ))}
           </div>
           {versionItems && (
             <div className="p-5 bg-light-note-darker sm:p-8 dark:bg-dark-note-darker">
