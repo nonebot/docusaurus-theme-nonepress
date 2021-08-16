@@ -102,14 +102,14 @@ export default function NavbarDocsMenu(
 
   return (
     <li
-      className={clsx("relative flex items-center h-full", className)}
+      className={clsx("relative flex items-center h-full group", className)}
       onMouseEnter={enter}
       onMouseLeave={leave}
     >
       <Link
         to={toUrl}
         className={clsx(
-          "self-center transition duration-300 opacity-60 hover:opacity-100",
+          "self-center transition duration-300 opacity-60 group-hover:opacity-100",
           icon ? "text-3xl" : "text-sm font-medium uppercase"
         )}
       >

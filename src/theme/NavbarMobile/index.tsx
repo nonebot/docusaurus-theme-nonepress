@@ -71,11 +71,11 @@ export default function NavbarMobile(
             </button>
           </div>
         </div>
-        <div className="px-2 pt-2 pb-3">
+        <ul className="px-2 pt-2 pb-3">
           {items.map((item, index) => (
-            <NavbarItem key={index} item={item} isMobile={true} />
+            <NavbarItem key={index} item={item} isMobile />
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );

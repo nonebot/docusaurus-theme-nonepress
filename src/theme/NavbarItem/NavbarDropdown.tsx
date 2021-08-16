@@ -20,7 +20,7 @@ export default function NavbarDropdown(
 
   return (
     <li
-      className={clsx("relative flex items-center h-full", className)}
+      className={clsx("relative flex items-center h-full group", className)}
       onMouseEnter={enter}
       onMouseLeave={leave}
     >
@@ -33,11 +33,12 @@ export default function NavbarDropdown(
               to: toUrl,
             })}
         className={clsx(
-          "self-center transition duration-300 opacity-60 hover:opacity-100",
-          icon ? "text-3xl" : "text-sm font-medium uppercase"
+          "self-center transition duration-300 opacity-60 group-hover:opacity-100",
+          !label ? "text-3xl" : "text-sm font-medium uppercase"
         )}
       >
-        {icon ? <i className={icon}></i> : label}
+        {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+        <span className="truncate">{label}</span>
       </Link>
       <i className="fas fa-angle-down ml-2 text-xl opacity-60 group-hover:opacity-100 transition ease-in-out duration-150"></i>
       <ul

@@ -13,21 +13,23 @@ export default function NavbarLinkMobile(
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   return (
-    <Link
-      {...(href
-        ? {
-            href: prependBaseUrlToHref ? normalizedHref : href,
-          }
-        : {
-            to: toUrl,
-          })}
-      className={clsx(
-        "block px-3 py-4 rounded-md hover:bg-indigo-50 dark:hover:bg-gray-900 dark:hover:opacity-100",
-        !label ? "text-2xl" : "text-base font-medium uppercase"
-      )}
-    >
-      {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
-      <span className="truncate">{label}</span>
-    </Link>
+    <li className={className}>
+      <Link
+        {...(href
+          ? {
+              href: prependBaseUrlToHref ? normalizedHref : href,
+            }
+          : {
+              to: toUrl,
+            })}
+        className={clsx(
+          "block px-3 py-3 rounded-md hover:bg-indigo-50 dark:hover:bg-gray-900 dark:hover:opacity-100",
+          !label ? "text-2xl" : "text-base font-medium uppercase"
+        )}
+      >
+        {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+        <span className="truncate">{label}</span>
+      </Link>
+    </li>
   );
 }
