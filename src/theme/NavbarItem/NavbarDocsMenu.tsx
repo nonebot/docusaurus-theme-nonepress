@@ -20,7 +20,7 @@ import {
 } from "@docusaurus/plugin-content-docs/lib/types";
 
 type CustomDocFrontMatter = DocFrontMatter & {
-  options: { menu: { weight: number } };
+  options?: { menu?: { weight?: number; category?: Array<string> } };
 };
 
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
@@ -30,7 +30,7 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
 export default function NavbarDocsMenu(
   props: PropsWithChildren<NavDocsMenu>
 ): JSX.Element {
-  const { label, icon, className, idPrefix } = props;
+  const { label, icon, className, category } = props;
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLDivElement>();
 
@@ -53,11 +53,16 @@ export default function NavbarDocsMenu(
     const activeVersionData = docsData.versions.find(
       (version) => version.versionName === dropdownVersion.name
     );
-    const activeDocs = activeVersionData.docs.filter(
-      (doc) =>
-        (doc.frontMatter as CustomDocFrontMatter).options.menu.weight &&
-        doc.id.startsWith(idPrefix || "")
-    );
+    const activeDocs = activeVersionData.docs.filter((doc) => {
+      const menu = (doc.frontMatter as CustomDocFrontMatter)?.options?.menu;
+      const weight = menu?.weight;
+      const docCategory = menu?.category;
+      let inCategory = true;
+      if (category) {
+        inCategory = docCategory && docCategory.indexOf(category) >= 0;
+      }
+      return weight && inCategory;
+    });
     const sortedDocs = sortBy(activeDocs, [
       (doc) => (doc.frontMatter as CustomDocFrontMatter).options.menu.weight,
     ]);

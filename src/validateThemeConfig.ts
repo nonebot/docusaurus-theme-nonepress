@@ -127,7 +127,7 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
 // docs menu
 const DocsMenuDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("docsMenu").required(),
-  idPrefix: Joi.string().optional(),
+  category: Joi.string().optional(),
 });
 
 export const NavbarItemSchema = Joi.object().when(Joi.ref("."), {
