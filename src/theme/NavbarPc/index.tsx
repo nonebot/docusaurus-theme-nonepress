@@ -22,12 +22,6 @@ import {
   useLatestVersion,
 } from "@theme/hooks/useDocs";
 
-function useColorModeToggle() {
-  const { isDarkTheme, toggleTheme } = useThemeContext();
-  const toggle = useCallback(() => toggleTheme(), [toggleTheme]);
-  return { isDarkTheme, toggle };
-}
-
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
 }
@@ -151,13 +145,8 @@ export default function NavbarPc(
   props: PropsWithChildren<{ openMobileMenu: () => void }>
 ): JSX.Element {
   const {
-    colorMode: {
-      disableSwitch,
-      switchConfig: { darkIcon, darkIconText, lightIcon, lightIconText },
-    },
     navbar: { items },
   } = useThemeConfig();
-  const colorModeToggle = useColorModeToggle();
   const { openMobileMenu } = props;
 
   return (

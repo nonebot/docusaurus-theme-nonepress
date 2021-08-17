@@ -20,7 +20,7 @@ export default function Navbar(props: PropsWithChildren<{}>): JSX.Element {
       id="navbar"
       ref={navbarRef}
       className={clsx(
-        "sticky top-0 left-0 right-0 bg-light-note dark:bg-gray-700 shadow-sm z-10 transition-transform",
+        "fixed top-0 left-0 right-0 bg-light-note dark:bg-gray-700 shadow-sm z-10 transition-transform",
         { [styles.navbarHidden]: hideOnScroll && !isNavbarVisible }
       )}
     >
