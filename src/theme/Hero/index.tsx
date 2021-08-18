@@ -2,9 +2,7 @@ import React, { PropsWithChildren } from "react";
 
 import { useSiteConfig } from "../../useThemeConfig";
 
-export default function HeroPage(
-  props: PropsWithChildren<unknown>
-): JSX.Element {
+export default function Hero(props: PropsWithChildren<unknown>): JSX.Element {
   const siteConfig = useSiteConfig();
 
   return (
@@ -21,6 +19,66 @@ export default function HeroPage(
         <div className="mx-auto self-start animate-bounce">
           <i className="text-4xl fas fa-angle-down"></i>
         </div>
+      </div>
+    </div>
+  );
+}
+
+export type Feature = {
+  title: string;
+  tagline?: string;
+  description?: string;
+  annotaion?: string;
+};
+
+function HeroFeatureInner(props: PropsWithChildren<Feature>): JSX.Element {
+  const { title, tagline, description, annotaion, children } = props;
+
+  return (
+    <>
+      <p className="mt-3 mb-3 max-w-md mx-auto text-sm font-medium tracking-wide uppercase opacity-70 md:mt-5 md:max-w-3xl">
+        {tagline}
+      </p>
+      <h1 className="text-4xl tracking-tight font-light sm:text-5xl md:text-5xl">
+        {title}
+      </h1>
+      <p className="mt-10">{description}</p>
+      {children}
+      <p className="text-sm italic opacity-70">{annotaion}</p>
+    </>
+  );
+}
+
+export function HeroFeatureSingle(
+  props: PropsWithChildren<Feature>
+): JSX.Element {
+  return (
+    <div className="max-w-7xl mx-auto py-16 px-4 text-center md:px-16">
+      <HeroFeatureInner {...props} />
+    </div>
+  );
+}
+
+export function HeroFeatureDouble(
+  props: PropsWithChildren<{ features: [Feature, Feature] }>
+): JSX.Element {
+  const {
+    features: [feature1, feature2],
+    children,
+  } = props;
+
+  let children1, children2;
+  if (Array.isArray(children) && children.length === 2) {
+    [children1, children2] = children;
+  }
+
+  return (
+    <div className="max-w-7xl mx-auto py-16 px-4 md:grid md:grid-cols-2 md:gap-6 md:px-16">
+      <div className="pb-16 text-center md:pb-0">
+        <HeroFeatureInner {...feature1} children={children1} />
+      </div>
+      <div className="text-center">
+        <HeroFeatureInner {...feature2} children={children2} />
       </div>
     </div>
   );
