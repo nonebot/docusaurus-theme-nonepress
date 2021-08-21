@@ -41,6 +41,7 @@
     "fs-extra": "^10.0.0",
     "globby": "^11.0.2",
     "lodash": "^4.17.20",
+    "parse-numeric-range": "^1.2.0",
     "postcss": "^8.2.15",
     "postcss-import": "^14.0.2",
     "prism-react-renderer": "^1.2.1",

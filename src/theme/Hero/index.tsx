@@ -42,7 +42,7 @@ function HeroFeatureInner(props: PropsWithChildren<Feature>): JSX.Element {
       <h1 className="text-4xl tracking-tight font-light sm:text-5xl md:text-5xl">
         {title}
       </h1>
-      <p className="mt-10">{description}</p>
+      <p className="mt-10 mb-6">{description}</p>
       {children}
       <p className="text-sm italic opacity-70">{annotaion}</p>
     </>

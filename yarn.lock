@@ -6149,6 +6149,11 @@ parse-json@^5.0.0:
     json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
+parse-numeric-range@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/parse-numeric-range/download/parse-numeric-range-1.2.0.tgz#aa70b00f29624ed13e9f943e9461b306e386b0fa"
+  integrity sha1-qnCwDyliTtE+n5Q+lGGzBuOGsPo=
+
 parse5@^5.0.0:
   version "5.1.1"
   resolved "https://registry.nlark.com/parse5/download/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
