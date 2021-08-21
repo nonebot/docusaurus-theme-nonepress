@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import React, { PropsWithChildren, useEffect, useState, useRef } from "react";
 
-import styles from "./styles.module.css";
 import copy from "copy-text-to-clipboard";
 import rangeParser from "parse-numeric-range";
 import useThemeConfig from "../../useThemeConfig";
@@ -80,12 +79,19 @@ const highlightDirectiveRegex = (lang: string) => {
 
 export default function CodeBlock(
   props: PropsWithChildren<{
-    className?: string;
-    metastring?: string;
     title?: string;
+    metastring?: string;
+    className?: string;
+    languageClassName?: string;
   }>
 ): JSX.Element {
-  const { children, className: languageClassName, metastring, title } = props;
+  const {
+    children,
+    className: containerClassName,
+    languageClassName,
+    metastring,
+    title,
+  } = props;
   const { prism } = useThemeConfig();
 
   const [showCopied, setShowCopied] = useState(false);
@@ -185,7 +191,23 @@ export default function CodeBlock(
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div className="text-left w-full h-auto mb-5"></div>
+        <div
+          className={clsx(
+            "text-left w-full max-w-full h-auto mb-5 shadow-lg",
+            containerClassName
+          )}
+        >
+          <div className="relative w-full p-2" style={style}>
+            <div className="absolute left-1">
+              <div className="bg-red-600 inline-block h-2 w-2 rounded-full mr-1"></div>
+              <div className="bg-yellow-500 inline-block h-2 w-2 rounded-full mr-1"></div>
+              <div className="bg-green-500 inline-block h-2 w-2 rounded-full"></div>
+            </div>
+            {codeBlockTitle && (
+              <div className="w-full text-center">{codeBlockTitle}</div>
+            )}
+          </div>
+        </div>
       )}
     </Highlight>
   );
