@@ -20,6 +20,11 @@ module.exports = {
       "light-note-darker": "#f2f6ff",
       "dark-note-darker": "#28394d",
     },
+    extend: {
+      minHeight: {
+        90: "90%",
+      },
+    },
   },
   variants: {
     extend: {

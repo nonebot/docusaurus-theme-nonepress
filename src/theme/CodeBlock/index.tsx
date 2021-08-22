@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { PropsWithChildren, useEffect, useState, useRef } from "react";
 
+import styles from "./styles.module.css";
 import copy from "copy-text-to-clipboard";
 import rangeParser from "parse-numeric-range";
 import useThemeConfig from "../../useThemeConfig";
@@ -104,7 +105,7 @@ export default function CodeBlock(
 
   const codeBlockTitle = parseCodeBlockTitle(metastring) || title;
 
-  const button = useRef(null);
+  // const button = useRef(null);
   let highlightLines: number[] = [];
 
   const prismTheme = usePrismTheme();
@@ -193,7 +194,7 @@ export default function CodeBlock(
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div
           className={clsx(
-            "text-left w-full max-w-full h-auto mb-5 shadow-lg",
+            "text-left w-full max-w-full h-auto mb-5 shadow-lg group",
             containerClassName
           )}
         >
@@ -206,6 +207,46 @@ export default function CodeBlock(
             {codeBlockTitle && (
               <div className="w-full text-center">{codeBlockTitle}</div>
             )}
+          </div>
+          <div
+            className={clsx(
+              "relative m-0 w-full min-h-90 text-sm rounded-b overflow-x-auto",
+              language
+            )}
+          >
+            <pre className={clsx("p-4 m-0", className)} style={style}>
+              <code>
+                {tokens.map((line, i) => {
+                  if (line.length === 1 && line[0].content === "") {
+                    line[0].content = "\n";
+                  }
+
+                  const lineProps = getLineProps({ line, key: i });
+
+                  if (highlightLines.includes(i + 1)) {
+                    lineProps.className +=
+                      " -m-4 p-4 docusaurus-highlight-code-line";
+                  }
+
+                  return (
+                    <span key={i} {...lineProps}>
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token, key })} />
+                      ))}
+                    </span>
+                  );
+                })}
+              </code>
+            </pre>
+            <button
+              // ref={button}
+              type="button"
+              aria-label="Copy code to clipboard"
+              className="absolute bg-black bg-opacity-30 rounded-md text-white right-2 top-2 transition-opacity cursor-pointer select-none px-2 py-1 opacity-0 group-hover:opacity-100 focus:opacity-100"
+              onClick={handleCopyCode}
+            >
+              {showCopied ? "Copied" : "Copy"}
+            </button>
           </div>
         </div>
       )}

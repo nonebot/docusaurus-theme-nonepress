@@ -1,0 +1,8 @@
+:global .docusaurus-highlight-code-line {
+  background-color: rgba(0,0,0,.1);
+  display: block;
+}
+
+:global html.dark .docusaurus-highlight-code-line {
+  background-color: rgba(0,0,0,.3)
+}
