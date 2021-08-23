@@ -194,23 +194,25 @@ export default function CodeBlock(
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div
           className={clsx(
-            "text-left w-full max-w-full h-auto mb-5 shadow-lg group",
+            "text-left w-full max-w-full h-auto mb-5 rounded shadow-lg group",
             containerClassName
           )}
         >
-          <div className="relative w-full p-2" style={style}>
-            <div className="absolute left-1">
-              <div className="bg-red-600 inline-block h-2 w-2 rounded-full mr-1"></div>
-              <div className="bg-yellow-500 inline-block h-2 w-2 rounded-full mr-1"></div>
-              <div className="bg-green-500 inline-block h-2 w-2 rounded-full"></div>
+          {codeBlockTitle && (
+            <div className="relative w-full p-2" style={style}>
+              <div className="absolute left-2">
+                <div className="bg-red-600 inline-block h-2 w-2 rounded-full mr-1"></div>
+                <div className="bg-yellow-500 inline-block h-2 w-2 rounded-full mr-1"></div>
+                <div className="bg-green-500 inline-block h-2 w-2 rounded-full"></div>
+              </div>
+              <div className="w-full text-center inline-block">
+                {codeBlockTitle}
+              </div>
             </div>
-            {codeBlockTitle && (
-              <div className="w-full text-center">{codeBlockTitle}</div>
-            )}
-          </div>
+          )}
           <div
             className={clsx(
-              "relative m-0 w-full min-h-90 text-sm rounded-b overflow-x-auto",
+              "relative m-0 w-full min-h-90 text-sm overflow-x-auto",
               language
             )}
           >
