@@ -1,4 +1,6 @@
 /// <reference types="@docusaurus/module-type-aliases" />
+/// <reference types="@docusaurus/plugin-content-docs" />
+/// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@theme/hooks/useDocs" {
   import {
@@ -17,9 +19,7 @@ declare module "@theme/hooks/useDocs" {
   export const useActivePlugin: (
     options?: GetActivePluginOptions
   ) => ActivePlugin | undefined;
-  export const useActivePluginAndVersion: (
-    options?: GetActivePluginOptions
-  ) =>
+  export const useActivePluginAndVersion: (options?: GetActivePluginOptions) =>
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
