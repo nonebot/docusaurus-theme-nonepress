@@ -102,6 +102,20 @@ declare module "@theme/hooks/useScrollPosition" {
   export default useScrollPosition;
 }
 
+declare module "@theme/CodeBlock" {
+  import { PropsWithChildren } from "react";
+
+  export type CodeBlockProps = PropsWithChildren<{
+    title?: string;
+    metastring?: string;
+    className?: string;
+    languageClassName?: string;
+  }>;
+
+  const CodeBlock: (props: CodeBlockProps) => JSX.Element;
+  export default CodeBlock;
+}
+
 declare module "@theme/ThemeContext" {
   import type { Context } from "react";
   import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
