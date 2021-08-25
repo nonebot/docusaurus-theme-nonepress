@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-import styles from "./styles.module.css";
+import "./styles.css";
 import copy from "copy-text-to-clipboard";
 import rangeParser from "parse-numeric-range";
 import useThemeConfig from "../../useThemeConfig";
