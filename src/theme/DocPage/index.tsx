@@ -2,17 +2,20 @@ import { MDXProvider } from "@mdx-js/react";
 import React, { PropsWithChildren, useState, useCallback } from "react";
 
 import Layout from "@theme/Layout";
+import NotFound from "@theme/NotFound";
+import { matchPath } from "@docusaurus/router";
 import MDXComponents from "@theme/MDXComponents";
+import renderRoutes from "@docusaurus/renderRoutes";
 import type { DocumentRoute } from "@theme/DocItem";
+import type { Props, PropVersionMetadata } from "@theme/DocPage";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import type { PropVersionMetadata } from "@docusaurus/plugin-content-docs-types";
 
-export default function DocPage(
+const DocPageContent = (
   props: PropsWithChildren<{
     currentDocRoute: DocumentRoute;
     versionMetadata: PropVersionMetadata;
   }>
-): JSX.Element {
+): JSX.Element => {
   const { currentDocRoute, versionMetadata, children } = props;
   const { isClient } = useDocusaurusContext();
   const { pluginId, version } = versionMetadata;
@@ -47,5 +50,27 @@ export default function DocPage(
         </div>
       </div>
     </Layout>
+  );
+};
+
+export default function DocPage(props: Props): JSX.Element {
+  const {
+    route: { routes: docRoutes },
+    versionMetadata,
+    location,
+  } = props;
+  const currentDocRoute = docRoutes.find((docRoute) =>
+    matchPath(location.pathname, docRoute)
+  );
+  if (!currentDocRoute) {
+    return <NotFound {...props} />;
+  }
+  return (
+    <DocPageContent
+      currentDocRoute={currentDocRoute}
+      versionMetadata={versionMetadata}
+    >
+      {renderRoutes(docRoutes, { versionMetadata })}
+    </DocPageContent>
   );
 }

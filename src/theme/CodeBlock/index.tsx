@@ -6,7 +6,7 @@ import copy from "copy-text-to-clipboard";
 import rangeParser from "parse-numeric-range";
 import useThemeConfig from "../../useThemeConfig";
 import usePrismTheme from "@theme/hooks/usePrismTheme";
-import type { CodeBlockProps } from "@theme/CodeBlock";
+import type { Props } from "@theme/CodeBlock";
 import { parseCodeBlockTitle } from "@docusaurus/theme-common";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 
@@ -79,7 +79,7 @@ const highlightDirectiveRegex = (lang: string) => {
   }
 };
 
-export default function CodeBlock(props: CodeBlockProps): JSX.Element {
+export default function CodeBlock(props: Props): JSX.Element {
   const {
     children,
     className: containerClassName,

@@ -3,7 +3,7 @@ import React, { ComponentProps, isValidElement, ReactElement } from "react";
 import Link from "@docusaurus/Link";
 import Heading from "@theme/Heading";
 import Details from "@theme/Details";
-import CodeBlock, { CodeBlockProps } from "@theme/CodeBlock";
+import CodeBlock, { Props } from "@theme/CodeBlock";
 
 export type MDXComponentsObject = {
   readonly code: typeof CodeBlock;
@@ -26,7 +26,7 @@ const MDXComponents: MDXComponentsObject = {
       return children;
     }
 
-    return !children.includes("\n") ? (
+    return !(children as string).includes("\n") ? (
       <code {...props} />
     ) : (
       <CodeBlock {...props} />
@@ -44,7 +44,7 @@ const MDXComponents: MDXComponentsObject = {
       <CodeBlock
         {...((isValidElement(children)
           ? children?.props
-          : { ...props }) as CodeBlockProps)}
+          : { ...props }) as Props)}
       />
     );
   },

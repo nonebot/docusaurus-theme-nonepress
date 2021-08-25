@@ -1,6 +1,4 @@
 /// <reference types="@docusaurus/module-type-aliases" />
-/// <reference types="@docusaurus/plugin-content-docs" />
-/// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@theme/hooks/useDocs" {
   import {
@@ -19,7 +17,9 @@ declare module "@theme/hooks/useDocs" {
   export const useActivePlugin: (
     options?: GetActivePluginOptions
   ) => ActivePlugin | undefined;
-  export const useActivePluginAndVersion: (options?: GetActivePluginOptions) =>
+  export const useActivePluginAndVersion: (
+    options?: GetActivePluginOptions
+  ) =>
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
@@ -105,15 +105,115 @@ declare module "@theme/hooks/useScrollPosition" {
 declare module "@theme/CodeBlock" {
   import { PropsWithChildren } from "react";
 
-  export type CodeBlockProps = PropsWithChildren<{
+  export type Props = PropsWithChildren<{
     title?: string;
     metastring?: string;
     className?: string;
     languageClassName?: string;
   }>;
 
-  const CodeBlock: (props: CodeBlockProps) => JSX.Element;
+  const CodeBlock: (props: Props) => JSX.Element;
   export default CodeBlock;
+}
+
+declare module "@theme/DocItem" {
+  import type { TOCItem } from "@docusaurus/types";
+  import type { PropVersionMetadata } from "@theme/DocPage";
+
+  export type DocumentRoute = {
+    readonly component: () => JSX.Element;
+    readonly exact: boolean;
+    readonly path: string;
+    readonly sidebar?: string;
+  };
+
+  export type FrontMatter = {
+    readonly id: string;
+    readonly title: string;
+    readonly image?: string;
+    readonly keywords?: readonly string[];
+    readonly hide_title?: boolean;
+    readonly hide_table_of_contents?: boolean;
+  };
+
+  export type Metadata = {
+    readonly description?: string;
+    readonly title?: string;
+    readonly permalink?: string;
+    readonly editUrl?: string;
+    readonly lastUpdatedAt?: number;
+    readonly formattedLastUpdatedAt?: string;
+    readonly lastUpdatedBy?: string;
+    readonly version?: string;
+    readonly previous?: { readonly permalink: string; readonly title: string };
+    readonly next?: { readonly permalink: string; readonly title: string };
+  };
+
+  export type Props = {
+    readonly route: DocumentRoute;
+    readonly versionMetadata: PropVersionMetadata;
+    readonly content: {
+      readonly frontMatter: FrontMatter;
+      readonly metadata: Metadata;
+      readonly toc: readonly TOCItem[];
+      readonly contentTitle: string | undefined;
+      (): JSX.Element;
+    };
+  };
+
+  const DocItem: (props: Props) => JSX.Element;
+  export default DocItem;
+}
+
+declare module "@theme/DocPage" {
+  import type { DocumentRoute } from "@theme/DocItem";
+  import { VersionBanner } from "@docusaurus/plugin-content-docs/lib/types";
+
+  type PropsSidebarItemBase = {
+    customProps?: Record<string, unknown>;
+  };
+
+  export type PropSidebarItemLink = PropsSidebarItemBase & {
+    type: "link";
+    href: string;
+    label: string;
+  };
+
+  export type PropSidebarItemCategory = PropsSidebarItemBase & {
+    type: "category";
+    label: string;
+    items: PropSidebarItem[];
+    collapsed: boolean;
+    collapsible: boolean;
+  };
+
+  export type PropSidebarItem = PropSidebarItemLink | PropSidebarItemCategory;
+
+  export type PropSidebars = {
+    [sidebarId: string]: PropSidebarItem[];
+  };
+
+  export type PropVersionMetadata = {
+    pluginId: string;
+    version: string;
+    label: string;
+    banner: VersionBanner;
+    isLast: boolean;
+    docsSidebars: PropSidebars;
+  };
+
+  export type Props = {
+    readonly location: { readonly pathname: string };
+    readonly versionMetadata: PropVersionMetadata;
+    readonly route: {
+      readonly path: string;
+      readonly component: () => JSX.Element;
+      readonly routes: DocumentRoute[];
+    };
+  };
+
+  const DocPage: (props: Props) => JSX.Element;
+  export default DocPage;
 }
 
 declare module "@theme/ThemeContext" {
