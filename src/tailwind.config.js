@@ -21,6 +21,14 @@ module.exports = {
       "dark-note-darker": "#28394d",
     },
     extend: {
+      colors: {
+        "light-bg": "#f7f9ff",
+        "light-bg-darker": "#f2f6ff",
+        "light-text": "#093d8d",
+        "dark-bg": "#1e293b",
+        "dark-bg-darker": "#28394d",
+        "dark-text": "#d0d4fc",
+      },
       minHeight: {
         90: "90%",
       },
