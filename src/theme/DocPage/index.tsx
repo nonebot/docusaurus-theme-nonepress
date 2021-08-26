@@ -7,6 +7,7 @@ import { matchPath } from "@docusaurus/router";
 import MDXComponents from "@theme/MDXComponents";
 import renderRoutes from "@docusaurus/renderRoutes";
 import type { DocumentRoute } from "@theme/DocItem";
+import BackToTopButton from "@theme/BackToTopButton";
 import type { Props, PropVersionMetadata } from "@theme/DocPage";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
@@ -39,7 +40,7 @@ const DocPageContent = (
     <Layout>
       <div className="w-full mx-auto pb-16 px-12 lg:px-0 mt-48 md:mt-64">
         <div className="lg:flex">
-          {/* back to top */}
+          <BackToTopButton />
           {/* sidebar */}
           <main
             id="docs"
