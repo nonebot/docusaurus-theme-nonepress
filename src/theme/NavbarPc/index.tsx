@@ -10,7 +10,6 @@ import ThemeSwitcher from "@theme/ThemeSwitcher";
 import useThemeConfig from "../../useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
-import useThemeContext from "@theme/hooks/useThemeContext";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import {
   GlobalVersion,

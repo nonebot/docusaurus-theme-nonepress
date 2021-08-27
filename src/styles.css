@@ -1,18 +1,12 @@
 @import "tailwindcss/tailwind";
 
 body {
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  font-size: .9rem;
-  color: rgba(9,61,141,var(--tw-text-opacity));
-  background-color: rgba(240,244,252,var(--tw-bg-opacity));
+  font-size: 0.9rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply bg-light text-light-text;
 }
 
 html.dark body {
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  background-color: rgba(30,41,59,var(--tw-bg-opacity));
-  color: rgba(208,212,252,var(--tw-text-opacity));
+  @apply bg-dark text-dark-text;
 }

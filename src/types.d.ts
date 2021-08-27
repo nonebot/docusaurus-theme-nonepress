@@ -17,7 +17,9 @@ declare module "@theme/hooks/useDocs" {
   export const useActivePlugin: (
     options?: GetActivePluginOptions
   ) => ActivePlugin | undefined;
-  export const useActivePluginAndVersion: (options?: GetActivePluginOptions) =>
+  export const useActivePluginAndVersion: (
+    options?: GetActivePluginOptions
+  ) =>
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;

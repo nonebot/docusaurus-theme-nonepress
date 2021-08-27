@@ -12,22 +12,33 @@ module.exports = {
   purge: purge,
   darkMode: "class",
   theme: {
-    colors: {
-      ...defaultTheme.colors,
-      inherit: "inherit",
-      gray: colors.blueGray,
-      "light-note": "#f7f9ff",
-      "light-note-darker": "#f2f6ff",
-      "dark-note-darker": "#28394d",
-    },
+    // colors: {
+    //   ...defaultTheme.colors,
+    //   inherit: "inherit",
+    //   gray: colors.blueGray,
+    //   "light-note": "#f7f9ff",
+    //   "light-note-darker": "#f2f6ff",
+    //   "dark-note-darker": "#28394d",
+    // },
     extend: {
       colors: {
-        "light-bg": "#f7f9ff",
-        "light-bg-darker": "#f2f6ff",
-        "light-text": "#093d8d",
-        "dark-bg": "#1e293b",
-        "dark-bg-darker": "#28394d",
-        "dark-text": "#d0d4fc",
+        inherit: "inherit",
+        light: {
+          DEFAULT: "#f7f9ff",
+          darker: "#f2f6ff",
+          text: "#093d8d",
+          active: "#093d8d",
+          nav: "#f7f9ff",
+          "nav-darker": "#f2f6ff",
+        },
+        dark: {
+          DEFAULT: "#1e293b",
+          darker: "#28394d",
+          text: "#d0d4fc",
+          active: "#d0d4fc",
+          nav: "#1e293b",
+          "nav-darker": "#28394d",
+        },
       },
       minHeight: {
         90: "90%",
