@@ -54,7 +54,7 @@ export default function NavbarMobile(
       data-transition-leave-from="opacity-100 scale-100"
       data-transition-leave-to="opacity-0 scale-95"
     >
-      <div className="relative max-h-screen rounded-lg shadow-md rel bg-light-note ring-1 ring-black ring-opacity-5 overflow-auto dark:bg-gray-700">
+      <div className="relative max-h-screen rounded-lg shadow-md rel bg-light-nonepress ring-1 ring-black ring-opacity-5 overflow-auto dark:bg-dark-nonepress">
         <div className="sticky top-0 bg-inherit px-5 pt-4 flex items-center justify-between">
           <div className="flex flex-grow justify-start">
             <Logo imageClassName="h-8 w-auto" />
@@ -64,7 +64,7 @@ export default function NavbarMobile(
             <button
               type="button"
               onClick={leave}
-              className="rounded-md p-2 inline-flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:hover:bg-gray-900 dark:hover:opacity-100 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
+              className="rounded-md p-2 inline-flex items-center justify-center hover:bg-nonepress-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:hover:bg-nonepress-200 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
             >
               <span className="sr-only">Close menu</span>
               <i className="text-2xl fas fa-times"></i>

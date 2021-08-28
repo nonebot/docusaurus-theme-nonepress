@@ -83,7 +83,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
         onClick={() => {
           active ? leave() : enter();
         }}
-        className="bg-light-note relative flex items-center w-full border border-gray-300 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:bg-opacity-50 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
+        className="bg-light-nonepress relative flex items-center w-full border border-gray-300 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:bg-opacity-50 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
         aria-haspopup="listbox"
         aria-expanded="true"
         aria-labelledby="listbox-label"
@@ -102,7 +102,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
       <ul
         ref={element}
         className={clsx(
-          "absolute z-10 mt-1 w-full bg-light-note shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
+          "absolute z-10 mt-1 w-full bg-light-nonepress shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
           active ? "ignore-version-dropdown" : "hidden",
           transitionClasses
         )}
@@ -120,7 +120,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
               isActive={version.isActive}
               isNavLink={version.isNavLink}
               activeClassName={styles["version-selected"]}
-              className="relative flex justify-end items-center content-center transition py-2 px-7 rounded duration-300 hover:bg-light-note-darker dark:hover:bg-dark-note-darker"
+              className="relative flex justify-end items-center content-center transition py-2 px-7 rounded duration-300 hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200"
             >
               <span
                 aria-label="Selected"

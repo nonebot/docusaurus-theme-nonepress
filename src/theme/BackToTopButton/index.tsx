@@ -98,7 +98,7 @@ export default function BackToTopButton(
         "fixed z-10 right-5 bottom-5 h-12 w-12 rounded-full shadow-md cursor-pointer",
         "flex justify-center items-center",
         "transition transform opacity-0 scale-0",
-        "bg-indigo-500 text-white",
+        "bg-light-backToTop dark:bg-dark-backToTop text-white",
         {
           "opacity-100 scale-100": show,
         }

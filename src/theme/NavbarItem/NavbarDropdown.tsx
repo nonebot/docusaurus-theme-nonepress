@@ -44,7 +44,7 @@ export default function NavbarDropdown(
       <ul
         ref={element}
         className={clsx(
-          "absolute z-10 top-0 mt-9 -translate-x-1/2 left-1/2 bg-light-note shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
+          "absolute z-10 top-0 mt-9 -translate-x-1/2 left-1/2 bg-light-nonepress shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
           transitionClasses,
           { hidden: !active }
         )}
@@ -61,7 +61,7 @@ export default function NavbarDropdown(
             item={{
               ...item,
               linkClassName:
-                "relative flex justify-start items-center content-center py-2 px-7 rounded hover:bg-light-note-darker dark:hover:bg-dark-note-darker capitalize",
+                "relative flex justify-start items-center content-center py-2 px-7 rounded hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200 capitalize",
             }}
           />
         ))}

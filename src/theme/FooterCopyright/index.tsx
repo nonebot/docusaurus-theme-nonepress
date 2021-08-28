@@ -20,7 +20,7 @@ export default function FooterCopyright(
           <Link
             to="https://docusaurus.io/"
             title="Go to the Docusaurus website"
-            className={clsx(styles["docusaurus-footer-link"], "mr-2")}
+            className={styles["docusaurus-footer-link"]}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
               <g fill="none" fillRule="evenodd">

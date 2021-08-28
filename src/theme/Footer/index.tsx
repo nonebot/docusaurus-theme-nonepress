@@ -6,7 +6,7 @@ import FooterCopyright from "@theme/FooterCopyright";
 export default function Footer(props: PropsWithChildren<{}>): JSX.Element {
   return (
     <footer
-      className="bg-light-note dark:bg-gray-900"
+      className="bg-light-nonepress dark:bg-dark-nonepress-200"
       aria-labelledby="footerHeading"
     >
       <h2 id="footerHeading" className="sr-only">
