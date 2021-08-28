@@ -102,6 +102,26 @@ declare module "@theme/hooks/useScrollPosition" {
   export default useScrollPosition;
 }
 
+declare module "@theme/hooks/useTOCHighlight" {
+  export type Params = {
+    linkClassName: string;
+    linkActiveClassName: string;
+  };
+  export default function useTOCHighlight(params: Params): void;
+}
+
+declare module "@theme/hooks/useWindowSize" {
+  export const windowSizes: {
+    desktop: "desktop";
+    mobile: "mobile";
+    ssr: "ssr";
+  };
+
+  export type WindowSize = keyof typeof windowSizes;
+
+  export default function useWindowSize(): WindowSize;
+}
+
 declare module "@theme/CodeBlock" {
   import { PropsWithChildren } from "react";
 
@@ -233,6 +253,38 @@ declare module "@theme/ThemeContext" {
 
   const ThemeContext: Context<ThemeContextProps | undefined>;
   export default ThemeContext;
+}
+
+declare module "@theme/Seo" {
+  import { PropsWithChildren } from "react";
+
+  export type Props = PropsWithChildren<{
+    readonly title?: string;
+    readonly description?: string;
+    readonly keywords?: readonly string[] | string;
+    readonly image?: string;
+  }>;
+
+  const Seo: (props: Props) => JSX.Element;
+  export default Seo;
+}
+
+declare module "@theme/TOC" {
+  import type { TOCItem } from "@docusaurus/types";
+
+  export type TOCProps = {
+    readonly toc: readonly TOCItem[];
+  };
+
+  export type TOCHeadingsProps = {
+    readonly toc: readonly TOCItem[];
+    readonly isChild?: boolean;
+  };
+
+  export const TOCHeadings: (props: TOCHeadingsProps) => JSX.Element;
+
+  const TOC: (props: TOCProps) => JSX.Element;
+  export default TOC;
 }
 
 declare module "docusaurus-theme-nonepress/types" {

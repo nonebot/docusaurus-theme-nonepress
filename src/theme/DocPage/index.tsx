@@ -38,7 +38,7 @@ const DocPageContent = (
 
   return (
     <Layout>
-      <div className="w-full mx-auto pb-16 px-12 lg:px-0 mt-48 md:mt-64">
+      <div className="w-full mx-auto pb-16 px-12 lg:px-0 mt-24">
         <div className="lg:flex">
           <BackToTopButton />
           {/* sidebar */}
