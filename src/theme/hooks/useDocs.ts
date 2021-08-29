@@ -1,5 +1,5 @@
 import { usePluginData } from "@docusaurus/useGlobalData";
-import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
+import type { GlobalPluginData } from "docusaurus-theme-nonepress/types";
 
 export * from "@docusaurus/plugin-content-docs/lib/theme/hooks/useDocs";
 

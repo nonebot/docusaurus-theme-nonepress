@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback, RefObject } from "react";
 
-import { useTransitionReturns } from "@theme/hooks/useTransition";
+import type { useTransitionReturns } from "@theme/hooks/useTransition";
 
 function getTransitionClasses(
   element: RefObject<HTMLElement>,
@@ -34,7 +34,7 @@ function afterTransition(element: RefObject<HTMLElement>): Promise<void> {
   });
 }
 
-const useTransition = <T extends HTMLElement>(): useTransitionReturns<T> => {
+function useTransition<T extends HTMLElement>(): useTransitionReturns<T> {
   const element = useRef<T>(null);
   const mounted = useRef<boolean>(true);
   const [active, setActive] = useState(false);
@@ -82,6 +82,6 @@ const useTransition = <T extends HTMLElement>(): useTransitionReturns<T> => {
   }, []);
 
   return { element, active, transitionClasses, enter, leave };
-};
+}
 
 export default useTransition;

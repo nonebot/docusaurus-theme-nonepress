@@ -15,22 +15,22 @@ const themes = {
 
 type Themes = typeof themes[keyof typeof themes];
 
-const coerceToTheme = (theme?: string | null): Themes => {
+function coerceToTheme(theme?: string | null): Themes {
   return theme === themes.dark ? themes.dark : themes.light;
-};
+}
 
-const getInitialTheme = (defaultMode: Themes | undefined): Themes => {
+function getInitialTheme(defaultMode: Themes | undefined): Themes {
   if (!ExecutionEnvironment.canUseDOM) {
     return coerceToTheme(defaultMode);
   }
   return coerceToTheme(document.documentElement.getAttribute("data-theme"));
-};
+}
 
-const storeTheme = (newTheme: Themes) => {
+function storeTheme(newTheme: Themes) {
   createStorageSlot("theme").set(coerceToTheme(newTheme));
-};
+}
 
-const useTheme = (): useThemeReturns => {
+function useTheme(): useThemeReturns {
   const {
     colorMode: { defaultMode, disableSwitch },
   } = useThemeConfig();
@@ -76,6 +76,6 @@ const useTheme = (): useThemeReturns => {
     setDarkTheme,
     toggleTheme,
   };
-};
+}
 
 export default useTheme;

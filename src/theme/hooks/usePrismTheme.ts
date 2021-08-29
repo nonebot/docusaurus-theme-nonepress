@@ -1,8 +1,10 @@
+import type { PrismTheme } from "prism-react-renderer";
 import defaultTheme from "prism-react-renderer/themes/palenight";
-import useThemeContext from "@theme/hooks/useThemeContext";
-import useThemeConfig from "../../useThemeConfig";
 
-const usePrismTheme = (): typeof defaultTheme => {
+import useThemeConfig from "../../useThemeConfig";
+import useThemeContext from "@theme/hooks/useThemeContext";
+
+function usePrismTheme(): PrismTheme {
   const { prism } = useThemeConfig();
   const { isDarkTheme } = useThemeContext();
   const lightModeTheme = prism.theme || defaultTheme;
@@ -10,6 +12,6 @@ const usePrismTheme = (): typeof defaultTheme => {
   const prismTheme = isDarkTheme ? darkModeTheme : lightModeTheme;
 
   return prismTheme;
-};
+}
 
 export default usePrismTheme;

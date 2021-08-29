@@ -1,5 +1,25 @@
 /// <reference types="@docusaurus/module-type-aliases" />
 
+declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
+  export type AlgoliaContextualFacetFilters = readonly [
+    string,
+    readonly string[]
+  ];
+
+  function useAlgoliaContextualFacetFilters(): AlgoliaContextualFacetFilters;
+  export default useAlgoliaContextualFacetFilters;
+}
+
+declare module "@theme/hooks/useContextualSearchFilters" {
+  export type ContextualSearchFilters = {
+    locale: string;
+    tags: string[];
+  };
+
+  function useContextualSearchFilters(): ContextualSearchFilters;
+  export default useContextualSearchFilters;
+}
+
 declare module "@theme/hooks/useDocs" {
   import {
     GlobalVersion,
@@ -12,48 +32,72 @@ declare module "@theme/hooks/useDocs" {
     DocVersionSuggestions,
     GetActivePluginOptions,
   } from "@docusaurus/plugin-content-docs/lib/client/docsClientUtils";
-  export const useAllDocsData: () => Record<string, GlobalPluginData>;
-  export const useDocsData: (pluginId: string | undefined) => GlobalPluginData;
-  export const useActivePlugin: (
+  export function useAllDocsData(): Record<string, GlobalPluginData>;
+  export function useDocsData(pluginId: string | undefined): GlobalPluginData;
+  export function useActivePlugin(
     options?: GetActivePluginOptions
-  ) => ActivePlugin | undefined;
-  export const useActivePluginAndVersion: (
-    options?: GetActivePluginOptions
-  ) =>
+  ): ActivePlugin | undefined;
+  export function useActivePluginAndVersion(options?: GetActivePluginOptions):
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
       }
     | undefined;
-  export const useVersions: (pluginId: string | undefined) => GlobalVersion[];
-  export const useLatestVersion: (
+  export function useVersions(pluginId: string | undefined): GlobalVersion[];
+  export function useLatestVersion(pluginId: string | undefined): GlobalVersion;
+  export function useActiveVersion(
     pluginId: string | undefined
-  ) => GlobalVersion;
-  export const useActiveVersion: (
+  ): GlobalVersion | undefined;
+  export function useActiveDocContext(
     pluginId: string | undefined
-  ) => GlobalVersion | undefined;
-  export const useActiveDocContext: (
+  ): ActiveDocContext;
+  export function useDocVersionSuggestions(
     pluginId: string | undefined
-  ) => ActiveDocContext;
-  export const useDocVersionSuggestions: (
+  ): DocVersionSuggestions;
+  export function useLoadedVersions(
     pluginId: string | undefined
-  ) => DocVersionSuggestions;
-  export const useLoadedVersions: (
-    pluginId: string | undefined
-  ) => GlobalLoadedDocs;
+  ): GlobalLoadedDocs;
 }
 
-declare module "@theme/hooks/useTransition" {
-  import { RefObject } from "react";
-  export type useTransitionReturns<T> = {
-    readonly element: RefObject<T>;
-    readonly active: boolean;
-    readonly transitionClasses: Array<string>;
-    readonly enter: () => Promise<void>;
-    readonly leave: () => Promise<void>;
+declare module "@theme/hooks/useHideableNavbar" {
+  export type HideableNavbar = {
+    readonly navbarRef: (node: HTMLElement | null) => void;
+    readonly isNavbarVisible: boolean;
   };
-  const useTransition: <T>() => useTransitionReturns<T>;
-  export default useTransition;
+
+  function useHideableNavbar(hideOnScroll: boolean): HideableNavbar;
+  export default useHideableNavbar;
+}
+
+declare module "@theme/hooks/usePrismTheme" {
+  import type { PrismTheme } from "prism-react-renderer";
+
+  function usePrismTheme(): PrismTheme;
+  export default usePrismTheme;
+}
+
+declare module "@theme/hooks/useScrollPosition" {
+  export type ScrollPosition = { scrollX: number; scrollY: number };
+
+  function useScrollPosition(
+    effect: (
+      position: ScrollPosition,
+      lastPosition: ScrollPosition | null
+    ) => void,
+    deps?: unknown[]
+  ): void;
+  export default useScrollPosition;
+}
+
+declare module "@theme/hooks/useSearchQuery" {
+  export type SearchQuery = {
+    searchValue: string;
+    updateSearchPath: (searchValue: string) => void;
+    generateSearchPageLink: (searchValue: string) => string;
+  };
+  function useSearchQuery(): SearchQuery;
+
+  export default useSearchQuery;
 }
 
 declare module "@theme/hooks/useTheme" {
@@ -64,7 +108,7 @@ declare module "@theme/hooks/useTheme" {
     readonly toggleTheme: () => void;
   };
 
-  const useTheme: () => useThemeReturns;
+  function useTheme(): useThemeReturns;
   export default useTheme;
 }
 
@@ -76,30 +120,8 @@ declare module "@theme/hooks/useThemeContext" {
     toggleTheme: () => void;
   };
 
-  export default function useThemeContext(): ThemeContextProps;
-}
-
-declare module "@theme/hooks/useHideableNavbar" {
-  export type useHideableNavbarReturns = {
-    readonly navbarRef: (node: HTMLElement | null) => void;
-    readonly isNavbarVisible: boolean;
-  };
-
-  const useHideableNavbar: (hideOnScroll: boolean) => useHideableNavbarReturns;
-  export default useHideableNavbar;
-}
-
-declare module "@theme/hooks/useScrollPosition" {
-  export type ScrollPosition = { scrollX: number; scrollY: number };
-
-  const useScrollPosition: (
-    effect: (
-      position: ScrollPosition,
-      lastPosition: ScrollPosition | null
-    ) => void,
-    deps?: unknown[]
-  ) => void;
-  export default useScrollPosition;
+  function useThemeContext(): ThemeContextProps;
+  export default useThemeContext;
 }
 
 declare module "@theme/hooks/useTOCHighlight" {
@@ -107,7 +129,24 @@ declare module "@theme/hooks/useTOCHighlight" {
     linkClassName: string;
     linkActiveClassName: string;
   };
-  export default function useTOCHighlight(params: Params): void;
+
+  function useTOCHighlight(params: Params): void;
+  export default useTOCHighlight;
+}
+
+declare module "@theme/hooks/useTransition" {
+  import { RefObject } from "react";
+
+  export type useTransitionReturns<T> = {
+    readonly element: RefObject<T>;
+    readonly active: boolean;
+    readonly transitionClasses: Array<string>;
+    readonly enter: () => Promise<void>;
+    readonly leave: () => Promise<void>;
+  };
+
+  function useTransition<T extends HTMLElement>(): useTransitionReturns<T>;
+  export default useTransition;
 }
 
 declare module "@theme/hooks/useWindowSize" {
@@ -119,7 +158,8 @@ declare module "@theme/hooks/useWindowSize" {
 
   export type WindowSize = keyof typeof windowSizes;
 
-  export default function useWindowSize(): WindowSize;
+  function useWindowSize(): WindowSize;
+  export default useWindowSize;
 }
 
 declare module "@theme/CodeBlock" {
@@ -247,14 +287,6 @@ declare module "@theme/Heading" {
   export const MainHeading: (props: Props) => JSX.Element;
 }
 
-declare module "@theme/ThemeContext" {
-  import type { Context } from "react";
-  import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
-
-  const ThemeContext: Context<ThemeContextProps | undefined>;
-  export default ThemeContext;
-}
-
 declare module "@theme/Seo" {
   import { PropsWithChildren } from "react";
 
@@ -267,6 +299,14 @@ declare module "@theme/Seo" {
 
   const Seo: (props: Props) => JSX.Element;
   export default Seo;
+}
+
+declare module "@theme/ThemeContext" {
+  import type { Context } from "react";
+  import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
+
+  const ThemeContext: Context<ThemeContextProps | undefined>;
+  export default ThemeContext;
 }
 
 declare module "@theme/TOC" {
@@ -289,6 +329,7 @@ declare module "@theme/TOC" {
 
 declare module "docusaurus-theme-nonepress/types" {
   import { LoadedVersion } from "@docusaurus/plugin-content-docs/lib/types";
+
   export type GlobalPluginData = {
     versions: Array<LoadedVersion>;
   };

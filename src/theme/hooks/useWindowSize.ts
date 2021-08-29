@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { WindowSize } from "@theme/hooks/useWindowSize";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
-const windowSizes = {
+export const windowSizes = {
   desktop: "desktop",
   mobile: "mobile",
 

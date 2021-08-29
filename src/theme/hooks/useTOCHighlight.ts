@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Params } from "@theme/hooks/useTOCHighlight";
 import { useThemeConfig } from "@docusaurus/theme-common";
+import type { Params } from "@theme/hooks/useTOCHighlight";
 
 // If the anchor has no height and is just a "marker" in the dom; we'll use the parent (normally the link text) rect boundaries instead
 function getVisibleBoundingClientRect(element: HTMLElement): DOMRect {

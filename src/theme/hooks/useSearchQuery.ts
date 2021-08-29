@@ -2,10 +2,11 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 import { useSiteConfig } from "../../useThemeConfig";
+import type { SearchQuery } from "@theme/hooks/useSearchQuery";
 
 const SEARCH_PARAM_QUERY = "q";
 
-function useSearchQuery() {
+function useSearchQuery(): SearchQuery {
   const history = useHistory();
   const location = useLocation();
   const { baseUrl } = useSiteConfig();
