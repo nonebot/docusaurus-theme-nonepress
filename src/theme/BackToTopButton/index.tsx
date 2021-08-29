@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import useScrollPosition from "@theme/hooks/useScrollPosition";
 
@@ -56,9 +56,7 @@ function useSmoothScrollToTop(): UseSmoothScrollTopReturn {
   };
 }
 
-export default function BackToTopButton(
-  props: PropsWithChildren<unknown>
-): JSX.Element {
+function BackToTopButton(): JSX.Element {
   const { smoothScrollTop, cancelScrollToTop } = useSmoothScrollToTop();
   const [show, setShow] = useState(false);
 
@@ -116,3 +114,5 @@ export default function BackToTopButton(
     </button>
   );
 }
+
+export default BackToTopButton;

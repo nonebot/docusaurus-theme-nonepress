@@ -1,6 +1,9 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
-export default function Content(props: PropsWithChildren<{}>): JSX.Element {
-  const { children } = props;
+import type { Props } from "@theme/Content";
+
+function Content({ children }: Props): JSX.Element {
   return <div id="content">{children}</div>;
 }
+
+export default Content;

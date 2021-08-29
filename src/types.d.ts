@@ -37,7 +37,9 @@ declare module "@theme/hooks/useDocs" {
   export function useActivePlugin(
     options?: GetActivePluginOptions
   ): ActivePlugin | undefined;
-  export function useActivePluginAndVersion(options?: GetActivePluginOptions):
+  export function useActivePluginAndVersion(
+    options?: GetActivePluginOptions
+  ):
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
@@ -162,6 +164,11 @@ declare module "@theme/hooks/useWindowSize" {
   export default useWindowSize;
 }
 
+declare module "@theme/BackToTopButton" {
+  function BackToTopButton(): JSX.Element;
+  export default BackToTopButton;
+}
+
 declare module "@theme/CodeBlock" {
   import { PropsWithChildren } from "react";
 
@@ -174,6 +181,22 @@ declare module "@theme/CodeBlock" {
 
   const CodeBlock: (props: Props) => JSX.Element;
   export default CodeBlock;
+}
+
+declare module "@theme/Content" {
+  import { PropsWithChildren } from "react";
+
+  export type Props = PropsWithChildren<unknown>;
+
+  function Content(props: Props): JSX.Element;
+  export default Content;
+}
+
+declare module "@theme/Details" {
+  import { Details, DetailsProps } from "@docusaurus/theme-common";
+
+  export type Props = DetailsProps;
+  export default Details;
 }
 
 declare module "@theme/DocItem" {
@@ -221,7 +244,7 @@ declare module "@theme/DocItem" {
     };
   };
 
-  const DocItem: (props: Props) => JSX.Element;
+  function DocItem(props: Props): JSX.Element;
   export default DocItem;
 }
 
@@ -272,7 +295,7 @@ declare module "@theme/DocPage" {
     };
   };
 
-  const DocPage: (props: Props) => JSX.Element;
+  function DocPage(props: Props): JSX.Element;
   export default DocPage;
 }
 

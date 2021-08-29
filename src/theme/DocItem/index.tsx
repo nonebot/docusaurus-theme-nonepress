@@ -8,8 +8,7 @@ import styles from "./styles.module.css";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { useActivePlugin, useVersions } from "@theme/hooks/useDocs";
 
-export default function DocItem(props: Props): JSX.Element {
-  const { content: DocContent, versionMetadata } = props;
+function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
   const { metadata, frontMatter } = DocContent;
   const {
     image,
@@ -50,3 +49,5 @@ export default function DocItem(props: Props): JSX.Element {
     </>
   );
 }
+
+export default DocItem;

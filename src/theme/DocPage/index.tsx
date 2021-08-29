@@ -11,12 +11,12 @@ import BackToTopButton from "@theme/BackToTopButton";
 import type { Props, PropVersionMetadata } from "@theme/DocPage";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-const DocPageContent = (
+function DocPageContent(
   props: PropsWithChildren<{
     currentDocRoute: DocumentRoute;
     versionMetadata: PropVersionMetadata;
   }>
-): JSX.Element => {
+): JSX.Element {
   const { currentDocRoute, versionMetadata, children } = props;
   const { isClient } = useDocusaurusContext();
   const { pluginId, version } = versionMetadata;
@@ -52,9 +52,9 @@ const DocPageContent = (
       </div>
     </Layout>
   );
-};
+}
 
-export default function DocPage(props: Props): JSX.Element {
+function DocPage(props: Props): JSX.Element {
   const {
     route: { routes: docRoutes },
     versionMetadata,
@@ -75,3 +75,5 @@ export default function DocPage(props: Props): JSX.Element {
     </DocPageContent>
   );
 }
+
+export default DocPage;

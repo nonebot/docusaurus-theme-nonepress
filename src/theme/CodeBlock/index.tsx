@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./styles.css";
 import copy from "copy-text-to-clipboard";
 import rangeParser from "parse-numeric-range";
+import type { Props } from "@theme/CodeBlock";
 import useThemeConfig from "../../useThemeConfig";
 import usePrismTheme from "@theme/hooks/usePrismTheme";
-import type { Props } from "@theme/CodeBlock";
 import { parseCodeBlockTitle } from "@docusaurus/theme-common";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 
@@ -79,14 +79,13 @@ const highlightDirectiveRegex = (lang: string) => {
   }
 };
 
-export default function CodeBlock(props: Props): JSX.Element {
-  const {
-    children,
-    className: containerClassName,
-    languageClassName,
-    metastring,
-    title,
-  } = props;
+function CodeBlock({
+  title,
+  children,
+  metastring,
+  languageClassName,
+  className: containerClassName,
+}: Props): JSX.Element {
   const { prism } = useThemeConfig();
 
   const [showCopied, setShowCopied] = useState(false);
@@ -249,3 +248,5 @@ export default function CodeBlock(props: Props): JSX.Element {
     </Highlight>
   );
 }
+
+export default CodeBlock;
