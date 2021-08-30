@@ -1,5 +1,15 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
-export default function MDXPage(props: PropsWithChildren<{}>): JSX.Element {
-  return <></>;
+import Layout from "@theme/Layout";
+import type { Props } from "@theme/MDXPage";
+
+// TODO
+function MDXPage(props: Props): JSX.Element {
+  return (
+    <Layout>
+      <main></main>
+    </Layout>
+  );
 }
+
+export default MDXPage;

@@ -5,7 +5,7 @@ import Content from "@theme/Content";
 import Footer from "@theme/Footer";
 import LayoutProvider from "@theme/LayoutProvider";
 
-export default function Layout(props: PropsWithChildren<unknown>): JSX.Element {
+function Layout(props: PropsWithChildren<unknown>): JSX.Element {
   return (
     <LayoutProvider>
       <Navbar />
@@ -14,3 +14,5 @@ export default function Layout(props: PropsWithChildren<unknown>): JSX.Element {
     </LayoutProvider>
   );
 }
+
+export default Layout;

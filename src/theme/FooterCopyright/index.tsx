@@ -1,13 +1,10 @@
-import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import useThemeConfig from "../../useThemeConfig";
 
-export default function FooterCopyright(
-  props: PropsWithChildren<{}>
-): JSX.Element {
+function FooterCopyright(): JSX.Element {
   const themeConfig = useThemeConfig();
   const { footer: { copyright } = {} } = themeConfig;
 
@@ -90,3 +87,5 @@ export default function FooterCopyright(
     </div>
   );
 }
+
+export default FooterCopyright;

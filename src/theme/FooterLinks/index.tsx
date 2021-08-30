@@ -9,7 +9,7 @@ import useThemeConfig, {
   useSiteConfig,
 } from "../../useThemeConfig";
 
-function FooterIconLinks(props: PropsWithChildren<unknown>): JSX.Element {
+function FooterIconLinks(): JSX.Element {
   const {
     footer: { iconLinks },
   } = useThemeConfig();
@@ -131,7 +131,7 @@ function FooterColumn(
   );
 }
 
-function FooterColumns(props: PropsWithChildren<unknown>): JSX.Element {
+function FooterColumns(): JSX.Element {
   const themeConfig = useThemeConfig();
   const {
     footer: { links },
@@ -146,9 +146,7 @@ function FooterColumns(props: PropsWithChildren<unknown>): JSX.Element {
   ) : null;
 }
 
-export default function FooterLinks(
-  props: PropsWithChildren<unknown>
-): JSX.Element {
+function FooterLinks(): JSX.Element {
   const { tagline } = useSiteConfig();
   return (
     <div className="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -165,3 +163,5 @@ export default function FooterLinks(
     </div>
   );
 }
+
+export default FooterLinks;

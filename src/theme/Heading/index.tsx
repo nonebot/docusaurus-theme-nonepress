@@ -20,10 +20,8 @@ export function MainHeading(props: Props): JSX.Element {
   );
 }
 
-const createAnchorHeading = (
-  Tag: HeadingType
-): ((props: Props) => JSX.Element) =>
-  function TargetComponent({ id, ...props }) {
+function createAnchorHeading(Tag: HeadingType): (props: Props) => JSX.Element {
+  return function TargetComponent({ id, ...props }) {
     const {
       navbar: { hideOnScroll },
     } = useThemeConfig();
@@ -49,9 +47,10 @@ const createAnchorHeading = (
       </Tag>
     );
   };
+}
 
-export default function Heading(
-  headingType: HeadingType
-): (props: Props) => JSX.Element {
+function Heading(headingType: HeadingType): (props: Props) => JSX.Element {
   return headingType === "h1" ? MainHeading : createAnchorHeading(headingType);
 }
+
+export default Heading;

@@ -1,8 +1,9 @@
 import React, { PropsWithChildren } from "react";
 
+import type { Feature } from "@theme/Hero";
 import { useSiteConfig } from "../../useThemeConfig";
 
-export default function Hero(props: PropsWithChildren<unknown>): JSX.Element {
+export default function Hero(): JSX.Element {
   const siteConfig = useSiteConfig();
 
   return (
@@ -23,13 +24,6 @@ export default function Hero(props: PropsWithChildren<unknown>): JSX.Element {
     </div>
   );
 }
-
-export type Feature = {
-  title: string;
-  tagline?: string;
-  description?: string;
-  annotaion?: string;
-};
 
 function HeroFeatureInner(props: PropsWithChildren<Feature>): JSX.Element {
   const { title, tagline, description, annotaion, children } = props;

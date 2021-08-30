@@ -1,27 +1,33 @@
 import React, { ComponentProps, isValidElement, ReactElement } from "react";
 
+import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import Heading from "@theme/Heading";
 import Details from "@theme/Details";
-import CodeBlock, { Props } from "@theme/CodeBlock";
+import CodeBlock from "@theme/CodeBlock";
+import type { Props } from "@theme/CodeBlock";
+import type { MDXComponentsObject } from "@theme/MDXComponents";
 
-export type MDXComponentsObject = {
-  readonly code: typeof CodeBlock;
-  readonly a: (props: ComponentProps<"a">) => JSX.Element;
-  readonly pre: typeof CodeBlock;
-  readonly details: (props: ComponentProps<"details">) => JSX.Element;
-  readonly h1: (props: ComponentProps<"h1">) => JSX.Element;
-  readonly h2: (props: ComponentProps<"h2">) => JSX.Element;
-  readonly h3: (props: ComponentProps<"h3">) => JSX.Element;
-  readonly h4: (props: ComponentProps<"h4">) => JSX.Element;
-  readonly h5: (props: ComponentProps<"h5">) => JSX.Element;
-  readonly h6: (props: ComponentProps<"h6">) => JSX.Element;
-};
+function unwrapMDXElement(element: ReactElement) {
+  if (element?.props?.mdxType && element?.props?.originalType) {
+    const { mdxType, originalType, ...newProps } = element.props;
+    return React.createElement(element.props.originalType, newProps);
+  }
+  return element;
+}
 
 const MDXComponents: MDXComponentsObject = {
+  head: (props) => {
+    const unwrappedChildren = React.Children.map(props.children, (child) =>
+      unwrapMDXElement(child as ReactElement)
+    );
+    return <Head {...props}>{unwrappedChildren}</Head>;
+  },
   code: (props) => {
     const { children } = props;
 
+    // For retrocompatibility purposes (pretty rare use case)
+    // See https://github.com/facebook/docusaurus/pull/1584
     if (isValidElement(children)) {
       return children;
     }
@@ -36,6 +42,7 @@ const MDXComponents: MDXComponentsObject = {
   pre: (props) => {
     const { children } = props;
 
+    // See comment for `code` above
     if (isValidElement(children) && isValidElement(children?.props?.children)) {
       return children?.props.children;
     }

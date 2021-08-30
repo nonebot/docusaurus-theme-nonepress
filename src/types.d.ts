@@ -37,9 +37,7 @@ declare module "@theme/hooks/useDocs" {
   export function useActivePlugin(
     options?: GetActivePluginOptions
   ): ActivePlugin | undefined;
-  export function useActivePluginAndVersion(
-    options?: GetActivePluginOptions
-  ):
+  export function useActivePluginAndVersion(options?: GetActivePluginOptions):
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
@@ -170,7 +168,7 @@ declare module "@theme/BackToTopButton" {
 }
 
 declare module "@theme/CodeBlock" {
-  import { PropsWithChildren } from "react";
+  import type { PropsWithChildren } from "react";
 
   export type Props = PropsWithChildren<{
     title?: string;
@@ -184,7 +182,7 @@ declare module "@theme/CodeBlock" {
 }
 
 declare module "@theme/Content" {
-  import { PropsWithChildren } from "react";
+  import type { PropsWithChildren } from "react";
 
   export type Props = PropsWithChildren<unknown>;
 
@@ -299,19 +297,105 @@ declare module "@theme/DocPage" {
   export default DocPage;
 }
 
+declare module "@theme/Footer" {
+  function Footer(): JSX.Element;
+  export default Footer;
+}
+
+declare module "@theme/FooterCopyright" {
+  function FooterCopyright(): JSX.Element;
+  export default FooterCopyright;
+}
+
+declare module "@theme/FooterLinks" {
+  function FooterLinks(): JSX.Element;
+  export default FooterLinks;
+}
+
 declare module "@theme/Heading" {
   import type { ComponentProps } from "react";
 
   export type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   export type Props = ComponentProps<HeadingType>;
 
-  const Heading: (Tag: HeadingType) => (props: Props) => JSX.Element;
+  export function MainHeading(props: Props): JSX.Element;
+  function Heading(Tag: HeadingType): (props: Props) => JSX.Element;
   export default Heading;
-  export const MainHeading: (props: Props) => JSX.Element;
+}
+
+declare module "@theme/Hero" {
+  import type { PropsWithChildren } from "react";
+
+  export type Feature = {
+    title: string;
+    tagline?: string;
+    description?: string;
+    annotaion?: string;
+  };
+
+  export default function Hero(): JSX.Element;
+  export function HeroFeatureSingle(
+    props: PropsWithChildren<Feature>
+  ): JSX.Element;
+  export function HeroFeatureDouble(
+    props: PropsWithChildren<{ features: [Feature, Feature] }>
+  ): JSX.Element;
+}
+
+declare module "@theme/Layout" {
+  import type { PropsWithChildren } from "react";
+
+  function Layout(props: PropsWithChildren<unknown>): JSX.Element;
+  export default Layout;
+}
+
+declare module "@theme/LayoutProvider" {
+  import type { PropsWithChildren } from "react";
+
+  function LayoutProvider(props: PropsWithChildren<unknown>): JSX.Element;
+  export default LayoutProvider;
+}
+
+declare module "@theme/Logo" {
+  import type { PropsWithChildren } from "react";
+
+  export type Props = PropsWithChildren<{ imageClassName?: string }>;
+  function Logo(props: Props): JSX.Element;
+  export default Logo;
+}
+
+declare module "@theme/MDXComponents" {
+  import type { ComponentProps } from "react";
+  import type Head from "@docusaurus/Head";
+  import CodeBlock from "@theme/CodeBlock";
+
+  export type MDXComponentsObject = {
+    readonly head: typeof Head;
+    readonly code: typeof CodeBlock;
+    readonly a: (props: ComponentProps<"a">) => JSX.Element;
+    readonly pre: typeof CodeBlock;
+    readonly details: (props: ComponentProps<"details">) => JSX.Element;
+    readonly h1: (props: ComponentProps<"h1">) => JSX.Element;
+    readonly h2: (props: ComponentProps<"h2">) => JSX.Element;
+    readonly h3: (props: ComponentProps<"h3">) => JSX.Element;
+    readonly h4: (props: ComponentProps<"h4">) => JSX.Element;
+    readonly h5: (props: ComponentProps<"h5">) => JSX.Element;
+    readonly h6: (props: ComponentProps<"h6">) => JSX.Element;
+  };
+
+  const MDXComponents: MDXComponentsObject;
+  export default MDXComponents;
+}
+
+declare module "@theme/MDXPage" {
+  // TODO
+  export type Props = {};
+  function MDXPage(props: Props): JSX.Element;
+  export default MDXPage;
 }
 
 declare module "@theme/Seo" {
-  import { PropsWithChildren } from "react";
+  import type { PropsWithChildren } from "react";
 
   export type Props = PropsWithChildren<{
     readonly title?: string;

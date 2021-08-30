@@ -1,9 +1,9 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import FooterLinks from "@theme/FooterLinks";
 import FooterCopyright from "@theme/FooterCopyright";
 
-export default function Footer(props: PropsWithChildren<{}>): JSX.Element {
+function Footer(): JSX.Element {
   return (
     <footer
       className="bg-light-nonepress dark:bg-dark-nonepress-200"
@@ -19,3 +19,5 @@ export default function Footer(props: PropsWithChildren<{}>): JSX.Element {
     </footer>
   );
 }
+
+export default Footer;

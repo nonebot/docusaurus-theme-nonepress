@@ -6,9 +6,7 @@ import {
   MobileSecondaryMenuProvider,
 } from "@docusaurus/theme-common";
 
-export default function LayoutProvider(
-  props: PropsWithChildren<unknown>
-): JSX.Element {
+function LayoutProvider(props: PropsWithChildren<unknown>): JSX.Element {
   return (
     <ThemeProvider>
       <DocsPreferredVersionContextProvider>
@@ -17,3 +15,5 @@ export default function LayoutProvider(
     </ThemeProvider>
   );
 }
+
+export default LayoutProvider;
