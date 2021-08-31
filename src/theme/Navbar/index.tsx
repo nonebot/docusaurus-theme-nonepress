@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import NavbarPc from "@theme/NavbarPc";
 import styles from "./styles.module.css";
@@ -8,7 +8,7 @@ import useThemeConfig from "../../useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useHideableNavbar from "@theme/hooks/useHideableNavbar";
 
-export default function Navbar(props: PropsWithChildren<{}>): JSX.Element {
+function Navbar(): JSX.Element {
   const mobileMenu = useTransition<HTMLDivElement>();
   const {
     navbar: { hideOnScroll },
@@ -29,3 +29,5 @@ export default function Navbar(props: PropsWithChildren<{}>): JSX.Element {
     </div>
   );
 }
+
+export default Navbar;

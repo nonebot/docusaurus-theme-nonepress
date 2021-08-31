@@ -5,20 +5,11 @@ import composeRefs from "@seznam/compose-react-refs";
 import Logo from "@theme/Logo";
 import NavbarItem from "@theme/NavbarItem";
 import ThemeSwitcher from "@theme/ThemeSwitcher";
+import type { Props } from "@theme/NavbarMobile";
 import useThemeConfig from "../../useThemeConfig";
 import useOnclickOutside from "react-cool-onclickoutside";
-import useThemeContext from "@theme/hooks/useThemeContext";
-import { useTransitionReturns } from "@theme/hooks/useTransition";
 
-function useColorModeToggle() {
-  const { isDarkTheme, toggleTheme } = useThemeContext();
-  const toggle = useCallback(() => toggleTheme(), [toggleTheme]);
-  return { isDarkTheme, toggle };
-}
-
-export default function NavbarMobile(
-  props: PropsWithChildren<useTransitionReturns<HTMLDivElement>>
-): JSX.Element {
+function NavbarMobile(props: Props): JSX.Element {
   const { element, active, transitionClasses, leave } = props;
   const ref = useOnclickOutside(
     () => {
@@ -29,13 +20,8 @@ export default function NavbarMobile(
     }
   );
   const {
-    colorMode: {
-      disableSwitch,
-      switchConfig: { darkIcon, darkIconText, lightIcon, lightIconText },
-    },
     navbar: { items },
   } = useThemeConfig();
-  const colorModeToggle = useColorModeToggle();
 
   return (
     <div
@@ -80,3 +66,5 @@ export default function NavbarMobile(
     </div>
   );
 }
+
+export default NavbarMobile;

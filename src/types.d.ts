@@ -394,6 +394,26 @@ declare module "@theme/MDXPage" {
   export default MDXPage;
 }
 
+declare module "@theme/Navbar" {
+  function Navbar(): JSX.Element;
+  export default Navbar;
+}
+
+declare module "@theme/NavbarMobile" {
+  import type { useTransitionReturns } from "@theme/hooks/useTransition";
+  export type Props = useTransitionReturns<HTMLDivElement>;
+
+  function NavbarMobile(props: Props): JSX.Element;
+  export default NavbarMobile;
+}
+
+declare module "@theme/NavbarPC" {
+  export type Props = { openMobileMenu: () => void };
+
+  function NavbarPC(props: Props): JSX.Element;
+  export default NavbarPC;
+}
+
 declare module "@theme/Seo" {
   import type { PropsWithChildren } from "react";
 

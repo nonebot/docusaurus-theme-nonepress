@@ -6,6 +6,7 @@ import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import SearchBar from "@theme/SearchBar";
 import NavbarItem from "@theme/NavbarItem";
+import type { Props } from "@theme/NavbarPC";
 import ThemeSwitcher from "@theme/ThemeSwitcher";
 import useThemeConfig from "../../useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
@@ -25,7 +26,7 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
 }
 
-function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
+function NavbarDocsVersion(): JSX.Element {
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLUListElement>();
   const ref = useOnclickOutside(
@@ -140,9 +141,7 @@ function NavbarDocsVersion(props: PropsWithChildren<unknown>): JSX.Element {
   );
 }
 
-export default function NavbarPc(
-  props: PropsWithChildren<{ openMobileMenu: () => void }>
-): JSX.Element {
+function NavbarPc(props: Props): JSX.Element {
   const {
     navbar: { items },
   } = useThemeConfig();
@@ -181,3 +180,5 @@ export default function NavbarPc(
     </div>
   );
 }
+
+export default NavbarPc;
