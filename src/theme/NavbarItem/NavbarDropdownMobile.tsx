@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import {
   isSamePath,
@@ -9,7 +9,8 @@ import {
 } from "@docusaurus/theme-common";
 import Link from "@docusaurus/Link";
 import NavbarItem from "@theme/NavbarItem";
-import { NavbarLink, NavbarDropdown } from "../../useThemeConfig";
+import type { NavbarLink } from "@theme/hooks/useThemeConfig";
+import type { Props } from "@theme/NavbarItem/NavbarDropdownMobile";
 
 function isItemActive(item: NavbarLink, localPathname: string): boolean {
   if (isSamePath(item.to, localPathname)) {
@@ -34,9 +35,7 @@ function containsActiveItems(
   return items.some((item) => isItemActive(item, localPathname));
 }
 
-export default function NavbarDropdownMobile(
-  props: PropsWithChildren<NavbarDropdown>
-): JSX.Element {
+function NavbarDropdownMobile(props: Props): JSX.Element {
   const { label, icon, className, items } = props;
 
   const localPathname = useLocalPathname();
@@ -92,3 +91,5 @@ export default function NavbarDropdownMobile(
     </li>
   );
 }
+
+export default NavbarDropdownMobile;

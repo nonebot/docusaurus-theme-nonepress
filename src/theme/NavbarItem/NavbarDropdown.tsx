@@ -1,15 +1,13 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useState, useRef } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
 import NavbarItem from "@theme/NavbarItem";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useTransition from "@theme/hooks/useTransition";
-import { NavbarDropdown as NavDropdown } from "../../useThemeConfig";
+import type { Props } from "@theme/NavbarItem/NavbarDropdown";
 
-export default function NavbarDropdown(
-  props: PropsWithChildren<NavDropdown>
-): JSX.Element {
+function NavbarDropdown(props: Props): JSX.Element {
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLUListElement>();
 
@@ -69,3 +67,5 @@ export default function NavbarDropdown(
     </li>
   );
 }
+
+export default NavbarDropdown;

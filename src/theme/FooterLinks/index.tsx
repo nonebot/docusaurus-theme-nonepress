@@ -7,7 +7,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import useThemeConfig, {
   FooterLinkConfig,
   useSiteConfig,
-} from "../../useThemeConfig";
+} from "@theme/hooks/useThemeConfig";
 
 function FooterIconLinks(): JSX.Element {
   const {

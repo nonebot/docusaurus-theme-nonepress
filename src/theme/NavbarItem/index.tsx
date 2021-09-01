@@ -1,29 +1,21 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import NavbarLink from "./NavbarLink";
 import NavbarDropdown from "./NavbarDropdown";
 import NavbarDocsMenu from "./NavbarDocsMenu";
+import type { Props } from "@theme/NavbarItem";
 import NavbarLinkMobile from "./NavbarLinkMobile";
 import NavbarDropdownMobile from "./NavbarDropdownMobile";
 import NavbarDocsMenuMobile from "./NavbarDocsMenuMobile";
-import {
-  NavbarItem as NavItem,
-  NavbarDropdown as NavDropdown,
-} from "../../useThemeConfig";
+import type { NavbarDropdown as NavDropdown } from "@theme/hooks/useThemeConfig";
 
-const NavbarItemComponents: Record<
-  string,
-  (props: PropsWithChildren<{ [key: string]: unknown }>) => JSX.Element
-> = {
+const NavbarItemComponents = {
   default: NavbarLink,
   dropdown: NavbarDropdown,
   docsMenu: NavbarDocsMenu,
 } as const;
 
-const NavbarItemMobileComponents: Record<
-  string,
-  (props: PropsWithChildren<{ [key: string]: unknown }>) => JSX.Element
-> = {
+const NavbarItemMobileComponents = {
   default: NavbarLinkMobile,
   dropdown: NavbarDropdownMobile,
   docsMenu: NavbarDocsMenuMobile,
@@ -42,10 +34,10 @@ function getComponentType(
   return type as NavbarItemComponentType;
 }
 
-const getNavbarItemComponent = (
+function getNavbarItemComponent(
   type: NavbarItemComponentType,
   isMobile: boolean = false
-) => {
+): (props) => JSX.Element {
   const navbarItemComponent = isMobile
     ? NavbarItemMobileComponents[type]
     : NavbarItemComponents[type];
@@ -53,11 +45,9 @@ const getNavbarItemComponent = (
     throw new Error(`No NavbarItem component found for type "${type}".`);
   }
   return navbarItemComponent;
-};
+}
 
-export default function NavbarItem(
-  props: PropsWithChildren<{ item: NavItem; isMobile: boolean }>
-): JSX.Element {
+function NavbarItem(props: Props): JSX.Element {
   const {
     isMobile,
     item: { type, ...remProps },
@@ -69,3 +59,5 @@ export default function NavbarItem(
   const NavbarItemComponent = getNavbarItemComponent(componentType, isMobile);
   return <NavbarItemComponent {...remProps} />;
 }
+
+export default NavbarItem;

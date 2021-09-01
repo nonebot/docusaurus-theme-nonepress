@@ -6,7 +6,7 @@ import Logo from "@theme/Logo";
 import NavbarItem from "@theme/NavbarItem";
 import ThemeSwitcher from "@theme/ThemeSwitcher";
 import type { Props } from "@theme/NavbarMobile";
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useOnclickOutside from "react-cool-onclickoutside";
 
 function NavbarMobile(props: Props): JSX.Element {

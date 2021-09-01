@@ -5,7 +5,7 @@ import "./styles.css";
 import copy from "copy-text-to-clipboard";
 import rangeParser from "parse-numeric-range";
 import type { Props } from "@theme/CodeBlock";
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import usePrismTheme from "@theme/hooks/usePrismTheme";
 import { parseCodeBlockTitle } from "@docusaurus/theme-common";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";

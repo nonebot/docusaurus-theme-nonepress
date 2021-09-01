@@ -7,7 +7,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { DocusaurusContext } from "@docusaurus/types";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { ThemeConfig } from "../../useThemeConfig";
+import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
 
 function Logo(props: Props): JSX.Element {
   const { imageClassName, children, ...propsRest } = props;

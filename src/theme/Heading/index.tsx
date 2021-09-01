@@ -3,7 +3,7 @@ import React from "react";
 
 import "./styles.css";
 import styles from "./styles.module.css";
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import type { HeadingType, Props } from "@theme/Heading";
 
 export function MainHeading(props: Props): JSX.Element {

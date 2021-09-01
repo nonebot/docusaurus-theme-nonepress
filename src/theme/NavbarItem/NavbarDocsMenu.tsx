@@ -1,11 +1,10 @@
 import clsx from "clsx";
+import React from "react";
 import { sortBy } from "lodash";
-import React, { PropsWithChildren } from "react";
 
 import Link from "@docusaurus/Link";
 import useTransition from "@theme/hooks/useTransition";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
-import { NavbarDocsMenu as NavDocsMenu } from "../../useThemeConfig";
 import { CURRENT_VERSION_NAME } from "@docusaurus/plugin-content-docs/lib/constants";
 import {
   useVersions,
@@ -13,23 +12,20 @@ import {
   useLoadedVersions,
   useActiveDocContext,
 } from "@theme/hooks/useDocs";
-import {
+import type {
+  Props,
+  CustomDocFrontMatter,
+} from "@theme/NavbarItem/NavbarDocsMenu";
+import type {
   GlobalDoc,
   GlobalVersion,
-  DocFrontMatter,
 } from "@docusaurus/plugin-content-docs/lib/types";
-
-type CustomDocFrontMatter = DocFrontMatter & {
-  options?: { menu?: { weight?: number; category?: Array<string> } };
-};
 
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
 }
 
-export default function NavbarDocsMenu(
-  props: PropsWithChildren<NavDocsMenu>
-): JSX.Element {
+function NavbarDocsMenu(props: Props): JSX.Element {
   const { label, icon, className, category } = props;
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLDivElement>();
@@ -200,3 +196,5 @@ export default function NavbarDocsMenu(
     </li>
   );
 }
+
+export default NavbarDocsMenu;

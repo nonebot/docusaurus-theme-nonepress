@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 
 function FooterCopyright(): JSX.Element {
   const themeConfig = useThemeConfig();

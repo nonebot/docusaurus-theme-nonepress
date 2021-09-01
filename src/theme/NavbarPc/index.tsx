@@ -8,7 +8,7 @@ import SearchBar from "@theme/SearchBar";
 import NavbarItem from "@theme/NavbarItem";
 import type { Props } from "@theme/NavbarPC";
 import ThemeSwitcher from "@theme/ThemeSwitcher";
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";

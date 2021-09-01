@@ -112,6 +112,122 @@ declare module "@theme/hooks/useTheme" {
   export default useTheme;
 }
 
+declare module "@theme/hooks/useThemeConfig" {
+  import { PrismTheme } from "prism-react-renderer";
+  import type { DocusaurusConfig } from "@docusaurus/types";
+
+  export type ColorModeConfig = {
+    defaultMode?: "light" | "dark";
+    disableSwitch?: boolean;
+    switchConfig?: {
+      darkIcon?: string;
+      darkIconText?: string;
+      lightIcon?: string;
+      lightIconText?: string;
+    };
+  };
+
+  export type DocsConfig = {
+    versionPersistence?: "localStorage" | "none";
+  };
+
+  export type MetadataConfig = {
+    id?: string;
+    name?: string;
+    property?: string;
+    content?: string;
+    itemprop?: string;
+  };
+
+  export type LogoConfig = {
+    alt?: string;
+    src: string;
+    srcDark?: string;
+    href?: string;
+    target?: string;
+  };
+
+  export type NavbarItem = {
+    type?: string;
+    label?: string;
+    icon?: string;
+    className?: string;
+  };
+
+  export type NavbarLink = NavbarItem & {
+    to?: string;
+    href?: string;
+    prependBaseUrlToHref?: boolean;
+  };
+
+  export type NavbarDropdown = NavbarItem & {
+    to?: string;
+    href?: string;
+    prependBaseUrlToHref?: boolean;
+    items: Array<NavbarLink>;
+  };
+
+  export type NavbarDocsMenu = NavbarItem & {
+    type: "docsMenu";
+    category?: string;
+  };
+
+  export type NavbarConfig = {
+    hideOnScroll?: boolean;
+    items?: Array<NavbarItem>;
+  };
+
+  export type FooterLinkConfig = {
+    title?: string;
+    icon?: string;
+    items?: Array<{
+      to?: string;
+      href?: string;
+      html?: string;
+      label?: string;
+      icon?: string;
+      prependBaseUrlToHref?: boolean;
+    }>;
+  };
+
+  export type FooterIconLinkConfig = {
+    icon: string;
+    to?: string;
+    href?: string;
+    description?: string;
+    prependBaseUrlToHref?: boolean;
+  };
+
+  export type FooterConfig = {
+    copyright?: string;
+    links?: Array<FooterLinkConfig>;
+    iconLinks?: Array<FooterIconLinkConfig>;
+  };
+
+  export type PrismConfig = {
+    theme?: PrismTheme;
+    darkTheme?: PrismTheme;
+    defaultLanguage?: string;
+    additionalLanguages?: string[];
+  };
+
+  export type ThemeConfig = {
+    colorMode?: ColorModeConfig;
+    docs: DocsConfig;
+    metadatas?: Array<MetadataConfig>;
+    logo: LogoConfig;
+    navbar?: NavbarConfig;
+    footer?: FooterConfig;
+    prism?: PrismConfig;
+    tailwindConfig?: { [key: string]: any };
+    customCss?: string | string[];
+  };
+
+  export function useSiteConfig(): DocusaurusConfig;
+  function useThemeConfig(): ThemeConfig;
+  export default useThemeConfig;
+}
+
 declare module "@theme/hooks/useThemeContext" {
   export type ThemeContextProps = {
     isDarkTheme: boolean;
@@ -177,7 +293,7 @@ declare module "@theme/CodeBlock" {
     languageClassName?: string;
   }>;
 
-  const CodeBlock: (props: Props) => JSX.Element;
+  function CodeBlock(props: Props): JSX.Element;
   export default CodeBlock;
 }
 
@@ -397,6 +513,77 @@ declare module "@theme/MDXPage" {
 declare module "@theme/Navbar" {
   function Navbar(): JSX.Element;
   export default Navbar;
+}
+
+declare module "@theme/NavbarItem" {
+  import type { PropsWithChildren } from "react";
+  import type { NavbarItem as NavItem } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<{
+    item: NavItem & { [key: string]: any };
+    isMobile?: boolean;
+  }>;
+
+  function NavbarItem(props: Props): JSX.Element;
+  export default NavbarItem;
+}
+
+declare module "@theme/NavbarItem/NavbarLink" {
+  import type { PropsWithChildren } from "react";
+  import type { NavbarLink as NavLink } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<NavLink & { linkClassName?: string }>;
+
+  function NavbarLink(props: Props): JSX.Element;
+  export default NavbarLink;
+}
+
+declare module "@theme/NavbarItem/NavbarDocsMenu" {
+  import type { PropsWithChildren } from "react";
+  import type { DocFrontMatter } from "@docusaurus/plugin-content-docs/lib/types";
+  import type { NavbarDocsMenu as NavDocsMenu } from "@theme/hooks/useThemeConfig";
+
+  export type CustomDocFrontMatter = DocFrontMatter & {
+    options?: { menu?: { weight?: number; category?: Array<string> } };
+  };
+  export type Props = PropsWithChildren<NavDocsMenu>;
+
+  function NavbarDocsMenu(props: Props): JSX.Element;
+  export default NavbarDocsMenu;
+}
+
+declare module "@theme/NavbarItem/NavbarDocsMenuMobile" {
+  import type { PropsWithChildren } from "react";
+  import type { NavbarDocsMenu } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<NavbarDocsMenu>;
+
+  function NavbarDocsMenuMobile(props: Props): JSX.Element;
+  export default NavbarDocsMenuMobile;
+}
+
+declare module "@theme/NavbarItem/NavbarDropdown" {
+  import type { PropsWithChildren } from "react";
+  import type { NavbarDropdown as NavDropdown } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<NavDropdown>;
+
+  function NavbarDropdown(props: Props): JSX.Element;
+  export default NavbarDropdown;
+}
+
+declare module "@theme/NavbarItem/NavbarDropdownMobile" {
+  import type { PropsWithChildren } from "react";
+  import type { NavbarDropdown } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<NavbarDropdown>;
+
+  function NavbarDropdownMobile(props: Props): JSX.Element;
+  export default NavbarDropdownMobile;
+}
+
+declare module "@theme/NavbarItem/NavbarLinkMobile" {
+  import type { PropsWithChildren } from "react";
+  import type { NavbarLink } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<NavbarLink>;
+
+  function NavbarLinkMobile(props: Props): JSX.Element;
+  export default NavbarLinkMobile;
 }
 
 declare module "@theme/NavbarMobile" {

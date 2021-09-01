@@ -1,13 +1,11 @@
 import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { NavbarLink } from "../../useThemeConfig";
+import type { Props } from "@theme/NavbarItem/NavbarLinkMobile";
 
-export default function NavbarLinkMobile(
-  props: PropsWithChildren<NavbarLink>
-): JSX.Element {
+function NavbarLinkMobile(props: Props): JSX.Element {
   const { to, href, label, icon, prependBaseUrlToHref, className } = props;
   const toUrl = useBaseUrl(to);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
@@ -33,3 +31,5 @@ export default function NavbarLinkMobile(
     </li>
   );
 }
+
+export default NavbarLinkMobile;

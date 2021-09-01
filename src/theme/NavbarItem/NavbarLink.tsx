@@ -1,13 +1,11 @@
 import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { NavbarLink as NavLink } from "../../useThemeConfig";
+import type { Props } from "@theme/NavbarItem/NavbarLink";
 
-export default function NavbarLink(
-  props: PropsWithChildren<NavLink & { linkClassName?: string }>
-): JSX.Element {
+function NavbarLink(props: Props): JSX.Element {
   const {
     to,
     href,
@@ -44,3 +42,5 @@ export default function NavbarLink(
     </li>
   );
 }
+
+export default NavbarLink;

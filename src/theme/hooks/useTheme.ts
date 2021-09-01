@@ -4,7 +4,7 @@ import type { useThemeReturns } from "@theme/hooks/useTheme";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { createStorageSlot } from "@docusaurus/theme-common";
 
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 
 const ThemeStorage = createStorageSlot("theme");
 

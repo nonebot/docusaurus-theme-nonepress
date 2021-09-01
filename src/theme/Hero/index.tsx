@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
 import type { Feature } from "@theme/Hero";
-import { useSiteConfig } from "../../useThemeConfig";
+import { useSiteConfig } from "@theme/hooks/useThemeConfig";
 
 export default function Hero(): JSX.Element {
   const siteConfig = useSiteConfig();

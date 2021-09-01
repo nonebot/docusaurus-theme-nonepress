@@ -4,7 +4,7 @@ import React from "react";
 import NavbarPc from "@theme/NavbarPc";
 import styles from "./styles.module.css";
 import NavbarMobile from "@theme/NavbarMobile";
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useHideableNavbar from "@theme/hooks/useHideableNavbar";
 

@@ -1,7 +1,7 @@
 import type { PrismTheme } from "prism-react-renderer";
 import defaultTheme from "prism-react-renderer/themes/palenight";
 
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useThemeContext from "@theme/hooks/useThemeContext";
 
 function usePrismTheme(): PrismTheme {

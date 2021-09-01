@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { PropsWithChildren, useCallback } from "react";
 
-import useThemeConfig from "../../useThemeConfig";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useThemeContext from "@theme/hooks/useThemeContext";
 
 function useColorModeToggle() {

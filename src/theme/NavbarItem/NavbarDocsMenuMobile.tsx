@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
-import { NavbarDocsMenu } from "../../useThemeConfig";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
+import type { Props } from "@theme/NavbarItem/NavbarDocsMenuMobile";
 import { useLatestVersion, useActiveDocContext } from "@theme/hooks/useDocs";
 import {
   GlobalDoc,
@@ -14,9 +14,7 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
 }
 
-export default function NavbarDocsMenuMobile(
-  props: PropsWithChildren<NavbarDocsMenu>
-): JSX.Element {
+function NavbarDocsMenuMobile(props: Props): JSX.Element {
   const { label, icon, className } = props;
 
   const docsPluginId = undefined;
@@ -45,3 +43,5 @@ export default function NavbarDocsMenuMobile(
     </li>
   );
 }
+
+export default NavbarDocsMenuMobile;
