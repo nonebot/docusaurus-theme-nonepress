@@ -37,7 +37,9 @@ declare module "@theme/hooks/useDocs" {
   export function useActivePlugin(
     options?: GetActivePluginOptions
   ): ActivePlugin | undefined;
-  export function useActivePluginAndVersion(options?: GetActivePluginOptions):
+  export function useActivePluginAndVersion(
+    options?: GetActivePluginOptions
+  ):
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
@@ -287,10 +289,10 @@ declare module "@theme/CodeBlock" {
   import type { PropsWithChildren } from "react";
 
   export type Props = PropsWithChildren<{
-    title?: string;
-    metastring?: string;
-    className?: string;
-    languageClassName?: string;
+    readonly title?: string;
+    readonly metastring?: string;
+    readonly className?: string;
+    readonly languageClassName?: string;
   }>;
 
   function CodeBlock(props: Props): JSX.Element;
@@ -443,10 +445,10 @@ declare module "@theme/Hero" {
   import type { PropsWithChildren } from "react";
 
   export type Feature = {
-    title: string;
-    tagline?: string;
-    description?: string;
-    annotaion?: string;
+    readonly title: string;
+    readonly tagline?: string;
+    readonly description?: string;
+    readonly annotaion?: string;
   };
 
   export default function Hero(): JSX.Element;
@@ -454,28 +456,30 @@ declare module "@theme/Hero" {
     props: PropsWithChildren<Feature>
   ): JSX.Element;
   export function HeroFeatureDouble(
-    props: PropsWithChildren<{ features: [Feature, Feature] }>
+    props: PropsWithChildren<{ readonly features: readonly [Feature, Feature] }>
   ): JSX.Element;
 }
 
 declare module "@theme/Layout" {
   import type { PropsWithChildren } from "react";
+  export type Props = PropsWithChildren<unknown>;
 
-  function Layout(props: PropsWithChildren<unknown>): JSX.Element;
+  function Layout(props: Props): JSX.Element;
   export default Layout;
 }
 
 declare module "@theme/LayoutProvider" {
   import type { PropsWithChildren } from "react";
+  export type Props = PropsWithChildren<unknown>;
 
-  function LayoutProvider(props: PropsWithChildren<unknown>): JSX.Element;
+  function LayoutProvider(props: Props): JSX.Element;
   export default LayoutProvider;
 }
 
 declare module "@theme/Logo" {
   import type { PropsWithChildren } from "react";
 
-  export type Props = PropsWithChildren<{ imageClassName?: string }>;
+  export type Props = PropsWithChildren<{ readonly imageClassName?: string }>;
   function Logo(props: Props): JSX.Element;
   export default Logo;
 }
@@ -519,8 +523,8 @@ declare module "@theme/NavbarItem" {
   import type { PropsWithChildren } from "react";
   import type { NavbarItem as NavItem } from "@theme/hooks/useThemeConfig";
   export type Props = PropsWithChildren<{
-    item: NavItem & { [key: string]: any };
-    isMobile?: boolean;
+    readonly item: NavItem & { readonly [key: string]: any };
+    readonly isMobile?: boolean;
   }>;
 
   function NavbarItem(props: Props): JSX.Element;
@@ -595,10 +599,31 @@ declare module "@theme/NavbarMobile" {
 }
 
 declare module "@theme/NavbarPC" {
-  export type Props = { openMobileMenu: () => void };
+  export type Props = { readonly openMobileMenu: () => void };
 
   function NavbarPC(props: Props): JSX.Element;
   export default NavbarPC;
+}
+
+declare module "@theme/SearchBar" {
+  function SearchBar(): JSX.Element;
+  export default SearchBar;
+}
+
+declare module "@theme/SearchMetadatas" {
+  export type Props = {
+    readonly locale: string;
+    readonly version: string;
+    readonly tag: string;
+  };
+
+  function SearchMetadata(props: Props): JSX.Element;
+  export default SearchMetadata;
+}
+
+declare module "@theme/SearchPage" {
+  function SearchPage(): JSX.Element;
+  export default SearchPage;
 }
 
 declare module "@theme/Seo" {
@@ -611,7 +636,7 @@ declare module "@theme/Seo" {
     readonly image?: string;
   }>;
 
-  const Seo: (props: Props) => JSX.Element;
+  function Seo(props: Props): JSX.Element;
   export default Seo;
 }
 
@@ -621,6 +646,34 @@ declare module "@theme/ThemeContext" {
 
   const ThemeContext: Context<ThemeContextProps | undefined>;
   export default ThemeContext;
+}
+
+declare module "@theme/ThemedImage" {
+  import type { PropsWithChildren } from "react";
+  export type Props = PropsWithChildren<{
+    readonly sources: { readonly light: string; readonly dark: string };
+    readonly className?: string;
+    readonly alt?: string;
+  }>;
+
+  function ThemedImage(props: Props): JSX.Element;
+  export default ThemedImage;
+}
+
+declare module "@theme/ThemeProvider" {
+  import type { PropsWithChildren } from "react";
+  export type Props = PropsWithChildren<unknown>;
+
+  function ThemeProvider(props: Props): JSX.Element;
+  export default ThemeProvider;
+}
+
+declare module "@theme/ThemeSwitcher" {
+  import type { PropsWithChildren } from "react";
+  export type Props = PropsWithChildren<{ readonly className: string }>;
+
+  function ThemeSwitcher(props: Props): JSX.Element;
+  export default ThemeSwitcher;
 }
 
 declare module "@theme/TOC" {
@@ -635,9 +688,9 @@ declare module "@theme/TOC" {
     readonly isChild?: boolean;
   };
 
-  export const TOCHeadings: (props: TOCHeadingsProps) => JSX.Element;
+  export function TOCHeadings(props: TOCHeadingsProps): JSX.Element;
 
-  const TOC: (props: TOCProps) => JSX.Element;
+  function TOC(props: TOCProps): JSX.Element;
   export default TOC;
 }
 

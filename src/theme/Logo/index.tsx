@@ -30,7 +30,7 @@ function Logo(props: Props): JSX.Element {
     >
       {logo.src && (
         <ThemedImage
-          key={isClient}
+          key={isClient.toString()}
           className={imageClassName}
           sources={sources}
           alt={logo.alt}

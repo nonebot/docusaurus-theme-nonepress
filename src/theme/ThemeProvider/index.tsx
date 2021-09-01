@@ -1,11 +1,10 @@
-import React, { PropsWithChildren, useState } from "react";
+import React from "react";
 
 import useTheme from "@theme/hooks/useTheme";
 import ThemeContext from "@theme/ThemeContext";
+import type { Props } from "@theme/ThemeProvider";
 
-export default function ThemeProvider(
-  props: PropsWithChildren<unknown>
-): JSX.Element {
+function ThemeProvider(props: Props): JSX.Element {
   const { isDarkTheme, setLightTheme, setDarkTheme, toggleTheme } = useTheme();
 
   return (
@@ -16,3 +15,5 @@ export default function ThemeProvider(
     </ThemeContext.Provider>
   );
 }
+
+export default ThemeProvider;

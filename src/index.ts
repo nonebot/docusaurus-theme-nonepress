@@ -3,9 +3,9 @@ import Module from "module";
 import type { AcceptedPlugin } from "postcss";
 import { LoadContext, Plugin } from "@docusaurus/types";
 
-import { ThemeConfig } from "./useThemeConfig";
 import { normalizeUrl } from "@docusaurus/utils";
 import defaultTailwindConfig from "./tailwind.config";
+import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
 import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
 import pluginContentDoc from "@docusaurus/plugin-content-docs/lib/index";
 import {

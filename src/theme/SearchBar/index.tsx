@@ -192,7 +192,7 @@ function DocSearch({ contextualSearch, ...props }) {
   );
 }
 
-function SearchBar() {
+function SearchBar(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return <DocSearch {...siteConfig.themeConfig.algolia} />;
 }

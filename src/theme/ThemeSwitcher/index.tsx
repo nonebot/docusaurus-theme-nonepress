@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useCallback } from "react";
+import React, { useCallback } from "react";
 
+import type { Props } from "@theme/ThemeSwitcher";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useThemeContext from "@theme/hooks/useThemeContext";
 
@@ -10,9 +11,7 @@ function useColorModeToggle() {
   return { isDarkTheme, toggle };
 }
 
-export default function ThemeSwitcher(
-  props: PropsWithChildren<{ className: string }>
-): JSX.Element {
+export default function ThemeSwitcher(props: Props): JSX.Element {
   const {
     colorMode: {
       disableSwitch,

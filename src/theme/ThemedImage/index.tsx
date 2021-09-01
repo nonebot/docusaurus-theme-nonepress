@@ -1,18 +1,13 @@
 import clsx from "clsx";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
+import type { Props } from "@theme/ThemedImage";
 import useThemeContext from "@theme/hooks/useThemeContext";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import styles from "./styles.module.css";
 
-type Props = PropsWithChildren<{
-  sources: { light: string; dark: string };
-  className?: string;
-  alt?: string;
-}>;
-
-export default function ThemedImage(props: Props): JSX.Element {
+function ThemedImage(props: Props): JSX.Element {
   const { isClient } = useDocusaurusContext();
   const { isDarkTheme } = useThemeContext();
   const { sources, className = "", alt = "", ...propsRest } = props;
@@ -43,3 +38,5 @@ export default function ThemedImage(props: Props): JSX.Element {
     </>
   );
 }
+
+export default ThemedImage;

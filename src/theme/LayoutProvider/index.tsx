@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import ThemeProvider from "@theme/ThemeProvider";
+import type { Props } from "@theme/LayoutProvider";
 import {
   DocsPreferredVersionContextProvider,
   MobileSecondaryMenuProvider,
 } from "@docusaurus/theme-common";
 
-function LayoutProvider(props: PropsWithChildren<unknown>): JSX.Element {
+function LayoutProvider(props: Props): JSX.Element {
   return (
     <ThemeProvider>
       <DocsPreferredVersionContextProvider>

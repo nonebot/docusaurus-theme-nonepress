@@ -6,7 +6,7 @@ import { useTitleFormatter } from "@docusaurus/theme-common";
 
 import type { Props } from "@theme/Seo";
 
-export default function Seo({
+function Seo({
   title,
   description,
   keywords,
@@ -41,3 +41,5 @@ export default function Seo({
     </Head>
   );
 }
+
+export default Seo;

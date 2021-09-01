@@ -16,6 +16,8 @@ import Layout from "@theme/Layout";
 import Translate, { translate } from "@docusaurus/Translate";
 import styles from "./styles.module.css";
 
+// TODO
+
 // Very simple pluralization: probably good enough for now
 function useDocumentsFoundPlural() {
   const { selectMessage } = usePluralForm();
@@ -62,7 +64,7 @@ function useDocsSearchVersionsHelpers() {
 }
 
 // We want to display one select per versioned docs plugin instance
-const SearchVersionSelectList = ({ docsSearchVersionsHelpers }) => {
+function SearchVersionSelectList({ docsSearchVersionsHelpers }): JSX.Element {
   const versionedPluginEntries = Object.entries(
     docsSearchVersionsHelpers.allDocsData as Record<string, GlobalPluginData>
   )
@@ -105,9 +107,9 @@ const SearchVersionSelectList = ({ docsSearchVersionsHelpers }) => {
       })}
     </div>
   );
-};
+}
 
-function SearchPage() {
+function SearchPage(): JSX.Element {
   const {
     siteConfig: {
       themeConfig: {
@@ -322,6 +324,7 @@ function SearchPage() {
   }, [searchValue]);
 
   return (
+    // @ts-ignore
     <Layout wrapperClassName="search-page-wrapper">
       <Head>
         <title>{useTitleFormatter(getTitle())}</title>

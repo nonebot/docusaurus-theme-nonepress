@@ -2,7 +2,7 @@ import type * as PrismNamespace from "prismjs";
 import siteConfig from "@generated/docusaurus.config";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
-const prismIncludeLanguages = (PrismObject: typeof PrismNamespace): void => {
+function prismIncludeLanguages(PrismObject: typeof PrismNamespace): void {
   if (ExecutionEnvironment.canUseDOM) {
     const {
       themeConfig: { prism: { additionalLanguages = [] } = {} },
@@ -17,6 +17,6 @@ const prismIncludeLanguages = (PrismObject: typeof PrismNamespace): void => {
 
     delete (window as Window & { Prism?: typeof PrismNamespace }).Prism;
   }
-};
+}
 
 export default prismIncludeLanguages;
