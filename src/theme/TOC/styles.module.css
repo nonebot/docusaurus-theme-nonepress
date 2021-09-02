@@ -1,9 +1,7 @@
 .toc {
   max-height: calc(100vh - 7rem);
-  overflow-y: auto;
-  position: sticky;
-  top: 1rem;
   scrollbar-width: thin;
+  @apply sticky top-4 overflow-y-auto;
 }
 
 .toc::webkit-scrollbar {

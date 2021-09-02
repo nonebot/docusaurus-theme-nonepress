@@ -1,0 +1,11 @@
+.docSidebarContainer {
+  will-change: width;
+  clip-path: inset(0);
+  @apply hidden lg:block lg:w-60 xl:w-72;
+  @apply border-r;
+  @apply transition;
+}
+
+.docSidebarContainerHidden {
+  @apply lg:w-8 cursor-pointer;
+}

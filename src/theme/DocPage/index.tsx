@@ -1,8 +1,10 @@
+import clsx from "clsx";
 import { MDXProvider } from "@mdx-js/react";
 import React, { PropsWithChildren, useState, useCallback } from "react";
 
 import Layout from "@theme/Layout";
 import NotFound from "@theme/NotFound";
+import styles from "./styles.module.css";
 import { matchPath } from "@docusaurus/router";
 import MDXComponents from "@theme/MDXComponents";
 import renderRoutes from "@docusaurus/renderRoutes";
@@ -38,14 +40,29 @@ function DocPageContent(
 
   return (
     <Layout>
-      <div className="w-full mx-auto pb-16 px-12 lg:px-0 mt-24">
-        <div className="lg:flex">
+      <div className="w-full mt-24">
+        <div className="flex w-full">
           <BackToTopButton />
           {/* sidebar */}
-          <main
-            id="docs"
-            className="min-w-0 w-full lg:px-12 lg:flex-auto lg:static lg:max-h-full lg:overflow-visible"
-          >
+          {sidebar && (
+            <aside
+              className={clsx("")}
+              onTransitionEnd={(e) => {
+                if (
+                  !e.currentTarget.classList.contains(
+                    styles.docSidebarContainer
+                  )
+                ) {
+                  return;
+                }
+
+                if (hiddenSidebarContainer) {
+                  setHiddenSidebar(true);
+                }
+              }}
+            ></aside>
+          )}
+          <main id="docs" className="flex w-full p-4 pb-8 lg:px-12">
             <MDXProvider components={MDXComponents}>{children}</MDXProvider>
           </main>
         </div>
