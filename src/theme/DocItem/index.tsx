@@ -38,7 +38,7 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
   return (
     <>
       <Seo {...{ title, description, keywords, image }} />
-      <div className="relative flex flex-row">
+      <div className="relative flex flex-row w-full">
         <div className="flex-grow p-4"></div>
         {renderTocDesktop && (
           <div className={clsx("p-4", styles.toc)}>

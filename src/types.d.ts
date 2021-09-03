@@ -37,9 +37,7 @@ declare module "@theme/hooks/useDocs" {
   export function useActivePlugin(
     options?: GetActivePluginOptions
   ): ActivePlugin | undefined;
-  export function useActivePluginAndVersion(
-    options?: GetActivePluginOptions
-  ):
+  export function useActivePluginAndVersion(options?: GetActivePluginOptions):
     | {
         activePlugin: ActivePlugin;
         activeVersion: GlobalVersion | undefined;
@@ -413,6 +411,20 @@ declare module "@theme/DocPage" {
 
   function DocPage(props: Props): JSX.Element;
   export default DocPage;
+}
+
+declare module "@theme/DocSidebar" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
+
+  export type Props = {
+    readonly path: string;
+    readonly sidebar: readonly PropSidebarItem[];
+    readonly onCollapse: () => void;
+    readonly isHidden: boolean;
+  };
+
+  function DocSidebar(props: Props): JSX.Element;
+  export default DocSidebar;
 }
 
 declare module "@theme/Footer" {

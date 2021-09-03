@@ -5,6 +5,7 @@ import React, { PropsWithChildren, useState, useCallback } from "react";
 import Layout from "@theme/Layout";
 import NotFound from "@theme/NotFound";
 import styles from "./styles.module.css";
+import DocSidebar from "@theme/DocSidebar";
 import { matchPath } from "@docusaurus/router";
 import MDXComponents from "@theme/MDXComponents";
 import renderRoutes from "@docusaurus/renderRoutes";
@@ -40,10 +41,9 @@ function DocPageContent(
 
   return (
     <Layout>
-      <div className="w-full mt-24">
+      <div className="w-full">
         <div className="flex w-full">
           <BackToTopButton />
-          {/* sidebar */}
           {sidebar && (
             <aside
               className={clsx("")}
@@ -60,9 +60,35 @@ function DocPageContent(
                   setHiddenSidebar(true);
                 }
               }}
-            ></aside>
+            >
+              <DocSidebar
+                key={
+                  // Reset sidebar state on sidebar changes
+                  // See https://github.com/facebook/docusaurus/issues/3414
+                  sidebarName
+                }
+                sidebar={sidebar}
+                path={currentDocRoute.path}
+                onCollapse={toggleSidebar}
+                isHidden={hiddenSidebar}
+              />
+
+              {hiddenSidebar && (
+                <div
+                  className={styles.collapsedDocSidebar}
+                  title="Expand sidebar"
+                  aria-label="Expand sidebar"
+                  tabIndex={0}
+                  role="button"
+                  onKeyDown={toggleSidebar}
+                  onClick={toggleSidebar}
+                >
+                  <i className="fas fa-angle-double-right text-xl"></i>
+                </div>
+              )}
+            </aside>
           )}
-          <main id="docs" className="flex w-full p-4 pb-8 lg:px-12">
+          <main id="docs" className="flex w-full mt-24 p-4 pb-8 lg:px-12">
             <MDXProvider components={MDXComponents}>{children}</MDXProvider>
           </main>
         </div>

@@ -9,3 +9,11 @@
 .docSidebarContainerHidden {
   @apply lg:w-8 cursor-pointer;
 }
+
+.collapsedDocSidebar {
+  @apply sticky top-0 h-full max-h-screen;
+  @apply flex items-center justify-center;
+  @apply transition;
+  @apply hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200;
+  @apply focus:bg-light-nonepress-200 dark:focus:bg-dark-nonepress-200;
+}
