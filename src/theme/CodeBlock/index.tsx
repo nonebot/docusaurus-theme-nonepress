@@ -11,48 +11,60 @@ import { parseCodeBlockTitle } from "@docusaurus/theme-common";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 
 const highlightLinesRangeRegex = /{([\d,-]+)}/;
+
+const HighlightLanguages = ["js", "jsBlock", "jsx", "python", "html"] as const;
+type HighlightLanguage = typeof HighlightLanguages[number];
+
+type HighlightLanguageConfig = {
+  start: string;
+  end: string;
+};
+
+// Supported types of highlight comments
+const HighlightComments: Record<HighlightLanguage, HighlightLanguageConfig> = {
+  js: {
+    start: "\\/\\/",
+    end: "",
+  },
+  jsBlock: {
+    start: "\\/\\*",
+    end: "\\*\\/",
+  },
+  jsx: {
+    start: "\\{\\s*\\/\\*",
+    end: "\\*\\/\\s*\\}",
+  },
+  python: {
+    start: "#",
+    end: "",
+  },
+  html: {
+    start: "<!--",
+    end: "-->",
+  },
+};
+
+// Supported highlight directives
+const HighlightDirectives = [
+  "highlight-next-line",
+  "highlight-start",
+  "highlight-end",
+];
+
 const getHighlightDirectiveRegex = (
-  languages = ["js", "jsBlock", "jsx", "python", "html"]
+  languages: readonly HighlightLanguage[] = HighlightLanguages
 ) => {
-  // supported types of comments
-  const comments = {
-    js: {
-      start: "\\/\\/",
-      end: "",
-    },
-    jsBlock: {
-      start: "\\/\\*",
-      end: "\\*\\/",
-    },
-    jsx: {
-      start: "\\{\\s*\\/\\*",
-      end: "\\*\\/\\s*\\}",
-    },
-    python: {
-      start: "#",
-      end: "",
-    },
-    html: {
-      start: "<!--",
-      end: "-->",
-    },
-  };
-  // supported directives
-  const directives = [
-    "highlight-next-line",
-    "highlight-start",
-    "highlight-end",
-  ].join("|");
   // to be more reliable, the opening and closing comment must match
   const commentPattern = languages
-    .map(
-      (lang) =>
-        `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`
-    )
+    .map((lang) => {
+      const { start, end } = HighlightComments[lang];
+      return `(?:${start}\\s*(${HighlightDirectives.join("|")})\\s*${end})`;
+    })
     .join("|");
   // white space is allowed, but otherwise it should be on it's own line
   return new RegExp(`^\\s*(?:${commentPattern})\\s*$`);
 };
+
 // select comment styles based on language
 const highlightDirectiveRegex = (lang: string) => {
   switch (lang) {
@@ -114,12 +126,10 @@ function CodeBlock({
     highlightLines = rangeParser(highlightLinesRange).filter((n) => n > 0);
   }
 
-  let language =
-    languageClassName &&
-    (languageClassName.replace(/language-/, "") as Language as any);
+  let language = languageClassName?.replace(/language-/, "") as Language;
 
   if (!language && prism.defaultLanguage) {
-    language = prism.defaultLanguage;
+    language = prism.defaultLanguage as Language;
   }
 
   // only declaration OR directive highlight can be used for a block

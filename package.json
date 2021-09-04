@@ -32,6 +32,7 @@
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
     "@seznam/compose-react-refs": "^1.0.6",
+    "@tailwindcss/typography": "^0.4.1",
     "algoliasearch": "^4.10.3",
     "algoliasearch-helper": "^3.5.5",
     "autoprefixer": "^10.3.1",

@@ -2,13 +2,13 @@ import clsx from "clsx";
 import React from "react";
 
 import type { Props } from "@theme/ThemedImage";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 import useThemeContext from "@theme/hooks/useThemeContext";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import styles from "./styles.module.css";
 
 function ThemedImage(props: Props): JSX.Element {
-  const { isClient } = useDocusaurusContext();
+  const isBrowser = useIsBrowser();
   const { isDarkTheme } = useThemeContext();
   const { sources, className = "", alt = "", ...propsRest } = props;
 
@@ -16,7 +16,7 @@ function ThemedImage(props: Props): JSX.Element {
 
   const clientThemes: SourceName[] = isDarkTheme ? ["dark"] : ["light"];
 
-  const renderedSourceNames: SourceName[] = isClient
+  const renderedSourceNames: SourceName[] = isBrowser
     ? clientThemes
     : ["light", "dark"];
 

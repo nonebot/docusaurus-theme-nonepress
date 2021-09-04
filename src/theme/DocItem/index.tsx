@@ -5,8 +5,9 @@ import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
 import { Props } from "@theme/DocItem";
 import styles from "./styles.module.css";
+import { MainHeading } from "@theme/Heading";
 import useWindowSize from "@theme/hooks/useWindowSize";
-import { useActivePlugin, useVersions } from "@theme/hooks/useDocs";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
 function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
   const { metadata, frontMatter } = DocContent;
@@ -18,10 +19,6 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
   } = frontMatter;
   const { description, title } = metadata;
 
-  const { pluginId } = useActivePlugin({ failfast: true })!;
-  const versions = useVersions(pluginId);
-
-  const showVersionBadge = versions.length > 1;
   const shouldAddTitle =
     !hideTitle && typeof DocContent.contentTitle === "undefined";
 
@@ -33,13 +30,50 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
   const renderTocDesktop =
     canRenderTOC && (windowSize === "desktop" || windowSize === "ssr");
 
-  console.log(DocContent, renderTocDesktop);
-
   return (
     <>
       <Seo {...{ title, description, keywords, image }} />
       <div className="relative flex flex-row w-full">
-        <div className="flex-grow p-4"></div>
+        <div className="flex-grow p-4">
+          {/* <DocVersionBanner versionMetadata={versionMetadata} /> */}
+          <div className="doc-content">
+            <article>
+              {versionMetadata.badge && (
+                <span
+                  className={clsx(
+                    ThemeClassNames.docs.docVersionBadge,
+                    "bg-light-nonepress-200 dark:bg-dark-nonepress-200"
+                  )}
+                >
+                  Version: {versionMetadata.label}
+                </span>
+              )}
+
+              {/* {canRenderTOC && (
+                <TOCCollapsible
+                  toc={DocContent.toc}
+                  className={clsx(
+                    ThemeClassNames.docs.docTocMobile,
+                    styles.tocMobile,
+                  )}
+                />
+              )} */}
+
+              <div
+                className={clsx(
+                  ThemeClassNames.docs.docMarkdown,
+                  "prose lg:prose-xl"
+                )}
+              >
+                {shouldAddTitle && <MainHeading>{title}</MainHeading>}
+
+                <DocContent />
+              </div>
+
+              {/* <DocItemFooter {...props} /> */}
+            </article>
+          </div>
+        </div>
         {renderTocDesktop && (
           <div className={clsx("p-4", styles.toc)}>
             <TOC toc={DocContent.toc} />

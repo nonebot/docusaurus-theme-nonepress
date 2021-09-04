@@ -8,6 +8,8 @@ import { useHistory } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
 import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import useSearchQuery from "@theme/hooks/useSearchQuery";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
+import type { AlgoliaConfig } from "@theme/hooks/useThemeConfig";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
 import useAlgoliaContextualFacetFilters from "@theme/hooks/useAlgoliaContextualFacetFilters";
@@ -28,7 +30,7 @@ function ResultsFooter({ state, onClose }) {
   );
 }
 
-function DocSearch({ contextualSearch, ...props }) {
+function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
   const { siteMetadata } = useDocusaurusContext();
 
   const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
@@ -193,8 +195,8 @@ function DocSearch({ contextualSearch, ...props }) {
 }
 
 function SearchBar(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  return <DocSearch {...siteConfig.themeConfig.algolia} />;
+  const { algolia } = useThemeConfig();
+  return <DocSearch {...algolia} />;
 }
 
 export default SearchBar;

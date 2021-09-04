@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { useRef, useState } from "react";
 
+import { useLocation } from "@docusaurus/router";
 import useScrollPosition from "@theme/hooks/useScrollPosition";
 
 const threshold = 300;
@@ -57,38 +58,42 @@ function useSmoothScrollToTop(): UseSmoothScrollTopReturn {
 }
 
 function BackToTopButton(): JSX.Element {
-  const { smoothScrollTop, cancelScrollToTop } = useSmoothScrollToTop();
+  const location = useLocation();
   const [show, setShow] = useState(false);
+  const { smoothScrollTop, cancelScrollToTop } = useSmoothScrollToTop();
 
-  useScrollPosition(({ scrollY: scrollTop }, lastPosition) => {
-    // No lastPosition means component is just being mounted.
-    // Not really a scroll event from the user, so we ignore it
-    if (!lastPosition) {
-      return;
-    }
-    const lastScrollTop = lastPosition.scrollY;
-
-    const isScrollingUp = scrollTop < lastScrollTop;
-
-    if (!isScrollingUp) {
-      cancelScrollToTop();
-    }
-
-    if (scrollTop < threshold) {
-      setShow(false);
-      return;
-    }
-
-    if (isScrollingUp) {
-      const documentHeight = document.documentElement.scrollHeight;
-      const windowHeight = window.innerHeight;
-      if (scrollTop + windowHeight < documentHeight) {
-        setShow(true);
+  useScrollPosition(
+    ({ scrollY: scrollTop }, lastPosition) => {
+      // No lastPosition means component is just being mounted.
+      // Not really a scroll event from the user, so we ignore it
+      if (!lastPosition) {
+        return;
       }
-    } else {
-      setShow(false);
-    }
-  }, []);
+      const lastScrollTop = lastPosition.scrollY;
+
+      const isScrollingUp = scrollTop < lastScrollTop;
+
+      if (!isScrollingUp) {
+        cancelScrollToTop();
+      }
+
+      if (scrollTop < threshold) {
+        setShow(false);
+        return;
+      }
+
+      if (isScrollingUp) {
+        const documentHeight = document.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
+        if (scrollTop + windowHeight < documentHeight) {
+          setShow(true);
+        }
+      } else {
+        setShow(false);
+      }
+    },
+    [location]
+  );
 
   return (
     <button

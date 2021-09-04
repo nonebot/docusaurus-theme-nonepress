@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import Link from "@docusaurus/Link";
 import type { Props } from "@theme/Logo";
@@ -7,15 +7,12 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { DocusaurusContext } from "@docusaurus/types";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
 
 function Logo(props: Props): JSX.Element {
   const { imageClassName, children, ...propsRest } = props;
-  const {
-    isClient,
-    siteConfig: { themeConfig },
-  } = useDocusaurusContext() as DocusaurusContext;
-  const { logo = { src: "" } } = themeConfig as ThemeConfig;
+  const { logo = { src: "" } } = useThemeConfig();
 
   const logoLink = useBaseUrl(logo.href || "/");
   const sources = {
@@ -30,7 +27,6 @@ function Logo(props: Props): JSX.Element {
     >
       {logo.src && (
         <ThemedImage
-          key={isClient.toString()}
           className={imageClassName}
           sources={sources}
           alt={logo.alt}

@@ -4,17 +4,18 @@ import clsx from "clsx";
 import algoliaSearch from "algoliasearch/lite";
 import algoliaSearchHelper from "algoliasearch-helper";
 
+import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import { useTitleFormatter, usePluralForm } from "@docusaurus/theme-common";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { GlobalPluginData } from "@docusaurus/plugin-content-docs/lib/types";
-import { useAllDocsData } from "@theme/hooks/useDocs";
-import useSearchQuery from "@theme/hooks/useSearchQuery";
-import Layout from "@theme/Layout";
-import Translate, { translate } from "@docusaurus/Translate";
 import styles from "./styles.module.css";
+import { useAllDocsData } from "@theme/hooks/useDocs";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
+import useSearchQuery from "@theme/hooks/useSearchQuery";
+import Translate, { translate } from "@docusaurus/Translate";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useTitleFormatter, usePluralForm } from "@docusaurus/theme-common";
+import type { GlobalPluginData } from "@docusaurus/plugin-content-docs/lib/types";
 
 // TODO
 
@@ -111,13 +112,11 @@ function SearchVersionSelectList({ docsSearchVersionsHelpers }): JSX.Element {
 
 function SearchPage(): JSX.Element {
   const {
-    siteConfig: {
-      themeConfig: {
-        algolia: { appId, apiKey, indexName },
-      },
-    },
     i18n: { currentLocale },
   } = useDocusaurusContext();
+  const {
+    algolia: { appId, apiKey, indexName },
+  } = useThemeConfig();
   const documentsFoundPlural = useDocumentsFoundPlural();
 
   const docsSearchVersionsHelpers = useDocsSearchVersionsHelpers();

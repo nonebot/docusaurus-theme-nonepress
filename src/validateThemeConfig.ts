@@ -27,6 +27,15 @@ export const DEFAULT_CONFIG = {
   prism: {
     additionalLanguages: [],
   },
+  algolia: {
+    contextualSearch: false, // future: maybe we want to enable this by default
+
+    // By default, all Docusaurus sites are using the same AppId
+    // This has been designed on purpose with Algolia.
+    appId: "BH4D9OD16A",
+
+    searchParameters: {},
+  },
 };
 
 const ColorModeSchema = Joi.object({
@@ -232,6 +241,23 @@ export const ThemeConfigSchema = Joi.object({
   }),
   footer: FooterSchema,
   prism: PrismSchema,
+  algolia: Joi.object({
+    // Docusaurus attributes
+    contextualSearch: Joi.boolean().default(
+      DEFAULT_CONFIG.algolia.contextualSearch
+    ),
+
+    // Algolia attributes
+    appId: Joi.string().default(DEFAULT_CONFIG.algolia.appId),
+    apiKey: Joi.string().required(),
+    indexName: Joi.string().required(),
+    searchParameters: Joi.object()
+      .default(DEFAULT_CONFIG.algolia.searchParameters)
+      .unknown(),
+  })
+    .label("themeConfig.algolia")
+    .required()
+    .unknown(),
   tailwindConfig: Joi.object().optional(),
   customCss: CustomCssSchema,
 });
