@@ -6,13 +6,13 @@ import Layout from "@theme/Layout";
 import NotFound from "@theme/NotFound";
 import styles from "./styles.module.css";
 import DocSidebar from "@theme/DocSidebar";
+import type { Props } from "@theme/DocPage";
 import { matchPath } from "@docusaurus/router";
 import MDXComponents from "@theme/MDXComponents";
 import renderRoutes from "@docusaurus/renderRoutes";
 import type { DocumentRoute } from "@theme/DocItem";
 import BackToTopButton from "@theme/BackToTopButton";
-import type { Props, PropVersionMetadata } from "@theme/DocPage";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import type { PropVersionMetadata } from "@docusaurus/plugin-content-docs-types";
 
 function DocPageContent(
   props: PropsWithChildren<{
@@ -21,7 +21,6 @@ function DocPageContent(
   }>
 ): JSX.Element {
   const { currentDocRoute, versionMetadata, children } = props;
-  const { isClient } = useDocusaurusContext();
   const { pluginId, version } = versionMetadata;
 
   const sidebarName = currentDocRoute.sidebar;

@@ -1,4 +1,5 @@
 /// <reference types="@docusaurus/module-type-aliases" />
+/// <reference types="@docusaurus/plugin-content-docs" />
 
 declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
   export type AlgoliaContextualFacetFilters = readonly [
@@ -21,39 +22,39 @@ declare module "@theme/hooks/useContextualSearchFilters" {
 }
 
 declare module "@theme/hooks/useDocs" {
-  import {
-    GlobalVersion,
-    GlobalPluginData,
-  } from "@docusaurus/plugin-content-docs/lib/types";
+  // import {
+  //   GlobalVersion,
+  //   GlobalPluginData,
+  // } from "@docusaurus/plugin-content-docs/lib/types";
   import { GlobalPluginData as GlobalLoadedDocs } from "docusaurus-theme-nonepress/types";
-  import {
-    ActivePlugin,
-    ActiveDocContext,
-    DocVersionSuggestions,
-    GetActivePluginOptions,
-  } from "@docusaurus/plugin-content-docs/lib/client/docsClientUtils";
-  export function useAllDocsData(): Record<string, GlobalPluginData>;
-  export function useDocsData(pluginId: string | undefined): GlobalPluginData;
-  export function useActivePlugin(
-    options?: GetActivePluginOptions
-  ): ActivePlugin | undefined;
-  export function useActivePluginAndVersion(options?: GetActivePluginOptions):
-    | {
-        activePlugin: ActivePlugin;
-        activeVersion: GlobalVersion | undefined;
-      }
-    | undefined;
-  export function useVersions(pluginId: string | undefined): GlobalVersion[];
-  export function useLatestVersion(pluginId: string | undefined): GlobalVersion;
-  export function useActiveVersion(
-    pluginId: string | undefined
-  ): GlobalVersion | undefined;
-  export function useActiveDocContext(
-    pluginId: string | undefined
-  ): ActiveDocContext;
-  export function useDocVersionSuggestions(
-    pluginId: string | undefined
-  ): DocVersionSuggestions;
+  // import {
+  //   ActivePlugin,
+  //   ActiveDocContext,
+  //   DocVersionSuggestions,
+  //   GetActivePluginOptions,
+  // } from "@docusaurus/plugin-content-docs/lib/client/docsClientUtils";
+  // export function useAllDocsData(): Record<string, GlobalPluginData>;
+  // export function useDocsData(pluginId: string | undefined): GlobalPluginData;
+  // export function useActivePlugin(
+  //   options?: GetActivePluginOptions
+  // ): ActivePlugin | undefined;
+  // export function useActivePluginAndVersion(options?: GetActivePluginOptions):
+  //   | {
+  //       activePlugin: ActivePlugin;
+  //       activeVersion: GlobalVersion | undefined;
+  //     }
+  //   | undefined;
+  // export function useVersions(pluginId: string | undefined): GlobalVersion[];
+  // export function useLatestVersion(pluginId: string | undefined): GlobalVersion;
+  // export function useActiveVersion(
+  //   pluginId: string | undefined
+  // ): GlobalVersion | undefined;
+  // export function useActiveDocContext(
+  //   pluginId: string | undefined
+  // ): ActiveDocContext;
+  // export function useDocVersionSuggestions(
+  //   pluginId: string | undefined
+  // ): DocVersionSuggestions;
   export function useLoadedVersions(
     pluginId: string | undefined
   ): GlobalLoadedDocs;
@@ -313,105 +314,105 @@ declare module "@theme/Details" {
   export default Details;
 }
 
-declare module "@theme/DocItem" {
-  import type { TOCItem } from "@docusaurus/types";
-  import type { PropVersionMetadata } from "@theme/DocPage";
+// declare module "@theme/DocItem" {
+//   import type { TOCItem } from "@docusaurus/types";
+//   import type { PropVersionMetadata } from "@theme/DocPage";
 
-  export type DocumentRoute = {
-    readonly component: () => JSX.Element;
-    readonly exact: boolean;
-    readonly path: string;
-    readonly sidebar?: string;
-  };
+//   export type DocumentRoute = {
+//     readonly component: () => JSX.Element;
+//     readonly exact: boolean;
+//     readonly path: string;
+//     readonly sidebar?: string;
+//   };
 
-  export type FrontMatter = {
-    readonly id: string;
-    readonly title: string;
-    readonly image?: string;
-    readonly keywords?: readonly string[];
-    readonly hide_title?: boolean;
-    readonly hide_table_of_contents?: boolean;
-  };
+//   export type FrontMatter = {
+//     readonly id: string;
+//     readonly title: string;
+//     readonly image?: string;
+//     readonly keywords?: readonly string[];
+//     readonly hide_title?: boolean;
+//     readonly hide_table_of_contents?: boolean;
+//   };
 
-  export type Metadata = {
-    readonly description?: string;
-    readonly title?: string;
-    readonly permalink?: string;
-    readonly editUrl?: string;
-    readonly lastUpdatedAt?: number;
-    readonly formattedLastUpdatedAt?: string;
-    readonly lastUpdatedBy?: string;
-    readonly version?: string;
-    readonly previous?: { readonly permalink: string; readonly title: string };
-    readonly next?: { readonly permalink: string; readonly title: string };
-  };
+//   export type Metadata = {
+//     readonly description?: string;
+//     readonly title?: string;
+//     readonly permalink?: string;
+//     readonly editUrl?: string;
+//     readonly lastUpdatedAt?: number;
+//     readonly formattedLastUpdatedAt?: string;
+//     readonly lastUpdatedBy?: string;
+//     readonly version?: string;
+//     readonly previous?: { readonly permalink: string; readonly title: string };
+//     readonly next?: { readonly permalink: string; readonly title: string };
+//   };
 
-  export type Props = {
-    readonly route: DocumentRoute;
-    readonly versionMetadata: PropVersionMetadata;
-    readonly content: {
-      readonly frontMatter: FrontMatter;
-      readonly metadata: Metadata;
-      readonly toc: readonly TOCItem[];
-      readonly contentTitle: string | undefined;
-      (): JSX.Element;
-    };
-  };
+//   export type Props = {
+//     readonly route: DocumentRoute;
+//     readonly versionMetadata: PropVersionMetadata;
+//     readonly content: {
+//       readonly frontMatter: FrontMatter;
+//       readonly metadata: Metadata;
+//       readonly toc: readonly TOCItem[];
+//       readonly contentTitle: string | undefined;
+//       (): JSX.Element;
+//     };
+//   };
 
-  function DocItem(props: Props): JSX.Element;
-  export default DocItem;
-}
+//   function DocItem(props: Props): JSX.Element;
+//   export default DocItem;
+// }
 
-declare module "@theme/DocPage" {
-  import type { DocumentRoute } from "@theme/DocItem";
-  import { VersionBanner } from "@docusaurus/plugin-content-docs/lib/types";
+// declare module "@theme/DocPage" {
+//   import type { DocumentRoute } from "@theme/DocItem";
+//   import { VersionBanner } from "@docusaurus/plugin-content-docs/lib/types";
 
-  type PropsSidebarItemBase = {
-    customProps?: Record<string, unknown>;
-  };
+//   type PropsSidebarItemBase = {
+//     customProps?: Record<string, unknown>;
+//   };
 
-  export type PropSidebarItemLink = PropsSidebarItemBase & {
-    type: "link";
-    href: string;
-    label: string;
-  };
+//   export type PropSidebarItemLink = PropsSidebarItemBase & {
+//     type: "link";
+//     href: string;
+//     label: string;
+//   };
 
-  export type PropSidebarItemCategory = PropsSidebarItemBase & {
-    type: "category";
-    label: string;
-    items: PropSidebarItem[];
-    collapsed: boolean;
-    collapsible: boolean;
-  };
+//   export type PropSidebarItemCategory = PropsSidebarItemBase & {
+//     type: "category";
+//     label: string;
+//     items: PropSidebarItem[];
+//     collapsed: boolean;
+//     collapsible: boolean;
+//   };
 
-  export type PropSidebarItem = PropSidebarItemLink | PropSidebarItemCategory;
+//   export type PropSidebarItem = PropSidebarItemLink | PropSidebarItemCategory;
 
-  export type PropSidebars = {
-    [sidebarId: string]: PropSidebarItem[];
-  };
+//   export type PropSidebars = {
+//     [sidebarId: string]: PropSidebarItem[];
+//   };
 
-  export type PropVersionMetadata = {
-    pluginId: string;
-    version: string;
-    label: string;
-    banner: VersionBanner;
-    isLast: boolean;
-    docsSidebars: PropSidebars;
-  };
+//   export type PropVersionMetadata = {
+//     pluginId: string;
+//     version: string;
+//     label: string;
+//     banner: VersionBanner;
+//     isLast: boolean;
+//     docsSidebars: PropSidebars;
+//   };
 
-  export type Props = {
-    readonly location: { readonly pathname: string };
-    readonly versionMetadata: PropVersionMetadata;
-    readonly route: {
-      readonly path: string;
-      readonly component: () => JSX.Element;
-      readonly routes: DocumentRoute[];
-    };
-  };
+//   export type Props = {
+//     readonly location: { readonly pathname: string };
+//     readonly versionMetadata: PropVersionMetadata;
+//     readonly route: {
+//       readonly path: string;
+//       readonly component: () => JSX.Element;
+//       readonly routes: DocumentRoute[];
+//     };
+//   };
 
-  function DocPage(props: Props): JSX.Element;
-  export default DocPage;
-}
+//   function DocPage(props: Props): JSX.Element;
+//   export default DocPage;
+// }
 
 declare module "@theme/DocSidebar" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
@@ -638,19 +639,19 @@ declare module "@theme/SearchPage" {
   export default SearchPage;
 }
 
-declare module "@theme/Seo" {
-  import type { PropsWithChildren } from "react";
+// declare module "@theme/Seo" {
+//   import type { PropsWithChildren } from "react";
 
-  export type Props = PropsWithChildren<{
-    readonly title?: string;
-    readonly description?: string;
-    readonly keywords?: readonly string[] | string;
-    readonly image?: string;
-  }>;
+//   export type Props = PropsWithChildren<{
+//     readonly title?: string;
+//     readonly description?: string;
+//     readonly keywords?: readonly string[] | string;
+//     readonly image?: string;
+//   }>;
 
-  function Seo(props: Props): JSX.Element;
-  export default Seo;
-}
+//   function Seo(props: Props): JSX.Element;
+//   export default Seo;
+// }
 
 declare module "@theme/ThemeContext" {
   import type { Context } from "react";
