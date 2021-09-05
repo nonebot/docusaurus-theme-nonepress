@@ -32,7 +32,7 @@ function storeTheme(newTheme: Themes) {
 
 function useTheme(): useThemeReturns {
   const {
-    colorMode: { defaultMode, disableSwitch },
+    colorMode: { defaultMode, disableSwitch, respectPrefersColorScheme },
   } = useThemeConfig();
   const [theme, setTheme] = useState(getInitialTheme(defaultMode));
 
@@ -69,6 +69,22 @@ function useTheme(): useThemeReturns {
       console.error(err);
     }
   }, [setTheme]);
+
+  useEffect(() => {
+    if (disableSwitch && !respectPrefersColorScheme) {
+      return;
+    }
+
+    const darkmode = window.matchMedia("(prefers-color-scheme: dark)");
+    const change = ({ matches }) => {
+      setTheme(matches ? themes.dark : themes.light);
+    };
+    if (darkmode.addEventListener) {
+      darkmode.addEventListener("change", change);
+    } else {
+      darkmode.addListener(change);
+    }
+  }, []);
 
   return {
     isDarkTheme: theme === themes.dark,

@@ -3,8 +3,9 @@ import React from "react";
 import ThemeProvider from "@theme/ThemeProvider";
 import type { Props } from "@theme/LayoutProvider";
 import {
-  DocsPreferredVersionContextProvider,
+  AnnouncementBarProvider,
   MobileSecondaryMenuProvider,
+  DocsPreferredVersionContextProvider,
 } from "@docusaurus/theme-common";
 
 function LayoutProvider(props: Props): JSX.Element {

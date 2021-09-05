@@ -2,7 +2,9 @@ import React from "react";
 
 import type { Props } from "@theme/DocSidebar";
 
-function DocSidebar(props): JSX.Element {
+// TODO
+
+function DocSidebar(props: Props): JSX.Element {
   return <></>;
 }
 

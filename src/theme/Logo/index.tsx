@@ -4,14 +4,14 @@ import Link from "@docusaurus/Link";
 import type { Props } from "@theme/Logo";
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { DocusaurusContext } from "@docusaurus/types";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-
 import useThemeConfig from "@theme/hooks/useThemeConfig";
-import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 function Logo(props: Props): JSX.Element {
   const { imageClassName, children, ...propsRest } = props;
+  const {
+    siteConfig: { title },
+  } = useDocusaurusContext();
   const { logo = { src: "" } } = useThemeConfig();
 
   const logoLink = useBaseUrl(logo.href || "/");
@@ -29,7 +29,7 @@ function Logo(props: Props): JSX.Element {
         <ThemedImage
           className={imageClassName}
           sources={sources}
-          alt={logo.alt}
+          alt={logo.alt || title}
         />
       )}
       {children}

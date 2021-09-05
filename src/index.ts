@@ -21,9 +21,13 @@ const ContextReplacementPlugin = requireFromDocusaurusCore(
 );
 
 const ThemeStorageKey = "theme";
-const noFlashColorMode = ({ defaultMode = "light" }) => {
+const noFlashColorMode = ({
+  defaultMode = "light",
+  respectPrefersColorScheme = false,
+}) => {
   return `(function() {
   var defaultMode = "${defaultMode}";
+  var respectPrefersColorScheme = ${respectPrefersColorScheme};
 
   function setDataThemeAttribute(theme) {
     document.documentElement.setAttribute("data-theme", theme);
@@ -43,7 +47,19 @@ const noFlashColorMode = ({ defaultMode = "light" }) => {
   if (storedTheme !== null) {
     setDataThemeAttribute(storedTheme);
   } else {
-    setDataThemeAttribute(defaultMode === "dark" ? "dark" : "light");
+    if (
+      respectPrefersColorScheme &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setDataThemeAttribute('dark');
+    } else if (
+      respectPrefersColorScheme &&
+      window.matchMedia('(prefers-color-scheme: light)').matches
+    ) {
+      setDataThemeAttribute('light');
+    } else {
+      setDataThemeAttribute(defaultMode === 'dark' ? 'dark' : 'light');
+    }
   }
 })();`;
 };

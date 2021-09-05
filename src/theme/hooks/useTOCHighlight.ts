@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useThemeConfig } from "@docusaurus/theme-common";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import type { Params } from "@theme/hooks/useTOCHighlight";
 
 // If the anchor has no height and is just a "marker" in the dom; we'll use the parent (normally the link text) rect boundaries instead

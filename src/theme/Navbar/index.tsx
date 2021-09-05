@@ -20,7 +20,10 @@ function Navbar(): JSX.Element {
       id="navbar"
       ref={navbarRef}
       className={clsx(
-        "fixed top-0 left-0 right-0 bg-light-nav dark:bg-dark-nav shadow-sm z-10 transition-transform",
+        "navbar",
+        "fixed top-0 left-0 right-0 z-10",
+        "bg-light-nav dark:bg-dark-nav shadow-sm",
+        "transition-transform",
         { [styles.navbarHidden]: hideOnScroll && !isNavbarVisible }
       )}
     >

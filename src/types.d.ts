@@ -88,6 +88,7 @@ declare module "@theme/hooks/useThemeConfig" {
   export type ColorModeConfig = {
     defaultMode?: "light" | "dark";
     disableSwitch?: boolean;
+    respectPrefersColorScheme?: boolean;
     switchConfig?: {
       darkIcon?: string;
       darkIconText?: string;
@@ -354,7 +355,9 @@ declare module "@theme/Hero" {
 
 declare module "@theme/Layout" {
   import type { PropsWithChildren } from "react";
-  export type Props = PropsWithChildren<unknown>;
+  export type Props = PropsWithChildren<{
+    noFooter?: boolean;
+  }>;
 
   function Layout(props: Props): JSX.Element;
   export default Layout;
