@@ -42,7 +42,9 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
                 <span
                   className={clsx(
                     ThemeClassNames.docs.docVersionBadge,
-                    "bg-light-nonepress-200 dark:bg-dark-nonepress-200"
+                    "px-2 py-1",
+                    "font-mono text-black text-xs rounded-md",
+                    "bg-gray-300 opacity-70"
                   )}
                 >
                   Version: {versionMetadata.label}
