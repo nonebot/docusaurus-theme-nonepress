@@ -1,12 +1,11 @@
 import React from "react";
 
-import useTOCHighlight, {
-  Params as TOCHighlightParams,
-} from "@theme/hooks/useTOCHighlight";
 import styles from "./styles.module.css";
+import useTOCHighlight from "@theme/hooks/useTOCHighlight";
+import type { Params } from "@theme/hooks/useTOCHighlight";
 import type { TOCProps, TOCHeadingsProps } from "@theme/TOC";
 
-const TOC_HIGHLIGHT_PARAMS: TOCHighlightParams = {
+const TOC_HIGHLIGHT_PARAMS: Params = {
   linkClassName: styles["toc-link"],
   linkActiveClassName: styles["toc-link-active"],
 };
