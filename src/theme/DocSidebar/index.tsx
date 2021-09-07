@@ -1,14 +1,19 @@
+import clsx from "clsx";
 import React, { useState } from "react";
 
+import Logo from "@theme/Logo";
+import styles from "./styles.module.css";
+import type { Props } from "@theme/DocSidebar";
+import useWindowSize from "@theme/hooks/useWindowSize";
+import { DocSidebarItems } from "@theme/DocSidebarItem";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
+import useScrollPosition from "@theme/hooks/useScrollPosition";
 import {
   ThemeClassNames,
   useAnnouncementBar,
   MobileSecondaryMenuFiller,
   MobileSecondaryMenuComponent,
 } from "@docusaurus/theme-common";
-import type { Props } from "@theme/DocSidebar";
-import useWindowSize from "@theme/hooks/useWindowSize";
-import useScrollPosition from "@theme/hooks/useScrollPosition";
 
 // TODO
 
@@ -29,11 +34,59 @@ function DocSidebarDesktop({
   onCollapse,
   isHidden,
 }: Props): JSX.Element {
-  return <></>;
+  const showAnnouncementBar = useShowAnnouncementBar();
+  const {
+    navbar: { hideOnScroll },
+    hideableSidebar,
+  } = useThemeConfig();
+  const { isClosed: isAnnouncementBarClosed } = useAnnouncementBar();
+
+  return (
+    <div
+      className={clsx(styles.sidebar, {
+        [styles.sidebarWithHideableNavbar]: hideOnScroll,
+        [styles.sidebarHidden]: isHidden,
+      })}
+    >
+      {hideOnScroll && <Logo imageClassName={styles.sidebarLogo} />}
+      <nav
+        className={clsx("menu thin-scrollbar", styles.menu, {
+          [styles.menuWithAnnouncementBar]:
+            !isAnnouncementBarClosed && showAnnouncementBar,
+        })}
+      >
+        <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, "menu__list")}>
+          <DocSidebarItems items={sidebar} activePath={path} />
+        </ul>
+      </nav>
+      {/* {hideableSidebar && <HideableSidebarButton onClick={onCollapse} />} */}
+    </div>
+  );
 }
 
+const DocSidebarMobileSecondaryMenu: MobileSecondaryMenuComponent<Props> = ({
+  toggleSidebar,
+  sidebar,
+  path,
+}) => {
+  return (
+    <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, "menu__list")}>
+      <DocSidebarItems
+        items={sidebar}
+        activePath={path}
+        onItemClick={() => toggleSidebar()}
+      />
+    </ul>
+  );
+};
+
 function DocSidebarMobile(props: Props): JSX.Element {
-  return <></>;
+  return (
+    <MobileSecondaryMenuFiller
+      component={DocSidebarMobileSecondaryMenu}
+      props={props}
+    />
+  );
 }
 
 const DocSidebarDesktopMemo = React.memo(DocSidebarDesktop);

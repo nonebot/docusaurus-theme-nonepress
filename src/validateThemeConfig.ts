@@ -21,6 +21,7 @@ export const DEFAULT_CONFIG = {
     hideOnScroll: false,
     items: [],
   },
+  hideableSidebar: false,
   metadatas: [],
   logo: {
     href: "/",
@@ -244,6 +245,7 @@ export const ThemeConfigSchema = Joi.object({
       .default(DEFAULT_CONFIG.navbar.items),
   }),
   footer: FooterSchema,
+  hideableSidebar: Joi.boolean().default(DEFAULT_CONFIG.hideableSidebar),
   prism: PrismSchema,
   algolia: Joi.object({
     // Docusaurus attributes

@@ -194,10 +194,11 @@ declare module "@theme/hooks/useThemeConfig" {
   export type ThemeConfig = {
     colorMode?: ColorModeConfig;
     docs: DocsConfig;
-    metadatas?: Array<MetadataConfig>;
+    metadatas?: MetadataConfig[];
     logo: LogoConfig;
     navbar?: NavbarConfig;
     footer?: FooterConfig;
+    hideableSidebar?: boolean;
     prism?: PrismConfig;
     algolia?: AlgoliaConfig;
     tailwindConfig?: { [key: string]: any };
@@ -294,6 +295,20 @@ declare module "@theme/Details" {
   export default Details;
 }
 
+declare module "@theme/DocPaginator" {
+  type PageInfo = { readonly permalink: string; readonly title: string };
+
+  export type Props = {
+    readonly metadata: {
+      readonly previous?: PageInfo;
+      readonly next?: PageInfo;
+    };
+  };
+
+  function DocPaginator(props: Props): JSX.Element;
+  export default DocPaginator;
+}
+
 declare module "@theme/DocSidebar" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
 
@@ -306,6 +321,27 @@ declare module "@theme/DocSidebar" {
 
   function DocSidebar(props: Props): JSX.Element;
   export default DocSidebar;
+}
+
+declare module "@theme/DocSidebarItem" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
+
+  type DocSidebarPropsBase = {
+    readonly activePath: string;
+    readonly onItemClick?: () => void;
+    readonly tabIndex?: number;
+  };
+
+  export type Props = DocSidebarPropsBase & {
+    readonly item: PropSidebarItem;
+  };
+  function DocSidebarItem(props: Props): JSX.Element;
+  export default DocSidebarItem;
+
+  export type DocSidebarItemsProps = DocSidebarPropsBase & {
+    readonly items: readonly PropSidebarItem[];
+  };
+  export function DocSidebarItems(props: DocSidebarItemsProps): JSX.Element;
 }
 
 declare module "@theme/Footer" {
