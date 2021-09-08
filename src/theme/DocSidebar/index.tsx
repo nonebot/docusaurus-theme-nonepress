@@ -59,7 +59,21 @@ function DocSidebarDesktop({
           <DocSidebarItems items={sidebar} activePath={path} />
         </ul>
       </nav>
-      {/* {hideableSidebar && <HideableSidebarButton onClick={onCollapse} />} */}
+      {hideableSidebar && (
+        <button
+          type="button"
+          title="Collapse sidebar"
+          aria-label="Collapse sidebar"
+          className={clsx(
+            "block sticky bottom-0 h-10 px-6 py-1 align-middle",
+            "border border-gray-300 dark:border-gray-600 text-sm font-bold cursor-pointer",
+            styles.collapseSidebarButton
+          )}
+          onClick={onCollapse}
+        >
+          <i className="fas fa-angle-double-right text-xl"></i>
+        </button>
+      )}
     </div>
   );
 }
