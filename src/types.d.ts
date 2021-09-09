@@ -410,7 +410,10 @@ declare module "@theme/LayoutProvider" {
 declare module "@theme/Logo" {
   import type { PropsWithChildren } from "react";
 
-  export type Props = PropsWithChildren<{ readonly imageClassName?: string }>;
+  export type Props = PropsWithChildren<{
+    readonly className?: string;
+    readonly imageClassName?: string;
+  }>;
   function Logo(props: Props): JSX.Element;
   export default Logo;
 }

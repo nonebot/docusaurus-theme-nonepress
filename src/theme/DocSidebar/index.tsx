@@ -43,14 +43,19 @@ function DocSidebarDesktop({
 
   return (
     <div
-      className={clsx(styles.sidebar, {
-        [styles.sidebarWithHideableNavbar]: hideOnScroll,
-        [styles.sidebarHidden]: isHidden,
-      })}
+      className={clsx(
+        "flex flex-col sticky top-0 max-h-screen h-full transition pt-16 w-80",
+        {
+          "pt-0": hideOnScroll,
+          "opacity-0 h-0 overflow-hidden invisible": isHidden,
+        }
+      )}
     >
-      {hideOnScroll && <Logo imageClassName={styles.sidebarLogo} />}
+      {hideOnScroll && (
+        <Logo className="flex items-center mx-4 h-16 max-h-16 no-underline" />
+      )}
       <nav
-        className={clsx("menu thin-scrollbar", styles.menu, {
+        className={clsx("menu", styles.menu, {
           [styles.menuWithAnnouncementBar]:
             !isAnnouncementBarClosed && showAnnouncementBar,
         })}

@@ -8,7 +8,7 @@ import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 function Logo(props: Props): JSX.Element {
-  const { imageClassName, children, ...propsRest } = props;
+  const { className, imageClassName, children, ...propsRest } = props;
   const {
     siteConfig: { title },
   } = useDocusaurusContext();
@@ -22,6 +22,7 @@ function Logo(props: Props): JSX.Element {
   return (
     <Link
       to={logoLink}
+      className={className}
       {...propsRest}
       {...(logo.target && { target: logo.target })}
     >
