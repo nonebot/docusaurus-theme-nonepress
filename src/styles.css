@@ -10,3 +10,22 @@ body {
 html.dark body {
   @apply bg-dark text-dark-text;
 }
+
+.thin-scrollbar::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: silver;
+  border-radius: 10px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a7a7a7;
+}

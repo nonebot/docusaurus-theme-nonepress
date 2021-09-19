@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 import styles from "./styles.module.css";
@@ -29,7 +30,7 @@ export function TOCHeadings({
         <li key={heading.id} className="m-2">
           <a
             href={`#${heading.id}`}
-            className="text-light-text dark:text-dark-text"
+            className={styles["toc-link"]}
             // Developer provided the HTML, so assume it's safe.
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: heading.value }}
@@ -44,7 +45,7 @@ export function TOCHeadings({
 function TOC({ toc }: TOCProps): JSX.Element {
   useTOCHighlight(TOC_HIGHLIGHT_PARAMS);
   return (
-    <div className={styles.toc}>
+    <div className={clsx(styles.toc, "thin-scrollbar")}>
       <TOCHeadings toc={toc} />
     </div>
   );

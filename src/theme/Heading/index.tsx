@@ -12,7 +12,6 @@ export function MainHeading(props: Props): JSX.Element {
       <h1
         {...props}
         id={undefined} // h1 headings do not need an id because they don't appear in the TOC
-        className={styles.h1Heading}
       >
         {props.children}
       </h1>
@@ -31,15 +30,14 @@ function createAnchorHeading(Tag: HeadingType): (props: Props) => JSX.Element {
     }
 
     return (
-      <Tag {...props}>
-        <a
-          aria-hidden="true"
-          tabIndex={-1}
-          className={clsx("anchor", {
-            [styles.enhancedAnchor]: !hideOnScroll,
-          })}
-          id={id}
-        />
+      <Tag
+        {...props}
+        className={clsx("anchor", `anchor__${Tag}`, {
+          [styles.anchorWithHideOnScrollNavbar]: hideOnScroll,
+          [styles.anchorWithStickyNavbar]: !hideOnScroll,
+        })}
+        id={id}
+      >
         {props.children}
         <a className="hash-link" href={`#${id}`} title="Direct link to heading">
           #

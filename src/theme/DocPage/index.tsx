@@ -45,7 +45,9 @@ function DocPageContent(
           <BackToTopButton />
           {sidebar && (
             <aside
-              className={clsx("")}
+              className={clsx(styles.docSidebarContainer, {
+                [styles.docSidebarContainerHidden]: hiddenSidebarContainer,
+              })}
               onTransitionEnd={(e) => {
                 if (
                   !e.currentTarget.classList.contains(

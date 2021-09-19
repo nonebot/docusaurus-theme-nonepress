@@ -72,6 +72,7 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
                 <DocContent />
               </div>
 
+              {/* TODO */}
               {/* <DocItemFooter {...props} /> */}
             </article>
           </div>

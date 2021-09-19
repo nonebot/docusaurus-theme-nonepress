@@ -11,9 +11,13 @@ import {
 function LayoutProvider(props: Props): JSX.Element {
   return (
     <ThemeProvider>
-      <DocsPreferredVersionContextProvider>
-        {props.children}
-      </DocsPreferredVersionContextProvider>
+      <AnnouncementBarProvider>
+        <DocsPreferredVersionContextProvider>
+          <MobileSecondaryMenuProvider>
+            {props.children}
+          </MobileSecondaryMenuProvider>
+        </DocsPreferredVersionContextProvider>
+      </AnnouncementBarProvider>
     </ThemeProvider>
   );
 }
