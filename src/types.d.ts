@@ -620,4 +620,6 @@ declare module "docusaurus-theme-nonepress/types" {
   export type GlobalPluginData = {
     versions: Array<LoadedVersion>;
   };
+
+  export type { ThemeConfig } from "@theme/hooks/useThemeConfig";
 }
