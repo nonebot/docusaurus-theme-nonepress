@@ -422,8 +422,9 @@ declare module "@theme/MDXComponents" {
   import type { ComponentProps } from "react";
   import type Head from "@docusaurus/Head";
   import type CodeBlock from "@theme/CodeBlock";
+  import type { MDXProviderComponents } from "@mdx-js/react";
 
-  export type MDXComponentsObject = {
+  type Components = {
     readonly head: typeof Head;
     readonly code: typeof CodeBlock;
     readonly a: (props: ComponentProps<"a">) => JSX.Element;
@@ -437,13 +438,23 @@ declare module "@theme/MDXComponents" {
     readonly h6: (props: ComponentProps<"h6">) => JSX.Element;
   };
 
+  export type MDXComponentsObject = Omit<
+    MDXProviderComponents,
+    keyof Components
+  > &
+    Components;
+
   const MDXComponents: MDXComponentsObject;
   export default MDXComponents;
 }
 
 declare module "@theme/MDXPage" {
   // TODO
-  export type Props = {};
+  export type Props = {
+    readonly content: {
+      (): JSX.Element;
+    };
+  };
   function MDXPage(props: Props): JSX.Element;
   export default MDXPage;
 }

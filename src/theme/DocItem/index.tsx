@@ -64,7 +64,7 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
               <div
                 className={clsx(
                   ThemeClassNames.docs.docMarkdown,
-                  "prose lg:prose-xl"
+                  "prose lg:prose-xl markdown"
                 )}
               >
                 {shouldAddTitle && <MainHeading>{title}</MainHeading>}
