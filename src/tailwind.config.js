@@ -54,6 +54,9 @@ module.exports = {
       minHeight: {
         90: "90%",
       },
+      margin: {
+        "0-important": "0 !important",
+      },
     },
   },
   variants: {

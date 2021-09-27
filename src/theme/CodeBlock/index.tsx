@@ -202,7 +202,7 @@ function CodeBlock({
           )}
         >
           {codeBlockTitle && (
-            <div className="relative w-full p-2" style={style}>
+            <div className="relative w-full p-2 text-sm" style={style}>
               <div className="absolute left-2">
                 <div className="bg-red-600 inline-block h-2 w-2 rounded-full mr-1"></div>
                 <div className="bg-yellow-500 inline-block h-2 w-2 rounded-full mr-1"></div>
@@ -219,7 +219,7 @@ function CodeBlock({
               language
             )}
           >
-            <pre className={clsx("p-4 m-0", className)} style={style}>
+            <pre className={clsx("p-4 m-0-important", className)} style={style}>
               <code>
                 {tokens.map((line, i) => {
                   if (line.length === 1 && line[0].content === "") {
