@@ -89,7 +89,7 @@ function DocPageContent(
               )}
             </aside>
           )}
-          <main id="docs" className="flex w-full mt-24 p-4 pb-8 lg:px-12">
+          <main id="docs" className="flex w-full mt-20 p-4 pb-8 lg:px-12">
             <MDXProvider components={MDXComponents}>{children}</MDXProvider>
           </main>
         </div>

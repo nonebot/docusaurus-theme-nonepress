@@ -34,7 +34,7 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
     <>
       <Seo {...{ title, description, keywords, image }} />
       <div className="relative flex flex-row w-full">
-        <div className="flex-grow p-4">
+        <div className="flex-grow max-w-full p-4">
           {/* <DocVersionBanner versionMetadata={versionMetadata} /> */}
           <div className="doc-content">
             <article>
@@ -64,7 +64,7 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
               <div
                 className={clsx(
                   ThemeClassNames.docs.docMarkdown,
-                  "prose lg:prose-xl"
+                  "prose lg:prose-xl dark:prose-dark"
                   // "text-light-text dark:text-dark-text"
                 )}
               >
