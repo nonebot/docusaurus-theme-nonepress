@@ -28,11 +28,11 @@ module.exports = {
           },
 
           text: {
-            DEFAULT: "#093d8d",
-            active: "#093d8d",
+            DEFAULT: "#1c1e21",
+            active: "#1c1e21",
           },
           nav: "#f0f4fc",
-          backToTop: "#093d8d",
+          backToTop: "#ebedf0",
         },
         dark: {
           DEFAULT: "#1e293b",
@@ -44,11 +44,11 @@ module.exports = {
           },
 
           text: {
-            DEFAULT: "#d0d4fc",
-            active: "#d0d4fc",
+            DEFAULT: "#f5f6f7",
+            active: "#f5f6f7",
           },
           nav: "#1e293b",
-          backToTop: "#d0d4fc",
+          backToTop: "#444950",
         },
       },
       minHeight: {
@@ -58,66 +58,84 @@ module.exports = {
         "0-important": "0 !important",
       },
       typography: (theme) => ({
-        dark: {
-          css: [
-            {
-              color: theme("colors.gray.400"),
-              '[class~="lead"]': {
-                color: theme("colors.gray.300"),
-              },
-              a: {
-                color: theme("colors.white"),
-              },
-              strong: {
-                color: theme("colors.white"),
-              },
-              "ol > li::before": {
-                color: theme("colors.gray.400"),
-              },
-              "ul > li::before": {
-                backgroundColor: theme("colors.gray.600"),
-              },
-              hr: {
-                borderColor: theme("colors.gray.200"),
-              },
-              blockquote: {
-                color: theme("colors.gray.200"),
-                borderLeftColor: theme("colors.gray.600"),
-              },
-              h1: {
-                color: theme("colors.white"),
-              },
-              h2: {
-                color: theme("colors.white"),
-              },
-              h3: {
-                color: theme("colors.white"),
-              },
-              h4: {
-                color: theme("colors.white"),
-              },
-              "figure figcaption": {
-                color: theme("colors.gray.400"),
-              },
-              code: {
-                color: theme("colors.white"),
-              },
-              "a code": {
-                color: theme("colors.white"),
-              },
-              pre: {
-                color: theme("colors.gray.200"),
-                backgroundColor: theme("colors.gray.800"),
-              },
-              thead: {
-                color: theme("colors.white"),
-                borderBottomColor: theme("colors.gray.400"),
-              },
-              "tbody tr": {
-                borderBottomColor: theme("colors.gray.600"),
-              },
+        DEFAULT: {
+          css: {
+            color: theme("colors.light.text.DEFAULT"),
+            a: {
+              color: theme("colors.light.text.DEFAULT"),
             },
-          ],
+            h1: {
+              color: theme("colors.light.text.DEFAULT"),
+            },
+            h2: {
+              color: theme("colors.light.text.DEFAULT"),
+            },
+            h3: {
+              color: theme("colors.light.text.DEFAULT"),
+            },
+            h4: {
+              color: theme("colors.light.text.DEFAULT"),
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: theme("colors.dark.text.DEFAULT"),
+            '[class~="lead"]': {
+              color: theme("colors.gray.300"),
+            },
+            a: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            strong: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            "ol > li::before": {
+              color: theme("colors.gray.400"),
+            },
+            "ul > li::before": {
+              backgroundColor: theme("colors.gray.600"),
+            },
+            hr: {
+              borderColor: theme("colors.gray.200"),
+            },
+            blockquote: {
+              color: theme("colors.gray.200"),
+              borderLeftColor: theme("colors.gray.600"),
+            },
+            h1: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            h2: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            h3: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            h4: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            "figure figcaption": {
+              color: theme("colors.gray.400"),
+            },
+            code: {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            "a code": {
+              color: theme("colors.dark.text.DEFAULT"),
+            },
+            pre: {
+              color: theme("colors.gray.200"),
+              backgroundColor: theme("colors.gray.800"),
+            },
+            thead: {
+              color: theme("colors.dark.text.DEFAULT"),
+              borderBottomColor: theme("colors.gray.400"),
+            },
+            "tbody tr": {
+              borderBottomColor: theme("colors.gray.600"),
+            },
+          },
         },
       }),
     },
