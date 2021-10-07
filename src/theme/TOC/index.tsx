@@ -20,11 +20,9 @@ export function TOCHeadings({
   }
   return (
     <ul
-      className={
-        isChild
-          ? "pl-2"
-          : "pl-2 py-2 border-l border-gray-300 dark:border-gray-600"
-      }
+      className={clsx("pl-2 list-none", {
+        "py-2 border-l border-gray-300 dark:border-gray-600": !isChild,
+      })}
     >
       {toc.map((heading) => (
         <li key={heading.id} className="m-2">
