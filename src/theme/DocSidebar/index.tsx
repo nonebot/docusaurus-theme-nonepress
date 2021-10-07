@@ -1,18 +1,19 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 
-import Logo from "@theme/Logo";
-import type { Props } from "@theme/DocSidebar";
-import useWindowSize from "@theme/hooks/useWindowSize";
-import { DocSidebarItems } from "@theme/DocSidebarItem";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
-import useScrollPosition from "@theme/hooks/useScrollPosition";
 import {
   ThemeClassNames,
   useAnnouncementBar,
   MobileSecondaryMenuFiller,
   MobileSecondaryMenuComponent,
 } from "@docusaurus/theme-common";
+
+import type { Props } from "@theme/DocSidebar";
+import { DocSidebarItems } from "@theme/DocSidebarItem";
+import Logo from "@theme/Logo";
+import useScrollPosition from "@theme/hooks/useScrollPosition";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
+import useWindowSize from "@theme/hooks/useWindowSize";
 
 // TODO
 
@@ -57,10 +58,14 @@ function DocSidebarDesktop({
         />
       )}
       <nav
-        className={clsx("menu thin-scrollbar", "flex-grow p-2", {
-          // [styles.menuWithAnnouncementBar]:
-          //   !isAnnouncementBarClosed && showAnnouncementBar,
-        })}
+        className={clsx(
+          "menu thin-scrollbar",
+          "font-medium flex-grow p-2 overflow-x-hidden",
+          {
+            // [styles.menuWithAnnouncementBar]:
+            //   !isAnnouncementBarClosed && showAnnouncementBar,
+          }
+        )}
       >
         <ul
           className={clsx(

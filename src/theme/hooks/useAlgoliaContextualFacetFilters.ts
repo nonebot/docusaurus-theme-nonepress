@@ -1,5 +1,5 @@
-import useContextualSearchFilters from "@theme/hooks/useContextualSearchFilters";
 import type { AlgoliaContextualFacetFilters } from "@theme/hooks/useAlgoliaContextualFacetFilters";
+import useContextualSearchFilters from "@theme/hooks/useContextualSearchFilters";
 
 // Translate search-engine agnostic search filters to Algolia search filters
 function useAlgoliaContextualFacetFilters(): AlgoliaContextualFacetFilters {

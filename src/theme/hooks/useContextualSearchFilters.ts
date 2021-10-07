@@ -1,14 +1,15 @@
 import {
-  useAllDocsData,
-  useActivePluginAndVersion,
-} from "@theme/hooks/useDocs";
-import {
   DEFAULT_SEARCH_TAG,
   docVersionSearchTag,
   useDocsPreferredVersionByPluginId,
 } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
 import type { ContextualSearchFilters } from "@theme/hooks/useContextualSearchFilters";
+import {
+  useAllDocsData,
+  useActivePluginAndVersion,
+} from "@theme/hooks/useDocs";
 
 // We may want to support multiple search engines, don't couple that to Algolia/DocSearch
 // Maybe users will want to use its own search engine solution

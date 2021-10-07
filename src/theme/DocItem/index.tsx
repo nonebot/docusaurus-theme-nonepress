@@ -4,10 +4,11 @@ import React from "react";
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
 import { Props } from "@theme/DocItem";
-import styles from "./styles.module.css";
 import { MainHeading } from "@theme/Heading";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { ThemeClassNames } from "@docusaurus/theme-common";
+
+import styles from "./styles.module.css";
 
 function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
   const { metadata, frontMatter } = DocContent;

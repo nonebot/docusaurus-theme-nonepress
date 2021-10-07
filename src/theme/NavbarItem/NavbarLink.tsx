@@ -3,6 +3,9 @@ import React from "react";
 
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import isInternalUrl from "@docusaurus/isInternalUrl";
+
+import IconExternalLink from "@theme/IconExternalLink";
 import type { Props } from "@theme/NavbarItem/NavbarLink";
 
 function NavbarLink(props: Props): JSX.Element {
@@ -16,6 +19,7 @@ function NavbarLink(props: Props): JSX.Element {
     linkClassName,
   } = props;
   const toUrl = useBaseUrl(to);
+  const isExternalLink = label && href && !isInternalUrl(href);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   return (
@@ -37,7 +41,10 @@ function NavbarLink(props: Props): JSX.Element {
         }
       >
         {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
-        <span className="truncate">{label}</span>
+        <span className="truncate">
+          {label}
+          {!icon && isExternalLink && <IconExternalLink />}
+        </span>
       </Link>
     </li>
   );

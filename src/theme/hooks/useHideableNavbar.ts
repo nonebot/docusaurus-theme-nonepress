@@ -2,8 +2,9 @@ import { useState, useCallback, useEffect, useRef } from "react";
 
 import { useLocation } from "@docusaurus/router";
 import { useLocationChange } from "@docusaurus/theme-common";
-import useScrollPosition from "@theme/hooks/useScrollPosition";
+
 import type { HideableNavbar } from "@theme/hooks/useHideableNavbar";
+import useScrollPosition from "@theme/hooks/useScrollPosition";
 
 function useHideableNavbar(hideOnScroll: boolean): HideableNavbar {
   const location = useLocation();

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-import type { WindowSize } from "@theme/hooks/useWindowSize";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+
+import type { WindowSize } from "@theme/hooks/useWindowSize";
 
 export const windowSizes = {
   desktop: "desktop",

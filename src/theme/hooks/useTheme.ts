@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
 
-import type { useThemeReturns } from "@theme/hooks/useTheme";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { createStorageSlot } from "@docusaurus/theme-common";
 
+import type { useThemeReturns } from "@theme/hooks/useTheme";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 
 const ThemeStorage = createStorageSlot("theme");

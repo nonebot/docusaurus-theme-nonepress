@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+
 import type { ScrollPosition } from "@theme/hooks/useScrollPosition";
 
 function getScrollPosition(): ScrollPosition | null {

@@ -1,9 +1,12 @@
 import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
 
-import Logo from "@theme/Logo";
 import Link from "@docusaurus/Link";
+import isInternalUrl from "@docusaurus/isInternalUrl";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+
+import IconExternalLink from "@theme/IconExternalLink";
+import Logo from "@theme/Logo";
 import useThemeConfig, {
   FooterLinkConfig,
   useSiteConfig,
@@ -84,6 +87,11 @@ function FooterLink(
           <i className={clsx("text-sm mr-2 inline align-middle", icon)}></i>
           <span className="inline align-middle">{label}</span>
         </>
+      ) : href && !isInternalUrl(href) ? (
+        <span>
+          {label}
+          <IconExternalLink />
+        </span>
       ) : (
         label
       )}
@@ -115,13 +123,12 @@ function FooterColumn(
           item.html ? (
             <li
               key={key}
-              className="footer__item"
               dangerouslySetInnerHTML={{
                 __html: item.html,
               }}
             />
           ) : (
-            <li key={item.href || item.to} className="footer__item">
+            <li key={item.href || item.to}>
               <FooterLink {...item} />
             </li>
           )

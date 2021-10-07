@@ -1,6 +1,7 @@
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import siteConfig from "@generated/docusaurus.config";
 import type * as PrismNamespace from "prismjs";
+
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 const prismIncludeLanguages = (PrismObject: typeof PrismNamespace): void => {
   if (ExecutionEnvironment.canUseDOM) {

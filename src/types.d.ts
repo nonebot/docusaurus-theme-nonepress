@@ -389,6 +389,15 @@ declare module "@theme/Hero" {
   ): JSX.Element;
 }
 
+declare module "@theme/IconExternalLink" {
+  import type { ComponentProps } from "react";
+
+  export type Props = ComponentProps<"svg">;
+
+  function IconExternalLink(props: Props): JSX.Element;
+  export default IconExternalLink;
+}
+
 declare module "@theme/Layout" {
   import type { PropsWithChildren } from "react";
   export type Props = PropsWithChildren<{

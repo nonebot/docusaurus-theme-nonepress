@@ -1,17 +1,18 @@
-import path from "path";
-import Module from "module";
-import type { AcceptedPlugin } from "postcss";
-import { LoadContext, Plugin } from "@docusaurus/types";
-
-import { normalizeUrl } from "@docusaurus/utils";
 import defaultTailwindConfig from "./tailwind.config";
-import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
 import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
+import Module from "module";
+import path from "path";
+import type { AcceptedPlugin } from "postcss";
+
 import pluginContentDoc from "@docusaurus/plugin-content-docs/lib/index";
 import {
   PluginOptions,
   LoadedContent,
 } from "@docusaurus/plugin-content-docs/lib/types";
+import { LoadContext, Plugin } from "@docusaurus/types";
+import { normalizeUrl } from "@docusaurus/utils";
+
+import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
 
 const requireFromDocusaurusCore = Module.createRequire(
   require.resolve("@docusaurus/core/package.json")
