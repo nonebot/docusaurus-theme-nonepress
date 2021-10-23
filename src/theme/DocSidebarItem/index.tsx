@@ -99,8 +99,8 @@ function DocSidebarItemCategory({
       >
         {label}
         <FontAwesomeIcon
-          className={clsx("transform ease-linear text-xl", {
-            "rotate-90": collapsed,
+          className={clsx("transition transform ease-linear text-xl", {
+            "rotate-90": !collapsed,
           })}
           icon={["fas", "chevron-right"]}
         />
