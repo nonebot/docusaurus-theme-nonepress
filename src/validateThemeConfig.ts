@@ -49,11 +49,11 @@ const ColorModeSchema = Joi.object({
     DEFAULT_COLOR_MODE_CONFIG.respectPrefersColorScheme
   ),
   switchConfig: Joi.object({
-    darkIcon: Joi.string(),
+    darkIcon: Joi.array().items(Joi.string()).length(2),
     darkIconText: Joi.string().default(
       DEFAULT_COLOR_MODE_CONFIG.switchConfig.darkIconText
     ),
-    lightIcon: Joi.string(),
+    lightIcon: Joi.array().items(Joi.string()).length(2),
     lightIconText: Joi.string().default(
       DEFAULT_COLOR_MODE_CONFIG.switchConfig.lightIconText
     ),
@@ -84,7 +84,7 @@ export const DocsSchema = Joi.object({
 
 const NavbarItemBaseSchema = Joi.object({
   label: Joi.string(),
-  icon: Joi.string(),
+  icon: Joi.array().items(Joi.string()).length(2),
   className: Joi.string(),
 }).unknown();
 
@@ -176,7 +176,7 @@ export const FooterSchema = Joi.object({
   iconLinks: Joi.array()
     .items(
       Joi.object({
-        icon: Joi.string().required(),
+        icon: Joi.array().items(Joi.string()).length(2).required(),
         to: Joi.string(),
         href: Joi.string(),
         description: Joi.string(),
@@ -189,14 +189,14 @@ export const FooterSchema = Joi.object({
   links: Joi.array().items(
     Joi.object({
       title: Joi.string(),
-      icon: Joi.string(),
+      icon: Joi.array().items(Joi.string()).length(2),
       items: Joi.array().items(
         Joi.object({
           to: Joi.string(),
           href: URISchema,
           html: Joi.string(),
           label: Joi.string(),
-          icon: Joi.string(),
+          icon: Joi.array().items(Joi.string()).length(2),
           prependBaseUrlToHref: Joi.boolean(),
         })
           .xor("to", "href", "html")

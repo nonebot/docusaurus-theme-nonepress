@@ -20,6 +20,7 @@ import type {
   GlobalDoc,
   GlobalVersion,
 } from "@docusaurus/plugin-content-docs/lib/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
@@ -109,9 +110,12 @@ function NavbarDocsMenu(props: Props): JSX.Element {
           icon ? "text-3xl" : "text-sm font-medium uppercase"
         )}
       >
-        {icon ? <i className={icon}></i> : label}
+        {icon ? <FontAwesomeIcon icon={icon} /> : label}
       </Link>
-      <i className="fas fa-angle-down ml-2 text-xl opacity-60 group-hover:opacity-100 transition ease-in-out duration-150"></i>
+      <FontAwesomeIcon
+        className="ml-2 text-xl opacity-60 group-hover:opacity-100 transition ease-in-out duration-150"
+        icon={["fas", "angle-down"]}
+      />
       <div
         ref={element}
         className={clsx(

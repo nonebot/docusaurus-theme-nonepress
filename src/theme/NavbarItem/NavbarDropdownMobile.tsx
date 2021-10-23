@@ -11,6 +11,7 @@ import Link from "@docusaurus/Link";
 import NavbarItem from "@theme/NavbarItem";
 import type { NavbarLink } from "@theme/hooks/useThemeConfig";
 import type { Props } from "@theme/NavbarItem/NavbarDropdownMobile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function isItemActive(item: NavbarLink, localPathname: string): boolean {
   if (isSamePath(item.to, localPathname)) {
@@ -72,7 +73,9 @@ function NavbarDropdownMobile(props: Props): JSX.Element {
         }}
       >
         <span className="truncate">
-          {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+          {icon && (
+            <FontAwesomeIcon className="mr-2 align-middle" icon={icon} />
+          )}
           {label}
         </span>
         <span
@@ -80,7 +83,7 @@ function NavbarDropdownMobile(props: Props): JSX.Element {
             "-rotate-90": collapsed,
           })}
         >
-          <i className="fas fa-angle-down transform"></i>
+          <FontAwesomeIcon className="transform" icon={["fas", "angle-down"]} />
         </span>
       </Link>
       <Collapsible lazy as="ul" className="block ml-4" collapsed={collapsed}>

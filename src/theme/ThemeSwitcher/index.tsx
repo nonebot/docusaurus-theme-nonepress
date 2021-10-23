@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 import type { Props } from "@theme/ThemeSwitcher";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useThemeContext from "@theme/hooks/useThemeContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function useColorModeToggle() {
   const { isDarkTheme, toggleTheme } = useThemeContext();
@@ -37,14 +38,14 @@ export default function ThemeSwitcher(props: Props): JSX.Element {
         <span className="translate-x-0 pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 dark:bg-gray-700 dark:translate-x-5">
           <span className="opacity-100 ease-in duration-200 absolute inset-0 h-full w-full flex items-center justify-center transition-opacity dark:opacity-0">
             {lightIcon ? (
-              <i className={clsx("w-3 h-3", lightIcon)}></i>
+              <FontAwesomeIcon className="w-3 h-3" icon={lightIcon} />
             ) : (
               lightIconText
             )}
           </span>
           <span className="opacity-0 ease-out duration-100 absolute inset-0 h-full w-full flex items-center justify-center transition-opacity dark:opacity-100">
             {darkIcon ? (
-              <i className={clsx("w-3 h-3", lightIcon)}></i>
+              <FontAwesomeIcon className="w-3 h-3" icon={darkIcon} />
             ) : (
               darkIconText
             )}

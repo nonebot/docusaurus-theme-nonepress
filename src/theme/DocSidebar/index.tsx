@@ -14,6 +14,7 @@ import Logo from "@theme/Logo";
 import useScrollPosition from "@theme/hooks/useScrollPosition";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useWindowSize from "@theme/hooks/useWindowSize";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // TODO
 
@@ -87,7 +88,10 @@ function DocSidebarDesktop({
           )}
           onClick={onCollapse}
         >
-          <i className="fas fa-angle-double-left text-xl"></i>
+          <FontAwesomeIcon
+            className="text-xl"
+            icon={["fas", "angle-double-left"]}
+          />
         </button>
       )}
     </div>

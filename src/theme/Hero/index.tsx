@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from "react";
 
 import type { Feature } from "@theme/Hero";
 import { useSiteConfig } from "@theme/hooks/useThemeConfig";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Hero(): JSX.Element {
   const siteConfig = useSiteConfig();
@@ -18,7 +19,7 @@ export default function Hero(): JSX.Element {
       </div>
       <div className="absolute flex-grow flex items-center justify-between bottom-0 right-0 w-full">
         <div className="mx-auto self-start animate-bounce">
-          <i className="text-4xl fas fa-angle-down"></i>
+          <FontAwesomeIcon className="text-4xl" icon={["fas", "angle-down"]} />
         </div>
       </div>
     </div>

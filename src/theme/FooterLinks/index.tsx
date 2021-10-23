@@ -11,6 +11,8 @@ import useThemeConfig, {
   FooterLinkConfig,
   useSiteConfig,
 } from "@theme/hooks/useThemeConfig";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { IconName, IconPrefix } from "@fortawesome/fontawesome-svg-core";
 
 function FooterIconLinks(): JSX.Element {
   const {
@@ -43,12 +45,10 @@ function FooterIconLinks(): JSX.Element {
             {...remProps}
           >
             {description && <span className="sr-only">{description}</span>}
-            <i
-              className={clsx(
-                "text-2xl text-primary dark:text-dark-primary",
-                icon
-              )}
-            ></i>
+            <FontAwesomeIcon
+              className="text-2xl text-primary dark:text-dark-primary"
+              icon={icon}
+            />
           </Link>
         );
       })}
@@ -61,7 +61,7 @@ function FooterLink(
     to?: string;
     href?: string;
     label?: string;
-    icon?: string;
+    icon?: [IconPrefix, IconName];
     prependBaseUrlToHref?: boolean;
     [key: string]: any;
   }>
@@ -84,7 +84,10 @@ function FooterLink(
     >
       {icon ? (
         <>
-          <i className={clsx("text-sm mr-2 inline align-middle", icon)}></i>
+          <FontAwesomeIcon
+            className="text-sm mr-2 inline align-middle"
+            icon={icon}
+          />
           <span className="inline align-middle">{label}</span>
         </>
       ) : href && !isInternalUrl(href) ? (
@@ -111,7 +114,10 @@ function FooterColumn(
       <h3 className="text-sm font-semibold tracking-wider uppercase opacity-60">
         {icon ? (
           <>
-            <i className={clsx("text-base mr-2 inline align-middle", icon)}></i>
+            <FontAwesomeIcon
+              className="text-base mr-2 inline align-middle"
+              icon={icon}
+            />
             <span className="inline align-middle">{title}</span>
           </>
         ) : (

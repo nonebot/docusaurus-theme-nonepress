@@ -7,6 +7,7 @@ import isInternalUrl from "@docusaurus/isInternalUrl";
 
 import IconExternalLink from "@theme/IconExternalLink";
 import type { Props } from "@theme/NavbarItem/NavbarLink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function NavbarLink(props: Props): JSX.Element {
   const {
@@ -40,7 +41,7 @@ function NavbarLink(props: Props): JSX.Element {
           )
         }
       >
-        {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+        {icon && <FontAwesomeIcon className="mr-2 align-middle" icon={icon} />}
         <span className="truncate">
           {label}
           {!icon && isExternalLink && <IconExternalLink />}

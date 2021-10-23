@@ -13,6 +13,7 @@ import renderRoutes from "@docusaurus/renderRoutes";
 import type { DocumentRoute } from "@theme/DocItem";
 import BackToTopButton from "@theme/BackToTopButton";
 import type { PropVersionMetadata } from "@docusaurus/plugin-content-docs-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DocPageContent(
   props: PropsWithChildren<{
@@ -84,7 +85,10 @@ function DocPageContent(
                   onKeyDown={toggleSidebar}
                   onClick={toggleSidebar}
                 >
-                  <i className="fas fa-angle-double-right text-xl"></i>
+                  <FontAwesomeIcon
+                    className="text-xl"
+                    icon={["fas", "angle-double-right"]}
+                  />
                 </div>
               )}
             </aside>

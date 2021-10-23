@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useCallback } from "react";
+import React from "react";
 import composeRefs from "@seznam/compose-react-refs";
 
 import Logo from "@theme/Logo";
@@ -8,6 +8,7 @@ import ThemeSwitcher from "@theme/ThemeSwitcher";
 import type { Props } from "@theme/NavbarMobile";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useOnclickOutside from "react-cool-onclickoutside";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function NavbarMobile(props: Props): JSX.Element {
   const { element, active, transitionClasses, leave } = props;
@@ -53,7 +54,7 @@ function NavbarMobile(props: Props): JSX.Element {
               className="rounded-md p-2 inline-flex items-center justify-center hover:bg-nonepress-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:hover:bg-nonepress-200 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
             >
               <span className="sr-only">Close menu</span>
-              <i className="text-2xl fas fa-times"></i>
+              <FontAwesomeIcon className="text-2xl" icon={["fas", "times"]} />
             </button>
           </div>
         </div>

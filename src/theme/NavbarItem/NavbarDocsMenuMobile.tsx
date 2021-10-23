@@ -9,6 +9,7 @@ import {
   GlobalDoc,
   GlobalVersion,
 } from "@docusaurus/plugin-content-docs/lib/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
@@ -37,7 +38,7 @@ function NavbarDocsMenuMobile(props: Props): JSX.Element {
           !label ? "text-2xl" : "text-base font-medium uppercase"
         )}
       >
-        {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+        {icon && <FontAwesomeIcon className="mr-2 align-middle" icon={icon} />}
         <span className="truncate">{label}</span>
       </Link>
     </li>

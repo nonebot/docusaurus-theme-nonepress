@@ -6,6 +6,7 @@ import NavbarItem from "@theme/NavbarItem";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useTransition from "@theme/hooks/useTransition";
 import type { Props } from "@theme/NavbarItem/NavbarDropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function NavbarDropdown(props: Props): JSX.Element {
   const { element, active, transitionClasses, enter, leave } =
@@ -35,10 +36,13 @@ function NavbarDropdown(props: Props): JSX.Element {
           !label ? "text-3xl" : "text-sm font-medium uppercase"
         )}
       >
-        {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
+        {icon && <FontAwesomeIcon className="mr-2 align-middle" icon={icon} />}
         <span className="truncate">{label}</span>
       </Link>
-      <i className="fas fa-angle-down ml-2 text-xl opacity-60 group-hover:opacity-100 transition ease-in-out duration-150"></i>
+      <FontAwesomeIcon
+        className="ml-2 text-xl opacity-60 group-hover:opacity-100 transition ease-in-out duration-150"
+        icon={["fas", "angle-down"]}
+      />
       <ul
         ref={element}
         className={clsx(

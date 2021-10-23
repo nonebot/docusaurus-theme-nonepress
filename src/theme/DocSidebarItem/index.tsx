@@ -14,6 +14,7 @@ import {
   useCollapsible,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props, DocSidebarItemsProps } from "@theme/DocSidebarItem";
 import IconExternalLink from "@theme/IconExternalLink";
@@ -97,6 +98,12 @@ function DocSidebarItemCategory({
         {...props}
       >
         {label}
+        <FontAwesomeIcon
+          className={clsx("transform ease-linear text-xl", {
+            "rotate-90": collapsed,
+          })}
+          icon={["fas", "chevron-right"]}
+        />
       </a>
 
       <Collapsible

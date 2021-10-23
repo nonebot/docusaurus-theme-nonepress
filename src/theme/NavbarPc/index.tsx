@@ -21,6 +21,7 @@ import {
   useActiveDocContext,
   useLatestVersion,
 } from "@theme/hooks/useDocs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
@@ -97,7 +98,10 @@ function NavbarDocsVersion(): JSX.Element {
           {dropdownVersion.label}
         </span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-          <i className="text-lg opacity-60 fas fa-sort"></i>
+          <FontAwesomeIcon
+            className="text-lg opacity-60"
+            icon={["fas", "sort"]}
+          />
         </span>
       </button>
       <ul
@@ -166,7 +170,7 @@ function NavbarPc(props: Props): JSX.Element {
             aria-expanded="false"
           >
             <span className="sr-only">Open menu</span>
-            <i className="text-2xl fas fa-bars"></i>
+            <FontAwesomeIcon className="text-2xl" icon={["fas", "bars"]} />
           </button>
         </div>
         <nav className="hidden md:flex">

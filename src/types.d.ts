@@ -84,15 +84,16 @@ declare module "@theme/hooks/useTheme" {
 declare module "@theme/hooks/useThemeConfig" {
   import type { PrismTheme } from "prism-react-renderer";
   import type { DocusaurusConfig } from "@docusaurus/types";
+  import type { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 
   export type ColorModeConfig = {
     defaultMode?: "light" | "dark";
     disableSwitch?: boolean;
     respectPrefersColorScheme?: boolean;
     switchConfig?: {
-      darkIcon?: string;
+      darkIcon?: [IconPrefix, IconName];
       darkIconText?: string;
-      lightIcon?: string;
+      lightIcon?: [IconPrefix, IconName];
       lightIconText?: string;
     };
   };
@@ -120,7 +121,7 @@ declare module "@theme/hooks/useThemeConfig" {
   export type NavbarItem = {
     type?: string;
     label?: string;
-    icon?: string;
+    icon?: [IconPrefix, IconName];
     className?: string;
   };
 
@@ -149,19 +150,19 @@ declare module "@theme/hooks/useThemeConfig" {
 
   export type FooterLinkConfig = {
     title?: string;
-    icon?: string;
+    icon?: [IconPrefix, IconName];
     items?: Array<{
       to?: string;
       href?: string;
       html?: string;
       label?: string;
-      icon?: string;
+      icon?: [IconPrefix, IconName];
       prependBaseUrlToHref?: boolean;
     }>;
   };
 
   export type FooterIconLinkConfig = {
-    icon: string;
+    icon: [IconPrefix, IconName];
     to?: string;
     href?: string;
     description?: string;
