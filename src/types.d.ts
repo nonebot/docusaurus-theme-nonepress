@@ -345,6 +345,14 @@ declare module "@theme/DocSidebarItem" {
   export function DocSidebarItems(props: DocSidebarItemsProps): JSX.Element;
 }
 
+declare module "@theme/EditThisPage" {
+  export interface Props {
+    readonly editUrl: string;
+  }
+  function EditThisPage(props: Props): JSX.Element;
+  export default EditThisPage;
+}
+
 declare module "@theme/Footer" {
   function Footer(): JSX.Element;
   export default Footer;
@@ -397,6 +405,17 @@ declare module "@theme/IconExternalLink" {
 
   function IconExternalLink(props: Props): JSX.Element;
   export default IconExternalLink;
+}
+
+declare module "@theme/LastUpdated" {
+  export interface Props {
+    readonly lastUpdatedAt?: number;
+    readonly formattedLastUpdatedAt?: string;
+    readonly lastUpdatedBy?: string;
+  }
+
+  function LastUpdated(props: Props): JSX.Element;
+  export default LastUpdated;
 }
 
 declare module "@theme/Layout" {
@@ -579,6 +598,14 @@ declare module "@theme/SearchMetadatas" {
 declare module "@theme/SearchPage" {
   function SearchPage(): JSX.Element;
   export default SearchPage;
+}
+
+declare module "@theme/TagsListInline" {
+  export type Tag = Readonly<{ label: string; permalink }>;
+  export interface Props {
+    readonly tags: readonly Tag[];
+  }
+  export default function TagsListInline(props: Props): JSX.Element;
 }
 
 declare module "@theme/ThemeContext" {

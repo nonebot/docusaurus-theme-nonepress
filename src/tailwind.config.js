@@ -57,6 +57,9 @@ module.exports = {
       margin: {
         "0-important": "0 !important",
       },
+      fontSize: {
+        smaller: "smaller",
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

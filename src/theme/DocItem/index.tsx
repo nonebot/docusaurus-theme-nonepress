@@ -3,14 +3,16 @@ import React from "react";
 
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
-import { Props } from "@theme/DocItem";
+import type { Props } from "@theme/DocItem";
+import DocItemFooter from "@theme/DocItemFooter";
 import { MainHeading } from "@theme/Heading";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import styles from "./styles.module.css";
 
-function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
+function DocItem(props: Props): JSX.Element {
+  const { content: DocContent, versionMetadata } = props;
   const { metadata, frontMatter } = DocContent;
   const {
     image,
@@ -74,8 +76,7 @@ function DocItem({ content: DocContent, versionMetadata }: Props): JSX.Element {
                 <DocContent />
               </div>
 
-              {/* TODO */}
-              {/* <DocItemFooter {...props} /> */}
+              <DocItemFooter {...props} />
             </article>
           </div>
         </div>

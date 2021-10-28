@@ -16,8 +16,6 @@ import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// TODO
-
 // function useShowAnnouncementBar() {
 //   const { isClosed } = useAnnouncementBar();
 //   const [showAnnouncementBar, setShowAnnouncementBar] = useState(!isClosed);
