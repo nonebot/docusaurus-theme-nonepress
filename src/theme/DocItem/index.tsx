@@ -3,9 +3,10 @@ import React from "react";
 
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
-import type { Props } from "@theme/DocItem";
-import DocItemFooter from "@theme/DocItemFooter";
 import { MainHeading } from "@theme/Heading";
+import type { Props } from "@theme/DocItem";
+import DocPaginator from "@theme/DocPaginator";
+import DocItemFooter from "@theme/DocItemFooter";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
@@ -78,6 +79,7 @@ function DocItem(props: Props): JSX.Element {
 
               <DocItemFooter {...props} />
             </article>
+            <DocPaginator metadata={metadata} />
           </div>
         </div>
         {renderTocDesktop && (
