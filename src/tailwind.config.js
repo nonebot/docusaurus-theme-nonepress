@@ -16,38 +16,35 @@ module.exports = {
       colors: {
         inherit: "inherit",
         light: {
-          DEFAULT: "#f0f4fc",
+          DEFAULT: "#ffffff",
           nonepress: {
-            DEFAULT: "#f7f9ff",
-            100: "#f7f9ff",
-            200: "#f2f6ff",
-            300: "#eef2ff",
-            400: "#bdccff",
-            500: "#91aaff",
-            600: "#698bff",
+            DEFAULT: "#f5f6f7",
+            100: "#f5f6f7",
+            200: "#ebedf0",
+            300: "#dadde1",
           },
 
           text: {
             DEFAULT: "#1c1e21",
             active: "#1c1e21",
           },
-          nav: "#f0f4fc",
+          nav: "#ffffff",
           backToTop: "#ebedf0",
         },
         dark: {
-          DEFAULT: "#1e293b",
+          DEFAULT: "#18191a",
           nonepress: {
-            DEFAULT: "#334155",
-            100: "#334155",
-            200: "#28394d",
-            300: "#1e293b",
+            DEFAULT: "#20232a",
+            100: "#20232a",
+            200: "#282a36",
+            300: "#303846",
           },
 
           text: {
             DEFAULT: "#f5f6f7",
             active: "#f5f6f7",
           },
-          nav: "#1e293b",
+          nav: "#242526",
           backToTop: "#444950",
         },
       },

@@ -79,9 +79,12 @@ function DocSidebarItemCategory({
         className={clsx(
           "flex relative justify-between leading-5 px-4 py-1 rounded",
           "text-light-text dark:text-dark-text",
+          "hover:bg-light-nonepress dark:hover:bg-dark-nonepress",
           {
             "mb-1": collapsible,
             "text-light-text-active dark:text-dark-text-active":
+              collapsible && isActive,
+            "bg-light-nonepress dark:bg-dark-nonepress":
               collapsible && isActive,
             "cursor-default": !collapsible,
           }
@@ -140,8 +143,10 @@ function DocSidebarItemLink({
         className={clsx(
           "flex relative justify-between leading-5 px-4 py-1 rounded",
           "text-light-text dark:text-dark-text",
+          "hover:bg-light-nonepress dark:hover:bg-dark-nonepress",
           {
             "text-light-text-active dark:text-dark-text-active": isActive,
+            "bg-light-nonepress dark:bg-dark-nonepress": isActive,
           }
         )}
         aria-current={isActive ? "page" : undefined}

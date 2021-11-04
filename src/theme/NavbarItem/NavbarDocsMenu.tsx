@@ -155,7 +155,7 @@ function NavbarDocsMenu(props: Props): JSX.Element {
                     key={index}
                     to={versionItem.to}
                     onClick={versionItem.onClick}
-                    className="-m-3 p-3 flow-root rounded-md hover:bg-indigo-50 transition ease-in-out duration-150 dark:hover:bg-gray-800"
+                    className="-m-3 p-3 flow-root rounded-md hover:bg-light-nonepress-300 transition ease-in-out duration-150 dark:hover:bg-dark-nonepress-300"
                   >
                     <span className="flex items-center">
                       <span className="text-base font-medium">
