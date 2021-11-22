@@ -3,7 +3,7 @@
   clip-path: inset(0);
   @apply hidden lg:block lg:w-60 xl:w-72;
   @apply border-r;
-  @apply transition;
+  @apply transition-all;
 }
 
 .docSidebarContainerHidden {

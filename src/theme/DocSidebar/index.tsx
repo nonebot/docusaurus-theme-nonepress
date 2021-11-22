@@ -43,9 +43,10 @@ function DocSidebarDesktop({
   return (
     <div
       className={clsx(
-        "flex flex-col sticky top-0 max-h-screen h-full transition w-72",
+        "flex flex-col sticky top-0 max-h-screen transition w-72",
         {
           "pt-24": !hideOnScroll,
+          "h-full": !isHidden,
           "opacity-0 h-0 overflow-hidden invisible": isHidden,
         }
       )}
