@@ -38,6 +38,10 @@ export const DEFAULT_CONFIG = {
 
     searchParameters: {},
   },
+  tableOfContents: {
+    minHeadingLevel: 2,
+    maxHeadingLevel: 3,
+  },
 };
 
 const ColorModeSchema = Joi.object({
@@ -266,6 +270,24 @@ export const ThemeConfigSchema = Joi.object({
     .unknown(),
   tailwindConfig: Joi.object().optional(),
   customCss: CustomCssSchema,
+  tableOfContents: Joi.object({
+    minHeadingLevel: Joi.number()
+      .default(DEFAULT_CONFIG.tableOfContents.minHeadingLevel)
+      .when("maxHeadingLevel", {
+        is: Joi.exist(),
+        then: Joi.number()
+          .integer()
+          .min(2)
+          .max(6)
+          .max(Joi.ref("maxHeadingLevel")),
+        otherwise: Joi.number().integer().min(2).max(6),
+      }),
+    maxHeadingLevel: Joi.number()
+      .integer()
+      .min(2)
+      .max(6)
+      .default(DEFAULT_CONFIG.tableOfContents.maxHeadingLevel),
+  }).default(DEFAULT_CONFIG.tableOfContents),
 });
 
 export function validateThemeConfig({ themeConfig, validate }) {

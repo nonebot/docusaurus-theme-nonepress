@@ -1,5 +1,6 @@
 /// <reference types="@docusaurus/module-type-aliases" />
 /// <reference types="@docusaurus/plugin-content-docs" />
+/// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
   export type AlgoliaContextualFacetFilters = readonly [
@@ -102,6 +103,11 @@ declare module "@theme/hooks/useThemeConfig" {
     versionPersistence?: "localStorage" | "none";
   };
 
+  export type TOCConfig = {
+    minHeadingLevel: number;
+    maxHeadingLevel: number;
+  };
+
   export type MetadataConfig = {
     id?: string;
     name?: string;
@@ -195,6 +201,7 @@ declare module "@theme/hooks/useThemeConfig" {
   export type ThemeConfig = {
     colorMode?: ColorModeConfig;
     docs: DocsConfig;
+    tableOfContents: TOCConfig;
     metadatas?: MetadataConfig[];
     logo: LogoConfig;
     navbar?: NavbarConfig;
@@ -477,17 +484,6 @@ declare module "@theme/MDXComponents" {
   export default MDXComponents;
 }
 
-declare module "@theme/MDXPage" {
-  // TODO
-  export type Props = {
-    readonly content: {
-      (): JSX.Element;
-    };
-  };
-  function MDXPage(props: Props): JSX.Element;
-  export default MDXPage;
-}
-
 declare module "@theme/Navbar" {
   function Navbar(): JSX.Element;
   export default Navbar;
@@ -644,19 +640,34 @@ declare module "@theme/ThemeSwitcher" {
   export default ThemeSwitcher;
 }
 
+declare module "@theme/TOCItems" {
+  import type { TOCItem } from "@docusaurus/types";
+
+  export type TOCItemsProps = {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
+    readonly linkClassName: string | null;
+    readonly linkActiveClassName: string;
+  };
+
+  function TOCItems(props: TOCItemsProps): JSX.Element;
+  export default TOCItems;
+}
+
 declare module "@theme/TOC" {
   import type { TOCItem } from "@docusaurus/types";
 
+  // minHeadingLevel only exists as a per-doc option,
+  // and won't have a default set by Joi. See TOC, TOCInline,
+  // TOCCollapsible for examples
   export type TOCProps = {
     readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
   };
-
-  export type TOCHeadingsProps = {
-    readonly toc: readonly TOCItem[];
-    readonly isChild?: boolean;
-  };
-
-  export function TOCHeadings(props: TOCHeadingsProps): JSX.Element;
 
   function TOC(props: TOCProps): JSX.Element;
   export default TOC;
