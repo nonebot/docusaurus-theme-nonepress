@@ -3,6 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 import React, { PropsWithChildren, useState, useCallback } from "react";
 
 import Layout from "@theme/Layout";
+import Head from "@docusaurus/Head";
 import NotFound from "@theme/NotFound";
 import styles from "./styles.module.css";
 import DocSidebar from "@theme/DocSidebar";
@@ -12,8 +13,9 @@ import MDXComponents from "@theme/MDXComponents";
 import renderRoutes from "@docusaurus/renderRoutes";
 import type { DocumentRoute } from "@theme/DocItem";
 import BackToTopButton from "@theme/BackToTopButton";
-import type { PropVersionMetadata } from "@docusaurus/plugin-content-docs-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ThemeClassNames, docVersionSearchTag } from "@docusaurus/theme-common";
+import type { PropVersionMetadata } from "@docusaurus/plugin-content-docs-types";
 
 function DocPageContent(
   props: PropsWithChildren<{
@@ -40,7 +42,14 @@ function DocPageContent(
   }, [hiddenSidebar]);
 
   return (
-    <Layout>
+    <Layout
+      wrapperClassName={ThemeClassNames.wrapper.docsPages}
+      pageClassName={ThemeClassNames.page.docsDocPage}
+      searchMetadata={{
+        version,
+        tag: docVersionSearchTag(pluginId, version),
+      }}
+    >
       <div className="w-full">
         <div className="flex w-full">
           <BackToTopButton />
@@ -112,15 +121,21 @@ function DocPage(props: Props): JSX.Element {
     matchPath(location.pathname, docRoute)
   );
   if (!currentDocRoute) {
-    return <NotFound {...props} />;
+    return <NotFound />;
   }
   return (
-    <DocPageContent
-      currentDocRoute={currentDocRoute}
-      versionMetadata={versionMetadata}
-    >
-      {renderRoutes(docRoutes, { versionMetadata })}
-    </DocPageContent>
+    <>
+      <Head>
+        {/* TODO we should add a core addRoute({htmlClassName}) generic plugin option */}
+        <html className={versionMetadata.className} />
+      </Head>
+      <DocPageContent
+        currentDocRoute={currentDocRoute}
+        versionMetadata={versionMetadata}
+      >
+        {renderRoutes(docRoutes, { versionMetadata })}
+      </DocPageContent>
+    </>
   );
 }
 

@@ -26,7 +26,7 @@ type DocSearchProps = Omit<
   DocSearchModalProps,
   "onClose" | "initialScrollY"
 > & {
-  contextualSearch?: string;
+  contextualSearch?: boolean;
   externalUrlRegex?: string;
 };
 

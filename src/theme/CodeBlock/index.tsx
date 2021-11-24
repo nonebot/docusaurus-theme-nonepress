@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import "./styles.css";
 import copy from "copy-text-to-clipboard";
@@ -95,8 +95,7 @@ function CodeBlock({
   title,
   children,
   metastring,
-  languageClassName,
-  className: containerClassName,
+  className: blockClassName,
 }: Props): JSX.Element {
   const { prism } = useThemeConfig();
 
@@ -110,7 +109,7 @@ function CodeBlock({
 
   const codeBlockTitle = parseCodeBlockTitle(metastring) || title;
 
-  // const button = useRef(null);
+  const button = useRef(null);
   let highlightLines: number[] = [];
 
   const prismTheme = usePrismTheme();
@@ -126,6 +125,9 @@ function CodeBlock({
     highlightLines = rangeParser(highlightLinesRange).filter((n) => n > 0);
   }
 
+  const languageClassName = blockClassName
+    ?.split(" ")
+    .find((str) => str.startsWith("language-"));
   let language = languageClassName?.replace(/language-/, "") as Language;
 
   if (!language && prism.defaultLanguage) {
@@ -198,7 +200,7 @@ function CodeBlock({
         <div
           className={clsx(
             "text-left w-full max-w-full h-auto mb-5 rounded shadow-lg group",
-            containerClassName
+            blockClassName?.replace(/language-[^ ]+/, "")
           )}
         >
           {codeBlockTitle && (
@@ -219,18 +221,23 @@ function CodeBlock({
               language
             )}
           >
-            <pre className={clsx("p-4 m-0-important", className)} style={style}>
+            <pre
+              className={clsx("p-4 m-0-important thin-scrollbar", className, {
+                "rounded-t-none-important": codeBlockTitle,
+              })}
+              style={style}
+            >
               <code>
                 {tokens.map((line, i) => {
                   if (line.length === 1 && line[0].content === "") {
-                    line[0].content = "\n";
+                    line[0].content = "";
                   }
 
                   const lineProps = getLineProps({ line, key: i });
 
                   if (highlightLines.includes(i + 1)) {
                     lineProps.className +=
-                      " -m-4 p-4 docusaurus-highlight-code-line";
+                      " -mx-4 px-4 docusaurus-highlight-code-line";
                   }
 
                   return (
@@ -238,13 +245,15 @@ function CodeBlock({
                       {line.map((token, key) => (
                         <span key={key} {...getTokenProps({ token, key })} />
                       ))}
+                      <br />
                     </span>
                   );
                 })}
               </code>
             </pre>
+
             <button
-              // ref={button}
+              ref={button}
               type="button"
               aria-label="Copy code to clipboard"
               className="absolute bg-black bg-opacity-30 rounded-md text-white right-2 top-2 transition-opacity cursor-pointer select-none px-2 py-1 opacity-0 group-hover:opacity-100 focus:opacity-100"

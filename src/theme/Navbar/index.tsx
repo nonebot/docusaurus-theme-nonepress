@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import NavbarPc from "@theme/NavbarPc";
+import NavbarPC from "@theme/NavbarPC";
 import styles from "./styles.module.css";
 import NavbarMobile from "@theme/NavbarMobile";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
@@ -27,7 +27,7 @@ function Navbar(): JSX.Element {
         { [styles.navbarHidden]: hideOnScroll && !isNavbarVisible }
       )}
     >
-      <NavbarPc openMobileMenu={mobileMenu.enter} />
+      <NavbarPC openMobileMenu={mobileMenu.enter} />
       <NavbarMobile {...mobileMenu} />
     </div>
   );

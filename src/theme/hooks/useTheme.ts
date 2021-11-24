@@ -51,8 +51,8 @@ function useTheme(): useThemeReturns {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", coerceToTheme(theme));
-    document.documentElement.classList.remove(themes.dark, themes.light);
-    document.documentElement.classList.add(coerceToTheme(theme));
+    document.body.classList.remove(themes.dark, themes.light);
+    document.body.classList.add(coerceToTheme(theme));
   }, [theme]);
 
   useEffect(() => {

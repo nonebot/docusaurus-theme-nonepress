@@ -43,19 +43,6 @@ declare module "@theme/hooks/usePrismTheme" {
   export default usePrismTheme;
 }
 
-declare module "@theme/hooks/useScrollPosition" {
-  export type ScrollPosition = { scrollX: number; scrollY: number };
-
-  function useScrollPosition(
-    effect: (
-      position: ScrollPosition,
-      lastPosition: ScrollPosition | null
-    ) => void,
-    deps?: unknown[]
-  ): void;
-  export default useScrollPosition;
-}
-
 declare module "@theme/hooks/useSearchQuery" {
   export type SearchQuery = {
     searchQuery: string;
@@ -186,7 +173,7 @@ declare module "@theme/hooks/useThemeConfig" {
   };
 
   export type AlgoliaConfig = {
-    contextualSearch?: string;
+    contextualSearch?: boolean;
     appId?: string;
     apiKey: string;
     indexName: string;
@@ -271,26 +258,17 @@ declare module "@theme/BackToTopButton" {
 }
 
 declare module "@theme/CodeBlock" {
-  import type { PropsWithChildren } from "react";
+  import { ReactElement } from "react";
 
-  export type Props = PropsWithChildren<{
-    readonly title?: string;
-    readonly metastring?: string;
+  export interface Props {
+    readonly children: string | ReactElement;
     readonly className?: string;
-    readonly languageClassName?: string;
-  }>;
+    readonly metastring?: string;
+    readonly title?: string;
+  }
 
   function CodeBlock(props: Props): JSX.Element;
   export default CodeBlock;
-}
-
-declare module "@theme/Content" {
-  import type { PropsWithChildren } from "react";
-
-  export type Props = PropsWithChildren<unknown>;
-
-  function Content(props: Props): JSX.Element;
-  export default Content;
 }
 
 declare module "@theme/Details" {
@@ -422,12 +400,44 @@ declare module "@theme/LastUpdated" {
   export default LastUpdated;
 }
 
-declare module "@theme/LayoutProvider" {
+declare module "@theme/Layout" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+    readonly title?: string;
+    readonly noFooter?: boolean;
+    readonly description?: string;
+    readonly image?: string;
+    readonly keywords?: string | string[];
+    readonly permalink?: string;
+    readonly wrapperClassName?: string;
+    readonly pageClassName?: string;
+    readonly searchMetadata?: {
+      readonly version?: string;
+      readonly tag?: string;
+    };
+  }
+
+  const Layout: (props: Props) => JSX.Element;
+  export default Layout;
+}
+
+declare module "@theme/LayoutHead" {
+  import type { Props as LayoutProps } from "@theme/Layout";
+
+  export interface Props extends Omit<LayoutProps, "children"> {}
+
+  function LayoutHead(props: Props): JSX.Element;
+  export default LayoutHead;
+}
+
+declare module "@theme/LayoutProviders" {
   import type { PropsWithChildren } from "react";
   export type Props = PropsWithChildren<unknown>;
 
-  function LayoutProvider(props: Props): JSX.Element;
-  export default LayoutProvider;
+  function LayoutProviders(props: Props): JSX.Element;
+  export default LayoutProviders;
 }
 
 declare module "@theme/Logo" {

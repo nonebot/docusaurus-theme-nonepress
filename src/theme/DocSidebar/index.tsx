@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import {
   ThemeClassNames,
+  useScrollPosition,
   useAnnouncementBar,
   MobileSecondaryMenuFiller,
   MobileSecondaryMenuComponent,
@@ -11,7 +12,6 @@ import {
 import type { Props } from "@theme/DocSidebar";
 import { DocSidebarItems } from "@theme/DocSidebarItem";
 import Logo from "@theme/Logo";
-import useScrollPosition from "@theme/hooks/useScrollPosition";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -256,7 +256,7 @@ export const ThemeConfigSchema = Joi.object({
     contextualSearch: Joi.boolean().default(
       DEFAULT_CONFIG.algolia.contextualSearch
     ),
-
+    externalUrlRegex: Joi.string().optional(),
     // Algolia attributes
     appId: Joi.string().default(DEFAULT_CONFIG.algolia.appId),
     apiKey: Joi.string().required(),

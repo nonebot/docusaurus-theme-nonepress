@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import React, { useRef, useState } from "react";
 
-import { useLocation } from "@docusaurus/router";
-import useScrollPosition from "@theme/hooks/useScrollPosition";
+import {
+  ThemeClassNames,
+  useScrollPosition,
+  useLocationChange,
+} from "@docusaurus/theme-common";
 
 const threshold = 300;
 
@@ -58,46 +61,57 @@ function useSmoothScrollToTop(): UseSmoothScrollTopReturn {
 }
 
 function BackToTopButton(): JSX.Element {
-  const location = useLocation();
   const [show, setShow] = useState(false);
+  const isFocusedAnchor = useRef(false);
   const { smoothScrollTop, cancelScrollToTop } = useSmoothScrollToTop();
 
-  useScrollPosition(
-    ({ scrollY: scrollTop }, lastPosition) => {
-      // No lastPosition means component is just being mounted.
-      // Not really a scroll event from the user, so we ignore it
-      if (!lastPosition) {
-        return;
-      }
-      const lastScrollTop = lastPosition.scrollY;
+  useScrollPosition(({ scrollY: scrollTop }, lastPosition) => {
+    const lastScrollTop = lastPosition?.scrollY;
 
-      const isScrollingUp = scrollTop < lastScrollTop;
+    // No lastScrollTop means component is just being mounted.
+    // Not really a scroll event from the user, so we ignore it
+    if (!lastScrollTop) {
+      return;
+    }
 
-      if (!isScrollingUp) {
-        cancelScrollToTop();
-      }
+    if (isFocusedAnchor.current) {
+      isFocusedAnchor.current = false;
+      return;
+    }
 
-      if (scrollTop < threshold) {
-        setShow(false);
-        return;
-      }
+    const isScrollingUp = scrollTop < lastScrollTop;
 
-      if (isScrollingUp) {
-        const documentHeight = document.documentElement.scrollHeight;
-        const windowHeight = window.innerHeight;
-        if (scrollTop + windowHeight < documentHeight) {
-          setShow(true);
-        }
-      } else {
-        setShow(false);
+    if (!isScrollingUp) {
+      cancelScrollToTop();
+    }
+
+    if (scrollTop < threshold) {
+      setShow(false);
+      return;
+    }
+
+    if (isScrollingUp) {
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      if (scrollTop + windowHeight < documentHeight) {
+        setShow(true);
       }
-    },
-    [location]
-  );
+    } else {
+      setShow(false);
+    }
+  });
+
+  useLocationChange((locationChangeEvent) => {
+    if (locationChangeEvent.location.hash) {
+      isFocusedAnchor.current = true;
+      setShow(false);
+    }
+  });
 
   return (
     <button
       className={clsx(
+        ThemeClassNames.common.backToTopButton,
         "fixed z-10 right-5 bottom-5 h-12 w-12 rounded-full shadow-md cursor-pointer",
         "flex justify-center items-center",
         "transition transform opacity-0 scale-0",
@@ -107,7 +121,7 @@ function BackToTopButton(): JSX.Element {
         }
       )}
       type="button"
-      title="Scroll to top"
+      aria-label="Scroll back to top"
       onClick={() => smoothScrollTop()}
     >
       <svg viewBox="0 0 24 24" width="28">

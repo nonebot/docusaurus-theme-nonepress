@@ -1,18 +1,32 @@
+import clsx from "clsx";
 import React from "react";
 
 import Navbar from "@theme/Navbar";
 import Footer from "@theme/Footer";
-import Content from "@theme/Content";
 import type { Props } from "@theme/Layout";
-import LayoutProvider from "@theme/LayoutProvider";
+import LayoutHead from "@theme/LayoutHead";
+import LayoutProviders from "@theme/LayoutProviders";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
-function Layout({ children }: Props): JSX.Element {
+function Layout(props: Props): JSX.Element {
+  const { children, noFooter, wrapperClassName, pageClassName } = props;
+
   return (
-    <LayoutProvider>
+    <LayoutProviders>
+      <LayoutHead {...props} />
       <Navbar />
-      <Content>{children}</Content>
-      <Footer />
-    </LayoutProvider>
+      <div
+        className={clsx(
+          ThemeClassNames.wrapper.main,
+          wrapperClassName,
+          pageClassName
+        )}
+        id="content"
+      >
+        {children}
+      </div>
+      {!noFooter && <Footer />}
+    </LayoutProviders>
   );
 }
 

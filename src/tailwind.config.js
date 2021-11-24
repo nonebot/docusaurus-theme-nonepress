@@ -60,6 +60,9 @@ module.exports = {
       fontSize: {
         smaller: "smaller",
       },
+      borderRadius: {
+        "none-important": "0 !important",
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
