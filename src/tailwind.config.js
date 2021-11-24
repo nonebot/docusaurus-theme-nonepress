@@ -9,7 +9,7 @@ if (siteDir) {
   purge.push(`${siteDir}/src/**/*.{js,jsx,ts,tsx,mdx}`);
 }
 module.exports = {
-  purge: purge,
+  content: purge,
   darkMode: "class",
   theme: {
     extend: {
@@ -62,87 +62,181 @@ module.exports = {
       },
       borderRadius: {
         "none-important": "0 !important",
+        important: "0.25rem !important",
       },
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme("colors.light.text.DEFAULT"),
-            a: {
-              color: theme("colors.light.text.DEFAULT"),
+            "--tw-prose-body": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-lead": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-links": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-bold": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-counters": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-bullets": theme("colors.light.text.DEFAULT"),
+            // "--tw-prose-hr": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-quotes": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-quote-borders": theme("colors.light.text.active"),
+            "--tw-prose-headings": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-captions": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-code": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-pre-code": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-pre-bg": theme("colors.light.DEFAULT"),
+            // "--tw-prose-th-borders": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-td-borders": theme("colors.light.text.DEFAULT"),
+            code: {
+              "background-color": "#f6f7f8",
+              border: "0.1rem solid rgba(0, 0, 0, 0.1)",
+              "border-radius": "0.4rem",
+              padding: "0.1rem",
             },
-            h1: {
-              color: theme("colors.light.text.DEFAULT"),
+            "code::before": {
+              content: "none",
             },
-            h2: {
-              color: theme("colors.light.text.DEFAULT"),
+            "code::after": {
+              content: "none",
             },
-            h3: {
-              color: theme("colors.light.text.DEFAULT"),
-            },
-            h4: {
-              color: theme("colors.light.text.DEFAULT"),
+            "pre code": {
+              fontSize: "0.9rem !important",
+              "background-color": "transparent",
+              border: "none",
+              "border-radius": "none",
+              padding: "0",
             },
           },
         },
         dark: {
           css: {
-            color: theme("colors.dark.text.DEFAULT"),
-            '[class~="lead"]': {
-              color: theme("colors.gray.300"),
-            },
-            a: {
-              color: theme("colors.dark.text.DEFAULT"),
-            },
-            strong: {
-              color: theme("colors.dark.text.DEFAULT"),
-            },
-            "ol > li::before": {
-              color: theme("colors.gray.400"),
-            },
-            "ul > li::before": {
-              backgroundColor: theme("colors.gray.600"),
-            },
-            hr: {
-              borderColor: theme("colors.gray.200"),
-            },
-            blockquote: {
-              color: theme("colors.gray.200"),
-              borderLeftColor: theme("colors.gray.600"),
-            },
-            h1: {
-              color: theme("colors.dark.text.DEFAULT"),
-            },
-            h2: {
-              color: theme("colors.dark.text.DEFAULT"),
-            },
-            h3: {
-              color: theme("colors.dark.text.DEFAULT"),
-            },
-            h4: {
-              color: theme("colors.dark.text.DEFAULT"),
-            },
-            "figure figcaption": {
-              color: theme("colors.gray.400"),
-            },
+            "--tw-prose-body": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-lead": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-links": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-bold": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-counters": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-bullets": theme("colors.dark.text.DEFAULT"),
+            // "--tw-prose-hr": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-quotes": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-quote-borders": theme("colors.dark.text.active"),
+            "--tw-prose-headings": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-captions": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-code": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-pre-code": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-pre-bg": theme("colors.dark.DEFAULT"),
+            // "--tw-prose-th-borders": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-td-borders": theme("colors.dark.text.DEFAULT"),
             code: {
-              color: theme("colors.dark.text.DEFAULT"),
+              "background-color": "#333437",
+              border: "0.1rem solid rgba(0, 0, 0, 0.1)",
+              "border-radius": "0.4rem",
+              padding: "0.1rem",
             },
-            "a code": {
-              color: theme("colors.dark.text.DEFAULT"),
+            "code::before": {
+              content: "none",
             },
-            pre: {
-              color: theme("colors.gray.200"),
-              backgroundColor: theme("colors.gray.800"),
+            "code::after": {
+              content: "none",
             },
-            thead: {
-              color: theme("colors.dark.text.DEFAULT"),
-              borderBottomColor: theme("colors.gray.400"),
-            },
-            "tbody tr": {
-              borderBottomColor: theme("colors.gray.600"),
+            "pre code": {
+              fontSize: "0.9rem !important",
+              "background-color": "transparent",
+              border: "none",
+              "border-radius": "none",
+              padding: "0",
             },
           },
         },
+        // DEFAULT: {
+        //   css: {
+        //     color: theme("colors.light.text.DEFAULT"),
+        //     a: {
+        //       color: theme("colors.light.text.DEFAULT"),
+        //     },
+        //     h1: {
+        //       color: theme("colors.light.text.DEFAULT"),
+        //     },
+        //     h2: {
+        //       color: theme("colors.light.text.DEFAULT"),
+        //     },
+        //     h3: {
+        //       color: theme("colors.light.text.DEFAULT"),
+        //     },
+        //     h4: {
+        //       color: theme("colors.light.text.DEFAULT"),
+        //     },
+        //     code: {
+        //       color: theme("colors.light.text.DEFAULT"),
+        //       "background-color": "#f6f7f8",
+        //       border: "0.1rem solid rgba(0, 0, 0, 0.1)",
+        //       "border-radius": "0.4rem",
+        //       padding: "0.1rem",
+        //     },
+        //     "code::before": false,
+        //     "code::after": false,
+        //   },
+        // },
+        // dark: {
+        //   css: {
+        //     color: theme("colors.dark.text.DEFAULT"),
+        //     '[class~="lead"]': {
+        //       color: theme("colors.gray.300"),
+        //     },
+        //     a: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     strong: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     "ol > li::before": {
+        //       color: theme("colors.gray.400"),
+        //     },
+        //     "ul > li::before": {
+        //       backgroundColor: theme("colors.gray.600"),
+        //     },
+        //     hr: {
+        //       borderColor: theme("colors.gray.200"),
+        //     },
+        //     blockquote: {
+        //       color: theme("colors.gray.200"),
+        //       borderLeftColor: theme("colors.gray.600"),
+        //     },
+        //     h1: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     h2: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     h3: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     h4: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     "figure figcaption": {
+        //       color: theme("colors.gray.400"),
+        //     },
+        //     code: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //       "background-color": "#333437",
+        //       border: "0.1rem solid rgba(0, 0, 0, 0.1)",
+        //       "border-radius": "0.4rem",
+        //       padding: "0.1rem",
+        //     },
+        //     "code::before": false,
+        //     "code::after": false,
+        //     "a code": {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //     },
+        //     pre: {
+        //       color: theme("colors.gray.200"),
+        //       backgroundColor: theme("colors.gray.800"),
+        //     },
+        //     thead: {
+        //       color: theme("colors.dark.text.DEFAULT"),
+        //       borderBottomColor: theme("colors.gray.400"),
+        //     },
+        //     "tbody tr": {
+        //       borderBottomColor: theme("colors.gray.600"),
+        //     },
+        //   },
+        // },
       }),
     },
   },

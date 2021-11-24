@@ -2,7 +2,7 @@
   will-change: width;
   clip-path: inset(0);
   @apply hidden lg:block lg:w-60 xl:w-72;
-  @apply border-r;
+  @apply border-r border-gray-300 dark:border-gray-600;
   @apply transition-all;
 }
 

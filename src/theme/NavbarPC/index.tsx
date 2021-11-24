@@ -85,14 +85,14 @@ function NavbarDocsVersion(): JSX.Element {
         onClick={() => {
           active ? leave() : enter();
         }}
-        className="bg-light-nonepress relative flex items-center w-full border border-gray-300 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:bg-opacity-50 dark:focus:ring-indigo-300 dark:focus:border-indigo-300"
+        className="bg-light-nonepress relative flex items-center w-full border border-gray-300 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-light-text-active focus:border-light-text-active sm:text-sm dark:bg-dark-nonepress dark:border-gray-600 dark:bg-opacity-50 dark:focus:ring-dark-text-active dark:focus:border-dark-text-active"
         aria-haspopup="listbox"
         aria-expanded="true"
         aria-labelledby="listbox-label"
       >
         <span
           aria-label="Selected"
-          className="absolute left-3.5 bg-indigo-400 flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-indigo-300"
+          className="absolute left-3.5 bg-light-text-active flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-dark-text-active"
         ></span>
         <span className="block truncate font-medium">
           {dropdownVersion.label}

@@ -130,14 +130,14 @@ export default function docusaurusThemeClassic(
     },
 
     configurePostCss(postCssOptions: { plugins: AcceptedPlugin[] }) {
-      const { purge = [], presets = [] } = tailwindConfig;
-      if (Array.isArray(purge)) {
-        purge.unshift(...defaultTailwindConfig.purge);
+      const { content = [], presets = [] } = tailwindConfig;
+      if (Array.isArray(content)) {
+        content.unshift(...defaultTailwindConfig.content);
       } else {
-        purge.content.unshift(...defaultTailwindConfig.purge);
+        content.files.unshift(...defaultTailwindConfig.content);
       }
       presets.unshift(defaultTailwindConfig);
-      tailwindConfig.purge = purge;
+      tailwindConfig.content = content;
       tailwindConfig.presets = presets;
       postCssOptions.plugins.unshift(
         require("postcss-import"),
