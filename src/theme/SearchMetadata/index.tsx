@@ -1,11 +1,14 @@
 import React from "react";
 
 import Head from "@docusaurus/Head";
-import type { Props } from "@theme/SearchMetadatas";
+import type { SearchMetadataProps } from "@theme/SearchMetadata";
 
-// Override default/agnostic SearchMetas to use Algolia-specific metadatas
-function AlgoliaSearchMetadatas(props: Props): JSX.Element {
-  const { locale, version, tag } = props;
+// Override default/agnostic SearchMetas to use Algolia-specific metadata
+function SearchMetadata({
+  locale,
+  version,
+  tag,
+}: SearchMetadataProps): JSX.Element {
   // Seems safe to consider here the locale is the language,
   // as the existing docsearch:language filter is afaik a regular string-based filter
   const language = locale;
@@ -19,4 +22,4 @@ function AlgoliaSearchMetadatas(props: Props): JSX.Element {
   );
 }
 
-export default AlgoliaSearchMetadatas;
+export default SearchMetadata;

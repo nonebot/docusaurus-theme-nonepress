@@ -5,11 +5,11 @@ import {
 } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import type { ContextualSearchFilters } from "@theme/hooks/useContextualSearchFilters";
 import {
   useAllDocsData,
   useActivePluginAndVersion,
 } from "@theme/hooks/useDocs";
+import type { ContextualSearchFilters } from "@theme/hooks/useContextualSearchFilters";
 
 // We may want to support multiple search engines, don't couple that to Algolia/DocSearch
 // Maybe users will want to use its own search engine solution
@@ -27,7 +27,7 @@ function useContextualSearchFilters(): ContextualSearchFilters {
 
     const preferredVersion = docsPreferredVersionByPluginId[pluginId];
 
-    const latestVersion = allDocsData[pluginId].versions.find((v) => v.isLast);
+    const latestVersion = allDocsData[pluginId].versions.find((v) => v.isLast)!;
 
     const version = activeVersion ?? preferredVersion ?? latestVersion;
 

@@ -9,7 +9,7 @@ import Layout from "@theme/Layout";
 // TODO
 
 function SearchPage(): JSX.Element {
-  return <Layout></Layout>;
+  return <Layout>{}</Layout>;
 }
 
 export default SearchPage;

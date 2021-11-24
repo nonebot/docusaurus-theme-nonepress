@@ -6,12 +6,12 @@ import Content from "@theme/Content";
 import type { Props } from "@theme/Layout";
 import LayoutProvider from "@theme/LayoutProvider";
 
-function Layout({ noFooter, children }: Props): JSX.Element {
+function Layout({ children }: Props): JSX.Element {
   return (
     <LayoutProvider>
       <Navbar />
       <Content>{children}</Content>
-      {!noFooter && <Footer />}
+      <Footer />
     </LayoutProvider>
   );
 }

@@ -1,26 +1,53 @@
 import React, { useState, useRef, useCallback, useMemo } from "react";
 
-import "./styles.module.css";
 import Link from "@docusaurus/Link";
 import Head from "@docusaurus/Head";
 import { createPortal } from "react-dom";
 import { useHistory } from "@docusaurus/router";
-import { translate } from "@docusaurus/Translate";
+import useThemeConfig from "@theme/hooks/useThemeConfig";
 import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import useSearchQuery from "@theme/hooks/useSearchQuery";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
-import type { AlgoliaConfig } from "@theme/hooks/useThemeConfig";
+import { isRegexpStringMatch } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
 import useAlgoliaContextualFacetFilters from "@theme/hooks/useAlgoliaContextualFacetFilters";
 
-let DocSearchModal = null;
+import type {
+  DocSearchModal as DocSearchModalType,
+  DocSearchModalProps,
+} from "@docsearch/react";
+import type {
+  InternalDocSearchHit,
+  StoredDocSearchHit,
+} from "@docsearch/react/dist/esm/types";
+import type { AutocompleteState } from "@algolia/autocomplete-core";
 
-function Hit({ hit, children }) {
+type DocSearchProps = Omit<
+  DocSearchModalProps,
+  "onClose" | "initialScrollY"
+> & {
+  contextualSearch?: string;
+  externalUrlRegex?: string;
+};
+
+let DocSearchModal: typeof DocSearchModalType | null = null;
+
+function Hit({
+  hit,
+  children,
+}: {
+  hit: InternalDocSearchHit | StoredDocSearchHit;
+  children: React.ReactNode;
+}) {
   return <Link to={hit.url}>{children}</Link>;
 }
 
-function ResultsFooter({ state, onClose }) {
+type ResultsFooterProps = {
+  state: AutocompleteState<InternalDocSearchHit>;
+  onClose: () => void;
+};
+
+function ResultsFooter({ state, onClose }: ResultsFooterProps) {
   const { generateSearchPageLink } = useSearchQuery();
 
   return (
@@ -30,7 +57,11 @@ function ResultsFooter({ state, onClose }) {
   );
 }
 
-function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
+function DocSearch({
+  contextualSearch,
+  externalUrlRegex,
+  ...props
+}: DocSearchProps) {
   const { siteMetadata } = useDocusaurusContext();
 
   const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
@@ -51,10 +82,12 @@ function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
 
   const { withBaseUrl } = useBaseUrlUtils();
   const history = useHistory();
-  const searchContainer = useRef(null);
-  const searchButtonRef = useRef(null);
+  const searchContainer = useRef<HTMLDivElement | null>(null);
+  const searchButtonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [initialQuery, setInitialQuery] = useState(null);
+  const [initialQuery, setInitialQuery] = useState<string | undefined>(
+    undefined
+  );
 
   const importDocSearchModalIfNeeded = useCallback(() => {
     if (DocSearchModal) {
@@ -64,6 +97,7 @@ function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
     return Promise.all([
       import("@docsearch/react/modal"),
       import("@docsearch/react/style"),
+      import("./styles.css"),
     ]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal;
     });
@@ -82,7 +116,7 @@ function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
 
   const onClose = useCallback(() => {
     setIsOpen(false);
-    searchContainer.current.remove();
+    searchContainer.current?.remove();
   }, [setIsOpen]);
 
   const onInput = useCallback(
@@ -96,28 +130,37 @@ function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
   );
 
   const navigator = useRef({
-    navigate({ itemUrl }) {
-      history.push(itemUrl);
+    navigate({ itemUrl }: { itemUrl?: string }) {
+      // Algolia results could contain URL's from other domains which cannot
+      // be served through history and should navigate with window.location
+      if (isRegexpStringMatch(externalUrlRegex, itemUrl)) {
+        window.location.href = itemUrl!;
+      } else {
+        history.push(itemUrl!);
+      }
     },
   }).current;
 
-  const transformItems = useRef((items) => {
-    return items.map((item) => {
-      // We transform the absolute URL into a relative URL.
-      // Alternatively, we can use `new URL(item.url)` but it's not
-      // supported in IE.
-      const a = document.createElement("a");
-      a.href = item.url;
+  const transformItems = useRef<DocSearchModalProps["transformItems"]>(
+    (items) =>
+      items.map((item) => {
+        // If Algolia contains a external domain, we should navigate without relative URL
+        if (isRegexpStringMatch(externalUrlRegex, item.url)) {
+          return item;
+        }
 
-      return {
-        ...item,
-        url: withBaseUrl(`${a.pathname}${a.hash}`),
-      };
-    });
-  }).current;
+        // We transform the absolute URL into a relative URL.
+        const url = new URL(item.url);
+        return {
+          ...item,
+          url: withBaseUrl(`${url.pathname}${url.hash}`),
+        };
+      })
+  ).current;
 
   const resultsFooterComponent = useMemo(
-    () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
+    () => (footerProps: ResultsFooterProps) =>
+      <ResultsFooter {...footerProps} onClose={onClose} />,
     [onClose]
   );
 
@@ -141,12 +184,6 @@ function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
     searchButtonRef,
   });
 
-  const translatedSearchLabel = translate({
-    id: "theme.SearchBar.label",
-    message: "Search",
-    description: "The ARIA label and placeholder for search button",
-  });
-
   return (
     <>
       <Head>
@@ -168,13 +205,15 @@ function DocSearch({ contextualSearch, ...props }: AlgoliaConfig) {
           onClick={onOpen}
           ref={searchButtonRef}
           translations={{
-            buttonText: translatedSearchLabel,
-            buttonAriaLabel: translatedSearchLabel,
+            buttonText: "Search",
+            buttonAriaLabel: "Search",
           }}
         />
       </div>
 
       {isOpen &&
+        DocSearchModal &&
+        searchContainer.current &&
         createPortal(
           <DocSearchModal
             onClose={onClose}

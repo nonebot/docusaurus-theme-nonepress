@@ -3,12 +3,9 @@
 /// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
-  export type AlgoliaContextualFacetFilters = readonly [
-    string,
-    readonly string[]
-  ];
+  export type useAlgoliaContextualFacetFiltersReturns = [string, string[]];
 
-  function useAlgoliaContextualFacetFilters(): AlgoliaContextualFacetFilters;
+  function useAlgoliaContextualFacetFilters(): useAlgoliaContextualFacetFiltersReturns;
   export default useAlgoliaContextualFacetFilters;
 }
 
@@ -61,12 +58,12 @@ declare module "@theme/hooks/useScrollPosition" {
 
 declare module "@theme/hooks/useSearchQuery" {
   export type SearchQuery = {
-    searchValue: string;
-    updateSearchPath: (searchValue: string) => void;
-    generateSearchPageLink: (searchValue: string) => string;
+    searchQuery: string;
+    setSearchQuery(newSearchQuery: string): void;
+    generateSearchPageLink(targetSearchQuery: string): string;
   };
-  function useSearchQuery(): SearchQuery;
 
+  function useSearchQuery(): SearchQuery;
   export default useSearchQuery;
 }
 
@@ -189,7 +186,7 @@ declare module "@theme/hooks/useThemeConfig" {
   };
 
   export type AlgoliaConfig = {
-    contextualSearch?: boolean;
+    contextualSearch?: string;
     appId?: string;
     apiKey: string;
     indexName: string;
@@ -425,16 +422,6 @@ declare module "@theme/LastUpdated" {
   export default LastUpdated;
 }
 
-declare module "@theme/Layout" {
-  import type { PropsWithChildren } from "react";
-  export type Props = PropsWithChildren<{
-    noFooter?: boolean;
-  }>;
-
-  function Layout(props: Props): JSX.Element;
-  export default Layout;
-}
-
 declare module "@theme/LayoutProvider" {
   import type { PropsWithChildren } from "react";
   export type Props = PropsWithChildren<unknown>;
@@ -580,14 +567,14 @@ declare module "@theme/SearchBar" {
   export default SearchBar;
 }
 
-declare module "@theme/SearchMetadatas" {
-  export type Props = {
-    readonly locale: string;
-    readonly version: string;
-    readonly tag: string;
+declare module "@theme/SearchMetadata" {
+  export type SearchMetadataProps = {
+    readonly locale?: string;
+    readonly version?: string;
+    readonly tag?: string;
   };
 
-  function SearchMetadata(props: Props): JSX.Element;
+  function SearchMetadata(props: SearchMetadataProps): JSX.Element;
   export default SearchMetadata;
 }
 

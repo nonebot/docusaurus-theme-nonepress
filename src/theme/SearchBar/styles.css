@@ -1,4 +1,4 @@
-:global .DocSearch-Button {
+.DocSearch-Button {
   margin: 0 !important;
   transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
 }
