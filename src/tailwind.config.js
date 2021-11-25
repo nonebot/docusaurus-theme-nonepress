@@ -13,16 +13,29 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      colors: {
-        inherit: "inherit",
+      nonepress: {
         light: {
-          DEFAULT: "#ffffff",
-          nonepress: {
+          theme: {
             DEFAULT: "#f5f6f7",
             100: "#f5f6f7",
             200: "#ebedf0",
             300: "#dadde1",
           },
+        },
+        dark: {
+          theme: {
+            DEFAULT: "#20232a",
+            100: "#20232a",
+            200: "#282a36",
+            300: "#303846",
+          },
+        },
+      },
+      colors: (theme) => ({
+        inherit: "inherit",
+        light: {
+          DEFAULT: "#ffffff",
+          nonepress: theme("nonepress.light.theme"),
 
           text: {
             DEFAULT: "#1c1e21",
@@ -30,15 +43,14 @@ module.exports = {
           },
           nav: "#ffffff",
           backToTop: "#ebedf0",
+          details: {
+            DEFAULT: theme("nonepress.light.theme.DEFAULT"),
+            darker: theme("nonepress.light.theme.300"),
+          },
         },
         dark: {
           DEFAULT: "#18191a",
-          nonepress: {
-            DEFAULT: "#20232a",
-            100: "#20232a",
-            200: "#282a36",
-            300: "#303846",
-          },
+          nonepress: theme("nonepress.dark.theme"),
 
           text: {
             DEFAULT: "#f5f6f7",
@@ -46,8 +58,12 @@ module.exports = {
           },
           nav: "#242526",
           backToTop: "#444950",
+          details: {
+            DEFAULT: theme("nonepress.dark.theme.DEFAULT"),
+            darker: theme("nonepress.dark.theme.300"),
+          },
         },
-      },
+      }),
       minHeight: {
         90: "90%",
       },

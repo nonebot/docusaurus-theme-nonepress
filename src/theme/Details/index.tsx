@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
+import styles from "./styles.module.css";
 import type { Props } from "@theme/Details";
 import { Details as DetailsGeneric } from "@docusaurus/theme-common";
 
@@ -9,9 +10,10 @@ function Details(props: Props): JSX.Element {
     <DetailsGeneric
       {...props}
       className={clsx(
-        "p-4",
-        "bg-light-nonepress dark:bg-dark-nonepress",
-        "border border-light-nonepress-200 dark:border-dark-nonepress-200",
+        "p-4 border-2 rounded-md",
+        "bg-light-details dark:bg-dark-details",
+        "border-light-details-darker dark:border-dark-details-darker",
+        styles.details,
         props.className
       )}
     />
