@@ -10,6 +10,20 @@ if (siteDir) {
 }
 module.exports = {
   content: purge,
+  safelist: [
+    "md:grid-cols-1",
+    "md:grid-cols-2",
+    "md:grid-cols-3",
+    "md:grid-cols-4",
+    "md:grid-cols-5",
+    "md:grid-cols-6",
+    "md:grid-cols-7",
+    "md:grid-cols-8",
+    "md:grid-cols-9",
+    "md:grid-cols-10",
+    "md:grid-cols-11",
+    "md:grid-cols-12",
+  ],
   darkMode: "class",
   theme: {
     extend: {
@@ -39,7 +53,7 @@ module.exports = {
 
           text: {
             DEFAULT: "#1c1e21",
-            active: "#1c1e21",
+            active: "#25c19f",
           },
           nav: "#ffffff",
           backToTop: "#ebedf0",
@@ -54,7 +68,7 @@ module.exports = {
 
           text: {
             DEFAULT: "#f5f6f7",
-            active: "#f5f6f7",
+            active: "#25c19f",
           },
           nav: "#242526",
           backToTop: "#444950",

@@ -85,7 +85,7 @@ function NavbarDocsVersion(): JSX.Element {
         onClick={() => {
           active ? leave() : enter();
         }}
-        className="bg-light-nonepress relative flex items-center w-full border border-gray-300 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-light-text-active focus:border-light-text-active sm:text-sm dark:bg-dark-nonepress dark:border-gray-600 dark:bg-opacity-50 dark:focus:ring-dark-text-active dark:focus:border-dark-text-active"
+        className="bg-light-nonepress relative flex items-center w-full border border-light-nonepress-200 rounded-md shadow-sm pl-8 pr-6 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-light-text-active focus:border-light-text-active sm:text-sm dark:bg-dark-nonepress dark:border-dark-nonepress-200 dark:bg-opacity-50 dark:focus:ring-dark-text-active dark:focus:border-dark-text-active"
         aria-haspopup="listbox"
         aria-expanded="true"
         aria-labelledby="listbox-label"
@@ -107,7 +107,7 @@ function NavbarDocsVersion(): JSX.Element {
       <ul
         ref={element}
         className={clsx(
-          "absolute z-10 mt-1 w-full bg-light-nonepress shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-gray-700",
+          "absolute z-10 mt-1 w-full bg-light-nonepress shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-dark-nonepress",
           active ? "ignore-version-dropdown" : "hidden",
           transitionClasses
         )}
@@ -131,7 +131,7 @@ function NavbarDocsVersion(): JSX.Element {
                 aria-label="Selected"
                 className={clsx(
                   styles["version-selected-tag"],
-                  "invisible absolute left-2.5 bg-indigo-400 flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-indigo-300"
+                  "invisible absolute left-2.5 bg-light-text-active flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-dark-text-active"
                 )}
               ></span>
               <span className="flex-grow font-medium inline-block truncate">

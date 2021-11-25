@@ -17,7 +17,7 @@ function DocPaginator(props: Props): JSX.Element {
             <div className="text-light-text dark:text-dark-text text-sm font-medium mb-1">
               Previous
             </div>
-            <div className="text-base font-bold break-words">
+            <div className="text-light-text-active dark:text-dark-text-active text-base font-bold break-words">
               &laquo; {metadata.previous.title}
             </div>
           </Link>
@@ -32,7 +32,7 @@ function DocPaginator(props: Props): JSX.Element {
             <div className="text-light-text dark:text-dark-text text-sm font-medium mb-1">
               Next
             </div>
-            <div className="text-base font-bold break-words">
+            <div className="text-light-text-active dark:text-dark-text-active text-base font-bold break-words">
               {metadata.next.title} &raquo;
             </div>
           </Link>

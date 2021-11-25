@@ -17,14 +17,18 @@ import useWindowSize from "@theme/hooks/useWindowSize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // function useShowAnnouncementBar() {
-//   const { isClosed } = useAnnouncementBar();
-//   const [showAnnouncementBar, setShowAnnouncementBar] = useState(!isClosed);
-//   useScrollPosition(({ scrollY }) => {
-//     if (!isClosed) {
-//       setShowAnnouncementBar(scrollY === 0);
-//     }
-//   });
-//   return showAnnouncementBar;
+//   const { isActive } = useAnnouncementBar();
+//   const [showAnnouncementBar, setShowAnnouncementBar] = useState(isActive);
+
+//   useScrollPosition(
+//     ({ scrollY }) => {
+//       if (isActive) {
+//         setShowAnnouncementBar(scrollY === 0);
+//       }
+//     },
+//     [isActive]
+//   );
+//   return isActive && showAnnouncementBar;
 // }
 
 function DocSidebarDesktop({
@@ -38,7 +42,6 @@ function DocSidebarDesktop({
     navbar: { hideOnScroll },
     hideableSidebar,
   } = useThemeConfig();
-  // const { isClosed: isAnnouncementBarClosed } = useAnnouncementBar();
 
   return (
     <div
@@ -60,11 +63,10 @@ function DocSidebarDesktop({
       <nav
         className={clsx(
           "menu thin-scrollbar",
-          "font-medium flex-grow p-2 overflow-x-hidden",
-          {
-            // [styles.menuWithAnnouncementBar]:
-            //   !isAnnouncementBarClosed && showAnnouncementBar,
-          }
+          "font-medium flex-grow p-2 overflow-x-hidden"
+          // {
+          //   [styles.menuWithAnnouncementBar]: showAnnouncementBar,
+          // }
         )}
       >
         <ul
@@ -73,7 +75,7 @@ function DocSidebarDesktop({
             "list-none m-0 pl-0"
           )}
         >
-          <DocSidebarItems items={sidebar} activePath={path} />
+          <DocSidebarItems items={sidebar} activePath={path} level={1} />
         </ul>
       </nav>
       {hideableSidebar && (
@@ -113,6 +115,7 @@ const DocSidebarMobileSecondaryMenu: MobileSecondaryMenuComponent<Props> = ({
         items={sidebar}
         activePath={path}
         onItemClick={() => toggleSidebar()}
+        level={1}
       />
     </ul>
   );

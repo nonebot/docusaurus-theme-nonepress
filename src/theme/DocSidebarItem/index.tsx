@@ -47,16 +47,17 @@ function useAutoExpandActiveCategory({
     if (justBecameActive && collapsed) {
       setCollapsed(false);
     }
-  }, [isActive, wasActive, collapsed]);
+  }, [isActive, wasActive, collapsed, setCollapsed]);
 }
 
 function DocSidebarItemCategory({
   item,
   onItemClick,
   activePath,
+  level,
   ...props
 }: Props & { item: PropSidebarItemCategory }) {
-  const { items, label, collapsible } = item;
+  const { items, label, collapsible, className } = item;
 
   const isActive = isActiveSidebarItem(item, activePath);
 
@@ -74,7 +75,14 @@ function DocSidebarItemCategory({
   useAutoExpandActiveCategory({ isActive, collapsed, setCollapsed });
 
   return (
-    <li className={clsx(ThemeClassNames.docs.docSidebarItemCategory, "pt-1")}>
+    <li
+      className={clsx(
+        ThemeClassNames.docs.docSidebarItemCategory,
+        ThemeClassNames.docs.docSidebarItemCategoryLevel(level),
+        "pt-1",
+        className
+      )}
+    >
       <a
         className={clsx(
           "flex relative justify-between leading-5 px-4 py-1 rounded",
@@ -120,6 +128,7 @@ function DocSidebarItemCategory({
           tabIndex={collapsed ? -1 : 0}
           onItemClick={onItemClick}
           activePath={activePath}
+          level={level + 1}
         />
       </Collapsible>
     </li>
@@ -130,13 +139,19 @@ function DocSidebarItemLink({
   item,
   onItemClick,
   activePath,
+  level,
   ...props
 }: Props & { item: PropSidebarItemLink }) {
-  const { href, label } = item;
+  const { href, label, className } = item;
   const isActive = isActiveSidebarItem(item, activePath);
   return (
     <li
-      className={clsx(ThemeClassNames.docs.docSidebarItemLink, "pt-1")}
+      className={clsx(
+        ThemeClassNames.docs.docSidebarItemLink,
+        ThemeClassNames.docs.docSidebarItemLinkLevel(level),
+        "pt-1",
+        className
+      )}
       key={label}
     >
       <Link
@@ -169,6 +184,7 @@ function DocSidebarItemLink({
   );
 }
 
+// Optimize sidebar at each "level"
 export const DocSidebarItems = memo(function DocSidebarItems({
   items,
   ...props
@@ -186,11 +202,11 @@ export const DocSidebarItems = memo(function DocSidebarItems({
   );
 });
 
-function DocSidebarItem({ item, ...props }: Props): JSX.Element {
+function DocSidebarItem({ item, ...props }: Props): JSX.Element | null {
   switch (item.type) {
     case "category":
       if (item.items.length === 0) {
-        return <></>;
+        return null;
       }
       return <DocSidebarItemCategory item={item} {...props} />;
     case "link":

@@ -295,12 +295,14 @@ declare module "@theme/DocPaginator" {
 declare module "@theme/DocSidebar" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
 
-  export type Props = {
+  export interface Props {
     readonly path: string;
     readonly sidebar: readonly PropSidebarItem[];
     readonly onCollapse: () => void;
     readonly isHidden: boolean;
-  };
+    // MobileSecondaryFilter expects Record<string, unknown>
+    readonly [key: string]: unknown;
+  }
 
   function DocSidebar(props: Props): JSX.Element;
   export default DocSidebar;
@@ -312,12 +314,13 @@ declare module "@theme/DocSidebarItem" {
   type DocSidebarPropsBase = {
     readonly activePath: string;
     readonly onItemClick?: () => void;
+    readonly level: number;
     readonly tabIndex?: number;
   };
 
-  export type Props = DocSidebarPropsBase & {
+  export interface Props extends DocSidebarPropsBase {
     readonly item: PropSidebarItem;
-  };
+  }
   function DocSidebarItem(props: Props): JSX.Element;
   export default DocSidebarItem;
 
@@ -666,8 +669,43 @@ declare module "@theme/TOC" {
     readonly className?: string;
   };
 
+  export type TOCHeadingsProps = {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+  };
+
+  export function TOCHeadings(props: TOCHeadingsProps): JSX.Element;
+
   function TOC(props: TOCProps): JSX.Element;
   export default TOC;
+}
+
+declare module "@theme/TOCInline" {
+  import type { TOCItem } from "@docusaurus/types";
+
+  export type TOCInlineProps = {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+  };
+
+  function TOCInline(props: TOCInlineProps): JSX.Element;
+  export default TOCInline;
+}
+
+declare module "@theme/TOCCollapsible" {
+  import type { TOCItem } from "@docusaurus/types";
+
+  export type TOCCollapsibleProps = {
+    readonly className?: string;
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly toc: readonly TOCItem[];
+  };
+
+  function TOCCollapsible(props: TOCCollapsibleProps): JSX.Element;
+  export default TOCCollapsible;
 }
 
 declare module "docusaurus-theme-nonepress/types" {

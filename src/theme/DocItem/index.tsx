@@ -3,10 +3,12 @@ import React from "react";
 
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
-import { MainHeading } from "@theme/Heading";
 import type { Props } from "@theme/DocItem";
+import { MainHeading } from "@theme/Heading";
 import DocPaginator from "@theme/DocPaginator";
 import DocItemFooter from "@theme/DocItemFooter";
+import TOCCollapsible from "@theme/TOCCollapsible";
+import DocVersionBanner from "@theme/DocVersionBanner";
 import useWindowSize from "@theme/hooks/useWindowSize";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
@@ -20,9 +22,14 @@ function DocItem(props: Props): JSX.Element {
     keywords,
     hide_title: hideTitle,
     hide_table_of_contents: hideTableOfContents,
+    toc_min_heading_level: tocMinHeadingLevel,
+    toc_max_heading_level: tocMaxHeadingLevel,
   } = frontMatter;
   const { description, title } = metadata;
 
+  // We only add a title if:
+  // - user asks to hide it with frontmatter
+  // - the markdown content does not already contain a top-level h1 heading
   const shouldAddTitle =
     !hideTitle && typeof DocContent.contentTitle === "undefined";
 
@@ -37,10 +44,10 @@ function DocItem(props: Props): JSX.Element {
   return (
     <>
       <Seo {...{ title, description, keywords, image }} />
+
       <div className="relative flex flex-row w-full">
         <div className="flex-grow max-w-full p-4">
-          {/* TODO */}
-          {/* <DocVersionBanner versionMetadata={versionMetadata} /> */}
+          <DocVersionBanner versionMetadata={versionMetadata} />
           <div className="doc-content">
             <article>
               {versionMetadata.badge && (
@@ -56,21 +63,22 @@ function DocItem(props: Props): JSX.Element {
                 </span>
               )}
 
-              {/* {canRenderTOC && (
+              {canRenderTOC && (
                 <TOCCollapsible
                   toc={DocContent.toc}
+                  minHeadingLevel={tocMinHeadingLevel}
+                  maxHeadingLevel={tocMaxHeadingLevel}
                   className={clsx(
                     ThemeClassNames.docs.docTocMobile,
-                    styles.tocMobile,
+                    "lg:hidden"
                   )}
                 />
-              )} */}
+              )}
 
               <div
                 className={clsx(
                   ThemeClassNames.docs.docMarkdown,
                   "prose lg:prose-xl dark:prose-dark"
-                  // "text-light-text dark:text-dark-text"
                 )}
               >
                 {shouldAddTitle && <MainHeading>{title}</MainHeading>}
@@ -85,7 +93,12 @@ function DocItem(props: Props): JSX.Element {
         </div>
         {renderTocDesktop && (
           <div className={clsx("p-4", styles.toc)}>
-            <TOC toc={DocContent.toc} />
+            <TOC
+              toc={DocContent.toc}
+              minHeadingLevel={tocMinHeadingLevel}
+              maxHeadingLevel={tocMaxHeadingLevel}
+              className={ThemeClassNames.docs.docTocDesktop}
+            />
           </div>
         )}
       </div>

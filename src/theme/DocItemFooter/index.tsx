@@ -18,7 +18,7 @@ function TagsRow(props: TagsListInlineProps): JSX.Element {
         "flex flex-row flex-wrap -mx-4 mb-2"
       )}
     >
-      <div className="flex-1 flex-shrink-0ml-0 px-4 w-full max-w-full">
+      <div className="flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full">
         <TagsListInline {...props} />
       </div>
     </div>
@@ -42,11 +42,11 @@ function EditMetaRow({
         "flex flex-row flex-wrap -mx-4 mb-2"
       )}
     >
-      <div className="flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full">
+      <div className="lg:flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full">
         {editUrl && <EditThisPage editUrl={editUrl} />}
       </div>
 
-      <div className="flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full mt-1 italic text-smaller lg:text-right">
+      <div className="lg:flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full mt-1 italic text-smaller lg:text-right">
         {(lastUpdatedAt || lastUpdatedBy) && (
           <LastUpdated
             lastUpdatedAt={lastUpdatedAt}

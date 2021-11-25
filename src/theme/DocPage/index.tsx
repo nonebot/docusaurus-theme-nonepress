@@ -102,7 +102,10 @@ function DocPageContent(
               )}
             </aside>
           )}
-          <main id="docs" className="flex container mx-auto mt-20 pb-8 px-12">
+          <main
+            id="docs"
+            className="flex container mx-auto mt-20 pb-8 px-4 lg:px-12"
+          >
             <MDXProvider components={MDXComponents}>{children}</MDXProvider>
           </main>
         </div>
