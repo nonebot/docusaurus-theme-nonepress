@@ -1,9 +1,9 @@
+import clsx from "clsx";
 import React from "react";
 
 import type { Props } from "@theme/EditThisPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import clsx from "clsx";
 
 export default function EditThisPage({ editUrl }: Props): JSX.Element {
   return (

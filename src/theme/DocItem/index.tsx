@@ -54,8 +54,8 @@ function DocItem(props: Props): JSX.Element {
                 <span
                   className={clsx(
                     ThemeClassNames.docs.docVersionBadge,
-                    "px-2 py-1",
-                    "font-mono text-black text-xs rounded-md",
+                    "px-2 py-1 rounded-md",
+                    "font-mono font-bold text-black text-xs",
                     "bg-gray-300 opacity-70"
                   )}
                 >

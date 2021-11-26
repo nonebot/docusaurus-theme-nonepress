@@ -39,7 +39,12 @@ function createAnchorHeading(Tag: HeadingType): (props: Props) => JSX.Element {
         id={id}
       >
         {props.children}
-        <a className="hash-link" href={`#${id}`} title="Direct link to heading">
+        <a
+          aria-hidden="true"
+          className="hash-link"
+          href={`#${id}`}
+          title="Direct link to heading"
+        >
           #
         </a>
       </Tag>
