@@ -596,12 +596,36 @@ declare module "@theme/SearchPage" {
   export default SearchPage;
 }
 
+declare module "@theme/Tag" {
+  import type { Optional } from "utility-types";
+  import type { TagsListItem } from "@theme/TagsListByLetter";
+
+  export interface Props extends Optional<TagsListItem, "count"> {}
+
+  function Tag(props: Props): JSX.Element;
+  export default Tag;
+}
+
+declare module "@theme/TagsListByLetter" {
+  export type TagsListItem = Readonly<{
+    name: string;
+    permalink: string;
+    count: number;
+  }>;
+  export interface Props {
+    readonly tags: readonly TagsListItem[];
+  }
+  function TagsListByLetter(props: Props): JSX.Element;
+  export default TagsListByLetter;
+}
+
 declare module "@theme/TagsListInline" {
-  export type Tag = Readonly<{ label: string; permalink }>;
+  export type Tag = Readonly<{ label: string; permalink: string }>;
   export interface Props {
     readonly tags: readonly Tag[];
   }
-  export default function TagsListInline(props: Props): JSX.Element;
+  function TagsListInline(props: Props): JSX.Element;
+  export default TagsListInline;
 }
 
 declare module "@theme/ThemeContext" {
