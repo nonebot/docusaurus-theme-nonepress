@@ -29,3 +29,48 @@ body.dark {
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #a7a7a7;
 }
+
+.admonition {
+  @apply p-4 mb-4 rounded-md border-l-4;
+}
+.admonition-note {
+  color: #474748;
+  border-color: #d4d5d8;
+  background-color: #fdfdfe;
+}
+.admonition-tip {
+  color: #003100;
+  border-color: #009400;
+  background-color: #e6f6e6;
+}
+.admonition-important {
+  color: #193c47;
+  border-color: #4cb3d4;
+  background-color: #eef9fd;
+}
+.admonition-warning {
+  color: #4d3800;
+  border-color: #e6a700;
+  background-color: #fff8e6;
+}
+.admonition-danger {
+  color: #4b1113;
+  border-color: #e13238;
+  background-color: #ffebec;
+}
+
+.admonition h5 {
+  @apply mt-0 mb-2 uppercase;
+}
+
+.admonition-icon {
+  @apply inline-block align-middle mr-2;
+}
+
+.admonition-icon svg {
+  @apply w-5 h-5 fill-current stroke-current stroke-0;
+}
+
+.admonition-content > :last-child {
+  @apply mb-0;
+}

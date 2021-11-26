@@ -10,7 +10,7 @@ function Details(props: Props): JSX.Element {
     <DetailsGeneric
       {...props}
       className={clsx(
-        "p-4 border-2 rounded-md",
+        "p-4 mb-4 border-2 rounded-md",
         "bg-light-details dark:bg-dark-details",
         "border-light-details-darker dark:border-dark-details-darker",
         styles.details,
