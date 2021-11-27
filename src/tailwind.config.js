@@ -97,26 +97,29 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-lead": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-links": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-bold": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-counters": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-bullets": theme("colors.light.text.DEFAULT"),
-            // "--tw-prose-hr": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-quotes": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-body": "inherit",
+            "--tw-prose-lead": "inherit",
+            "--tw-prose-links": theme("colors.light.text.active"),
+            "--tw-prose-bold": "inherit",
+            "--tw-prose-counters": "inherit",
+            "--tw-prose-bullets": "inherit",
+            // "--tw-prose-hr": "inherit",
+            "--tw-prose-quotes": "inherit",
             "--tw-prose-quote-borders": theme("colors.light.text.active"),
-            "--tw-prose-headings": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-captions": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-headings": "inherit",
+            "--tw-prose-captions": "inherit",
             "--tw-prose-code": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-pre-code": theme("colors.light.text.DEFAULT"),
+            "--tw-prose-pre-code": "inherit",
             "--tw-prose-pre-bg": theme("colors.light.DEFAULT"),
-            // "--tw-prose-th-borders": theme("colors.light.text.DEFAULT"),
-            "--tw-prose-td-borders": theme("colors.light.text.DEFAULT"),
+            // "--tw-prose-th-borders": "inherit",
+            "--tw-prose-td-borders": "inherit",
+            a: {
+              textDecoration: "none",
+            },
             code: {
-              "background-color": "#f6f7f8",
+              backgroundColor: "#f6f7f8",
               border: "0.1rem solid rgba(0, 0, 0, 0.1)",
-              "border-radius": "0.4rem",
+              borderRadius: "0.4rem",
               padding: "0.1rem",
             },
             "code::before": {
@@ -127,9 +130,9 @@ module.exports = {
             },
             "pre code": {
               fontSize: "0.9rem !important",
-              "background-color": "transparent",
+              backgroundColor: "transparent",
               border: "none",
-              "border-radius": "none",
+              borderRadius: "none",
               padding: "0",
             },
           },
@@ -138,7 +141,7 @@ module.exports = {
           css: {
             "--tw-prose-body": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-lead": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-links": theme("colors.dark.text.DEFAULT"),
+            "--tw-prose-links": theme("colors.dark.text.active"),
             "--tw-prose-bold": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-counters": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-bullets": theme("colors.dark.text.DEFAULT"),
@@ -152,10 +155,13 @@ module.exports = {
             "--tw-prose-pre-bg": theme("colors.dark.DEFAULT"),
             // "--tw-prose-th-borders": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-td-borders": theme("colors.dark.text.DEFAULT"),
+            a: {
+              textDecoration: "none",
+            },
             code: {
-              "background-color": "#333437",
+              backgroundColor: "#333437",
               border: "0.1rem solid rgba(0, 0, 0, 0.1)",
-              "border-radius": "0.4rem",
+              borderRadius: "0.4rem",
               padding: "0.1rem",
             },
             "code::before": {
@@ -166,107 +172,13 @@ module.exports = {
             },
             "pre code": {
               fontSize: "0.9rem !important",
-              "background-color": "transparent",
+              backgroundColor: "transparent",
               border: "none",
-              "border-radius": "none",
+              borderRadius: "none",
               padding: "0",
             },
           },
         },
-        // DEFAULT: {
-        //   css: {
-        //     color: theme("colors.light.text.DEFAULT"),
-        //     a: {
-        //       color: theme("colors.light.text.DEFAULT"),
-        //     },
-        //     h1: {
-        //       color: theme("colors.light.text.DEFAULT"),
-        //     },
-        //     h2: {
-        //       color: theme("colors.light.text.DEFAULT"),
-        //     },
-        //     h3: {
-        //       color: theme("colors.light.text.DEFAULT"),
-        //     },
-        //     h4: {
-        //       color: theme("colors.light.text.DEFAULT"),
-        //     },
-        //     code: {
-        //       color: theme("colors.light.text.DEFAULT"),
-        //       "background-color": "#f6f7f8",
-        //       border: "0.1rem solid rgba(0, 0, 0, 0.1)",
-        //       "border-radius": "0.4rem",
-        //       padding: "0.1rem",
-        //     },
-        //     "code::before": false,
-        //     "code::after": false,
-        //   },
-        // },
-        // dark: {
-        //   css: {
-        //     color: theme("colors.dark.text.DEFAULT"),
-        //     '[class~="lead"]': {
-        //       color: theme("colors.gray.300"),
-        //     },
-        //     a: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     strong: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     "ol > li::before": {
-        //       color: theme("colors.gray.400"),
-        //     },
-        //     "ul > li::before": {
-        //       backgroundColor: theme("colors.gray.600"),
-        //     },
-        //     hr: {
-        //       borderColor: theme("colors.gray.200"),
-        //     },
-        //     blockquote: {
-        //       color: theme("colors.gray.200"),
-        //       borderLeftColor: theme("colors.gray.600"),
-        //     },
-        //     h1: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     h2: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     h3: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     h4: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     "figure figcaption": {
-        //       color: theme("colors.gray.400"),
-        //     },
-        //     code: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //       "background-color": "#333437",
-        //       border: "0.1rem solid rgba(0, 0, 0, 0.1)",
-        //       "border-radius": "0.4rem",
-        //       padding: "0.1rem",
-        //     },
-        //     "code::before": false,
-        //     "code::after": false,
-        //     "a code": {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //     },
-        //     pre: {
-        //       color: theme("colors.gray.200"),
-        //       backgroundColor: theme("colors.gray.800"),
-        //     },
-        //     thead: {
-        //       color: theme("colors.dark.text.DEFAULT"),
-        //       borderBottomColor: theme("colors.gray.400"),
-        //     },
-        //     "tbody tr": {
-        //       borderBottomColor: theme("colors.gray.600"),
-        //     },
-        //   },
-        // },
       }),
     },
   },

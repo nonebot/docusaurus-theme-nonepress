@@ -44,7 +44,7 @@ function DocTagDocListPage({ tag }: Props): JSX.Element {
             <div className="prose lg:prose-xl dark:prose-dark max-w-none">
               <header className="mb-12">
                 <h1>{title}</h1>
-                <Link href={tag.allTagsPath}>View All Tags</Link>
+                <Link to={tag.allTagsPath}>View All Tags</Link>
               </header>
               <section className="my-8">
                 {tag.docs.map((doc) => (

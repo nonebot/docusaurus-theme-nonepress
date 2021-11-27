@@ -1,5 +1,5 @@
 :global :root {
-  --ifm-z-index-fixed: 50
+  --ifm-z-index-fixed: 50;
 }
 
 .version-selected .version-selected-tag {
