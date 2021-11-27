@@ -7,7 +7,7 @@ The nonepress theme for Docusaurus.
 Add `docusaurus-theme-nonepress` to your package:
 
 ```bash
-npm i git+https://github.com/yanyongyu/docusaurus-theme-nonepress.git
+npm i --save docusaurus-theme-nonepress
 ```
 
 Modify your `docusaurus.config.js`:
@@ -16,6 +16,10 @@ Modify your `docusaurus.config.js`:
 module.exports = {
   ...
 + themes: ["docusaurus-theme-nonepress"],
++ plugins: [
++   "@docusaurus/plugin-content-docs",
++   "@docusaurus/plugin-content-pages",
++ ],
   ...
 }
 ```
