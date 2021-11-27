@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-theme-nonepress",
-  "version": "2.0.1-canary.0",
+  "version": "2.0.1-canary.1",
   "description": "Nonepress theme for Docusaurus",
   "files": [
     "lib/**/*",
