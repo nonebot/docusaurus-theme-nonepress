@@ -18,14 +18,19 @@ function MDXPage(props: Props): JSX.Element {
   const {
     title,
     description,
-    // wrapperClassName,
+    wrapperClassName,
     hide_table_of_contents: hideTableOfContents,
   } = frontMatter;
-  // const { permalink } = metadata;
+  const { permalink } = metadata;
 
   return (
-    <Layout>
-      <Seo {...{ title, description }} />
+    <Layout
+      title={title}
+      description={description}
+      permalink={permalink}
+      wrapperClassName={wrapperClassName ?? ThemeClassNames.wrapper.mdxPages}
+      pageClassName={ThemeClassNames.page.mdxPage}
+    >
       <div className="w-full">
         <div className="flex w-full">
           <BackToTopButton />

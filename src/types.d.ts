@@ -214,16 +214,6 @@ declare module "@theme/hooks/useThemeContext" {
   export default useThemeContext;
 }
 
-declare module "@theme/hooks/useTOCHighlight" {
-  export type Params = {
-    linkClassName: string;
-    linkActiveClassName: string;
-  };
-
-  function useTOCHighlight(params: Params): void;
-  export default useTOCHighlight;
-}
-
 declare module "@theme/hooks/useTransition" {
   import type { RefObject } from "react";
 

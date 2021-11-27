@@ -26,7 +26,7 @@ function NavbarLinkMobile(props: Props): JSX.Element {
               to: toUrl,
             })}
         className={clsx(
-          "block px-3 py-3 rounded-md hover:bg-indigo-50 dark:hover:bg-gray-900 dark:hover:opacity-100",
+          "block px-3 py-3 rounded-md hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200 dark:hover:opacity-100",
           !label ? "text-2xl" : "text-base font-medium uppercase"
         )}
       >

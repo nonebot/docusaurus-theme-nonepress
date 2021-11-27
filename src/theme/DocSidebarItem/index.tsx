@@ -87,12 +87,12 @@ function DocSidebarItemCategory({
         className={clsx(
           "flex relative justify-between leading-5 px-4 py-1 rounded",
           "text-light-text dark:text-dark-text",
-          "hover:bg-light-nonepress dark:hover:bg-dark-nonepress",
+          "hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200",
           {
             "mb-1": collapsible,
             "text-light-text-active dark:text-dark-text-active":
               collapsible && isActive,
-            "bg-light-nonepress dark:bg-dark-nonepress":
+            "bg-light-nonepress-200 dark:bg-dark-nonepress-200":
               collapsible && isActive,
             "cursor-default": !collapsible,
           }
@@ -158,10 +158,10 @@ function DocSidebarItemLink({
         className={clsx(
           "flex relative justify-between leading-5 px-4 py-1 rounded",
           "text-light-text dark:text-dark-text",
-          "hover:bg-light-nonepress dark:hover:bg-dark-nonepress",
+          "hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200",
           {
             "text-light-text-active dark:text-dark-text-active": isActive,
-            "bg-light-nonepress dark:bg-dark-nonepress": isActive,
+            "bg-light-nonepress-200 dark:bg-dark-nonepress-200": isActive,
           }
         )}
         aria-current={isActive ? "page" : undefined}

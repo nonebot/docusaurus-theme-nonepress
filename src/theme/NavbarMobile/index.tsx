@@ -9,6 +9,16 @@ import type { Props } from "@theme/NavbarMobile";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  useMobileSecondaryMenuRenderer,
+  usePrevious,
+  useHistoryPopHandler,
+} from "@docusaurus/theme-common";
+
+type NavbarMobileSidebarProps = {
+  sidebarShown: boolean;
+  toggleSidebar: () => void;
+};
 
 function NavbarMobile(props: Props): JSX.Element {
   const { element, active, transitionClasses, leave } = props;
@@ -23,6 +33,10 @@ function NavbarMobile(props: Props): JSX.Element {
   const {
     navbar: { items },
   } = useThemeConfig();
+
+  const secondaryMenu = useMobileSecondaryMenuRenderer()?.({
+    toggleSidebar: leave,
+  });
 
   return (
     <div
@@ -63,6 +77,7 @@ function NavbarMobile(props: Props): JSX.Element {
             <NavbarItem key={index} item={item} isMobile />
           ))}
         </ul>
+        {secondaryMenu}
       </div>
     </div>
   );

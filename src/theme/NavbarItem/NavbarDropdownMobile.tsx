@@ -54,19 +54,9 @@ function NavbarDropdownMobile(props: Props): JSX.Element {
 
   return (
     <li className={className}>
-      {/* <Link
-        ref={element}
-        className="flex items-center justify-between px-3 py-3 rounded-md hover:bg-indigo-50 dark:hover:bg-gray-900 dark:hover:opacity-100 text-base font-medium uppercase"
-      >
-        <span className="truncate">
-          {icon && <i className={clsx(icon, "mr-2 align-middle")}></i>}
-          {label}
-        </span>
-        <i className="fas fa-angle-right"></i>
-      </Link> */}
       <Link
         role="button"
-        className="flex items-center justify-between px-3 py-3 rounded-md hover:bg-indigo-50 dark:hover:bg-gray-900 dark:hover:opacity-100 text-base font-medium uppercase"
+        className="flex items-center justify-between px-3 py-3 rounded-md hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200 dark:hover:opacity-100 text-base font-medium uppercase"
         onClick={(e) => {
           e.preventDefault();
           toggleCollapsed();
@@ -83,7 +73,10 @@ function NavbarDropdownMobile(props: Props): JSX.Element {
             "-rotate-90": collapsed,
           })}
         >
-          <FontAwesomeIcon className="transform" icon={["fas", "angle-down"]} />
+          <FontAwesomeIcon
+            className="transform text-xl"
+            icon={["fas", "angle-down"]}
+          />
         </span>
       </Link>
       <Collapsible lazy as="ul" className="block ml-4" collapsed={collapsed}>

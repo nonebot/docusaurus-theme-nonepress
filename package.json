@@ -3,7 +3,8 @@
   "version": "2.0.0-beta.6",
   "description": "Nonepress theme for Docusaurus",
   "files": [
-    "lib"
+    "lib/**/*",
+    "src/**/*"
   ],
   "main": "lib/index.js",
   "types": "src/types.d.ts",

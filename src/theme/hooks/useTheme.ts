@@ -68,7 +68,7 @@ function useTheme(): useThemeReturns {
     } catch (err) {
       console.error(err);
     }
-  }, [setTheme]);
+  }, [disableSwitch, setTheme]);
 
   useEffect(() => {
     if (disableSwitch && !respectPrefersColorScheme) {

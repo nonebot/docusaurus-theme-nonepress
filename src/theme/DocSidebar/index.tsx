@@ -105,19 +105,19 @@ const DocSidebarMobileSecondaryMenu: MobileSecondaryMenuComponent<Props> = ({
   path,
 }) => {
   return (
-    <ul
-      className={clsx(
-        ThemeClassNames.docs.docSidebarMenu,
-        "list-none m-0 pl-0"
-      )}
-    >
-      <DocSidebarItems
-        items={sidebar}
-        activePath={path}
-        onItemClick={() => toggleSidebar()}
-        level={1}
-      />
-    </ul>
+    <>
+      <hr className="px-2 opacity-70" />
+      <ul
+        className={clsx(ThemeClassNames.docs.docSidebarMenu, "list-none p-2")}
+      >
+        <DocSidebarItems
+          items={sidebar}
+          activePath={path}
+          onItemClick={() => toggleSidebar()}
+          level={1}
+        />
+      </ul>
+    </>
   );
 };
 
