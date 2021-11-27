@@ -1,0 +1,53 @@
+.tagWithCount {
+  @apply flex items-center relative pl-4 pr-2 border-l-0;
+}
+
+.tagWithCount:before,
+.tagWithCount:after {
+  content: "";
+  transition: inherit;
+  @apply absolute top-1/2 border border-gray-300;
+}
+
+.tagWithCount:hover:before,
+.tagWithCount:hover:after {
+  @apply border-light-text-active;
+}
+
+:global(.dark) .tagWithCount:before,
+:global(.dark) .tagWithCount:after {
+  @apply border-gray-500;
+}
+
+:global(.dark) .tagWithCount:hover:before,
+:global(.dark) .tagWithCount:hover:after {
+  @apply border-dark-text-active;
+}
+
+.tagWithCount:before {
+  width: 1.18rem;
+  height: 1.18rem;
+  transform: translate(50%, -50%) rotate(-45deg);
+  @apply right-full border-r-0 border-b-0;
+}
+
+.tagWithCount:after {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  @apply left-0;
+}
+
+.tagWithCount span {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  padding: 0.1rem 0.4rem;
+  margin-left: 0.3rem;
+  @apply rounded-md;
+  @apply bg-light-nonepress-200 text-light-text;
+}
+
+:global(.dark) .tagWithCount span {
+  @apply bg-dark-nonepress-200 text-dark-text;
+}
