@@ -26,7 +26,7 @@ function TOCItemList({
     return null;
   }
   return (
-    <ul className={clsx("pl-2 list-none", isChild ? undefined : className)}>
+    <ul className={clsx("pl-2", isChild ? undefined : className)}>
       {toc.map((heading) => (
         <li key={heading.id} className="m-2">
           <a

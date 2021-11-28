@@ -84,6 +84,9 @@ module.exports = {
       maxWidth: {
         50: "50%",
       },
+      padding: {
+        "0-important": "0 !important",
+      },
       margin: {
         "0-important": "0 !important",
       },
@@ -93,6 +96,9 @@ module.exports = {
       borderRadius: {
         "none-important": "0 !important",
         important: "0.25rem !important",
+      },
+      transitionProperty: {
+        "background-color": "background-color",
       },
       typography: (theme) => ({
         DEFAULT: {

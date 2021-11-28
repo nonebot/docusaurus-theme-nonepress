@@ -56,6 +56,16 @@ declare module "@theme/hooks/useSearchQuery" {
   export default useSearchQuery;
 }
 
+declare module "@theme/hooks/useTabGroupChoice" {
+  export type useTabGroupChoiceReturns = {
+    readonly tabGroupChoices: { readonly [groupId: string]: string };
+    readonly setTabGroupChoices: (groupId: string, newChoice: string) => void;
+  };
+
+  function useTabGroupChoice(): useTabGroupChoiceReturns;
+  export default useTabGroupChoice;
+}
+
 declare module "@theme/hooks/useTheme" {
   export type useThemeReturns = {
     readonly isDarkTheme: boolean;
@@ -234,6 +244,16 @@ declare module "@theme/hooks/useTransition" {
 
   function useTransition<T extends HTMLElement>(): useTransitionReturns<T>;
   export default useTransition;
+}
+
+declare module "@theme/hooks/useUserPreferencesContext" {
+  export type UserPreferencesContextProps = {
+    tabGroupChoices: { readonly [groupId: string]: string };
+    setTabGroupChoices: (groupId: string, newChoice: string) => void;
+  };
+
+  function useUserPreferencesContext(): UserPreferencesContextProps;
+  export default useUserPreferencesContext;
 }
 
 declare module "@theme/hooks/useWindowSize" {
@@ -602,6 +622,39 @@ declare module "@theme/SearchPage" {
   export default SearchPage;
 }
 
+declare module "@theme/TabItem" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+    readonly value: string;
+    readonly default?: boolean;
+    readonly label?: string;
+    readonly hidden?: boolean;
+    readonly className?: string;
+  }
+
+  function TabItem(props: Props): JSX.Element;
+  export default TabItem;
+}
+
+declare module "@theme/Tabs" {
+  import type { ReactElement } from "react";
+  import type { Props as TabItemProps } from "@theme/TabItem";
+
+  export interface Props {
+    readonly lazy?: boolean;
+    readonly children: readonly ReactElement<TabItemProps>[];
+    readonly defaultValue?: string | null;
+    readonly values?: readonly { value: string; label?: string }[];
+    readonly groupId?: string;
+    readonly className?: string;
+  }
+
+  function Tabs(props: Props): JSX.Element;
+  export default Tabs;
+}
+
 declare module "@theme/Tag" {
   import type { Optional } from "utility-types";
   import type { TagsListItem } from "@theme/TagsListByLetter";
@@ -738,6 +791,27 @@ declare module "@theme/TOCInline" {
 
   function TOCInline(props: TOCInlineProps): JSX.Element;
   export default TOCInline;
+}
+
+declare module "@theme/UserPreferencesContext" {
+  import type { Context } from "react";
+  import type { UserPreferencesContextProps } from "@theme/hooks/useUserPreferencesContext";
+
+  const UserPreferencesContext: Context<
+    UserPreferencesContextProps | undefined
+  >;
+  export default UserPreferencesContext;
+}
+
+declare module "@theme/UserPreferencesProvider" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+  }
+
+  function UserPreferencesProvider(props: Props): JSX.Element;
+  export default UserPreferencesProvider;
 }
 
 declare module "docusaurus-theme-nonepress/types" {

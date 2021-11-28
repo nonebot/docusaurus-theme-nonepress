@@ -2,6 +2,7 @@ import React from "react";
 
 import ThemeProvider from "@theme/ThemeProvider";
 import type { Props } from "@theme/LayoutProviders";
+import UserPreferencesProvider from "@theme/UserPreferencesProvider";
 import {
   AnnouncementBarProvider,
   ScrollControllerProvider,
@@ -13,13 +14,15 @@ function LayoutProvider(props: Props): JSX.Element {
   return (
     <ThemeProvider>
       <AnnouncementBarProvider>
-        <ScrollControllerProvider>
-          <DocsPreferredVersionContextProvider>
-            <MobileSecondaryMenuProvider>
-              {props.children}
-            </MobileSecondaryMenuProvider>
-          </DocsPreferredVersionContextProvider>
-        </ScrollControllerProvider>
+        <UserPreferencesProvider>
+          <ScrollControllerProvider>
+            <DocsPreferredVersionContextProvider>
+              <MobileSecondaryMenuProvider>
+                {props.children}
+              </MobileSecondaryMenuProvider>
+            </DocsPreferredVersionContextProvider>
+          </ScrollControllerProvider>
+        </UserPreferencesProvider>
       </AnnouncementBarProvider>
     </ThemeProvider>
   );
