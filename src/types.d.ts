@@ -21,6 +21,8 @@ declare module "@theme/hooks/useContextualSearchFilters" {
 
 declare module "@theme/hooks/useDocs" {
   import type { GlobalPluginData } from "docusaurus-theme-nonepress/types";
+
+  export * from "@docusaurus/plugin-content-docs/lib/theme/hooks/useDocs";
   export function useLoadedVersions(
     pluginId: string | undefined
   ): GlobalPluginData;
@@ -269,7 +271,7 @@ declare module "@theme/CodeBlock" {
 declare module "@theme/Details" {
   import { Details, DetailsProps } from "@docusaurus/theme-common";
 
-  export type Props = DetailsProps;
+  export interface Props extends DetailsProps {}
   export default Details;
 }
 
@@ -439,12 +441,12 @@ declare module "@theme/LayoutProviders" {
 }
 
 declare module "@theme/Logo" {
-  import type { PropsWithChildren } from "react";
+  import type { ComponentProps } from "react";
 
-  export type Props = PropsWithChildren<{
+  export interface Props extends ComponentProps<"a"> {
     readonly className?: string;
     readonly imageClassName?: string;
-  }>;
+  }
   function Logo(props: Props): JSX.Element;
   export default Logo;
 }
@@ -453,9 +455,8 @@ declare module "@theme/MDXComponents" {
   import type { ComponentProps } from "react";
   import type Head from "@docusaurus/Head";
   import type CodeBlock from "@theme/CodeBlock";
-  import type { MDXProviderComponents } from "@mdx-js/react";
 
-  type Components = {
+  export type MDXComponentsObject = {
     readonly head: typeof Head;
     readonly code: typeof CodeBlock;
     readonly a: (props: ComponentProps<"a">) => JSX.Element;
@@ -468,12 +469,6 @@ declare module "@theme/MDXComponents" {
     readonly h5: (props: ComponentProps<"h5">) => JSX.Element;
     readonly h6: (props: ComponentProps<"h6">) => JSX.Element;
   };
-
-  export type MDXComponentsObject = Omit<
-    MDXProviderComponents,
-    keyof Components
-  > &
-    Components;
 
   const MDXComponents: MDXComponentsObject;
   export default MDXComponents;
@@ -648,12 +643,14 @@ declare module "@theme/ThemeContext" {
 }
 
 declare module "@theme/ThemedImage" {
-  import type { PropsWithChildren } from "react";
-  export type Props = PropsWithChildren<{
-    readonly sources: { readonly light: string; readonly dark: string };
-    readonly className?: string;
-    readonly alt?: string;
-  }>;
+  import type { ComponentProps } from "react";
+
+  export interface Props extends Omit<ComponentProps<"img">, "src"> {
+    readonly sources: {
+      readonly light: string;
+      readonly dark: string;
+    };
+  }
 
   function ThemedImage(props: Props): JSX.Element;
   export default ThemedImage;
@@ -673,22 +670,6 @@ declare module "@theme/ThemeSwitcher" {
 
   function ThemeSwitcher(props: Props): JSX.Element;
   export default ThemeSwitcher;
-}
-
-declare module "@theme/TOCItems" {
-  import type { TOCItem } from "@docusaurus/types";
-
-  export type TOCItemsProps = {
-    readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel?: number;
-    readonly maxHeadingLevel?: number;
-    readonly className?: string;
-    readonly linkClassName?: string | null;
-    readonly linkActiveClassName?: string;
-  };
-
-  function TOCItems(props: TOCItemsProps): JSX.Element;
-  export default TOCItems;
 }
 
 declare module "@theme/TOC" {
@@ -716,19 +697,6 @@ declare module "@theme/TOC" {
   export default TOC;
 }
 
-declare module "@theme/TOCInline" {
-  import type { TOCItem } from "@docusaurus/types";
-
-  export type TOCInlineProps = {
-    readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel?: number;
-    readonly maxHeadingLevel?: number;
-  };
-
-  function TOCInline(props: TOCInlineProps): JSX.Element;
-  export default TOCInline;
-}
-
 declare module "@theme/TOCCollapsible" {
   import type { TOCItem } from "@docusaurus/types";
 
@@ -741,6 +709,35 @@ declare module "@theme/TOCCollapsible" {
 
   function TOCCollapsible(props: TOCCollapsibleProps): JSX.Element;
   export default TOCCollapsible;
+}
+
+declare module "@theme/TOCItems" {
+  import type { TOCItem } from "@docusaurus/types";
+
+  export type TOCItemsProps = {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
+    readonly linkClassName?: string | null;
+    readonly linkActiveClassName?: string;
+  };
+
+  function TOCItems(props: TOCItemsProps): JSX.Element;
+  export default TOCItems;
+}
+
+declare module "@theme/TOCInline" {
+  import type { TOCItem } from "@docusaurus/types";
+
+  export type TOCInlineProps = {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+  };
+
+  function TOCInline(props: TOCInlineProps): JSX.Element;
+  export default TOCInline;
 }
 
 declare module "docusaurus-theme-nonepress/types" {
