@@ -106,7 +106,7 @@ const DocSidebarMobileSecondaryMenu: MobileSecondaryMenuComponent<Props> = ({
 }) => {
   return (
     <>
-      <hr className="px-2 opacity-70" />
+      <hr className="mx-2 opacity-70 text-gray-300 dark:text-gray-600" />
       <ul
         className={clsx(ThemeClassNames.docs.docSidebarMenu, "list-none p-2")}
       >
