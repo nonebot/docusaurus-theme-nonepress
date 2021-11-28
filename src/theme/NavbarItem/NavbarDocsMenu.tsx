@@ -27,7 +27,7 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
 }
 
 function NavbarDocsMenu(props: Props): JSX.Element {
-  const { label, icon, className, category } = props;
+  const { docId, label, icon, className, category } = props;
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLDivElement>();
 
@@ -93,9 +93,22 @@ function NavbarDocsMenu(props: Props): JSX.Element {
     return items;
   }
 
+  function getDocInVersion() {
+    const allDocs = dropdownVersion.docs;
+    const doc = allDocs.find((versionDoc) => versionDoc.id === docId);
+    if (!doc) {
+      const docIds = allDocs.map((versionDoc) => versionDoc.id).join("\n- ");
+      throw new Error(
+        `DocNavbarItem: couldn't find any doc with id "${docId}" in version ${dropdownVersion.name}.
+  Available doc ids are:\n- ${docIds}`
+      );
+    }
+    return doc;
+  }
+
   const items = getItems();
   const versionItems = getVersionItems();
-  const toUrl = getVersionMainDoc(dropdownVersion).path;
+  const toUrl = (docId && getDocInVersion().path) || (items && items[0]?.to);
 
   return (
     <li

@@ -1,22 +1,26 @@
 import React from "react";
 
 import NavbarLink from "./NavbarLink";
+import NavbarDocLink from "./NavbarDocLink";
 import NavbarDropdown from "./NavbarDropdown";
 import NavbarDocsMenu from "./NavbarDocsMenu";
 import type { Props } from "@theme/NavbarItem";
 import NavbarLinkMobile from "./NavbarLinkMobile";
+import NavbarDocLinkMobile from "./NavbarDocLinkMobile";
 import NavbarDropdownMobile from "./NavbarDropdownMobile";
 import NavbarDocsMenuMobile from "./NavbarDocsMenuMobile";
 import type { NavbarDropdown as NavDropdown } from "@theme/hooks/useThemeConfig";
 
 const NavbarItemComponents = {
   default: NavbarLink,
+  docLink: NavbarDocLink,
   dropdown: NavbarDropdown,
   docsMenu: NavbarDocsMenu,
 } as const;
 
 const NavbarItemMobileComponents = {
   default: NavbarLinkMobile,
+  docLink: NavbarDocLinkMobile,
   dropdown: NavbarDropdownMobile,
   docsMenu: NavbarDocsMenuMobile,
 } as const;

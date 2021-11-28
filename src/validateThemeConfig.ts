@@ -106,6 +106,11 @@ const DefaultNavbarItemSchema = NavbarItemBaseSchema.append({
     "object.xor": 'One and only one between "to" and "href" should be provided',
   });
 
+// doc link
+const DocLinkNavbarItemSchema = NavbarItemBaseSchema.append({
+  docId: Joi.string().required(),
+});
+
 const itemWithType = (type) => {
   // because equal(undefined) is not supported :/
   const typeSchema = type
@@ -144,6 +149,7 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
 
 // docs menu
 const DocsMenuDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
+  docId: Joi.string(),
   type: Joi.string().equal("docsMenu").required(),
   category: Joi.string().optional(),
 });
@@ -157,6 +163,10 @@ export const NavbarItemSchema = Joi.object().when(Joi.ref("."), {
     {
       is: itemWithType("docsMenu"),
       then: DocsMenuDropdownNavbarItemSchema,
+    },
+    {
+      is: itemWithType("docLink"),
+      then: DocLinkNavbarItemSchema,
     },
     {
       is: itemWithType(undefined),

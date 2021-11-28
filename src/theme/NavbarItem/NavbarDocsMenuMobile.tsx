@@ -1,24 +1,23 @@
 import clsx from "clsx";
 import React from "react";
+import { sortBy } from "lodash";
 
 import Link from "@docusaurus/Link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import type { Props } from "@theme/NavbarItem/NavbarDocsMenuMobile";
-import { useLatestVersion, useActiveDocContext } from "@theme/hooks/useDocs";
+import type { CustomDocFrontMatter } from "@theme/NavbarItem/NavbarDocsMenu";
 import {
-  GlobalDoc,
-  GlobalVersion,
-} from "@docusaurus/plugin-content-docs/lib/types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
-  return version.docs.find((doc) => doc.id === version.mainDocId);
-}
+  useLatestVersion,
+  useLoadedVersions,
+  useActiveDocContext,
+} from "@theme/hooks/useDocs";
 
 function NavbarDocsMenuMobile(props: Props): JSX.Element {
-  const { label, icon, className } = props;
+  const { docId, label, icon, className, category } = props;
 
   const docsPluginId = undefined;
+  const docsData = useLoadedVersions(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId);
 
@@ -27,7 +26,47 @@ function NavbarDocsMenuMobile(props: Props): JSX.Element {
   const dropdownVersion =
     activeDocContext.activeVersion ?? preferredVersion ?? latestVersion;
 
-  const toUrl = getVersionMainDoc(dropdownVersion).path;
+  function getItems() {
+    const activeVersionData = docsData.versions.find(
+      (version) => version.versionName === dropdownVersion.name
+    );
+    const activeDocs = activeVersionData.docs.filter((doc) => {
+      const menu = (doc.frontMatter as CustomDocFrontMatter)?.options?.menu;
+      const weight = menu?.weight;
+      const docCategory = menu?.category;
+      let inCategory = true;
+      if (category) {
+        inCategory = docCategory && docCategory.indexOf(category) >= 0;
+      }
+      return weight && inCategory;
+    });
+    const sortedDocs = sortBy(activeDocs, [
+      (doc) => (doc.frontMatter as CustomDocFrontMatter).options.menu.weight,
+    ]);
+    const docLinks = sortedDocs.map((doc) => ({
+      title: doc.title,
+      description: doc.description,
+      to: doc.permalink,
+    }));
+
+    return docLinks;
+  }
+
+  function getDocInVersion() {
+    const allDocs = dropdownVersion.docs;
+    const doc = allDocs.find((versionDoc) => versionDoc.id === docId);
+    if (!doc) {
+      const docIds = allDocs.map((versionDoc) => versionDoc.id).join("\n- ");
+      throw new Error(
+        `DocNavbarItem: couldn't find any doc with id "${docId}" in version ${dropdownVersion.name}.
+  Available doc ids are:\n- ${docIds}`
+      );
+    }
+    return doc;
+  }
+
+  const items = getItems();
+  const toUrl = (docId && getDocInVersion().path) || (items && items[0]?.to);
 
   return (
     <li className={className}>

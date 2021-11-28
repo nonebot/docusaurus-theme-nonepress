@@ -121,6 +121,10 @@ declare module "@theme/hooks/useThemeConfig" {
     prependBaseUrlToHref?: boolean;
   };
 
+  export type NavbarDocLink = NavbarItem & {
+    docId: string;
+  };
+
   export type NavbarDropdown = NavbarItem & {
     to?: string;
     href?: string;
@@ -129,6 +133,7 @@ declare module "@theme/hooks/useThemeConfig" {
   };
 
   export type NavbarDocsMenu = NavbarItem & {
+    docId?: string;
     type: "docsMenu";
     category?: string;
   };
@@ -491,13 +496,23 @@ declare module "@theme/NavbarItem" {
   export default NavbarItem;
 }
 
-declare module "@theme/NavbarItem/NavbarLink" {
+declare module "@theme/NavbarItem/NavbarDocLink" {
   import type { PropsWithChildren } from "react";
-  import type { NavbarLink as NavLink } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<NavLink & { linkClassName?: string }>;
+  import type { NavbarDocLink as NavDocLink } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<
+    NavDocLink & { linkClassName?: string }
+  >;
 
-  function NavbarLink(props: Props): JSX.Element;
-  export default NavbarLink;
+  function NavbarDocLink(props: Props): JSX.Element;
+  export default NavbarDocLink;
+}
+
+declare module "@theme/NavbarItem/NavbarDocLinkMobile" {
+  import type { Props } from "@theme/NavbarItem/NavbarDocLink";
+  export type { Props } from "@theme/NavbarItem/NavbarDocLink";
+
+  function NavbarDocLinkMobile(props: Props): JSX.Element;
+  export default NavbarDocLinkMobile;
 }
 
 declare module "@theme/NavbarItem/NavbarDocsMenu" {
@@ -515,9 +530,8 @@ declare module "@theme/NavbarItem/NavbarDocsMenu" {
 }
 
 declare module "@theme/NavbarItem/NavbarDocsMenuMobile" {
-  import type { PropsWithChildren } from "react";
-  import type { NavbarDocsMenu } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<NavbarDocsMenu>;
+  import type { Props } from "@theme/NavbarItem/NavbarDocsMenu";
+  export type { Props } from "@theme/NavbarItem/NavbarDocsMenu";
 
   function NavbarDocsMenuMobile(props: Props): JSX.Element;
   export default NavbarDocsMenuMobile;
@@ -533,18 +547,25 @@ declare module "@theme/NavbarItem/NavbarDropdown" {
 }
 
 declare module "@theme/NavbarItem/NavbarDropdownMobile" {
-  import type { PropsWithChildren } from "react";
-  import type { NavbarDropdown } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<NavbarDropdown>;
+  import type { Props } from "@theme/NavbarItem/NavbarDropdown";
+  export type { Props } from "@theme/NavbarItem/NavbarDropdown";
 
   function NavbarDropdownMobile(props: Props): JSX.Element;
   export default NavbarDropdownMobile;
 }
 
-declare module "@theme/NavbarItem/NavbarLinkMobile" {
+declare module "@theme/NavbarItem/NavbarLink" {
   import type { PropsWithChildren } from "react";
-  import type { NavbarLink } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<NavbarLink>;
+  import type { NavbarLink as NavLink } from "@theme/hooks/useThemeConfig";
+  export type Props = PropsWithChildren<NavLink & { linkClassName?: string }>;
+
+  function NavbarLink(props: Props): JSX.Element;
+  export default NavbarLink;
+}
+
+declare module "@theme/NavbarItem/NavbarLinkMobile" {
+  import type { Props } from "@theme/NavbarItem/NavbarLink";
+  export type { Props } from "@theme/NavbarItem/NavbarLink";
 
   function NavbarLinkMobile(props: Props): JSX.Element;
   export default NavbarLinkMobile;
