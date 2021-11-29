@@ -1,12 +1,11 @@
-# Docusaurus Theme Nonepress
+# Docusaurus Preset Nonepress
 
-## Installation
+The presets for Nonepress theme.
 
 ## Installation
 
 ```bash
-npx create-docusaurus@latest website classic
-npm i --save docusaurus-preset-nonepress
+npm i --save github:nonebot/docusaurus-preset-nonepress#master
 ```
 
 Modify your `docusaurus.config.js`:

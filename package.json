@@ -1,84 +1,35 @@
 {
-  "name": "docusaurus-theme-nonepress",
-  "version": "2.0.0",
-  "description": "Nonepress theme for Docusaurus",
-  "files": [
-    "lib/**/*",
-    "src/**/*"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "main": "lib/index.js",
-  "types": "src/types.d.ts",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yanyongyu/docusaurus-theme-nonepress.git"
-  },
-  "license": "MIT",
   "scripts": {
-    "build": "tsc --noEmit && npm run babel && npm run prettier",
-    "babel": "cross-env BABEL_ENV=lib npx babel src -d lib --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
-    "prettier": "prettier --write \"**/*.{js,ts,jsx,tsc}\"",
-    "update-code-translations": "node -e 'require(\"./update-code-translations.js\").run()'"
-  },
-  "dependencies": {
-    "@docsearch/react": "^3.0.0-alpha.39",
-    "@docusaurus/core": "2.0.0-beta.9",
-    "@docusaurus/plugin-content-docs": "2.0.0-beta.9",
-    "@docusaurus/plugin-content-pages": "2.0.0-beta.9",
-    "@docusaurus/theme-common": "2.0.0-beta.9",
-    "@docusaurus/utils": "2.0.0-beta.9",
-    "@docusaurus/utils-common": "2.0.0-beta.9",
-    "@docusaurus/utils-validation": "2.0.0-beta.9",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.16",
-    "@mdx-js/mdx": "^1.6.21",
-    "@mdx-js/react": "^1.6.21",
-    "@seznam/compose-react-refs": "^1.0.6",
-    "@tailwindcss/typography": "^0.5.0-alpha.3",
-    "algoliasearch": "^4.11.0",
-    "algoliasearch-helper": "^3.5.5",
-    "autoprefixer": "^10.3.1",
-    "chalk": "^4.1.2",
-    "clsx": "^1.1.1",
-    "copy-text-to-clipboard": "^3.0.1",
-    "eta": "^1.12.3",
-    "globby": "^11.0.2",
-    "lodash": "^4.17.20",
-    "parse-numeric-range": "^1.2.0",
-    "postcss": "^8.3.7",
-    "postcss-import": "^14.0.2",
-    "prism-react-renderer": "^1.2.1",
-    "prismjs": "^1.23.0",
-    "react-cool-onclickoutside": "^1.6.2",
-    "react-router-dom": "^5.2.0",
-    "tailwindcss": ">=3.0.0 || >=3.0.0-alpha.1"
+    "lerna": "lerna"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.14.8",
-    "@docusaurus/module-type-aliases": "2.0.0-beta.9",
-    "@docusaurus/types": "2.0.0-beta.9",
-    "@tsconfig/docusaurus": "^1.0.2",
-    "@types/mdx-js__react": "^1.5.4",
-    "@types/react": "^17.0.15",
-    "@types/react-helmet": "^6.1.2",
-    "@types/react-router-dom": "^5.1.8",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.16.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/fs-extra": "^9.0.6",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^14.14.22",
+    "@types/prismjs": "^1.16.2",
+    "@types/prompts": "^2.0.9",
+    "@types/react": "^17.0.2",
+    "@types/react-dev-utils": "^9.0.1",
+    "@types/react-helmet": "^6.0.0",
+    "@types/react-router-config": "^5.0.1",
+    "lerna": "^4.0.0",
     "cross-env": "^7.0.3",
-    "fs-extra": "^10.0.0",
     "prettier": "^2.4.1",
-    "react-dom": "^17.0.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "tslib": "^2.3.1",
     "typescript": "^4.3.5"
-  },
-  "peerDependencies": {
-    "react": "^16.8.4 || ^17.0.0",
-    "react-dom": "^16.8.4 || ^17.0.0"
-  },
-  "engines": {
-    "node": ">=14"
   }
 }
