@@ -1,9 +1,14 @@
+import fs from "fs";
 import path from "path";
 import Module from "module";
 
+import { memoize } from "lodash";
+import { defaultConfig, compile } from "eta";
 import type { AcceptedPlugin } from "postcss";
 import { LoadContext, Plugin } from "@docusaurus/types";
+import openSearchTemplate from "./templates/opensearch";
 import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
+import { normalizeUrl, getSwizzledComponent } from "@docusaurus/utils";
 import pluginContentDoc from "@docusaurus/plugin-content-docs/lib/index";
 import type {
   PluginOptions,
@@ -64,12 +69,27 @@ const noFlashColorMode = ({
 })();`;
 };
 
+const getCompiledOpenSearchTemplate = memoize(() =>
+  compile(openSearchTemplate.trim())
+);
+
+function renderOpenSearchTemplate(data: {
+  title: string;
+  url: string;
+  favicon: string | null;
+}) {
+  const compiled = getCompiledOpenSearchTemplate();
+  return compiled(data, defaultConfig);
+}
+
+const OPEN_SEARCH_FILENAME = "opensearch.xml";
+
 export default function docusaurusThemeNonepress(
   context: LoadContext,
   options: PluginOptions
 ): Plugin<LoadedContent> {
   const {
-    siteConfig: { themeConfig: roughlyTypedThemeConfig },
+    siteConfig: { title, url, favicon, themeConfig: roughlyTypedThemeConfig },
     baseUrl,
   } = context;
   const themeConfig = (roughlyTypedThemeConfig || {}) as ThemeConfig;
@@ -79,6 +99,10 @@ export default function docusaurusThemeNonepress(
     tailwindConfig,
     prism: { additionalLanguages = [] } = {},
   } = themeConfig;
+  const SearchPageComponent = "./theme/SearchPage/index.js";
+  const searchPagePath =
+    getSwizzledComponent(SearchPageComponent) ||
+    path.resolve(__dirname, SearchPageComponent);
   const docsPluginInstance = pluginContentDoc(context, options);
 
   return {
@@ -151,16 +175,49 @@ export default function docusaurusThemeNonepress(
 
     async contentLoaded({ content, actions }) {
       const { loadedVersions } = content;
-      const { setGlobalData } = actions;
+      const { setGlobalData, addRoute } = actions;
 
       // TODO: truncate the data to what we need
       setGlobalData<GlobalPluginData>({
         versions: loadedVersions,
       });
+
+      addRoute({
+        path: normalizeUrl([baseUrl, "search"]),
+        component: searchPagePath,
+        exact: true,
+      });
+    },
+
+    async postBuild({ outDir }) {
+      try {
+        fs.writeFileSync(
+          path.join(outDir, OPEN_SEARCH_FILENAME),
+          renderOpenSearchTemplate({
+            title,
+            url: url + baseUrl,
+            favicon: favicon ? normalizeUrl([url, baseUrl, favicon]) : null,
+          })
+        );
+      } catch (err) {
+        console.error(err);
+        throw new Error(`Generating OpenSearch file failed: ${err}`);
+      }
     },
 
     injectHtmlTags() {
       return {
+        headTags: [
+          {
+            tagName: "link",
+            attributes: {
+              rel: "search",
+              type: "application/opensearchdescription+xml",
+              title,
+              href: normalizeUrl([baseUrl, OPEN_SEARCH_FILENAME]),
+            },
+          },
+        ],
         preBodyTags: [
           {
             tagName: "script",

@@ -1,4 +1,16 @@
+:root {
+  --docsearch-primary-color: theme("colors.light.text.active");
+}
+
+html[data-theme="dark"] {
+  --docsearch-primary-color: theme("colors.dark.text.active");
+}
+
 .DocSearch-Button {
   margin: 0 !important;
   transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
+}
+
+.DocSearch-Screen-Icon > svg {
+  display: inline;
 }

@@ -2,7 +2,6 @@ import clsx from "clsx";
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 
-import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
 import Layout from "@theme/Layout";
 import styles from "./styles.module.css";

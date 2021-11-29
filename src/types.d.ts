@@ -191,6 +191,7 @@ declare module "@theme/hooks/useThemeConfig" {
 
   export type AlgoliaConfig = {
     contextualSearch?: boolean;
+    externalUrlRegex?: string;
     appId?: string;
     apiKey: string;
     indexName: string;

@@ -61,6 +61,10 @@ module.exports = {
             DEFAULT: theme("nonepress.light.theme.DEFAULT"),
             darker: theme("nonepress.light.theme.300"),
           },
+          search: {
+            hit: "#444950",
+            highlight: "rgba(255, 215, 142, .25)",
+          },
         },
         dark: {
           DEFAULT: "#18191a",
@@ -75,6 +79,10 @@ module.exports = {
           details: {
             DEFAULT: theme("nonepress.dark.theme.DEFAULT"),
             darker: theme("nonepress.dark.theme.300"),
+          },
+          search: {
+            hit: "#bec3c9",
+            highlight: "rgba(255, 215, 142, .25)",
           },
         },
       }),

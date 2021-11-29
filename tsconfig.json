@@ -2,6 +2,8 @@
   "extends": "@tsconfig/docusaurus/tsconfig.json",
   "include": ["src/"],
   "compilerOptions": {
+    "declaration": true,
+    "declarationMap": false,
     "types": ["node", "@docusaurus/module-type-aliases"]
   }
 }
