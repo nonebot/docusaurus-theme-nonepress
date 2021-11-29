@@ -5,6 +5,7 @@ import Module from "module";
 import { memoize } from "lodash";
 import { defaultConfig, compile } from "eta";
 import type { AcceptedPlugin } from "postcss";
+import { toGlobalDataVersion } from "./globalData";
 import { LoadContext, Plugin } from "@docusaurus/types";
 import openSearchTemplate from "./templates/opensearch";
 import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
@@ -177,9 +178,8 @@ export default function docusaurusThemeNonepress(
       const { loadedVersions } = content;
       const { setGlobalData, addRoute } = actions;
 
-      // TODO: truncate the data to what we need
       setGlobalData<GlobalPluginData>({
-        versions: loadedVersions,
+        versions: loadedVersions.map(toGlobalDataVersion),
       });
 
       addRoute({

@@ -533,12 +533,8 @@ declare module "@theme/NavbarItem/NavbarDocLinkMobile" {
 
 declare module "@theme/NavbarItem/NavbarDocsMenu" {
   import type { PropsWithChildren } from "react";
-  import type { DocFrontMatter } from "@docusaurus/plugin-content-docs/lib/types";
   import type { NavbarDocsMenu as NavDocsMenu } from "@theme/hooks/useThemeConfig";
 
-  export type CustomDocFrontMatter = DocFrontMatter & {
-    options?: { menu?: { weight?: number; category?: Array<string> } };
-  };
   export type Props = PropsWithChildren<NavDocsMenu>;
 
   function NavbarDocsMenu(props: Props): JSX.Element;
@@ -816,10 +812,27 @@ declare module "@theme/UserPreferencesProvider" {
 }
 
 declare module "docusaurus-theme-nonepress/types" {
-  import type { LoadedVersion } from "@docusaurus/plugin-content-docs/lib/types";
+  import type { GlobalDataVersion } from "@docusaurus/plugin-content-docs-types";
+
+  export type GlobalFrontMatter = {
+    options?: { menu?: { weight?: number; category?: Array<string> } };
+  };
+
+  export type GlobalDoc = {
+    title: string;
+    description: string;
+    permalink: string;
+    frontMatter: GlobalFrontMatter;
+  };
+
+  export type GlobalVersion = {
+    name: GlobalDataVersion["name"];
+    mainDocId: GlobalDataVersion["mainDocId"];
+    docs: GlobalDoc[];
+  };
 
   export type GlobalPluginData = {
-    versions: Array<LoadedVersion>;
+    versions: GlobalVersion[];
   };
 
   export type { ThemeConfig } from "@theme/hooks/useThemeConfig";

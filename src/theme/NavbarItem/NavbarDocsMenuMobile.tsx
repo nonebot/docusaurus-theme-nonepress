@@ -6,7 +6,6 @@ import Link from "@docusaurus/Link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import type { Props } from "@theme/NavbarItem/NavbarDocsMenuMobile";
-import type { CustomDocFrontMatter } from "@theme/NavbarItem/NavbarDocsMenu";
 import {
   useLatestVersion,
   useLoadedVersions,
@@ -28,10 +27,10 @@ function NavbarDocsMenuMobile(props: Props): JSX.Element {
 
   function getItems() {
     const activeVersionData = docsData.versions.find(
-      (version) => version.versionName === dropdownVersion.name
+      (version) => version.name === dropdownVersion.name
     );
     const activeDocs = activeVersionData.docs.filter((doc) => {
-      const menu = (doc.frontMatter as CustomDocFrontMatter)?.options?.menu;
+      const menu = doc.frontMatter?.options?.menu;
       const weight = menu?.weight;
       const docCategory = menu?.category;
       let inCategory = true;
@@ -41,7 +40,7 @@ function NavbarDocsMenuMobile(props: Props): JSX.Element {
       return weight && inCategory;
     });
     const sortedDocs = sortBy(activeDocs, [
-      (doc) => (doc.frontMatter as CustomDocFrontMatter).options.menu.weight,
+      (doc) => doc.frontMatter.options.menu.weight,
     ]);
     const docLinks = sortedDocs.map((doc) => ({
       title: doc.title,
