@@ -41,7 +41,7 @@ function useTransition<T extends HTMLElement>(): useTransitionReturns<T> {
   const [transitionClasses, setTransition] = useState<Array<string>>([]);
 
   const runTransition = useCallback(
-    (dir: "enter" | "leave", callback: () => void = null) => {
+    async (dir: "enter" | "leave") => {
       const activeClasses = getTransitionClasses(element, `${dir}-active`);
       const fromClasses = getTransitionClasses(element, `${dir}-from`);
       const toClasses = getTransitionClasses(element, `${dir}-to`);
@@ -49,31 +49,29 @@ function useTransition<T extends HTMLElement>(): useTransitionReturns<T> {
       if (!mounted.current) return;
       setTransition([...activeClasses, ...fromClasses]);
 
-      nextFrame().then(() => {
-        if (!mounted.current) return;
-        setTransition([...activeClasses, ...toClasses]);
-        afterTransition(element).then(() => {
-          if (mounted.current) {
-            setTransition([]);
-          }
-          if (callback) callback();
-        });
-      });
+      await nextFrame();
+
+      if (!mounted.current) return;
+      setTransition([...activeClasses, ...toClasses]);
+
+      await afterTransition(element);
+
+      if (!mounted.current) return;
+      setTransition([]);
     },
     [element, setTransition]
   );
 
-  const enter = useCallback(() => {
+  const enter = useCallback(async () => {
     if (!mounted.current) return;
     setActive(true);
-    runTransition("enter");
+    await runTransition("enter");
   }, [setActive]);
 
-  const leave = useCallback(() => {
-    runTransition("leave", () => {
-      if (!mounted.current) return;
-      setActive(false);
-    });
+  const leave = useCallback(async () => {
+    await runTransition("leave");
+    if (!mounted.current) return;
+    setActive(false);
   }, [setActive]);
 
   useEffect(() => {
