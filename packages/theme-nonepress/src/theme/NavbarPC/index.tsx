@@ -32,7 +32,9 @@ function NavbarDocsVersion(): JSX.Element {
     useTransition<HTMLUListElement>();
   const ref = useOnclickOutside(
     () => {
-      leave();
+      if (active) {
+        leave();
+      }
     },
     {
       ignoreClass: "ignore-version-dropdown",

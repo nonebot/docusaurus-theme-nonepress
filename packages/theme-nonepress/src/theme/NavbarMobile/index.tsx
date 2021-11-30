@@ -9,22 +9,15 @@ import type { Props } from "@theme/NavbarMobile";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  useMobileSecondaryMenuRenderer,
-  usePrevious,
-  useHistoryPopHandler,
-} from "@docusaurus/theme-common";
-
-type NavbarMobileSidebarProps = {
-  sidebarShown: boolean;
-  toggleSidebar: () => void;
-};
+import { useMobileSecondaryMenuRenderer } from "@docusaurus/theme-common";
 
 function NavbarMobile(props: Props): JSX.Element {
   const { element, active, transitionClasses, leave } = props;
   const ref = useOnclickOutside(
     () => {
-      leave();
+      if (active) {
+        leave();
+      }
     },
     {
       ignoreClass: "ignore-mobile-menu",
