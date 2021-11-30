@@ -2,10 +2,25 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "test"
   ],
   "scripts": {
-    "lerna": "lerna"
+    "start": "yarn build:packages && yarn start:test",
+    "start:test": "yarn workspace test start",
+    "start:test:baseUrl": "yarn workspace test start:baseUrl",
+    "build": "yarn build:packages && yarn build:test",
+    "build:packages": "lerna run build --no-private",
+    "build:test": "yarn workspace test build",
+    "build:test:baseUrl": "yarn workspace test build:baseUrl",
+    "clear:test": "yarn workspace test clear",
+    "serve:test": "yarn workspace test serve",
+    "canary": "yarn canary:bumpVersion && yarn canary:publish",
+    "canary:version": "echo 0.0.0-`git rev-list --count HEAD`+`git rev-parse --short HEAD`",
+    "canary:bumpVersion": "yarn lerna version `yarn --silent canary:version` --exact --no-push --yes",
+    "canary:publish": "yarn lerna publish from-package --dist-tag canary --yes --no-verify-access",
+    "lerna": "lerna",
+    "clear": "(yarn workspace test clear || echo 'Failure while running docusaurus clear') && yarn lerna exec --ignore docusaurus yarn rimraf lib"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc --noEmit && npm run babel && npm run prettier",
     "babel": "cross-env BABEL_ENV=lib npx babel src -d lib --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
-    "prettier": "prettier --write \"**/*.{js,ts,jsx,tsc}\""
+    "prettier": "prettier --config ../../.prettierrc --write \"**/*.{js,ts,jsx,tsc}\""
   },
   "dependencies": {
     "@docsearch/react": "^3.0.0-alpha.39",
