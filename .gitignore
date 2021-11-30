@@ -1,4 +1,5 @@
 .docusaurus/
+build/
 
 ### Node ###
 # Logs

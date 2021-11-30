@@ -239,8 +239,8 @@ declare module "@theme/hooks/useTransition" {
     readonly element: RefObject<T>;
     readonly active: boolean;
     readonly transitionClasses: Array<string>;
-    readonly enter: () => Promise<void>;
-    readonly leave: () => Promise<void>;
+    readonly enter: () => void;
+    readonly leave: () => void;
   };
 
   function useTransition<T extends HTMLElement>(): useTransitionReturns<T>;

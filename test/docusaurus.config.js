@@ -42,10 +42,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             },
             {
               label: "dropdown",
-              to: "/docs/",
+              to: "/",
               items: [
-                { label: "introduction", to: "/docs/" },
-                { label: "guide", icon: ["fas", "book"], to: "/docs/" },
+                { label: "introduction", to: "/" },
+                { label: "guide", icon: ["fas", "book"], to: "/" },
                 { label: "external", href: "https://www.google.com" },
               ],
             },
@@ -83,7 +83,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             {
               title: "Documentation",
               icon: ["fas", "book"],
-              items: [{ label: "Introduction", to: "/introduction" }],
+              items: [{ label: "Introduction", to: "/" }],
             },
             {
               title: "GitHub",
