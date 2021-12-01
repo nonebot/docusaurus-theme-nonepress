@@ -46,7 +46,7 @@ function DocItem(props: Props): JSX.Element {
       <Seo {...{ title, description, keywords, image }} />
 
       <div className="relative flex flex-row w-full">
-        <div className="flex-grow max-w-full p-4">
+        <div className="flex-grow prose dark:prose-dark p-4 mx-auto">
           <DocVersionBanner versionMetadata={versionMetadata} />
           <div className="doc-content">
             <article>
@@ -75,12 +75,7 @@ function DocItem(props: Props): JSX.Element {
                 />
               )}
 
-              <div
-                className={clsx(
-                  ThemeClassNames.docs.docMarkdown,
-                  "prose lg:prose-xl dark:prose-dark"
-                )}
-              >
+              <div className={ThemeClassNames.docs.docMarkdown}>
                 {shouldAddTitle && <MainHeading>{title}</MainHeading>}
 
                 <DocContent />

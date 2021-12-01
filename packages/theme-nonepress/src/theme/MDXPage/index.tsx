@@ -41,7 +41,7 @@ function MDXPage(props: Props): JSX.Element {
                     <div
                       className={clsx(
                         ThemeClassNames.page.mdxPage,
-                        "prose lg:prose-xl dark:prose-dark"
+                        "prose dark:prose-dark mx-auto"
                       )}
                     >
                       <MDXProvider components={MDXComponents}>

@@ -80,7 +80,7 @@ function NavbarDocsVersion(): JSX.Element {
   }
 
   return (
-    <div className="self-end mr-5 w-28 relative md:mr-0">
+    <div className="self-end mr-5 w-32 relative md:mr-0">
       <button
         type="button"
         ref={ref}
@@ -127,7 +127,7 @@ function NavbarDocsVersion(): JSX.Element {
               isActive={version.isActive}
               isNavLink={version.isNavLink}
               activeClassName={styles["version-selected"]}
-              className="relative flex justify-end items-center content-center transition py-2 px-7 rounded duration-300 hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200"
+              className="relative flex justify-end items-center content-center transition py-2 pl-7 rounded duration-300 hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200"
             >
               <span
                 aria-label="Selected"

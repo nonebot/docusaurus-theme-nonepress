@@ -127,6 +127,7 @@ module.exports = {
             "--tw-prose-pre-bg": theme("colors.light.DEFAULT"),
             // "--tw-prose-th-borders": "inherit",
             "--tw-prose-td-borders": "inherit",
+            maxWidth: "80ch",
             a: {
               textDecoration: "none",
             },
@@ -153,43 +154,12 @@ module.exports = {
         },
         dark: {
           css: {
-            "--tw-prose-body": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-lead": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-links": theme("colors.dark.text.active"),
-            "--tw-prose-bold": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-counters": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-bullets": theme("colors.dark.text.DEFAULT"),
-            // "--tw-prose-hr": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-quotes": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-quote-borders": theme("colors.dark.text.active"),
-            "--tw-prose-headings": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-captions": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-code": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-pre-code": theme("colors.dark.text.DEFAULT"),
             "--tw-prose-pre-bg": theme("colors.dark.DEFAULT"),
-            // "--tw-prose-th-borders": theme("colors.dark.text.DEFAULT"),
-            "--tw-prose-td-borders": theme("colors.dark.text.DEFAULT"),
-            a: {
-              textDecoration: "none",
-            },
             code: {
               backgroundColor: "#333437",
-              border: "0.1rem solid rgba(0, 0, 0, 0.1)",
-              borderRadius: "0.4rem",
-              padding: "0.1rem",
-            },
-            "code::before": {
-              content: "none",
-            },
-            "code::after": {
-              content: "none",
-            },
-            "pre code": {
-              fontSize: "0.9rem !important",
-              backgroundColor: "transparent",
-              border: "none",
-              borderRadius: "none",
-              padding: "0",
             },
           },
         },
