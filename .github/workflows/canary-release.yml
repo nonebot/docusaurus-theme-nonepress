@@ -26,7 +26,7 @@ jobs:
           git config --global user.name "NoneBot"
           git config --global user.email "admin@nonebot.dev"
           git fetch
-          git checkout main
+          git checkout master
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
