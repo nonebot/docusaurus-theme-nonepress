@@ -5,7 +5,7 @@ The presets for Nonepress theme.
 ## Installation
 
 ```bash
-npm i --save github:nonebot/docusaurus-preset-nonepress#master
+npm i --save docusaurus-preset-nonepress
 ```
 
 Modify your `docusaurus.config.js`:
