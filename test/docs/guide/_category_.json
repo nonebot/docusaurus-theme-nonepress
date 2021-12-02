@@ -1,4 +1,5 @@
 {
   "label": "Guide",
-  "position": 1
+  "position": 1,
+  "collapsible": false
 }

@@ -85,11 +85,11 @@ function DocSidebarItemCategory({
     >
       <a
         className={clsx(
-          "flex relative justify-between leading-5 px-4 py-1 rounded",
+          "flex relative justify-between leading-5 px-4 py-1 rounded font-bold",
           "text-light-text dark:text-dark-text",
-          "hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200",
           {
-            "mb-1": collapsible,
+            "mb-1 hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200":
+              collapsible,
             "text-light-text-active dark:text-dark-text-active":
               collapsible && isActive,
             "bg-light-nonepress-200 dark:bg-dark-nonepress-200":
@@ -109,12 +109,14 @@ function DocSidebarItemCategory({
         {...props}
       >
         {label}
-        <FontAwesomeIcon
-          className={clsx("transition transform ease-linear text-xl", {
-            "rotate-90": !collapsed,
-          })}
-          icon={["fas", "chevron-right"]}
-        />
+        {collapsible && (
+          <FontAwesomeIcon
+            className={clsx("transition transform ease-linear text-xl", {
+              "rotate-90": !collapsed,
+            })}
+            icon={["fas", "chevron-right"]}
+          />
+        )}
       </a>
 
       <Collapsible
