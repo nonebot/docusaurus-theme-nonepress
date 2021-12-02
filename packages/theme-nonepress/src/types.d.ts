@@ -202,8 +202,8 @@ declare module "@theme/hooks/useThemeConfig" {
 
   export type ThemeConfig = {
     colorMode?: ColorModeConfig;
-    docs: DocsConfig;
-    tableOfContents: TOCConfig;
+    docs?: DocsConfig;
+    tableOfContents?: TOCConfig;
     metadatas?: MetadataConfig[];
     logo: LogoConfig;
     navbar?: NavbarConfig;
