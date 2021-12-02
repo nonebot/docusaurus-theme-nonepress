@@ -48,7 +48,7 @@ function NavbarMobile(props: Props): JSX.Element {
       data-transition-leave-from="opacity-100 scale-100"
       data-transition-leave-to="opacity-0 scale-95"
     >
-      <div className="relative max-h-screen rounded-lg shadow-md rel bg-light-nonepress ring-1 ring-black ring-opacity-5 overflow-auto dark:bg-dark-nonepress">
+      <div className="relative max-h-screen rounded-lg shadow-md rel bg-light-nonepress-100 ring-1 ring-black ring-opacity-5 overflow-auto dark:bg-dark-nonepress-100">
         <div className="sticky top-0 bg-inherit px-5 pt-4 flex items-center justify-between">
           <div className="flex flex-grow justify-start">
             <Logo imageClassName="h-8 w-auto" />

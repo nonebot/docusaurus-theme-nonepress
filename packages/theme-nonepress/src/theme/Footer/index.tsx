@@ -6,7 +6,7 @@ import FooterCopyright from "@theme/FooterCopyright";
 function Footer(): JSX.Element {
   return (
     <footer
-      className="bg-light-nonepress dark:bg-dark-nonepress"
+      className="bg-light-nonepress-100 dark:bg-dark-nonepress-100"
       aria-labelledby="footerHeading"
     >
       <h2 id="footerHeading" className="sr-only">

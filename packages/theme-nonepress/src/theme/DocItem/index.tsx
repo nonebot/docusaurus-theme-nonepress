@@ -75,7 +75,7 @@ function DocItem(props: Props): JSX.Element {
                 />
               )}
 
-              <div className={ThemeClassNames.docs.docMarkdown}>
+              <div className={clsx(ThemeClassNames.docs.docMarkdown, "pt-2")}>
                 {shouldAddTitle && <MainHeading>{title}</MainHeading>}
 
                 <DocContent />

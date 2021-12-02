@@ -46,7 +46,7 @@ function NavbarDropdown(props: Props): JSX.Element {
       <ul
         ref={element}
         className={clsx(
-          "absolute z-10 top-0 mt-9 -translate-x-1/2 left-1/2 bg-light-nonepress shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-dark-nonepress",
+          "absolute z-10 top-0 mt-9 -translate-x-1/2 left-1/2 bg-light-nonepress-100 shadow-lg max-h-60 rounded-md py-1 px-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto transition transform focus:outline-none sm:text-sm dark:bg-dark-nonepress-100",
           transitionClasses,
           { hidden: !active }
         )}

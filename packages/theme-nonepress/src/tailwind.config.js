@@ -30,7 +30,7 @@ module.exports = {
       nonepress: {
         light: {
           theme: {
-            DEFAULT: "#f5f6f7",
+            DEFAULT: "#25c19f",
             100: "#f5f6f7",
             200: "#ebedf0",
             300: "#dadde1",
@@ -38,7 +38,7 @@ module.exports = {
         },
         dark: {
           theme: {
-            DEFAULT: "#20232a",
+            DEFAULT: "#25c19f",
             100: "#20232a",
             200: "#282a36",
             300: "#303846",
@@ -53,12 +53,12 @@ module.exports = {
 
           text: {
             DEFAULT: "#1c1e21",
-            active: "#25c19f",
+            active: theme("nonepress.light.theme.DEFAULT"),
           },
           nav: "#ffffff",
           backToTop: "#ebedf0",
           details: {
-            DEFAULT: theme("nonepress.light.theme.DEFAULT"),
+            DEFAULT: theme("nonepress.light.theme.100"),
             darker: theme("nonepress.light.theme.300"),
           },
           search: {
@@ -72,12 +72,12 @@ module.exports = {
 
           text: {
             DEFAULT: "#f5f6f7",
-            active: "#25c19f",
+            active: theme("nonepress.dark.theme.DEFAULT"),
           },
           nav: "#242526",
           backToTop: "#444950",
           details: {
-            DEFAULT: theme("nonepress.dark.theme.DEFAULT"),
+            DEFAULT: theme("nonepress.dark.theme.100"),
             darker: theme("nonepress.dark.theme.300"),
           },
           search: {
@@ -130,6 +130,7 @@ module.exports = {
             maxWidth: "80ch",
             a: {
               textDecoration: "none",
+              fontWeight: "inherit",
             },
             code: {
               backgroundColor: "#f6f7f8",
