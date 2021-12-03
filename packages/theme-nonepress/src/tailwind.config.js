@@ -1,15 +1,4 @@
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
-
-const siteDir = process.env.DOCUSAURUS_SITE_DIR;
-const purge = [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`];
-if (siteDir) {
-  purge.push(`${siteDir}/blog/**/*.{js,jsx,ts,tsx,mdx}`);
-  purge.push(`${siteDir}/docs/**/*.{js,jsx,ts,tsx,mdx}`);
-  purge.push(`${siteDir}/src/**/*.{js,jsx,ts,tsx,mdx}`);
-}
 module.exports = {
-  content: purge,
   safelist: [
     "md:grid-cols-1",
     "md:grid-cols-2",

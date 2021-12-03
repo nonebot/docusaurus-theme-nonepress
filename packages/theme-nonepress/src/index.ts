@@ -83,6 +83,14 @@ function renderOpenSearchTemplate(data: {
   return compiled(data, defaultConfig);
 }
 
+function getPurgeCSSPath(siteDir?: string): string[] {
+  const purge = [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`];
+  if (siteDir) {
+    purge.push(`${siteDir}/**/*.{js,jsx,ts,tsx,mdx}`);
+  }
+  return purge;
+}
+
 const OPEN_SEARCH_FILENAME = "opensearch.xml";
 
 export default function docusaurusThemeNonepress(
@@ -90,8 +98,9 @@ export default function docusaurusThemeNonepress(
   options: PluginOptions
 ): Plugin<LoadedContent> {
   const {
-    siteConfig: { title, url, favicon, themeConfig: roughlyTypedThemeConfig },
+    siteDir,
     baseUrl,
+    siteConfig: { title, url, favicon, themeConfig: roughlyTypedThemeConfig },
   } = context;
   const themeConfig = (roughlyTypedThemeConfig || {}) as ThemeConfig;
   const {
@@ -155,10 +164,11 @@ export default function docusaurusThemeNonepress(
 
     configurePostCss(postCssOptions: { plugins: AcceptedPlugin[] }) {
       const { content = [], presets = [] } = tailwindConfig;
+      const purgeFiles = getPurgeCSSPath(siteDir);
       if (Array.isArray(content)) {
-        content.unshift(...defaultTailwindConfig.content);
+        content.unshift(...purgeFiles);
       } else {
-        content.files.unshift(...defaultTailwindConfig.content);
+        content.files.unshift(...purgeFiles);
       }
       presets.unshift(defaultTailwindConfig);
       tailwindConfig.content = content;
