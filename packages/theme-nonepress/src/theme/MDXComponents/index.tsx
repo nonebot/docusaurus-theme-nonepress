@@ -24,7 +24,7 @@ const MDXComponents: MDXComponentsObject = {
     return <Head {...props}>{unwrappedChildren}</Head>;
   },
   code: (props) => {
-    const { children } = props;
+    const { children, title, ...restProps } = props;
 
     // For retrocompatibility purposes (pretty rare use case)
     // See https://github.com/facebook/docusaurus/pull/1584
@@ -33,7 +33,11 @@ const MDXComponents: MDXComponentsObject = {
     }
 
     return !(children as string).includes("\n") ? (
-      <code {...props} />
+      <code
+        {...restProps}
+        title={typeof title === "boolean" ? "" : title}
+        children={children}
+      />
     ) : (
       <CodeBlock {...props} />
     );
