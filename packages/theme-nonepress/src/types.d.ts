@@ -120,39 +120,45 @@ declare module "@theme/hooks/useThemeConfig" {
     target?: string;
   };
 
-  export type NavbarItem = {
+  export type NavbarItemBase = {
     type?: string;
     label?: string;
     icon?: [IconPrefix, IconName];
     className?: string;
   };
 
-  export type NavbarLink = NavbarItem & {
+  export type NavbarLink = NavbarItemBase & {
     to?: string;
     href?: string;
     prependBaseUrlToHref?: boolean;
   };
 
-  export type NavbarDocLink = NavbarItem & {
+  export type NavbarDocLink = NavbarItemBase & {
     docId: string;
   };
 
-  export type NavbarDropdown = NavbarItem & {
+  export type NavbarDropdown = NavbarItemBase & {
     to?: string;
     href?: string;
     prependBaseUrlToHref?: boolean;
     items: Array<NavbarLink>;
   };
 
-  export type NavbarDocsMenu = NavbarItem & {
+  export type NavbarDocsMenu = NavbarItemBase & {
     docId?: string;
     type: "docsMenu";
     category?: string;
   };
 
+  export type NavbarItem =
+    | NavbarLink
+    | NavbarDocLink
+    | NavbarDropdown
+    | NavbarDocsMenu;
+
   export type NavbarConfig = {
     hideOnScroll?: boolean;
-    items?: Array<NavbarItem>;
+    items?: NavbarItem[];
   };
 
   export type FooterLinkConfig = {
@@ -503,7 +509,7 @@ declare module "@theme/Navbar" {
 
 declare module "@theme/NavbarItem" {
   import type { PropsWithChildren } from "react";
-  import type { NavbarItem as NavItem } from "@theme/hooks/useThemeConfig";
+  import type { NavbarItemBase as NavItem } from "@theme/hooks/useThemeConfig";
   export type Props = PropsWithChildren<{
     readonly item: NavItem & { readonly [key: string]: any };
     readonly isMobile?: boolean;

@@ -2,10 +2,12 @@ import React from "react";
 
 import Link from "@docusaurus/Link";
 import type { Props } from "@theme/Logo";
+import styles from "./styles.module.css";
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import clsx from "clsx";
 
 function Logo(props: Props): JSX.Element {
   const { className, imageClassName, disabled, children, ...propsRest } = props;
@@ -19,8 +21,14 @@ function Logo(props: Props): JSX.Element {
     light: useBaseUrl(logo.src),
     dark: useBaseUrl(logo.srcDark || logo.src),
   };
-  const inner = (
-    <>
+
+  return (
+    <Link
+      to={logoLink}
+      className={clsx(className, { [styles.disabled]: disabled })}
+      {...propsRest}
+      {...(logo.target && { target: logo.target })}
+    >
       {logo.src && (
         <ThemedImage
           className={imageClassName}
@@ -29,20 +37,7 @@ function Logo(props: Props): JSX.Element {
         />
       )}
       {children}
-    </>
-  );
-
-  return disabled ? (
-    <Link
-      to={logoLink}
-      className={className}
-      {...propsRest}
-      {...(logo.target && { target: logo.target })}
-    >
-      {inner}
     </Link>
-  ) : (
-    inner
   );
 }
 
