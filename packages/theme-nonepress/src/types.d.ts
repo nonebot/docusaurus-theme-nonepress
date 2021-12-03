@@ -282,7 +282,7 @@ declare module "@theme/CodeBlock" {
     readonly children: string | ReactElement;
     readonly className?: string;
     readonly metastring?: string;
-    readonly title?: string;
+    readonly title?: string | boolean;
   }
 
   function CodeBlock(props: Props): JSX.Element;
@@ -467,6 +467,7 @@ declare module "@theme/Logo" {
   export interface Props extends ComponentProps<"a"> {
     readonly className?: string;
     readonly imageClassName?: string;
+    readonly disabled?: boolean;
   }
   function Logo(props: Props): JSX.Element;
   export default Logo;

@@ -8,7 +8,7 @@ import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 function Logo(props: Props): JSX.Element {
-  const { className, imageClassName, children, ...propsRest } = props;
+  const { className, imageClassName, disabled, children, ...propsRest } = props;
   const {
     siteConfig: { title },
   } = useDocusaurusContext();
@@ -19,13 +19,8 @@ function Logo(props: Props): JSX.Element {
     light: useBaseUrl(logo.src),
     dark: useBaseUrl(logo.srcDark || logo.src),
   };
-  return (
-    <Link
-      to={logoLink}
-      className={className}
-      {...propsRest}
-      {...(logo.target && { target: logo.target })}
-    >
+  const inner = (
+    <>
       {logo.src && (
         <ThemedImage
           className={imageClassName}
@@ -34,7 +29,20 @@ function Logo(props: Props): JSX.Element {
         />
       )}
       {children}
+    </>
+  );
+
+  return disabled ? (
+    <Link
+      to={logoLink}
+      className={className}
+      {...propsRest}
+      {...(logo.target && { target: logo.target })}
+    >
+      {inner}
     </Link>
+  ) : (
+    inner
   );
 }
 
