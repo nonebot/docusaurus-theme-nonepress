@@ -128,6 +128,10 @@ const itemWithType = (type) => {
 const DropdownSubitemSchema = Joi.object().when(Joi.ref("."), {
   switch: [
     {
+      is: itemWithType("docLink"),
+      then: DocLinkNavbarItemSchema,
+    },
+    {
       is: itemWithType(undefined),
       then: DefaultNavbarItemSchema,
     },
@@ -259,6 +263,8 @@ export const ThemeConfigSchema = Joi.object({
     items: Joi.array()
       .items(NavbarItemSchema)
       .default(DEFAULT_CONFIG.navbar.items),
+    docsVersionItemBefore: Joi.array().items(DropdownSubitemSchema).default([]),
+    docsVersionItemAfter: Joi.array().items(DropdownSubitemSchema).default([]),
   }),
   footer: FooterSchema,
   hideableSidebar: Joi.boolean().default(DEFAULT_CONFIG.hideableSidebar),

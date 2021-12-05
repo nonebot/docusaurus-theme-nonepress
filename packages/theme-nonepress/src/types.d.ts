@@ -162,6 +162,8 @@ declare module "@theme/hooks/useThemeConfig" {
   export type NavbarConfig = {
     hideOnScroll?: boolean;
     items?: NavbarItem[];
+    docsVersionItemBefore?: (NavbarLink | NavbarDocLink)[];
+    docsVersionItemAfter?: (NavbarLink | NavbarDocLink)[];
   };
 
   export type FooterLinkConfig = {

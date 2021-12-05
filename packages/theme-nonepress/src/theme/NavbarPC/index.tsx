@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { PropsWithChildren, useCallback } from "react";
+import React from "react";
 
 import Logo from "@theme/Logo";
 import Link from "@docusaurus/Link";
@@ -8,7 +8,7 @@ import SearchBar from "@theme/SearchBar";
 import NavbarItem from "@theme/NavbarItem";
 import type { Props } from "@theme/NavbarPC";
 import ThemeSwitcher from "@theme/ThemeSwitcher";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
+import useThemeConfig, { NavbarConfig } from "@theme/hooks/useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
@@ -27,7 +27,13 @@ function getVersionMainDoc(version: GlobalVersion): GlobalDoc {
   return version.docs.find((doc) => doc.id === version.mainDocId);
 }
 
-function NavbarDocsVersion(): JSX.Element {
+function NavbarDocsVersion({
+  docsVersionItemBefore,
+  docsVersionItemAfter,
+}: Pick<
+  NavbarConfig,
+  "docsVersionItemBefore" | "docsVersionItemAfter"
+>): JSX.Element {
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLUListElement>();
   const ref = useOnclickOutside(
@@ -75,8 +81,8 @@ function NavbarDocsVersion(): JSX.Element {
   const dropdownVersion =
     activeDocContext.activeVersion ?? preferredVersion ?? latestVersion;
 
-  if (items.length <= 1) {
-    // return <></>;
+  if (items.length <= 0) {
+    return <></>;
   }
 
   return (
@@ -120,6 +126,7 @@ function NavbarDocsVersion(): JSX.Element {
         data-transition-leave-from="opacity-100"
         data-transition-leave-to="opacity-0"
       >
+        {/* TODO: docs version extra item */}
         {items.map((version, index) => (
           <li key={index} className="cursor-default select-none relative">
             <Link
@@ -149,7 +156,7 @@ function NavbarDocsVersion(): JSX.Element {
 
 function NavbarPc(props: Props): JSX.Element {
   const {
-    navbar: { items },
+    navbar: { items, docsVersionItemBefore, docsVersionItemAfter },
   } = useThemeConfig();
   const { openMobileMenu } = props;
 
@@ -162,7 +169,10 @@ function NavbarPc(props: Props): JSX.Element {
           </Logo>
         </div>
         <SearchBar />
-        <NavbarDocsVersion />
+        <NavbarDocsVersion
+          docsVersionItemBefore={docsVersionItemBefore}
+          docsVersionItemAfter={docsVersionItemAfter}
+        />
         <ThemeSwitcher className="mr-0 hidden lg:inline-flex" />
         <div className="-mr-2 -my-2 lg:hidden order-last">
           <button
