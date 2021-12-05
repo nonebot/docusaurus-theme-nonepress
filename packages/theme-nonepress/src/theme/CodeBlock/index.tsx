@@ -199,15 +199,12 @@ function CodeBlock({
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div
           className={clsx(
-            "text-left w-full max-w-full h-auto mb-5 rounded shadow-lg group",
+            "text-left w-full max-w-full h-auto mb-5 rounded shadow-lg group overflow-hidden",
             blockClassName?.replace(/language-[^ ]+/, "")
           )}
         >
           {codeBlockTitle && (
-            <div
-              className="relative w-full p-2 text-sm rounded-t"
-              style={style}
-            >
+            <div className="relative w-full p-2 text-sm" style={style}>
               <div className="absolute left-2">
                 <div className="bg-red-600 inline-block h-2 w-2 rounded-full mr-1"></div>
                 <div className="bg-yellow-500 inline-block h-2 w-2 rounded-full mr-1"></div>
@@ -219,18 +216,12 @@ function CodeBlock({
             </div>
           )}
           <div
-            className={clsx(
-              "relative m-0 w-full min-h-90 text-sm overflow-x-auto",
-              language
-            )}
+            className={clsx("relative m-0 w-full min-h-90 text-sm", language)}
           >
             <pre
               className={clsx(
                 className,
-                "p-4 m-0-important thin-scrollbar rounded-b-important",
-                {
-                  "rounded-t-none-important": codeBlockTitle,
-                }
+                "p-4 m-0-important thin-scrollbar overflow-x-auto"
               )}
               style={style}
             >

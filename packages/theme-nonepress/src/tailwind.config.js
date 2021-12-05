@@ -80,6 +80,7 @@ module.exports = {
       },
       maxWidth: {
         50: "50%",
+        75: "75%",
       },
       padding: {
         "0-important": "0 !important",
