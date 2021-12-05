@@ -39,10 +39,14 @@ function TOCCollapsible({
         />
       </button>
 
-      <Collapsible lazy className="m-0 list-none" collapsed={collapsed}>
+      <Collapsible
+        lazy
+        className="m-0 list-none not-prose opacity-80 text-sm"
+        collapsed={collapsed}
+      >
         <TOCItems
           toc={toc}
-          className="py-2 border-t border-gray-300 dark:border-gray-600"
+          className="pl-2 py-2 border-t border-gray-300 dark:border-gray-600"
           minHeadingLevel={minHeadingLevel}
           maxHeadingLevel={maxHeadingLevel}
         />

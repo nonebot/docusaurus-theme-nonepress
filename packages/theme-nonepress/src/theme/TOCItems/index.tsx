@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React, { useMemo } from "react";
 
 import { TOCItem } from "@docusaurus/types";
@@ -18,7 +17,7 @@ function TOCItemList({
   isChild,
 }: {
   readonly toc: readonly TOCItem[];
-  readonly className: string;
+  readonly className?: string;
   readonly linkClassName: string | null;
   readonly isChild?: boolean;
 }): JSX.Element | null {
@@ -26,7 +25,7 @@ function TOCItemList({
     return null;
   }
   return (
-    <ul className={clsx("pl-2", isChild ? undefined : className)}>
+    <ul className={isChild ? "pl-2" : className}>
       {toc.map((heading) => (
         <li key={heading.id} className="m-2">
           <a
@@ -39,7 +38,6 @@ function TOCItemList({
           <TOCItemList
             isChild
             toc={heading.children}
-            className={className}
             linkClassName={linkClassName}
           />
         </li>
