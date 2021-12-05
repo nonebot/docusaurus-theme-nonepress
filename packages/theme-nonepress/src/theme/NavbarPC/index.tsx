@@ -80,7 +80,7 @@ function NavbarDocsVersion(): JSX.Element {
   }
 
   return (
-    <div className="self-end mr-5 w-32 relative md:mr-0">
+    <div className="self-end mr-5 w-32 relative lg:mr-0">
       <button
         type="button"
         ref={ref}
@@ -155,7 +155,7 @@ function NavbarPc(props: Props): JSX.Element {
 
   return (
     <div className="mx-auto px-4 z-30 sm:px-6 lg:px-8">
-      <div className="relative flex justify-end items-center py-6 md:space-x-10">
+      <div className="relative flex justify-end items-center py-6 lg:space-x-10">
         <div className="flex flex-grow justify-start lg:w-0 lg:flex-1">
           <Logo imageClassName="h-8 w-auto sm:h-10">
             <span className="sr-only">Home</span>
@@ -163,20 +163,20 @@ function NavbarPc(props: Props): JSX.Element {
         </div>
         <SearchBar />
         <NavbarDocsVersion />
-        <ThemeSwitcher className="mr-0 hidden md:inline-flex" />
-        <div className="-mr-2 -my-2 md:hidden order-last">
+        <ThemeSwitcher className="mr-0 hidden lg:inline-flex" />
+        <div className="-mr-2 -my-2 lg:hidden order-last">
           <button
             onClick={openMobileMenu}
             type="button"
-            className="rounded-md p-2 inline-flex items-center justify-center transition opacity-60 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:focus:ring-indigo-300 dark:focus:border-indigo-300 ignore-mobile-menu"
+            className="rounded-md p-2 inline-flex items-center justify-center transition opacity-60 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light-text-active dark:focus:ring-dark-text-active ignore-mobile-menu"
             aria-expanded="false"
           >
             <span className="sr-only">Open menu</span>
             <FontAwesomeIcon className="text-2xl" icon={["fas", "bars"]} />
           </button>
         </div>
-        <nav className="hidden md:flex">
-          <ul className="md:flex md:items-center md:space-x-10">
+        <nav className="hidden lg:flex">
+          <ul className="lg:flex lg:items-center lg:space-x-10">
             {items.map((item, index) => (
               <NavbarItem key={index} item={item} />
             ))}

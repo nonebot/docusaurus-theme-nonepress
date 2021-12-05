@@ -197,7 +197,7 @@ function DocSearch({
         />
       </Head>
 
-      <div className="flex self-center relative order-last md:order-none mr-5 md:mr-0">
+      <div className="flex self-center relative order-last lg:order-none mr-5 lg:mr-0">
         <DocSearchButton
           onTouchStart={importDocSearchModalIfNeeded}
           onFocus={importDocSearchModalIfNeeded}

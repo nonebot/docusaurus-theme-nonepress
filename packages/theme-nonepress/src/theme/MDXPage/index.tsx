@@ -33,17 +33,12 @@ function MDXPage(props: Props): JSX.Element {
       <div className="w-full">
         <div className="flex w-full">
           <BackToTopButton />
-          <main id="docs" className="flex container mx-auto mt-20 pb-8 px-12">
+          <main id="docs" className="flex container mx-auto mt-20 pb-8 px-16">
             <div className="relative flex flex-row w-full">
-              <div className="flex-grow max-w-full p-4">
+              <div className="flex-grow prose dark:prose-dark p-4">
                 <div className="page-content">
                   <article>
-                    <div
-                      className={clsx(
-                        ThemeClassNames.page.mdxPage,
-                        "prose dark:prose-dark mx-auto"
-                      )}
-                    >
+                    <div className={ThemeClassNames.page.mdxPage}>
                       <MDXProvider components={MDXComponents}>
                         <MDXPageContent />
                       </MDXProvider>

@@ -116,7 +116,7 @@ module.exports = {
             "--tw-prose-pre-bg": theme("colors.light.DEFAULT"),
             // "--tw-prose-th-borders": "inherit",
             "--tw-prose-td-borders": "inherit",
-            maxWidth: "80ch",
+            maxWidth: "100%",
             a: {
               textDecoration: "none",
               fontWeight: "inherit",

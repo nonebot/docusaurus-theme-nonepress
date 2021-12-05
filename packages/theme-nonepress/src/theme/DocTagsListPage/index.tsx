@@ -23,7 +23,7 @@ function DocTagsListPage({ tags }: Props): JSX.Element {
       <div className="w-full">
         <main className="container mx-auto mt-20 pb-8 px-4 lg:px-12">
           <div className="p-4">
-            <div className="prose dark:prose-dark max-w-none">
+            <div className="prose dark:prose-dark">
               <h1>{title}</h1>
               <TagsListByLetter tags={tags} />
             </div>

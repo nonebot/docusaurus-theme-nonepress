@@ -37,7 +37,7 @@ function NavbarMobile(props: Props): JSX.Element {
       role="menu"
       aria-orientation="vertical"
       className={clsx(
-        "fixed top-0 inset-x-0 p-2 transition transform origin-top-right z-40 md:hidden",
+        "fixed top-0 inset-x-0 p-2 transition transform origin-top-right z-40 lg:hidden",
         transitionClasses,
         { hidden: !active }
       )}
