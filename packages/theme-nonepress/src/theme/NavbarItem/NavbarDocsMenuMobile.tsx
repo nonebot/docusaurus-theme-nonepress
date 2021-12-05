@@ -13,9 +13,8 @@ import {
 } from "@theme/hooks/useDocs";
 
 function NavbarDocsMenuMobile(props: Props): JSX.Element {
-  const { docId, label, icon, className, category } = props;
+  const { docId, label, icon, className, category, docsPluginId } = props;
 
-  const docsPluginId = undefined;
   const docsData = useLoadedVersions(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId);

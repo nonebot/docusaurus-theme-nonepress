@@ -133,10 +133,6 @@ declare module "@theme/hooks/useThemeConfig" {
     prependBaseUrlToHref?: boolean;
   };
 
-  export type NavbarDocLink = NavbarItemBase & {
-    docId: string;
-  };
-
   export type NavbarDropdown = NavbarItemBase & {
     to?: string;
     href?: string;
@@ -144,9 +140,16 @@ declare module "@theme/hooks/useThemeConfig" {
     items: Array<NavbarLink>;
   };
 
+  export type NavbarDocLink = NavbarItemBase & {
+    type: "docLink";
+    docId: string;
+    docsPluginId?: string;
+  };
+
   export type NavbarDocsMenu = NavbarItemBase & {
-    docId?: string;
     type: "docsMenu";
+    docId?: string;
+    docsPluginId?: string;
     category?: string;
   };
 

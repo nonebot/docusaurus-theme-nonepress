@@ -8,9 +8,8 @@ import type { Props } from "@theme/NavbarItem/NavbarDocLinkMobile";
 import { useLatestVersion, useActiveDocContext } from "@theme/hooks/useDocs";
 
 function NavbarLinkMobile(props: Props): JSX.Element {
-  const { docId, label, icon, className, linkClassName } = props;
+  const { docId, label, icon, className, linkClassName, docsPluginId } = props;
 
-  const docsPluginId = undefined;
   const { activeVersion } = useActiveDocContext(docsPluginId);
   const { preferredVersion } = useDocsPreferredVersion(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId);

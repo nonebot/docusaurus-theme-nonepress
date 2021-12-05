@@ -109,6 +109,7 @@ const DefaultNavbarItemSchema = NavbarItemBaseSchema.append({
 // doc link
 const DocLinkNavbarItemSchema = NavbarItemBaseSchema.append({
   docId: Joi.string().required(),
+  docsPluginId: Joi.string(),
 });
 
 const itemWithType = (type) => {
@@ -150,6 +151,7 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
 // docs menu
 const DocsMenuDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
   docId: Joi.string(),
+  docsPluginId: Joi.string(),
   type: Joi.string().equal("docsMenu").required(),
   category: Joi.string().optional(),
 });

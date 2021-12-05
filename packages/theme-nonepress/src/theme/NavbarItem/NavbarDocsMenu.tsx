@@ -25,11 +25,10 @@ function getVersionMainDoc(version: GlobalDataVersion): GlobalDataDoc {
 }
 
 function NavbarDocsMenu(props: Props): JSX.Element {
-  const { docId, label, icon, className, category } = props;
+  const { docId, label, icon, className, category, docsPluginId } = props;
   const { element, active, transitionClasses, enter, leave } =
     useTransition<HTMLDivElement>();
 
-  const docsPluginId = undefined;
   const docsData = useLoadedVersions(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
   const versions = useVersions(docsPluginId);
