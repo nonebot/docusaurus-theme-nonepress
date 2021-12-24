@@ -46,7 +46,7 @@ function EditMetaRow({
         {editUrl && <EditThisPage editUrl={editUrl} />}
       </div>
 
-      <div className="lg:flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full mt-1 italic text-smaller lg:text-right">
+      <div className="lg:flex-1 flex-shrink-0 ml-0 px-4 w-full max-w-full mt-1 italic text-[smaller] lg:text-right">
         {(lastUpdatedAt || lastUpdatedBy) && (
           <LastUpdated
             lastUpdatedAt={lastUpdatedAt}

@@ -139,7 +139,7 @@ function TabsComponent(props: Props): JSX.Element {
             tabIndex={selectedValue === value ? 0 : -1}
             aria-selected={selectedValue === value}
             className={clsx(
-              "inline-flex break-words p-2 m-0-important border-b-4 border-transparent rounded-lg transition-background-color hover:bg-light-nonepress-100 dark:hover:bg-dark-nonepress-100",
+              "inline-flex break-words p-2 m-0-important border-b-4 border-transparent rounded-lg transition-[background-color] hover:bg-light-nonepress-100 dark:hover:bg-dark-nonepress-100",
               {
                 "text-light-text-active dark:text-dark-text-active border-b-light-text-active dark:border-b-dark-text-active rounded-b-none-important":
                   selectedValue === value,

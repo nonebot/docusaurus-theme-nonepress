@@ -50,7 +50,7 @@ function MDXPage(props: Props): JSX.Element {
             className="flex container mx-auto mt-20 mb-8 px-4 lg:px-16"
           >
             <div className="relative flex flex-row w-full">
-              <div className="flex-grow lg:max-w-75 prose dark:prose-dark p-4">
+              <div className="flex-grow lg:max-w-[75%] prose dark:prose-dark p-4">
                 <div className="page-content">
                   <article>
                     {canRenderTOC && (

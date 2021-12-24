@@ -56,7 +56,7 @@ function DocSidebarDesktop({
     >
       {hideOnScroll && (
         <Logo
-          className="flex items-center mx-8 h-24 max-h-24 no-underline"
+          className="flex items-center mx-8 min-h-[6rem] max-h-24 no-underline"
           imageClassName="h-10"
         />
       )}

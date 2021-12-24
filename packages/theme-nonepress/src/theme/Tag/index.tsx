@@ -15,7 +15,7 @@ function Tag(props: Props): JSX.Element {
         "transition-all no-underline text-base text-light-text-active dark:text-dark-text-active",
         "border border-gray-300 dark:border-gray-500 hover:border-light-text-active dark:hover:border-dark-text-active",
         {
-          "rounded-lg px-2 py-1 text-smaller": !count,
+          "rounded-lg px-2 py-1 text-[smaller]": !count,
           [styles.tagWithCount]: count,
         }
       )}

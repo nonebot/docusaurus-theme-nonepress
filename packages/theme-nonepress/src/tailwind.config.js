@@ -75,28 +75,15 @@ module.exports = {
           },
         },
       }),
-      minHeight: {
-        90: "90%",
-      },
-      maxWidth: {
-        50: "50%",
-        75: "75%",
-      },
       padding: {
         "0-important": "0 !important",
       },
       margin: {
         "0-important": "0 !important",
       },
-      fontSize: {
-        smaller: "smaller",
-      },
       borderRadius: {
         "none-important": "0 !important",
         important: "0.25rem !important",
-      },
-      transitionProperty: {
-        "background-color": "background-color",
       },
       typography: (theme) => ({
         DEFAULT: {

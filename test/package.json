@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.9",
-    "docusaurus-preset-nonepress": "2.0.0-beta.9"
+    "docusaurus-preset-nonepress": "2.0.0-beta.9",
+    "remark-heading-id": "^1.0.0"
   },
   "devDependencies": {
     "@tsconfig/docusaurus": "^1.0.4",

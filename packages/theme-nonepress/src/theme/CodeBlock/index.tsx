@@ -216,7 +216,10 @@ function CodeBlock({
             </div>
           )}
           <div
-            className={clsx("relative m-0 w-full min-h-90 text-sm", language)}
+            className={clsx(
+              "relative m-0 w-full min-h-[90%] text-sm",
+              language
+            )}
           >
             <pre
               className={clsx(
