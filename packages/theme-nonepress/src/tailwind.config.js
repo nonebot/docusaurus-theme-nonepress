@@ -128,6 +128,17 @@ module.exports = {
               borderRadius: "none",
               padding: "0",
             },
+            "blockquote p:first-of-type::before": {
+              content: "none",
+            },
+            "blockquote p:last-of-type::after": {
+              content: "none",
+            },
+            img: {
+              marginTop: "0",
+              marginBottom: "0",
+              display: "inline",
+            },
           },
         },
         dark: {
