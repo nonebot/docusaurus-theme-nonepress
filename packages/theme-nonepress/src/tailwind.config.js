@@ -150,6 +150,9 @@ module.exports = {
             code: {
               backgroundColor: "#333437",
             },
+            "pre code": {
+              backgroundColor: "#transparent",
+            },
           },
         },
       }),
