@@ -1,16 +1,16 @@
 import clsx from "clsx";
 import React from "react";
 
+import { ThemeClassNames } from "@docusaurus/theme-common";
+import type { Props } from "@theme/DocItem";
+import DocItemFooter from "@theme/DocItemFooter";
+import DocPaginator from "@theme/DocPaginator";
+import DocVersionBanner from "@theme/DocVersionBanner";
+import { MainHeading } from "@theme/Heading";
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
-import type { Props } from "@theme/DocItem";
-import { MainHeading } from "@theme/Heading";
-import DocPaginator from "@theme/DocPaginator";
-import DocItemFooter from "@theme/DocItemFooter";
 import TOCCollapsible from "@theme/TOCCollapsible";
-import DocVersionBanner from "@theme/DocVersionBanner";
 import useWindowSize from "@theme/hooks/useWindowSize";
-import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import styles from "./styles.module.css";
 
@@ -46,7 +46,7 @@ function DocItem(props: Props): JSX.Element {
       <Seo {...{ title, description, keywords, image }} />
 
       <div className="relative flex flex-row w-full">
-        <div className="flex-grow lg:max-w-[75%] prose dark:prose-dark p-4 lg:px-16">
+        <div className="flex-grow lg:max-w-[75%] prose dark:prose-dark p-4 lg:px-16 mx-auto">
           <DocVersionBanner versionMetadata={versionMetadata} />
           <div className="doc-content">
             <article>

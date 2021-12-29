@@ -1,16 +1,17 @@
 import clsx from "clsx";
 import React from "react";
-import { MDXProvider } from "@mdx-js/react";
 
-import TOC from "@theme/TOC";
-import Layout from "@theme/Layout";
-import styles from "./styles.module.css";
-import type { Props } from "@theme/MDXPage";
-import MDXComponents from "@theme/MDXComponents";
-import TOCCollapsible from "@theme/TOCCollapsible";
-import BackToTopButton from "@theme/BackToTopButton";
-import useWindowSize from "@theme/hooks/useWindowSize";
 import { ThemeClassNames } from "@docusaurus/theme-common";
+import { MDXProvider } from "@mdx-js/react";
+import BackToTopButton from "@theme/BackToTopButton";
+import Layout from "@theme/Layout";
+import MDXComponents from "@theme/MDXComponents";
+import type { Props } from "@theme/MDXPage";
+import TOC from "@theme/TOC";
+import TOCCollapsible from "@theme/TOCCollapsible";
+import useWindowSize from "@theme/hooks/useWindowSize";
+
+import styles from "./styles.module.css";
 
 function MDXPage(props: Props): JSX.Element {
   const { content: MDXPageContent } = props;
@@ -50,7 +51,7 @@ function MDXPage(props: Props): JSX.Element {
             className="flex container mx-auto mt-20 mb-8 px-4 lg:px-16"
           >
             <div className="relative flex flex-row w-full">
-              <div className="flex-grow lg:max-w-[75%] prose dark:prose-dark p-4">
+              <div className="flex-grow lg:max-w-[75%] prose dark:prose-dark p-4 mx-auto">
                 <div className="page-content">
                   <article>
                     {canRenderTOC && (
