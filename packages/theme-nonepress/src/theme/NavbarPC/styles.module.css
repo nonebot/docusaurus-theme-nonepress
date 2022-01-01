@@ -3,5 +3,5 @@
 }
 
 .version-selected .version-selected-tag {
-  visibility: visible !important;
+  @apply !visible;
 }

@@ -75,16 +75,6 @@ module.exports = {
           },
         },
       }),
-      padding: {
-        "0-important": "0 !important",
-      },
-      margin: {
-        "0-important": "0 !important",
-      },
-      borderRadius: {
-        "none-important": "0 !important",
-        important: "0.25rem !important",
-      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

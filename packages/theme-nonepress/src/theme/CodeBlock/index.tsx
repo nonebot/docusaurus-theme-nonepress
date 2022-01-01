@@ -224,7 +224,7 @@ function CodeBlock({
             <pre
               className={clsx(
                 className,
-                "p-4 m-0-important thin-scrollbar overflow-x-auto"
+                "p-4 !m-0 thin-scrollbar overflow-x-auto"
               )}
               style={style}
             >

@@ -11,7 +11,7 @@
 }
 
 .docSidebarContainerHidden {
-  @apply lg:w-8 cursor-pointer;
+  @apply !w-8 cursor-pointer;
 }
 
 .collapsedDocSidebar {
