@@ -39,9 +39,9 @@ declare module "@theme/hooks/useHideableNavbar" {
 }
 
 declare module "@theme/hooks/usePrismTheme" {
-  import type { PrismTheme } from "prism-react-renderer";
+  import defaultTheme from "prism-react-renderer/themes/palenight";
 
-  function usePrismTheme(): PrismTheme;
+  function usePrismTheme(): typeof defaultTheme;
   export default usePrismTheme;
 }
 
@@ -79,8 +79,8 @@ declare module "@theme/hooks/useTheme" {
 }
 
 declare module "@theme/hooks/useThemeConfig" {
-  import type { PrismTheme } from "prism-react-renderer";
   import type { DocusaurusConfig } from "@docusaurus/types";
+  import defaultTheme from "prism-react-renderer/themes/palenight";
   import type { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 
   export type ColorModeConfig = {
@@ -194,8 +194,8 @@ declare module "@theme/hooks/useThemeConfig" {
   };
 
   export type PrismConfig = {
-    theme?: PrismTheme;
-    darkTheme?: PrismTheme;
+    theme?: typeof defaultTheme;
+    darkTheme?: typeof defaultTheme;
     defaultLanguage?: string;
     additionalLanguages?: string[];
   };
@@ -848,4 +848,19 @@ declare module "docusaurus-theme-nonepress/types" {
   };
 
   export type { ThemeConfig } from "@theme/hooks/useThemeConfig";
+}
+
+declare module "@theme/prism-include-languages" {
+  import type * as PrismNamespace from "prismjs";
+
+  export default function prismIncludeLanguages(
+    PrismObject: typeof PrismNamespace
+  ): void;
+}
+
+declare module "prism-react-renderer/prism" {
+  import type * as PrismNamespace from "prismjs";
+
+  const Prism: typeof PrismNamespace;
+  export default Prism;
 }

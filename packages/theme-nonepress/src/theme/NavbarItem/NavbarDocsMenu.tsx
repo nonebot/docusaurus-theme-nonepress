@@ -150,7 +150,7 @@ function NavbarDocsMenu(props: Props): JSX.Element {
               >
                 <div className="max-w-full">
                   <p className="text-base font-medium">{doc.title}</p>
-                  <p className="mt-1 text-sm overflow-hidden overflow-ellipsis opacity-60">
+                  <p className="mt-1 text-sm overflow-hidden text-ellipsis opacity-60">
                     {doc.description}
                   </p>
                 </div>

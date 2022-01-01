@@ -148,14 +148,5 @@ module.exports = {
       }),
     },
   },
-  variants: {
-    extend: {
-      translate: ["dark"],
-      opacity: ["dark"],
-      borderWidth: ["dark"],
-      borderColor: ["dark"],
-      typography: ["dark"],
-    },
-  },
   plugins: [require("@tailwindcss/typography")],
 };

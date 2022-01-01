@@ -134,7 +134,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`,
             showLastUpdateAuthor: true,
             showLastUpdateTime: true,
-            remarkPlugins: [require("remark-heading-id")],
+            // beforeDefaultRemarkPlugins: [require("remark-heading-id")],
           },
         }),
       ],

@@ -100,7 +100,7 @@ function NavbarDocsVersion({
       >
         <span
           aria-label="Selected"
-          className="absolute left-3.5 bg-light-text-active flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-dark-text-active"
+          className="absolute left-3.5 bg-light-text-active shrink-0 inline-block h-2 w-2 rounded-full dark:bg-dark-text-active"
         ></span>
         <span className="block truncate font-medium">
           {dropdownVersion.label}
@@ -140,10 +140,10 @@ function NavbarDocsVersion({
                 aria-label="Selected"
                 className={clsx(
                   styles["version-selected-tag"],
-                  "invisible absolute left-2.5 bg-light-text-active flex-shrink-0 inline-block h-2 w-2 rounded-full dark:bg-dark-text-active"
+                  "invisible absolute left-2.5 bg-light-text-active shrink-0 inline-block h-2 w-2 rounded-full dark:bg-dark-text-active"
                 )}
               ></span>
-              <span className="flex-grow font-medium inline-block truncate">
+              <span className="grow font-medium inline-block truncate">
                 {version.label}
               </span>
             </Link>
@@ -163,7 +163,7 @@ function NavbarPc(props: Props): JSX.Element {
   return (
     <div className="mx-auto px-4 z-30 sm:px-6 lg:px-8">
       <div className="relative flex justify-end items-center py-6 lg:space-x-10">
-        <div className="flex flex-grow justify-start lg:w-0 lg:flex-1">
+        <div className="flex grow justify-start lg:w-0 lg:flex-1">
           <Logo imageClassName="h-8 w-auto sm:h-10">
             <span className="sr-only">Home</span>
           </Logo>

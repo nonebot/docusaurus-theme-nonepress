@@ -11,7 +11,7 @@ function DocPaginator(props: Props): JSX.Element {
       <div className="flex flex-1 max-w-[50%]">
         {metadata.previous && (
           <Link
-            className="border border-gray-300 dark:border-gray-500 rounded-lg flex-grow leading-tight p-4 transition transform hover:border-light-text-active dark:hover:border-dark-text-active"
+            className="border border-gray-300 dark:border-gray-500 rounded-lg grow leading-tight p-4 transition transform hover:border-light-text-active dark:hover:border-dark-text-active"
             to={metadata.previous.permalink}
           >
             <div className="text-light-text dark:text-dark-text text-sm font-medium mb-1">
@@ -26,7 +26,7 @@ function DocPaginator(props: Props): JSX.Element {
       <div className="flex flex-1 ml-4 max-w-[50%] text-right">
         {metadata.next && (
           <Link
-            className="border border-gray-300 dark:border-gray-500 rounded-lg flex-grow leading-tight p-4 transition transform hover:border-light-text-active dark:hover:border-dark-text-active"
+            className="border border-gray-300 dark:border-gray-500 rounded-lg grow leading-tight p-4 transition transform hover:border-light-text-active dark:hover:border-dark-text-active"
             to={metadata.next.permalink}
           >
             <div className="text-light-text dark:text-dark-text text-sm font-medium mb-1">

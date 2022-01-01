@@ -27,7 +27,7 @@ export default function ThemeSwitcher(props: Props): JSX.Element {
       <button
         type="button"
         className={clsx(
-          "bg-gray-200 relative flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-all ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 dark:focus:ring-blue-200 dark:bg-gray-900",
+          "bg-gray-200 relative shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-all ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 dark:focus:ring-blue-200 dark:bg-gray-900",
           className
         )}
         role="switch"

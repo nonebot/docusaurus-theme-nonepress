@@ -9,7 +9,7 @@ export default function Hero(): JSX.Element {
 
   return (
     <div className="flex flex-wrap p-16 mx-auto max-w-7xl h-screen relative px-4 sm:p-24">
-      <div className="flex-grow self-center text-center">
+      <div className="grow self-center text-center">
         <p className="mt-3 mb-3 max-w-md mx-auto text-sm font-medium tracking-wide uppercase opacity-70 md:mt-5 md:max-w-3xl">
           {siteConfig.tagline}
         </p>
@@ -17,7 +17,7 @@ export default function Hero(): JSX.Element {
           {siteConfig.title}
         </h1>
       </div>
-      <div className="absolute flex-grow flex items-center justify-between bottom-0 right-0 w-full">
+      <div className="absolute grow flex items-center justify-between bottom-0 right-0 w-full">
         <div className="mx-auto self-start animate-bounce">
           <FontAwesomeIcon className="text-4xl" icon={["fas", "angle-down"]} />
         </div>

@@ -46,7 +46,7 @@ function DocItem(props: Props): JSX.Element {
       <Seo {...{ title, description, keywords, image }} />
 
       <div className="relative flex flex-row w-full">
-        <div className="flex-grow lg:max-w-[75%] prose dark:prose-dark p-4 lg:px-16 mx-auto">
+        <div className="grow lg:max-w-[75%] prose dark:prose-dark p-4 lg:px-16 mx-auto">
           <DocVersionBanner versionMetadata={versionMetadata} />
           <div className="doc-content">
             <article>

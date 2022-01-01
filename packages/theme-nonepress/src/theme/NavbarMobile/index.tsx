@@ -50,7 +50,7 @@ function NavbarMobile(props: Props): JSX.Element {
     >
       <div className="relative max-h-screen rounded-lg shadow-md rel bg-light-nonepress-100 ring-1 ring-black ring-opacity-5 overflow-auto dark:bg-dark-nonepress-100">
         <div className="sticky top-0 bg-inherit px-5 pt-4 flex items-center justify-between">
-          <div className="flex flex-grow justify-start">
+          <div className="flex grow justify-start">
             <Logo imageClassName="h-8 w-auto" />
           </div>
           <ThemeSwitcher className="inline-flex mr-5" />

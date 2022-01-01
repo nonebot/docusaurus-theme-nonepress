@@ -63,7 +63,7 @@ function DocSidebarDesktop({
       <nav
         className={clsx(
           "menu thin-scrollbar",
-          "font-medium flex-grow p-2 overflow-x-hidden"
+          "font-medium grow p-2 overflow-x-hidden"
           // {
           //   [styles.menuWithAnnouncementBar]: showAnnouncementBar,
           // }
