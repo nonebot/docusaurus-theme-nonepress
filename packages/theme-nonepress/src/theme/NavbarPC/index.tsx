@@ -131,6 +131,7 @@ function NavbarDocsVersion({
           <li key={index} className="cursor-default select-none relative">
             <Link
               to={version.to}
+              onClick={version.onClick}
               isActive={version.isActive}
               isNavLink={version.isNavLink}
               activeClassName={styles["version-selected"]}
