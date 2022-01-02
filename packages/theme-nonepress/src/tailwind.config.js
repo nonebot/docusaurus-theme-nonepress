@@ -141,7 +141,7 @@ module.exports = {
               backgroundColor: "#333437",
             },
             "pre code": {
-              backgroundColor: "#transparent",
+              backgroundColor: "transparent",
             },
           },
         },

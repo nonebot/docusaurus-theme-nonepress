@@ -79,8 +79,8 @@ declare module "@theme/hooks/useTheme" {
 }
 
 declare module "@theme/hooks/useThemeConfig" {
+  import type { PrismTheme } from "prism-react-renderer";
   import type { DocusaurusConfig } from "@docusaurus/types";
-  import defaultTheme from "prism-react-renderer/themes/palenight";
   import type { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 
   export type ColorModeConfig = {
@@ -194,8 +194,8 @@ declare module "@theme/hooks/useThemeConfig" {
   };
 
   export type PrismConfig = {
-    theme?: typeof defaultTheme;
-    darkTheme?: typeof defaultTheme;
+    theme?: PrismTheme;
+    darkTheme?: PrismTheme;
     defaultLanguage?: string;
     additionalLanguages?: string[];
   };
