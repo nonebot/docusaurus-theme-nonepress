@@ -60,6 +60,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               href: "https://github.com/nonebot/nonebot2",
             },
           ],
+          docsVersionItemAfter: [
+            {
+              label: "test",
+              href: "https://github.com/nonebot/docusaurus-theme-nonepress",
+            },
+          ],
         },
         hideableSidebar: true,
         footer: {

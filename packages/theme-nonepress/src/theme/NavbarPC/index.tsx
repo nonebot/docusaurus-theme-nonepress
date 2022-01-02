@@ -7,11 +7,13 @@ import styles from "./styles.module.css";
 import SearchBar from "@theme/SearchBar";
 import NavbarItem from "@theme/NavbarItem";
 import type { Props } from "@theme/NavbarPC";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import ThemeSwitcher from "@theme/ThemeSwitcher";
-import useThemeConfig, { NavbarConfig } from "@theme/hooks/useThemeConfig";
 import useTransition from "@theme/hooks/useTransition";
 import useOnclickOutside from "react-cool-onclickoutside";
+import useThemeConfig, { NavbarConfig } from "@theme/hooks/useThemeConfig";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
+import type { NavbarLink, NavbarDocLink } from "@theme/hooks/useThemeConfig";
 import {
   GlobalVersion,
   GlobalDoc,
@@ -55,6 +57,22 @@ function NavbarDocsVersion({
   const { preferredVersion, savePreferredVersionName } =
     useDocsPreferredVersion(docsPluginId);
 
+  const dropdownVersion =
+    activeDocContext.activeVersion ?? preferredVersion ?? latestVersion;
+
+  function getDocInVersion(docId: string) {
+    const allDocs = dropdownVersion.docs;
+    const doc = allDocs.find((versionDoc) => versionDoc.id === docId);
+    if (!doc) {
+      const docIds = allDocs.map((versionDoc) => versionDoc.id).join("\n- ");
+      throw new Error(
+        `DocNavbarItem: couldn't find any doc with id "${docId}" in version ${dropdownVersion.name}.
+  Available doc ids are:\n- ${docIds}`
+      );
+    }
+    return doc;
+  }
+
   function getItems() {
     const versionLinks = versions.map((version) => {
       // We try to link to the same doc, in another version
@@ -75,11 +93,35 @@ function NavbarDocsVersion({
 
     return versionLinks;
   }
+  function getExtraLinks(links: (NavbarLink | NavbarDocLink)[]) {
+    return links.map((link) => {
+      if (link.type === "docLink") {
+        const link_ = link as NavbarDocLink;
+        const doc = getDocInVersion(link_.docId);
+        return {
+          isNavLink: false,
+          label: link_.label,
+          to: doc.path,
+        };
+      } else {
+        const link_ = link as NavbarLink;
+        const toUrl = useBaseUrl(link_.to);
+        const normalizedHref = useBaseUrl(link_.href, {
+          forcePrependBaseUrl: true,
+        });
+        return {
+          isNavLink: false,
+          label: link_.label,
+          href: link_.prependBaseUrlToHref ? normalizedHref : link_.href,
+          to: toUrl,
+        };
+      }
+    });
+  }
 
   const items = getItems();
-
-  const dropdownVersion =
-    activeDocContext.activeVersion ?? preferredVersion ?? latestVersion;
+  const preItems = getExtraLinks(docsVersionItemBefore);
+  const afterItems = getExtraLinks(docsVersionItemAfter);
 
   if (items.length <= 0) {
     return <></>;
@@ -126,7 +168,25 @@ function NavbarDocsVersion({
         data-transition-leave-from="opacity-100"
         data-transition-leave-to="opacity-0"
       >
-        {/* TODO: docs version extra item */}
+        {preItems.map((item, index) => (
+          <li key={index} className="cursor-default select-none relative">
+            <Link
+              {...(item.href
+                ? {
+                    href: item.href,
+                  }
+                : {
+                    to: item.to,
+                  })}
+              isNavLink={item.isNavLink}
+              className="relative flex justify-end items-center content-center transition py-2 pl-7 rounded duration-300 hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200"
+            >
+              <span className="grow font-medium inline-block truncate">
+                {item.label}
+              </span>
+            </Link>
+          </li>
+        ))}
         {items.map((version, index) => (
           <li key={index} className="cursor-default select-none relative">
             <Link
@@ -146,6 +206,25 @@ function NavbarDocsVersion({
               ></span>
               <span className="grow font-medium inline-block truncate">
                 {version.label}
+              </span>
+            </Link>
+          </li>
+        ))}
+        {afterItems.map((item, index) => (
+          <li key={index} className="cursor-default select-none relative">
+            <Link
+              {...(item.href
+                ? {
+                    href: item.href,
+                  }
+                : {
+                    to: item.to,
+                  })}
+              isNavLink={item.isNavLink}
+              className="relative flex justify-end items-center content-center transition py-2 pl-7 rounded duration-300 hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200"
+            >
+              <span className="grow font-medium inline-block truncate">
+                {item.label}
               </span>
             </Link>
           </li>
