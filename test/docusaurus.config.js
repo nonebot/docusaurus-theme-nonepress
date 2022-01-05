@@ -142,6 +142,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             showLastUpdateTime: true,
             // beforeDefaultRemarkPlugins: [require("remark-heading-id")],
           },
+          sitemap: {
+            changefreq: "weekly",
+            priority: 0.5,
+          },
         }),
       ],
     ],
