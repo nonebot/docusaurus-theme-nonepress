@@ -17,7 +17,8 @@ function makePluginConfig(
 }
 
 export default function preset(context: LoadContext, opts: Options): Preset {
-  const { docs, pages, ...rest } = opts;
+  const isProd = process.env.NODE_ENV === "production";
+  const { docs, pages, sitemap, ...rest } = opts;
 
   const themes: PluginConfig[] = [];
   themes.push(makePluginConfig("docusaurus-theme-nonepress", docs));
@@ -26,6 +27,9 @@ export default function preset(context: LoadContext, opts: Options): Preset {
   plugins.push(makePluginConfig("@docusaurus/plugin-content-docs", docs));
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));
+  }
+  if (isProd && sitemap !== false) {
+    plugins.push(makePluginConfig("@docusaurus/plugin-sitemap", sitemap));
   }
   if (Object.keys(rest).length > 0) {
     throw new Error(
