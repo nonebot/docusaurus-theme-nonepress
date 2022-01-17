@@ -7,7 +7,7 @@ const DEFAULT_DOCS_CONFIG = {
 const DEFAULT_COLOR_MODE_CONFIG = {
   defaultMode: "light",
   disableSwitch: false,
-  respectPrefersColorScheme: false,
+  respectPrefersColorScheme: true,
   switchConfig: {
     darkIconText: "🌜",
     lightIconText: "🌞",

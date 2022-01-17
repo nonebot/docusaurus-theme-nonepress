@@ -234,7 +234,7 @@ export default function docusaurusThemeNonepress(
             attributes: {
               type: "text/javascript",
             },
-            innerHTML: `${noFlashColorMode(colorMode, true)}`,
+            innerHTML: `${noFlashColorMode(colorMode)}`,
           },
         ],
       };
