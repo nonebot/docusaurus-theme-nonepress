@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "commonjs",
-    "lib": ["ESNext", "DOM"],
+    "target": "ES2020",
+    "lib": ["ESNext"],
+    "module": "NodeNext",
     "declaration": true,
     "declarationMap": false,
-    "jsx": "react",
+    "sourceMap": false,
+    "jsx": "react-native",
+    "noEmit": true,
 
     /* Strict Type-Checking Options */
     // "strict": true,
@@ -25,7 +27,7 @@
     "noUnusedParameters": false,
 
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
