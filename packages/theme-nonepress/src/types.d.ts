@@ -2,6 +2,92 @@
 /// <reference types="@docusaurus/plugin-content-docs" />
 /// <reference types="@docusaurus/plugin-content-pages" />
 
+declare module "@nullbot/docusaurus-theme-nonepress" {
+  import type { DeepPartial } from "utility-types";
+  import type { Config as tailwindConfig } from "tailwindcss";
+  import type { ThemeConfig as defaultThemeConfig } from "@docusaurus/theme-common";
+  import type { LoadContext, Plugin, PluginModule } from "@docusaurus/types";
+
+  export type PluginOptions = {
+    customCss: string[];
+  };
+  export type Options = {
+    customCss?: string[] | string;
+  };
+
+  export const getSwizzleConfig: PluginModule["getSwizzleConfig"];
+
+  export type SocialLink = {
+    icon: [string, string];
+    href: string;
+  };
+
+  export type NavbarItemBase = {
+    label?: string;
+    html?: string;
+    className?: string;
+  };
+  export type NavbarLink = NavbarItemBase & {
+    to?: string;
+    href?: string;
+    prependBaseUrlToHref?: boolean;
+  };
+  export type NavbarDocsVersion = NavbarItemBase & {
+    type: "docsVersion";
+    to?: string;
+    docsPluginId?: string;
+  };
+  export type NavbarDocLink = NavbarItemBase & {
+    type: "doc";
+    docId: string;
+    docsPluginId?: string;
+  };
+  export type NavbarDocSidebar = NavbarItemBase & {
+    type: "docSidebar";
+    sidebarId: string;
+    docsPluginId?: string;
+  };
+  export type NavbarHtml = NavbarItemBase & {
+    type: "html";
+    className?: string;
+    value: string;
+  };
+  export type DocsVersionDropdownSubitem =
+    | NavbarLink
+    | NavbarDocsVersion
+    | NavbarDocLink
+    | NavbarDocSidebar
+    | NavbarHtml;
+
+  export type DocsVersionDropdown = {
+    enable: boolean;
+    docsPluginId?: string;
+    dropdownActiveClassDisabled: boolean;
+    dropdownItemsBefore?: DocsVersionDropdownSubitem;
+    dropdownItemsAfter?: DocsVersionDropdownSubitem;
+  };
+
+  export type ThemeConfig = defaultThemeConfig & {
+    nonepress: {
+      tailwindConfig?: tailwindConfig;
+      navbar?: {
+        docsVerisonDropdown?: DocsVersionDropdown;
+        socialLinks?: SocialLink[];
+      };
+      footer?: {
+        socialLinks?: SocialLink[];
+      };
+    };
+  };
+
+  export type UserThemeConfig = DeepPartial<ThemeConfig>;
+
+  export default async function themeNonepress(
+    context: LoadContext,
+    options: PluginOptions,
+  ): Promise<Plugin<void>>;
+}
+
 declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
   export type useAlgoliaContextualFacetFiltersReturns = [string, string[]];
 
@@ -24,7 +110,7 @@ declare module "@theme/hooks/useDocs" {
 
   export * from "@docusaurus/plugin-content-docs/lib/theme/hooks/useDocs";
   export function useLoadedVersions(
-    pluginId: string | undefined
+    pluginId: string | undefined,
   ): GlobalPluginData;
 }
 
@@ -281,6 +367,17 @@ declare module "@theme/hooks/useWindowSize" {
   export default useWindowSize;
 }
 
+declare module "@theme/Admonition" {
+  import type { ReactNode } from "react";
+  export interface Props {
+    readonly children: ReactNode;
+    readonly type: "note" | "tip" | "danger" | "info" | "caution";
+    readonly icon?: ReactNode;
+    readonly title?: ReactNode;
+  }
+  export default function Admonition(props: Props): JSX.Element;
+}
+
 declare module "@theme/BackToTopButton" {
   function BackToTopButton(): JSX.Element;
   export default BackToTopButton;
@@ -405,10 +502,12 @@ declare module "@theme/Hero" {
 
   export default function Hero(): JSX.Element;
   export function HeroFeatureSingle(
-    props: PropsWithChildren<Feature>
+    props: PropsWithChildren<Feature>,
   ): JSX.Element;
   export function HeroFeatureDouble(
-    props: PropsWithChildren<{ readonly features: readonly [Feature, Feature] }>
+    props: PropsWithChildren<{
+      readonly features: readonly [Feature, Feature];
+    }>,
   ): JSX.Element;
 }
 
@@ -823,44 +922,10 @@ declare module "@theme/UserPreferencesProvider" {
   export default UserPreferencesProvider;
 }
 
-declare module "docusaurus-theme-nonepress/types" {
-  import type { GlobalDataVersion } from "@docusaurus/plugin-content-docs-types";
-
-  export type GlobalFrontMatter = {
-    options?: { menu?: { weight?: number; category?: Array<string> } };
-  };
-
-  export type GlobalDoc = {
-    title: string;
-    description: string;
-    permalink: string;
-    frontMatter: GlobalFrontMatter;
-  };
-
-  export type GlobalVersion = {
-    name: GlobalDataVersion["name"];
-    mainDocId: GlobalDataVersion["mainDocId"];
-    docs: GlobalDoc[];
-  };
-
-  export type GlobalPluginData = {
-    versions: GlobalVersion[];
-  };
-
-  export type { ThemeConfig } from "@theme/hooks/useThemeConfig";
-}
-
 declare module "@theme/prism-include-languages" {
   import type * as PrismNamespace from "prismjs";
 
   export default function prismIncludeLanguages(
-    PrismObject: typeof PrismNamespace
+    PrismObject: typeof PrismNamespace,
   ): void;
-}
-
-declare module "prism-react-renderer/prism" {
-  import type * as PrismNamespace from "prismjs";
-
-  const Prism: typeof PrismNamespace;
-  export default Prism;
 }

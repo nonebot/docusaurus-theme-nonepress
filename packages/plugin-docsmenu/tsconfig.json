@@ -8,6 +8,6 @@
     "rootDir": "src",
     "outDir": "lib"
   },
-  "include": ["src"],
-  "exclude": ["src/nprogress.ts", "src/prism-include-languages.ts", "src/theme"]
+  "include": ["src/"],
+  "exclude": ["src/client"]
 }

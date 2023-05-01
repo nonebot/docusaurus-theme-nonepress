@@ -1,5 +1,5 @@
 {
-  "name": "docusaurus-preset-nonepress",
+  "name": "@nullbot/docusaurus-preset-nonepress",
   "version": "2.1.0",
   "description": "The presets for Nonepress theme",
   "files": [
@@ -7,14 +7,14 @@
     "src/**/*"
   ],
   "main": "lib/index.js",
-  "types": "src/preset-nonepress.d.ts",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nonebot/docusaurus-preset-nonepress.git",
-    "directory": "packages/preset-classic"
+    "directory": "packages/preset-nonepress"
   },
   "license": "MIT",
   "scripts": {
@@ -25,7 +25,21 @@
     "@docusaurus/core": "^2.4.0",
     "@docusaurus/plugin-content-docs": "^2.4.0",
     "@docusaurus/plugin-content-pages": "^2.4.0",
+    "@docusaurus/plugin-debug": "^2.4.0",
+    "@docusaurus/plugin-google-gtag": "^2.4.0",
+    "@docusaurus/plugin-google-tag-manager": "^2.4.0",
     "@docusaurus/plugin-sitemap": "^2.4.0",
-    "docusaurus-theme-nonepress": "^2.1.0"
+    "@docusaurus/theme-search-algolia": "^2.4.0",
+    "@nullbot/docusaurus-theme-nonepress": "^2.1.0"
+  },
+  "devDependencies": {
+    "@docusaurus/types": "^2.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4 || ^17.0.0",
+    "react-dom": "^16.8.4 || ^17.0.0"
+  },
+  "engines": {
+    "node": ">=16.14"
   }
 }

@@ -6,7 +6,14 @@ module.exports = {
     node: true,
   },
   parser: "@typescript-eslint/parser",
-  parserOptions: {},
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: [
+      "./tsconfig.json",
+      "./packages/*/tsconfig.client.json",
+      "./packages/*/tsconfig.json",
+    ],
+  },
   globals: {
     JSX: true,
   },
@@ -24,14 +31,24 @@ module.exports = {
       node: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
+      typescript: true,
+    },
+    react: {
+      version: "detect",
     },
   },
-  overrides: [],
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "import/no-unresolved": 0,
+      },
+    },
+  ],
   plugins: ["@typescript-eslint"],
   rules: {
-    indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
+    quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
   },
 };
