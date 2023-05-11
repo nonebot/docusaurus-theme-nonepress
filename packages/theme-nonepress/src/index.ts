@@ -4,11 +4,12 @@ import path from "path";
 import autoprefixer from "autoprefixer";
 import type { AcceptedPlugin } from "postcss";
 import postcssImport from "postcss-import";
+import postcssNesting from "postcss-nesting";
 import tailwindcss from "tailwindcss";
 import type webpack from "webpack";
-
 import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
 import type { LoadContext, Plugin } from "@docusaurus/types";
+
 import type {
   PluginOptions,
   ThemeConfig,
@@ -39,8 +40,6 @@ const noFlashColorMode = ({
 
   function setDataThemeAttribute(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    document.body.classList.remove("dark", "light");
-    document.body.classList.add(theme);
   }
 
   function getQueryStringTheme() {
@@ -193,6 +192,7 @@ export default async function themeNonepress(
       postCssOptions.plugins.unshift(
         postcssImport(),
         tailwindcss(tailwindConfig),
+        postcssNesting(),
         autoprefixer(),
       );
 

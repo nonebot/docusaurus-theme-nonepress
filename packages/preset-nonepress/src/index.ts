@@ -45,6 +45,7 @@ export default function preset(
   const plugins: PluginConfig[] = [];
   if (docs !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-docs", docs));
+    plugins.push("@nullbot/docusaurus-plugin-docsmenu");
   }
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));

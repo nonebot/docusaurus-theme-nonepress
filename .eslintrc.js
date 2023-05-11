@@ -12,6 +12,7 @@ module.exports = {
       "./tsconfig.json",
       "./packages/*/tsconfig.client.json",
       "./packages/*/tsconfig.json",
+      "./website/tsconfig.json",
     ],
   },
   globals: {
@@ -50,5 +51,30 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+        pathGroups: [
+          { pattern: "react", group: "builtin", position: "before" },
+          { pattern: "fs-extra", group: "builtin" },
+          { pattern: "lodash", group: "external", position: "before" },
+          { pattern: "clsx", group: "external", position: "before" },
+          { pattern: "@theme/**", group: "internal" },
+          { pattern: "@site/**", group: "internal" },
+          { pattern: "@theme-init/**", group: "internal" },
+          { pattern: "@theme-original/**", group: "internal" },
+        ],
+        pathGroupsExcludedImportTypes: [],
+        "newlines-between": "always",
+      },
+    ],
   },
 };

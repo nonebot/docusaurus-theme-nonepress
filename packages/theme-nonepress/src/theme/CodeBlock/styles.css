@@ -1,8 +1,106 @@
-.docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.1);
-  display: block;
-}
+.code-block-container {
+  @apply relative w-full max-w-full h-auto rounded-box bg-base-200 text-base-content group;
 
-.dark .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+  & > .code-block-title {
+    @apply relative w-full px-4 py-2;
+
+    & > .code-block-title-btn-group {
+      @apply absolute left-4;
+
+      & > .code-block-title-btn {
+        @apply inline-block h-3 w-3 rounded-full;
+
+        &:not(:last-child) {
+          @apply mr-1;
+        }
+
+        &.code-block-title-btn-error {
+          @apply bg-error;
+        }
+
+        &.code-block-title-btn-warning {
+          @apply bg-warning;
+        }
+
+        &.code-block-title-btn-success {
+          @apply bg-success;
+        }
+      }
+    }
+
+    & > .code-block-title-content {
+      @apply w-full text-center font-medium inline-block truncate;
+    }
+  }
+
+  & > .code-block-content {
+    @apply relative w-full;
+
+    & > .code-block {
+      @apply overflow-auto w-full;
+
+      & > .code-block-lines {
+        @apply w-full p-4;
+
+        @media print {
+          @apply whitespace-pre-wrap;
+        }
+
+        & > .code-block-line {
+          &.theme-code-block-highlighted-line {
+            @apply block px-4 -mx-4 bg-black/10;
+
+            [data-theme="dark"] & {
+              @apply bg-black/30;
+            }
+          }
+        }
+
+        &.code-block-lines-with-number {
+          @apply table !px-0;
+
+          & > .code-block-line-with-number {
+            counter-increment: line;
+
+            @apply table-row;
+
+            & > .code-block-line-number {
+              @apply table-cell sticky left-0 text-right px-4 select-none w-[1%];
+
+              &::before {
+                content: counter(line);
+
+                @apply opacity-50;
+              }
+            }
+
+            & > .code-block-line-content {
+              @apply table-cell pr-4;
+            }
+
+            &.theme-code-block-highlighted-line
+              > .code-block-line-number::before {
+              @apply opacity-80;
+            }
+          }
+        }
+      }
+    }
+
+    & > .code-block-btn-group {
+      @apply absolute right-2 top-2 flex flex-row gap-x-2;
+
+      & > .code-block-btn {
+        @apply btn btn-square btn-outline no-animation transition opacity-0 group-hover:opacity-50 hover:!opacity-100 focus-visible:!opacity-100;
+
+        &.code-block-btn-active {
+          @apply btn-success;
+        }
+
+        & > .code-block-btn-icon {
+          @apply w-6 h-6;
+        }
+      }
+    }
+  }
 }

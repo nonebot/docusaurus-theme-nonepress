@@ -14,6 +14,9 @@ module.exports = {
   //   "md:grid-cols-11",
   //   "md:grid-cols-12",
   // ],
-  darkMode: "class",
+  // darkMode: "class",
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 };

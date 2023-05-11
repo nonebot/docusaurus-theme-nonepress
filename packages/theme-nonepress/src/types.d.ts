@@ -88,6 +88,12 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
   ): Promise<Plugin<void>>;
 }
 
+declare module "@nullbot/docusaurus-theme-nonepress/client" {
+  import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
+
+  export function useNonepressThemeConfig(): ThemeConfig;
+}
+
 declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
   export type useAlgoliaContextualFacetFiltersReturns = [string, string[]];
 
@@ -164,159 +170,6 @@ declare module "@theme/hooks/useTheme" {
   export default useTheme;
 }
 
-declare module "@theme/hooks/useThemeConfig" {
-  import type { PrismTheme } from "prism-react-renderer";
-  import type { DocusaurusConfig } from "@docusaurus/types";
-  import type { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
-
-  export type ColorModeConfig = {
-    defaultMode?: "light" | "dark";
-    disableSwitch?: boolean;
-    respectPrefersColorScheme?: boolean;
-    switchConfig?: {
-      darkIcon?: [IconPrefix, IconName];
-      darkIconText?: string;
-      lightIcon?: [IconPrefix, IconName];
-      lightIconText?: string;
-    };
-  };
-
-  export type DocsConfig = {
-    versionPersistence?: "localStorage" | "none";
-  };
-
-  export type TOCConfig = {
-    minHeadingLevel: number;
-    maxHeadingLevel: number;
-  };
-
-  export type MetadataConfig = {
-    id?: string;
-    name?: string;
-    property?: string;
-    content?: string;
-    itemprop?: string;
-  };
-
-  export type LogoConfig = {
-    alt?: string;
-    src: string;
-    srcDark?: string;
-    href?: string;
-    target?: string;
-  };
-
-  export type NavbarItemBase = {
-    type?: string;
-    label?: string;
-    icon?: [IconPrefix, IconName];
-    className?: string;
-  };
-
-  export type NavbarLink = NavbarItemBase & {
-    to?: string;
-    href?: string;
-    prependBaseUrlToHref?: boolean;
-  };
-
-  export type NavbarDropdown = NavbarItemBase & {
-    to?: string;
-    href?: string;
-    prependBaseUrlToHref?: boolean;
-    items: Array<NavbarLink>;
-  };
-
-  export type NavbarDocLink = NavbarItemBase & {
-    type: "docLink";
-    docId: string;
-    docsPluginId?: string;
-  };
-
-  export type NavbarDocsMenu = NavbarItemBase & {
-    type: "docsMenu";
-    docId?: string;
-    docsPluginId?: string;
-    category?: string;
-  };
-
-  export type NavbarItem =
-    | NavbarLink
-    | NavbarDocLink
-    | NavbarDropdown
-    | NavbarDocsMenu;
-
-  export type NavbarConfig = {
-    hideOnScroll?: boolean;
-    items?: NavbarItem[];
-    docsVersionItemBefore?: (NavbarLink | NavbarDocLink)[];
-    docsVersionItemAfter?: (NavbarLink | NavbarDocLink)[];
-  };
-
-  export type FooterLinkConfig = {
-    title?: string;
-    icon?: [IconPrefix, IconName];
-    items?: Array<{
-      to?: string;
-      href?: string;
-      html?: string;
-      label?: string;
-      icon?: [IconPrefix, IconName];
-      prependBaseUrlToHref?: boolean;
-    }>;
-  };
-
-  export type FooterIconLinkConfig = {
-    icon: [IconPrefix, IconName];
-    to?: string;
-    href?: string;
-    description?: string;
-    prependBaseUrlToHref?: boolean;
-  };
-
-  export type FooterConfig = {
-    copyright?: string;
-    links?: Array<FooterLinkConfig>;
-    iconLinks?: Array<FooterIconLinkConfig>;
-  };
-
-  export type PrismConfig = {
-    theme?: PrismTheme;
-    darkTheme?: PrismTheme;
-    defaultLanguage?: string;
-    additionalLanguages?: string[];
-  };
-
-  export type AlgoliaConfig = {
-    contextualSearch?: boolean;
-    externalUrlRegex?: string;
-    appId?: string;
-    apiKey: string;
-    indexName: string;
-    searchParameters?: {
-      [key: string]: any;
-    };
-  };
-
-  export type ThemeConfig = {
-    colorMode?: ColorModeConfig;
-    docs?: DocsConfig;
-    tableOfContents?: TOCConfig;
-    metadatas?: MetadataConfig[];
-    logo: LogoConfig;
-    navbar?: NavbarConfig;
-    footer?: FooterConfig;
-    hideableSidebar?: boolean;
-    prism?: PrismConfig;
-    algolia?: AlgoliaConfig;
-    tailwindConfig?: { [key: string]: any };
-    customCss?: string | string[];
-  };
-
-  export function useSiteConfig(): DocusaurusConfig;
-  function useThemeConfig(): ThemeConfig;
-  export default useThemeConfig;
-}
-
 declare module "@theme/hooks/useThemeContext" {
   export type ThemeContextProps = {
     isDarkTheme: boolean;
@@ -378,23 +231,112 @@ declare module "@theme/Admonition" {
   export default function Admonition(props: Props): JSX.Element;
 }
 
+declare module "@theme/AnnouncementBar" {
+  export default function AnnouncementBar(): JSX.Element | null;
+}
+declare module "@theme/AnnouncementBar/Content" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"div"> {}
+
+  export default function AnnouncementBarContent(props: Props): JSX.Element;
+}
+declare module "@theme/AnnouncementBar/CloseButton" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"button"> {}
+
+  export default function AnnouncementBarCloseButton(props: Props): JSX.Element;
+}
+
 declare module "@theme/BackToTopButton" {
-  function BackToTopButton(): JSX.Element;
-  export default BackToTopButton;
+  export default function BackToTopButton(): JSX.Element;
 }
 
 declare module "@theme/CodeBlock" {
-  import { ReactElement } from "react";
+  import type { ReactNode } from "react";
 
   export interface Props {
-    readonly children: string | ReactElement;
+    readonly children: ReactNode;
     readonly className?: string;
     readonly metastring?: string;
-    readonly title?: string | boolean;
+    readonly title?: string;
+    readonly language?: string;
+    readonly showLineNumbers?: boolean;
   }
 
-  function CodeBlock(props: Props): JSX.Element;
-  export default CodeBlock;
+  export default function CodeBlock(props: Props): JSX.Element;
+}
+
+declare module "@theme/CodeBlock/Container" {
+  import type { ComponentProps } from "react";
+
+  export default function CodeBlockContainer(
+    props: ComponentProps<"div">,
+  ): JSX.Element;
+}
+
+declare module "@theme/CodeBlock/Content/Element" {
+  import type { Props } from "@theme/CodeBlock";
+
+  export type { Props };
+
+  export default function CodeBlockElementContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/CodeBlock/Content/String" {
+  import type { Props as CodeBlockProps } from "@theme/CodeBlock";
+
+  export interface Props extends Omit<CodeBlockProps, "children"> {
+    readonly children: string;
+  }
+
+  export default function CodeBlockStringContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/CodeBlock/CopyButton" {
+  export interface Props {
+    readonly code: string;
+    readonly className?: string;
+  }
+
+  export default function CopyButton(props: Props): JSX.Element;
+}
+
+declare module "@theme/CodeBlock/Line" {
+  import type { ComponentProps } from "react";
+
+  import type Highlight from "prism-react-renderer";
+
+  // Lib does not make this easy
+  type RenderProps = Parameters<
+    ComponentProps<typeof Highlight>["children"]
+  >[0];
+  type GetLineProps = RenderProps["getLineProps"];
+  type GetTokenProps = RenderProps["getTokenProps"];
+  type Token = RenderProps["tokens"][number][number];
+
+  export interface Props {
+    readonly line: Token[];
+    readonly classNames: string[] | undefined;
+    readonly showLineNumbers: boolean;
+    readonly getLineProps: GetLineProps;
+    readonly getTokenProps: GetTokenProps;
+  }
+
+  export default function CodeBlockLine(props: Props): JSX.Element;
+}
+
+declare module "@theme/CodeBlock/WordWrapButton" {
+  export interface Props {
+    readonly className?: string;
+    readonly onClick: React.MouseEventHandler;
+    readonly isEnabled: boolean;
+  }
+
+  export default function WordWrapButton(props: Props): JSX.Element;
 }
 
 declare module "@theme/Details" {
@@ -585,7 +527,9 @@ declare module "@theme/Logo" {
 
 declare module "@theme/MDXComponents" {
   import type { ComponentProps } from "react";
+
   import type Head from "@docusaurus/Head";
+
   import type CodeBlock from "@theme/CodeBlock";
 
   export type MDXComponentsObject = {
@@ -613,6 +557,7 @@ declare module "@theme/Navbar" {
 
 declare module "@theme/NavbarItem" {
   import type { PropsWithChildren } from "react";
+
   import type { NavbarItemBase as NavItem } from "@theme/hooks/useThemeConfig";
   export type Props = PropsWithChildren<{
     readonly item: NavItem & { readonly [key: string]: any };
@@ -625,6 +570,7 @@ declare module "@theme/NavbarItem" {
 
 declare module "@theme/NavbarItem/NavbarDocLink" {
   import type { PropsWithChildren } from "react";
+
   import type { NavbarDocLink as NavDocLink } from "@theme/hooks/useThemeConfig";
   export type Props = PropsWithChildren<
     NavDocLink & { linkClassName?: string }
@@ -644,6 +590,7 @@ declare module "@theme/NavbarItem/NavbarDocLinkMobile" {
 
 declare module "@theme/NavbarItem/NavbarDocsMenu" {
   import type { PropsWithChildren } from "react";
+
   import type { NavbarDocsMenu as NavDocsMenu } from "@theme/hooks/useThemeConfig";
 
   export type Props = PropsWithChildren<NavDocsMenu>;
@@ -662,6 +609,7 @@ declare module "@theme/NavbarItem/NavbarDocsMenuMobile" {
 
 declare module "@theme/NavbarItem/NavbarDropdown" {
   import type { PropsWithChildren } from "react";
+
   import type { NavbarDropdown as NavDropdown } from "@theme/hooks/useThemeConfig";
   export type Props = PropsWithChildren<NavDropdown>;
 
@@ -679,6 +627,7 @@ declare module "@theme/NavbarItem/NavbarDropdownMobile" {
 
 declare module "@theme/NavbarItem/NavbarLink" {
   import type { PropsWithChildren } from "react";
+
   import type { NavbarLink as NavLink } from "@theme/hooks/useThemeConfig";
   export type Props = PropsWithChildren<NavLink & { linkClassName?: string }>;
 
@@ -748,6 +697,7 @@ declare module "@theme/TabItem" {
 
 declare module "@theme/Tabs" {
   import type { ReactElement } from "react";
+
   import type { Props as TabItemProps } from "@theme/TabItem";
 
   export interface Props {
@@ -765,6 +715,7 @@ declare module "@theme/Tabs" {
 
 declare module "@theme/Tag" {
   import type { Optional } from "utility-types";
+
   import type { TagsListItem } from "@theme/TagsListByLetter";
 
   export interface Props extends Optional<TagsListItem, "count"> {}
@@ -797,6 +748,7 @@ declare module "@theme/TagsListInline" {
 
 declare module "@theme/ThemeContext" {
   import type { Context } from "react";
+
   import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
 
   const ThemeContext: Context<ThemeContextProps | undefined>;
@@ -903,6 +855,7 @@ declare module "@theme/TOCInline" {
 
 declare module "@theme/UserPreferencesContext" {
   import type { Context } from "react";
+
   import type { UserPreferencesContextProps } from "@theme/hooks/useUserPreferencesContext";
 
   const UserPreferencesContext: Context<

@@ -6,7 +6,7 @@ import type { Options as SitemapPluginOptions } from "@docusaurus/plugin-sitemap
 import type { UserThemeConfig as AlgoliaThemeConfig } from "@docusaurus/theme-search-algolia";
 import type { ThemeConfig as BaseThemeConfig } from "@docusaurus/types";
 import type {
-  ThemeConfig as NonepressThemeConfig,
+  UserThemeConfig as NonepressThemeConfig,
   Options as ThemeOptions,
 } from "@nullbot/docusaurus-theme-nonepress";
 

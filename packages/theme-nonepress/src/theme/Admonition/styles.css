@@ -1,0 +1,23 @@
+.admonition {
+  @apply alert !flex-col mb-4;
+
+  &.admonition-success {
+    @apply alert-success;
+  }
+
+  &.admonition-error {
+    @apply alert-error;
+  }
+
+  &.admonition-info {
+    @apply alert-info;
+  }
+
+  &.admonition-warning {
+    @apply alert-warning;
+  }
+
+  & > .admonition-title {
+    @apply uppercase font-bold;
+  }
+}

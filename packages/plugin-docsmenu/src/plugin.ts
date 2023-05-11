@@ -4,13 +4,13 @@ import type {
 } from "@docusaurus/plugin-content-docs";
 import type { LoadContext, Plugin } from "@docusaurus/types";
 
+import { PLUGIN_NAME } from "./client";
 import type {
   Doc,
   GlobalDocsInstance,
   GlobalDocsVersion,
   GlobalPluginData,
 } from "./client";
-import { PLUGIN_NAME } from "./client";
 import type { DocFrontmatter, PluginOptions } from "./types";
 
 const DEFAULT_WEIGHT = 9999;

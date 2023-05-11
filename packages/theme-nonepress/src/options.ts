@@ -1,10 +1,10 @@
 import defaultPrismTheme from "prism-react-renderer/themes/palenight";
-
 import type {
   OptionValidationContext,
   ThemeConfigValidationContext,
 } from "@docusaurus/types";
 import { Joi, URISchema } from "@docusaurus/utils-validation";
+
 import type {
   Options,
   PluginOptions,

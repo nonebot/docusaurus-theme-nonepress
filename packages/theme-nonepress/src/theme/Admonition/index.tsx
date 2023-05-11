@@ -1,10 +1,12 @@
 import React, { type ReactNode } from "react";
+
 import clsx from "clsx";
+
+import "./styles.css";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import Translate from "@docusaurus/Translate";
-import type { Props } from "@theme/Admonition";
 
-import styles from "./styles.module.css";
+import type { Props } from "@theme/Admonition";
 
 function NoteIcon() {
   return (
@@ -233,18 +235,17 @@ export default function Admonition(props: Props): JSX.Element {
   return (
     <div
       className={clsx(
+        "admonition",
+        typeConfig.className && `admonition-${typeConfig.className}`,
         ThemeClassNames.common.admonition,
         ThemeClassNames.common.admonitionType(props.type),
-        "alert",
-        typeConfig.className && `alert--${typeConfig.className}`,
-        styles.admonition,
       )}
     >
-      <div className={styles.admonitionHeading}>
+      <div className="admonition-title">
         {icon}
         <span>{titleLabel}</span>
       </div>
-      <div className={styles.admonitionContent}>{children}</div>
+      <div>{children}</div>
     </div>
   );
 }
