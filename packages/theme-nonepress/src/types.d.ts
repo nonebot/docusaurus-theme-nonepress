@@ -339,6 +339,17 @@ declare module "@theme/CodeBlock/WordWrapButton" {
   export default function WordWrapButton(props: Props): JSX.Element;
 }
 
+declare module "@theme/ColorModeToggle" {
+  import type { ColorMode } from "@docusaurus/theme-common";
+
+  export interface Props {
+    readonly className?: string;
+    readonly value: ColorMode;
+    readonly onChange: (colorMode: ColorMode) => void;
+  }
+  export default function ColorModeToggle(props: Props): JSX.Element;
+}
+
 declare module "@theme/Details" {
   import { Details, DetailsProps } from "@docusaurus/theme-common";
 
