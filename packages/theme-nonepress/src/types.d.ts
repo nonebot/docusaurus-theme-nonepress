@@ -351,9 +351,11 @@ declare module "@theme/ColorModeToggle" {
 }
 
 declare module "@theme/Details" {
-  import { Details, DetailsProps } from "@docusaurus/theme-common";
+  import { Details, type DetailsProps } from "@docusaurus/theme-common/Details";
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Props extends DetailsProps {}
+
   export default Details;
 }
 
