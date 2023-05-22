@@ -1,0 +1,9 @@
+.breadcrumbs {
+  & .breadcrumbs-btn {
+    @apply btn btn-ghost btn-sm no-animation rounded-2xl;
+
+    &.breadcrumbs-btn-active {
+      @apply btn-active;
+    }
+  }
+}

@@ -359,6 +359,14 @@ declare module "@theme/Details" {
   export default Details;
 }
 
+declare module "@theme/DocBreadcrumbs" {
+  export default function DocBreadcrumbs(): JSX.Element | null;
+}
+
+declare module "@theme/DocBreadcrumbs/Items/Home" {
+  export default function HomeBreadcrumbItem(): JSX.Element;
+}
+
 declare module "@theme/DocPaginator" {
   type PageInfo = { readonly permalink: string; readonly title: string };
 
