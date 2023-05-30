@@ -3,8 +3,8 @@ import React, { type ReactNode } from "react";
 import clsx from "clsx";
 
 import "./styles.css";
-import { ThemeClassNames } from "@docusaurus/theme-common";
 import Translate from "@docusaurus/Translate";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import type { Props } from "@theme/Admonition";
 

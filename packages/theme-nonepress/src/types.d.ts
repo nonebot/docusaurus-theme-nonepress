@@ -3,10 +3,10 @@
 /// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@nullbot/docusaurus-theme-nonepress" {
-  import type { DeepPartial } from "utility-types";
-  import type { Config as tailwindConfig } from "tailwindcss";
   import type { ThemeConfig as defaultThemeConfig } from "@docusaurus/theme-common";
   import type { LoadContext, Plugin, PluginModule } from "@docusaurus/types";
+  import type { Config as tailwindConfig } from "tailwindcss";
+  import type { DeepPartial } from "utility-types";
 
   export type PluginOptions = {
     customCss: string[];
@@ -365,6 +365,22 @@ declare module "@theme/DocBreadcrumbs" {
 
 declare module "@theme/DocBreadcrumbs/Items/Home" {
   export default function HomeBreadcrumbItem(): JSX.Element;
+}
+
+declare module "@theme/DocCard" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+  export interface Props {
+    readonly item: PropSidebarItem;
+  }
+  export default function DocCard(props: Props): JSX.Element;
+}
+declare module "@theme/DocCardList" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+  export interface Props {
+    readonly items?: PropSidebarItem[];
+    readonly className?: string;
+  }
+  export default function DocCardList(props: Props): JSX.Element;
 }
 
 declare module "@theme/DocPaginator" {

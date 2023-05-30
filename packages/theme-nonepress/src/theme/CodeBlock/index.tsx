@@ -3,9 +3,9 @@ import React, { isValidElement, type ReactNode } from "react";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import "./styles.css";
+import type { Props } from "@theme/CodeBlock";
 import ElementContent from "@theme/CodeBlock/Content/Element";
 import StringContent from "@theme/CodeBlock/Content/String";
-import type { Props } from "@theme/CodeBlock";
 
 /**
  * Best attempt to make the children a plain string so it is copyable. If there

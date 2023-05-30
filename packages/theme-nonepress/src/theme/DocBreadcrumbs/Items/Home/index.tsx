@@ -1,8 +1,8 @@
 import React from "react";
 
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import { translate } from "@docusaurus/Translate";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function HomeBreadcrumbItem(): JSX.Element {

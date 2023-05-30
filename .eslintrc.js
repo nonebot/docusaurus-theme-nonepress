@@ -74,6 +74,9 @@ module.exports = {
         ],
         pathGroupsExcludedImportTypes: [],
         "newlines-between": "always",
+        alphabetize: {
+          order: "asc",
+        },
       },
     ],
   },

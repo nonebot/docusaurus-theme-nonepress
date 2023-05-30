@@ -2,10 +2,10 @@ import React, { useCallback, useState, useRef, useEffect } from "react";
 
 import clsx from "clsx";
 
-// @ts-expect-error: TODO, we need to make theme-classic have type: module
-import copy from "copy-text-to-clipboard";
 import { translate } from "@docusaurus/Translate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// @ts-expect-error: TODO, we need to make theme-classic have type: module
+import copy from "copy-text-to-clipboard";
 
 import type { Props } from "@theme/CodeBlock/CopyButton";
 

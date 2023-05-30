@@ -5,11 +5,11 @@ import clsx from "clsx";
 import "./styles.css";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 import {
   useSidebarBreadcrumbs,
   useHomePageRoute,
 } from "@docusaurus/theme-common/internal";
-import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
 

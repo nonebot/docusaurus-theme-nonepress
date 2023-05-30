@@ -3,8 +3,8 @@ import React from "react";
 import clsx from "clsx";
 
 import "./styles.css";
-import useIsBrowser from "@docusaurus/useIsBrowser";
 import { translate } from "@docusaurus/Translate";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/ColorModeToggle";

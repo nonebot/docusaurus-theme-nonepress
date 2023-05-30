@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React from "react";
 
 import clsx from "clsx";
 
@@ -10,14 +10,14 @@ import {
   containsLineNumbers,
   useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
-import Highlight, { defaultProps, type Language } from "prism-react-renderer";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+import Highlight, { defaultProps, type Language } from "prism-react-renderer";
 
-import Line from "@theme/CodeBlock/Line";
-import CopyButton from "@theme/CodeBlock/CopyButton";
-import WordWrapButton from "@theme/CodeBlock/WordWrapButton";
 import Container from "@theme/CodeBlock/Container";
 import type { Props } from "@theme/CodeBlock/Content/String";
+import CopyButton from "@theme/CodeBlock/CopyButton";
+import Line from "@theme/CodeBlock/Line";
+import WordWrapButton from "@theme/CodeBlock/WordWrapButton";
 
 export default function CodeBlockString({
   children,
