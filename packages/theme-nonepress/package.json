@@ -43,7 +43,7 @@
     "autoprefixer": "^10.3.1",
     "clsx": "^1.2.1",
     "copy-text-to-clipboard": "^3.0.1",
-    "daisyui": "^2.51.6",
+    "daisyui": "^3.0.0",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.23",

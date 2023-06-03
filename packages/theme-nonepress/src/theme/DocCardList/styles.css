@@ -1,0 +1,7 @@
+.doc-card-list {
+  @apply flex flex-row flex-wrap gap-8;
+
+  & .doc-card {
+    @apply w-1/2;
+  }
+}
