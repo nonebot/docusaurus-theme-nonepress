@@ -386,18 +386,95 @@ declare module "@theme/DocCardList" {
   export default function DocCardList(props: Props): JSX.Element;
 }
 
+declare module "@theme/DocItem/Layout" {
+  export interface Props {
+    readonly children: JSX.Element;
+  }
+
+  export default function DocItemLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocItem/Metadata" {
+  export default function DocItemMetadata(): JSX.Element;
+}
+
+declare module "@theme/DocItem/Content" {
+  export interface Props {
+    readonly children: JSX.Element;
+  }
+
+  export default function DocItemContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocItem/TOC/Mobile" {
+  export default function DocItemTOCMobile(): JSX.Element;
+}
+
+declare module "@theme/DocItem/TOC/Desktop" {
+  export default function DocItemTOCDesktop(): JSX.Element;
+}
+
+declare module "@theme/DocItem/Paginator" {
+  export default function DocItemPaginator(): JSX.Element;
+}
+
+declare module "@theme/DocItem/Footer" {
+  export default function DocItemFooter(): JSX.Element;
+}
+
+declare module "@theme/DocPage/Layout" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+  }
+
+  export default function DocPageLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocPage/Layout/Sidebar" {
+  import type { Dispatch, SetStateAction } from "react";
+
+  import type { PropSidebar } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly sidebar: PropSidebar;
+    readonly hiddenSidebarContainer: boolean;
+    readonly setHiddenSidebarContainer: Dispatch<SetStateAction<boolean>>;
+  }
+
+  export default function DocPageLayoutSidebar(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocPage/Layout/Sidebar/ExpandButton" {
+  export interface Props {
+    toggleSidebar: () => void;
+  }
+
+  export default function DocPageLayoutSidebarExpandButton(
+    props: Props,
+  ): JSX.Element;
+}
+
+declare module "@theme/DocPage/Layout/Main" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly hiddenSidebarContainer: boolean;
+    readonly children: ReactNode;
+  }
+
+  export default function DocPageLayoutMain(props: Props): JSX.Element;
+}
+
 declare module "@theme/DocPaginator" {
-  type PageInfo = { readonly permalink: string; readonly title: string };
+  import type { PropNavigation } from "@docusaurus/plugin-content-docs";
 
-  export type Props = {
-    readonly metadata: {
-      readonly previous?: PageInfo;
-      readonly next?: PageInfo;
-    };
-  };
+  // May be simpler to provide a {navigation: PropNavigation} prop?
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends PropNavigation {}
 
-  function DocPaginator(props: Props): JSX.Element;
-  export default DocPaginator;
+  export default function DocPaginator(props: Props): JSX.Element;
 }
 
 declare module "@theme/DocSidebar" {
@@ -438,6 +515,20 @@ declare module "@theme/DocSidebarItem" {
   export function DocSidebarItems(props: DocSidebarItemsProps): JSX.Element;
 }
 
+declare module "@theme/DocVersionBanner" {
+  export interface Props {
+    readonly className?: string;
+  }
+  export default function DocVersionBanner(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocVersionBadge" {
+  export interface Props {
+    readonly className?: string;
+  }
+  export default function DocVersionBadge(props: Props): JSX.Element;
+}
+
 declare module "@theme/EditThisPage" {
   export interface Props {
     readonly editUrl: string;
@@ -464,12 +555,13 @@ declare module "@theme/FooterLinks" {
 declare module "@theme/Heading" {
   import type { ComponentProps } from "react";
 
-  export type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  export type Props = ComponentProps<HeadingType>;
+  type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-  export function MainHeading(props: Props): JSX.Element;
-  function Heading(Tag: HeadingType): (props: Props) => JSX.Element;
-  export default Heading;
+  export interface Props extends ComponentProps<HeadingType> {
+    readonly as: HeadingType;
+  }
+
+  export default function Heading(props: Props): JSX.Element;
 }
 
 declare module "@theme/Hero" {
@@ -588,6 +680,16 @@ declare module "@theme/MDXComponents" {
 
   const MDXComponents: MDXComponentsObject;
   export default MDXComponents;
+}
+
+declare module "@theme/MDXContent" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+  }
+
+  export default function MDXContent(props: Props): JSX.Element;
 }
 
 declare module "@theme/Navbar" {
