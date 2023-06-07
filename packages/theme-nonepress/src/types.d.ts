@@ -945,36 +945,33 @@ declare module "@theme/Tabs" {
 }
 
 declare module "@theme/Tag" {
+  import type { TagsListItem } from "@docusaurus/utils";
   import type { Optional } from "utility-types";
 
-  import type { TagsListItem } from "@theme/TagsListByLetter";
-
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Props extends Optional<TagsListItem, "count"> {}
 
-  function Tag(props: Props): JSX.Element;
-  export default Tag;
+  export default function Tag(props: Props): JSX.Element;
 }
 
 declare module "@theme/TagsListByLetter" {
-  export type TagsListItem = Readonly<{
-    name: string;
-    permalink: string;
-    count: number;
-  }>;
+  import type { TagsListItem } from "@docusaurus/utils";
+
   export interface Props {
     readonly tags: readonly TagsListItem[];
   }
-  function TagsListByLetter(props: Props): JSX.Element;
-  export default TagsListByLetter;
+
+  export default function TagsListByLetter(props: Props): JSX.Element;
 }
 
 declare module "@theme/TagsListInline" {
-  export type Tag = Readonly<{ label: string; permalink: string }>;
+  import type { Tag } from "@docusaurus/utils";
+
   export interface Props {
     readonly tags: readonly Tag[];
   }
-  function TagsListInline(props: Props): JSX.Element;
-  export default TagsListInline;
+
+  export default function TagsListInline(props: Props): JSX.Element;
 }
 
 declare module "@theme/ThemeContext" {
