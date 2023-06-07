@@ -1,45 +1,48 @@
 import React from "react";
 
-import Link from "@docusaurus/Link";
+import Translate, { translate } from "@docusaurus/Translate";
+
 import type { Props } from "@theme/DocPaginator";
+import PaginatorNavLink from "@theme/PaginatorNavLink";
 
-function DocPaginator(props: Props): JSX.Element {
-  const { metadata } = props;
-
+export default function DocPaginator(props: Props): JSX.Element {
+  const { previous, next } = props;
   return (
-    <nav className="flex mt-12" aria-label="Docs pages navigation">
-      <div className="flex flex-1 max-w-[50%]">
-        {metadata.previous && (
-          <Link
-            className="border border-gray-300 dark:border-gray-500 rounded-lg grow leading-tight p-4 transition transform hover:border-light-text-active dark:hover:border-dark-text-active"
-            to={metadata.previous.permalink}
-          >
-            <div className="text-light-text dark:text-dark-text text-sm font-medium mb-1">
+    <nav
+      className="flex mt-12"
+      aria-label={translate({
+        id: "theme.docs.paginator.navAriaLabel",
+        message: "Docs pages",
+        description: "The ARIA label for the docs pagination",
+      })}
+    >
+      {previous && (
+        <PaginatorNavLink
+          {...previous}
+          subLabel={
+            <Translate
+              id="theme.docs.paginator.previous"
+              description="The label used to navigate to the previous doc"
+            >
               Previous
-            </div>
-            <div className="text-light-text-active dark:text-dark-text-active text-base font-bold break-words">
-              &laquo; {metadata.previous.title}
-            </div>
-          </Link>
-        )}
-      </div>
-      <div className="flex flex-1 ml-4 max-w-[50%] text-right">
-        {metadata.next && (
-          <Link
-            className="border border-gray-300 dark:border-gray-500 rounded-lg grow leading-tight p-4 transition transform hover:border-light-text-active dark:hover:border-dark-text-active"
-            to={metadata.next.permalink}
-          >
-            <div className="text-light-text dark:text-dark-text text-sm font-medium mb-1">
+            </Translate>
+          }
+        />
+      )}
+      {next && (
+        <PaginatorNavLink
+          {...next}
+          subLabel={
+            <Translate
+              id="theme.docs.paginator.next"
+              description="The label used to navigate to the next doc"
+            >
               Next
-            </div>
-            <div className="text-light-text-active dark:text-dark-text-active text-base font-bold break-words">
-              {metadata.next.title} &raquo;
-            </div>
-          </Link>
-        )}
-      </div>
+            </Translate>
+          }
+          isNext
+        />
+      )}
     </nav>
   );
 }
-
-export default DocPaginator;

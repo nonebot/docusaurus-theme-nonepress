@@ -386,6 +386,18 @@ declare module "@theme/DocCardList" {
   export default function DocCardList(props: Props): JSX.Element;
 }
 
+declare module "@theme/DocItem/Content" {
+  export interface Props {
+    readonly children: JSX.Element;
+  }
+
+  export default function DocItemContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocItem/Footer" {
+  export default function DocItemFooter(): JSX.Element;
+}
+
 declare module "@theme/DocItem/Layout" {
   export interface Props {
     readonly children: JSX.Element;
@@ -398,28 +410,16 @@ declare module "@theme/DocItem/Metadata" {
   export default function DocItemMetadata(): JSX.Element;
 }
 
-declare module "@theme/DocItem/Content" {
-  export interface Props {
-    readonly children: JSX.Element;
-  }
-
-  export default function DocItemContent(props: Props): JSX.Element;
-}
-
-declare module "@theme/DocItem/TOC/Mobile" {
-  export default function DocItemTOCMobile(): JSX.Element;
+declare module "@theme/DocItem/Paginator" {
+  export default function DocItemPaginator(): JSX.Element;
 }
 
 declare module "@theme/DocItem/TOC/Desktop" {
   export default function DocItemTOCDesktop(): JSX.Element;
 }
 
-declare module "@theme/DocItem/Paginator" {
-  export default function DocItemPaginator(): JSX.Element;
-}
-
-declare module "@theme/DocItem/Footer" {
-  export default function DocItemFooter(): JSX.Element;
+declare module "@theme/DocItem/TOC/Mobile" {
+  export default function DocItemTOCMobile(): JSX.Element;
 }
 
 declare module "@theme/DocPage/Layout" {
@@ -430,6 +430,17 @@ declare module "@theme/DocPage/Layout" {
   }
 
   export default function DocPageLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocPage/Layout/Main" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly hiddenSidebarContainer: boolean;
+    readonly children: ReactNode;
+  }
+
+  export default function DocPageLayoutMain(props: Props): JSX.Element;
 }
 
 declare module "@theme/DocPage/Layout/Sidebar" {
@@ -456,17 +467,6 @@ declare module "@theme/DocPage/Layout/Sidebar/ExpandButton" {
   ): JSX.Element;
 }
 
-declare module "@theme/DocPage/Layout/Main" {
-  import type { ReactNode } from "react";
-
-  export interface Props {
-    readonly hiddenSidebarContainer: boolean;
-    readonly children: ReactNode;
-  }
-
-  export default function DocPageLayoutMain(props: Props): JSX.Element;
-}
-
 declare module "@theme/DocPaginator" {
   import type { PropNavigation } from "@docusaurus/plugin-content-docs";
 
@@ -478,41 +478,117 @@ declare module "@theme/DocPaginator" {
 }
 
 declare module "@theme/DocSidebar" {
-  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
   export interface Props {
     readonly path: string;
     readonly sidebar: readonly PropSidebarItem[];
     readonly onCollapse: () => void;
     readonly isHidden: boolean;
-    // MobileSecondaryFilter expects Record<string, unknown>
-    readonly [key: string]: unknown;
   }
 
-  function DocSidebar(props: Props): JSX.Element;
-  export default DocSidebar;
+  export default function DocSidebar(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebar/Mobile" {
+  import type { Props as DocSidebarProps } from "@theme/DocSidebar";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends DocSidebarProps {}
+
+  export default function DocSidebarMobile(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebar/Desktop" {
+  import type { Props as DocSidebarProps } from "@theme/DocSidebar";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends DocSidebarProps {}
+
+  export default function DocSidebarDesktop(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebar/Desktop/Content" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly className?: string;
+    readonly path: string;
+    readonly sidebar: readonly PropSidebarItem[];
+  }
+
+  export default function Content(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebar/Desktop/CollapseButton" {
+  export interface Props {
+    readonly onClick: React.MouseEventHandler;
+  }
+
+  export default function CollapseButton(props: Props): JSX.Element;
 }
 
 declare module "@theme/DocSidebarItem" {
-  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs-types";
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
-  type DocSidebarPropsBase = {
+  export interface Props {
     readonly activePath: string;
-    readonly onItemClick?: () => void;
+    readonly onItemClick?: (item: PropSidebarItem) => void;
     readonly level: number;
     readonly tabIndex?: number;
-  };
-
-  export interface Props extends DocSidebarPropsBase {
     readonly item: PropSidebarItem;
+    readonly index: number;
   }
-  function DocSidebarItem(props: Props): JSX.Element;
-  export default DocSidebarItem;
 
-  export type DocSidebarItemsProps = DocSidebarPropsBase & {
+  export default function DocSidebarItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebarItem/Link" {
+  import type { PropSidebarItemLink } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
+  export interface Props extends DocSidebarItemProps {
+    readonly item: PropSidebarItemLink;
+  }
+
+  export default function DocSidebarItemLink(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebarItem/Html" {
+  import type { PropSidebarItemHtml } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
+  export interface Props extends DocSidebarItemProps {
+    readonly item: PropSidebarItemHtml;
+  }
+
+  export default function DocSidebarItemHtml(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebarItem/Category" {
+  import type { PropSidebarItemCategory } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
+  export interface Props extends DocSidebarItemProps {
+    readonly item: PropSidebarItemCategory;
+  }
+
+  export default function DocSidebarItemCategory(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocSidebarItems" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
+  export interface Props extends Omit<DocSidebarItemProps, "item" | "index"> {
     readonly items: readonly PropSidebarItem[];
-  };
-  export function DocSidebarItems(props: DocSidebarItemsProps): JSX.Element;
+  }
+
+  export default function DocSidebarItems(props: Props): JSX.Element;
 }
 
 declare module "@theme/DocVersionBanner" {
@@ -649,12 +725,11 @@ declare module "@theme/Logo" {
   import type { ComponentProps } from "react";
 
   export interface Props extends ComponentProps<"a"> {
-    readonly className?: string;
     readonly imageClassName?: string;
-    readonly disabled?: boolean;
+    readonly titleClassName?: string;
   }
-  function Logo(props: Props): JSX.Element;
-  export default Logo;
+
+  export default function Logo(props: Props): JSX.Element;
 }
 
 declare module "@theme/MDXComponents" {
@@ -798,6 +873,20 @@ declare module "@theme/NavbarPC" {
 
   function NavbarPC(props: Props): JSX.Element;
   export default NavbarPC;
+}
+
+declare module "@theme/PaginatorNavLink" {
+  import type { ReactNode } from "react";
+
+  import type { PropNavigationLink } from "@docusaurus/plugin-content-docs";
+
+  export interface Props extends Omit<PropNavigationLink, "title"> {
+    readonly title: ReactNode;
+    readonly subLabel?: JSX.Element;
+    readonly isNext?: boolean;
+  }
+
+  export default function PaginatorNavLink(props: Props): JSX.Element;
 }
 
 declare module "@theme/SearchBar" {
