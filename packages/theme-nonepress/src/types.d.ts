@@ -595,6 +595,7 @@ declare module "@theme/DocVersionBanner" {
   export interface Props {
     readonly className?: string;
   }
+
   export default function DocVersionBanner(props: Props): JSX.Element;
 }
 
@@ -602,6 +603,7 @@ declare module "@theme/DocVersionBadge" {
   export interface Props {
     readonly className?: string;
   }
+
   export default function DocVersionBadge(props: Props): JSX.Element;
 }
 
