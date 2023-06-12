@@ -50,7 +50,7 @@ export default function DocSidebarItemLink({
         {label}
         {!isInternalLink && (
           <FontAwesomeIcon
-            className="w-4 h-4 text-current"
+            className="w-4 h-4 fill-current"
             icon={["fas", "arrow-up-right-from-square"]}
           />
         )}

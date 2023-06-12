@@ -30,7 +30,7 @@ export default function AnnouncementBarCloseButton(
         </Translate>
       </span>
       <FontAwesomeIcon
-        className="h-5 w-5 text-current"
+        className="h-5 w-5 fill-current"
         icon={["fas", "xmark"]}
       />
     </button>

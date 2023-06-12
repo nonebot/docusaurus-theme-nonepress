@@ -29,7 +29,7 @@ export default function DocPageLayoutSidebarExpandButton({
       onClick={toggleSidebar}
     >
       <FontAwesomeIcon
-        className="w-5 h-5 text-current"
+        className="w-5 h-5 fill-current"
         icon={["fas", "angle-double-right"]}
       />
     </div>

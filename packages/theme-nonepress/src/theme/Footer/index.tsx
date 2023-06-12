@@ -1,23 +1,34 @@
 import React from "react";
 
-import FooterLinks from "@theme/FooterLinks";
-import FooterCopyright from "@theme/FooterCopyright";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
-function Footer(): JSX.Element {
+import FooterCopyright from "@theme/Footer/Copyright";
+import FooterLayout from "@theme/Footer/Layout";
+import FooterLinks from "@theme/Footer/Links";
+import FooterLogo from "@theme/Footer/Logo";
+import FooterSocialLink from "@theme/Footer/SocialLink";
+
+function Footer(): JSX.Element | null {
+  const {
+    footer,
+    nonepress: { footer: { socialLinks } = {} },
+  } = useNonepressThemeConfig();
+  if (!footer) {
+    return null;
+  }
+  const { copyright, links, logo, style } = footer;
+
   return (
-    <footer
-      className="bg-light-nonepress-100 dark:bg-dark-nonepress-100"
-      aria-labelledby="footerHeading"
-    >
-      <h2 id="footerHeading" className="sr-only">
-        Footer
-      </h2>
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:py-12 lg:px-8">
-        <FooterLinks />
-        <FooterCopyright />
-      </div>
-    </footer>
+    <FooterLayout
+      style={style}
+      links={links?.length && <FooterLinks links={links} />}
+      logo={logo && <FooterLogo logo={logo} />}
+      socialLinks={
+        socialLinks?.length && <FooterSocialLink socialLinks={socialLinks} />
+      }
+      copyright={copyright && <FooterCopyright copyright={copyright} />}
+    />
   );
 }
 
-export default Footer;
+export default React.memo(Footer);

@@ -4,7 +4,13 @@
 
 declare module "@nullbot/docusaurus-theme-nonepress" {
   import type { ThemeConfig as defaultThemeConfig } from "@docusaurus/theme-common";
-  import type { LoadContext, Plugin, PluginModule } from "@docusaurus/types";
+  import type {
+    DocusaurusConfig,
+    LoadContext,
+    Plugin,
+    PluginModule,
+  } from "@docusaurus/types";
+  import type { IconProp } from "@fortawesome/fontawesome-svg-core";
   import type { Config as tailwindConfig } from "tailwindcss";
   import type { DeepPartial } from "utility-types";
 
@@ -18,7 +24,7 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
   export const getSwizzleConfig: PluginModule["getSwizzleConfig"];
 
   export type SocialLink = {
-    icon: [string, string];
+    icon: IconProp;
     href: string;
   };
 
@@ -89,8 +95,11 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
 }
 
 declare module "@nullbot/docusaurus-theme-nonepress/client" {
+  import type { DocusaurusConfig } from "@docusaurus/types";
+
   import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
 
+  export function useSiteConfig(): DocusaurusConfig;
   export function useNonepressThemeConfig(): ThemeConfig;
 }
 
@@ -607,27 +616,110 @@ declare module "@theme/DocVersionBadge" {
   export default function DocVersionBadge(props: Props): JSX.Element;
 }
 
+declare module "@theme/DocVersionSuggestions" {
+  export default function DocVersionSuggestions(): JSX.Element;
+}
+
 declare module "@theme/EditThisPage" {
   export interface Props {
     readonly editUrl: string;
   }
-  function EditThisPage(props: Props): JSX.Element;
-  export default EditThisPage;
+
+  export default function EditThisPage(props: Props): JSX.Element;
+}
+
+declare module "@theme/ErrorPageContent" {
+  import type ErrorComponent from "@theme/Error";
+
+  const ErrorPageContent: typeof ErrorComponent;
+  export default ErrorPageContent;
 }
 
 declare module "@theme/Footer" {
-  function Footer(): JSX.Element;
-  export default Footer;
+  export default function Footer(): JSX.Element | null;
 }
 
-declare module "@theme/FooterCopyright" {
-  function FooterCopyright(): JSX.Element;
-  export default FooterCopyright;
+declare module "@theme/Footer/Copyright" {
+  export interface Props {
+    readonly copyright: string;
+  }
+
+  export function DocusaurusLogo(props: { className?: string }): JSX.Element;
+  export default function FooterCopyright(props: Props): JSX.Element;
 }
 
-declare module "@theme/FooterLinks" {
-  function FooterLinks(): JSX.Element;
-  export default FooterLinks;
+declare module "@theme/Footer/Layout" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly style: "light" | "dark";
+    readonly links: ReactNode;
+    readonly logo: ReactNode;
+    readonly socialLinks: ReactNode;
+    readonly copyright: ReactNode;
+  }
+
+  export default function FooterLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/Footer/LinkItem" {
+  import type { FooterLinkItem } from "@docusaurus/theme-common";
+
+  export interface Props {
+    readonly item: FooterLinkItem;
+  }
+
+  export default function FooterLinkItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/Footer/Links" {
+  import type { Footer } from "@docusaurus/theme-common";
+
+  export interface Props {
+    readonly links: Footer["links"];
+  }
+
+  export default function FooterLinks(props: Props): JSX.Element;
+}
+
+declare module "@theme/Footer/Links/MultiColumn" {
+  import type { MultiColumnFooter } from "@docusaurus/theme-common";
+
+  export interface Props {
+    readonly columns: MultiColumnFooter["links"];
+  }
+
+  export default function FooterLinksMultiColumn(props: Props): JSX.Element;
+}
+
+declare module "@theme/Footer/Links/Simple" {
+  import type { SimpleFooter } from "@docusaurus/theme-common";
+
+  export interface Props {
+    readonly links: SimpleFooter["links"];
+  }
+
+  export default function FooterLinksSimple(props: Props): JSX.Element;
+}
+
+declare module "@theme/Footer/Logo" {
+  import type { FooterLogo } from "@docusaurus/theme-common";
+
+  export interface Props {
+    readonly logo: FooterLogo;
+  }
+
+  export default function FooterLogo(props: Props): JSX.Element;
+}
+
+declare module "@theme/Footer/SocialLink" {
+  import type { SocialLink } from "@nullbot/docusaurus-theme-nonepress";
+
+  export interface Props {
+    readonly socialLinks: SocialLink[];
+  }
+
+  export default function FooterSocialLink(props: Props): JSX.Element;
 }
 
 declare module "@theme/Heading" {

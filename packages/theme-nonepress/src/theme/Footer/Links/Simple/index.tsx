@@ -1,0 +1,26 @@
+import React from "react";
+
+import LinkItem from "@theme/Footer/LinkItem";
+import type { Props } from "@theme/Footer/Links/Simple";
+
+function SimpleLinkItem({ item }: { item: Props["links"][number] }) {
+  return item.html ? (
+    <span
+      // Developer provided the HTML, so assume it's safe.
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: item.html }}
+    />
+  ) : (
+    <LinkItem item={item} />
+  );
+}
+
+export default function FooterLinksSimple({ links }: Props): JSX.Element {
+  return (
+    <div>
+      {links.map((item, i) => (
+        <SimpleLinkItem key={i} item={item} />
+      ))}
+    </div>
+  );
+}

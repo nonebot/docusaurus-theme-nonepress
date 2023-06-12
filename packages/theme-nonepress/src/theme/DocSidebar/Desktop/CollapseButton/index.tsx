@@ -28,7 +28,7 @@ export default function CollapseButton({ onClick }: Props): JSX.Element {
       onClick={onClick}
     >
       <FontAwesomeIcon
-        className="w-5 h-5 text-current"
+        className="w-5 h-5 fill-current"
         icon={["fas", "angle-double-left"]}
       />
     </button>
