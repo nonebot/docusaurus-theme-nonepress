@@ -3,9 +3,9 @@ import React from "react";
 import clsx from "clsx";
 
 import Translate, { translate } from "@docusaurus/Translate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/AnnouncementBar/CloseButton";
+import IconClose from "@theme/Icon/Close";
 
 export default function AnnouncementBarCloseButton(
   props: Props,
@@ -29,10 +29,7 @@ export default function AnnouncementBarCloseButton(
           Dismiss
         </Translate>
       </span>
-      <FontAwesomeIcon
-        className="h-5 w-5 fill-current"
-        icon={["fas", "xmark"]}
-      />
+      <IconClose className="h-5 w-5 fill-current" />
     </button>
   );
 }

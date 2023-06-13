@@ -1,11 +1,11 @@
-.apperence-toggle {
+.appearance-toggle {
   @apply btn btn-ghost btn-circle btn-sm no-animation;
 
-  &.apperence-toggle-active {
+  &.appearance-toggle-active {
     @apply swap-active;
   }
 
-  & > .apperence-toggle-icon {
+  & > .appearance-toggle-icon {
     @apply w-6 h-6 fill-current;
   }
 }

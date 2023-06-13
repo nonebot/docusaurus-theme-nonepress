@@ -6,9 +6,9 @@ import Link from "@docusaurus/Link";
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { isActiveSidebarItem } from "@docusaurus/theme-common/internal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/DocSidebarItem/Link";
+import IconExternalLink from "@theme/Icon/ExternalLink";
 
 export default function DocSidebarItemLink({
   item,
@@ -49,10 +49,7 @@ export default function DocSidebarItemLink({
       >
         {label}
         {!isInternalLink && (
-          <FontAwesomeIcon
-            className="w-4 h-4 fill-current"
-            icon={["fas", "arrow-up-right-from-square"]}
-          />
+          <IconExternalLink className="w-4 h-4 fill-current" />
         )}
       </Link>
     </li>

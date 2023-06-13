@@ -2,9 +2,9 @@ import React from "react";
 
 import Translate from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/EditThisPage";
+import IconEdit from "@theme/Icon/Edit";
 
 export default function EditThisPage({ editUrl }: Props): JSX.Element {
   return (
@@ -14,10 +14,7 @@ export default function EditThisPage({ editUrl }: Props): JSX.Element {
       rel="noreferrer noopener"
       className={ThemeClassNames.common.editThisPage}
     >
-      <FontAwesomeIcon
-        className="fill-current"
-        icon={["fas", "pen-to-square"]}
-      />
+      <IconEdit className="w-4 h-4 fill-current" />
       <Translate
         id="theme.common.editThisPage"
         description="The link label to edit the current page"

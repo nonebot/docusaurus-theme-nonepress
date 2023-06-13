@@ -103,132 +103,6 @@ declare module "@nullbot/docusaurus-theme-nonepress/client" {
   export function useNonepressThemeConfig(): ThemeConfig;
 }
 
-declare module "@theme/hooks/useAlgoliaContextualFacetFilters" {
-  export type useAlgoliaContextualFacetFiltersReturns = [string, string[]];
-
-  function useAlgoliaContextualFacetFilters(): useAlgoliaContextualFacetFiltersReturns;
-  export default useAlgoliaContextualFacetFilters;
-}
-
-declare module "@theme/hooks/useContextualSearchFilters" {
-  export type ContextualSearchFilters = {
-    locale: string;
-    tags: string[];
-  };
-
-  function useContextualSearchFilters(): ContextualSearchFilters;
-  export default useContextualSearchFilters;
-}
-
-declare module "@theme/hooks/useDocs" {
-  import type { GlobalPluginData } from "docusaurus-theme-nonepress/types";
-
-  export * from "@docusaurus/plugin-content-docs/lib/theme/hooks/useDocs";
-  export function useLoadedVersions(
-    pluginId: string | undefined,
-  ): GlobalPluginData;
-}
-
-declare module "@theme/hooks/useHideableNavbar" {
-  export type HideableNavbar = {
-    readonly navbarRef: (node: HTMLElement | null) => void;
-    readonly isNavbarVisible: boolean;
-  };
-
-  function useHideableNavbar(hideOnScroll: boolean): HideableNavbar;
-  export default useHideableNavbar;
-}
-
-declare module "@theme/hooks/usePrismTheme" {
-  import defaultTheme from "prism-react-renderer/themes/palenight";
-
-  function usePrismTheme(): typeof defaultTheme;
-  export default usePrismTheme;
-}
-
-declare module "@theme/hooks/useSearchQuery" {
-  export type SearchQuery = {
-    searchQuery: string;
-    setSearchQuery(newSearchQuery: string): void;
-    generateSearchPageLink(targetSearchQuery: string): string;
-  };
-
-  function useSearchQuery(): SearchQuery;
-  export default useSearchQuery;
-}
-
-declare module "@theme/hooks/useTabGroupChoice" {
-  export type useTabGroupChoiceReturns = {
-    readonly tabGroupChoices: { readonly [groupId: string]: string };
-    readonly setTabGroupChoices: (groupId: string, newChoice: string) => void;
-  };
-
-  function useTabGroupChoice(): useTabGroupChoiceReturns;
-  export default useTabGroupChoice;
-}
-
-declare module "@theme/hooks/useTheme" {
-  export type useThemeReturns = {
-    readonly isDarkTheme: boolean;
-    readonly setLightTheme: () => void;
-    readonly setDarkTheme: () => void;
-    readonly toggleTheme: () => void;
-  };
-
-  function useTheme(): useThemeReturns;
-  export default useTheme;
-}
-
-declare module "@theme/hooks/useThemeContext" {
-  export type ThemeContextProps = {
-    isDarkTheme: boolean;
-    setLightTheme: () => void;
-    setDarkTheme: () => void;
-    toggleTheme: () => void;
-  };
-
-  function useThemeContext(): ThemeContextProps;
-  export default useThemeContext;
-}
-
-declare module "@theme/hooks/useTransition" {
-  import type { RefObject } from "react";
-
-  export type useTransitionReturns<T> = {
-    readonly element: RefObject<T>;
-    readonly active: boolean;
-    readonly transitionClasses: Array<string>;
-    readonly enter: () => void;
-    readonly leave: () => void;
-  };
-
-  function useTransition<T extends HTMLElement>(): useTransitionReturns<T>;
-  export default useTransition;
-}
-
-declare module "@theme/hooks/useUserPreferencesContext" {
-  export type UserPreferencesContextProps = {
-    tabGroupChoices: { readonly [groupId: string]: string };
-    setTabGroupChoices: (groupId: string, newChoice: string) => void;
-  };
-
-  function useUserPreferencesContext(): UserPreferencesContextProps;
-  export default useUserPreferencesContext;
-}
-
-declare module "@theme/hooks/useWindowSize" {
-  export const windowSizes: {
-    desktop: "desktop";
-    mobile: "mobile";
-    ssr: "ssr";
-  };
-
-  export type WindowSize = keyof typeof windowSizes;
-
-  function useWindowSize(): WindowSize;
-  export default useWindowSize;
-}
-
 declare module "@theme/Admonition" {
   import type { ReactNode } from "react";
   export interface Props {
@@ -734,34 +608,130 @@ declare module "@theme/Heading" {
   export default function Heading(props: Props): JSX.Element;
 }
 
-declare module "@theme/Hero" {
-  import type { PropsWithChildren } from "react";
+declare module "@theme/Icon/Close" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-  export type Feature = {
-    readonly title: string;
-    readonly tagline?: string;
-    readonly description?: string;
-    readonly annotaion?: string;
-  };
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function Hero(): JSX.Element;
-  export function HeroFeatureSingle(
-    props: PropsWithChildren<Feature>,
-  ): JSX.Element;
-  export function HeroFeatureDouble(
-    props: PropsWithChildren<{
-      readonly features: readonly [Feature, Feature];
-    }>,
-  ): JSX.Element;
+  export default function IconClose(props: Props): JSX.Element;
 }
 
-declare module "@theme/IconExternalLink" {
+declare module "@theme/Icon/Category" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconCategory(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Copy" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconCopy(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/DarkMode" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconDarkMode(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Docusaurus" {
   import type { ComponentProps } from "react";
 
-  export type Props = ComponentProps<"svg">;
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
-  function IconExternalLink(props: Props): JSX.Element;
-  export default IconExternalLink;
+  export default function IconDocusaurus(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Edit" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconEdit(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/ExternalLink" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconExternalLink(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/File" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconFile(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Home" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconHome(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/LightMode" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconLightMode(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Link" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconLink(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/React" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconReact(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Success" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconSuccess(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/WordWrap" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
+
+  export default function IconWordWrap(props: Props): JSX.Element;
 }
 
 declare module "@theme/LastUpdated" {

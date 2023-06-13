@@ -3,7 +3,8 @@ import React from "react";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import IconHome from "@theme/Icon/Home";
 
 export default function HomeBreadcrumbItem(): JSX.Element {
   const homeHref = useBaseUrl("/");
@@ -19,7 +20,7 @@ export default function HomeBreadcrumbItem(): JSX.Element {
         className="breadcrumbs-btn"
         href={homeHref}
       >
-        <FontAwesomeIcon className="" icon={["fab", "house"]} />
+        <IconHome className="" />
       </Link>
     </li>
   );

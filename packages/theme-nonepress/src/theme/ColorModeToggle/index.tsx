@@ -5,9 +5,10 @@ import clsx from "clsx";
 import "./styles.css";
 import { translate } from "@docusaurus/Translate";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/ColorModeToggle";
+import IconDarkMode from "@theme/Icon/DarkMode";
+import IconLightMode from "@theme/Icon/LightMode";
 
 function ColorModeToggle({ className, value, onChange }: Props): JSX.Element {
   const isBrowser = useIsBrowser();
@@ -37,8 +38,8 @@ function ColorModeToggle({ className, value, onChange }: Props): JSX.Element {
   return (
     <button
       className={clsx(
-        "apperence-toggle swap swap-rotate",
-        value === "dark" && "apperence-toggle-active",
+        "appearance-toggle swap swap-rotate",
+        value === "dark" && "appearance-toggle-active",
         className,
       )}
       type="button"
@@ -48,14 +49,8 @@ function ColorModeToggle({ className, value, onChange }: Props): JSX.Element {
       aria-label={title}
       aria-live="polite"
     >
-      <FontAwesomeIcon
-        className="apperence-toggle-icon swap-off"
-        icon={["fas", "sun"]}
-      />
-      <FontAwesomeIcon
-        className="apprencen-toggle-icon swap-on"
-        icon={["fas", "moon"]}
-      />
+      <IconLightMode className="appearance-toggle-icon swap-off" />
+      <IconDarkMode className="apprencen-toggle-icon swap-on" />
     </button>
   );
 }

@@ -14,9 +14,11 @@ import {
   findFirstCategoryLink,
   useDocById,
 } from "@docusaurus/theme-common/internal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/DocCard";
+import IconCategory from "@theme/Icon/Category";
+import IconFile from "@theme/Icon/File";
+import IconLink from "@theme/Icon/Link";
 
 function CardContainer({
   href,
@@ -80,7 +82,7 @@ function CardCategory({
   return (
     <CardLayout
       href={href}
-      icon={<FontAwesomeIcon className="card-icon" icon={["fas", "book"]} />}
+      icon={<IconCategory className="card-icon" />}
       title={item.label}
       className={className}
       description={
@@ -101,9 +103,9 @@ function CardCategory({
 
 function CardLink({ item }: { item: PropSidebarItemLink }): JSX.Element {
   const icon = isInternalUrl(item.href) ? (
-    <FontAwesomeIcon className="card-icon" icon={["fas", "file-lines"]} />
+    <IconFile className="card-icon" />
   ) : (
-    <FontAwesomeIcon className="card-icon" icon={["fab", "link"]} />
+    <IconLink className="card-icon" />
   );
   const doc = useDocById(item.docId ?? undefined);
   return (

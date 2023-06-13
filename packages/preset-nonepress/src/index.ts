@@ -37,10 +37,10 @@ export default function preset(
   } = opts;
 
   const themes: PluginConfig[] = [];
-  themes.push(makePluginConfig("@nullbot/docusaurus-theme-nonepress", theme));
   if (algolia) {
     themes.push(require.resolve("@docusaurus/theme-search-algolia"));
   }
+  themes.push(makePluginConfig("@nullbot/docusaurus-theme-nonepress", theme));
 
   const plugins: PluginConfig[] = [];
   if (docs !== false) {
