@@ -1,94 +1,56 @@
-import clsx from "clsx";
 import React from "react";
 
-import { ThemeClassNames } from "@docusaurus/theme-common";
-import { MDXProvider } from "@mdx-js/react";
-import BackToTopButton from "@theme/BackToTopButton";
+import clsx from "clsx";
+
+import {
+  PageMetadata,
+  HtmlClassNameProvider,
+  ThemeClassNames,
+} from "@docusaurus/theme-common";
+
 import Layout from "@theme/Layout";
-import MDXComponents from "@theme/MDXComponents";
+import MDXContent from "@theme/MDXContent";
 import type { Props } from "@theme/MDXPage";
 import TOC from "@theme/TOC";
-import TOCCollapsible from "@theme/TOCCollapsible";
-import useWindowSize from "@theme/hooks/useWindowSize";
 
-import styles from "./styles.module.css";
-
-function MDXPage(props: Props): JSX.Element {
+export default function MDXPage(props: Props): JSX.Element {
   const { content: MDXPageContent } = props;
-  const { frontMatter, metadata } = MDXPageContent;
-
   const {
-    title,
-    description,
-    wrapperClassName,
-    hide_table_of_contents: hideTableOfContents,
-    toc_min_heading_level: tocMinHeadingLevel,
-    toc_max_heading_level: tocMaxHeadingLevel,
-  } = frontMatter;
-  const { permalink } = metadata;
-
-  const windowSize = useWindowSize();
-
-  const canRenderTOC =
-    !hideTableOfContents && MDXPageContent.toc && MDXPageContent.toc.length > 0;
-
-  const renderTocDesktop =
-    canRenderTOC && (windowSize === "desktop" || windowSize === "ssr");
+    metadata: { title, description, frontMatter },
+  } = MDXPageContent;
+  const { wrapperClassName, hide_table_of_contents: hideTableOfContents } =
+    frontMatter;
 
   return (
-    <Layout
-      title={title}
-      description={description}
-      permalink={permalink}
-      wrapperClassName={wrapperClassName ?? ThemeClassNames.wrapper.mdxPages}
-      pageClassName={ThemeClassNames.page.mdxPage}
+    <HtmlClassNameProvider
+      className={clsx(
+        wrapperClassName ?? ThemeClassNames.wrapper.mdxPages,
+        ThemeClassNames.page.mdxPage,
+      )}
     >
-      <div className="w-full">
-        <div className="flex w-full">
-          <BackToTopButton />
-          <main
-            id="docs"
-            className="flex container mx-auto mt-20 mb-8 px-4 lg:px-16"
-          >
-            <div className="relative flex flex-row w-full">
-              <div className="grow lg:max-w-[75%] prose dark:prose-dark p-4 mx-auto">
-                <div className="page-content">
-                  <article>
-                    {canRenderTOC && (
-                      <TOCCollapsible
-                        toc={MDXPageContent.toc}
-                        minHeadingLevel={tocMinHeadingLevel}
-                        maxHeadingLevel={tocMaxHeadingLevel}
-                        className={clsx(
-                          ThemeClassNames.docs.docTocMobile,
-                          "lg:hidden"
-                        )}
-                      />
-                    )}
-
-                    <div className={ThemeClassNames.page.mdxPage}>
-                      <MDXProvider components={MDXComponents}>
-                        <MDXPageContent />
-                      </MDXProvider>
-                    </div>
-                  </article>
-                </div>
-              </div>
-              {renderTocDesktop && (
-                <div className={clsx("p-4", styles.toc)}>
-                  <TOC
-                    toc={MDXPageContent.toc}
-                    minHeadingLevel={frontMatter.toc_min_heading_level}
-                    maxHeadingLevel={frontMatter.toc_max_heading_level}
-                  />
-                </div>
-              )}
+      <PageMetadata title={title} description={description} />
+      <Layout>
+        <main className="container mx-auto mt-20 mb-8 px-4 sm:px-6 md:px-8">
+          <div className="relative flex flex-row w-full">
+            <div className={clsx("grow lg:max-w-[75%] prose px-4 mx-auto")}>
+              <article>
+                <MDXContent>
+                  <MDXPageContent />
+                </MDXContent>
+              </article>
             </div>
-          </main>
-        </div>
-      </div>
-    </Layout>
+            {!hideTableOfContents && MDXPageContent.toc.length > 0 && (
+              <div className="grow-0 shrink-0 basis-1/4">
+                <TOC
+                  toc={MDXPageContent.toc}
+                  minHeadingLevel={frontMatter.toc_min_heading_level}
+                  maxHeadingLevel={frontMatter.toc_max_heading_level}
+                />
+              </div>
+            )}
+          </div>
+        </main>
+      </Layout>
+    </HtmlClassNameProvider>
   );
 }
-
-export default MDXPage;

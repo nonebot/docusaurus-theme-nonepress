@@ -15,7 +15,7 @@ export default function CodeBlockContainer(
       {...props}
       style={prismCssVariables}
       className={clsx(
-        "code-block-container not-prose",
+        "code-block-container",
         props.className,
         ThemeClassNames.common.codeBlock,
       )}

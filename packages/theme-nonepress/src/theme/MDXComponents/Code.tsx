@@ -1,6 +1,8 @@
 import type { ComponentProps } from "react";
 import React, { isValidElement } from "react";
 
+import clsx from "clsx";
+
 import CodeBlock from "@theme/CodeBlock";
 import type { Props } from "@theme/MDXComponents/Code";
 
@@ -49,6 +51,9 @@ export default function MDXCode(props: Props): JSX.Element {
   return shouldBeInline ? (
     <code {...props} />
   ) : (
-    <CodeBlock {...(props as ComponentProps<typeof CodeBlock>)} />
+    <CodeBlock
+      {...(props as ComponentProps<typeof CodeBlock>)}
+      className={clsx("not-prose", props.className)}
+    />
   );
 }
