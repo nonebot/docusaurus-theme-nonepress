@@ -741,48 +741,33 @@ declare module "@theme/LastUpdated" {
     readonly lastUpdatedBy?: string;
   }
 
-  function LastUpdated(props: Props): JSX.Element;
-  export default LastUpdated;
+  export default function LastUpdated(props: Props): JSX.Element;
 }
 
 declare module "@theme/Layout" {
   import type { ReactNode } from "react";
 
   export interface Props {
-    readonly children: ReactNode;
-    readonly title?: string;
+    readonly children?: ReactNode;
     readonly noFooter?: boolean;
-    readonly description?: string;
-    readonly image?: string;
-    readonly keywords?: string | string[];
-    readonly permalink?: string;
     readonly wrapperClassName?: string;
-    readonly pageClassName?: string;
-    readonly searchMetadata?: {
-      readonly version?: string;
-      readonly tag?: string;
-    };
+
+    // Not really layout-related, but kept for convenience/retro-compatibility
+    readonly title?: string;
+    readonly description?: string;
   }
 
-  const Layout: (props: Props) => JSX.Element;
-  export default Layout;
+  export default function Layout(props: Props): JSX.Element;
 }
 
-declare module "@theme/LayoutHead" {
-  import type { Props as LayoutProps } from "@theme/Layout";
+declare module "@theme/Layout/Provider" {
+  import type { ReactNode } from "react";
 
-  export interface Props extends Omit<LayoutProps, "children"> {}
+  export interface Props {
+    readonly children: ReactNode;
+  }
 
-  function LayoutHead(props: Props): JSX.Element;
-  export default LayoutHead;
-}
-
-declare module "@theme/LayoutProviders" {
-  import type { PropsWithChildren } from "react";
-  export type Props = PropsWithChildren<unknown>;
-
-  function LayoutProviders(props: Props): JSX.Element;
-  export default LayoutProviders;
+  export default function LayoutProvider(props: Props): JSX.Element;
 }
 
 declare module "@theme/Logo" {
@@ -797,28 +782,114 @@ declare module "@theme/Logo" {
 }
 
 declare module "@theme/MDXComponents" {
-  import type { ComponentProps } from "react";
+  import type { ComponentType, ComponentProps } from "react";
 
-  import type Head from "@docusaurus/Head";
-
-  import type CodeBlock from "@theme/CodeBlock";
+  import type Admonition from "@theme/Admonition";
+  import type MDXA from "@theme/MDXComponents/A";
+  import type MDXCode from "@theme/MDXComponents/Code";
+  import type MDXDetails from "@theme/MDXComponents/Details";
+  import type MDXHead from "@theme/MDXComponents/Head";
+  import type MDXImg from "@theme/MDXComponents/Img";
+  import type MDXPre from "@theme/MDXComponents/Pre";
+  import type MDXUl from "@theme/MDXComponents/Ul";
+  import type Mermaid from "@theme/Mermaid";
 
   export type MDXComponentsObject = {
-    readonly head: typeof Head;
-    readonly code: typeof CodeBlock;
-    readonly a: (props: ComponentProps<"a">) => JSX.Element;
-    readonly pre: typeof CodeBlock;
-    readonly details: (props: ComponentProps<"details">) => JSX.Element;
+    readonly head: typeof MDXHead;
+    readonly code: typeof MDXCode;
+    readonly a: typeof MDXA;
+    readonly pre: typeof MDXPre;
+    readonly details: typeof MDXDetails;
+    readonly ul: typeof MDXUl;
+    readonly img: typeof MDXImg;
     readonly h1: (props: ComponentProps<"h1">) => JSX.Element;
     readonly h2: (props: ComponentProps<"h2">) => JSX.Element;
     readonly h3: (props: ComponentProps<"h3">) => JSX.Element;
     readonly h4: (props: ComponentProps<"h4">) => JSX.Element;
     readonly h5: (props: ComponentProps<"h5">) => JSX.Element;
     readonly h6: (props: ComponentProps<"h6">) => JSX.Element;
+    readonly admonition: typeof Admonition;
+    readonly mermaid: typeof Mermaid;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [tagName: string]: ComponentType<any>;
   };
 
   const MDXComponents: MDXComponentsObject;
   export default MDXComponents;
+}
+
+declare module "@theme/MDXComponents/A" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"a"> {}
+
+  export default function MDXA(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Code" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"code"> {}
+
+  export default function MDXCode(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Details" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"details"> {}
+
+  export default function MDXDetails(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Head" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"head"> {}
+
+  export default function MDXHead(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Heading" {
+  import type { ComponentProps } from "react";
+
+  import type Heading from "@theme/Heading";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<typeof Heading> {}
+
+  export default function MDXHeading(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Img" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"img"> {}
+
+  export default function MDXImg(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Pre" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"pre"> {}
+
+  export default function MDXPre(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Ul" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"ul"> {}
+
+  export default function MDXUl(props: Props): JSX.Element;
 }
 
 declare module "@theme/MDXContent" {
@@ -829,6 +900,14 @@ declare module "@theme/MDXContent" {
   }
 
   export default function MDXContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/Mermaid" {
+  export interface Props {
+    value: string;
+  }
+
+  export default function Mermaid(props: Props): JSX.Element;
 }
 
 declare module "@theme/Navbar" {
@@ -972,6 +1051,10 @@ declare module "@theme/SearchMetadata" {
 declare module "@theme/SearchPage" {
   function SearchPage(): JSX.Element;
   export default SearchPage;
+}
+
+declare module "@theme/SkipToContent" {
+  export default function SkipToContent(): JSX.Element;
 }
 
 declare module "@theme/TabItem" {

@@ -1,33 +1,55 @@
-import clsx from "clsx";
 import React from "react";
 
-import Navbar from "@theme/Navbar";
+import clsx from "clsx";
+
+import ErrorBoundary from "@docusaurus/ErrorBoundary";
+import {
+  PageMetadata,
+  SkipToContentFallbackId,
+  ThemeClassNames,
+} from "@docusaurus/theme-common";
+import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
+
+import AnnouncementBar from "@theme/AnnouncementBar";
+import ErrorPageContent from "@theme/ErrorPageContent";
 import Footer from "@theme/Footer";
 import type { Props } from "@theme/Layout";
-import LayoutHead from "@theme/LayoutHead";
-import LayoutProviders from "@theme/LayoutProviders";
-import { ThemeClassNames } from "@docusaurus/theme-common";
+import LayoutProvider from "@theme/Layout/Provider";
+import Navbar from "@theme/Navbar";
+import SkipToContent from "@theme/SkipToContent";
 
-function Layout(props: Props): JSX.Element {
-  const { children, noFooter, wrapperClassName, pageClassName } = props;
+export default function Layout(props: Props): JSX.Element {
+  const {
+    children,
+    noFooter,
+    wrapperClassName,
+    // Not really layout-related, but kept for convenience/retro-compatibility
+    title,
+    description,
+  } = props;
+
+  useKeyboardNavigation();
 
   return (
-    <LayoutProviders>
-      <LayoutHead {...props} />
+    <LayoutProvider>
+      <PageMetadata title={title} description={description} />
+
+      <SkipToContent />
+
+      <AnnouncementBar />
+
       <Navbar />
+
       <div
-        className={clsx(
-          ThemeClassNames.wrapper.main,
-          wrapperClassName,
-          pageClassName
-        )}
-        id="content"
+        id={SkipToContentFallbackId}
+        className={clsx(ThemeClassNames.wrapper.main, wrapperClassName)}
       >
-        {children}
+        <ErrorBoundary fallback={(params) => <ErrorPageContent {...params} />}>
+          {children}
+        </ErrorBoundary>
       </div>
+
       {!noFooter && <Footer />}
-    </LayoutProviders>
+    </LayoutProvider>
   );
 }
-
-export default Layout;
