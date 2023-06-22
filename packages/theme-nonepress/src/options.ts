@@ -1,9 +1,9 @@
-import defaultPrismTheme from "prism-react-renderer/themes/palenight";
 import type {
   OptionValidationContext,
   ThemeConfigValidationContext,
 } from "@docusaurus/types";
 import { Joi, URISchema } from "@docusaurus/utils-validation";
+import defaultPrismTheme from "prism-react-renderer/themes/palenight";
 
 import type {
   Options,
@@ -25,7 +25,7 @@ const DEFAULT_COLOR_MODE_CONFIG: ThemeConfig["colorMode"] = {
   respectPrefersColorScheme: true,
 };
 
-export const DEFAULT_CONFIG: ThemeConfig = {
+export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia"> = {
   docs: DEFAULT_DOCS_CONFIG,
   colorMode: DEFAULT_COLOR_MODE_CONFIG,
   metadata: [],
@@ -50,11 +50,18 @@ export const DEFAULT_CONFIG: ThemeConfig = {
   },
   nonepress: {
     navbar: {
-      docsVerisonDropdown: {
-        enable: true,
-        dropdownActiveClassDisabled: false,
+      docsVersionDropdown: {
+        enabled: true,
+        dropdownItemsBefore: [],
+        dropdownItemsAfter: [],
+      },
+      localeDropdown: {
+        enabled: true,
+        dropdownItemsBefore: [],
+        dropdownItemsAfter: [],
       },
     },
+    footer: {},
   },
 };
 
@@ -88,7 +95,6 @@ const HtmlMetadataSchema = Joi.object({
   itemprop: Joi.string(),
 }).unknown();
 
-const NavbarItemPosition = Joi.string().equal("left", "right").default("right");
 const NavbarItemBaseSchema = Joi.object({
   label: Joi.string(),
   html: Joi.string(),
@@ -212,24 +218,15 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
   items: Joi.array().items(DropdownSubitemSchema).required(),
 });
 
-// locale
-const LocaleDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
-  type: Joi.string().equal("localeDropdown").required(),
-  dropdownItemsBefore: Joi.array().items(DropdownSubitemSchema).default([]),
-  dropdownItemsAfter: Joi.array().items(DropdownSubitemSchema).default([]),
-});
-
 // docs menu
 const DocsMenuNavbarItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("docsMenu").required(),
   docId: Joi.string(),
   docsPluginId: Joi.string(),
-  category: Joi.string().optional(),
+  category: Joi.string().required(),
 });
 
-const NavbarItemSchema = Joi.object({
-  position: NavbarItemPosition,
-}).when(".", {
+const NavbarItemSchema = Joi.object().when(".", {
   switch: [
     {
       is: itemWithType("docsVersion"),
@@ -246,10 +243,6 @@ const NavbarItemSchema = Joi.object({
     {
       is: itemWithType("docSidebar"),
       then: DocSidebarItemSchema,
-    },
-    {
-      is: itemWithType("localeDropdown"),
-      then: LocaleDropdownNavbarItemSchema,
     },
     {
       is: itemWithType("docsMenu"),
@@ -314,17 +307,39 @@ const SocialLinkSchema = Joi.object({
 const NonepressSchema = Joi.object({
   tailwindConfig: Joi.object().unknown(),
   navbar: Joi.object({
-    docsVerisonDropdown: Joi.object({
-      enable: Joi.boolean().default(
-        DEFAULT_CONFIG.nonepress.navbar.docsVerisonDropdown.enable,
+    docsVersionDropdown: Joi.object({
+      enabled: Joi.boolean().default(
+        DEFAULT_CONFIG.nonepress.navbar.docsVersionDropdown.enabled,
       ),
       docsPluginId: Joi.string(),
-      dropdownActiveClassDisabled: Joi.boolean().default(
-        DEFAULT_CONFIG.nonepress.navbar.docsVerisonDropdown
-          .dropdownActiveClassDisabled,
+      dropdownItemsBefore: Joi.array()
+        .items(DropdownSubitemSchema)
+        .default(
+          DEFAULT_CONFIG.nonepress.navbar.docsVersionDropdown
+            .dropdownItemsBefore,
+        ),
+      dropdownItemsAfter: Joi.array()
+        .items(DropdownSubitemSchema)
+        .default(
+          DEFAULT_CONFIG.nonepress.navbar.docsVersionDropdown
+            .dropdownItemsAfter,
+        ),
+    }),
+    localeDropdown: Joi.object({
+      enabled: Joi.boolean().default(
+        DEFAULT_CONFIG.nonepress.navbar.localeDropdown.enabled,
       ),
-      dropdownItemsBefore: Joi.array().items(DropdownSubitemSchema).default([]),
-      dropdownItemsAfter: Joi.array().items(DropdownSubitemSchema).default([]),
+      dropdownItemsBefore: Joi.array()
+        .items(DropdownSubitemSchema)
+        .default(
+          DEFAULT_CONFIG.nonepress.navbar.localeDropdown.dropdownItemsBefore,
+        ),
+      dropdownItemsAfter: Joi.array()
+        .items(DropdownSubitemSchema)
+        .default(
+          DEFAULT_CONFIG.nonepress.navbar.localeDropdown.dropdownItemsAfter,
+        ),
+      queryString: Joi.string(),
     }),
     socialLinks: Joi.array().items(SocialLinkSchema),
   }),

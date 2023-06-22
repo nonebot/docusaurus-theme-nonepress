@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "types": ["./src/types.d.ts"],
-    "lib": ["DOM"],
+    // "lib": ["DOM", "ESNext"],
     "noEmit": false,
     "composite": true,
     "incremental": true,

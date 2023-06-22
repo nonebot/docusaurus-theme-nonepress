@@ -1,4 +1,0 @@
-.disabled {
-  pointer-events: none;
-  @apply cursor-default;
-}

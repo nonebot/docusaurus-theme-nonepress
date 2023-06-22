@@ -1,18 +1,20 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference types="@docusaurus/module-type-aliases" />
 /// <reference types="@docusaurus/plugin-content-docs" />
 /// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@nullbot/docusaurus-theme-nonepress" {
-  import type { ThemeConfig as defaultThemeConfig } from "@docusaurus/theme-common";
-  import type {
-    DocusaurusConfig,
-    LoadContext,
-    Plugin,
-    PluginModule,
-  } from "@docusaurus/types";
+  import type { ThemeConfig as DefaultThemeConfig } from "@docusaurus/theme-common";
+  import type { ThemeConfig as SearchThemeConfig } from "@docusaurus/theme-search-algolia";
+  import type { LoadContext, Plugin, PluginModule } from "@docusaurus/types";
   import type { IconProp } from "@fortawesome/fontawesome-svg-core";
   import type { Config as tailwindConfig } from "tailwindcss";
   import type { DeepPartial } from "utility-types";
+
+  import type {
+    LinkLikeNavbarItemProps,
+    NavbarItemProps,
+  } from "@theme/NavbarItem";
 
   export type PluginOptions = {
     customCss: string[];
@@ -28,63 +30,50 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
     href: string;
   };
 
-  export type NavbarItemBase = {
-    label?: string;
-    html?: string;
-    className?: string;
-  };
-  export type NavbarLink = NavbarItemBase & {
-    to?: string;
-    href?: string;
-    prependBaseUrlToHref?: boolean;
-  };
-  export type NavbarDocsVersion = NavbarItemBase & {
-    type: "docsVersion";
-    to?: string;
-    docsPluginId?: string;
-  };
-  export type NavbarDocLink = NavbarItemBase & {
-    type: "doc";
-    docId: string;
-    docsPluginId?: string;
-  };
-  export type NavbarDocSidebar = NavbarItemBase & {
-    type: "docSidebar";
-    sidebarId: string;
-    docsPluginId?: string;
-  };
-  export type NavbarHtml = NavbarItemBase & {
-    type: "html";
-    className?: string;
-    value: string;
-  };
-  export type DocsVersionDropdownSubitem =
-    | NavbarLink
-    | NavbarDocsVersion
-    | NavbarDocLink
-    | NavbarDocSidebar
-    | NavbarHtml;
-
   export type DocsVersionDropdown = {
-    enable: boolean;
+    enabled: boolean;
     docsPluginId?: string;
-    dropdownActiveClassDisabled: boolean;
-    dropdownItemsBefore?: DocsVersionDropdownSubitem;
-    dropdownItemsAfter?: DocsVersionDropdownSubitem;
+    dropdownItemsBefore: LinkLikeNavbarItemProps[];
+    dropdownItemsAfter: LinkLikeNavbarItemProps[];
+  };
+  export type LocaleDropdown = {
+    enabled: boolean;
+    dropdownItemsBefore: LinkLikeNavbarItemProps[];
+    dropdownItemsAfter: LinkLikeNavbarItemProps[];
+    queryString?: string;
   };
 
-  export type ThemeConfig = defaultThemeConfig & {
-    nonepress: {
-      tailwindConfig?: tailwindConfig;
-      navbar?: {
-        docsVerisonDropdown?: DocsVersionDropdown;
-        socialLinks?: SocialLink[];
-      };
-      footer?: {
-        socialLinks?: SocialLink[];
-      };
+  type DeepOverwrite<T, U> = U extends object
+    ? {
+        [K in keyof T]: K extends keyof U ? DeepOverwrite<T[K], U[K]> : T[K];
+      }
+    : U;
+
+  type OverwriteConfig = {
+    navbar: {
+      items: NavbarItemProps[];
     };
   };
+
+  type OverwritedThemeConfig = DeepOverwrite<
+    DefaultThemeConfig,
+    OverwriteConfig
+  >;
+
+  export type ThemeConfig = OverwritedThemeConfig &
+    SearchThemeConfig & {
+      nonepress: {
+        tailwindConfig?: tailwindConfig;
+        navbar: {
+          docsVersionDropdown: DocsVersionDropdown;
+          localeDropdown: LocaleDropdown;
+          socialLinks?: SocialLink[];
+        };
+        footer: {
+          socialLinks?: SocialLink[];
+        };
+      };
+    };
 
   export type UserThemeConfig = DeepPartial<ThemeConfig>;
 
@@ -227,9 +216,15 @@ declare module "@theme/ColorModeToggle" {
 
   export interface Props {
     readonly className?: string;
+    readonly buttonClassName?: string;
     readonly value: ColorMode;
+    /**
+     * The parameter represents the "to-be" value. For example, if currently in
+     * dark mode, clicking the button should call `onChange("light")`
+     */
     readonly onChange: (colorMode: ColorMode) => void;
   }
+
   export default function ColorModeToggle(props: Props): JSX.Element;
 }
 
@@ -689,6 +684,15 @@ declare module "@theme/Icon/Home" {
   export default function IconHome(props: Props): JSX.Element;
 }
 
+declare module "@theme/Icon/Language" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconLanguage(props: Props): JSX.Element;
+}
+
 declare module "@theme/Icon/LightMode" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
@@ -705,6 +709,15 @@ declare module "@theme/Icon/Link" {
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconLink(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Menu" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconMenu(props: Props): JSX.Element;
 }
 
 declare module "@theme/Icon/React" {
@@ -911,111 +924,269 @@ declare module "@theme/Mermaid" {
 }
 
 declare module "@theme/Navbar" {
-  function Navbar(): JSX.Element;
-  export default Navbar;
+  export default function Navbar(): JSX.Element;
+}
+
+declare module "@theme/Navbar/ColorModeToggle" {
+  export interface Props {
+    readonly className?: string;
+    readonly mobile?: boolean;
+  }
+
+  export default function NavbarColorModeToggle(
+    props: Props,
+  ): JSX.Element | null;
+}
+
+declare module "@theme/Navbar/Content" {
+  export default function NavbarContent(): JSX.Element;
+}
+
+declare module "@theme/Navbar/DocsVersion" {
+  import type { DocsVersionDropdown } from "@nullbot/docusaurus-theme-nonepress";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<DocsVersionDropdown, "enabled"> {}
+
+  export default function DocsVersion(props: Props): JSX.Element;
+}
+
+declare module "@theme/Navbar/Layout" {
+  export interface Props {
+    readonly children: React.ReactNode;
+  }
+
+  export default function NavbarLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/Navbar/LocaleDropdown" {
+  import type { LocaleDropdown } from "@nullbot/docusaurus-theme-nonepress";
+
+  export interface Props extends Omit<LocaleDropdown, "enabled"> {
+    readonly mobile?: boolean;
+  }
+
+  export default function LocaleDropdown(props: Props): JSX.Element;
+}
+
+declare module "@theme/Navbar/Logo" {
+  export default function NavbarLogo(): JSX.Element;
+}
+
+declare module "@theme/Navbar/MobileSidebar" {
+  export default function NavbarMobileSidebar(): JSX.Element | null;
+}
+
+declare module "@theme/Navbar/MobileSidebar/Header" {
+  export default function NavbarMobileSidebarHeader(): JSX.Element;
+}
+
+declare module "@theme/Navbar/MobileSidebar/Layout" {
+  import type { ReactNode } from "react";
+
+  interface Props {
+    readonly header: ReactNode;
+    readonly primaryMenu: ReactNode;
+    readonly secondaryMenu: ReactNode;
+  }
+
+  export default function NavbarMobileSidebarLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/Navbar/MobileSidebar/PrimaryMenu" {
+  export default function NavbarMobileSidebarPrimaryMenu(): JSX.Element;
+}
+
+declare module "@theme/Navbar/MobileSidebar/SecondaryMenu" {
+  export default function NavbarMobileSidebarSecondaryMenu(): JSX.Element;
+}
+
+declare module "@theme/Navbar/MobileSidebar/Toggle" {
+  export default function NavbarMobileSidebarToggle(): JSX.Element;
+}
+
+declare module "@theme/Navbar/Search" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+    readonly className?: string;
+  }
+
+  export default function NavbarSearch(props: Props): JSX.Element;
+}
+
+declare module "@theme/Navbar/SocialLink" {
+  import type { SocialLink } from "@nullbot/docusaurus-theme-nonepress";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends SocialLink {}
+
+  export default function SocialLink(props: Props): JSX.Element;
 }
 
 declare module "@theme/NavbarItem" {
-  import type { PropsWithChildren } from "react";
+  import type { ComponentProps } from "react";
 
-  import type { NavbarItemBase as NavItem } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<{
-    readonly item: NavItem & { readonly [key: string]: any };
-    readonly isMobile?: boolean;
-  }>;
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
+  import type { Props as DocNavbarItemProps } from "@theme/NavbarItem/DocNavbarItem";
+  import type { Props as DocSidebarNavbarItemProps } from "@theme/NavbarItem/DocSidebarNavbarItem";
+  import type { Props as DocsMenuDropdownNavbarItemProps } from "@theme/NavbarItem/DocsMenuDropdownNavbarItem";
+  import type { Props as DocsVersionNavbarItemProps } from "@theme/NavbarItem/DocsVersionNavbarItem";
+  import type { Props as DropdownNavbarItemProps } from "@theme/NavbarItem/DropdownNavbarItem";
+  import type { Props as HtmlNavbarItemProps } from "@theme/NavbarItem/HtmlNavbarItem";
 
-  function NavbarItem(props: Props): JSX.Element;
-  export default NavbarItem;
+  export type LinkLikeNavbarItemProps =
+    | ({ readonly type?: "default" } & DefaultNavbarItemProps)
+    | ({ readonly type: "doc" } & DocNavbarItemProps)
+    | ({ readonly type: "docsVersion" } & DocsVersionNavbarItemProps)
+    | ({ readonly type: "docSidebar" } & DocSidebarNavbarItemProps)
+    | ({ readonly type: "html" } & HtmlNavbarItemProps);
+
+  export type NavbarItemProps =
+    | LinkLikeNavbarItemProps
+    | ({ readonly type?: "dropdown" } & DropdownNavbarItemProps)
+    | ({ readonly type: "docsMenu" } & DocsMenuDropdownNavbarItemProps)
+    | ({
+        readonly type: `custom-${string}`;
+        readonly [key: string]: unknown;
+      } & DefaultNavbarItemProps);
+
+  export type Props = ComponentProps<"a"> & NavbarItemProps;
+
+  export type NavbarItemType = Props["type"];
+
+  export default function NavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/NavbarDocLink" {
-  import type { PropsWithChildren } from "react";
+declare module "@theme/NavbarItem/ComponentTypes" {
+  import type { ComponentType } from "react";
 
-  import type { NavbarDocLink as NavDocLink } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<
-    NavDocLink & { linkClassName?: string }
-  >;
+  import type DefaultNavbarItem from "@theme/NavbarItem/DefaultNavbarItem";
+  import type DocNavbarItem from "@theme/NavbarItem/DocNavbarItem";
+  import type DocSidebarNavbarItem from "@theme/NavbarItem/DocSidebarNavbarItem";
+  import type DocsMenuDropdownNavbarItem from "@theme/NavbarItem/DocsMenuDropdownNavbarItem";
+  import type DocsVersionNavbarItem from "@theme/NavbarItem/DocsVersionNavbarItem";
+  import type DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem";
+  import type HtmlNavbarItem from "@theme/NavbarItem/HtmlNavbarItem";
 
-  function NavbarDocLink(props: Props): JSX.Element;
-  export default NavbarDocLink;
+  export type ComponentTypesObject = {
+    readonly default: typeof DefaultNavbarItem;
+    readonly doc: typeof DocNavbarItem;
+    readonly docSidebar: typeof DocSidebarNavbarItem;
+    readonly docsMenu: typeof DocsMenuDropdownNavbarItem;
+    readonly docsVersion: typeof DocsVersionNavbarItem;
+    readonly dropdown: typeof DropdownNavbarItem;
+    readonly html: typeof HtmlNavbarItem;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [customComponentType: string]: ComponentType<any>;
+  };
+
+  const ComponentTypes: ComponentTypesObject;
+  export default ComponentTypes;
 }
 
-declare module "@theme/NavbarItem/NavbarDocLinkMobile" {
-  import type { Props } from "@theme/NavbarItem/NavbarDocLink";
-  export type { Props } from "@theme/NavbarItem/NavbarDocLink";
+declare module "@theme/NavbarItem/DefaultNavbarItem" {
+  import type { Props as NavbarNavLinkProps } from "@theme/NavbarItem/NavbarNavLink";
 
-  function NavbarDocLinkMobile(props: Props): JSX.Element;
-  export default NavbarDocLinkMobile;
+  export type DesktopOrMobileNavBarItemProps = NavbarNavLinkProps & {
+    readonly isDropdownItem?: boolean;
+    readonly className?: string;
+  };
+
+  export interface Props extends DesktopOrMobileNavBarItemProps {
+    readonly mobile?: boolean;
+  }
+
+  export default function DefaultNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/NavbarDocsMenu" {
-  import type { PropsWithChildren } from "react";
+declare module "@theme/NavbarItem/DocsMenuDropdownNavbarItem" {
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
-  import type { NavbarDocsMenu as NavDocsMenu } from "@theme/hooks/useThemeConfig";
+  export interface Props extends DefaultNavbarItemProps {
+    readonly docId?: string;
+    readonly docsPluginId?: string;
+    readonly category: string;
+  }
 
-  export type Props = PropsWithChildren<NavDocsMenu>;
-
-  function NavbarDocsMenu(props: Props): JSX.Element;
-  export default NavbarDocsMenu;
+  export default function DocsMenuDropdownNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/NavbarDocsMenuMobile" {
-  import type { Props } from "@theme/NavbarItem/NavbarDocsMenu";
-  export type { Props } from "@theme/NavbarItem/NavbarDocsMenu";
+declare module "@theme/NavbarItem/DocsVersionNavbarItem" {
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
-  function NavbarDocsMenuMobile(props: Props): JSX.Element;
-  export default NavbarDocsMenuMobile;
+  export interface Props extends DefaultNavbarItemProps {
+    readonly docsPluginId?: string;
+  }
+
+  export default function DocsVersionNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/NavbarDropdown" {
-  import type { PropsWithChildren } from "react";
+declare module "@theme/NavbarItem/DocNavbarItem" {
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
-  import type { NavbarDropdown as NavDropdown } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<NavDropdown>;
+  export interface Props extends DefaultNavbarItemProps {
+    readonly docId: string;
+    readonly docsPluginId?: string;
+  }
 
-  function NavbarDropdown(props: Props): JSX.Element;
-  export default NavbarDropdown;
+  export default function DocNavbarItem(props: Props): JSX.Element | null;
 }
 
-declare module "@theme/NavbarItem/NavbarDropdownMobile" {
-  import type { Props } from "@theme/NavbarItem/NavbarDropdown";
-  export type { Props } from "@theme/NavbarItem/NavbarDropdown";
+declare module "@theme/NavbarItem/DocSidebarNavbarItem" {
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
-  function NavbarDropdownMobile(props: Props): JSX.Element;
-  export default NavbarDropdownMobile;
+  export interface Props extends DefaultNavbarItemProps {
+    readonly sidebarId: string;
+    readonly docsPluginId?: string;
+  }
+
+  export default function DocSidebarNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/NavbarLink" {
-  import type { PropsWithChildren } from "react";
+declare module "@theme/NavbarItem/DropdownNavbarItem" {
+  import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
+  import type { Props as NavbarNavLinkProps } from "@theme/NavbarItem/NavbarNavLink";
 
-  import type { NavbarLink as NavLink } from "@theme/hooks/useThemeConfig";
-  export type Props = PropsWithChildren<NavLink & { linkClassName?: string }>;
+  export type DesktopOrMobileNavBarItemProps = NavbarNavLinkProps & {
+    readonly items: readonly LinkLikeNavbarItemProps[];
+    readonly className?: string;
+  };
 
-  function NavbarLink(props: Props): JSX.Element;
-  export default NavbarLink;
+  export interface Props extends DesktopOrMobileNavBarItemProps {
+    readonly mobile?: boolean;
+  }
+
+  export default function DropdownNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/NavbarLinkMobile" {
-  import type { Props } from "@theme/NavbarItem/NavbarLink";
-  export type { Props } from "@theme/NavbarItem/NavbarLink";
+declare module "@theme/NavbarItem/HtmlNavbarItem" {
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
-  function NavbarLinkMobile(props: Props): JSX.Element;
-  export default NavbarLinkMobile;
+  export interface Props extends DefaultNavbarItemProps {
+    readonly value: string;
+  }
+
+  export default function HtmlNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarMobile" {
-  import type { useTransitionReturns } from "@theme/hooks/useTransition";
-  export type Props = useTransitionReturns<HTMLDivElement>;
+declare module "@theme/NavbarItem/NavbarNavLink" {
+  import type { ReactNode } from "react";
 
-  function NavbarMobile(props: Props): JSX.Element;
-  export default NavbarMobile;
-}
+  import type { Props as LinkProps } from "@docusaurus/Link";
 
-declare module "@theme/NavbarPC" {
-  export type Props = { readonly openMobileMenu: () => void };
+  export interface Props extends LinkProps {
+    readonly activeBasePath?: string;
+    readonly activeBaseRegex?: string;
+    readonly exact?: boolean;
+    readonly label?: ReactNode;
+    readonly html?: string;
+    readonly prependBaseUrlToHref?: boolean;
+    readonly isDropdownLink?: boolean;
+  }
 
-  function NavbarPC(props: Props): JSX.Element;
-  export default NavbarPC;
+  export default function NavbarNavLink(props: Props): JSX.Element;
 }
 
 declare module "@theme/PaginatorNavLink" {

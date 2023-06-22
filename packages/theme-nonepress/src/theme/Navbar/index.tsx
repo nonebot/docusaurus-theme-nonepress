@@ -1,38 +1,12 @@
-import clsx from "clsx";
 import React from "react";
 
-import NavbarPC from "@theme/NavbarPC";
-import styles from "./styles.module.css";
-import NavbarMobile from "@theme/NavbarMobile";
-import useTransition from "@theme/hooks/useTransition";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
-import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import NavbarContent from "@theme/Navbar/Content";
+import NavbarLayout from "@theme/Navbar/Layout";
 
-function Navbar(): JSX.Element {
-  const mobileMenu = useTransition<HTMLDivElement>();
-  const {
-    navbar: { hideOnScroll },
-  } = useThemeConfig();
-  const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
-
+export default function Navbar(): JSX.Element {
   return (
-    <>
-      <div
-        id="navbar"
-        ref={navbarRef}
-        className={clsx(
-          "navbar",
-          "fixed top-0 left-0 right-0 z-10",
-          "bg-light-nav dark:bg-dark-nav shadow-sm",
-          "transition-transform",
-          { [styles.navbarHidden]: hideOnScroll && !isNavbarVisible }
-        )}
-      >
-        <NavbarPC openMobileMenu={mobileMenu.enter} />
-      </div>
-      <NavbarMobile {...mobileMenu} />
-    </>
+    <NavbarLayout>
+      <NavbarContent />
+    </NavbarLayout>
   );
 }
-
-export default Navbar;

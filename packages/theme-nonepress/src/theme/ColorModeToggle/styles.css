@@ -1,6 +1,10 @@
 .appearance-toggle {
   @apply btn btn-ghost btn-circle btn-sm no-animation;
 
+  &.appearance-toggle-dark {
+    @apply btn-neutral;
+  }
+
   &.appearance-toggle-active {
     @apply swap-active;
   }

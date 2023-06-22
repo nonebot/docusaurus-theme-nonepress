@@ -10,7 +10,12 @@ import type { Props } from "@theme/ColorModeToggle";
 import IconDarkMode from "@theme/Icon/DarkMode";
 import IconLightMode from "@theme/Icon/LightMode";
 
-function ColorModeToggle({ className, value, onChange }: Props): JSX.Element {
+function ColorModeToggle({
+  className,
+  buttonClassName,
+  value,
+  onChange,
+}: Props): JSX.Element {
   const isBrowser = useIsBrowser();
 
   const title = translate(
@@ -36,22 +41,24 @@ function ColorModeToggle({ className, value, onChange }: Props): JSX.Element {
   );
 
   return (
-    <button
-      className={clsx(
-        "appearance-toggle swap swap-rotate",
-        value === "dark" && "appearance-toggle-active",
-        className,
-      )}
-      type="button"
-      onClick={() => onChange(value === "dark" ? "light" : "dark")}
-      disabled={!isBrowser}
-      title={title}
-      aria-label={title}
-      aria-live="polite"
-    >
-      <IconLightMode className="appearance-toggle-icon swap-off" />
-      <IconDarkMode className="apprencen-toggle-icon swap-on" />
-    </button>
+    <div className={className}>
+      <button
+        className={clsx(
+          "appearance-toggle swap swap-rotate",
+          value === "dark" && "appearance-toggle-active",
+          buttonClassName,
+        )}
+        type="button"
+        onClick={() => onChange(value === "dark" ? "light" : "dark")}
+        disabled={!isBrowser}
+        title={title}
+        aria-label={title}
+        aria-live="polite"
+      >
+        <IconLightMode className="appearance-toggle-icon swap-off" />
+        <IconDarkMode className="apprencen-toggle-icon swap-on" />
+      </button>
+    </div>
   );
 }
 
