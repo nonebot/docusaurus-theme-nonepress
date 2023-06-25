@@ -1,9 +1,11 @@
+import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
 import { useActiveVersion } from "@docusaurus/plugin-content-docs/client";
 import { usePluginData } from "@docusaurus/useGlobalData";
 
 export const PLUGIN_NAME = "docusaurus-plugin-docmenu";
 
 export type Doc = {
+  id: string;
   title: string;
   description: string;
   permalink: string;
@@ -28,18 +30,22 @@ export type GlobalPluginData = {
   [docPluginID: string]: GlobalDocsInstance;
 };
 
-export const useDocMenuData = (): GlobalPluginData =>
-  usePluginData(PLUGIN_NAME, undefined, { failfast: true }) as GlobalPluginData;
+export const useDocMenuData = (): GlobalPluginData | undefined =>
+  usePluginData(PLUGIN_NAME, undefined, { failfast: false }) as
+    | GlobalPluginData
+    | undefined;
 
 export const useActiveDocMenu = (
-  docPluginID: string | undefined,
+  docPluginID?: string,
 ): GlobalDocsVersion | undefined => {
   const data = useDocMenuData();
-
   const version = useActiveVersion(docPluginID);
-  if (!version) return;
 
-  return data[docPluginID]?.loadedVersions.find(
+  if (!(data && version)) {
+    return;
+  }
+
+  return data[docPluginID ?? DEFAULT_PLUGIN_ID]?.loadedVersions.find(
     (menuVersion) => menuVersion.versionName === version.name,
   );
 };
@@ -49,7 +55,9 @@ export const useActiveDocCategory = (
   docPluginID: string | undefined,
 ): DocsCategory | undefined => {
   const data = useActiveDocMenu(docPluginID);
-  if (!data) return;
+  if (!data) {
+    return;
+  }
 
   return data.categories.find((c) => c.name === category);
 };

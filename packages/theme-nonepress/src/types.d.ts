@@ -84,12 +84,31 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
 }
 
 declare module "@nullbot/docusaurus-theme-nonepress/client" {
+  import type { GlobalVersion } from "@docusaurus/plugin-content-docs/client";
   import type { DocusaurusConfig } from "@docusaurus/types";
+  import type { Doc } from "@nullbot/docusaurus-plugin-docsmenu/lib/client";
 
   import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
 
   export function useSiteConfig(): DocusaurusConfig;
   export function useNonepressThemeConfig(): ThemeConfig;
+
+  export type DocsMenuCategory = {
+    link: string;
+    docs?: Doc[];
+  };
+  export type DocsMenuVersions = {
+    latest: GlobalVersion;
+    next: GlobalVersion;
+  };
+  export function useDocsMenuCategory(
+    category: string,
+    docId?: string,
+    docsPluginId?: string,
+  ): DocsMenuCategory;
+  export function useDocsMenuVersions(
+    docsPluginId?: string,
+  ): DocsMenuVersions | null;
 }
 
 declare module "@theme/Admonition" {
@@ -1101,28 +1120,6 @@ declare module "@theme/NavbarItem/DefaultNavbarItem" {
   export default function DefaultNavbarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/NavbarItem/DocsMenuDropdownNavbarItem" {
-  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
-
-  export interface Props extends DefaultNavbarItemProps {
-    readonly docId?: string;
-    readonly docsPluginId?: string;
-    readonly category: string;
-  }
-
-  export default function DocsMenuDropdownNavbarItem(props: Props): JSX.Element;
-}
-
-declare module "@theme/NavbarItem/DocsVersionNavbarItem" {
-  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
-
-  export interface Props extends DefaultNavbarItemProps {
-    readonly docsPluginId?: string;
-  }
-
-  export default function DocsVersionNavbarItem(props: Props): JSX.Element;
-}
-
 declare module "@theme/NavbarItem/DocNavbarItem" {
   import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
@@ -1143,6 +1140,32 @@ declare module "@theme/NavbarItem/DocSidebarNavbarItem" {
   }
 
   export default function DocSidebarNavbarItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/NavbarItem/DocsMenuDropdownNavbarItem" {
+  import type { Props as NavbarNavLinkProps } from "@theme/NavbarItem/NavbarNavLink";
+
+  export type DesktopOrMobileNavBarItemProps = NavbarNavLinkProps & {
+    readonly docId?: string;
+    readonly docsPluginId?: string;
+    readonly category: string;
+  };
+
+  export interface Props extends DesktopOrMobileNavBarItemProps {
+    readonly mobile?: boolean;
+  }
+
+  export default function DocsMenuDropdownNavbarItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/NavbarItem/DocsVersionNavbarItem" {
+  import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
+
+  export interface Props extends DefaultNavbarItemProps {
+    readonly docsPluginId?: string;
+  }
+
+  export default function DocsVersionNavbarItem(props: Props): JSX.Element;
 }
 
 declare module "@theme/NavbarItem/DropdownNavbarItem" {

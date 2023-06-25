@@ -31,11 +31,13 @@ export default async function pluginDocMenu(
         [docID: string]: LoadedContent;
       };
 
-      if (!docContent) return;
+      if (!docContent) {
+        return;
+      }
 
-      async function processDocsVersion(
+      const processDocsVersion = async (
         version: LoadedVersion,
-      ): Promise<GlobalDocsVersion> {
+      ): Promise<GlobalDocsVersion> => {
         const groups: { [category: string]: Doc[] } = {};
         version.docs.forEach((doc) => {
           const categories =
@@ -43,6 +45,7 @@ export default async function pluginDocMenu(
           categories.forEach((options) => {
             groups[options.category] = groups[options.category] ?? [];
             groups[options.category].push({
+              id: doc.id,
               title: doc.title,
               description: doc.description,
               permalink: doc.permalink,
@@ -55,20 +58,20 @@ export default async function pluginDocMenu(
           versionName: version.versionName,
           categories: Object.entries(groups).map(([name, docs]) => ({
             name,
-            docs,
+            docs: docs.sort((a, b) => a.weight - b.weight),
           })),
         };
-      }
+      };
 
-      async function processDocsContent(
+      const processDocsContent = async (
         content: LoadedContent,
-      ): Promise<GlobalDocsInstance> {
+      ): Promise<GlobalDocsInstance> => {
         return {
           loadedVersions: await Promise.all(
             content.loadedVersions.map(processDocsVersion),
           ),
         };
-      }
+      };
 
       const data: GlobalPluginData = Object.fromEntries<GlobalDocsInstance>(
         await Promise.all(

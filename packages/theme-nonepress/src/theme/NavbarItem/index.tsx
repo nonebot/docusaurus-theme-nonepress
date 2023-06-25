@@ -1,67 +1,22 @@
 import React from "react";
 
-import NavbarLink from "./NavbarLink";
-import NavbarDocLink from "./NavbarDocLink";
-import NavbarDropdown from "./NavbarDropdown";
-import NavbarDocsMenu from "./NavbarDocsMenu";
-import type { Props } from "@theme/NavbarItem";
-import NavbarLinkMobile from "./NavbarLinkMobile";
-import NavbarDocLinkMobile from "./NavbarDocLinkMobile";
-import NavbarDropdownMobile from "./NavbarDropdownMobile";
-import NavbarDocsMenuMobile from "./NavbarDocsMenuMobile";
-import type { NavbarDropdown as NavDropdown } from "@theme/hooks/useThemeConfig";
+import type { NavbarItemType, Props } from "@theme/NavbarItem";
+import ComponentTypes from "@theme/NavbarItem/ComponentTypes";
 
-const NavbarItemComponents = {
-  default: NavbarLink,
-  docLink: NavbarDocLink,
-  dropdown: NavbarDropdown,
-  docsMenu: NavbarDocsMenu,
-} as const;
-
-const NavbarItemMobileComponents = {
-  default: NavbarLinkMobile,
-  docLink: NavbarDocLinkMobile,
-  dropdown: NavbarDropdownMobile,
-  docsMenu: NavbarDocsMenuMobile,
-} as const;
-
-type NavbarItemComponentType = keyof typeof NavbarItemComponents &
-  keyof typeof NavbarItemMobileComponents;
-
-function getComponentType(
-  type: string,
-  isDropdown: boolean
-): NavbarItemComponentType {
+function normalizeComponentType(type: NavbarItemType, props: object) {
+  // Backward compatibility: navbar item with no type set
+  // but containing dropdown items should use the type "dropdown"
   if (!type || type === "default") {
-    return isDropdown ? "dropdown" : "default";
+    return "items" in props ? "dropdown" : "default";
   }
-  return type as NavbarItemComponentType;
+  return type;
 }
 
-function getNavbarItemComponent(
-  type: NavbarItemComponentType,
-  isMobile: boolean = false
-): (props) => JSX.Element {
-  const navbarItemComponent = isMobile
-    ? NavbarItemMobileComponents[type]
-    : NavbarItemComponents[type];
-  if (!navbarItemComponent) {
+export default function NavbarItem({ type, ...props }: Props): JSX.Element {
+  const componentType = normalizeComponentType(type, props);
+  const NavbarItemComponent = ComponentTypes[componentType];
+  if (!NavbarItemComponent) {
     throw new Error(`No NavbarItem component found for type "${type}".`);
   }
-  return navbarItemComponent;
+  return <NavbarItemComponent {...props} />;
 }
-
-function NavbarItem(props: Props): JSX.Element {
-  const {
-    isMobile,
-    item: { type, ...remProps },
-  } = props;
-  const componentType = getComponentType(
-    type,
-    (remProps as NavDropdown).items !== undefined
-  );
-  const NavbarItemComponent = getNavbarItemComponent(componentType, isMobile);
-  return <NavbarItemComponent {...remProps} />;
-}
-
-export default NavbarItem;
