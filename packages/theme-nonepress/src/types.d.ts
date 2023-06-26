@@ -1265,37 +1265,21 @@ declare module "@theme/SkipToContent" {
 }
 
 declare module "@theme/TabItem" {
-  import type { ReactNode } from "react";
+  import type { TabItemProps } from "@docusaurus/theme-common/internal";
 
-  export interface Props {
-    readonly children: ReactNode;
-    readonly value: string;
-    readonly default?: boolean;
-    readonly label?: string;
-    readonly hidden?: boolean;
-    readonly className?: string;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends TabItemProps {}
 
-  function TabItem(props: Props): JSX.Element;
-  export default TabItem;
+  export default function TabItem(props: Props): JSX.Element;
 }
 
 declare module "@theme/Tabs" {
-  import type { ReactElement } from "react";
+  import type { TabsProps } from "@docusaurus/theme-common/internal";
 
-  import type { Props as TabItemProps } from "@theme/TabItem";
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends TabsProps {}
 
-  export interface Props {
-    readonly lazy?: boolean;
-    readonly children: readonly ReactElement<TabItemProps>[];
-    readonly defaultValue?: string | null;
-    readonly values?: readonly { value: string; label?: string }[];
-    readonly groupId?: string;
-    readonly className?: string;
-  }
-
-  function Tabs(props: Props): JSX.Element;
-  export default Tabs;
+  export default function Tabs(props: Props): JSX.Element;
 }
 
 declare module "@theme/Tag" {
