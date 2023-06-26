@@ -1,9 +1,5 @@
 :root {
-  --docsearch-primary-color: theme("colors.light.text.active");
-}
-
-html[data-theme="dark"] {
-  --docsearch-primary-color: theme("colors.dark.text.active");
+  --docsearch-primary-color: hsl(var(--p));
 }
 
 .DocSearch-Button {

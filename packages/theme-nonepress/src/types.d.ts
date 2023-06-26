@@ -748,6 +748,15 @@ declare module "@theme/Icon/React" {
   export default function IconReact(props: Props): JSX.Element;
 }
 
+declare module "@theme/Icon/Search" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconSearch(props: Props): JSX.Element;
+}
+
 declare module "@theme/Icon/Success" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
@@ -1226,25 +1235,29 @@ declare module "@theme/PaginatorNavLink" {
   export default function PaginatorNavLink(props: Props): JSX.Element;
 }
 
-declare module "@theme/SearchBar" {
-  function SearchBar(): JSX.Element;
-  export default SearchBar;
-}
-
 declare module "@theme/SearchMetadata" {
-  export type SearchMetadataProps = {
+  export interface Props {
     readonly locale?: string;
     readonly version?: string;
     readonly tag?: string;
-  };
+  }
 
-  function SearchMetadata(props: SearchMetadataProps): JSX.Element;
-  export default SearchMetadata;
+  export default function SearchMetadata(props: Props): JSX.Element;
+}
+
+declare module "@theme/SearchBar" {
+  export default function SearchBar(): JSX.Element;
 }
 
 declare module "@theme/SearchPage" {
-  function SearchPage(): JSX.Element;
-  export default SearchPage;
+  export default function SearchPage(): JSX.Element;
+}
+
+declare module "@theme/SearchTranslations" {
+  import type { DocSearchTranslations } from "@docsearch/react";
+
+  const translations: DocSearchTranslations & { placeholder: string };
+  export default translations;
 }
 
 declare module "@theme/SkipToContent" {

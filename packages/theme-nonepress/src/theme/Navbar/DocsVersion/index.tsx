@@ -14,7 +14,6 @@ import type { Props } from "@theme/Navbar/DocsVersion";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 
 const getVersionMainDoc = (version: GlobalVersion) =>
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   version.docs.find((doc) => doc.id === version.mainDocId)!;
 
 export default function DocsVersion({

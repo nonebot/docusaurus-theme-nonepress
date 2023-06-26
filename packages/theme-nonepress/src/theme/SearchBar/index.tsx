@@ -1,33 +1,49 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-import Link from "@docusaurus/Link";
-import Head from "@docusaurus/Head";
-import { createPortal } from "react-dom";
-import { useHistory } from "@docusaurus/router";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
-import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
-import useSearchQuery from "@theme/hooks/useSearchQuery";
-import { isRegexpStringMatch } from "@docusaurus/theme-common";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
-import useAlgoliaContextualFacetFilters from "@theme/hooks/useAlgoliaContextualFacetFilters";
-
+import "./styles.css";
+import type { AutocompleteState } from "@algolia/autocomplete-core";
+import { useDocSearchKeyboardEvents } from "@docsearch/react";
 import type {
   DocSearchModal as DocSearchModalType,
   DocSearchModalProps,
+  DocSearchButtonProps,
 } from "@docsearch/react";
 import type {
   InternalDocSearchHit,
   StoredDocSearchHit,
 } from "@docsearch/react/dist/esm/types";
-import type { AutocompleteState } from "@algolia/autocomplete-core";
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import Translate from "@docusaurus/Translate";
+import { useHistory } from "@docusaurus/router";
+import {
+  isRegexpStringMatch,
+  useSearchLinkCreator,
+} from "@docusaurus/theme-common";
+import {
+  useAlgoliaContextualFacetFilters,
+  useSearchResultUrlProcessor,
+} from "@docusaurus/theme-search-algolia/client";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import type { SearchClient } from "algoliasearch/lite";
+import { createPortal } from "react-dom";
+
+import IconSearch from "@theme/Icon/Search";
+import translations from "@theme/SearchTranslations";
 
 type DocSearchProps = Omit<
   DocSearchModalProps,
   "onClose" | "initialScrollY"
 > & {
-  contextualSearch?: boolean;
+  contextualSearch?: string;
   externalUrlRegex?: string;
+  searchPagePath: boolean | string;
 };
 
 let DocSearchModal: typeof DocSearchModalType | null = null;
@@ -48,14 +64,79 @@ type ResultsFooterProps = {
 };
 
 function ResultsFooter({ state, onClose }: ResultsFooterProps) {
-  const { generateSearchPageLink } = useSearchQuery();
+  const createSearchLink = useSearchLinkCreator();
 
   return (
-    <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
-      See all {state.context.nbHits} results
+    <Link to={createSearchLink(state.query)} onClick={onClose}>
+      <Translate
+        id="theme.SearchBar.seeAll"
+        values={{ count: state.context.nbHits }}
+      >
+        {"See all {count} results"}
+      </Translate>
     </Link>
   );
 }
+
+type FacetFilters = Required<
+  Required<DocSearchProps>["searchParameters"]
+>["facetFilters"];
+
+function mergeFacetFilters(f1: FacetFilters, f2: FacetFilters): FacetFilters {
+  const normalize = (
+    f: FacetFilters,
+  ): readonly string[] | readonly (string | readonly string[])[] =>
+    typeof f === "string" ? [f] : f;
+  return [...normalize(f1), ...normalize(f2)] as FacetFilters;
+}
+
+const ACTION_KEY_DEFAULT = "Ctrl" as const;
+const ACTION_KEY_APPLE = "⌘" as const;
+
+function isAppleDevice(): boolean {
+  return /Mac|iPhone|iPod|iPad/i.test(navigator.platform);
+}
+
+const DocSearchButton = React.forwardRef<
+  HTMLButtonElement,
+  DocSearchButtonProps
+>(function DocSearchButton({ translations = {}, ...props }, ref) {
+  const { buttonText = "Search", buttonAriaLabel = "Search" } = translations;
+
+  const [key, setKey] = useState<
+    typeof ACTION_KEY_APPLE | typeof ACTION_KEY_DEFAULT | null
+  >(null);
+
+  useEffect(() => {
+    if (typeof navigator !== "undefined") {
+      isAppleDevice() ? setKey(ACTION_KEY_APPLE) : setKey(ACTION_KEY_DEFAULT);
+    }
+  }, []);
+
+  return (
+    <button
+      type="button"
+      className="opacity-60 hover:opacity-100"
+      aria-label={buttonAriaLabel}
+      {...props}
+      ref={ref}
+    >
+      <span className="">
+        <IconSearch className="w-4 h-4 fill-current" />
+        <span className="hidden lg:flex">{buttonText}</span>
+      </span>
+
+      <span className="adsolute gap-1 hidden lg:flex">
+        {key !== null && (
+          <>
+            <kbd className="kbd kbd-sm">{key}</kbd>
+            <kbd className="kbd kbd-sm">K</kbd>
+          </>
+        )}
+      </span>
+    </button>
+  );
+});
 
 function DocSearch({
   contextualSearch,
@@ -63,30 +144,32 @@ function DocSearch({
   ...props
 }: DocSearchProps) {
   const { siteMetadata } = useDocusaurusContext();
+  const processSearchResultUrl = useSearchResultUrlProcessor();
 
-  const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
+  const contextualSearchFacetFilters =
+    useAlgoliaContextualFacetFilters() as FacetFilters;
 
-  const configFacetFilters = props.searchParameters?.facetFilters ?? [];
+  const configFacetFilters: FacetFilters =
+    props.searchParameters?.facetFilters ?? [];
 
-  const facetFilters = contextualSearch
+  const facetFilters: FacetFilters = contextualSearch
     ? // Merge contextual search filters with config filters
-      [...contextualSearchFacetFilters, ...configFacetFilters]
+      mergeFacetFilters(contextualSearchFacetFilters, configFacetFilters)
     : // ... or use config facetFilters
       configFacetFilters;
 
-  // we let user override default searchParameters if he wants to
-  const searchParameters = {
+  // We let user override default searchParameters if she wants to
+  const searchParameters: DocSearchProps["searchParameters"] = {
     ...props.searchParameters,
     facetFilters,
   };
 
-  const { withBaseUrl } = useBaseUrlUtils();
   const history = useHistory();
   const searchContainer = useRef<HTMLDivElement | null>(null);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [initialQuery, setInitialQuery] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   const importDocSearchModalIfNeeded = useCallback(() => {
@@ -95,9 +178,8 @@ function DocSearch({
     }
 
     return Promise.all([
-      import("@docsearch/react/modal"),
-      import("@docsearch/react/style"),
-      import("./styles.css"),
+      import("@docsearch/react/dist/esm/DocSearchModal.js"),
+      import("@docsearch/css/dist/modal.css"),
     ]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal;
     });
@@ -108,7 +190,7 @@ function DocSearch({
       searchContainer.current = document.createElement("div");
       document.body.insertBefore(
         searchContainer.current,
-        document.body.firstChild
+        document.body.firstChild,
       );
       setIsOpen(true);
     });
@@ -120,13 +202,13 @@ function DocSearch({
   }, [setIsOpen]);
 
   const onInput = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       importDocSearchModalIfNeeded().then(() => {
         setIsOpen(true);
         setInitialQuery(event.key);
       });
     },
-    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery]
+    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery],
   );
 
   const navigator = useRef({
@@ -143,37 +225,35 @@ function DocSearch({
 
   const transformItems = useRef<DocSearchModalProps["transformItems"]>(
     (items) =>
-      items.map((item) => {
-        // If Algolia contains a external domain, we should navigate without relative URL
-        if (isRegexpStringMatch(externalUrlRegex, item.url)) {
-          return item;
-        }
-
-        // We transform the absolute URL into a relative URL.
-        const url = new URL(item.url);
-        return {
-          ...item,
-          url: withBaseUrl(`${url.pathname}${url.hash}`),
-        };
-      })
+      props.transformItems
+        ? // Custom transformItems
+          props.transformItems(items)
+        : // Default transformItems
+          items.map((item) => ({
+            ...item,
+            url: processSearchResultUrl(item.url),
+          })),
   ).current;
 
-  const resultsFooterComponent = useMemo(
-    () => (footerProps: ResultsFooterProps) =>
-      <ResultsFooter {...footerProps} onClose={onClose} />,
-    [onClose]
-  );
+  const resultsFooterComponent: DocSearchProps["resultsFooterComponent"] =
+    useMemo(
+      () =>
+        // eslint-disable-next-line react/display-name
+        (footerProps: Omit<ResultsFooterProps, "onClose">): JSX.Element =>
+          <ResultsFooter {...footerProps} onClose={onClose} />,
+      [onClose],
+    );
 
   const transformSearchClient = useCallback(
-    (searchClient) => {
+    (searchClient: SearchClient) => {
       searchClient.addAlgoliaAgent(
         "docusaurus",
-        siteMetadata.docusaurusVersion
+        siteMetadata.docusaurusVersion,
       );
 
       return searchClient;
     },
-    [siteMetadata.docusaurusVersion]
+    [siteMetadata.docusaurusVersion],
   );
 
   useDocSearchKeyboardEvents({
@@ -197,19 +277,14 @@ function DocSearch({
         />
       </Head>
 
-      <div className="flex self-center relative order-last lg:order-none mr-5 lg:mr-0">
-        <DocSearchButton
-          onTouchStart={importDocSearchModalIfNeeded}
-          onFocus={importDocSearchModalIfNeeded}
-          onMouseOver={importDocSearchModalIfNeeded}
-          onClick={onOpen}
-          ref={searchButtonRef}
-          translations={{
-            buttonText: "Search",
-            buttonAriaLabel: "Search",
-          }}
-        />
-      </div>
+      <DocSearchButton
+        onTouchStart={importDocSearchModalIfNeeded}
+        onFocus={importDocSearchModalIfNeeded}
+        onMouseOver={importDocSearchModalIfNeeded}
+        onClick={onOpen}
+        ref={searchButtonRef}
+        translations={translations.button}
+      />
 
       {isOpen &&
         DocSearchModal &&
@@ -222,20 +297,22 @@ function DocSearch({
             navigator={navigator}
             transformItems={transformItems}
             hitComponent={Hit}
-            resultsFooterComponent={resultsFooterComponent}
             transformSearchClient={transformSearchClient}
+            {...(props.searchPagePath && {
+              resultsFooterComponent,
+            })}
             {...props}
             searchParameters={searchParameters}
+            placeholder={translations.placeholder}
+            translations={translations.modal}
           />,
-          searchContainer.current
+          searchContainer.current,
         )}
     </>
   );
 }
 
-function SearchBar(): JSX.Element {
-  const { algolia } = useThemeConfig();
-  return <DocSearch {...algolia} />;
+export default function SearchBar(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  return <DocSearch {...(siteConfig.themeConfig.algolia as DocSearchProps)} />;
 }
-
-export default SearchBar;

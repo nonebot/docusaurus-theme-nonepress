@@ -13,5 +13,11 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ["*.css"],
+      rules: {
+        "function-no-unknown": [true, { ignoreFunctions: ["theme"] }],
+      },
+    },
   ],
 };

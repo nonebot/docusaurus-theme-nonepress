@@ -21,15 +21,15 @@
     "crowdin:download:website": "crowdin download --config ./crowdin-v2.yaml",
     "canary": "yarn canary:bumpVersion && yarn canary:publish",
     "canary:version": "echo 0.0.0-`git rev-list --count HEAD`+`git rev-parse --short HEAD`",
-    "canary:bumpVersion": "yarn lerna version `yarn --silent canary:version` --exact --no-push --yes",
-    "canary:publish": "yarn lerna publish from-package --dist-tag canary --yes --no-verify-access",
+    "canary:bumpVersion": "lerna version `yarn --silent canary:version` --exact --no-push --yes",
+    "canary:publish": "lerna publish from-package --dist-tag canary --yes",
     "postinstall": "yarn build:packages",
     "format": "prettier --write .",
     "format:diff": "prettier --list-different .",
     "lint": "yarn lint:js && yarn lint:style",
     "lint:js": "eslint --cache --report-unused-disable-directives \"**/*.{js,jsx,ts,tsx,mjs}\"",
     "lint:style": "stylelint \"**/*.css\"",
-    "clear": "(yarn workspace website clear || echo 'Failure while running docusaurus clear') && yarn lerna exec --ignore docusaurus yarn rimraf lib",
+    "clear": "(yarn workspace website clear || echo 'Failure while running docusaurus clear') && lerna exec --ignore docusaurus -- yarn rimraf lib",
     "lerna": "lerna",
     "prettier": "prettier"
   },
@@ -55,13 +55,13 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-regexp": "^1.7.0",
-    "lerna": "^5.1.8",
+    "lerna": "^7.0.2",
     "prettier": "^2.8.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "stylelint": "^15.6.0",
     "stylelint-config-standard": "^33.0.0",
     "stylelint-prettier": "^3.0.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.3"
   }
 }

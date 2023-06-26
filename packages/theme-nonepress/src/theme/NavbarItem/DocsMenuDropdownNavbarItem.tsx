@@ -2,8 +2,8 @@ import React from "react";
 
 import clsx from "clsx";
 
-import Translate from "@docusaurus/Translate";
 import Link from "@docusaurus/Link";
+import Translate from "@docusaurus/Translate";
 import {
   type GlobalVersion,
   useActiveDocContext,
@@ -21,7 +21,6 @@ import type {
 } from "@theme/NavbarItem/DocsMenuDropdownNavbarItem";
 
 const getVersionMainDoc = (version: GlobalVersion) =>
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   version.docs.find((doc) => doc.id === version.mainDocId)!;
 
 function DocsMenuDropdownNavbarItemDesktop({

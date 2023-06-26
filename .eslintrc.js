@@ -51,6 +51,7 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
+    "@typescript-eslint/no-non-null-assertion": "off",
     "import/order": [
       "error",
       {

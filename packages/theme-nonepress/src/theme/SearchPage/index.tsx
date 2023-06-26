@@ -1,30 +1,45 @@
-import clsx from "clsx";
-import React, { useEffect, useState, useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 
+import clsx from "clsx";
+
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import Translate, { translate } from "@docusaurus/Translate";
+import { useAllDocsData } from "@docusaurus/plugin-content-docs/client";
+import {
+  HtmlClassNameProvider,
+  useEvent,
+  usePluralForm,
+  useSearchQueryString,
+} from "@docusaurus/theme-common";
+import { useTitleFormatter } from "@docusaurus/theme-common/internal";
+import {
+  useAlgoliaThemeConfig,
+  useSearchResultUrlProcessor,
+} from "@docusaurus/theme-search-algolia/client";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import algoliaSearch from "algoliasearch/lite";
 import algoliaSearchHelper from "algoliasearch-helper";
 
 import Layout from "@theme/Layout";
-import Head from "@docusaurus/Head";
-import Link from "@docusaurus/Link";
-import styles from "./styles.module.css";
-import { useAllDocsData } from "@theme/hooks/useDocs";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
-import useSearchQuery from "@theme/hooks/useSearchQuery";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import {
-  useTitleFormatter,
-  usePluralForm,
-  isRegexpStringMatch,
-  useDynamicCallback,
-} from "@docusaurus/theme-common";
 
 // Very simple pluralization: probably good enough for now
 function useDocumentsFoundPlural() {
   const { selectMessage } = usePluralForm();
   return (count: number) =>
-    selectMessage(count, `One document found|${count} documents found`);
+    selectMessage(
+      count,
+      translate(
+        {
+          id: "theme.SearchPage.documentsFound.plurals",
+          description:
+            'Pluralized label for "{count} documents found". Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
+          message: "One document found|{count} documents found",
+        },
+        { count },
+      ),
+    );
 }
 
 function useDocsSearchVersionsHelpers() {
@@ -32,15 +47,16 @@ function useDocsSearchVersionsHelpers() {
 
   // State of the version select menus / algolia facet filters
   // docsPluginId -> versionName map
-  const [searchVersions, setSearchVersions] = useState<Record<string, string>>(
-    () =>
-      Object.entries(allDocsData).reduce(
-        (acc, [pluginId, pluginData]) => ({
-          ...acc,
-          [pluginId]: pluginData.versions[0].name,
-        }),
-        {}
-      )
+  const [searchVersions, setSearchVersions] = useState<{
+    [pluginId: string]: string;
+  }>(() =>
+    Object.entries(allDocsData).reduce(
+      (acc, [pluginId, pluginData]) => ({
+        ...acc,
+        [pluginId]: pluginData.versions[0]!.name,
+      }),
+      {},
+    ),
   );
 
   // Set the value of a single select menu
@@ -48,7 +64,7 @@ function useDocsSearchVersionsHelpers() {
     setSearchVersions((s) => ({ ...s, [pluginId]: searchVersion }));
 
   const versioningEnabled = Object.values(allDocsData).some(
-    (docsData) => docsData.versions.length > 1
+    (docsData) => docsData.versions.length > 1,
   );
 
   return {
@@ -66,13 +82,13 @@ function SearchVersionSelectList({
   docsSearchVersionsHelpers: ReturnType<typeof useDocsSearchVersionsHelpers>;
 }) {
   const versionedPluginEntries = Object.entries(
-    docsSearchVersionsHelpers.allDocsData
+    docsSearchVersionsHelpers.allDocsData,
   )
     // Do not show a version select for unversioned docs plugin instances
     .filter(([, docsData]) => docsData.versions.length > 1);
 
   return (
-    <div className={clsx("col-span-1")}>
+    <div className="col-span-1">
       {versionedPluginEntries.map(([pluginId, docsData]) => {
         const labelPrefix =
           versionedPluginEntries.length > 1 ? `${pluginId}: ` : "";
@@ -82,7 +98,7 @@ function SearchVersionSelectList({
             onChange={(e) =>
               docsSearchVersionsHelpers.setSearchVersion(
                 pluginId,
-                e.target.value
+                e.target.value,
               )
             }
             defaultValue={docsSearchVersionsHelpers.searchVersions[pluginId]}
@@ -123,17 +139,18 @@ type ResultDispatcher =
   | { type: "update"; value: ResultDispatcherState }
   | { type: "advance"; value?: undefined };
 
-function SearchPage(): JSX.Element {
+function SearchPageContent(): JSX.Element {
   const {
     i18n: { currentLocale },
   } = useDocusaurusContext();
   const {
-    algolia: { appId, apiKey, indexName, externalUrlRegex },
-  } = useThemeConfig();
+    algolia: { appId, apiKey, indexName },
+  } = useAlgoliaThemeConfig();
+  const processSearchResultUrl = useSearchResultUrlProcessor();
   const documentsFoundPlural = useDocumentsFoundPlural();
 
   const docsSearchVersionsHelpers = useDocsSearchVersionsHelpers();
-  const { searchQuery, setSearchQuery } = useSearchQuery();
+  const [searchQuery, setSearchQuery] = useSearchQueryString();
   const initialSearchResultState: ResultDispatcherState = {
     items: [],
     query: null,
@@ -178,7 +195,7 @@ function SearchPage(): JSX.Element {
           return prevState;
       }
     },
-    initialSearchResultState
+    initialSearchResultState,
   );
 
   const algoliaClient = algoliaSearch(appId, apiKey);
@@ -191,7 +208,7 @@ function SearchPage(): JSX.Element {
   algoliaHelper.on(
     "result",
     ({ results: { query, hits, page, nbHits, nbPages } }) => {
-      if (query === "" || !(hits instanceof Array)) {
+      if (query === "" || !Array.isArray(hits)) {
         searchResultStateDispatcher({ type: "reset" });
         return;
       }
@@ -199,7 +216,7 @@ function SearchPage(): JSX.Element {
       const sanitizeValue = (value: string) =>
         value.replace(
           /algolia-docsearch-suggestion--highlight/g,
-          "search-result-match"
+          "search-result-match",
         );
 
       const items = hits.map(
@@ -207,23 +224,23 @@ function SearchPage(): JSX.Element {
           url,
           _highlightResult: { hierarchy },
           _snippetResult: snippet = {},
+        }: {
+          url: string;
+          _highlightResult: { hierarchy: { [key: string]: { value: string } } };
+          _snippetResult: { content?: { value: string } };
         }) => {
-          const parsedURL = new URL(url);
           const titles = Object.keys(hierarchy).map((key) =>
-            sanitizeValue(hierarchy[key].value)
+            sanitizeValue(hierarchy[key]!.value),
           );
-
           return {
             title: titles.pop()!,
-            url: isRegexpStringMatch(externalUrlRegex, parsedURL.href)
-              ? parsedURL.href
-              : parsedURL.pathname + parsedURL.hash,
+            url: processSearchResultUrl(url),
             summary: snippet.content
               ? `${sanitizeValue(snippet.content.value)}...`
               : "",
             breadcrumbs: titles,
           };
-        }
+        },
       );
 
       searchResultStateDispatcher({
@@ -238,19 +255,19 @@ function SearchPage(): JSX.Element {
           loading: false,
         },
       });
-    }
+    },
   );
 
   const [loaderRef, setLoaderRef] = useState<HTMLDivElement | null>(null);
   const prevY = useRef(0);
   const observer = useRef(
-    ExecutionEnvironment.canUseDOM &&
+    ExecutionEnvironment.canUseIntersectionObserver &&
       new IntersectionObserver(
         (entries) => {
           const {
             isIntersecting,
             boundingClientRect: { y: currentY },
-          } = entries[0];
+          } = entries[0]!;
 
           if (isIntersecting && prevY.current > currentY) {
             searchResultStateDispatcher({ type: "advance" });
@@ -258,16 +275,30 @@ function SearchPage(): JSX.Element {
 
           prevY.current = currentY;
         },
-        { threshold: 1 }
-      )
+        { threshold: 1 },
+      ),
   );
 
   const getTitle = () =>
     searchQuery
-      ? `Search results for "${searchQuery}"`
-      : "Search the documentation";
+      ? translate(
+          {
+            id: "theme.SearchPage.existingResultsTitle",
+            message: 'Search results for "{query}"',
+            description: "The search page title for non-empty query",
+          },
+          {
+            query: searchQuery,
+          },
+        )
+      : translate({
+          id: "theme.SearchPage.emptyResultsTitle",
+          message: "Search the documentation",
+          description: "The search page title for empty query",
+        });
 
-  const makeSearch = useDynamicCallback((page: number = 0) => {
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
+  const makeSearch = useEvent((page: number = 0) => {
     algoliaHelper.addDisjunctiveFacetRefinement("docusaurus_tag", "default");
     algoliaHelper.addDisjunctiveFacetRefinement("language", currentLocale);
 
@@ -275,9 +306,9 @@ function SearchPage(): JSX.Element {
       ([pluginId, searchVersion]) => {
         algoliaHelper.addDisjunctiveFacetRefinement(
           "docusaurus_tag",
-          `docs-${pluginId}-${searchVersion}`
+          `docs-${pluginId}-${searchVersion}`,
         );
-      }
+      },
     );
 
     algoliaHelper.setQuery(searchQuery).setPage(page).search();
@@ -316,7 +347,7 @@ function SearchPage(): JSX.Element {
   }, [makeSearch, searchResultState.lastPage]);
 
   return (
-    <Layout wrapperClassName="search-page-wrapper">
+    <Layout>
       <Head>
         <title>{useTitleFormatter(getTitle())}</title>
         {/*
@@ -346,8 +377,16 @@ function SearchPage(): JSX.Element {
                     type="search"
                     name="q"
                     className="w-full p-2 outline-none border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-light-text-active dark:focus:border-dark-text-active"
-                    placeholder="Type your search here"
-                    aria-label="Search"
+                    placeholder={translate({
+                      id: "theme.SearchPage.inputPlaceholder",
+                      message: "Type your search here",
+                      description: "The placeholder for search page input",
+                    })}
+                    aria-label={translate({
+                      id: "theme.SearchPage.inputLabel",
+                      message: "Search",
+                      description: "The ARIA label for search page input",
+                    })}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     value={searchQuery}
                     autoComplete="off"
@@ -373,9 +412,13 @@ function SearchPage(): JSX.Element {
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://www.algolia.com/"
-                    aria-label="Search by Algolia"
+                    aria-label={translate({
+                      id: "theme.SearchPage.algoliaLabel",
+                      message: "Search by Algolia",
+                      description: "The ARIA label for Algolia mention",
+                    })}
                   >
-                    <svg viewBox="0 0 168 24" className={styles.algoliaLogo}>
+                    <svg viewBox="0 0 168 24" className="max-w-[150px]">
                       <g fill="none">
                         <path
                           className="fill-current"
@@ -412,11 +455,10 @@ function SearchPage(): JSX.Element {
 
                         {breadcrumbs.length > 0 && (
                           <nav aria-label="breadcrumbs">
-                            <ul className={clsx("pl-0 mb-0 text-sm")}>
+                            <ul className="pl-0 mb-0 text-sm">
                               {breadcrumbs.map((html, index) => (
                                 <li
                                   key={index}
-                                  className={styles.breadcrumbItem}
                                   // Developer provided the HTML, so assume it's safe.
                                   // eslint-disable-next-line react/no-danger
                                   dangerouslySetInnerHTML={{ __html: html }}
@@ -435,13 +477,20 @@ function SearchPage(): JSX.Element {
                           />
                         )}
                       </article>
-                    )
+                    ),
                   )}
                 </main>
               ) : (
                 [
                   searchQuery && !searchResultState.loading && (
-                    <p key="no-results">No results were found</p>
+                    <p key="no-results">
+                      <Translate
+                        id="theme.SearchPage.noResultsText"
+                        description="The paragraph for empty search result"
+                      >
+                        No results were found
+                      </Translate>
+                    </p>
                   ),
                   !!searchResultState.loading && (
                     <div
@@ -454,7 +503,12 @@ function SearchPage(): JSX.Element {
 
               {searchResultState.hasMore && (
                 <div className="mt-8" ref={setLoaderRef}>
-                  Fetching new results...
+                  <Translate
+                    id="theme.SearchPage.fetchingNewResults"
+                    description="The paragraph for fetching new search results"
+                  >
+                    Fetching new results...
+                  </Translate>
                 </div>
               )}
             </div>
@@ -465,4 +519,10 @@ function SearchPage(): JSX.Element {
   );
 }
 
-export default SearchPage;
+export default function SearchPage(): JSX.Element {
+  return (
+    <HtmlClassNameProvider className="search-page-wrapper">
+      <SearchPageContent />
+    </HtmlClassNameProvider>
+  );
+}
