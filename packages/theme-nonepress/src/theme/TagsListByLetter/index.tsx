@@ -1,8 +1,12 @@
 import React from "react";
 
+import {
+  listTagsByLetters,
+  type TagLetterEntry,
+} from "@docusaurus/theme-common";
+
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListByLetter";
-import { listTagsByLetters, TagLetterEntry } from "@docusaurus/theme-common";
 
 function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   return (
@@ -20,7 +24,7 @@ function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   );
 }
 
-function TagsListByLetter({ tags }: Props): JSX.Element {
+export default function TagsListByLetter({ tags }: Props): JSX.Element {
   const letterList = listTagsByLetters(tags);
   return (
     <section className="my-8">
@@ -33,5 +37,3 @@ function TagsListByLetter({ tags }: Props): JSX.Element {
     </section>
   );
 }
-
-export default TagsListByLetter;
