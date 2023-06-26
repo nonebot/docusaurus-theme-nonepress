@@ -1,0 +1,13 @@
+.toc {
+  max-height: calc(100vh - 7rem);
+
+  @apply sticky top-28 overflow-y-auto;
+}
+
+.toc-link {
+  @apply text-base-content;
+}
+
+.toc-link-active {
+  @apply text-primary;
+}

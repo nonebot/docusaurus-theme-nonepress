@@ -1,13 +1,13 @@
 import React from "react";
 
+import type { Props } from "@theme/TOCInline";
 import TOCItems from "@theme/TOCItems";
-import type { TOCInlineProps } from "@theme/TOCInline";
 
-function TOCInline({
+export default function TOCInline({
   toc,
   minHeadingLevel,
   maxHeadingLevel,
-}: TOCInlineProps): JSX.Element {
+}: Props): JSX.Element {
   return (
     <div className="">
       <TOCItems
@@ -20,5 +20,3 @@ function TOCInline({
     </div>
   );
 }
-
-export default TOCInline;

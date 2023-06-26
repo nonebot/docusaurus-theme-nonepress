@@ -1,16 +1,19 @@
-import clsx from "clsx";
 import React from "react";
 
+import clsx from "clsx";
+
+import "./styles.css";
+import type { Props } from "@theme/TOC";
 import TOCItems from "@theme/TOCItems";
-import styles from "./styles.module.css";
-import type { TOCProps } from "@theme/TOC";
 
-const LINK_CLASS_NAME = styles["toc-link"];
-const LINK_ACTIVE_CLASS_NAME = styles["toc-link-active"];
+// Using a custom className
+// This prevents TOCInline/TOCCollapsible getting highlighted by mistake
+const LINK_CLASS_NAME = "toc-link";
+const LINK_ACTIVE_CLASS_NAME = "toc-link-active";
 
-function TOC({ className, ...props }: TOCProps): JSX.Element {
+export default function TOC({ className, ...props }: Props): JSX.Element {
   return (
-    <div className={clsx(styles.toc, "thin-scrollbar", className)}>
+    <div className={clsx("toc thin-scrollbar", className)}>
       <TOCItems
         {...props}
         linkClassName={LINK_CLASS_NAME}
@@ -19,5 +22,3 @@ function TOC({ className, ...props }: TOCProps): JSX.Element {
     </div>
   );
 }
-
-export default TOC;

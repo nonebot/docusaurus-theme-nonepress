@@ -1326,71 +1326,83 @@ declare module "@theme/ThemedImage" {
 }
 
 declare module "@theme/TOC" {
-  import type { TOCItem } from "@docusaurus/types";
+  import type { TOCItem } from "@docusaurus/mdx-loader";
 
-  // minHeadingLevel only exists as a per-doc option,
-  // and won't have a default set by Joi. See TOC, TOCInline,
-  // TOCCollapsible for examples
-  export type TOCProps = {
+  // `minHeadingLevel` only comes from doc/post front matter, and won't have a
+  // default set by Joi. See TOC, TOCInline, TOCCollapsible for examples.
+  export interface Props {
     readonly toc: readonly TOCItem[];
     readonly minHeadingLevel?: number;
     readonly maxHeadingLevel?: number;
     readonly className?: string;
-  };
+  }
 
-  export type TOCHeadingsProps = {
-    readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel?: number;
-    readonly maxHeadingLevel?: number;
-  };
-
-  export function TOCHeadings(props: TOCHeadingsProps): JSX.Element;
-
-  function TOC(props: TOCProps): JSX.Element;
-  export default TOC;
+  export default function TOC(props: Props): JSX.Element;
 }
 
 declare module "@theme/TOCCollapsible" {
-  import type { TOCItem } from "@docusaurus/types";
+  import type { TOCItem } from "@docusaurus/mdx-loader";
 
-  export type TOCCollapsibleProps = {
+  export interface Props {
     readonly className?: string;
     readonly minHeadingLevel?: number;
     readonly maxHeadingLevel?: number;
     readonly toc: readonly TOCItem[];
-  };
+  }
 
-  function TOCCollapsible(props: TOCCollapsibleProps): JSX.Element;
-  export default TOCCollapsible;
+  export default function TOCCollapsible(props: Props): JSX.Element;
+}
+
+declare module "@theme/TOCCollapsible/CollapseButton" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"button"> {
+    collapsed: boolean;
+  }
+
+  export default function TOCCollapsibleCollapseButton(
+    props: Props,
+  ): JSX.Element;
+}
+
+declare module "@theme/TOCInline" {
+  import type { TOCItem } from "@docusaurus/mdx-loader";
+
+  export interface Props {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+  }
+
+  export default function TOCInline(props: Props): JSX.Element;
 }
 
 declare module "@theme/TOCItems" {
-  import type { TOCItem } from "@docusaurus/types";
+  import type { TOCItem } from "@docusaurus/mdx-loader";
 
-  export type TOCItemsProps = {
+  export interface Props {
     readonly toc: readonly TOCItem[];
     readonly minHeadingLevel?: number;
     readonly maxHeadingLevel?: number;
     readonly className?: string;
     readonly linkClassName?: string | null;
     readonly linkActiveClassName?: string;
-  };
+  }
 
-  function TOCItems(props: TOCItemsProps): JSX.Element;
-  export default TOCItems;
+  export default function TOCItems(props: Props): JSX.Element;
 }
 
-declare module "@theme/TOCInline" {
-  import type { TOCItem } from "@docusaurus/types";
+declare module "@theme/TOCItems/Tree" {
+  import type { TOCTreeNode } from "@docusaurus/theme-common/internal";
 
-  export type TOCInlineProps = {
-    readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel?: number;
-    readonly maxHeadingLevel?: number;
-  };
+  export interface Props {
+    readonly toc: readonly TOCTreeNode[];
+    readonly className: string;
+    readonly linkClassName: string | null;
+    readonly isChild?: boolean;
+  }
 
-  function TOCInline(props: TOCInlineProps): JSX.Element;
-  export default TOCInline;
+  export default function TOCItems(props: Props): JSX.Element;
 }
 
 declare module "@theme/prism-include-languages" {
