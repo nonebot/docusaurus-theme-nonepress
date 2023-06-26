@@ -1312,15 +1312,6 @@ declare module "@theme/TagsListInline" {
   export default function TagsListInline(props: Props): JSX.Element;
 }
 
-declare module "@theme/ThemeContext" {
-  import type { Context } from "react";
-
-  import type { ThemeContextProps } from "@theme/hooks/useThemeContext";
-
-  const ThemeContext: Context<ThemeContextProps | undefined>;
-  export default ThemeContext;
-}
-
 declare module "@theme/ThemedImage" {
   import type { ComponentProps } from "react";
 
@@ -1331,24 +1322,7 @@ declare module "@theme/ThemedImage" {
     };
   }
 
-  function ThemedImage(props: Props): JSX.Element;
-  export default ThemedImage;
-}
-
-declare module "@theme/ThemeProvider" {
-  import type { PropsWithChildren } from "react";
-  export type Props = PropsWithChildren<unknown>;
-
-  function ThemeProvider(props: Props): JSX.Element;
-  export default ThemeProvider;
-}
-
-declare module "@theme/ThemeSwitcher" {
-  import type { PropsWithChildren } from "react";
-  export type Props = PropsWithChildren<{ readonly className: string }>;
-
-  function ThemeSwitcher(props: Props): JSX.Element;
-  export default ThemeSwitcher;
+  export default function ThemedImage(props: Props): JSX.Element;
 }
 
 declare module "@theme/TOC" {
@@ -1417,28 +1391,6 @@ declare module "@theme/TOCInline" {
 
   function TOCInline(props: TOCInlineProps): JSX.Element;
   export default TOCInline;
-}
-
-declare module "@theme/UserPreferencesContext" {
-  import type { Context } from "react";
-
-  import type { UserPreferencesContextProps } from "@theme/hooks/useUserPreferencesContext";
-
-  const UserPreferencesContext: Context<
-    UserPreferencesContextProps | undefined
-  >;
-  export default UserPreferencesContext;
-}
-
-declare module "@theme/UserPreferencesProvider" {
-  import type { ReactNode } from "react";
-
-  export interface Props {
-    readonly children: ReactNode;
-  }
-
-  function UserPreferencesProvider(props: Props): JSX.Element;
-  export default UserPreferencesProvider;
 }
 
 declare module "@theme/prism-include-languages" {
