@@ -3,8 +3,8 @@ import React from "react";
 import clsx from "clsx";
 
 import { translate } from "@docusaurus/Translate";
-import { useThemeConfig } from "@docusaurus/theme-common";
 import { useHideableNavbar } from "@docusaurus/theme-common/internal";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/Navbar/Layout";
 import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
@@ -12,7 +12,7 @@ import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
 export default function NavbarLayout({ children }: Props): JSX.Element {
   const {
     navbar: { hideOnScroll, style },
-  } = useThemeConfig();
+  } = useNonepressThemeConfig();
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
   return (
     <nav

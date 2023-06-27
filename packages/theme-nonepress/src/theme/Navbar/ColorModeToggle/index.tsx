@@ -1,6 +1,7 @@
 import React from "react";
 
-import { useColorMode, useThemeConfig } from "@docusaurus/theme-common";
+import { useColorMode } from "@docusaurus/theme-common";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import ColorModeToggle from "@theme/ColorModeToggle";
 import type { Props } from "@theme/Navbar/ColorModeToggle";
@@ -9,8 +10,8 @@ export default function NavbarColorModeToggle({
   className,
   mobile = false,
 }: Props): JSX.Element | null {
-  const navbarStyle = useThemeConfig().navbar.style;
-  const disabled = useThemeConfig().colorMode.disableSwitch;
+  const navbarStyle = useNonepressThemeConfig().navbar.style;
+  const disabled = useNonepressThemeConfig().colorMode.disableSwitch;
   const { colorMode, setColorMode } = useColorMode();
 
   if (disabled) {

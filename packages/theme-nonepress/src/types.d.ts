@@ -1406,9 +1406,9 @@ declare module "@theme/TOCItems/Tree" {
 }
 
 declare module "@theme/prism-include-languages" {
-  import type * as PrismNamespace from "prismjs";
+  import { Prism } from "prism-react-renderer";
 
   export default function prismIncludeLanguages(
-    PrismObject: typeof PrismNamespace,
+    PrismObject: typeof Prism,
   ): void;
 }

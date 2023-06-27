@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 
-import { useThemeConfig } from "@docusaurus/theme-common";
 import {
   useTOCHighlight,
   useFilteredAndTreeifiedTOC,
   type TOCHighlightConfig,
 } from "@docusaurus/theme-common/internal";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/TOCItems";
 import TOCItemTree from "@theme/TOCItems/Tree";
@@ -19,7 +19,7 @@ export default function TOCItems({
   maxHeadingLevel: maxHeadingLevelOption,
   ...props
 }: Props): JSX.Element | null {
-  const themeConfig = useThemeConfig();
+  const themeConfig = useNonepressThemeConfig();
 
   const minHeadingLevel =
     minHeadingLevelOption ?? themeConfig.tableOfContents.minHeadingLevel;

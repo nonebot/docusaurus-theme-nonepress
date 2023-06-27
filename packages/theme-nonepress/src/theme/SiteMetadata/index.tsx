@@ -2,7 +2,7 @@ import React from "react";
 
 import Head from "@docusaurus/Head";
 import { useLocation } from "@docusaurus/router";
-import { PageMetadata, useThemeConfig } from "@docusaurus/theme-common";
+import { PageMetadata } from "@docusaurus/theme-common";
 import {
   DEFAULT_SEARCH_TAG,
   useAlternatePageUtils,
@@ -10,6 +10,7 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import SearchMetadata from "@theme/SearchMetadata";
 
@@ -84,7 +85,7 @@ export default function SiteMetadata(): JSX.Element {
 
   // TODO maybe move these 2 themeConfig to siteConfig?
   // These seems useful for other themes as well
-  const { metadata, image: defaultImage } = useThemeConfig();
+  const { metadata, image: defaultImage } = useNonepressThemeConfig();
 
   return (
     <>

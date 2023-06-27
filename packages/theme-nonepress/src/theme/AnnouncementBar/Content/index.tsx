@@ -8,7 +8,7 @@ import type { Props } from "@theme/AnnouncementBar/Content";
 
 export default function AnnouncementBarContent(props: Props): JSX.Element {
   const { announcementBar } = useNonepressThemeConfig();
-  const { content } = announcementBar;
+  const { content } = announcementBar!;
   return (
     <div
       {...props}

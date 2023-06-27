@@ -6,7 +6,6 @@ import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import {
   ThemeClassNames,
-  useThemeConfig,
   usePrevious,
   Collapsible,
   useCollapsible,
@@ -18,6 +17,7 @@ import {
   isSamePath,
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/DocSidebarItem/Category";
 import DocSidebarItems from "@theme/DocSidebarItems";
@@ -105,7 +105,7 @@ export default function DocSidebarItemCategory({
     docs: {
       sidebar: { autoCollapseCategories },
     },
-  } = useThemeConfig();
+  } = useNonepressThemeConfig();
   const hrefWithSSRFallback = useCategoryHrefWithSSRFallback(item);
 
   const isActive = isActiveSidebarItem(item, activePath);

@@ -1,9 +1,10 @@
 import React from "react";
 
 import Link from "@docusaurus/Link";
-import { useThemeConfig, type NavbarLogo } from "@docusaurus/theme-common";
+import type { NavbarLogo } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/Logo";
 import ThemedImage from "@theme/ThemedImage";
@@ -47,7 +48,7 @@ export default function Logo(props: Props): JSX.Element {
   } = useDocusaurusContext();
   const {
     navbar: { title: navbarTitle, logo },
-  } = useThemeConfig();
+  } = useNonepressThemeConfig();
 
   const { imageClassName, titleClassName, ...propsRest } = props;
   const logoLink = useBaseUrl(logo?.href || "/");

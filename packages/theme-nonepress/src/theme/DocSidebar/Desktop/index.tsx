@@ -2,7 +2,7 @@ import React from "react";
 
 import clsx from "clsx";
 
-import { useThemeConfig } from "@docusaurus/theme-common";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/DocSidebar/Desktop";
 import CollapseButton from "@theme/DocSidebar/Desktop/CollapseButton";
@@ -15,7 +15,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }: Props) {
     docs: {
       sidebar: { hideable },
     },
-  } = useThemeConfig();
+  } = useNonepressThemeConfig();
 
   return (
     <div

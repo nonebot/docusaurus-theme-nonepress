@@ -1,14 +1,14 @@
 import Module from "module";
 import path from "path";
 
+import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
+import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
 import autoprefixer from "autoprefixer";
-import type { AcceptedPlugin } from "postcss";
 import postcssImport from "postcss-import";
 import postcssNesting from "postcss-nesting";
+import type { Config as tailwindConfigType } from "tailwindcss";
 import tailwindcss from "tailwindcss";
 import type webpack from "webpack";
-import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
-import type { LoadContext, Plugin } from "@docusaurus/types";
 
 import type {
   PluginOptions,
@@ -178,20 +178,21 @@ export default async function themeNonepress(
       };
     },
 
-    configurePostCss(postCssOptions: { plugins: AcceptedPlugin[] }) {
-      const { content = [], presets = [] } = tailwindConfig;
+    configurePostCss(postCssOptions: PostCssOptions): PostCssOptions {
       const purgeFiles = getPurgeCSSPath(siteDir);
+      const content = tailwindConfig?.content;
       if (Array.isArray(content)) {
         content.unshift(...purgeFiles);
       } else {
-        content.files.unshift(...purgeFiles);
+        content?.files.unshift(...purgeFiles);
       }
-      presets.unshift(defaultTailwindConfig);
-      tailwindConfig.content = content;
-      tailwindConfig.presets = presets;
+      const finalTailwindConfig: tailwindConfigType = {
+        presets: [defaultTailwindConfig, tailwindConfig],
+        content: content ?? [],
+      };
       postCssOptions.plugins.unshift(
         postcssImport(),
-        tailwindcss(tailwindConfig),
+        tailwindcss(finalTailwindConfig),
         postcssNesting(),
         autoprefixer(),
       );

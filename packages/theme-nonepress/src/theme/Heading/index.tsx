@@ -5,14 +5,14 @@ import clsx from "clsx";
 import "./styles.css";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
-import { useThemeConfig } from "@docusaurus/theme-common";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/Heading";
 
 export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   const {
     navbar: { hideOnScroll },
-  } = useThemeConfig();
+  } = useNonepressThemeConfig();
   // H1 headings do not need an id because they don't appear in the TOC.
   if (As === "h1" || !id) {
     return <As {...props} id={undefined} />;
