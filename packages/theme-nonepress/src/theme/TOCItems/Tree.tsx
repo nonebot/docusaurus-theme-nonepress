@@ -20,7 +20,7 @@ function TOCItemTree({
             href={`#${heading.id}`}
             className={linkClassName ?? undefined}
             // Developer provided the HTML, so assume it's safe.
-            // eslint-disable-next-line react/no-danger
+
             dangerouslySetInnerHTML={{ __html: heading.value }}
           />
           <TOCItemTree

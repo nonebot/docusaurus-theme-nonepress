@@ -43,9 +43,15 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
     queryString?: string;
   };
 
-  type DeepOverwrite<T, U> = U extends object
+  type DeepOverwrite<T, U> = U extends (infer V)[]
+    ? V[]
+    : U extends object
     ? {
-        [K in keyof T]: K extends keyof U ? DeepOverwrite<T[K], U[K]> : T[K];
+        [K in keyof (T & U)]: K extends keyof U
+          ? K extends keyof T
+            ? DeepOverwrite<T[K], U[K]>
+            : U[K]
+          : T[K];
       }
     : U;
 
@@ -53,27 +59,23 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
     navbar: {
       items: NavbarItemProps[];
     };
-  };
-
-  type OverwritedThemeConfig = DeepOverwrite<
-    DefaultThemeConfig,
-    OverwriteConfig
-  >;
-
-  export type ThemeConfig = OverwritedThemeConfig &
-    SearchThemeConfig & {
-      nonepress: {
-        tailwindConfig?: tailwindConfig;
-        navbar: {
-          docsVersionDropdown: DocsVersionDropdown;
-          localeDropdown: LocaleDropdown;
-          socialLinks?: SocialLink[];
-        };
-        footer: {
-          socialLinks?: SocialLink[];
-        };
+    nonepress: {
+      tailwindConfig?: tailwindConfig;
+      navbar: {
+        docsVersionDropdown: DocsVersionDropdown;
+        localeDropdown: LocaleDropdown;
+        socialLinks?: SocialLink[];
+      };
+      footer: {
+        socialLinks?: SocialLink[];
       };
     };
+  };
+
+  export type ThemeConfig = DeepOverwrite<
+    DefaultThemeConfig & SearchThemeConfig,
+    OverwriteConfig
+  >;
 
   export type UserThemeConfig = DeepPartial<ThemeConfig>;
 
@@ -81,34 +83,6 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
     context: LoadContext,
     options: PluginOptions,
   ): Promise<Plugin<void>>;
-}
-
-declare module "@nullbot/docusaurus-theme-nonepress/client" {
-  import type { GlobalVersion } from "@docusaurus/plugin-content-docs/client";
-  import type { DocusaurusConfig } from "@docusaurus/types";
-  import type { Doc } from "@nullbot/docusaurus-plugin-docsmenu/lib/client";
-
-  import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
-
-  export function useSiteConfig(): DocusaurusConfig;
-  export function useNonepressThemeConfig(): ThemeConfig;
-
-  export type DocsMenuCategory = {
-    link: string;
-    docs?: Doc[];
-  };
-  export type DocsMenuVersions = {
-    latest: GlobalVersion;
-    next: GlobalVersion;
-  };
-  export function useDocsMenuCategory(
-    category: string,
-    docId?: string,
-    docsPluginId?: string,
-  ): DocsMenuCategory;
-  export function useDocsMenuVersions(
-    docsPluginId?: string,
-  ): DocsMenuVersions | null;
 }
 
 declare module "@theme/Admonition" {

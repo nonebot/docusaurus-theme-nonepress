@@ -7,7 +7,7 @@ function SimpleLinkItem({ item }: { item: Props["links"][number] }) {
   return item.html ? (
     <span
       // Developer provided the HTML, so assume it's safe.
-      // eslint-disable-next-line react/no-danger
+
       dangerouslySetInnerHTML={{ __html: item.html }}
     />
   ) : (

@@ -2,8 +2,8 @@ import React, { type ReactNode } from "react";
 
 import { ErrorCauseBoundary } from "@docusaurus/theme-common";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import NavbarLogo from "@theme/Navbar/Logo";
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";

@@ -1,7 +1,7 @@
 // @ts-check
 
-import darkCodeTheme from "prism-react-renderer/themes/dracula";
-import lightCodeTheme from "prism-react-renderer/themes/github";
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("prism-react-renderer/themes/github");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -34,7 +34,7 @@ const config = {
   presets: [
     [
       "@nullbot/docusaurus-preset-nonepress",
-      /** @type {import('../packages/preset-nonepress/src/index').Options} */
+      /** @type {import('../packages/preset-nonepress/lib/index').Options} */
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
@@ -55,39 +55,49 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('../packages/preset-nonepress/src/index').ThemeConfig} */
+    /** @type {import('../packages/preset-nonepress/lib/index').ThemeConfig} */
     ({
-      image: "img/docusaurus-social-card.jpg",
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
+      announcementBar: {
+        id: "news-refactor",
+        content: "🎉 Nonepress stable is out!",
+        backgroundColor: "#fafbfc",
+        textColor: "#091E42",
+        isCloseable: true,
+      },
       navbar: {
-        title: "My Site",
+        title: "Nonepress",
         logo: {
-          alt: "My Site Logo",
+          alt: "Nonepress",
           src: "img/logo.svg",
         },
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "Tutorial",
-          },
-          { to: "/blog", label: "Blog", position: "left" },
-          {
-            href: "https://github.com/facebook/docusaurus",
-            label: "GitHub",
-            position: "right",
+            sidebarId: "main",
+            label: "Contents",
           },
         ],
       },
       footer: {
-        style: "dark",
+        style: "light",
         links: [
           {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "Introduction",
+                to: "/docs/guide/introduction",
+              },
+              {
+                label: "Components",
+                to: "/docs/components/",
+              },
+              {
+                label: "Introduction",
+                to: "/docs/guide/introduction",
               },
             ],
           },
@@ -95,16 +105,16 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "NoneBot",
+                href: "https://nonebot.dev",
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                label: "NoneBot",
+                href: "https://nonebot.dev",
               },
               {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                label: "NoneBot",
+                href: "https://nonebot.dev",
               },
             ],
           },
@@ -112,21 +122,35 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
                 label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                href: "https://github.com/nonebot",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} NoneBot. All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      nonepress: {
+        navbar: {
+          socialLinks: [
+            {
+              icon: ["fab", "github"],
+              href: "https://github.com/nonebot/docusaurus-theme-nonepress",
+            },
+          ],
+        },
+        footer: {
+          socialLinks: [
+            {
+              icon: ["fab", "github"],
+              href: "https://github.com/nonebot/docusaurus-theme-nonepress",
+            },
+          ],
+        },
       },
     }),
 };

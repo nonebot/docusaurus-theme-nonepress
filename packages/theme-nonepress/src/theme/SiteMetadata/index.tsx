@@ -10,8 +10,8 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import SearchMetadata from "@theme/SearchMetadata";
 
 // TODO move to SiteMetadataDefaults or theme-common ?

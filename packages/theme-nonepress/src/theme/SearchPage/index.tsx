@@ -460,7 +460,7 @@ function SearchPageContent(): JSX.Element {
                                 <li
                                   key={index}
                                   // Developer provided the HTML, so assume it's safe.
-                                  // eslint-disable-next-line react/no-danger
+
                                   dangerouslySetInnerHTML={{ __html: html }}
                                 />
                               ))}
@@ -472,7 +472,7 @@ function SearchPageContent(): JSX.Element {
                           <p
                             className="mt-2 italic"
                             // Developer provided the HTML, so assume it's safe.
-                            // eslint-disable-next-line react/no-danger
+
                             dangerouslySetInnerHTML={{ __html: summary }}
                           />
                         )}

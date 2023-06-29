@@ -4,8 +4,8 @@ import Link from "@docusaurus/Link";
 import type { NavbarLogo } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import type { Props } from "@theme/Logo";
 import ThemedImage from "@theme/ThemedImage";
 

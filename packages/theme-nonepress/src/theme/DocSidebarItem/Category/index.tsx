@@ -17,8 +17,8 @@ import {
   isSamePath,
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import type { Props } from "@theme/DocSidebarItem/Category";
 import DocSidebarItems from "@theme/DocSidebarItems";
 

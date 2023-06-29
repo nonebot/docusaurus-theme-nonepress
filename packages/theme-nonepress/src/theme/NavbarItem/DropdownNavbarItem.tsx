@@ -1,12 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import clsx from "clsx";
 
-import {
-  isRegexpStringMatch,
-  useCollapsible,
-  Collapsible,
-} from "@docusaurus/theme-common";
+import { isRegexpStringMatch, useCollapsible } from "@docusaurus/theme-common";
 import {
   isSamePath,
   useLocalPathname,

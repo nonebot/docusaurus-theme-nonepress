@@ -1,9 +1,9 @@
 import React from "react";
 
 import { useAnnouncementBar } from "@docusaurus/theme-common/internal";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import "./styles.css";
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import AnnouncementBarCloseButton from "@theme/AnnouncementBar/CloseButton";
 import AnnouncementBarContent from "@theme/AnnouncementBar/Content";
 

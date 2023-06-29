@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useColorMode } from "@docusaurus/theme-common";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import ColorModeToggle from "@theme/ColorModeToggle";
 import type { Props } from "@theme/Navbar/ColorModeToggle";
 

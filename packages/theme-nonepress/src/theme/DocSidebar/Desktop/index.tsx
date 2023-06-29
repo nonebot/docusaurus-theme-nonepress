@@ -3,7 +3,6 @@ import React from "react";
 import clsx from "clsx";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
-
 import type { Props } from "@theme/DocSidebar/Desktop";
 import CollapseButton from "@theme/DocSidebar/Desktop/CollapseButton";
 import Content from "@theme/DocSidebar/Desktop/Content";

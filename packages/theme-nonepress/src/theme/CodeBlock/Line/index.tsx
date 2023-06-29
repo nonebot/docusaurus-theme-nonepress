@@ -17,7 +17,11 @@ export default function CodeBlockLine({
 
   const lineProps = getLineProps({
     line,
-    className: clsx(classNames, "code-block-line", showLineNumbers && "code-block-line-with-number"),
+    className: clsx(
+      classNames,
+      "code-block-line",
+      showLineNumbers && "code-block-line-with-number",
+    ),
   });
 
   const lineTokens = line.map((token, key) => (

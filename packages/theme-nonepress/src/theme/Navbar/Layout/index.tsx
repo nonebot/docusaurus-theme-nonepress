@@ -4,8 +4,8 @@ import clsx from "clsx";
 
 import { translate } from "@docusaurus/Translate";
 import { useHideableNavbar } from "@docusaurus/theme-common/internal";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import type { Props } from "@theme/Navbar/Layout";
 import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
 

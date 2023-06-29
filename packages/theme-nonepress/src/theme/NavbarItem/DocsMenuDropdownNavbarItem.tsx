@@ -10,11 +10,11 @@ import {
 } from "@docusaurus/plugin-content-docs/client";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   useDocsMenuCategory,
   useDocsMenuVersions,
 } from "@nullbot/docusaurus-theme-nonepress/client";
-
 import type {
   Props,
   DesktopOrMobileNavBarItemProps,

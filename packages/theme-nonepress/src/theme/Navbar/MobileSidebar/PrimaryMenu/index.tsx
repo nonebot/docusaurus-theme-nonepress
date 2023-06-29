@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
 
 function useNavbarItems() {

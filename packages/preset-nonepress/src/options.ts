@@ -3,11 +3,7 @@ import type { Options as PagesPluginOptions } from "@docusaurus/plugin-content-p
 import type { Options as GtagPluginOptions } from "@docusaurus/plugin-google-gtag";
 import type { Options as GTMPluginOptions } from "@docusaurus/plugin-google-tag-manager";
 import type { Options as SitemapPluginOptions } from "@docusaurus/plugin-sitemap";
-import type { ThemeConfig as BaseThemeConfig } from "@docusaurus/types";
-import type {
-  UserThemeConfig as NonepressThemeConfig,
-  Options as ThemeOptions,
-} from "@nullbot/docusaurus-theme-nonepress";
+import type { Options as ThemeOptions } from "@nullbot/docusaurus-theme-nonepress";
 
 export type Options = {
   /**
@@ -31,4 +27,4 @@ export type Options = {
   googleTagManager?: GTMPluginOptions;
 };
 
-export type ThemeConfig = BaseThemeConfig & NonepressThemeConfig;
+export type { UserThemeConfig as ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";

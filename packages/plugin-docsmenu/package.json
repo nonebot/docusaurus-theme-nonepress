@@ -2,11 +2,19 @@
   "name": "@nullbot/docusaurus-plugin-docsmenu",
   "version": "2.1.0",
   "description": "DocMenu plugin for Nonepress theme",
-  "files": [
-    "lib/**/*",
-    "src/**/*"
-  ],
   "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    "./src/*": "./src/*",
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "default": "./lib/client/index.js"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
   "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"

@@ -2,8 +2,6 @@ import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
 import { useActiveVersion } from "@docusaurus/plugin-content-docs/client";
 import { usePluginData } from "@docusaurus/useGlobalData";
 
-export const PLUGIN_NAME = "docusaurus-plugin-docmenu";
-
 export type Doc = {
   id: string;
   title: string;
@@ -31,7 +29,7 @@ export type GlobalPluginData = {
 };
 
 export const useDocMenuData = (): GlobalPluginData | undefined =>
-  usePluginData(PLUGIN_NAME, undefined, { failfast: false }) as
+  usePluginData("docusaurus-plugin-docmenu", undefined, { failfast: false }) as
     | GlobalPluginData
     | undefined;
 

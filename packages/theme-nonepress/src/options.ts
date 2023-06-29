@@ -3,13 +3,13 @@ import type {
   ThemeConfigValidationContext,
 } from "@docusaurus/types";
 import { Joi, URISchema } from "@docusaurus/utils-validation";
-import defaultPrismTheme from "prism-react-renderer/themes/palenight";
-
 import type {
   Options,
   PluginOptions,
   ThemeConfig,
+  UserThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
+import defaultPrismTheme from "prism-react-renderer/themes/palenight";
 
 const DEFAULT_DOCS_CONFIG: ThemeConfig["docs"] = {
   versionPersistence: "localStorage",
@@ -442,7 +442,7 @@ export const ThemeConfigSchema = Joi.object({
 export function validateThemeConfig({
   themeConfig,
   validate,
-}: ThemeConfigValidationContext<ThemeConfig>) {
+}: ThemeConfigValidationContext<UserThemeConfig, ThemeConfig>): ThemeConfig {
   return validate(ThemeConfigSchema, themeConfig);
 }
 

@@ -42,7 +42,13 @@ module.exports = {
     {
       files: ["*.ts", "*.tsx"],
       rules: {
-        "import/no-unresolved": 0,
+        "import/no-unresolved": "off",
+      },
+    },
+    {
+      files: ["*.js", "*.cjs"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
       },
     },
   ],

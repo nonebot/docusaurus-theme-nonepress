@@ -4,7 +4,6 @@ import type {
 } from "@docusaurus/plugin-content-docs";
 import type { LoadContext, Plugin } from "@docusaurus/types";
 
-import { PLUGIN_NAME } from "./client";
 import type {
   Doc,
   GlobalDocsInstance,
@@ -22,7 +21,7 @@ export default async function pluginDocMenu(
   options: PluginOptions,
 ): Promise<Plugin<void>> {
   return {
-    name: PLUGIN_NAME,
+    name: "docusaurus-plugin-docmenu",
     async contentLoaded({
       allContent,
       actions: { setGlobalData },

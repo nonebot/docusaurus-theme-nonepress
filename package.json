@@ -12,7 +12,7 @@
     "start:website": "yarn workspace website start",
     "start:website:baseUrl": "yarn workspace website start:baseUrl",
     "build": "yarn build:packages && yarn build:website",
-    "build:packages": "lerna run build --no-private",
+    "build:packages": "lerna run build --include-dependencies --no-private",
     "build:website": "yarn workspace website build",
     "build:website:baseUrl": "yarn workspace website build:baseUrl",
     "clear:website": "yarn workspace website clear",
@@ -28,7 +28,9 @@
     "format:diff": "prettier --list-different .",
     "lint": "yarn lint:js && yarn lint:style",
     "lint:js": "eslint --cache --report-unused-disable-directives \"**/*.{js,jsx,ts,tsx,mjs}\"",
+    "lint:js:fix": "eslint --cache --report-unused-disable-directives --fix \"**/*.{js,jsx,ts,tsx,mjs}\"",
     "lint:style": "stylelint \"**/*.css\"",
+    "lint:style:fix": "stylelint --fix \"**/*.css\"",
     "clear": "(yarn workspace website clear || echo 'Failure while running docusaurus clear') && lerna exec --ignore docusaurus -- yarn rimraf lib",
     "lerna": "lerna",
     "prettier": "prettier"

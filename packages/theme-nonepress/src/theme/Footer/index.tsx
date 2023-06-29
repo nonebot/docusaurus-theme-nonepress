@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
-
 import FooterCopyright from "@theme/Footer/Copyright";
 import FooterLayout from "@theme/Footer/Layout";
 import FooterLinks from "@theme/Footer/Links";

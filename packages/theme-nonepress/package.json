@@ -2,11 +2,19 @@
   "name": "@nullbot/docusaurus-theme-nonepress",
   "version": "2.1.0",
   "description": "Nonepress theme for Docusaurus",
-  "files": [
-    "lib/**/*",
-    "src/**/*"
-  ],
   "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    "./src/*": "./src/*",
+    "./client": {
+      "type": "./lib/client/index.d.ts",
+      "default": "./lib/client/index.js"
+    },
+    ".": {
+      "types": "./src/types.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
   "types": "src/types.d.ts",
   "publishConfig": {
     "access": "public"
@@ -18,7 +26,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc --build && yarn prettier",
+    "build": "tsc --build && node ../../scripts/copyFiles.js && yarn prettier",
     "prettier": "prettier --config ../../.prettierrc --write \"lib/theme/*.js\""
   },
   "dependencies": {

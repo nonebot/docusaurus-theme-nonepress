@@ -1,5 +1,6 @@
+export * from "./types";
 export {
   useSiteConfig,
   useNonepressThemeConfig,
 } from "./useNonepressThemeConfig";
-export { useDocsMenuCategory } from "./useDocsMenu";
+export { useDocsMenuCategory, useDocsMenuVersions } from "./useDocsMenu";

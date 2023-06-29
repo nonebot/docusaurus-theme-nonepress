@@ -3,17 +3,17 @@ import path from "path";
 
 import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
 import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
-import autoprefixer from "autoprefixer";
-import postcssImport from "postcss-import";
-import postcssNesting from "postcss-nesting";
-import type { Config as tailwindConfigType } from "tailwindcss";
-import tailwindcss from "tailwindcss";
-import type webpack from "webpack";
-
 import type {
   PluginOptions,
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
+import autoprefixer from "autoprefixer";
+import postcssImport from "postcss-import";
+import postcssNesting from "postcss-nesting";
+import tailwindcss from "tailwindcss";
+import type { Config as tailwindConfigType } from "tailwindcss";
+import tailwindNesting from "tailwindcss/nesting";
+import type webpack from "webpack";
 
 import defaultTailwindConfig from "./tailwind.config";
 import { getTranslationFiles, translateThemeConfig } from "./translations";
@@ -187,13 +187,15 @@ export default async function themeNonepress(
         content?.files.unshift(...purgeFiles);
       }
       const finalTailwindConfig: tailwindConfigType = {
-        presets: [defaultTailwindConfig, tailwindConfig],
-        content: content ?? [],
+        presets: [defaultTailwindConfig, tailwindConfig].filter(
+          (config): config is tailwindConfigType => !!config,
+        ),
+        content: content ?? purgeFiles,
       };
       postCssOptions.plugins.unshift(
         postcssImport(),
+        tailwindNesting(postcssNesting()),
         tailwindcss(finalTailwindConfig),
-        postcssNesting(),
         autoprefixer(),
       );
 

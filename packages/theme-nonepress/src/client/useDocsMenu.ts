@@ -6,11 +6,9 @@ import {
 } from "@docusaurus/plugin-content-docs/client";
 import { CURRENT_VERSION_NAME } from "@docusaurus/plugin-content-docs/src/constants.ts";
 import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
-import { useActiveDocCategory } from "@nullbot/docusaurus-plugin-docsmenu/lib/client";
-import type {
-  DocsMenuCategory,
-  DocsMenuVersions,
-} from "@nullbot/docusaurus-theme-nonepress/client";
+import { useActiveDocCategory } from "@nullbot/docusaurus-plugin-docsmenu/client";
+
+import type { DocsMenuCategory, DocsMenuVersions } from "./types";
 
 export function useDocsMenuCategory(
   category: string,

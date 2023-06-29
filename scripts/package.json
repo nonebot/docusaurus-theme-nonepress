@@ -1,0 +1,6 @@
+{
+  "name": "scripts",
+  "private": true,
+  "license": "MIT",
+  "type": "module"
+}
