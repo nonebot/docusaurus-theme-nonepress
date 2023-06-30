@@ -1,5 +1,5 @@
 .code-block-container {
-  @apply relative w-full max-w-full h-auto rounded-box bg-base-200 text-base-content group;
+  @apply relative w-full max-w-full h-auto rounded-box bg-base-200 text-base-content;
 
   & > .code-block-title {
     @apply relative w-full px-4 py-2;

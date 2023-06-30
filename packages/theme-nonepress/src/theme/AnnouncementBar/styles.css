@@ -2,11 +2,15 @@
   @apply flex items-center gap-x-6 overflow-hidden px-6 py-2.5 sm:px-3.5 sm:before:flex-1;
   @apply bg-neutral text-neutral-content;
 
-  & > .announcement-content {
+  & > &-content {
     @apply flex flex-wrap items-center gap-x-4 gap-y-2;
   }
 
-  & > .announcement-button {
-    @apply flex flex-1 justify-end -m-3 p-3 focus-visible:outline-offset-[-4px];
+  & > &-button {
+    @apply flex flex-1 justify-end;
+
+    & > button {
+      @apply -m-3 p-3 focus-visible:outline-offset-[-6px];
+    }
   }
 }

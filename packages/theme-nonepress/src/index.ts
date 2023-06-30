@@ -9,7 +9,6 @@ import type {
 } from "@nullbot/docusaurus-theme-nonepress";
 import autoprefixer from "autoprefixer";
 import postcssImport from "postcss-import";
-import postcssNesting from "postcss-nesting";
 import tailwindcss from "tailwindcss";
 import type { Config as tailwindConfigType } from "tailwindcss";
 import tailwindNesting from "tailwindcss/nesting";
@@ -194,7 +193,7 @@ export default async function themeNonepress(
       };
       postCssOptions.plugins.unshift(
         postcssImport(),
-        tailwindNesting(postcssNesting()),
+        tailwindNesting(),
         tailwindcss(finalTailwindConfig),
         autoprefixer(),
       );

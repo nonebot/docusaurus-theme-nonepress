@@ -20,6 +20,7 @@ import type {
 } from "@docsearch/react/dist/esm/types";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
+import Noop from "@docusaurus/Noop";
 import Translate from "@docusaurus/Translate";
 import { useHistory } from "@docusaurus/router";
 import {
@@ -34,6 +35,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import type { SearchClient } from "algoliasearch/lite";
 import { createPortal } from "react-dom";
 
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import IconSearch from "@theme/Icon/Search";
 import translations from "@theme/SearchTranslations";
 
@@ -313,6 +315,9 @@ function DocSearch({
 }
 
 export default function SearchBar(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  return <DocSearch {...(siteConfig.themeConfig.algolia as DocSearchProps)} />;
+  const { algolia } = useNonepressThemeConfig();
+  if (!algolia) {
+    return <Noop />;
+  }
+  return <DocSearch {...(algolia as unknown as DocSearchProps)} />;
 }

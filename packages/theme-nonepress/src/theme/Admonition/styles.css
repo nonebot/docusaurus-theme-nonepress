@@ -1,23 +1,23 @@
 .admonition {
   @apply alert !flex-col mb-4;
 
-  &.admonition-success {
+  &-success {
     @apply alert-success;
   }
 
-  &.admonition-error {
+  &-error {
     @apply alert-error;
   }
 
-  &.admonition-info {
+  &-info {
     @apply alert-info;
   }
 
-  &.admonition-warning {
+  &-warning {
     @apply alert-warning;
   }
 
-  & > .admonition-title {
+  & > &-title {
     @apply uppercase font-bold;
   }
 }
