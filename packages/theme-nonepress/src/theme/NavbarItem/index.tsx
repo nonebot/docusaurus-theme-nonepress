@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./styles.css";
 import type { NavbarItemType, Props } from "@theme/NavbarItem";
 import ComponentTypes from "@theme/NavbarItem/ComponentTypes";
 

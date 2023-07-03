@@ -1,7 +1,6 @@
 @import url("tailwindcss/tailwind");
 
 body {
-  /* font-size: 0.9rem; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

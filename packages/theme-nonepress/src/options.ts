@@ -324,7 +324,7 @@ const NonepressSchema = Joi.object({
           DEFAULT_CONFIG.nonepress.navbar.docsVersionDropdown
             .dropdownItemsAfter,
         ),
-    }),
+    }).default(DEFAULT_CONFIG.nonepress.navbar.docsVersionDropdown),
     localeDropdown: Joi.object({
       enabled: Joi.boolean().default(
         DEFAULT_CONFIG.nonepress.navbar.localeDropdown.enabled,
@@ -340,13 +340,13 @@ const NonepressSchema = Joi.object({
           DEFAULT_CONFIG.nonepress.navbar.localeDropdown.dropdownItemsAfter,
         ),
       queryString: Joi.string(),
-    }),
+    }).default(DEFAULT_CONFIG.nonepress.navbar.localeDropdown),
     socialLinks: Joi.array().items(SocialLinkSchema),
   }),
   footer: Joi.object({
     socialLinks: Joi.array().items(SocialLinkSchema),
-  }),
-});
+  }).default(DEFAULT_CONFIG.nonepress.footer),
+}).default(DEFAULT_CONFIG.nonepress);
 
 export const ThemeConfigSchema = Joi.object({
   colorMode: ColorModeSchema,

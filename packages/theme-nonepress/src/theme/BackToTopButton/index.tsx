@@ -35,7 +35,7 @@ export default function BackToTopButton(): JSX.Element {
       </span>
       <FontAwesomeIcon
         className="h-6 w-6 fill-current"
-        icon={["fab", "chevron-up"]}
+        icon={["fas", "chevron-up"]}
       />
     </button>
   );

@@ -1,17 +1,26 @@
-import React, { type ReactNode } from "react";
+import React from "react";
 
 import { ErrorCauseBoundary } from "@docusaurus/theme-common";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
+import NavbarDocsVersion from "@theme/Navbar/DocsVersion";
+import NavbarLocaleDropdown from "@theme/Navbar/LocaleDropdown";
 import NavbarLogo from "@theme/Navbar/Logo";
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
 import NavbarSearch from "@theme/Navbar/Search";
+import NavbarSocialLinks from "@theme/Navbar/SocialLinks";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
 import SearchBar from "@theme/SearchBar";
 
-function NavbarItems({ items }: { items: NavbarItemConfig[] }): JSX.Element {
+function NavbarItems({
+  items,
+  className,
+}: {
+  items: NavbarItemConfig[];
+  className?: string;
+}): JSX.Element {
   return (
     <>
       {items.map((item, i) => (
@@ -26,59 +35,62 @@ ${JSON.stringify(item, null, 2)}`,
             )
           }
         >
-          <NavbarItem {...item} />
+          <NavbarItem className={className} {...item} />
         </ErrorCauseBoundary>
       ))}
     </>
   );
 }
 
-function NavbarContentLayout({
-  left,
-  right,
-}: {
-  left: ReactNode;
-  right: ReactNode;
-}) {
-  return (
-    <div className="py-4 lg:px-8 mx-4 lg:mx-0">
-      <div className="relative flex items-center">
-        <div className="flex-1">{left}</div>
-        <div className="flex-none">{right}</div>
-      </div>
-    </div>
-  );
-}
-
 export default function NavbarContent(): JSX.Element {
   const themeConfig = useNonepressThemeConfig();
+
+  const { enabled: docsVersionEnabled, ...docsVersionDropdown } =
+    themeConfig.nonepress.navbar.docsVersionDropdown;
+
+  const { enabled: localeDropdownEnabled, ...localeDropdown } =
+    themeConfig.nonepress.navbar.localeDropdown;
+
+  const { disableSwitch: disableColorMode } = themeConfig.colorMode;
+
+  const { socialLinks } = themeConfig.nonepress.navbar;
 
   const mobileSidebar = useNavbarMobileSidebar();
 
   const items = themeConfig.navbar.items as NavbarItemConfig[];
 
-  const searchBarItem = Boolean(themeConfig.algolia);
+  const searchBarEnabled = Boolean(themeConfig.algolia);
 
   return (
-    <NavbarContentLayout
-      left={
-        <>
-          <NavbarLogo />
-          {!searchBarItem && (
-            <NavbarSearch>
-              <SearchBar />
-            </NavbarSearch>
-          )}
-        </>
-      }
-      right={
-        // Ask the user to add the respective navbar items => more flexible
-        <>
+    <div className="navbar-content-layout">
+      <div className="navbar-content">
+        <NavbarLogo />
+        {docsVersionEnabled && <NavbarDocsVersion {...docsVersionDropdown} />}
+        {searchBarEnabled && (
+          <NavbarSearch>
+            <SearchBar />
+          </NavbarSearch>
+        )}
+        <div className="navbar-content-items">
           <NavbarItems items={items} />
-          <NavbarColorModeToggle className="" />
-          {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
-        </>
-      }
-    />
+          {localeDropdownEnabled && (
+            <div className="navbar-group">
+              <NavbarLocaleDropdown {...localeDropdown} />
+            </div>
+          )}
+          {!disableColorMode && (
+            <div className="navbar-group">
+              <NavbarColorModeToggle />
+            </div>
+          )}
+          {socialLinks && (
+            <div className="navbar-group">
+              <NavbarSocialLinks links={socialLinks} />
+            </div>
+          )}
+        </div>
+        {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
+      </div>
+    </div>
   );
 }

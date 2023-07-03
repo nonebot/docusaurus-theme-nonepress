@@ -30,14 +30,16 @@ export default function NavbarNavLink({
   const linkContentProps = html
     ? { dangerouslySetInnerHTML: { __html: html } }
     : {
-        children: (
+        children: props.children ?? (
           <>
             {label}
             {isExternalLink && (
               <IconExternalLink
                 className={clsx(
                   "fill-current",
-                  isDropdownLink ? "w-6 h-6" : "w-4 h-4",
+                  isDropdownLink
+                    ? "navbar-dropdown-item-icon"
+                    : "navbar-label-icon",
                 )}
               />
             )}

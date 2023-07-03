@@ -12,7 +12,7 @@ import IconLightMode from "@theme/Icon/LightMode";
 
 function ColorModeToggle({
   className,
-  buttonClassName,
+  dark = false,
   value,
   onChange,
 }: Props): JSX.Element {
@@ -41,25 +41,63 @@ function ColorModeToggle({
   );
 
   return (
-    <div className={className}>
-      <button
+    <button
+      className={clsx("appearance-toggle", className)}
+      type="button"
+      role="switch"
+      title={title}
+      aria-label={title}
+      aria-live="polite"
+      disabled={!isBrowser}
+      onClick={() => onChange(value === "dark" ? "light" : "dark")}
+    >
+      <span className="sr-only">Use dark theme</span>
+      <span
         className={clsx(
-          "appearance-toggle swap swap-rotate",
-          value === "dark" && "appearance-toggle-active",
-          buttonClassName,
+          "appearance-toggle-switcher",
+          value === "dark" && "appearance-toggle-switcher-active",
         )}
-        type="button"
-        onClick={() => onChange(value === "dark" ? "light" : "dark")}
-        disabled={!isBrowser}
-        title={title}
-        aria-label={title}
-        aria-live="polite"
       >
-        <IconLightMode className="appearance-toggle-icon swap-off" />
-        <IconDarkMode className="apprencen-toggle-icon swap-on" />
-      </button>
-    </div>
+        <span
+          className={clsx(
+            "appearance-toggle-container",
+            value === "light" && "appearance-toggle-container-active",
+          )}
+        >
+          <IconLightMode className="appearance-toggle-icon" />
+        </span>
+        <span
+          className={clsx(
+            "appearance-toggle-container",
+            value === "dark" && "appearance-toggle-container-active",
+          )}
+        >
+          <IconDarkMode className="appearance-toggle-icon" />
+        </span>
+      </span>
+    </button>
   );
+
+  // return (
+  //   <div className="navbar-label">
+  //     <button
+  //       className={clsx(
+  //         "appearance-toggle swap swap-rotate",
+  //         value === "dark" && "swap-active",
+  //         className,
+  //       )}
+  //       type="button"
+  //       onClick={() => onChange(value === "dark" ? "light" : "dark")}
+  //       disabled={!isBrowser}
+  //       title={title}
+  //       aria-label={title}
+  //       aria-live="polite"
+  //     >
+  //       <IconLightMode className="appearance-toggle-icon swap-off" />
+  //       <IconDarkMode className="appearance-toggle-icon swap-on" />
+  //     </button>
+  //   </div>
+  // );
 }
 
 export default React.memo(ColorModeToggle);

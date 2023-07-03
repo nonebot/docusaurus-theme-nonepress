@@ -5,7 +5,7 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
+  title: "NonePress",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
@@ -28,7 +28,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "zh-Hans",
-    locales: ["zh-Hans"],
+    locales: ["zh-Hans", "en"],
   },
 
   presets: [
@@ -62,16 +62,18 @@ const config = {
       },
       announcementBar: {
         id: "news-refactor",
-        content: "🎉 Nonepress stable is out!",
+        content: "🎉 NonePress stable is out!",
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: true,
       },
       navbar: {
-        title: "Nonepress",
+        title: "NonePress",
         logo: {
-          alt: "Nonepress",
+          alt: "NonePress",
           src: "img/logo.svg",
+          height: 32,
+          width: 32,
         },
         items: [
           {
@@ -83,6 +85,12 @@ const config = {
       },
       footer: {
         style: "light",
+        logo: {
+          alt: "NonePress",
+          src: "img/logo.svg",
+          height: 32,
+          width: 32,
+        },
         links: [
           {
             title: "Docs",

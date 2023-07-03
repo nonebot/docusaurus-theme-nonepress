@@ -1,6 +1,5 @@
 import React from "react";
 
-import Link from "@docusaurus/Link";
 import type { GlobalVersion } from "@docusaurus/plugin-content-docs/client";
 import {
   useVersions,
@@ -10,7 +9,9 @@ import { useLocation } from "@docusaurus/router";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
 
+import IconDropdown from "@theme/Icon/Dropdown";
 import type { Props } from "@theme/Navbar/DocsVersion";
+import NavbarItem from "@theme/NavbarItem";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 
 const getVersionMainDoc = (version: GlobalVersion) =>
@@ -21,6 +22,9 @@ export default function DocsVersion({
   dropdownItemsBefore,
   dropdownItemsAfter,
 }: Props): JSX.Element {
+  const dropdownVersion = useDocsVersionCandidates(docsPluginId)[0];
+  const dropdownLabel = dropdownVersion.label;
+
   const { search, hash } = useLocation();
   const activeDocContext = useActiveDocContext(docsPluginId);
   const versions = useVersions(docsPluginId);
@@ -32,10 +36,17 @@ export default function DocsVersion({
       activeDocContext.alternateDocVersions[version.name] ??
       getVersionMainDoc(version);
     return {
-      label: version.label,
+      label: (
+        <>
+          <span className="navbar-version-name">{version.label}</span>
+          <span className="navbar-version-badge"></span>
+        </>
+      ),
       // preserve ?search#hash suffix on version switches
       to: `${versionDoc.path}${search}${hash}`,
-      isActive: () => version === activeDocContext.activeVersion,
+      // current active version or fallback to preferred/default version
+      isActive: () =>
+        version === (activeDocContext.activeVersion ?? dropdownVersion),
       onClick: () => savePreferredVersionName(version.name),
     };
   });
@@ -45,31 +56,21 @@ export default function DocsVersion({
     ...dropdownItemsAfter,
   ];
 
-  const dropdownVersion = useDocsVersionCandidates(docsPluginId)[0];
-  const dropdownLabel = dropdownVersion.label;
-
   return (
-    <div className="dropdown">
-      <label tabIndex={0} className="btn btn-sm no-animation">
+    <div className="navbar-version dropdown">
+      <label tabIndex={0} className="navbar-version-label">
         {dropdownLabel}
+        <IconDropdown className="navbar-version-label-icon" />
       </label>
-      <ul tabIndex={0} className="dropdown-content z-10 bg-base-100 shadow">
+      <ul tabIndex={0} className="navbar-version-content dropdown-content">
         {items.map((item, index) => (
-          <li key={index} className="cursor-default select-none relative">
-            <Link
-              to={item.to}
-              onClick={item.onClick}
-              isActive={item.isActive}
-              isNavLink={item.isNavLink}
-              activeClassName=""
-              className="relative flex justify-end items-center content-center transition py-2 pl-7 rounded duration-300 hover:bg-base-300"
-            >
-              <span aria-label="Selected" className=""></span>
-              <span className="grow font-medium inline-block truncate">
-                {item.label}
-              </span>
-            </Link>
-          </li>
+          <NavbarItem
+            key={index}
+            isDropdownItem
+            activeClassName="version-active"
+            className="navbar-version-link"
+            {...item}
+          />
         ))}
       </ul>
     </div>

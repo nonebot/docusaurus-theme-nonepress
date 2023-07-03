@@ -1,0 +1,152 @@
+.navbar {
+  @apply bg-base-100 text-base-content;
+  @apply border-b border-base-200;
+  @apply backdrop-blur;
+  @apply sticky top-0 z-40 w-full !p-0;
+  @apply transition-transform duration-150;
+
+  &-hidden {
+    @apply -translate-y-full;
+  }
+
+  &-dark {
+    @apply bg-neutral text-neutral-content;
+  }
+
+  &-primary {
+    @apply bg-primary text-primary-content;
+  }
+
+  /* container restrict the navbar content width */
+  & > &-container {
+    @apply max-w-[90rem] mx-auto w-full;
+  }
+
+  &-container > &-content-layout {
+    @apply py-4 lg:px-8 mx-4 lg:mx-0 w-full;
+  }
+
+  &-content-layout > &-content {
+    @apply relative flex items-center;
+  }
+
+  &-content > &-content-items {
+    @apply hidden lg:flex ml-auto;
+  }
+
+  /* group navbar items into sections */
+  &-group {
+    @apply flex items-center;
+
+    &::before {
+      @apply mx-4 w-px h-full bg-base-content/10 content-[""];
+    }
+  }
+
+  /* brand */
+  &-brand {
+    @apply flex items-center;
+  }
+
+  &-brand > &-logo {
+    @apply h-auto w-auto;
+  }
+
+  &-brand > &-title {
+    @apply ml-2 normal-case text-xl font-semibold;
+  }
+
+  /* version */
+  &-version {
+    @apply ml-4;
+  }
+
+  &-version > &-version-label {
+    @apply btn btn-sm no-animation rounded-full;
+    @apply text-xs leading-5 font-semibold text-base-content/80 normal-case;
+  }
+
+  &-version-label > &-version-label-icon {
+    @apply h-2 w-2 fill-current overflow-visible;
+  }
+
+  &-version > &-version-content {
+    @apply menu rounded-md bg-base-200 shadow-lg;
+    @apply w-40 z-10;
+  }
+
+  &-version-link {
+    @apply text-sm font-semibold text-base-content/80;
+
+    & > .navbar-version-name {
+      @apply truncate;
+    }
+
+    & > .navbar-version-badge {
+      @apply badge badge-xs badge-primary;
+      @apply invisible justify-self-end;
+    }
+
+    &.version-active {
+      @apply !text-primary;
+
+      & > .navbar-version-badge {
+        @apply visible;
+      }
+    }
+  }
+
+  /* search */
+  &-search {
+    @apply ml-auto lg:ml-4;
+    @apply order-last lg:order-none;
+
+    @media screen(lg) {
+      &::before {
+        @apply mx-2 w-px h-full bg-base-content/10 content-[""];
+      }
+    }
+  }
+
+  /* locale */
+  &-locales {
+    @apply px-2 -mx-2;
+
+    &-icon {
+      @apply h-5 w-auto fill-current;
+    }
+  }
+
+  /* color mode toggle */
+  &-appearance {
+    &-mobile {
+      @apply flex justify-between items-center;
+      @apply p-2 border-t-2 border-base-200;
+    }
+  }
+
+  /* social links */
+  &-social-links {
+    @apply flex justify-center items-center gap-2;
+
+    &-mobile {
+      @apply p-2 border-t-2 border-base-200;
+    }
+  }
+
+  &-social-link {
+    & > &-icon {
+      @apply w-5 h-5 fill-current;
+    }
+  }
+
+  /* mobile toggle button */
+  &-mobile-toggle {
+    @apply btn btn-circle btn-ghost btn-sm;
+    @apply ml-auto lg:hidden order-last;
+
+    & > &-icon {
+      @apply w-5 h-5 fill-current;
+    }
+  }
+}

@@ -1,0 +1,4 @@
+.skip-to-content {
+  @apply fixed -top-full left-4 focus:top-4 z-50;
+  @apply btn btn-primary rounded-lg shadow-md;
+}

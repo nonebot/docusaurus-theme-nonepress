@@ -74,7 +74,9 @@ export default function Logo(props: Props): JSX.Element {
           imageClassName={imageClassName}
         />
       )}
-      {navbarTitle != null && <b className={titleClassName}>{navbarTitle}</b>}
+      {navbarTitle != null && (
+        <span className={titleClassName}>{navbarTitle}</span>
+      )}
     </Link>
   );
 }

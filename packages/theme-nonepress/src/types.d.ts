@@ -209,7 +209,7 @@ declare module "@theme/ColorModeToggle" {
 
   export interface Props {
     readonly className?: string;
-    readonly buttonClassName?: string;
+    readonly dark?: boolean;
     readonly value: ColorMode;
     /**
      * The parameter represents the "to-be" value. For example, if currently in
@@ -624,10 +624,10 @@ declare module "@theme/Icon/Copy" {
 }
 
 declare module "@theme/Icon/DarkMode" {
-  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+  import type { ComponentProps } from "react";
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconDarkMode(props: Props): JSX.Element;
 }
@@ -639,6 +639,15 @@ declare module "@theme/Icon/Docusaurus" {
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconDocusaurus(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Dropdown" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconDropdown(props: Props): JSX.Element;
 }
 
 declare module "@theme/Icon/Edit" {
@@ -687,10 +696,10 @@ declare module "@theme/Icon/Language" {
 }
 
 declare module "@theme/Icon/LightMode" {
-  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+  import type { ComponentProps } from "react";
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconLightMode(props: Props): JSX.Element;
 }
@@ -935,9 +944,7 @@ declare module "@theme/Navbar/ColorModeToggle" {
     readonly mobile?: boolean;
   }
 
-  export default function NavbarColorModeToggle(
-    props: Props,
-  ): JSX.Element | null;
+  export default function NavbarColorModeToggle(props: Props): JSX.Element;
 }
 
 declare module "@theme/Navbar/Content" {
@@ -986,7 +993,7 @@ declare module "@theme/Navbar/MobileSidebar/Header" {
 declare module "@theme/Navbar/MobileSidebar/Layout" {
   import type { ReactNode } from "react";
 
-  interface Props {
+  export interface Props {
     readonly header: ReactNode;
     readonly primaryMenu: ReactNode;
     readonly secondaryMenu: ReactNode;
@@ -1018,13 +1025,15 @@ declare module "@theme/Navbar/Search" {
   export default function NavbarSearch(props: Props): JSX.Element;
 }
 
-declare module "@theme/Navbar/SocialLink" {
+declare module "@theme/Navbar/SocialLinks" {
   import type { SocialLink } from "@nullbot/docusaurus-theme-nonepress";
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Props extends SocialLink {}
+  export interface Props {
+    readonly links: SocialLink[];
+    readonly className?: string;
+  }
 
-  export default function SocialLink(props: Props): JSX.Element;
+  export default function SocialLinks(props: Props): JSX.Element;
 }
 
 declare module "@theme/NavbarItem" {

@@ -17,10 +17,10 @@ export default function MobileSidebarToggle(): JSX.Element {
           "The ARIA label for hamburger menu button of mobile navigation",
       })}
       aria-expanded={shown}
-      className="btn btn-circle"
+      className="navbar-mobile-toggle"
       type="button"
     >
-      <IconMenu className="w-6 h-6 fill-current" />
+      <IconMenu className="navbar-mobile-toggle-icon" />
     </button>
   );
 }

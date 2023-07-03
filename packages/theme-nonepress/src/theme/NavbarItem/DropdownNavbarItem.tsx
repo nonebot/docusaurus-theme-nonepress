@@ -8,6 +8,7 @@ import {
   useLocalPathname,
 } from "@docusaurus/theme-common/internal";
 
+import IconDropdown from "@theme/Icon/Dropdown";
 import NavbarItem, { type LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 import type {
   DesktopOrMobileNavBarItemProps,
@@ -44,42 +45,27 @@ function DropdownNavbarItemDesktop({
   onClick,
   ...props
 }: DesktopOrMobileNavBarItemProps) {
-  const [showDropdown, setShowDropdown] = useState(false);
-
   return (
-    <li
-      className={clsx("dropdown dropdown-hover dropdown-bottom", {
-        "dropdown-open": showDropdown,
-      })}
-    >
+    <li className="navbar-dropdown dropdown dropdown-hover dropdown-bottom">
       <label tabIndex={0}>
         <NavbarNavLink
           aria-haspopup="true"
-          aria-expanded={showDropdown}
           role="button"
           href={props.to ? undefined : "#"}
-          className={clsx("navbar__link", className)}
+          className={clsx("navbar-label", className)}
           {...props}
           onClick={props.to ? undefined : (e) => e.preventDefault()}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              setShowDropdown(!showDropdown);
-            }
-          }}
         >
           {props.children ?? props.label}
+          <IconDropdown className="navbar-label-icon" />
         </NavbarNavLink>
       </label>
 
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu z-10 left-1/2 -translate-x-1/2"
-      >
+      <ul tabIndex={0} className="navbar-dropdown-content dropdown-content">
         {items.map((childItemProps, i) => (
           <NavbarItem
             isDropdownItem
-            activeClassName="dropdown__link--active"
+            activeClassName="navbar-dropdown-item-active"
             {...childItemProps}
             key={i}
           />

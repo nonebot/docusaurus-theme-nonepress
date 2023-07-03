@@ -1,5 +1,8 @@
 import React from "react";
 
+import clsx from "clsx";
+
+import Translate from "@docusaurus/Translate";
 import { useColorMode } from "@docusaurus/theme-common";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
@@ -9,23 +12,32 @@ import type { Props } from "@theme/Navbar/ColorModeToggle";
 export default function NavbarColorModeToggle({
   className,
   mobile = false,
-}: Props): JSX.Element | null {
+}: Props): JSX.Element {
   const navbarStyle = useNonepressThemeConfig().navbar.style;
-  const disabled = useNonepressThemeConfig().colorMode.disableSwitch;
   const { colorMode, setColorMode } = useColorMode();
 
-  if (disabled) {
-    return null;
-  }
-
-  return (
+  const element = (
     <ColorModeToggle
-      className={className}
-      buttonClassName={
-        navbarStyle === "dark" ? "appearance-toggle-dark" : undefined
-      }
+      className={clsx(className)}
+      dark={navbarStyle === "dark"}
       value={colorMode}
       onChange={setColorMode}
     />
+  );
+
+  return mobile ? (
+    <div className="navbar-appearance-mobile">
+      <span>
+        <Translate
+          id="theme.navbar.colorToggle.mobileTitle"
+          description="Title used in mobile navbar menu for color mode toggle button"
+        >
+          Theme
+        </Translate>
+      </span>
+      {element}
+    </div>
+  ) : (
+    element
   );
 }

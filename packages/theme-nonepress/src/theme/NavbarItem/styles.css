@@ -1,0 +1,36 @@
+.navbar {
+  /* common */
+  &-label {
+    @apply flex items-center text-base-content opacity-75;
+
+    &:hover {
+      @apply opacity-100;
+    }
+
+    &-icon {
+      @apply ml-2 w-2 h-2 fill-current;
+    }
+  }
+
+  /* dropdown */
+  &-dropdown {
+    &-icon {
+      @apply ml-2 w-2 h-2 fill-current;
+    }
+
+    &-content {
+      @apply menu rounded-md bg-base-100 shadow-lg border border-base-200;
+      @apply w-fit z-10 left-1/2 -translate-x-1/2;
+    }
+
+    &-item {
+      &-active {
+        @apply !text-primary;
+      }
+
+      &-icon {
+        @apply w-6 h-6 fill-current;
+      }
+    }
+  }
+}

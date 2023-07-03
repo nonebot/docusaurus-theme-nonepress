@@ -23,16 +23,15 @@ export default function NavbarLayout({ children }: Props): JSX.Element {
         description: "The ARIA label for the main navigation",
       })}
       className={clsx(
-        "navbar border-b border-base-200 backdrop-blur",
-        "sticky top-0 z-50 w-full transition-transform",
-        { ["-translate-y-full"]: hideOnScroll && !isNavbarVisible },
+        "navbar",
+        { ["navbar-hidden"]: hideOnScroll && !isNavbarVisible },
         {
-          "bg-neutral text-neutral-content": style === "dark",
-          "bg-primary text-primary-content": style === "primary",
+          "navbar-dark": style === "dark",
+          "navbar-primary": style === "primary",
         },
       )}
     >
-      <div className="max-w-8xl mx-auto">{children}</div>
+      <div className="navbar-container">{children}</div>
       <NavbarMobileSidebar />
     </nav>
   );

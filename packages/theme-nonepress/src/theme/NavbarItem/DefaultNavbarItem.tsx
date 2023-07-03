@@ -16,7 +16,7 @@ function DefaultNavbarItemDesktop({
   const element = (
     <NavbarNavLink
       className={clsx(
-        isDropdownItem ? "dropdown__link" : "navbar__item navbar__link",
+        isDropdownItem ? "navbar-dropdown-item" : "navbar-label",
         className,
       )}
       isDropdownLink={isDropdownItem}
@@ -25,7 +25,7 @@ function DefaultNavbarItemDesktop({
   );
 
   if (isDropdownItem) {
-    return <li>{element}</li>;
+    return <li tabIndex={0}>{element}</li>;
   }
 
   return element;

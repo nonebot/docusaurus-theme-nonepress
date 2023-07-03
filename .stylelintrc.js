@@ -17,6 +17,14 @@ module.exports = {
       files: ["*.css"],
       rules: {
         "function-no-unknown": [true, { ignoreFunctions: ["theme"] }],
+        "selector-class-pattern": [
+          "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+          {
+            resolveNestedSelectors: true,
+            message: (selector) =>
+              `Expected class selector "${selector}" to be kebab-case`,
+          },
+        ],
       },
     },
   ],
