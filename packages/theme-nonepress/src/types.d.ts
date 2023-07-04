@@ -794,6 +794,23 @@ declare module "@theme/Layout/Provider" {
   export default function LayoutProvider(props: Props): JSX.Element;
 }
 
+declare module "@theme/Layout/Provider/TOCProvider" {
+  import type { ReactNode } from "react";
+
+  export type ContextValue = {
+    toc: TOCItem[] | null;
+    setTOC: React.Dispatch<React.SetStateAction<TOCItem[] | null>>;
+  };
+
+  export interface Props {
+    readonly children: ReactNode;
+  }
+
+  export default function TOCProvider(props: Props): JSX.Element;
+
+  export function useTOC(): ContextValue;
+}
+
 declare module "@theme/Logo" {
   import type { ComponentProps } from "react";
 
@@ -996,7 +1013,6 @@ declare module "@theme/Navbar/MobileSidebar/Layout" {
   export interface Props {
     readonly header: ReactNode;
     readonly primaryMenu: ReactNode;
-    readonly secondaryMenu: ReactNode;
   }
 
   export default function NavbarMobileSidebarLayout(props: Props): JSX.Element;
@@ -1006,12 +1022,12 @@ declare module "@theme/Navbar/MobileSidebar/PrimaryMenu" {
   export default function NavbarMobileSidebarPrimaryMenu(): JSX.Element;
 }
 
-declare module "@theme/Navbar/MobileSidebar/SecondaryMenu" {
-  export default function NavbarMobileSidebarSecondaryMenu(): JSX.Element;
-}
-
 declare module "@theme/Navbar/MobileSidebar/Toggle" {
   export default function NavbarMobileSidebarToggle(): JSX.Element;
+}
+
+declare module "@theme/Navbar/PrimaryNavbar" {
+  export default function PrimaryNavbar(): JSX.Element;
 }
 
 declare module "@theme/Navbar/Search" {
@@ -1023,6 +1039,14 @@ declare module "@theme/Navbar/Search" {
   }
 
   export default function NavbarSearch(props: Props): JSX.Element;
+}
+
+declare module "@theme/Navbar/SecondaryMenu" {
+  export default function NavbarSecondaryMenu(): JSX.Element;
+}
+
+declare module "@theme/Navbar/SecondaryNavbar" {
+  export default function SecondaryNavbar(): JSX.Element;
 }
 
 declare module "@theme/Navbar/SocialLinks" {

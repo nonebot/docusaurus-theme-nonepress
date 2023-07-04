@@ -12,6 +12,8 @@ import {
 
 import type { Props } from "@theme/Layout/Provider";
 
+import { TOCProvider } from "./TOCProvider";
+
 const Provider = composeProviders([
   ColorModeProvider,
   AnnouncementBarProvider,
@@ -19,6 +21,7 @@ const Provider = composeProviders([
   DocsPreferredVersionContextProvider,
   PluginHtmlClassNameProvider,
   NavbarProvider,
+  TOCProvider,
 ]);
 
 export default function LayoutProvider({ children }: Props): JSX.Element {

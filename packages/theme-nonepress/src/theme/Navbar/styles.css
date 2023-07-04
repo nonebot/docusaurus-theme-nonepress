@@ -19,19 +19,37 @@
 
   /* container restrict the navbar content width */
   & > &-container {
+    @apply flex flex-col;
     @apply max-w-[90rem] mx-auto w-full;
   }
 
-  &-container > &-content-layout {
-    @apply py-4 lg:px-8 mx-4 lg:mx-0 w-full;
+  &-container > &-primary-layout {
+    @apply p-4 lg:px-8 w-full;
   }
 
-  &-content-layout > &-content {
+  &-primary-layout > &-primary-content {
     @apply relative flex items-center;
   }
 
-  &-content > &-content-items {
+  &-primary-content > &-primary-items {
     @apply hidden lg:flex ml-auto;
+  }
+
+  &-container > &-secondary-layout {
+    @apply p-4 lg:hidden w-full;
+    @apply border-t border-base-200;
+  }
+
+  &-secondary-layout > &-secondary-content {
+    @apply flex items-center;
+  }
+
+  &-secondary-content > &-secondary-menu {
+    @apply flex items-center;
+  }
+
+  &-secondary-menu > &-secondary-toc {
+    @apply ml-auto;
   }
 
   /* group navbar items into sections */
@@ -142,10 +160,27 @@
 
   /* mobile toggle button */
   &-mobile-toggle {
-    @apply btn btn-circle btn-ghost btn-sm;
     @apply ml-auto lg:hidden order-last;
 
     & > &-icon {
+      @apply w-5 h-5 fill-current;
+    }
+  }
+
+  /* mobile modal */
+  &-mobile-modal-container {
+    @apply row-start-1 col-start-1;
+    @apply p-4 w-screen h-screen overflow-hidden;
+  }
+
+  &-mobile-modal-content {
+    @apply w-full p-4 shadow-lg rounded-md bg-base-100 text-base-content overflow-y-auto;
+  }
+
+  &-mobile-header {
+    @apply sticky top-0 flex items-center justify-between;
+
+    &-close-icon {
       @apply w-5 h-5 fill-current;
     }
   }

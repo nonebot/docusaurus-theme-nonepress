@@ -2,30 +2,29 @@ import React from "react";
 
 import clsx from "clsx";
 
-import { useNavbarSecondaryMenu } from "@docusaurus/theme-common/internal";
+import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 
 import type { Props } from "@theme/Navbar/MobileSidebar/Layout";
 
 export default function NavbarMobileSidebarLayout({
   header,
   primaryMenu,
-  secondaryMenu,
 }: Props): JSX.Element {
-  const { shown: secondaryMenuShown } = useNavbarSecondaryMenu();
+  const { shown, toggle } = useNavbarMobileSidebar();
   return (
     <dialog
-      className={clsx(
-        "modal modal-top inset-x-0 p-2 transition transform origin-top-right z-40",
-        { "modal-open": secondaryMenuShown },
-      )}
+      className={clsx("navbar-mobile-modal modal modal-top", {
+        "modal-open": shown,
+      })}
     >
-      <form method="dialog" className="modal-box">
-        {header}
-        {primaryMenu && <div className="bt-1">{primaryMenu}</div>}
-        {secondaryMenu && <div className="bt-1">{secondaryMenu}</div>}
+      <form method="dialog" className="navbar-mobile-modal-container">
+        <div className="navbar-mobile-modal-content">
+          {header}
+          {primaryMenu && <div className="bt-1">{primaryMenu}</div>}
+        </div>
       </form>
       <form method="dialog" className="modal-backdrop">
-        <button>close</button>
+        <button onClick={() => toggle()}>close</button>
       </form>
     </dialog>
   );

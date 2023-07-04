@@ -16,17 +16,17 @@ function CloseButton() {
         message: "Close navigation bar",
         description: "The ARIA label for close button of mobile sidebar",
       })}
-      className="btn btn-ghost btn-circle btn-sm absolute right-2 top-2"
+      className="navbar-mobile-header-close-btn"
       onClick={() => mobileSidebar.toggle()}
     >
-      <IconClose className="w-4 h-4 fill-current" />
+      <IconClose className="navbar-mobile-header-close-icon" />
     </button>
   );
 }
 
 export default function NavbarMobileSidebarHeader(): JSX.Element {
   return (
-    <div className="sticky top-0">
+    <div className="navbar-mobile-header">
       <NavbarLogo />
       <CloseButton />
     </div>
