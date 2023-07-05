@@ -42,7 +42,6 @@ function containsActiveItems(
 function DropdownNavbarItemDesktop({
   items,
   className,
-  onClick,
   ...props
 }: DesktopOrMobileNavBarItemProps) {
   return (
@@ -96,35 +95,34 @@ function DropdownNavbarItemMobile({
   }, [localPathname, containsActive, setCollapsed]);
 
   return (
-    <li
-      className={clsx(
-        "collapse",
-        collapsed ? "collapse-close" : "collapse-open",
-      )}
-    >
-      <NavbarNavLink
-        role="button"
-        className={clsx("collapse-title", className)}
-        {...props}
-        onClick={(e) => {
-          e.preventDefault();
-          toggleCollapsed();
-        }}
-      >
-        {props.children ?? props.label}
-      </NavbarNavLink>
-      <div className="collapse-content menu">
-        {items.map((childItemProps, i) => (
-          <NavbarItem
-            mobile
-            isDropdownItem
-            onClick={onClick}
-            activeClassName="menu__link--active"
-            {...childItemProps}
-            key={i}
-          />
-        ))}
-      </div>
+    <li className="navbar-mobile-menu-item">
+      <details open={!collapsed}>
+        <summary>
+          <NavbarNavLink
+            role="button"
+            className={className}
+            {...props}
+            onClick={(e) => {
+              e.preventDefault();
+              toggleCollapsed();
+            }}
+          >
+            {props.children ?? props.label}
+          </NavbarNavLink>
+        </summary>
+        <ul>
+          {items.map((childItemProps, i) => (
+            <NavbarItem
+              key={i}
+              mobile
+              isDropdownItem
+              onClick={onClick}
+              activeClassName="navbar-mobile-menu-link-active"
+              {...childItemProps}
+            />
+          ))}
+        </ul>
+      </details>
     </li>
   );
 }

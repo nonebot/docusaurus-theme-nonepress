@@ -7,9 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/Navbar/SocialLinks";
 
-export default function SocialLinks({ links, className }: Props): JSX.Element {
+export default function SocialLinks({ links, mobile }: Props): JSX.Element {
   return (
-    <div className={clsx("navbar-social-links", className)}>
+    <div
+      className={clsx(
+        "navbar-social-links",
+        mobile && "navbar-social-links-mobile",
+      )}
+    >
       {links.map((link, i) => (
         <Link
           key={i}

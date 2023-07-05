@@ -9,6 +9,9 @@ import type { Props } from "@theme/Navbar/MobileSidebar/Layout";
 export default function NavbarMobileSidebarLayout({
   header,
   primaryMenu,
+  localeDropdown,
+  colorModeToggle,
+  socialLinks,
 }: Props): JSX.Element {
   const { shown, toggle } = useNavbarMobileSidebar();
   return (
@@ -20,7 +23,10 @@ export default function NavbarMobileSidebarLayout({
       <form method="dialog" className="navbar-mobile-modal-container">
         <div className="navbar-mobile-modal-content">
           {header}
-          {primaryMenu && <div className="bt-1">{primaryMenu}</div>}
+          {primaryMenu}
+          {localeDropdown}
+          {colorModeToggle}
+          {socialLinks}
         </div>
       </form>
       <form method="dialog" className="modal-backdrop">

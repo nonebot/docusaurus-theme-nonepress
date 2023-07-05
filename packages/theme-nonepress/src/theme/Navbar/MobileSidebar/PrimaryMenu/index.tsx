@@ -20,7 +20,7 @@ export default function NavbarMobilePrimaryMenu(): JSX.Element | null {
   }
 
   return (
-    <ul className="px-2 pt-2 pb-3">
+    <ul className="navbar-mobile-menu menu">
       {items.map((item, index) => (
         <NavbarItem
           key={index}

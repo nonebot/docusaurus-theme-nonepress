@@ -1013,6 +1013,9 @@ declare module "@theme/Navbar/MobileSidebar/Layout" {
   export interface Props {
     readonly header: ReactNode;
     readonly primaryMenu: ReactNode;
+    readonly localeDropdown: ReactNode;
+    readonly colorModeToggle: ReactNode;
+    readonly socialLinks: ReactNode;
   }
 
   export default function NavbarMobileSidebarLayout(props: Props): JSX.Element;
@@ -1054,7 +1057,7 @@ declare module "@theme/Navbar/SocialLinks" {
 
   export interface Props {
     readonly links: SocialLink[];
-    readonly className?: string;
+    readonly mobile?: boolean;
   }
 
   export default function SocialLinks(props: Props): JSX.Element;

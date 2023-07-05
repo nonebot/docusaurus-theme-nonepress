@@ -1,5 +1,7 @@
 import React from "react";
 
+import clsx from "clsx";
+
 import Translate from "@docusaurus/Translate";
 import { useLocation } from "@docusaurus/router";
 import { useAlternatePageUtils } from "@docusaurus/theme-common/internal";
@@ -49,17 +51,21 @@ export default function LocaleDropdown({
   const items = [...dropdownItemsBefore, ...localeItems, ...dropdownItemsAfter];
 
   return (
-    <DropdownNavbarItem
-      className="navbar-locales"
-      items={items}
-      mobile={mobile}
+    <div
+      className={clsx("navbar-locales", mobile && "navbar-locales-mobile menu")}
     >
-      <IconLanguage className="navbar-locales-icon" />
-      {mobile && (
-        <Translate id="theme.navbar.mobileLanguageDropdown.label">
-          Languages
-        </Translate>
-      )}
-    </DropdownNavbarItem>
+      <DropdownNavbarItem
+        className={clsx(mobile && "navbar-locales-mobile-label")}
+        items={items}
+        mobile={mobile}
+      >
+        <IconLanguage className="navbar-locales-icon" />
+        {mobile && (
+          <Translate id="theme.navbar.mobileLanguageDropdown.label">
+            Languages
+          </Translate>
+        )}
+      </DropdownNavbarItem>
+    </div>
   );
 }

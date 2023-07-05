@@ -37,9 +37,9 @@ function DefaultNavbarItemMobile({
   ...props
 }: DesktopOrMobileNavBarItemProps) {
   return (
-    <li className="menu__list-item">
+    <li className="navbar-mobile-menu-item">
       <NavbarNavLink
-        className={clsx("menu__link", className)}
+        className={clsx("navbar-menu-link", className)}
         isDropdownLink={isDropdownItem}
         {...props}
       />
@@ -57,7 +57,7 @@ export default function DefaultNavbarItem({
       {...props}
       activeClassName={
         props.activeClassName ??
-        (mobile ? "menu__link--active" : "navbar__link--active")
+        (mobile ? "navbar-mobile-menu-link-active" : "navbar-label-active")
       }
     />
   );

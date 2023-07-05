@@ -10,6 +10,10 @@
     &-icon {
       @apply ml-2 w-2 h-2 fill-current;
     }
+
+    &-active {
+      @apply !text-primary !opacity-100;
+    }
   }
 
   /* dropdown */
