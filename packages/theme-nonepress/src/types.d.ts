@@ -1063,6 +1063,10 @@ declare module "@theme/Navbar/SocialLinks" {
   export default function SocialLinks(props: Props): JSX.Element;
 }
 
+declare module "@theme/Navbar/TOCPopdown" {
+  export default function TOCPopdown(): JSX.Element;
+}
+
 declare module "@theme/NavbarItem" {
   import type { ComponentProps } from "react";
 

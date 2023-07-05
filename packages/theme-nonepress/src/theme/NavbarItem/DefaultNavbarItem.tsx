@@ -39,7 +39,7 @@ function DefaultNavbarItemMobile({
   return (
     <li className="navbar-mobile-menu-item">
       <NavbarNavLink
-        className={clsx("navbar-menu-link", className)}
+        className={clsx("navbar-mobile-menu-link", className)}
         isDropdownLink={isDropdownItem}
         {...props}
       />

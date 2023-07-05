@@ -43,7 +43,9 @@ export default function LocaleDropdown({
           ? // Similar idea as DefaultNavbarItem: select the right Infima active
             // class name. This cannot be substituted with isActive, because the
             // target URLs contain `pathname://` and therefore are not NavLinks!
-            "navbar-dropdown-item-active"
+            mobile
+            ? "navbar-mobile-menu-link-active"
+            : "navbar-dropdown-item-active"
           : "",
     };
   });

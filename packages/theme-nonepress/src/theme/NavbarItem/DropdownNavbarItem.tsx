@@ -100,7 +100,8 @@ function DropdownNavbarItemMobile({
         <summary>
           <NavbarNavLink
             role="button"
-            className={className}
+            className={clsx("navbar-mobile-menu-link", className)}
+            activeClassName="navbar-mobile-menu-link-active"
             {...props}
             onClick={(e) => {
               e.preventDefault();
