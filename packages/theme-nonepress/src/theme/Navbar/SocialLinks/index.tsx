@@ -5,9 +5,13 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./styles.css";
 import type { Props } from "@theme/Navbar/SocialLinks";
 
-export default function SocialLinks({ links, mobile }: Props): JSX.Element {
+export default function NavbarSocialLinks({
+  links,
+  mobile,
+}: Props): JSX.Element {
   return (
     <div
       className={clsx(
@@ -19,7 +23,7 @@ export default function SocialLinks({ links, mobile }: Props): JSX.Element {
         <Link
           key={i}
           href={link.href}
-          className="navbar-label navbar-social-link"
+          className="navbar-primary-item navbar-social-link"
         >
           <FontAwesomeIcon
             icon={link.icon}

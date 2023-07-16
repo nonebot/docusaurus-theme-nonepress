@@ -10,6 +10,10 @@
       "type": "./lib/client/index.d.ts",
       "default": "./lib/client/index.js"
     },
+    "./contexts": {
+      "type": "./lib/contexts/index.d.ts",
+      "default": "./lib/contexts/index.js"
+    },
     ".": {
       "types": "./src/types.d.ts",
       "default": "./lib/index.js"

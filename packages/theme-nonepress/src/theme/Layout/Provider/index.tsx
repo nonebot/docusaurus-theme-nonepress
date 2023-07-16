@@ -6,13 +6,17 @@ import {
   AnnouncementBarProvider,
   DocsPreferredVersionContextProvider,
   ScrollControllerProvider,
-  NavbarProvider,
   PluginHtmlClassNameProvider,
 } from "@docusaurus/theme-common/internal";
 
+import {
+  TOCContentProvider,
+  TOCDisplayProvider,
+  SidebarContentProvider,
+  SidebarDisplayProvider,
+  MobileMenuProvider,
+} from "@nullbot/docusaurus-theme-nonepress/contexts";
 import type { Props } from "@theme/Layout/Provider";
-
-import { TOCProvider } from "./TOCProvider";
 
 const Provider = composeProviders([
   ColorModeProvider,
@@ -20,8 +24,11 @@ const Provider = composeProviders([
   ScrollControllerProvider,
   DocsPreferredVersionContextProvider,
   PluginHtmlClassNameProvider,
-  NavbarProvider,
-  TOCProvider,
+  MobileMenuProvider,
+  SidebarContentProvider,
+  SidebarDisplayProvider,
+  TOCContentProvider,
+  TOCDisplayProvider,
 ]);
 
 export default function LayoutProvider({ children }: Props): JSX.Element {

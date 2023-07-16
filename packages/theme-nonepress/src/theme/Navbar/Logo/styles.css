@@ -1,0 +1,11 @@
+.navbar-brand {
+  @apply flex items-center;
+
+  &-logo {
+    @apply h-auto w-auto;
+  }
+
+  &-title {
+    @apply ml-2 normal-case text-xl font-semibold;
+  }
+}

@@ -1,10 +1,9 @@
 import React from "react";
 
-import clsx from "clsx";
-
 import Translate from "@docusaurus/Translate";
 import { useColorMode } from "@docusaurus/theme-common";
 
+import "./styles.css";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import ColorModeToggle from "@theme/ColorModeToggle";
 import type { Props } from "@theme/Navbar/ColorModeToggle";
@@ -18,7 +17,7 @@ export default function NavbarColorModeToggle({
 
   const element = (
     <ColorModeToggle
-      className={clsx(className)}
+      className={className}
       dark={navbarStyle === "dark"}
       value={colorMode}
       onChange={setColorMode}

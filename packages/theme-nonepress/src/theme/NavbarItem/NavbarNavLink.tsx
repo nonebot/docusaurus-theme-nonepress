@@ -2,12 +2,12 @@ import React from "react";
 
 import clsx from "clsx";
 
-import Link from "@docusaurus/Link";
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import { isRegexpStringMatch } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import IconExternalLink from "@theme/Icon/ExternalLink";
+import MenuLink from "@theme/Menu/Link";
 import type { Props } from "@theme/NavbarItem/NavbarNavLink";
 
 export default function NavbarNavLink({
@@ -17,7 +17,7 @@ export default function NavbarNavLink({
   href,
   label,
   html,
-  isDropdownLink,
+  className,
   prependBaseUrlToHref,
   ...props
 }: Props): JSX.Element {
@@ -34,14 +34,7 @@ export default function NavbarNavLink({
           <>
             {label}
             {isExternalLink && (
-              <IconExternalLink
-                className={clsx(
-                  "fill-current",
-                  isDropdownLink
-                    ? "navbar-dropdown-item-icon"
-                    : "navbar-label-icon",
-                )}
-              />
+              <IconExternalLink className="navbar-link-icon" />
             )}
           </>
         ),
@@ -49,8 +42,9 @@ export default function NavbarNavLink({
 
   if (href) {
     return (
-      <Link
+      <MenuLink
         href={prependBaseUrlToHref ? normalizedHref : href}
+        className={clsx("navbar-link", className)}
         {...props}
         {...linkContentProps}
       />
@@ -58,7 +52,7 @@ export default function NavbarNavLink({
   }
 
   return (
-    <Link
+    <MenuLink
       to={toUrl}
       isNavLink
       {...((activeBasePath || activeBaseRegex) && {
@@ -67,6 +61,7 @@ export default function NavbarNavLink({
             ? isRegexpStringMatch(activeBaseRegex, location.pathname)
             : location.pathname.startsWith(activeBaseUrl),
       })}
+      className={clsx("navbar-link", className)}
       {...props}
       {...linkContentProps}
     />

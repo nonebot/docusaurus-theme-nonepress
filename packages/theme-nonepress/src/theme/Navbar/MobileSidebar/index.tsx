@@ -1,43 +1,38 @@
 import React from "react";
 
-import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
+import clsx from "clsx";
 
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
-import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
-import NavbarLocaleDropdown from "@theme/Navbar/LocaleDropdown";
-import NavbarMobileSidebarHeader from "@theme/Navbar/MobileSidebar/Header";
-import NavbarMobileSidebarLayout from "@theme/Navbar/MobileSidebar/Layout";
-import NavbarMobileSidebarPrimaryMenu from "@theme/Navbar/MobileSidebar/PrimaryMenu";
-import NavbarSocialLinks from "@theme/Navbar/SocialLinks";
+import "./styles.css";
+import {
+  useSidebarDisplay,
+  useSidebarContent,
+} from "@nullbot/docusaurus-theme-nonepress/contexts";
 
-export default function NavbarMobileSidebar(): JSX.Element | null {
-  const mobileSidebar = useNavbarMobileSidebar();
-  const themeConfig = useNonepressThemeConfig();
+export default function MobileSidebar(): JSX.Element | null {
+  const { shown, setShown } = useSidebarDisplay();
+  const [content] = useSidebarContent();
 
-  if (!mobileSidebar.shouldRender) {
+  if (content.length === 0) {
     return null;
   }
 
-  const { enabled: localeDropdownEnabled, ...localeDropdown } =
-    themeConfig.nonepress.navbar.localeDropdown;
-
-  const { disableSwitch: disableColorMode } = themeConfig.colorMode;
-
-  const { socialLinks } = themeConfig.nonepress.navbar;
-
   return (
-    <NavbarMobileSidebarLayout
-      header={<NavbarMobileSidebarHeader />}
-      primaryMenu={<NavbarMobileSidebarPrimaryMenu />}
-      localeDropdown={
-        localeDropdownEnabled && (
-          <NavbarLocaleDropdown mobile {...localeDropdown} />
-        )
-      }
-      colorModeToggle={!disableColorMode && <NavbarColorModeToggle mobile />}
-      socialLinks={
-        socialLinks && <NavbarSocialLinks mobile links={socialLinks} />
-      }
-    />
+    <>
+      <label
+        className={clsx(
+          "navbar-mobile-sidebar-overlay",
+          shown && "navbar-mobile-sidebar-overlay-open",
+        )}
+        onClick={() => setShown(false)}
+      ></label>
+      <div
+        className={clsx(
+          "navbar-mobile-sidebar",
+          shown && "navbar-mobile-sidebar-open",
+        )}
+      >
+        {/* {content} */}
+      </div>
+    </>
   );
 }

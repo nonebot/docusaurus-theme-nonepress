@@ -64,6 +64,7 @@ export default function DocItemLayout({ children }: Props): JSX.Element {
       {docTOC.desktop && (
         <div className="p-4 max-w-[25%]">{docTOC.desktop}</div>
       )}
+      {docTOC.mobile}
     </div>
   );
 }

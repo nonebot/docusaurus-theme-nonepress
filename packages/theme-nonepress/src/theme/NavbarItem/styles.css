@@ -1,40 +1,111 @@
 .navbar {
-  /* common */
-  &-label {
-    @apply flex items-center text-base-content opacity-75;
-
-    &:hover {
-      @apply opacity-100;
-    }
-
-    &-icon {
-      @apply ml-2 w-2 h-2 fill-current;
-    }
-
-    &-active {
-      @apply !text-primary !opacity-100;
-    }
-  }
-
   /* dropdown */
   &-dropdown {
     &-icon {
-      @apply ml-2 w-2 h-2 fill-current;
+      @apply w-2 h-2 fill-current;
     }
 
     &-content {
-      @apply menu rounded-md bg-base-100 shadow-lg border border-base-200;
+      @apply rounded-md bg-base-100 shadow-lg border border-base-200;
       @apply w-fit z-10 left-1/2 -translate-x-1/2;
     }
+  }
 
-    &-item {
-      &-active {
-        @apply !text-primary;
-      }
+  /* docs menu */
+  &-docs-menu {
+    &-content {
+      @apply block w-[24rem] xl:w-[48rem] !m-0 !p-0 overflow-hidden whitespace-normal;
 
-      &-icon {
-        @apply w-6 h-6 fill-current;
+      &::before {
+        @apply content-none;
       }
+    }
+
+    &-docs {
+      @apply grid grid-cols-2 xl:grid-cols-3 auto-cols-fr gap-8 p-8 bg-base-200;
+
+      &-link {
+        @apply flex items-start rounded-lg;
+        @apply -m-3 p-3 whitespace-nowrap hover:bg-base-content/10;
+
+        &-active {
+          @apply bg-base-content/10;
+        }
+
+        &-title {
+          @apply text-base font-medium truncate;
+        }
+
+        &-active &-title {
+          @apply text-primary;
+        }
+
+        &-description {
+          @apply mt-1 text-sm truncate opacity-60;
+        }
+      }
+    }
+
+    &-version {
+      @apply grid grid-cols-2 gap-8 p-8 bg-base-300;
+
+      &-link {
+        @apply -m-3 p-3 flow-root rounded-lg;
+        @apply hover:bg-base-content/10;
+
+        &-title {
+          @apply text-base font-medium;
+        }
+
+        &-badge {
+          @apply badge badge-sm ml-1 px-3 py-0.5;
+
+          &-stable {
+            @apply bg-indigo-100 text-indigo-800 border-indigo-100;
+
+            [data-theme="dark"] & {
+              @apply bg-transparent text-indigo-300 border-indigo-300;
+            }
+          }
+
+          &-next {
+            @apply bg-red-100 text-red-800 border-red-100;
+
+            [data-theme="dark"] & {
+              @apply bg-transparent text-red-300 border-red-300;
+            }
+          }
+        }
+
+        &-description {
+          @apply mt-1 block text-sm opacity-80;
+        }
+
+        &-branch {
+          &-stable {
+            @apply text-indigo-800;
+
+            [data-theme="dark"] & {
+              @apply text-indigo-300;
+            }
+          }
+
+          &-next {
+            @apply text-red-800;
+
+            [data-theme="dark"] & {
+              @apply text-red-300;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* nav link */
+  &-link {
+    &-icon {
+      @apply w-3 h-3 fill-current;
     }
   }
 }

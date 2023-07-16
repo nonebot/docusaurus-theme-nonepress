@@ -1,0 +1,36 @@
+.menu {
+  &-item {
+    &:active {
+      @apply !bg-base-content/10 !text-base-content;
+    }
+  }
+
+  &-link {
+    &-active,
+    &-active:active {
+      @apply !text-primary;
+    }
+  }
+
+  &-category {
+    grid-auto-columns: 1fr auto;
+
+    @apply p-0;
+
+    & > .menu-link {
+      @apply pl-4 py-2;
+    }
+
+    &-button {
+      @apply btn btn-ghost btn-sm no-animation;
+    }
+
+    &-icon {
+      @apply w-4 h-4 fill-current transition-transform duration-300 ease-in-out;
+
+      &-collapsed {
+        @apply -rotate-90;
+      }
+    }
+  }
+}

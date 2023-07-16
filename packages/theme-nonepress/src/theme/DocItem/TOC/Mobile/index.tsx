@@ -1,20 +1,18 @@
 import React from "react";
 
-import clsx from "clsx";
-
-import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useDoc } from "@docusaurus/theme-common/internal";
+import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
-import TOCCollapsible from "@theme/TOCCollapsible";
-
-export default function DocItemTOCMobile(): JSX.Element {
+function DocItemTOCMobile(): JSX.Element | null {
   const { toc, frontMatter } = useDoc();
+
   return (
-    <TOCCollapsible
+    <TOCContentFiller
       toc={toc}
       minHeadingLevel={frontMatter.toc_min_heading_level}
       maxHeadingLevel={frontMatter.toc_max_heading_level}
-      className={clsx(ThemeClassNames.docs.docTocMobile, "lg:hidden")}
     />
   );
 }
+
+export default React.memo(DocItemTOCMobile);

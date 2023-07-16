@@ -8,8 +8,8 @@ import type { Props } from "@theme/NavbarItem/DocNavbarItem";
 
 export default function DocNavbarItem({
   docId,
-  label: staticLabel,
   docsPluginId,
+  label: staticLabel,
   ...props
 }: Props): JSX.Element | null {
   const { activeDoc } = useActiveDocContext(docsPluginId);

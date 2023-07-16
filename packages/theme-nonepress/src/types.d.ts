@@ -86,7 +86,12 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
 }
 
 declare module "@theme/Admonition" {
-  import type { ReactNode } from "react";
+  import type {
+    ComponentProps,
+    ComponentProps,
+    ComponentProps,
+    ReactNode,
+  } from "react";
   export interface Props {
     readonly children: ReactNode;
     readonly type: "note" | "tip" | "danger" | "info" | "caution";
@@ -668,6 +673,15 @@ declare module "@theme/Icon/ExternalLink" {
   export default function IconExternalLink(props: Props): JSX.Element;
 }
 
+declare module "@theme/Icon/Extra" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconExtra(props: Props): JSX.Element;
+}
+
 declare module "@theme/Icon/File" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
@@ -740,6 +754,15 @@ declare module "@theme/Icon/Search" {
   export default function IconSearch(props: Props): JSX.Element;
 }
 
+declare module "@theme/Icon/Sidebar" {
+  import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
+
+  export default function IconSidebar(props: Props): JSX.Element;
+}
+
 declare module "@theme/Icon/Success" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
@@ -792,23 +815,6 @@ declare module "@theme/Layout/Provider" {
   }
 
   export default function LayoutProvider(props: Props): JSX.Element;
-}
-
-declare module "@theme/Layout/Provider/TOCProvider" {
-  import type { ReactNode } from "react";
-
-  export type ContextValue = {
-    toc: TOCItem[] | null;
-    setTOC: React.Dispatch<React.SetStateAction<TOCItem[] | null>>;
-  };
-
-  export interface Props {
-    readonly children: ReactNode;
-  }
-
-  export default function TOCProvider(props: Props): JSX.Element;
-
-  export function useTOC(): ContextValue;
 }
 
 declare module "@theme/Logo" {
@@ -943,6 +949,60 @@ declare module "@theme/MDXContent" {
   export default function MDXContent(props: Props): JSX.Element;
 }
 
+declare module "@theme/Menu" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends ComponentProps<"ul"> {}
+
+  export default function Menu(props: Props): JSX.Element;
+}
+
+declare module "@theme/Menu/Category" {
+  import type { Props as LinkProps } from "@docusaurus/Link";
+
+  export interface Props extends LinkProps {
+    readonly label?: string;
+    readonly items: React.ReactNode;
+    readonly collapsed?: boolean;
+    readonly collapsible?: boolean;
+    readonly toggleCollapsed?: () => void;
+    readonly wrapperClassName?: string;
+  }
+
+  export default function MenuCategory(props: Props): JSX.Element;
+}
+
+declare module "@theme/Menu/Html" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"li"> {
+    readonly html: string;
+  }
+
+  export default function MenuHtml(props: Props): JSX.Element;
+}
+
+declare module "@theme/Menu/Link" {
+  import type { Props as LinkProps } from "@docusaurus/Link";
+
+  export interface Props extends LinkProps {
+    readonly label?: string;
+    readonly wrapperClassName?: string;
+  }
+
+  export default function MenuLink(props: Props): JSX.Element;
+}
+
+declare module "@theme/Menu/Title" {
+  export interface Props {
+    readonly label: string;
+    readonly className?: string;
+  }
+
+  export default function MenuTitle(props: Props): JSX.Element;
+}
+
 declare module "@theme/Mermaid" {
   export interface Props {
     value: string;
@@ -964,25 +1024,17 @@ declare module "@theme/Navbar/ColorModeToggle" {
   export default function NavbarColorModeToggle(props: Props): JSX.Element;
 }
 
-declare module "@theme/Navbar/Content" {
-  export default function NavbarContent(): JSX.Element;
-}
-
 declare module "@theme/Navbar/DocsVersion" {
   import type { DocsVersionDropdown } from "@nullbot/docusaurus-theme-nonepress";
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Props extends Omit<DocsVersionDropdown, "enabled"> {}
 
-  export default function DocsVersion(props: Props): JSX.Element;
+  export default function NavbarDocsVersion(props: Props): JSX.Element;
 }
 
-declare module "@theme/Navbar/Layout" {
-  export interface Props {
-    readonly children: React.ReactNode;
-  }
-
-  export default function NavbarLayout(props: Props): JSX.Element;
+declare module "@theme/Navbar/ExtraDropdown" {
+  export default function NavbarExtraDropdown(): JSX.Element | null;
 }
 
 declare module "@theme/Navbar/LocaleDropdown" {
@@ -992,41 +1044,41 @@ declare module "@theme/Navbar/LocaleDropdown" {
     readonly mobile?: boolean;
   }
 
-  export default function LocaleDropdown(props: Props): JSX.Element;
+  export default function NavbarLocaleDropdown(props: Props): JSX.Element;
 }
 
 declare module "@theme/Navbar/Logo" {
   export default function NavbarLogo(): JSX.Element;
 }
 
-declare module "@theme/Navbar/MobileSidebar" {
-  export default function NavbarMobileSidebar(): JSX.Element | null;
+declare module "@theme/Navbar/MobileMenu" {
+  export default function MobileMenu(): JSX.Element | null;
 }
 
-declare module "@theme/Navbar/MobileSidebar/Header" {
-  export default function NavbarMobileSidebarHeader(): JSX.Element;
+declare module "@theme/Navbar/MobileMenu/Header" {
+  export default function MobileMenuHeader(): JSX.Element;
 }
 
-declare module "@theme/Navbar/MobileSidebar/Layout" {
-  import type { ReactNode } from "react";
+declare module "@theme/Navbar/MobileMenu/PrimaryMenu" {
+  import type { Props as NavbarItemProps } from "@theme/Navbar/NavbarItem";
 
   export interface Props {
-    readonly header: ReactNode;
-    readonly primaryMenu: ReactNode;
-    readonly localeDropdown: ReactNode;
-    readonly colorModeToggle: ReactNode;
-    readonly socialLinks: ReactNode;
+    readonly items: NavbarItemProps[];
   }
 
-  export default function NavbarMobileSidebarLayout(props: Props): JSX.Element;
+  export default function MobileMenuPrimaryMenu(props: Props): JSX.Element;
 }
 
-declare module "@theme/Navbar/MobileSidebar/PrimaryMenu" {
-  export default function NavbarMobileSidebarPrimaryMenu(): JSX.Element;
+declare module "@theme/Navbar/MobileMenu/Toggle" {
+  export default function MobileMenuToggle(): JSX.Element;
 }
 
-declare module "@theme/Navbar/MobileSidebar/Toggle" {
-  export default function NavbarMobileSidebarToggle(): JSX.Element;
+declare module "@theme/Navbar/MobileSidebar" {
+  export default function MobileSidebar(): JSX.Element;
+}
+
+declare module "@theme/Navbar/MobileTOCPopdown" {
+  export default function MobileTOCPopdown(): JSX.Element | null;
 }
 
 declare module "@theme/Navbar/PrimaryNavbar" {
@@ -1044,12 +1096,8 @@ declare module "@theme/Navbar/Search" {
   export default function NavbarSearch(props: Props): JSX.Element;
 }
 
-declare module "@theme/Navbar/SecondaryMenu" {
-  export default function NavbarSecondaryMenu(): JSX.Element;
-}
-
 declare module "@theme/Navbar/SecondaryNavbar" {
-  export default function SecondaryNavbar(): JSX.Element;
+  export default function SecondaryNavbar(): JSX.Element | null;
 }
 
 declare module "@theme/Navbar/SocialLinks" {
@@ -1060,16 +1108,10 @@ declare module "@theme/Navbar/SocialLinks" {
     readonly mobile?: boolean;
   }
 
-  export default function SocialLinks(props: Props): JSX.Element;
-}
-
-declare module "@theme/Navbar/TOCPopdown" {
-  export default function TOCPopdown(): JSX.Element;
+  export default function NavbarSocialLinks(props: Props): JSX.Element;
 }
 
 declare module "@theme/NavbarItem" {
-  import type { ComponentProps } from "react";
-
   import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
   import type { Props as DocNavbarItemProps } from "@theme/NavbarItem/DocNavbarItem";
   import type { Props as DocSidebarNavbarItemProps } from "@theme/NavbarItem/DocSidebarNavbarItem";
@@ -1094,7 +1136,7 @@ declare module "@theme/NavbarItem" {
         readonly [key: string]: unknown;
       } & DefaultNavbarItemProps);
 
-  export type Props = ComponentProps<"a"> & NavbarItemProps;
+  export type Props = NavbarItemProps;
 
   export type NavbarItemType = Props["type"];
 
@@ -1131,10 +1173,7 @@ declare module "@theme/NavbarItem/ComponentTypes" {
 declare module "@theme/NavbarItem/DefaultNavbarItem" {
   import type { Props as NavbarNavLinkProps } from "@theme/NavbarItem/NavbarNavLink";
 
-  export type DesktopOrMobileNavBarItemProps = NavbarNavLinkProps & {
-    readonly isDropdownItem?: boolean;
-    readonly className?: string;
-  };
+  export type DesktopOrMobileNavBarItemProps = NavbarNavLinkProps;
 
   export interface Props extends DesktopOrMobileNavBarItemProps {
     readonly mobile?: boolean;
@@ -1192,12 +1231,14 @@ declare module "@theme/NavbarItem/DocsVersionNavbarItem" {
 }
 
 declare module "@theme/NavbarItem/DropdownNavbarItem" {
+  import type { Props as MenuCategoryProps } from "@theme/Menu/Category";
   import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
-  import type { Props as NavbarNavLinkProps } from "@theme/NavbarItem/NavbarNavLink";
 
-  export type DesktopOrMobileNavBarItemProps = NavbarNavLinkProps & {
+  export type DesktopOrMobileNavBarItemProps = Omit<
+    MenuCategoryProps,
+    "collapsed" | "collapsible" | "toggleCollapsed" | "items"
+  > & {
     readonly items: readonly LinkLikeNavbarItemProps[];
-    readonly className?: string;
   };
 
   export interface Props extends DesktopOrMobileNavBarItemProps {
@@ -1211,7 +1252,7 @@ declare module "@theme/NavbarItem/HtmlNavbarItem" {
   import type { Props as DefaultNavbarItemProps } from "@theme/NavbarItem/DefaultNavbarItem";
 
   export interface Props extends DefaultNavbarItemProps {
-    readonly value: string;
+    value: string;
   }
 
   export default function HtmlNavbarItem(props: Props): JSX.Element;
@@ -1220,9 +1261,9 @@ declare module "@theme/NavbarItem/HtmlNavbarItem" {
 declare module "@theme/NavbarItem/NavbarNavLink" {
   import type { ReactNode } from "react";
 
-  import type { Props as LinkProps } from "@docusaurus/Link";
+  import type { Props as MenuLinkProps } from "@theme/Menu/Link";
 
-  export interface Props extends LinkProps {
+  export interface Props extends MenuLinkProps {
     readonly activeBasePath?: string;
     readonly activeBaseRegex?: string;
     readonly exact?: boolean;
@@ -1272,6 +1313,61 @@ declare module "@theme/SearchTranslations" {
 
   const translations: DocSearchTranslations & { placeholder: string };
   export default translations;
+}
+
+declare module "@theme/Sidebar" {
+  export default function Sidebar(): JSX.Element;
+}
+
+declare module "@theme/SidebarItem" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly activePath: string;
+    readonly onItemClick?: (item: PropSidebarItem) => void;
+    readonly level: number;
+    readonly tabIndex?: number;
+    readonly item: PropSidebarItem;
+    readonly index: number;
+  }
+
+  export default function SidebarItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/SidebarItem/Link" {
+  import type { PropSidebarItemLink } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as SidebarItemProps } from "@theme/SidebarItem";
+
+  export interface Props extends SidebarItemProps {
+    readonly item: PropSidebarItemLink;
+  }
+
+  export default function SidebarItemLink(props: Props): JSX.Element;
+}
+
+declare module "@theme/SidebarItem/Html" {
+  import type { PropSidebarItemHtml } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as SidebarItemProps } from "@theme/SidebarItem";
+
+  export interface Props extends SidebarItemProps {
+    readonly item: PropSidebarItemHtml;
+  }
+
+  export default function SidebarItemHtml(props: Props): JSX.Element;
+}
+
+declare module "@theme/SidebarItem/Category" {
+  import type { PropSidebarItemCategory } from "@docusaurus/plugin-content-docs";
+
+  import type { Props as SidebarItemProps } from "@theme/SidebarItem";
+
+  export interface Props extends SidebarItemProps {
+    readonly item: PropSidebarItemCategory;
+  }
+
+  export default function SidebarItemCategory(props: Props): JSX.Element;
 }
 
 declare module "@theme/SkipToContent" {
@@ -1352,31 +1448,6 @@ declare module "@theme/TOC" {
   }
 
   export default function TOC(props: Props): JSX.Element;
-}
-
-declare module "@theme/TOCCollapsible" {
-  import type { TOCItem } from "@docusaurus/mdx-loader";
-
-  export interface Props {
-    readonly className?: string;
-    readonly minHeadingLevel?: number;
-    readonly maxHeadingLevel?: number;
-    readonly toc: readonly TOCItem[];
-  }
-
-  export default function TOCCollapsible(props: Props): JSX.Element;
-}
-
-declare module "@theme/TOCCollapsible/CollapseButton" {
-  import type { ComponentProps } from "react";
-
-  export interface Props extends ComponentProps<"button"> {
-    collapsed: boolean;
-  }
-
-  export default function TOCCollapsibleCollapseButton(
-    props: Props,
-  ): JSX.Element;
 }
 
 declare module "@theme/TOCInline" {

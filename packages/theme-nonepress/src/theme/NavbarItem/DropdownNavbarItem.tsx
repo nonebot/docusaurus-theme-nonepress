@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import clsx from "clsx";
 
+import Link from "@docusaurus/Link";
 import { isRegexpStringMatch, useCollapsible } from "@docusaurus/theme-common";
 import {
   isSamePath,
@@ -9,12 +10,13 @@ import {
 } from "@docusaurus/theme-common/internal";
 
 import IconDropdown from "@theme/Icon/Dropdown";
+import Menu from "@theme/Menu";
+import MenuCategory from "@theme/Menu/Category";
 import NavbarItem, { type LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 import type {
   DesktopOrMobileNavBarItemProps,
   Props,
 } from "@theme/NavbarItem/DropdownNavbarItem";
-import NavbarNavLink from "@theme/NavbarItem/NavbarNavLink";
 
 function isItemActive(
   item: LinkLikeNavbarItemProps,
@@ -41,42 +43,38 @@ function containsActiveItems(
 
 function DropdownNavbarItemDesktop({
   items,
+  label,
+  children,
   className,
+  activeClassName,
   ...props
 }: DesktopOrMobileNavBarItemProps) {
   return (
-    <li className="navbar-dropdown dropdown dropdown-hover dropdown-bottom">
-      <label tabIndex={0}>
-        <NavbarNavLink
-          aria-haspopup="true"
-          role="button"
-          href={props.to ? undefined : "#"}
-          className={clsx("navbar-label", className)}
-          {...props}
-          onClick={props.to ? undefined : (e) => e.preventDefault()}
-        >
-          {props.children ?? props.label}
-          <IconDropdown className="navbar-label-icon" />
-        </NavbarNavLink>
-      </label>
+    <li className="dropdown dropdown-hover dropdown-bottom navbar-dropdown">
+      <Link
+        aria-haspopup="true"
+        role="button"
+        href={props.to ? undefined : "#"}
+        className={clsx("menu-link menu-item", className)}
+        activeClassName={clsx("menu-link-active", activeClassName)}
+        {...props}
+        onClick={props.to ? undefined : (e) => e.preventDefault()}
+      >
+        {children ?? label}
+        <IconDropdown className="navbar-dropdown-icon" />
+      </Link>
 
-      <ul tabIndex={0} className="navbar-dropdown-content dropdown-content">
+      <Menu tabIndex={0} className="dropdown-content navbar-dropdown-content">
         {items.map((childItemProps, i) => (
-          <NavbarItem
-            isDropdownItem
-            activeClassName="navbar-dropdown-item-active"
-            {...childItemProps}
-            key={i}
-          />
+          <NavbarItem key={i} {...childItemProps} />
         ))}
-      </ul>
+      </Menu>
     </li>
   );
 }
 
 function DropdownNavbarItemMobile({
   items,
-  className,
   onClick,
   ...props
 }: DesktopOrMobileNavBarItemProps) {
@@ -94,37 +92,18 @@ function DropdownNavbarItemMobile({
     }
   }, [localPathname, containsActive, setCollapsed]);
 
+  const subItems = items.map((childItemProps, i) => (
+    <NavbarItem key={i} mobile onClick={onClick} {...childItemProps} />
+  ));
+
   return (
-    <li className="navbar-mobile-menu-item">
-      <details open={!collapsed}>
-        <summary>
-          <NavbarNavLink
-            role="button"
-            className={clsx("navbar-mobile-menu-link", className)}
-            activeClassName="navbar-mobile-menu-link-active"
-            {...props}
-            onClick={(e) => {
-              e.preventDefault();
-              toggleCollapsed();
-            }}
-          >
-            {props.children ?? props.label}
-          </NavbarNavLink>
-        </summary>
-        <ul>
-          {items.map((childItemProps, i) => (
-            <NavbarItem
-              key={i}
-              mobile
-              isDropdownItem
-              onClick={onClick}
-              activeClassName="navbar-mobile-menu-link-active"
-              {...childItemProps}
-            />
-          ))}
-        </ul>
-      </details>
-    </li>
+    <MenuCategory
+      {...props}
+      collapsed={collapsed}
+      collapsible={true}
+      toggleCollapsed={toggleCollapsed}
+      items={subItems}
+    />
   );
 }
 

@@ -77,9 +77,13 @@ const config = {
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "main",
+            type: "docsMenu",
             label: "Contents",
+            category: "guide",
+          },
+          {
+            label: "NoneBot",
+            href: "https://nonebot.dev",
           },
         ],
       },
@@ -149,6 +153,10 @@ const config = {
               icon: ["fab", "github"],
               href: "https://github.com/nonebot/docusaurus-theme-nonepress",
             },
+            {
+              icon: ["fab", "npm"],
+              href: "https://www.npmjs.com/org/nullbot",
+            },
           ],
         },
         footer: {
@@ -156,6 +164,10 @@ const config = {
             {
               icon: ["fab", "github"],
               href: "https://github.com/nonebot/docusaurus-theme-nonepress",
+            },
+            {
+              icon: ["fab", "npm"],
+              href: "https://www.npmjs.com/org/nullbot",
             },
           ],
         },

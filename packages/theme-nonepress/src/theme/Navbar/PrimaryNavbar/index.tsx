@@ -1,31 +1,27 @@
 import React from "react";
 
-import { ErrorCauseBoundary } from "@docusaurus/theme-common";
-import {
-  useNavbarMobileSidebar,
-  isDocsPluginEnabled,
-} from "@docusaurus/theme-common/internal";
+import clsx from "clsx";
 
+import { ErrorCauseBoundary } from "@docusaurus/theme-common";
+import { isDocsPluginEnabled } from "@docusaurus/theme-common/internal";
+
+import "./styles.css";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+import Menu from "@theme/Menu";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import NavbarDocsVersion from "@theme/Navbar/DocsVersion";
+import NavbarExtraDropdown from "@theme/Navbar/ExtraDropdown";
 import NavbarLocaleDropdown from "@theme/Navbar/LocaleDropdown";
 import NavbarLogo from "@theme/Navbar/Logo";
-import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
+import NavbarMobileMenuToggle from "@theme/Navbar/MobileMenu/Toggle";
 import NavbarSearch from "@theme/Navbar/Search";
 import NavbarSocialLinks from "@theme/Navbar/SocialLinks";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
 import SearchBar from "@theme/SearchBar";
 
-function NavbarItems({
-  items,
-  className,
-}: {
-  items: NavbarItemConfig[];
-  className?: string;
-}): JSX.Element {
+function NavbarItems({ items }: { items: NavbarItemConfig[] }): JSX.Element {
   return (
-    <>
+    <Menu className="navbar-primary-menu">
       {items.map((item, i) => (
         <ErrorCauseBoundary
           key={i}
@@ -38,10 +34,13 @@ ${JSON.stringify(item, null, 2)}`,
             )
           }
         >
-          <NavbarItem className={className} {...item} />
+          <NavbarItem
+            {...item}
+            className={clsx("navbar-primary-item", item.className)}
+          />
         </ErrorCauseBoundary>
       ))}
-    </>
+    </Menu>
   );
 }
 
@@ -58,8 +57,6 @@ export default function PrimaryNavbar(): JSX.Element {
 
   const { socialLinks } = themeConfig.nonepress.navbar;
 
-  const mobileSidebar = useNavbarMobileSidebar();
-
   const items = themeConfig.navbar.items as NavbarItemConfig[];
 
   const searchBarEnabled = Boolean(themeConfig.algolia);
@@ -67,34 +64,49 @@ export default function PrimaryNavbar(): JSX.Element {
   return (
     <div className="navbar-primary-layout">
       <div className="navbar-primary-content">
+        {/* left items */}
         <NavbarLogo />
+
+        {/* docs version dropdown */}
         {isDocsPluginEnabled && docsVersionEnabled && (
           <NavbarDocsVersion {...docsVersionDropdown} />
         )}
+
+        {/* search bar */}
         {searchBarEnabled && (
           <NavbarSearch>
             <SearchBar />
           </NavbarSearch>
         )}
+
+        {/* right items */}
         <div className="navbar-primary-items">
+          {/* main navbar items */}
           <NavbarItems items={items} />
+
+          {/* locale dropdown */}
           {localeDropdownEnabled && (
-            <div className="navbar-group">
+            <div className="navbar-primary-group">
               <NavbarLocaleDropdown {...localeDropdown} />
             </div>
           )}
+
+          {/* color mode toggler */}
           {!disableColorMode && (
-            <div className="navbar-group">
+            <div className="navbar-primary-group">
               <NavbarColorModeToggle />
             </div>
           )}
+
+          {/* social links */}
           {socialLinks && (
-            <div className="navbar-group">
+            <div className="navbar-primary-group">
               <NavbarSocialLinks links={socialLinks} />
             </div>
           )}
         </div>
-        {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
+        <NavbarExtraDropdown />
+        <NavbarMobileMenuToggle />
       </div>
     </div>
   );

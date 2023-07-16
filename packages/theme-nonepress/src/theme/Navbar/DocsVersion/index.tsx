@@ -9,7 +9,9 @@ import { useLocation } from "@docusaurus/router";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
 import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
 
+import "./styles.css";
 import IconDropdown from "@theme/Icon/Dropdown";
+import Menu from "@theme/Menu";
 import type { Props } from "@theme/Navbar/DocsVersion";
 import NavbarItem from "@theme/NavbarItem";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
@@ -17,7 +19,7 @@ import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 const getVersionMainDoc = (version: GlobalVersion) =>
   version.docs.find((doc) => doc.id === version.mainDocId)!;
 
-export default function DocsVersion({
+export default function NavbarDocsVersion({
   docsPluginId,
   dropdownItemsBefore,
   dropdownItemsAfter,
@@ -29,7 +31,7 @@ export default function DocsVersion({
   const activeDocContext = useActiveDocContext(docsPluginId);
   const versions = useVersions(docsPluginId);
   const { savePreferredVersionName } = useDocsPreferredVersion(docsPluginId);
-  const versionLinks = versions.map((version) => {
+  const versionLinks: LinkLikeNavbarItemProps[] = versions.map((version) => {
     // We try to link to the same doc, in another version
     // When not possible, fallback to the "main doc" of the version
     const versionDoc =
@@ -42,6 +44,8 @@ export default function DocsVersion({
           <span className="navbar-version-badge"></span>
         </>
       ),
+      className: "navbar-version-link",
+      activeClassName: "version-active",
       // preserve ?search#hash suffix on version switches
       to: `${versionDoc.path}${search}${hash}`,
       // current active version or fallback to preferred/default version
@@ -50,7 +54,7 @@ export default function DocsVersion({
       onClick: () => savePreferredVersionName(version.name),
     };
   });
-  const items: LinkLikeNavbarItemProps[] = [
+  const items = [
     ...dropdownItemsBefore,
     ...versionLinks,
     ...dropdownItemsAfter,
@@ -62,17 +66,11 @@ export default function DocsVersion({
         {dropdownLabel}
         <IconDropdown className="navbar-version-label-icon" />
       </label>
-      <ul tabIndex={0} className="navbar-version-content dropdown-content">
-        {items.map((item, index) => (
-          <NavbarItem
-            key={index}
-            isDropdownItem
-            activeClassName="version-active"
-            className="navbar-version-link"
-            {...item}
-          />
+      <Menu tabIndex={0} className="navbar-version-content dropdown-content">
+        {items.map((item, i) => (
+          <NavbarItem key={i} {...item} />
         ))}
-      </ul>
+      </Menu>
     </div>
   );
 }

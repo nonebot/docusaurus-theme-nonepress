@@ -1,5 +1,5 @@
 import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
-import { useActiveVersion } from "@docusaurus/plugin-content-docs/client";
+import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
 import { usePluginData } from "@docusaurus/useGlobalData";
 
 export type Doc = {
@@ -33,26 +33,27 @@ export const useDocMenuData = (): GlobalPluginData | undefined =>
     | GlobalPluginData
     | undefined;
 
-export const useActiveDocMenu = (
+export const useVersionedDocMenu = (
+  version: string,
   docPluginID?: string,
 ): GlobalDocsVersion | undefined => {
   const data = useDocMenuData();
-  const version = useActiveVersion(docPluginID);
 
-  if (!(data && version)) {
+  if (!data) {
     return;
   }
 
   return data[docPluginID ?? DEFAULT_PLUGIN_ID]?.loadedVersions.find(
-    (menuVersion) => menuVersion.versionName === version.name,
+    (menuVersion) => menuVersion.versionName === version,
   );
 };
 
-export const useActiveDocCategory = (
+export const useVersionedDocCategory = (
+  version: string,
   category: string,
   docPluginID: string | undefined,
 ): DocsCategory | undefined => {
-  const data = useActiveDocMenu(docPluginID);
+  const data = useVersionedDocMenu(version, docPluginID);
   if (!data) {
     return;
   }

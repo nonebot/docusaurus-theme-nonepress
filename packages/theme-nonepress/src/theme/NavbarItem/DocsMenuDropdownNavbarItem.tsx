@@ -9,12 +9,13 @@ import {
   useActiveDocContext,
 } from "@docusaurus/plugin-content-docs/client";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   useDocsMenuCategory,
   useDocsMenuVersions,
 } from "@nullbot/docusaurus-theme-nonepress/client";
+import IconDropdown from "@theme/Icon/Dropdown";
+import DefaultNavbarItem from "@theme/NavbarItem/DefaultNavbarItem";
 import type {
   Props,
   DesktopOrMobileNavBarItemProps,
@@ -24,21 +25,42 @@ const getVersionMainDoc = (version: GlobalVersion) =>
   version.docs.find((doc) => doc.id === version.mainDocId)!;
 
 function DocsMenuDropdownNavbarItemDesktop({
-  docId,
   label,
+  children,
   className,
+  activeClassName,
+  docId,
   category,
   docsPluginId,
-}: DesktopOrMobileNavBarItemProps): JSX.Element | null {
+  ...props
+}: DesktopOrMobileNavBarItemProps): JSX.Element {
   const { link, docs } = useDocsMenuCategory(category, docId, docsPluginId);
   const versions = useDocsMenuVersions(docsPluginId);
-
-  const { savePreferredVersionName } = useDocsPreferredVersion(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
+  const { savePreferredVersionName } = useDocsPreferredVersion(docsPluginId);
+
+  // category has no docs
+  if (!docs) {
+    return (
+      <DefaultNavbarItem
+        {...props}
+        isActive={() => activeDocContext.activeDoc?.path === link}
+        label={label ?? category}
+        to={link}
+      />
+    );
+  }
+
+  const docsInfo = docs.map((doc) => ({
+    to: doc.permalink,
+    title: doc.title,
+    description: doc.description,
+    isActive: () => activeDocContext.activeDoc?.path === doc.permalink,
+  }));
 
   const getVersionInfo = (version: GlobalVersion) => {
     const versionDoc =
-      activeDocContext?.alternateDocVersions[version.name] ||
+      activeDocContext.alternateDocVersions[version.name] ||
       getVersionMainDoc(version);
     return {
       label: version.label,
@@ -59,10 +81,10 @@ function DocsMenuDropdownNavbarItemDesktop({
       description="The description used for the stable version link in the docs menu."
       values={{
         branchName: (
-          <strong className="text-medium text-indigo-800 dark:text-indigo-300">
+          <strong className="navbar-docs-menu-version-link-branch-stable">
             <Translate
-              id="theme.docsMenu.stableVersion.branchName"
-              description="The branch name used for the stable version link in the docs menu."
+              id="theme.docsMenu.stableVersion.branchDescription"
+              description="The branch description used for the stable version link in the docs menu."
             >
               stable
             </Translate>
@@ -79,10 +101,10 @@ function DocsMenuDropdownNavbarItemDesktop({
       description="The description used for the next version link in the docs menu."
       values={{
         branchName: (
-          <strong className="text-medium text-indigo-800 dark:text-indigo-300">
+          <strong className="navbar-docs-menu-version-link-branch-next">
             <Translate
-              id="theme.docsMenu.nextVersion.branchName"
-              description="The branch name used for the next version link in the docs menu."
+              id="theme.docsMenu.nextVersion.branchDescription"
+              description="The branch description used for the next version link in the docs menu."
             >
               in-development
             </Translate>
@@ -95,85 +117,84 @@ function DocsMenuDropdownNavbarItemDesktop({
   );
 
   return (
-    <li className={clsx("dropdown dropdown-hover group", className)}>
+    <li className="dropdown dropdown-hover dropdown-bottom navbar-dropdown">
       <Link
+        tabIndex={0}
+        aria-haspopup="true"
+        role="button"
         to={link}
-        className="self-center transition duration-300 opacity-60 group-hover:opacity-100"
+        className={clsx("menu-link menu-item", className)}
+        activeClassName={clsx("menu-link-active", activeClassName)}
+        {...props}
       >
-        {label}
+        {children ?? label}
+        <IconDropdown className="navbar-dropdown-icon" />
       </Link>
-      {docs && (
-        <>
-          <FontAwesomeIcon
-            className="ml-2 text-xl opacity-60 group-hover:opacity-100 transition ease-in-out duration-150"
-            icon={["fas", "chevron-down"]}
-          />
-          <div
-            className={clsx(
-              "dropdown-content z-10 transform left-1/2 -translate-x-1/2 w-[28rem] lg:w-[48rem]",
-            )}
-          >
-            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-              <div className="relative grid auto-cols-fr gap-6 bg-light-nonepress-100 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-3 dark:bg-dark-nonepress-100">
-                {docs.map((doc, index) => (
-                  <Link
-                    key={index}
-                    to={doc.permalink}
-                    className="-m-3 p-3 flex items-start rounded-lg whitespace-nowrap hover:bg-light-nonepress-200 transition ease-in-out duration-150 dark:hover:bg-dark-nonepress-200"
-                  >
-                    <div className="max-w-full">
-                      <p className="text-base font-medium">{doc.title}</p>
-                      <p className="mt-1 text-sm overflow-hidden text-ellipsis opacity-60">
-                        {doc.description}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+      <ul className="dropdown-content navbar-dropdown-content navbar-docs-menu-content">
+        <div className="navbar-docs-menu-docs">
+          {docsInfo.map((doc, index) => (
+            <Link
+              key={index}
+              isNavLink
+              to={doc.to}
+              className="navbar-docs-menu-docs-link"
+              activeClassName="navbar-docs-menu-docs-link-active"
+              isActive={doc.isActive}
+            >
+              <div className="max-w-full">
+                <p className="navbar-docs-menu-docs-link-title">{doc.title}</p>
+                <p className="navbar-docs-menu-docs-link-description">
+                  {doc.description}
+                </p>
               </div>
-              {versionInfo && (
-                <div className="p-5 bg-light-nonepress-200 sm:p-8 dark:bg-dark-nonepress-200">
-                  <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-2">
-                    <Link
-                      to={versionInfo.latest.to}
-                      onClick={versionInfo.latest.onClick}
-                      className="-m-3 p-3 flow-root rounded-md hover:bg-light-nonepress-300 transition ease-in-out duration-150 dark:hover:bg-dark-nonepress-300"
-                    >
-                      <span className="flex items-center">
-                        <span className="text-base font-medium">
-                          {versionInfo.latest.label}
-                        </span>
-                        <span className="ml-3 inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-indigo-100 text-indigo-800 dark:text-indigo-300 dark:bg-transparent dark:border dark:border-indigo-300">
-                          Stable
-                        </span>
-                      </span>
-                      <span className="mt-1 block text-sm opacity-80">
-                        {stableInfo}
-                      </span>
-                    </Link>
-                    <Link
-                      to={versionInfo.next.to}
-                      onClick={versionInfo.next.onClick}
-                      className="-m-3 p-3 flow-root rounded-md hover:bg-light-nonepress-300 transition ease-in-out duration-150 dark:hover:bg-dark-nonepress-300"
-                    >
-                      <span className="flex items-center">
-                        <span className="text-base font-medium">
-                          {versionInfo.next.label}
-                        </span>
-                        <span className="ml-3 inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-red-100 text-red-800 dark:bg-transparent dark:text-red-300 dark:border dark:border-red-300">
-                          Development
-                        </span>
-                      </span>
-                      <span className="mt-1 block text-sm opacity-80">
-                        {nextInfo}
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+            </Link>
+          ))}
+        </div>
+        {versionInfo && (
+          <div className="navbar-docs-menu-version">
+            <Link
+              to={versionInfo.latest.to}
+              onClick={versionInfo.latest.onClick}
+              className="navbar-docs-menu-version-link"
+            >
+              <h4 className="navbar-docs-menu-version-link-title">
+                {versionInfo.latest.label}
+                <span className="navbar-docs-menu-version-link-badge navbar-docs-menu-version-link-badge-stable">
+                  <Translate
+                    id="theme.docsMenu.stableVersion.branchName"
+                    description="The branch name used for the stable version link in the docs menu."
+                  >
+                    Stable
+                  </Translate>
+                </span>
+              </h4>
+              <span className="navbar-docs-menu-version-link-description">
+                {stableInfo}
+              </span>
+            </Link>
+            <Link
+              to={versionInfo.next.to}
+              onClick={versionInfo.next.onClick}
+              className="navbar-docs-menu-version-link"
+            >
+              <h4 className="navbar-docs-menu-version-link-title">
+                {versionInfo.next.label}
+                <span className="navbar-docs-menu-version-link-badge navbar-docs-menu-version-link-badge-next">
+                  <Translate
+                    id="theme.docsMenu.nextVersion.branchName"
+                    description="The branch name used for the next version link in the docs menu."
+                  >
+                    Development
+                  </Translate>
+                </span>
+              </h4>
+              <span className="navbar-docs-menu-version-link-description">
+                {nextInfo}
+              </span>
+            </Link>
           </div>
-        </>
-      )}
+        )}
+      </ul>
     </li>
   );
 }
@@ -182,23 +203,19 @@ function DocsMenuDropdownNavbarItemMobile({
   docId,
   docsPluginId,
   category,
-  className,
   label,
+  ...props
 }: DesktopOrMobileNavBarItemProps): JSX.Element {
-  const { link } = useDocsMenuCategory(category, docId, docsPluginId);
+  const { activeDoc } = useActiveDocContext(docsPluginId);
+  const { link, autoLink } = useDocsMenuCategory(category, docId, docsPluginId);
 
   return (
-    <li className={className}>
-      <Link
-        to={link}
-        className={clsx(
-          "block px-3 py-3 rounded-md hover:bg-light-nonepress-200 dark:hover:bg-dark-nonepress-200 dark:hover:opacity-100",
-          !label ? "text-2xl" : "text-base font-medium uppercase",
-        )}
-      >
-        <span className="truncate">{label}</span>
-      </Link>
-    </li>
+    <DefaultNavbarItem
+      {...props}
+      isActive={() => activeDoc?.path === link}
+      label={label ?? category}
+      to={link ?? autoLink}
+    />
   );
 }
 

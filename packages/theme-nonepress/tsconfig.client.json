@@ -16,6 +16,7 @@
     "src/prism-include-languages.ts",
     "src/nprogress.ts",
     "src/theme",
+    "src/contexts",
     "src/*.d.ts"
   ]
 }

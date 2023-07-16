@@ -1,0 +1,10 @@
+.navbar-search {
+  @apply ml-auto lg:ml-4;
+  @apply order-last lg:order-none;
+
+  @media screen(lg) {
+    &::before {
+      @apply mx-2 w-px h-full bg-base-content/10 content-[""];
+    }
+  }
+}
