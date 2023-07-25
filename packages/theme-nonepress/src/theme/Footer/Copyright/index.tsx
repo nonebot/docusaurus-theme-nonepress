@@ -15,7 +15,7 @@ export default function FooterCopyright({ copyright }: Props): JSX.Element {
 
         dangerouslySetInnerHTML={{ __html: copyright }}
       />
-      <div>
+      <div className="footer-support">
         Powered by
         <Link
           to="https://docusaurus.io/"
@@ -25,7 +25,7 @@ export default function FooterCopyright({ copyright }: Props): JSX.Element {
             description: "The title attribute for the Docusaurus logo link",
           })}
         >
-          <IconDocusaurus className="inline-block w-4 h-4" />
+          <IconDocusaurus className="footer-support-icon" />
         </Link>
         <Link
           to="https://reactjs.org/"
@@ -35,7 +35,7 @@ export default function FooterCopyright({ copyright }: Props): JSX.Element {
             description: "The title attribute for the React logo link",
           })}
         >
-          <IconReact className="inline-block w-4 h-4" />
+          <IconReact className="footer-support-icon" />
         </Link>
       </div>
     </>

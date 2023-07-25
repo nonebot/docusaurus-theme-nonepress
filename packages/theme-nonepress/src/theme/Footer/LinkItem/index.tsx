@@ -14,7 +14,7 @@ export default function FooterLinkItem({ item }: Props): JSX.Element {
 
   return (
     <Link
-      className="opacity-80 hover:opacity-100 transition-opacity"
+      className="footer-link"
       {...(href
         ? {
             href: prependBaseUrlToHref ? normalizedHref : href,
@@ -26,7 +26,7 @@ export default function FooterLinkItem({ item }: Props): JSX.Element {
     >
       {label}
       {href && !isInternalUrl(href) && (
-        <IconExternalLink className="ml-2 w-4 h-4 fill-current" />
+        <IconExternalLink className="footer-link-icon" />
       )}
     </Link>
   );

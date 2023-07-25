@@ -1,32 +1,66 @@
 import React from "react";
 
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+import "./styles.css";
+import clsx from "clsx";
+
+import {
+  useSiteConfig,
+  useNonepressThemeConfig,
+} from "@nullbot/docusaurus-theme-nonepress/client";
 import FooterCopyright from "@theme/Footer/Copyright";
-import FooterLayout from "@theme/Footer/Layout";
 import FooterLinks from "@theme/Footer/Links";
 import FooterLogo from "@theme/Footer/Logo";
-import FooterSocialLink from "@theme/Footer/SocialLink";
+import FooterSocialLinks from "@theme/Footer/SocialLinks";
 
 function Footer(): JSX.Element | null {
+  const { tagline } = useSiteConfig();
   const {
     footer,
-    nonepress: { footer: { socialLinks } = {} },
+    nonepress: {
+      footer: { socialLinks },
+    },
   } = useNonepressThemeConfig();
+
   if (!footer) {
     return null;
   }
+
   const { copyright, links, logo, style } = footer;
 
   return (
-    <FooterLayout
-      style={style}
-      links={links?.length && <FooterLinks links={links} />}
-      logo={logo && <FooterLogo logo={logo} />}
-      socialLinks={
-        socialLinks?.length && <FooterSocialLink socialLinks={socialLinks} />
-      }
-      copyright={copyright && <FooterCopyright copyright={copyright} />}
-    />
+    <div
+      className={clsx(
+        "footer-wrapper",
+        style === "dark" && "footer-wrapper-dark",
+      )}
+    >
+      <div className="footer-container">
+        <footer
+          className={clsx(
+            "footer footer-content",
+            links.length === 0 && "footer-center",
+          )}
+        >
+          {(logo || socialLinks) && (
+            <div className="gap-4">
+              {logo && <FooterLogo logo={logo} />}
+              {logo && <p>{tagline}</p>}
+              {socialLinks?.length && (
+                <FooterSocialLinks socialLinks={socialLinks} />
+              )}
+            </div>
+          )}
+          {links.length && <FooterLinks links={links} />}
+        </footer>
+        {copyright && (
+          <footer className="footer footer-center footer-copyright">
+            <div>
+              <FooterCopyright copyright={copyright} />
+            </div>
+          </footer>
+        )}
+      </div>
+    </div>
   );
 }
 

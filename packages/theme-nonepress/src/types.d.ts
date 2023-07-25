@@ -515,20 +515,6 @@ declare module "@theme/Footer/Copyright" {
   export default function FooterCopyright(props: Props): JSX.Element;
 }
 
-declare module "@theme/Footer/Layout" {
-  import type { ReactNode } from "react";
-
-  export interface Props {
-    readonly style: "light" | "dark";
-    readonly links: ReactNode;
-    readonly logo: ReactNode;
-    readonly socialLinks: ReactNode;
-    readonly copyright: ReactNode;
-  }
-
-  export default function FooterLayout(props: Props): JSX.Element;
-}
-
 declare module "@theme/Footer/LinkItem" {
   import type { FooterLinkItem } from "@docusaurus/theme-common";
 
@@ -579,14 +565,14 @@ declare module "@theme/Footer/Logo" {
   export default function FooterLogo(props: Props): JSX.Element;
 }
 
-declare module "@theme/Footer/SocialLink" {
+declare module "@theme/Footer/SocialLinks" {
   import type { SocialLink } from "@nullbot/docusaurus-theme-nonepress";
 
   export interface Props {
     readonly socialLinks: SocialLink[];
   }
 
-  export default function FooterSocialLink(props: Props): JSX.Element;
+  export default function FooterSocialLinks(props: Props): JSX.Element;
 }
 
 declare module "@theme/Heading" {
