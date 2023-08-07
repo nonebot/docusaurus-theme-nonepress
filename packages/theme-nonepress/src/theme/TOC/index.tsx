@@ -3,22 +3,33 @@ import React from "react";
 import clsx from "clsx";
 
 import "./styles.css";
+import { useWindowSize } from "@nullbot/docusaurus-theme-nonepress/client";
+import { useTOCContent } from "@nullbot/docusaurus-theme-nonepress/contexts";
 import type { Props } from "@theme/TOC";
-import TOCItems from "@theme/TOCItems";
+import TOCContent from "@theme/TOC/Content";
 
-// Using a custom className
-// This prevents TOCInline/TOCCollapsible getting highlighted by mistake
-const LINK_CLASS_NAME = "toc-link";
-const LINK_ACTIVE_CLASS_NAME = "toc-link-active";
+export default function TOC({ className }: Props): JSX.Element | null {
+  const windowSize = useWindowSize();
+  const isMobile = windowSize === "mobile" || windowSize === "ssr";
 
-export default function TOC({ className, ...props }: Props): JSX.Element {
+  const [tocContent] = useTOCContent();
+
+  if (
+    isMobile ||
+    !tocContent ||
+    tocContent.hideTableOfContents ||
+    tocContent.toc.length === 0
+  ) {
+    return null;
+  }
+
   return (
-    <div className={clsx("toc thin-scrollbar", className)}>
-      <TOCItems
-        {...props}
-        linkClassName={LINK_CLASS_NAME}
-        linkActiveClassName={LINK_ACTIVE_CLASS_NAME}
-      />
+    <div className={clsx("toc", className)}>
+      <div className="toc-container">
+        <div className="toc-content thin-scrollbar">
+          <TOCContent {...tocContent} />
+        </div>
+      </div>
     </div>
   );
 }

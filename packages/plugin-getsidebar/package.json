@@ -1,0 +1,39 @@
+{
+  "name": "@nullbot/docusaurus-plugin-getsidebar",
+  "version": "2.1.0",
+  "description": "DocMenu plugin for Nonepress theme",
+  "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    "./src/*": "./src/*",
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "default": "./lib/client/index.js"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "types": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nonebot/docusaurus-theme-nonepress.git",
+    "directory": "packages/plugin-getsidebar"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/plugin-content-docs": "^2.4.0"
+  },
+  "devDependencies": {
+    "@docusaurus/types": "^2.4.0",
+    "@docusaurus/module-type-aliases": "2.4.0"
+  }
+}

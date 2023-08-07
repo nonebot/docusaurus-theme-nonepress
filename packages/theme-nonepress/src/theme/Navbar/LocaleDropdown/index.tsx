@@ -55,9 +55,7 @@ export default function NavbarLocaleDropdown({
   return (
     <Menu className={clsx("navbar-locales", !mobile && "navbar-primary-menu")}>
       <DropdownNavbarItem
-        className={clsx(
-          mobile ? "navbar-locales-label" : "navbar-primary-item",
-        )}
+        className={clsx(!mobile && "navbar-primary-item")}
         items={items}
         mobile={mobile}
       >

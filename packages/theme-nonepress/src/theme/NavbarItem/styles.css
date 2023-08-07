@@ -7,7 +7,7 @@
 
     &-content {
       @apply rounded-md bg-base-100 shadow-lg border border-base-200;
-      @apply w-fit z-10 left-1/2 -translate-x-1/2;
+      @apply w-max z-10 m-0 left-1/2 -translate-x-1/2;
     }
   }
 

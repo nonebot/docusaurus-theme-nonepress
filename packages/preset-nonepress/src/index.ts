@@ -30,6 +30,8 @@ export default function preset(
     docs,
     pages,
     sitemap,
+    docsMenu,
+    getSidebar,
     theme,
     gtag,
     googleTagManager,
@@ -45,7 +47,12 @@ export default function preset(
   const plugins: PluginConfig[] = [];
   if (docs !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-docs", docs));
-    plugins.push("@nullbot/docusaurus-plugin-docsmenu");
+    if (docsMenu !== false) {
+      plugins.push("@nullbot/docusaurus-plugin-docsmenu");
+    }
+    if (getSidebar !== false) {
+      plugins.push("@nullbot/docusaurus-plugin-getsidebar");
+    }
   }
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));

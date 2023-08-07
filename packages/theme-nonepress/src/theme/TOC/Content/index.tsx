@@ -7,18 +7,19 @@ import {
 } from "@docusaurus/theme-common/internal";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
-import type { Props } from "@theme/TOCItems";
-import TOCItemTree from "@theme/TOCItems/Tree";
+import type { Props } from "@theme/TOC/Content";
+import TOCTree from "@theme/TOC/Tree";
 
-export default function TOCItems({
+const TOC_LINK_CLASS = "toc-link";
+const TOC_LINK_ACTIVE_CLASS = "menu-link-active";
+
+export default function TOCContent({
   toc,
-  className = "py-2 border-l border-gray-300 dark:border-gray-600",
-  linkClassName = "toc-link",
-  linkActiveClassName = "toc-link-active",
   minHeadingLevel: minHeadingLevelOption,
   maxHeadingLevel: maxHeadingLevelOption,
-  ...props
-}: Props): JSX.Element | null {
+  linkClassName = TOC_LINK_CLASS,
+  linkActiveClassName = TOC_LINK_ACTIVE_CLASS,
+}: Props): JSX.Element {
   const themeConfig = useNonepressThemeConfig();
 
   const minHeadingLevel =
@@ -46,11 +47,10 @@ export default function TOCItems({
   useTOCHighlight(tocHighlightConfig);
 
   return (
-    <TOCItemTree
-      toc={tocTree}
-      className={className}
-      linkClassName={linkClassName}
-      {...props}
-    />
+    <ul className="menu menu-sm">
+      <li>
+        <TOCTree toc={tocTree} linkClassName={linkClassName} />
+      </li>
+    </ul>
   );
 }

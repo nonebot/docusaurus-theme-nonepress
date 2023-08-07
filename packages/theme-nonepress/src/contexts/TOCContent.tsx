@@ -3,17 +3,12 @@ import React, { useContext, useState, type ReactNode, useEffect } from "react";
 import type { TOCItem } from "@docusaurus/mdx-loader";
 import { ReactContextError } from "@docusaurus/theme-common";
 
-type Content =
-  | {
-      readonly toc: readonly TOCItem[];
-      readonly minHeadingLevel: number;
-      readonly maxHeadingLevel: number;
-    }
-  | {
-      readonly toc: null;
-      readonly minHeadingLevel: null;
-      readonly maxHeadingLevel: null;
-    };
+type Content = {
+  readonly toc: readonly TOCItem[];
+  readonly minHeadingLevel: number;
+  readonly maxHeadingLevel: number;
+  readonly hideTableOfContents: boolean;
+} | null;
 
 type ContextValue = [
   content: Content,
@@ -27,11 +22,7 @@ export function TOCContentProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const value = useState<Content>({
-    toc: null,
-    minHeadingLevel: null,
-    maxHeadingLevel: null,
-  });
+  const value = useState<Content>(null);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
@@ -48,22 +39,20 @@ export function TOCContentFiller({
   toc,
   minHeadingLevel = 2,
   maxHeadingLevel = 3,
+  hideTableOfContents = false,
 }: {
   readonly toc: readonly TOCItem[];
   readonly minHeadingLevel?: number;
   readonly maxHeadingLevel?: number;
+  readonly hideTableOfContents?: boolean;
 }): null {
   const [, setContent] = useTOCContent();
 
   useEffect(() => {
-    setContent({ toc, minHeadingLevel, maxHeadingLevel });
-  }, [setContent, toc, minHeadingLevel, maxHeadingLevel]);
+    setContent({ toc, minHeadingLevel, maxHeadingLevel, hideTableOfContents });
+  }, [setContent, toc, minHeadingLevel, maxHeadingLevel, hideTableOfContents]);
 
-  useEffect(
-    () => () =>
-      setContent({ toc: null, minHeadingLevel: null, maxHeadingLevel: null }),
-    [setContent],
-  );
+  useEffect(() => () => setContent(null), [setContent]);
 
   return null;
 }

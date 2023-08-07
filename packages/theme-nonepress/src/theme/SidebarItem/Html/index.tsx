@@ -4,24 +4,19 @@ import clsx from "clsx";
 
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
-import type { Props } from "@theme/DocSidebarItem/Html";
+import MenuHtml from "@theme/Menu/Html";
+import type { Props } from "@theme/SidebarItem/Html";
 
-export default function DocSidebarItemHtml({
-  item,
-  level,
-  index,
-}: Props): JSX.Element {
-  const { value, defaultStyle, className } = item;
+export default function SidebarItemHtml({ item, level }: Props): JSX.Element {
+  const { value, className } = item;
   return (
-    <li
+    <MenuHtml
       className={clsx(
         ThemeClassNames.docs.docSidebarItemLink,
         ThemeClassNames.docs.docSidebarItemLinkLevel(level),
-        defaultStyle && ["", ""],
         className,
       )}
-      key={index}
-      dangerouslySetInnerHTML={{ __html: value }}
+      html={value}
     />
   );
 }

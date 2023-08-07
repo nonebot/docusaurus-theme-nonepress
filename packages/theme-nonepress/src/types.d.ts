@@ -290,14 +290,6 @@ declare module "@theme/DocItem/Paginator" {
   export default function DocItemPaginator(): JSX.Element;
 }
 
-declare module "@theme/DocItem/TOC/Desktop" {
-  export default function DocItemTOCDesktop(): JSX.Element;
-}
-
-declare module "@theme/DocItem/TOC/Mobile" {
-  export default function DocItemTOCMobile(): JSX.Element;
-}
-
 declare module "@theme/DocPage/Layout" {
   import type { ReactNode } from "react";
 
@@ -952,7 +944,7 @@ declare module "@theme/Menu/Category" {
     readonly items: React.ReactNode;
     readonly collapsed?: boolean;
     readonly collapsible?: boolean;
-    readonly toggleCollapsed?: () => void;
+    readonly setCollapsed?: (collapsed: boolean) => void;
     readonly wrapperClassName?: string;
   }
 
@@ -1262,6 +1254,18 @@ declare module "@theme/NavbarItem/NavbarNavLink" {
   export default function NavbarNavLink(props: Props): JSX.Element;
 }
 
+declare module "@theme/Page" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    children?: ReactNode;
+    hideSidebar?: boolean;
+    hideTableOfContents?: boolean;
+  }
+
+  export default function Page(props: Props): JSX.Element;
+}
+
 declare module "@theme/PaginatorNavLink" {
   import type { ReactNode } from "react";
 
@@ -1302,19 +1306,44 @@ declare module "@theme/SearchTranslations" {
 }
 
 declare module "@theme/Sidebar" {
-  export default function Sidebar(): JSX.Element;
+  export interface Props {
+    readonly className?: string;
+  }
+
+  export default function Sidebar(props: Props): JSX.Element | null;
+}
+
+declare module "@theme/Sidebar/Content" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly path: string;
+    readonly items: readonly PropSidebarItem[];
+  }
+
+  export default function SidebarContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/Sidebar/Items" {
+  import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly path: string;
+    readonly level: number;
+    readonly items: readonly PropSidebarItem[];
+  }
+
+  export default function SidebarItems(props: Props): JSX.Element;
 }
 
 declare module "@theme/SidebarItem" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
   export interface Props {
-    readonly activePath: string;
-    readonly onItemClick?: (item: PropSidebarItem) => void;
-    readonly level: number;
-    readonly tabIndex?: number;
-    readonly item: PropSidebarItem;
     readonly index: number;
+    readonly level: number;
+    readonly activePath: string;
+    readonly item: PropSidebarItem;
   }
 
   export default function SidebarItem(props: Props): JSX.Element;
@@ -1422,18 +1451,36 @@ declare module "@theme/ThemedImage" {
 }
 
 declare module "@theme/TOC" {
+  export interface Props {
+    readonly className?: string;
+  }
+
+  export default function TOC(props: Props): JSX.Element | null;
+}
+
+declare module "@theme/TOC/Content" {
   import type { TOCItem } from "@docusaurus/mdx-loader";
 
-  // `minHeadingLevel` only comes from doc/post front matter, and won't have a
-  // default set by Joi. See TOC, TOCInline, TOCCollapsible for examples.
   export interface Props {
     readonly toc: readonly TOCItem[];
     readonly minHeadingLevel?: number;
     readonly maxHeadingLevel?: number;
-    readonly className?: string;
+    readonly linkClassName?: string | null;
+    readonly linkActiveClassName?: string | null;
   }
 
-  export default function TOC(props: Props): JSX.Element;
+  export default function TOCContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/TOC/Tree" {
+  import type { TOCTreeNode } from "@docusaurus/theme-common/internal";
+
+  export interface Props {
+    readonly toc: readonly TOCTreeNode[];
+    readonly linkClassName?: string | null;
+  }
+
+  export default function TOCTree(props: Props): JSX.Element | null;
 }
 
 declare module "@theme/TOCInline" {
@@ -1446,34 +1493,6 @@ declare module "@theme/TOCInline" {
   }
 
   export default function TOCInline(props: Props): JSX.Element;
-}
-
-declare module "@theme/TOCItems" {
-  import type { TOCItem } from "@docusaurus/mdx-loader";
-
-  export interface Props {
-    readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel?: number;
-    readonly maxHeadingLevel?: number;
-    readonly className?: string;
-    readonly linkClassName?: string | null;
-    readonly linkActiveClassName?: string;
-  }
-
-  export default function TOCItems(props: Props): JSX.Element;
-}
-
-declare module "@theme/TOCItems/Tree" {
-  import type { TOCTreeNode } from "@docusaurus/theme-common/internal";
-
-  export interface Props {
-    readonly toc: readonly TOCTreeNode[];
-    readonly className: string;
-    readonly linkClassName: string | null;
-    readonly isChild?: boolean;
-  }
-
-  export default function TOCItems(props: Props): JSX.Element;
 }
 
 declare module "@theme/prism-include-languages" {

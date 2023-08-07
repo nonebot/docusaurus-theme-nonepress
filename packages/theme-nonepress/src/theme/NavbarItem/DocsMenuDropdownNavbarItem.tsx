@@ -212,7 +212,7 @@ function DocsMenuDropdownNavbarItemMobile({
   return (
     <DefaultNavbarItem
       {...props}
-      isActive={() => activeDoc?.path === link}
+      isActive={() => !!activeDoc && activeDoc.path === link}
       label={label ?? category}
       to={link ?? autoLink}
     />

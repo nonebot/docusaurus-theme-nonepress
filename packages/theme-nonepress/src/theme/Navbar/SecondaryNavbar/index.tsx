@@ -19,20 +19,23 @@ export default function SecondaryNavbar(): JSX.Element | null {
   const { shown: sidebarShown, setShown: setSidebarShown } =
     useSidebarDisplay();
   const [sidebarContent] = useSidebarContent();
-  const [{ toc }] = useTOCContent();
+  const [tocContent] = useTOCContent();
+
+  const renderSidebar = sidebarContent && sidebarContent.length !== 0;
+  const renderTOC =
+    tocContent &&
+    !tocContent.hideTableOfContents &&
+    tocContent.toc.length !== 0;
 
   // If there is no secondary menu and no TOC, don't show the secondary navbar
-  if (
-    !(sidebarContent && sidebarContent.length !== 0) &&
-    !(toc && toc.length !== 0)
-  ) {
+  if (!renderSidebar && !renderTOC) {
     return null;
   }
 
   return (
     <div className="navbar-secondary-layout">
       <div className="navbar-secondary-content">
-        {sidebarContent && sidebarContent.length !== 0 && (
+        {renderSidebar && (
           <button
             className="navbar-secondary-menu"
             onClick={() => setSidebarShown(!sidebarShown)}
@@ -46,7 +49,7 @@ export default function SecondaryNavbar(): JSX.Element | null {
             </Translate>
           </button>
         )}
-        {toc && toc.length !== 0 && (
+        {renderTOC && (
           <button
             className="navbar-secondary-toc"
             onClick={() => setTOCShown(!tocShown)}

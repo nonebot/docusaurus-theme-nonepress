@@ -1,5 +1,6 @@
 .announcement {
-  @apply flex items-center gap-x-6 overflow-hidden px-6 py-2.5 sm:px-3.5 sm:before:flex-1;
+  @apply relative z-40 flex items-center gap-x-6 sm:before:flex-1;
+  @apply px-6 py-2.5 sm:px-3.5 overflow-hidden;
   @apply bg-neutral text-neutral-content;
 
   & > &-content {

@@ -16,7 +16,7 @@
   }
 
   &-link {
-    @apply text-sm font-semibold text-base-content/80;
+    @apply grid text-sm font-semibold text-base-content/80;
 
     & > .navbar-version-name {
       @apply truncate;

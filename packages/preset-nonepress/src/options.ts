@@ -17,7 +17,11 @@ export type Options = {
   pages?: false | PagesPluginOptions;
   /** Options for `@docusaurus/plugin-sitemap`. Use `false` to disable. */
   sitemap?: false | SitemapPluginOptions;
-  /** Options for `@docusaurus/theme-classic`. */
+  /** Options for `@nullbot/docusaurus-plugin-docsmenu`. Use `false` to disable */
+  docsMenu?: boolean;
+  /** Options for `@nullbot/docusaurus-plugin-getsidebar`. Use `false` to disable */
+  getSidebar?: boolean;
+  /** Options for `@nullbot/docusaurus-theme-nonepress`. */
   theme?: ThemeOptions;
   /**
    * Options for `@docusaurus/plugin-google-gtag`. Only enabled when the key

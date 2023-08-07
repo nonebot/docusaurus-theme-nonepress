@@ -1,10 +1,6 @@
 .navbar-locales {
   @apply lg:flex lg:items-center;
 
-  &-label {
-    @apply flex items-center gap-2;
-  }
-
   &-icon {
     @apply h-5 w-auto fill-current;
   }

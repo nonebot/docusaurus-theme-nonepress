@@ -1,13 +1,11 @@
 .toc {
-  max-height: calc(100vh - 7rem);
+  @apply relative;
 
-  @apply sticky top-28 overflow-y-auto;
-}
+  &-container {
+    @apply fixed top-0 h-screen pt-28;
+  }
 
-.toc-link {
-  @apply text-base-content;
-}
-
-.toc-link-active {
-  @apply text-primary;
+  &-content {
+    @apply h-full overflow-x-hidden overflow-y-auto;
+  }
 }

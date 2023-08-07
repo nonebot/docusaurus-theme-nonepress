@@ -81,7 +81,7 @@ function DropdownNavbarItemMobile({
   const localPathname = useLocalPathname();
   const containsActive = containsActiveItems(items, localPathname);
 
-  const { collapsed, toggleCollapsed, setCollapsed } = useCollapsible({
+  const { collapsed, setCollapsed } = useCollapsible({
     initialState: () => !containsActive,
   });
 
@@ -101,7 +101,7 @@ function DropdownNavbarItemMobile({
       {...props}
       collapsed={collapsed}
       collapsible={true}
-      toggleCollapsed={toggleCollapsed}
+      setCollapsed={setCollapsed}
       items={subItems}
     />
   );

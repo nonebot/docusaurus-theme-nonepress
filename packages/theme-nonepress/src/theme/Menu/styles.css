@@ -6,6 +6,8 @@
   }
 
   &-link {
+    @apply flex items-center gap-2 whitespace-pre-wrap;
+
     &-active,
     &-active:active {
       @apply !text-primary;

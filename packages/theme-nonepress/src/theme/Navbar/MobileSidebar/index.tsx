@@ -3,35 +3,40 @@ import React from "react";
 import clsx from "clsx";
 
 import "./styles.css";
+import { useLocation } from "@docusaurus/router";
+
 import {
   useSidebarDisplay,
   useSidebarContent,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
+import SidebarContent from "@theme/Sidebar/Content";
 
 export default function MobileSidebar(): JSX.Element | null {
+  const { pathname } = useLocation();
   const { shown, setShown } = useSidebarDisplay();
   const [content] = useSidebarContent();
 
-  if (content.length === 0) {
+  if (!content || content.length === 0) {
     return null;
   }
 
   return (
     <>
+      {/* overlay */}
       <label
         className={clsx(
           "navbar-mobile-sidebar-overlay",
           shown && "navbar-mobile-sidebar-overlay-open",
         )}
         onClick={() => setShown(false)}
-      ></label>
+      />
       <div
         className={clsx(
           "navbar-mobile-sidebar",
           shown && "navbar-mobile-sidebar-open",
         )}
       >
-        {/* {content} */}
+        <SidebarContent items={content} path={pathname} />
       </div>
     </>
   );

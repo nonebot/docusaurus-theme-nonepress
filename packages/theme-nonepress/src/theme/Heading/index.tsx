@@ -32,7 +32,7 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   return (
     <As
       {...props}
-      className={clsx("", hideOnScroll ? "" : "", props.className)}
+      className={clsx("anchor", hideOnScroll ? "" : "", props.className)}
       id={id}
     >
       {props.children}

@@ -8,18 +8,25 @@ import {
   ThemeClassNames,
 } from "@docusaurus/theme-common";
 
+import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
+import BackToTopButton from "@theme/BackToTopButton";
 import Layout from "@theme/Layout";
 import MDXContent from "@theme/MDXContent";
 import type { Props } from "@theme/MDXPage";
-import TOC from "@theme/TOC";
+import Page from "@theme/Page";
 
 export default function MDXPage(props: Props): JSX.Element {
   const { content: MDXPageContent } = props;
   const {
+    toc,
     metadata: { title, description, frontMatter },
   } = MDXPageContent;
-  const { wrapperClassName, hide_table_of_contents: hideTableOfContents } =
-    frontMatter;
+  const {
+    wrapperClassName,
+    hide_table_of_contents,
+    toc_min_heading_level,
+    toc_max_heading_level,
+  } = frontMatter;
 
   return (
     <HtmlClassNameProvider
@@ -30,26 +37,22 @@ export default function MDXPage(props: Props): JSX.Element {
     >
       <PageMetadata title={title} description={description} />
       <Layout>
-        <main className="container mx-auto mt-20 mb-8 px-4 sm:px-6 md:px-8">
-          <div className="relative flex flex-row w-full">
-            <div className={clsx("grow lg:max-w-[75%] prose px-4 mx-auto")}>
-              <article>
-                <MDXContent>
-                  <MDXPageContent />
-                </MDXContent>
-              </article>
-            </div>
-            {!hideTableOfContents && MDXPageContent.toc.length > 0 && (
-              <div className="grow-0 shrink-0 basis-1/4">
-                <TOC
-                  toc={MDXPageContent.toc}
-                  minHeadingLevel={frontMatter.toc_min_heading_level}
-                  maxHeadingLevel={frontMatter.toc_max_heading_level}
-                />
-              </div>
-            )}
-          </div>
-        </main>
+        <BackToTopButton />
+
+        <TOCContentFiller
+          toc={toc}
+          minHeadingLevel={toc_min_heading_level}
+          maxHeadingLevel={toc_max_heading_level}
+          hideTableOfContents={hide_table_of_contents as unknown as boolean}
+        />
+
+        <Page>
+          <article className="prose max-w-full">
+            <MDXContent>
+              <MDXPageContent />
+            </MDXContent>
+          </article>
+        </Page>
       </Layout>
     </HtmlClassNameProvider>
   );

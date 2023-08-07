@@ -11,8 +11,9 @@ import type { Props } from "@theme/Menu/Category";
 export default function MenuCategory({
   label,
   items,
+  href,
   collapsed = false,
-  toggleCollapsed = () => undefined,
+  setCollapsed = () => undefined,
   collapsible = true,
   className,
   activeClassName,
@@ -28,11 +29,17 @@ export default function MenuCategory({
           activeClassName={clsx("menu-link-active", activeClassName)}
           onClick={
             collapsible
-              ? () => {
-                  toggleCollapsed();
+              ? (e) => {
+                  if (href) {
+                    setCollapsed(false);
+                  } else {
+                    e.preventDefault();
+                    setCollapsed(!collapsed);
+                  }
                 }
               : undefined
           }
+          href={collapsible ? href ?? "#" : href}
           {...props}
         >
           {label ?? children}
@@ -42,7 +49,7 @@ export default function MenuCategory({
             className="menu-category-button"
             onClick={(e) => {
               e.preventDefault();
-              toggleCollapsed();
+              setCollapsed(!collapsed);
             }}
           >
             <IconDropdown

@@ -3,7 +3,7 @@ import React, { useContext, useState, type ReactNode, useEffect } from "react";
 import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 import { ReactContextError } from "@docusaurus/theme-common";
 
-type Content = readonly PropSidebarItem[];
+type Content = readonly PropSidebarItem[] | null;
 
 type ContextValue = [
   content: Content,
@@ -17,7 +17,7 @@ export function SidebarContentProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const value = useState<Content>([]);
+  const value = useState<Content>(null);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
@@ -41,7 +41,7 @@ export function SidebarContentFiller({
     setContent(items);
   }, [setContent, items]);
 
-  useEffect(() => () => setContent([]), [setContent]);
+  useEffect(() => () => setContent(null), [setContent]);
 
   return null;
 }

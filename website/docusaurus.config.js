@@ -82,6 +82,20 @@ const config = {
             category: "guide",
           },
           {
+            label: "Examples",
+            items: [
+              {
+                type: "docSidebar",
+                label: "Components",
+                sidebarId: "examples",
+              },
+              {
+                label: "Page",
+                to: "/page-example",
+              },
+            ],
+          },
+          {
             label: "NoneBot",
             href: "https://nonebot.dev",
           },

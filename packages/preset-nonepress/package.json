@@ -30,6 +30,7 @@
     "@docusaurus/plugin-google-tag-manager": "^2.4.0",
     "@docusaurus/plugin-sitemap": "^2.4.0",
     "@docusaurus/theme-search-algolia": "^2.4.0",
+    "@nullbot/docusaurus-plugin-getsidebar": "^2.1.0",
     "@nullbot/docusaurus-theme-nonepress": "^2.1.0"
   },
   "devDependencies": {

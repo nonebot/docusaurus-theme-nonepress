@@ -1,0 +1,22 @@
+.page {
+  @apply max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 w-full;
+
+  &-sidebar {
+    @apply hidden lg:flex w-[19rem] h-screen;
+    /* stylelint-disable-next-line length-zero-no-unit */
+    @apply fixed left-[max(0px,calc(50%-45rem))] right-auto top-0;
+  }
+
+  &-content {
+    @apply flex justify-center pt-8 mx-auto w-full;
+  }
+
+  &-sidebar + &-content {
+    @apply lg:pl-[19.5rem];
+  }
+
+  &-toc {
+    @apply hidden lg:block;
+    @apply grow w-full max-w-[256px];
+  }
+}

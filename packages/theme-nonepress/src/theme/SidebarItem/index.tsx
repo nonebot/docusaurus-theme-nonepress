@@ -1,21 +1,22 @@
 import React from "react";
 
-import type { Props } from "@theme/DocSidebarItem";
-import DocSidebarItemCategory from "@theme/DocSidebarItem/Category";
-import DocSidebarItemHtml from "@theme/DocSidebarItem/Html";
-import DocSidebarItemLink from "@theme/DocSidebarItem/Link";
+import "./styles.css";
+import type { Props } from "@theme/SidebarItem";
+import SidebarItemCategory from "@theme/SidebarItem/Category";
+import SidebarItemHtml from "@theme/SidebarItem/Html";
+import SidebarItemLink from "@theme/SidebarItem/Link";
 
-export default function DocSidebarItem({
+export default function SidebarItem({
   item,
   ...props
 }: Props): JSX.Element | null {
   switch (item.type) {
     case "category":
-      return <DocSidebarItemCategory item={item} {...props} />;
+      return <SidebarItemCategory item={item} {...props} />;
     case "html":
-      return <DocSidebarItemHtml item={item} {...props} />;
+      return <SidebarItemHtml item={item} {...props} />;
     case "link":
     default:
-      return <DocSidebarItemLink item={item} {...props} />;
+      return <SidebarItemLink item={item} {...props} />;
   }
 }

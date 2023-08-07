@@ -1,9 +1,17 @@
 import React from "react";
 
-import { useSidebarContent } from "@nullbot/docusaurus-theme-nonepress/contexts";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
-export default function SidebarContent(): JSX.Element {
-  const [sidebarContent] = useSidebarContent();
+import Menu from "@theme/Menu";
+import type { Props } from "@theme/Sidebar/Content";
+import SidebarItems from "@theme/Sidebar/Items";
 
-  return <></>;
+export default function SidebarContent({ items, path }: Props): JSX.Element {
+  return (
+    <nav>
+      <Menu className={ThemeClassNames.docs.docSidebarMenu}>
+        <SidebarItems level={1} path={path} items={items} />
+      </Menu>
+    </nav>
+  );
 }

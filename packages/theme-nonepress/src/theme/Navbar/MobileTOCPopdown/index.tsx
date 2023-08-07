@@ -11,7 +11,7 @@ import {
   useTOCDisplay,
   useTOCContent,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
-import TOC from "@theme/TOC";
+import TOCContent from "@theme/TOC/Content";
 
 export default function MobileTOCPopdown(): JSX.Element | null {
   const {
@@ -20,7 +20,7 @@ export default function MobileTOCPopdown(): JSX.Element | null {
   const { isNavbarVisible } = useHideableNavbar(hideOnScroll);
 
   const { shown, setShown } = useTOCDisplay();
-  const [{ toc }] = useTOCContent();
+  const [tocContent] = useTOCContent();
 
   useEffect(() => {
     if (hideOnScroll && !isNavbarVisible) {
@@ -29,7 +29,11 @@ export default function MobileTOCPopdown(): JSX.Element | null {
     }
   }, [hideOnScroll, isNavbarVisible, setShown]);
 
-  if (!toc || toc.length === 0) {
+  if (
+    !tocContent ||
+    tocContent.hideTableOfContents ||
+    tocContent.toc.length === 0
+  ) {
     return null;
   }
 
@@ -41,7 +45,7 @@ export default function MobileTOCPopdown(): JSX.Element | null {
         shown && "navbar-tocpopdown-open",
       )}
     >
-      <TOC toc={toc} />
+      <TOCContent {...tocContent} />
     </div>
   );
 }
