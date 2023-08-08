@@ -12,9 +12,8 @@ function NoteIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      className="admonition-icon"
       viewBox="0 0 24 24"
-      className="stroke-info flex-shrink-0 w-6 h-6"
     >
       <path
         strokeLinecap="round"
@@ -30,8 +29,7 @@ function TipIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="stroke-current flex-shrink-0 h-6 w-6"
-      fill="none"
+      className="admonition-icon"
       viewBox="0 0 24 24"
     >
       <path
@@ -48,8 +46,7 @@ function DangerIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="stroke-current flex-shrink-0 h-6 w-6"
-      fill="none"
+      className="admonition-icon"
       viewBox="0 0 24 24"
     >
       <path
@@ -66,9 +63,8 @@ function InfoIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      className="admonition-icon"
       viewBox="0 0 24 24"
-      className="stroke-current flex-shrink-0 w-6 h-6"
     >
       <path
         strokeLinecap="round"
@@ -84,8 +80,7 @@ function CautionIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="stroke-current flex-shrink-0 h-6 w-6"
-      fill="none"
+      className="admonition-icon"
       viewBox="0 0 24 24"
     >
       <path
@@ -241,11 +236,13 @@ export default function Admonition(props: Props): JSX.Element {
         ThemeClassNames.common.admonitionType(props.type),
       )}
     >
-      <div className="admonition-title">
-        {icon}
-        <span>{titleLabel}</span>
+      <div>
+        <div className="admonition-title">
+          {icon}
+          <span>{titleLabel}</span>
+        </div>
+        <div className="admonition-content">{children}</div>
       </div>
-      <div>{children}</div>
     </div>
   );
 }

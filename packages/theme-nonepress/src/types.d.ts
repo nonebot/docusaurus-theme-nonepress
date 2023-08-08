@@ -274,65 +274,12 @@ declare module "@theme/DocItem/Footer" {
   export default function DocItemFooter(): JSX.Element;
 }
 
-declare module "@theme/DocItem/Layout" {
-  export interface Props {
-    readonly children: JSX.Element;
-  }
-
-  export default function DocItemLayout(props: Props): JSX.Element;
-}
-
 declare module "@theme/DocItem/Metadata" {
   export default function DocItemMetadata(): JSX.Element;
 }
 
 declare module "@theme/DocItem/Paginator" {
   export default function DocItemPaginator(): JSX.Element;
-}
-
-declare module "@theme/DocPage/Layout" {
-  import type { ReactNode } from "react";
-
-  export interface Props {
-    readonly children: ReactNode;
-  }
-
-  export default function DocPageLayout(props: Props): JSX.Element;
-}
-
-declare module "@theme/DocPage/Layout/Main" {
-  import type { ReactNode } from "react";
-
-  export interface Props {
-    readonly hiddenSidebarContainer: boolean;
-    readonly children: ReactNode;
-  }
-
-  export default function DocPageLayoutMain(props: Props): JSX.Element;
-}
-
-declare module "@theme/DocPage/Layout/Sidebar" {
-  import type { Dispatch, SetStateAction } from "react";
-
-  import type { PropSidebar } from "@docusaurus/plugin-content-docs";
-
-  export interface Props {
-    readonly sidebar: PropSidebar;
-    readonly hiddenSidebarContainer: boolean;
-    readonly setHiddenSidebarContainer: Dispatch<SetStateAction<boolean>>;
-  }
-
-  export default function DocPageLayoutSidebar(props: Props): JSX.Element;
-}
-
-declare module "@theme/DocPage/Layout/Sidebar/ExpandButton" {
-  export interface Props {
-    toggleSidebar: () => void;
-  }
-
-  export default function DocPageLayoutSidebarExpandButton(
-    props: Props,
-  ): JSX.Element;
 }
 
 declare module "@theme/DocPaginator" {
@@ -464,7 +411,7 @@ declare module "@theme/DocVersionBanner" {
     readonly className?: string;
   }
 
-  export default function DocVersionBanner(props: Props): JSX.Element;
+  export default function DocVersionBanner(props: Props): JSX.Element | null;
 }
 
 declare module "@theme/DocVersionBadge" {

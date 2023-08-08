@@ -14,9 +14,12 @@ import {
   useDocRouteMetadata,
 } from "@docusaurus/theme-common/internal";
 
+import { SidebarContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
+import BackToTopButton from "@theme/BackToTopButton";
 import type { Props } from "@theme/DocPage";
-import DocPageLayout from "@theme/DocPage/Layout";
+import Layout from "@theme/Layout";
 import NotFound from "@theme/NotFound";
+import Page from "@theme/Page";
 import SearchMetadata from "@theme/SearchMetadata";
 
 function DocPageMetadata(props: Props): JSX.Element {
@@ -46,6 +49,7 @@ export default function DocPage(props: Props): JSX.Element {
     return <NotFound />;
   }
   const { docElement, sidebarName, sidebarItems } = currentDocRouteMetadata;
+
   return (
     <>
       <DocPageMetadata {...props} />
@@ -59,7 +63,13 @@ export default function DocPage(props: Props): JSX.Element {
       >
         <DocsVersionProvider version={versionMetadata}>
           <DocsSidebarProvider name={sidebarName} items={sidebarItems}>
-            <DocPageLayout>{docElement}</DocPageLayout>
+            <Layout>
+              <BackToTopButton />
+
+              {sidebarItems && <SidebarContentFiller items={sidebarItems} />}
+
+              <Page>{docElement}</Page>
+            </Layout>
           </DocsSidebarProvider>
         </DocsVersionProvider>
       </HtmlClassNameProvider>

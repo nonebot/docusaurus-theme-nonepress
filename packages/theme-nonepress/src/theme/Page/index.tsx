@@ -15,8 +15,8 @@ export default function Page({
       {/* sidebar */}
       {!hideSidebar && <Sidebar className="page-sidebar" />}
       {/* main */}
-      <main className="page-content">
-        {children}
+      <main className="page-main">
+        <div className="page-content">{children}</div>
         {/* TOC */}
         {!hideTableOfContents && <TOC className="page-toc" />}
       </main>

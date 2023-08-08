@@ -7,12 +7,16 @@
     @apply fixed left-[max(0px,calc(50%-45rem))] right-auto top-0;
   }
 
-  &-content {
-    @apply flex justify-center pt-8 mx-auto w-full;
+  &-main {
+    @apply flex justify-center pt-8;
   }
 
-  &-sidebar + &-content {
+  &-sidebar + &-main {
     @apply lg:pl-[19.5rem];
+  }
+
+  &-content {
+    @apply grow mx-auto lg:max-w-[calc(100%-256px)];
   }
 
   &-toc {

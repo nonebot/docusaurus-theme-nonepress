@@ -32,7 +32,7 @@ function useSyntheticTitle(): string | null {
 export default function DocItemContent({ children }: Props): JSX.Element {
   const syntheticTitle = useSyntheticTitle();
   return (
-    <div className={clsx(ThemeClassNames.docs.docMarkdown, "prose")}>
+    <div className={clsx(ThemeClassNames.docs.docMarkdown, "prose max-w-none")}>
       {syntheticTitle && (
         <header>
           <Heading as="h1">{syntheticTitle}</Heading>

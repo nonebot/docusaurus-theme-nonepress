@@ -1,5 +1,6 @@
 .admonition {
-  @apply alert !flex-col mb-4;
+  @apply alert mb-4 gap-0;
+  @apply grid-flow-col grid-cols-[auto_minmax(auto,1fr)] justify-items-start text-left;
 
   &-success {
     @apply alert-success;
@@ -17,7 +18,17 @@
     @apply alert-warning;
   }
 
-  & > &-title {
-    @apply uppercase font-bold;
+  &-title {
+    @apply flex items-center gap-1 uppercase font-bold;
+  }
+
+  &-icon {
+    @apply inline-block w-6 h-6 stroke-current fill-none;
+  }
+
+  &-content {
+    & > *:last-child {
+      @apply mb-0;
+    }
   }
 }

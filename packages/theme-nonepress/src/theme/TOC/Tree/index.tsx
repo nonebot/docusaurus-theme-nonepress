@@ -10,7 +10,7 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
     return null;
   }
   return (
-    <ul>
+    <ul className="toc-tree">
       {toc.map((heading) => (
         <li key={heading.id}>
           <a

@@ -20,7 +20,7 @@ export default function HomeBreadcrumbItem(): JSX.Element {
         className="breadcrumbs-btn"
         href={homeHref}
       >
-        <IconHome className="" />
+        <IconHome />
       </Link>
     </li>
   );

@@ -8,4 +8,8 @@
   &-content {
     @apply h-full overflow-x-hidden overflow-y-auto;
   }
+
+  &-tree::before {
+    @apply top-2 bottom-2;
+  }
 }

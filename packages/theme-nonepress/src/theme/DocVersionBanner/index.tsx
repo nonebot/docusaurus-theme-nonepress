@@ -20,6 +20,7 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
+import "./styles.css";
 import type { Props } from "@theme/DocVersionBanner";
 
 type BannerLabelComponentProps = {
@@ -74,7 +75,7 @@ const BannerLabelComponents: {
   unmaintained: UnmaintainedVersionLabel,
 };
 
-function BannerLabel(props: BannerLabelComponentProps) {
+function BannerLabel(props: BannerLabelComponentProps): JSX.Element {
   const BannerLabelComponent =
     BannerLabelComponents[props.versionMetadata.banner!];
   return <BannerLabelComponent {...props} />;
@@ -88,7 +89,7 @@ function LatestVersionSuggestionLabel({
   to: string;
   onClick: () => void;
   versionLabel: string;
-}) {
+}): JSX.Element {
   return (
     <Translate
       id="theme.docs.versions.latestVersionSuggestionLabel"
@@ -145,19 +146,26 @@ function DocVersionBannerEnabled({
       className={clsx(
         className,
         ThemeClassNames.docs.docVersionBanner,
-        "admonition admonition--warning mb-4",
+        "admonition doc-version-banner",
       )}
       role="alert"
     >
       <div>
-        <BannerLabel siteTitle={siteTitle} versionMetadata={versionMetadata} />
-      </div>
-      <div className="mt-4">
-        <LatestVersionSuggestionLabel
-          versionLabel={latestVersionSuggestion.label}
-          to={latestVersionSuggestedDoc.path}
-          onClick={() => savePreferredVersionName(latestVersionSuggestion.name)}
-        />
+        <div>
+          <BannerLabel
+            siteTitle={siteTitle}
+            versionMetadata={versionMetadata}
+          />
+        </div>
+        <div className="mt-4">
+          <LatestVersionSuggestionLabel
+            versionLabel={latestVersionSuggestion.label}
+            to={latestVersionSuggestedDoc.path}
+            onClick={() =>
+              savePreferredVersionName(latestVersionSuggestion.name)
+            }
+          />
+        </div>
       </div>
     </div>
   );
