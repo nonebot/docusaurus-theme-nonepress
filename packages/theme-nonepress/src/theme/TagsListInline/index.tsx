@@ -1,13 +1,19 @@
 import React from "react";
 
+import clsx from "clsx";
+
 import Translate from "@docusaurus/Translate";
 
+import "./styles.css";
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListInline";
 
-export default function TagsListInline({ tags }: Props): JSX.Element {
+export default function TagsListInline({
+  tags,
+  className,
+}: Props): JSX.Element {
   return (
-    <>
+    <div className={clsx("doc-tags-list-container", className)}>
       <b>
         <Translate
           id="theme.tags.tagsListLabel"
@@ -16,13 +22,13 @@ export default function TagsListInline({ tags }: Props): JSX.Element {
           Tags:
         </Translate>
       </b>
-      <ul className="inline p-0 ml-2">
+      <ul className="doc-tags-list">
         {tags.map(({ label, permalink: tagPermalink }) => (
-          <li key={tagPermalink} className="inline-block mr-2 mb-2">
+          <li key={tagPermalink}>
             <Tag label={label} permalink={tagPermalink} />
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import React from "react";
 import { HtmlClassNameProvider } from "@docusaurus/theme-common";
 import { DocProvider } from "@docusaurus/theme-common/internal";
 
+import "./styles.css";
 import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import type { Props } from "@theme/DocItem";

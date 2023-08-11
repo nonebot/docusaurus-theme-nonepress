@@ -16,16 +16,13 @@ import TagsListInline, {
 
 function TagsRow(props: TagsListInlineProps) {
   return (
-    <div
+    <TagsListInline
       className={clsx(
         ThemeClassNames.docs.docFooterTagsRow,
-        "flex flex-row mb-2",
+        "doc-footer-tags-row",
       )}
-    >
-      <div>
-        <TagsListInline {...props} />
-      </div>
-    </div>
+      {...props}
+    />
   );
 }
 
@@ -44,14 +41,11 @@ function EditMetaRow({
     <div
       className={clsx(
         ThemeClassNames.docs.docFooterEditMetaRow,
-        "flex flex-row flex-wrap -mx-4 mb-2",
+        "doc-footer-edit-meta-row",
       )}
     >
-      <div className="lg:flex-1 shrink-0 ml-0 px-4 w-full max-w-full">
-        {editUrl && <EditThisPage editUrl={editUrl} />}
-      </div>
-
-      <div className="lg:flex-1 shrink-0 ml-0 px-4 w-full max-w-full mt-1 italic text-[smaller] lg:text-right">
+      <div>{editUrl && <EditThisPage editUrl={editUrl} />}</div>
+      <div>
         {(lastUpdatedAt || lastUpdatedBy) && (
           <LastUpdated
             lastUpdatedAt={lastUpdatedAt}
@@ -84,7 +78,7 @@ export default function DocItemFooter(): JSX.Element | null {
   }
 
   return (
-    <footer className={clsx(ThemeClassNames.docs.docFooter, "mt-12")}>
+    <footer className={clsx(ThemeClassNames.docs.docFooter, "doc-footer")}>
       {canDisplayTagsRow && <TagsRow tags={tags} />}
       {canDisplayEditMetaRow && (
         <EditMetaRow

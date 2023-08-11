@@ -1,0 +1,7 @@
+.doc-tag {
+  @apply rounded-full;
+
+  &-badge {
+    @apply badge badge-sm badge-primary;
+  }
+}

@@ -1378,6 +1378,7 @@ declare module "@theme/TagsListInline" {
   import type { Tag } from "@docusaurus/utils";
 
   export interface Props {
+    readonly className?: string;
     readonly tags: readonly Tag[];
   }
 

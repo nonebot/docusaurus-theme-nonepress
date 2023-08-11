@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 description: Introduction to Nonepress
+tags:
+  - guide
+  - introduction
 
 options:
   menu:

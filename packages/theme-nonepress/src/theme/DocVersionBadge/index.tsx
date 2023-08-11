@@ -6,6 +6,7 @@ import Translate from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useDocsVersion } from "@docusaurus/theme-common/internal";
 
+import "./styles.css";
 import type { Props } from "@theme/DocVersionBadge";
 
 export default function DocVersionBadge({
@@ -14,20 +15,22 @@ export default function DocVersionBadge({
   const versionMetadata = useDocsVersion();
   if (versionMetadata.badge) {
     return (
-      <span
-        className={clsx(
-          className,
-          ThemeClassNames.docs.docVersionBadge,
-          "badge badge-ghost",
-        )}
-      >
-        <Translate
-          id="theme.docs.versionBadge.label"
-          values={{ versionLabel: versionMetadata.label }}
+      <div className="doc-version-badge-container">
+        <span
+          className={clsx(
+            className,
+            ThemeClassNames.docs.docVersionBadge,
+            "doc-version-badge",
+          )}
         >
-          {"Version: {versionLabel}"}
-        </Translate>
-      </span>
+          <Translate
+            id="theme.docs.versionBadge.label"
+            values={{ versionLabel: versionMetadata.label }}
+          >
+            {"Version: {versionLabel}"}
+          </Translate>
+        </span>
+      </div>
     );
   }
   return null;

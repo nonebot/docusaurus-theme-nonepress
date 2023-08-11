@@ -8,7 +8,7 @@
   }
 
   &-main {
-    @apply flex justify-center pt-8;
+    @apply flex justify-center pt-8 pb-10;
   }
 
   &-sidebar + &-main {

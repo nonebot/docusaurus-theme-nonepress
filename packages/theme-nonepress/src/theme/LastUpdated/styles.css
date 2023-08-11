@@ -1,0 +1,3 @@
+.last-updated {
+  @apply italic text-[smaller];
+}
