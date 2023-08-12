@@ -9,7 +9,7 @@ export default function TOCInline({
   maxHeadingLevel,
 }: Props): JSX.Element {
   return (
-    <div className="w-full not-prose">
+    <div className="w-full mb-2 not-prose">
       <TOCContent
         toc={toc}
         minHeadingLevel={minHeadingLevel}

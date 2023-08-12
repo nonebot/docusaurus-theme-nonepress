@@ -9,33 +9,39 @@ import {
 } from "@docusaurus/theme-common/internal";
 
 import "./styles.css";
-import { useWindowSize } from "@nullbot/docusaurus-theme-nonepress/client";
+import {
+  useNonepressThemeConfig,
+  useWindowSize,
+} from "@nullbot/docusaurus-theme-nonepress/client";
 import { useSidebarContent } from "@nullbot/docusaurus-theme-nonepress/contexts";
 import Logo from "@theme/Logo";
 import type { Props } from "@theme/Sidebar";
 import SidebarContent from "@theme/Sidebar/Content";
 
-function useShowAnnouncementBar() {
-  const { isActive } = useAnnouncementBar();
-  const [showAnnouncementBar, setShowAnnouncementBar] = useState(isActive);
+// function useShowAnnouncementBar() {
+//   const { isActive } = useAnnouncementBar();
+//   const [showAnnouncementBar, setShowAnnouncementBar] = useState(isActive);
 
-  useScrollPosition(
-    ({ scrollY }) => {
-      if (isActive) {
-        setShowAnnouncementBar(scrollY === 0);
-      }
-    },
-    [isActive],
-  );
-  return isActive && showAnnouncementBar;
-}
+//   useScrollPosition(
+//     ({ scrollY }) => {
+//       if (isActive) {
+//         setShowAnnouncementBar(scrollY === 0);
+//       }
+//     },
+//     [isActive],
+//   );
+//   return isActive && showAnnouncementBar;
+// }
 
 export default function Sidebar({ className }: Props): JSX.Element | null {
   const { pathname } = useLocation();
   const windowSize = useWindowSize();
   const isMobile = windowSize === "mobile" || windowSize === "ssr";
 
-  const showAnnouncementBar = useShowAnnouncementBar();
+  // const showAnnouncementBar = useShowAnnouncementBar();
+  const {
+    navbar: { hideOnScroll },
+  } = useNonepressThemeConfig();
 
   const [sidebarContent] = useSidebarContent();
 
@@ -47,15 +53,17 @@ export default function Sidebar({ className }: Props): JSX.Element | null {
     <div
       className={clsx(
         "sidebar",
-        showAnnouncementBar && "sidebar-with-announcement",
+        hideOnScroll && "sidebar-with-hideable-navbar",
         className,
       )}
     >
-      <Logo
-        className="sidebar-brand"
-        imageClassName="sidebar-brand-logo"
-        titleClassName="sidebar-brand-title"
-      />
+      {hideOnScroll && (
+        <Logo
+          className="sidebar-brand"
+          imageClassName="sidebar-brand-logo"
+          titleClassName="sidebar-brand-title"
+        />
+      )}
       <div className="sidebar-content thin-scrollbar">
         <SidebarContent items={sidebarContent} path={pathname} />
       </div>

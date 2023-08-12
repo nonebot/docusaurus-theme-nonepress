@@ -1,8 +1,8 @@
 .sidebar {
-  @apply flex-col;
+  @apply flex flex-col h-full max-h-screen;
 
-  &-with-announcement {
-    @apply pt-12;
+  &-with-hideable-navbar {
+    @apply -mt-16;
   }
 
   &-brand {
@@ -18,6 +18,6 @@
   }
 
   &-content {
-    @apply pb-4 overflow-y-auto;
+    @apply px-4 pb-10 overflow-y-auto;
   }
 }

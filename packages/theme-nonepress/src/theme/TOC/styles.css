@@ -1,12 +1,12 @@
 .toc {
-  @apply relative;
+  @apply relative block;
 
   &-container {
-    @apply fixed top-0 h-screen pt-28;
+    @apply sticky py-4 top-16;
   }
 
   &-content {
-    @apply h-full overflow-x-hidden overflow-y-auto;
+    @apply h-full max-h-[calc(100vh-6rem)] overflow-x-hidden overflow-y-auto;
   }
 
   &-tree::before {

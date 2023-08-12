@@ -37,7 +37,8 @@ export default function Navbar(): JSX.Element {
         })}
         className={clsx(
           "navbar",
-          { ["navbar-hidden"]: hideOnScroll && !isNavbarVisible },
+          isMobile && "navbar-mobile",
+          hideOnScroll && !isNavbarVisible && "navbar-hidden",
           {
             "navbar-style-dark": style === "dark",
             "navbar-style-primary": style === "primary",
