@@ -16,9 +16,10 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
           <a
             href={`#${heading.id}`}
             className={clsx("menu-link menu-item", linkClassName)}
-            // Developer provided the HTML, so assume it's safe.
-            dangerouslySetInnerHTML={{ __html: heading.value }}
-          />
+          >
+            {/* Developer provided the HTML, so assume it's safe. */}
+            <span dangerouslySetInnerHTML={{ __html: heading.value }} />
+          </a>
           <TOCTree toc={heading.children} linkClassName={linkClassName} />
         </li>
       ))}

@@ -1,106 +1,110 @@
-.code-block-container {
-  @apply relative w-full max-w-full h-auto rounded-box bg-base-200 text-base-content;
+.code-block {
+  &-container {
+    @apply relative w-full max-w-full h-auto overflow-hidden;
+    @apply rounded-box leading-6 bg-base-200 text-base-content;
+  }
 
-  & > .code-block-title {
-    @apply relative w-full px-4 py-2;
+  &-title {
+    @apply relative w-full px-4 pt-2;
 
-    & > .code-block-title-btn-group {
+    &-btn-group {
       @apply absolute left-4;
+    }
 
-      & > .code-block-title-btn {
-        @apply inline-block h-3 w-3 rounded-full;
+    &-btn {
+      @apply inline-block h-3 w-3 rounded-full;
 
-        &:not(:last-child) {
-          @apply mr-1;
-        }
+      &:not(:last-child) {
+        @apply mr-1;
+      }
 
-        &.code-block-title-btn-error {
-          @apply bg-error;
-        }
+      &-error {
+        @apply bg-error;
+      }
 
-        &.code-block-title-btn-warning {
-          @apply bg-warning;
-        }
+      &-warning {
+        @apply bg-warning;
+      }
 
-        &.code-block-title-btn-success {
-          @apply bg-success;
-        }
+      &-success {
+        @apply bg-success;
       }
     }
 
-    & > .code-block-title-content {
-      @apply w-full text-center font-medium inline-block truncate;
+    &-content {
+      @apply w-full text-center align-bottom font-medium inline-block truncate;
     }
   }
 
-  & > .code-block-content {
+  &-wrapper {
     @apply relative w-full;
+  }
 
-    & > .code-block {
-      @apply overflow-auto w-full;
+  &-content {
+    @apply overflow-auto w-full;
+  }
 
-      & > .code-block-lines {
-        @apply w-full p-4;
+  &-content > &-lines {
+    @apply block min-w-full p-4 float-left;
 
-        @media print {
-          @apply whitespace-pre-wrap;
-        }
+    @media print {
+      @apply whitespace-pre-wrap;
+    }
 
-        & > .code-block-line {
-          &.theme-code-block-highlighted-line {
-            @apply block px-4 -mx-4 bg-black/10;
+    &-with-number {
+      display: table !important;
 
-            [data-theme="dark"] & {
-              @apply bg-black/30;
-            }
-          }
-        }
+      @apply !px-0;
+    }
+  }
 
-        &.code-block-lines-with-number {
-          @apply table !px-0;
+  &-line {
+    &-with-number {
+      counter-increment: line;
 
-          & > .code-block-line-with-number {
-            counter-increment: line;
+      @apply !table-row;
+    }
 
-            @apply table-row;
+    &-number {
+      @apply table-cell sticky left-0 text-right px-4 select-none w-[1%];
 
-            & > .code-block-line-number {
-              @apply table-cell sticky left-0 text-right px-4 select-none w-[1%];
+      &::before {
+        content: counter(line);
 
-              &::before {
-                content: counter(line);
+        @apply opacity-50;
 
-                @apply opacity-50;
-              }
-            }
-
-            & > .code-block-line-content {
-              @apply table-cell pr-4;
-            }
-
-            &.theme-code-block-highlighted-line
-              > .code-block-line-number::before {
-              @apply opacity-80;
-            }
-          }
+        .theme-code-block-highlighted-line > & {
+          @apply opacity-80;
         }
       }
     }
 
-    & > .code-block-btn-group {
-      @apply absolute right-2 top-2 flex flex-row gap-x-2;
+    &-content {
+      @apply table-cell pr-4;
+    }
 
-      & > .code-block-btn {
-        @apply btn btn-square btn-outline no-animation transition opacity-0 group-hover:opacity-50 hover:!opacity-100 focus-visible:!opacity-100;
+    &.theme-code-block-highlighted-line {
+      @apply block px-4 -mx-4 bg-base-content/10;
+    }
+  }
 
-        &.code-block-btn-active {
-          @apply btn-success;
-        }
+  &-btn-group {
+    @apply absolute right-2 top-2 flex flex-row gap-x-2;
+  }
 
-        & > .code-block-btn-icon {
-          @apply w-6 h-6;
-        }
-      }
+  &-btn {
+    @apply transition text-base-content;
+    @apply opacity-0 group-hover:opacity-50 hover:!opacity-100 focus-visible:!opacity-100;
+    @apply bg-transparent hover:bg-transparent focus-visible:bg-transparent;
+    @apply border border-base-content hover:!border-base-content focus-visible:!border-base-content;
+
+    &-active {
+      @apply text-success;
+      @apply border-success hover:!border-success focus-visible:!border-success;
+    }
+
+    &-icon {
+      @apply w-4 h-4 fill-current;
     }
   }
 }

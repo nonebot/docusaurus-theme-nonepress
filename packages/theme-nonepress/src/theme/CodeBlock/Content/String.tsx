@@ -74,11 +74,11 @@ export default function CodeBlockString({
               <div className="code-block-title-content">{title}</div>
             </div>
           )}
-          <div className="code-block-content">
+          <div className="code-block-wrapper">
             <pre
               tabIndex={0}
               ref={wordWrap.codeBlockRef}
-              className={clsx(className, "code-block thin-scrollbar")}
+              className={clsx(className, "code-block-content thin-scrollbar")}
               style={style}
             >
               <code

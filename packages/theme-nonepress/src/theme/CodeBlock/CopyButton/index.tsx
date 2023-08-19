@@ -45,7 +45,7 @@ export default function CopyButton({ code, className }: Props): JSX.Element {
         description: "The copy button label on code blocks",
       })}
       className={clsx(
-        "code-block-btn swap swap-rotate",
+        "btn btn-square btn-sm no-animation swap swap-rotate code-block-btn",
         className,
         isCopied && "swap-active",
       )}

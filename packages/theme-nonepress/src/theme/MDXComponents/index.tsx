@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./styles.css";
 import Admonition from "@theme/Admonition";
 import type { MDXComponentsObject } from "@theme/MDXComponents";
 import MDXA from "@theme/MDXComponents/A";
