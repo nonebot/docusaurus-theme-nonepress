@@ -49,37 +49,36 @@ export default function CodeBlockString({
     showLineNumbersProp ?? containsLineNumbers(metastring);
 
   return (
-    <Highlight
-      {...defaultProps}
-      theme={prismTheme}
-      code={code}
-      language={(language ?? "text") as Language}
+    <Container
+      className={clsx(
+        blockClassName,
+        language &&
+          !blockClassName.includes(`language-${language}`) &&
+          `language-${language}`,
+      )}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Container
-          className={clsx(
-            blockClassName,
-            language &&
-              !blockClassName.includes(`language-${language}`) &&
-              `language-${language}`,
-          )}
+      {title && (
+        <div className="code-block-title">
+          <div className="code-block-title-btn-group">
+            <div className="code-block-title-btn code-block-title-btn-error"></div>
+            <div className="code-block-title-btn code-block-title-btn-warning"></div>
+            <div className="code-block-title-btn code-block-title-btn-success"></div>
+          </div>
+          <div className="code-block-title-content">{title}</div>
+        </div>
+      )}
+      <div className="code-block-wrapper">
+        <Highlight
+          {...defaultProps}
+          theme={prismTheme}
+          code={code}
+          language={(language ?? "text") as Language}
         >
-          {title && (
-            <div className="code-block-title" style={style}>
-              <div className="code-block-title-btn-group">
-                <div className="code-block-title-btn code-block-title-btn-error"></div>
-                <div className="code-block-title-btn code-block-title-btn-warning"></div>
-                <div className="code-block-title-btn code-block-title-btn-success"></div>
-              </div>
-              <div className="code-block-title-content">{title}</div>
-            </div>
-          )}
-          <div className="code-block-wrapper">
+          {({ className, tokens, getLineProps, getTokenProps }) => (
             <pre
               tabIndex={0}
               ref={wordWrap.codeBlockRef}
               className={clsx(className, "code-block-content thin-scrollbar")}
-              style={style}
             >
               <code
                 className={clsx(
@@ -99,18 +98,18 @@ export default function CodeBlockString({
                 ))}
               </code>
             </pre>
-            <div className="code-block-btn-group">
-              {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
-                <WordWrapButton
-                  onClick={() => wordWrap.toggle()}
-                  isEnabled={wordWrap.isEnabled}
-                />
-              )}
-              <CopyButton code={code} />
-            </div>
-          </div>
-        </Container>
-      )}
-    </Highlight>
+          )}
+        </Highlight>
+        <div className="code-block-btn-group">
+          {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
+            <WordWrapButton
+              onClick={() => wordWrap.toggle()}
+              isEnabled={wordWrap.isEnabled}
+            />
+          )}
+          <CopyButton code={code} />
+        </div>
+      </div>
+    </Container>
   );
 }

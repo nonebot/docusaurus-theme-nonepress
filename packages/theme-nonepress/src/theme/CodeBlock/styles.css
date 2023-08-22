@@ -1,7 +1,10 @@
 .code-block {
   &-container {
+    color: var(--prism-color);
+    background-color: var(--prism-background-color);
+
     @apply relative w-full max-w-full h-auto overflow-hidden;
-    @apply rounded-box leading-6 bg-base-200 text-base-content;
+    @apply rounded-box leading-6;
   }
 
   &-title {
@@ -66,6 +69,9 @@
     }
 
     &-number {
+      overflow-wrap: normal;
+      background-color: var(--prism-background-color);
+
       @apply table-cell sticky left-0 text-right px-4 select-none w-[1%];
 
       &::before {

@@ -35,3 +35,18 @@ presets: [
   ],
 ];
 ```
+
+## TODO
+
+- [x] NonePress Theme Components
+- [x] NonePress Theme Preset
+- [x] Plugins useful to NonePress Theme
+  - [x] DocsMenu
+  - [x] SideBar Keeper
+- [ ] Documentation
+  - [x] Introduction
+  - [ ] Config
+  - [ ] Components
+  - [ ] Plugins
+  - [ ] Preset
+  - [ ] Custom Theme

@@ -6,4 +6,12 @@
   & .code-block-container {
     @apply my-4;
   }
+
+  & ul.task-list {
+    @apply list-none;
+
+    & > li input[type="checkbox"] {
+      @apply mr-2 my-0;
+    }
+  }
 }

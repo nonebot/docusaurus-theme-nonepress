@@ -14,6 +14,29 @@ options:
 
 Custom NonePress theme config in `docusaurus.config.js`.
 
+<details>
+  <summary>Full Example:</summary>
+
+```js title="docusaurus.config.js" showLineNumbers
+module.exports = {
+  themeConfig:
+    /** @type {import('@nullbot/docusaurus-preset-nonepress').ThemeConfig} */
+    ({
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
+      announcementBar: {
+        id: "support-us",
+        content:
+          '⭐️ If you like NonePress, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/nonebot/docusaurus-theme-nonepress">GitHub</a>! ⭐️',
+        isCloseable: true,
+      },
+    }),
+};
+```
+
+</details>
+
 ## Theme Config Type
 
 ```js title="docusaurus.config.js" showLineNumbers

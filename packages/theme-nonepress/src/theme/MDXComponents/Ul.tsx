@@ -10,7 +10,7 @@ export default function MDXUl(props: Props): JSX.Element {
       {...props}
       className={clsx(
         props.className,
-        props.className?.includes("contains-task-list") && "list-none",
+        props.className?.includes("contains-task-list") && "task-list",
       )}
     />
   );
