@@ -15,10 +15,10 @@ export default function NotFound(): JSX.Element {
         })}
       />
       <Layout>
-        <main className="container hero">
+        <main className="container mx-auto hero">
           <div className="hero-content text-center">
-            <div className="col col--6 col--offset-3">
-              <h1 className="max-w-md">
+            <div className="max-w-md">
+              <h1 className="text-5xl font-bold">
                 <Translate
                   id="theme.NotFound.title"
                   description="The title of the 404 page"

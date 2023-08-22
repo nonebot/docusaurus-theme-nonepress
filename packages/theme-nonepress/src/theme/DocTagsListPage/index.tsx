@@ -11,6 +11,7 @@ import {
 
 import type { Props } from "@theme/DocTagsListPage";
 import Layout from "@theme/Layout";
+import Page from "@theme/Page";
 import SearchMetadata from "@theme/SearchMetadata";
 import TagsListByLetter from "@theme/TagsListByLetter";
 
@@ -26,14 +27,14 @@ export default function DocTagsListPage({ tags }: Props): JSX.Element {
       <PageMetadata title={title} />
       <SearchMetadata tag="doc_tags_list" />
       <Layout>
-        <div className="w-full">
-          <main className="container mx-auto mt-20 pb-8 px-4 lg:px-12">
-            <div className="p-4 prose">
+        <Page>
+          <main>
+            <div className="prose max-w-none">
               <h1>{title}</h1>
               <TagsListByLetter tags={tags} />
             </div>
           </main>
-        </div>
+        </Page>
       </Layout>
     </HtmlClassNameProvider>
   );

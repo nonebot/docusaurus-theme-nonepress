@@ -13,6 +13,7 @@ import {
 
 import type { Props } from "@theme/DocTagDocListPage";
 import Layout from "@theme/Layout";
+import Page from "@theme/Page";
 import SearchMetadata from "@theme/SearchMetadata";
 
 // Very simple pluralization: probably good enough for now
@@ -35,8 +36,8 @@ function useNDocsTaggedPlural() {
 
 function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): JSX.Element {
   return (
-    <article className="my-8">
-      <Link to={doc.permalink}>
+    <article>
+      <Link to={doc.permalink} className="no-underline">
         <h2>{doc.title}</h2>
       </Link>
       {doc.description && <p>{doc.description}</p>}
@@ -65,10 +66,10 @@ export default function DocTagDocListPage({ tag }: Props): JSX.Element {
       <PageMetadata title={title} />
       <SearchMetadata tag="doc_tag_doc_list" />
       <Layout>
-        <div className="w-full">
-          <main className="container mx-auto mt-20 pb-8 px-4 lg:px-12">
-            <div className="p-4 prose">
-              <header className="mb-12">
+        <Page>
+          <main>
+            <div className="prose max-w-none">
+              <header>
                 <h1>{title}</h1>
                 <Link href={tag.allTagsPath}>
                   <Translate
@@ -79,14 +80,14 @@ export default function DocTagDocListPage({ tag }: Props): JSX.Element {
                   </Translate>
                 </Link>
               </header>
-              <section className="my-8">
+              <section>
                 {tag.items.map((doc) => (
                   <DocItem key={doc.id} doc={doc} />
                 ))}
               </section>
             </div>
           </main>
-        </div>
+        </Page>
       </Layout>
     </HtmlClassNameProvider>
   );
