@@ -30,7 +30,7 @@ function CardContainer({
   className?: string;
 }): JSX.Element {
   return (
-    <Link href={href} className={clsx("card bg-base-100 shadow-md", className)}>
+    <Link href={href} className={clsx("card doc-card not-prose", className)}>
       {children}
     </Link>
   );
@@ -52,11 +52,11 @@ function CardLayout({
   return (
     <CardContainer href={href} className={className}>
       <div className="card-body">
-        <h2 className="card-title truncate" title={title}>
+        <h2 className="card-title doc-card-title" title={title}>
           {icon} {title}
         </h2>
         {description && (
-          <p className="truncate" title={description}>
+          <p className="doc-card-description" title={description}>
             {description}
           </p>
         )}
@@ -82,7 +82,7 @@ function CardCategory({
   return (
     <CardLayout
       href={href}
-      icon={<IconCategory className="card-icon" />}
+      icon={<IconCategory className="doc-card-icon" />}
       title={item.label}
       className={className}
       description={
@@ -103,9 +103,9 @@ function CardCategory({
 
 function CardLink({ item }: { item: PropSidebarItemLink }): JSX.Element {
   const icon = isInternalUrl(item.href) ? (
-    <IconFile className="card-icon" />
+    <IconFile className="doc-card-icon" />
   ) : (
-    <IconLink className="card-icon" />
+    <IconLink className="doc-card-icon" />
   );
   const doc = useDocById(item.docId ?? undefined);
   return (

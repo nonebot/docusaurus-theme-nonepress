@@ -7,12 +7,13 @@ import {
   filterDocCardListItems,
 } from "@docusaurus/theme-common";
 
+import "./styles.css";
 import DocCard from "@theme/DocCard";
 import type { Props } from "@theme/DocCardList";
 
-function DocCardListForCurrentSidebarCategory({ className }: Props) {
+function DocCardListForCurrentSidebarCategory(props: Props) {
   const category = useCurrentSidebarCategory();
-  return <DocCardList items={category.items} className={className} />;
+  return <DocCardList {...props} items={category.items} />;
 }
 
 export default function DocCardList(props: Props): JSX.Element {
@@ -21,10 +22,11 @@ export default function DocCardList(props: Props): JSX.Element {
     return <DocCardListForCurrentSidebarCategory {...props} />;
   }
   const filteredItems = filterDocCardListItems(items);
+
   return (
     <section className={clsx("doc-card-list", className)}>
       {filteredItems.map((item, index) => (
-        <article key={index} className="doc-card">
+        <article key={index}>
           <DocCard item={item} />
         </article>
       ))}
