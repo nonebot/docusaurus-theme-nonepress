@@ -9,6 +9,7 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
+import "./styles.css";
 import type { Props } from "@theme/Tabs";
 
 function TabList({
@@ -63,30 +64,35 @@ function TabList({
   };
 
   return (
-    <ul
-      role="tablist"
-      aria-orientation="horizontal"
-      className={clsx("tabs", className)}
-    >
-      {tabValues.map(({ value, label, attributes }) => (
-        <li
-          // TODO extract TabListItem
-          role="tab"
-          tabIndex={selectedValue === value ? 0 : -1}
-          aria-selected={selectedValue === value}
-          key={value}
-          ref={(tabControl) => tabRefs.push(tabControl)}
-          onKeyDown={handleKeydown}
-          onClick={handleTabChange}
-          {...attributes}
-          className={clsx("tab tab-lifted", attributes?.className as string, {
-            "tab-active": selectedValue === value,
-          })}
-        >
-          {label ?? value}
-        </li>
-      ))}
-    </ul>
+    <div className="not-prose">
+      <ul
+        role="tablist"
+        aria-orientation="horizontal"
+        className={clsx("tabs tabs-list", className)}
+      >
+        {tabValues.map(({ value, label, attributes }) => (
+          <li
+            // TODO extract TabListItem
+            role="tab"
+            tabIndex={selectedValue === value ? 0 : -1}
+            aria-selected={selectedValue === value}
+            key={value}
+            ref={(tabControl) => tabRefs.push(tabControl)}
+            onKeyDown={handleKeydown}
+            onClick={handleTabChange}
+            {...attributes}
+            className={clsx(
+              "tab tab-lifted tab-item",
+              attributes?.className as string,
+              selectedValue === value && "tab-active tab-item-active",
+            )}
+          >
+            {label ?? value}
+          </li>
+        ))}
+        <div className="tab tab-lifted tab-item tab-spacer"></div>
+      </ul>
+    </div>
   );
 }
 
@@ -106,10 +112,10 @@ function TabContent({
       // fail-safe or fail-fast? not sure what's best here
       return null;
     }
-    return cloneElement(selectedTabItem, { className: "mt-4" });
+    return <div>{cloneElement(selectedTabItem)}</div>;
   }
   return (
-    <div className="mt-4">
+    <div>
       {childTabs.map((tabItem, i) =>
         cloneElement(tabItem, {
           key: i,

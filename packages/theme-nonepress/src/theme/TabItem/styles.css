@@ -1,0 +1,4 @@
+.tab-panel {
+  @apply w-full px-4 border border-base-content/10;
+  @apply rounded-b-box rounded-tr-box;
+}
