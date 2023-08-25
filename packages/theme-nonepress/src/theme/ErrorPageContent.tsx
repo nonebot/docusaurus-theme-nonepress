@@ -13,27 +13,25 @@ export default function ErrorPageContent({
   tryAgain,
 }: Props): JSX.Element {
   return (
-    <main className="container hero">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">
-            <Translate
-              id="theme.ErrorPageContent.title"
-              description="The title of the fallback page when the page crashed"
-            >
-              This page crashed.
-            </Translate>
-          </h1>
-          <div className="my-6">
-            <ErrorBoundaryTryAgainButton
-              onClick={tryAgain}
-              className="btn btn-primary"
-            />
-          </div>
-          <hr />
-          <div className="my-4">
-            <ErrorBoundaryError error={error} />
-          </div>
+    <main className="container mx-auto my-8 hero">
+      <div className="hero-content">
+        <h1 className="text-5xl font-bold">
+          <Translate
+            id="theme.ErrorPageContent.title"
+            description="The title of the fallback page when the page crashed"
+          >
+            This page crashed.
+          </Translate>
+        </h1>
+        <div className="my-4">
+          <ErrorBoundaryTryAgainButton
+            onClick={tryAgain}
+            className="btn btn-primary"
+          />
+        </div>
+        <hr />
+        <div>
+          <ErrorBoundaryError error={error} />
         </div>
       </div>
     </main>

@@ -10,6 +10,7 @@ import {
 } from "@docusaurus/theme-common";
 import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
 
+import "./styles.css";
 import AnnouncementBar from "@theme/AnnouncementBar";
 import ErrorPageContent from "@theme/ErrorPageContent";
 import Footer from "@theme/Footer";
@@ -42,7 +43,11 @@ export default function Layout(props: Props): JSX.Element {
 
       <div
         id={SkipToContentFallbackId}
-        className={clsx(ThemeClassNames.wrapper.main, wrapperClassName)}
+        className={clsx(
+          ThemeClassNames.wrapper.main,
+          "layout-wrapper",
+          wrapperClassName,
+        )}
       >
         <ErrorBoundary fallback={(params) => <ErrorPageContent {...params} />}>
           {children}

@@ -1,0 +1,5 @@
+.layout {
+  &-wrapper {
+    @apply grow;
+  }
+}

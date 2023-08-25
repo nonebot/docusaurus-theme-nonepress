@@ -1,8 +1,19 @@
 @import url("tailwindcss/tailwind");
 
+html {
+  @apply h-full;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @apply h-full;
+}
+
+/* stylelint-disable-next-line selector-id-pattern */
+#__docusaurus {
+  @apply flex flex-col min-h-full;
 }
 
 #nprogress {
