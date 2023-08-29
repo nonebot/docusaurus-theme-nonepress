@@ -1,0 +1,13 @@
+.navbar-social-links {
+  @apply flex justify-center items-center gap-2;
+
+  &-mobile {
+    @apply p-2;
+  }
+}
+
+.navbar-social-link {
+  & > &-icon {
+    @apply w-auto h-5 fill-current;
+  }
+}

@@ -1,24 +1,22 @@
 import React from "react";
 
-import TOCItems from "@theme/TOCItems";
-import type { TOCInlineProps } from "@theme/TOCInline";
+import TOCContent from "@theme/TOC/Content";
+import type { Props } from "@theme/TOCInline";
 
-function TOCInline({
+export default function TOCInline({
   toc,
   minHeadingLevel,
   maxHeadingLevel,
-}: TOCInlineProps): JSX.Element {
+}: Props): JSX.Element {
   return (
-    <div className="">
-      <TOCItems
+    <div className="w-full mb-2 not-prose">
+      <TOCContent
         toc={toc}
         minHeadingLevel={minHeadingLevel}
         maxHeadingLevel={maxHeadingLevel}
-        className="list-disc"
         linkClassName={null}
+        linkActiveClassName={null}
       />
     </div>
   );
 }
-
-export default TOCInline;

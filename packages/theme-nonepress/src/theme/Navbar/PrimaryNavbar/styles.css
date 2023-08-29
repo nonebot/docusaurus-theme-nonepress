@@ -1,0 +1,39 @@
+.navbar-primary {
+  &-layout {
+    @apply px-4 sm:px-6 md:px-8 py-4 w-full;
+  }
+
+  &-layout > &-content {
+    @apply relative flex items-center;
+  }
+
+  &-content > &-items {
+    @apply hidden lg:flex ml-auto;
+  }
+
+  /* group navbar items into sections and show in xl */
+  &-group {
+    @apply hidden xl:flex items-center;
+
+    &::before {
+      @apply mx-4 w-px h-full bg-base-content/10 content-[""];
+    }
+  }
+
+  &-menu {
+    @apply menu-horizontal menu-sm p-0 -mx-2;
+  }
+
+  /* navbar item */
+  &-item {
+    @apply flex items-center text-base-content font-medium opacity-75;
+
+    &:hover {
+      @apply opacity-100;
+    }
+
+    &.menu-link-active {
+      @apply !opacity-100;
+    }
+  }
+}

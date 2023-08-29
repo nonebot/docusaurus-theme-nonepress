@@ -1,38 +1,70 @@
-import clsx from "clsx";
 import React from "react";
 
-import NavbarPC from "@theme/NavbarPC";
-import styles from "./styles.module.css";
-import NavbarMobile from "@theme/NavbarMobile";
-import useTransition from "@theme/hooks/useTransition";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
-import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import clsx from "clsx";
 
-function Navbar(): JSX.Element {
-  const mobileMenu = useTransition<HTMLDivElement>();
+import { translate } from "@docusaurus/Translate";
+import { useHideableNavbar } from "@docusaurus/theme-common/internal";
+
+import "./styles.css";
+import {
+  useNonepressThemeConfig,
+  useWindowSize,
+} from "@nullbot/docusaurus-theme-nonepress/client";
+import MobileMenu from "@theme/Navbar/MobileMenu";
+import MobileSidebar from "@theme/Navbar/MobileSidebar";
+import MobileTOCPopdown from "@theme/Navbar/MobileTOCPopdown";
+import PrimaryNavbar from "@theme/Navbar/PrimaryNavbar";
+import SecondaryNavbar from "@theme/Navbar/SecondaryNavbar";
+
+export default function Navbar(): JSX.Element {
   const {
-    navbar: { hideOnScroll },
-  } = useThemeConfig();
+    navbar: { hideOnScroll, style },
+  } = useNonepressThemeConfig();
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
+
+  const windowSize = useWindowSize();
+  const isMobile = windowSize === "mobile" || windowSize === "ssr";
 
   return (
     <>
-      <div
-        id="navbar"
+      {/* main navbar container */}
+      <nav
         ref={navbarRef}
+        aria-label={translate({
+          id: "theme.NavBar.navAriaLabel",
+          message: "Main",
+          description: "The ARIA label for the main navigation",
+        })}
         className={clsx(
           "navbar",
-          "fixed top-0 left-0 right-0 z-10",
-          "bg-light-nav dark:bg-dark-nav shadow-sm",
-          "transition-transform",
-          { [styles.navbarHidden]: hideOnScroll && !isNavbarVisible }
+          hideOnScroll && !isNavbarVisible && "navbar-hidden",
+          {
+            "navbar-style-dark": style === "dark",
+            "navbar-style-primary": style === "primary",
+          },
         )}
       >
-        <NavbarPC openMobileMenu={mobileMenu.enter} />
-      </div>
-      <NavbarMobile {...mobileMenu} />
+        <div className="navbar-container">
+          {/* main navbar */}
+          <PrimaryNavbar />
+          {/* mobile secondary navbar */}
+          {isMobile && (
+            <>
+              <SecondaryNavbar />
+              {/* mobile toc popdown */}
+              <MobileTOCPopdown />
+            </>
+          )}
+        </div>
+      </nav>
+      {isMobile && (
+        <>
+          {/* mobile main menu */}
+          <MobileMenu />
+          {/* mobile sidebar */}
+          <MobileSidebar />
+        </>
+      )}
     </>
   );
 }
-
-export default Navbar;

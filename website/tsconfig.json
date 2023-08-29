@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "@docusaurus/module-type-aliases",
+      "@nullbot/docusaurus-theme-nonepress"
+    ],
+    "baseUrl": "."
+  }
+}

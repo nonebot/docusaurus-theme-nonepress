@@ -1,0 +1,26 @@
+.navbar-extra {
+  @apply hidden order-last pl-4;
+
+  @media screen(lg) and (not screen(xl)) {
+    @apply block;
+  }
+
+  &-icon {
+    @apply w-4 h-5 fill-current;
+  }
+
+  &-content {
+    @apply min-w-[8rem] p-3;
+    @apply shadow-lg rounded-md bg-base-100 text-base-content;
+    @apply origin-top-right;
+  }
+
+  & &-divider ~ &-divider {
+    @apply divider m-0 h-auto;
+
+    &::before,
+    &::after {
+      @apply h-px;
+    }
+  }
+}

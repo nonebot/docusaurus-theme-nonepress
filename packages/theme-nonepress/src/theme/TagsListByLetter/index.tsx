@@ -1,16 +1,21 @@
 import React from "react";
 
+import {
+  listTagsByLetters,
+  type TagLetterEntry,
+} from "@docusaurus/theme-common";
+
+import "./styles.css";
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListByLetter";
-import { listTagsByLetters, TagLetterEntry } from "@docusaurus/theme-common";
 
 function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   return (
     <article>
       <h2>{letterEntry.letter}</h2>
-      <ul className="p-0">
+      <ul>
         {letterEntry.tags.map((tag) => (
-          <li key={tag.permalink} className="inline-block mt-2 mr-2 ml-4">
+          <li key={tag.permalink} className="tags-list-item">
             <Tag {...tag} />
           </li>
         ))}
@@ -20,10 +25,10 @@ function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   );
 }
 
-function TagsListByLetter({ tags }: Props): JSX.Element {
+export default function TagsListByLetter({ tags }: Props): JSX.Element {
   const letterList = listTagsByLetters(tags);
   return (
-    <section className="my-8">
+    <section>
       {letterList.map((letterEntry) => (
         <TagLetterEntryItem
           key={letterEntry.letter}
@@ -33,5 +38,3 @@ function TagsListByLetter({ tags }: Props): JSX.Element {
     </section>
   );
 }
-
-export default TagsListByLetter;

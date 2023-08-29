@@ -1,44 +1,52 @@
-import fs from "fs";
-import path from "path";
 import Module from "module";
+import path from "path";
 
-import { memoize } from "lodash";
-import { defaultConfig, compile } from "eta";
-import type { AcceptedPlugin } from "postcss";
-import { toGlobalDataVersion } from "./globalData";
-import { LoadContext, Plugin } from "@docusaurus/types";
-import openSearchTemplate from "./templates/opensearch";
-import { GlobalPluginData } from "docusaurus-theme-nonepress/types";
-import { normalizeUrl, getSwizzledComponent } from "@docusaurus/utils";
-import pluginContentDoc from "@docusaurus/plugin-content-docs/lib/index";
+import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
+import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
 import type {
   PluginOptions,
-  LoadedContent,
-} from "@docusaurus/plugin-content-docs/lib/types";
+  ThemeConfig,
+} from "@nullbot/docusaurus-theme-nonepress";
+import autoprefixer from "autoprefixer";
+import postcssImport from "postcss-import";
+import tailwindcss from "tailwindcss";
+import type { Config as tailwindConfigType } from "tailwindcss";
+import tailwindNesting from "tailwindcss/nesting";
+import type webpack from "webpack";
 
 import defaultTailwindConfig from "./tailwind.config";
-import type { ThemeConfig } from "@theme/hooks/useThemeConfig";
+import { getTranslationFiles, translateThemeConfig } from "./translations";
 
 const requireFromDocusaurusCore = Module.createRequire(
-  require.resolve("@docusaurus/core/package.json")
+  require.resolve("@docusaurus/core/package.json"),
 );
 const ContextReplacementPlugin = requireFromDocusaurusCore(
-  "webpack/lib/ContextReplacementPlugin"
-);
+  "webpack/lib/ContextReplacementPlugin",
+) as typeof webpack.ContextReplacementPlugin;
 
 const ThemeStorageKey = "theme";
+const ThemeQueryStringKey = "docusaurus-theme";
 const noFlashColorMode = ({
   defaultMode = "light",
   respectPrefersColorScheme = false,
-}) => {
-  return `(function() {
+}: {
+  defaultMode: "light" | "dark";
+  respectPrefersColorScheme: boolean;
+}) =>
+  `(function() {
   var defaultMode = "${defaultMode}";
   var respectPrefersColorScheme = ${respectPrefersColorScheme};
 
   function setDataThemeAttribute(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    document.body.classList.remove("dark", "light");
-    document.body.classList.add(theme);
+  }
+
+  function getQueryStringTheme() {
+    var theme = null;
+    try {
+      theme = new URLSearchParams(window.location.search).get('${ThemeQueryStringKey}')
+    } catch(e) {}
+    return theme;
   }
 
   function getStoredTheme() {
@@ -49,9 +57,9 @@ const noFlashColorMode = ({
     return theme;
   }
 
-  var storedTheme = getStoredTheme();
-  if (storedTheme !== null) {
-    setDataThemeAttribute(storedTheme);
+  var initialTheme = getQueryStringTheme() || getStoredTheme();
+  if (initialTheme !== null) {
+    setDataThemeAttribute(initialTheme);
   } else {
     if (
       respectPrefersColorScheme &&
@@ -68,20 +76,21 @@ const noFlashColorMode = ({
     }
   }
 })();`;
-};
 
-const getCompiledOpenSearchTemplate = memoize(() =>
-  compile(openSearchTemplate.trim())
-);
-
-function renderOpenSearchTemplate(data: {
-  title: string;
-  url: string;
-  favicon: string | null;
-}) {
-  const compiled = getCompiledOpenSearchTemplate();
-  return compiled(data, defaultConfig);
-}
+export const AnnouncementBarDismissStorageKey =
+  "docusaurus.announcement.dismiss";
+const AnnouncementBarDismissDataAttribute =
+  "data-announcement-bar-initially-dismissed";
+const AnnouncementBarInlineJavaScript = `
+(function() {
+  function isDismissed() {
+    try {
+      return localStorage.getItem('${AnnouncementBarDismissStorageKey}') === 'true';
+    } catch (err) {}
+    return false;
+  }
+  document.documentElement.setAttribute('${AnnouncementBarDismissDataAttribute}', isDismissed());
+})();`;
 
 function getPurgeCSSPath(siteDir?: string): string[] {
   const purge = [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`];
@@ -91,150 +100,119 @@ function getPurgeCSSPath(siteDir?: string): string[] {
   return purge;
 }
 
-const OPEN_SEARCH_FILENAME = "opensearch.xml";
-
-export default function docusaurusThemeNonepress(
+export default async function themeNonepress(
   context: LoadContext,
-  options: PluginOptions
-): Plugin<LoadedContent> {
+  options: PluginOptions,
+): Promise<Plugin<void>> {
   const {
     siteDir,
-    baseUrl,
-    siteConfig: { title, url, favicon, themeConfig: roughlyTypedThemeConfig },
+    i18n: { currentLocale, localeConfigs },
   } = context;
-  const themeConfig = (roughlyTypedThemeConfig || {}) as ThemeConfig;
+  const themeConfig = context.siteConfig.themeConfig as ThemeConfig;
   const {
+    announcementBar,
     colorMode,
-    customCss,
-    tailwindConfig,
-    prism: { additionalLanguages = [] } = {},
+    prism: { additionalLanguages },
+    nonepress: { tailwindConfig },
   } = themeConfig;
-  const SearchPageComponent = "./theme/SearchPage/index.js";
-  const searchPagePath =
-    getSwizzledComponent(SearchPageComponent) ||
-    path.resolve(__dirname, SearchPageComponent);
-  const docsPluginInstance = pluginContentDoc(context, options);
+  const { customCss } = options;
 
   return {
     name: "docusaurus-theme-nonepress",
 
     getThemePath() {
-      return path.join(__dirname, "..", "lib", "theme");
+      return "../lib/theme";
     },
 
     getTypeScriptThemePath() {
-      return path.resolve(__dirname, "..", "src", "theme");
+      return "../src/theme";
+    },
+
+    getTranslationFiles: () => getTranslationFiles({ themeConfig }),
+    translateThemeConfig: (params) =>
+      translateThemeConfig({
+        themeConfig: params.themeConfig as ThemeConfig,
+        translationFiles: params.translationFiles,
+      }),
+    getDefaultCodeTranslationMessages() {
+      return readDefaultCodeTranslationMessages({
+        locale: currentLocale,
+        name: "theme-nonepress",
+      });
     },
 
     getClientModules() {
       const modules = [
-        path.resolve(__dirname, "./include-font-awesome"),
-        path.resolve(__dirname, "./styles.css"),
-        path.resolve(__dirname, "./prism-include-languages"),
+        "./fontawesome",
+        "./styles.css",
+        "./prism-include-languages",
+        "./nprogress",
       ];
 
       if (customCss) {
         if (Array.isArray(customCss)) {
-          modules.push(...customCss);
+          modules.push(
+            ...customCss.map((p) => path.resolve(context.siteDir, p)),
+          );
         } else {
-          modules.push(customCss);
+          modules.push(path.resolve(context.siteDir, customCss));
         }
       }
 
       return modules;
     },
 
-    configureWebpack(_config, isServer, utils, content) {
+    configureWebpack() {
       const prismLanguages = additionalLanguages
         .map((lang) => `prism-${lang}`)
         .join("|");
 
       return {
-        ignoreWarnings: [
-          (e) => e.message.includes("Can't resolve '@theme-init/hooks/useDocs"),
-        ],
         plugins: [
           new ContextReplacementPlugin(
             /prismjs[\\/]components$/,
-            new RegExp(`^./(${prismLanguages})$`)
+            new RegExp(`^./(${prismLanguages})$`),
           ),
         ],
       };
     },
 
-    configurePostCss(postCssOptions: { plugins: AcceptedPlugin[] }) {
-      const { content = [], presets = [] } = tailwindConfig;
+    configurePostCss(postCssOptions: PostCssOptions): PostCssOptions {
       const purgeFiles = getPurgeCSSPath(siteDir);
+      const content = tailwindConfig?.content;
       if (Array.isArray(content)) {
         content.unshift(...purgeFiles);
       } else {
-        content.files.unshift(...purgeFiles);
+        content?.files.unshift(...purgeFiles);
       }
-      presets.unshift(defaultTailwindConfig);
-      tailwindConfig.content = content;
-      tailwindConfig.presets = presets;
+      const finalTailwindConfig: tailwindConfigType = {
+        presets: [defaultTailwindConfig, tailwindConfig].filter(
+          (config): config is tailwindConfigType => !!config,
+        ),
+        content: content ?? purgeFiles,
+      };
       postCssOptions.plugins.unshift(
-        require("postcss-import"),
-        require("tailwindcss")(tailwindConfig),
-        require("autoprefixer")
+        postcssImport(),
+        tailwindNesting(),
+        tailwindcss(finalTailwindConfig),
+        autoprefixer(),
       );
 
       return postCssOptions;
     },
 
-    loadContent: docsPluginInstance.loadContent,
-
-    async contentLoaded({ content, actions }) {
-      const { loadedVersions } = content;
-      const { setGlobalData, addRoute } = actions;
-
-      setGlobalData<GlobalPluginData>({
-        versions: loadedVersions.map(toGlobalDataVersion),
-      });
-
-      addRoute({
-        path: normalizeUrl([baseUrl, "search"]),
-        component: searchPagePath,
-        exact: true,
-      });
-    },
-
-    async postBuild({ outDir }) {
-      try {
-        fs.writeFileSync(
-          path.join(outDir, OPEN_SEARCH_FILENAME),
-          renderOpenSearchTemplate({
-            title,
-            url: url + baseUrl,
-            favicon: favicon ? normalizeUrl([url, baseUrl, favicon]) : null,
-          })
-        );
-      } catch (err) {
-        console.error(err);
-        throw new Error(`Generating OpenSearch file failed: ${err}`);
-      }
-    },
-
     injectHtmlTags() {
       return {
-        headTags: [
-          {
-            tagName: "link",
-            attributes: {
-              rel: "search",
-              type: "application/opensearchdescription+xml",
-              title,
-              href: normalizeUrl([baseUrl, OPEN_SEARCH_FILENAME]),
-            },
-          },
-        ],
         preBodyTags: [
           {
             tagName: "script",
             attributes: {
               type: "text/javascript",
             },
-            innerHTML: `${noFlashColorMode(colorMode)}`,
+            innerHTML: `
+              ${noFlashColorMode(colorMode)}
+              ${announcementBar ? AnnouncementBarInlineJavaScript : ""}
+            `,
           },
         ],
       };
@@ -242,5 +220,5 @@ export default function docusaurusThemeNonepress(
   };
 }
 
-export { validateThemeConfig } from "./validateThemeConfig";
-export { validateOptions } from "@docusaurus/plugin-content-docs/lib/index";
+export { default as getSwizzleConfig } from "./getSwizzleConfig";
+export { validateThemeConfig, validateOptions } from "./options";

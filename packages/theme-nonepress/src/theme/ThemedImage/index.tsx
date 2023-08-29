@@ -1,24 +1,28 @@
-import clsx from "clsx";
 import React from "react";
 
-import type { Props } from "@theme/ThemedImage";
+import clsx from "clsx";
+
+import "./styles.css";
+import { useColorMode } from "@docusaurus/theme-common";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import useThemeContext from "@theme/hooks/useThemeContext";
 
-import styles from "./styles.module.css";
+import type { Props } from "@theme/ThemedImage";
 
-function ThemedImage(props: Props): JSX.Element {
+export default function ThemedImage(props: Props): JSX.Element {
   const isBrowser = useIsBrowser();
-  const { isDarkTheme } = useThemeContext();
-  const { sources, className = "", alt = "", ...propsRest } = props;
+  const { colorMode } = useColorMode();
+  const { sources, className, alt, ...propsRest } = props;
 
   type SourceName = keyof Props["sources"];
 
-  const clientThemes: SourceName[] = isDarkTheme ? ["dark"] : ["light"];
+  const clientThemes: SourceName[] =
+    colorMode === "dark" ? ["dark"] : ["light"];
 
   const renderedSourceNames: SourceName[] = isBrowser
     ? clientThemes
-    : ["light", "dark"];
+    : // We need to render both images on the server to avoid flash
+      // See https://github.com/facebook/docusaurus/pull/3730
+      ["light", "dark"];
 
   return (
     <>
@@ -28,9 +32,9 @@ function ThemedImage(props: Props): JSX.Element {
           src={sources[sourceName]}
           alt={alt}
           className={clsx(
-            styles.themedImage,
-            styles[`themedImage--${sourceName}`],
-            className
+            "themed-image",
+            `themed-image-${sourceName}`,
+            className,
           )}
           {...propsRest}
         />
@@ -38,5 +42,3 @@ function ThemedImage(props: Props): JSX.Element {
     </>
   );
 }
-
-export default ThemedImage;

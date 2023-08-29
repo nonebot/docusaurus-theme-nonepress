@@ -1,0 +1,7 @@
+.navbar-locales {
+  @apply lg:flex lg:items-center;
+
+  &-icon {
+    @apply h-5 w-auto fill-current;
+  }
+}

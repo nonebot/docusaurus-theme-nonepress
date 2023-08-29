@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    // "lib": ["DOM", "ESNext"],
+    "noEmit": false,
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./lib/.tsbuildinfo-client",
+    "module": "ESNext",
+    "target": "ESNext",
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "include": [
+    "src/fontawesome.ts",
+    "src/prism-include-languages.ts",
+    "src/nprogress.ts",
+    "src/theme",
+    "src/contexts",
+    "src/*.d.ts"
+  ]
+}

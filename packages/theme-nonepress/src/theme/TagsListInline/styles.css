@@ -1,0 +1,7 @@
+.doc-tags-list {
+  @apply flex flex-row ml-2 gap-2;
+
+  &-container {
+    @apply flex flex-row items-center;
+  }
+}

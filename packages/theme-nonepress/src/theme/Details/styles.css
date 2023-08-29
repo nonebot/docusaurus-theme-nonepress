@@ -1,0 +1,3 @@
+.details {
+  @apply w-full p-4 bg-base-200 rounded-box;
+}

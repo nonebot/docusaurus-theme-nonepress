@@ -1,11 +1,20 @@
 {
   "extends": "../../tsconfig.json",
+  "references": [{ "path": "./tsconfig.client.json" }],
   "compilerOptions": {
-    "lib": ["DOM", "ES2019"],
-    "module": "esnext",
-    "noEmit": true,
-    "jsx": "react",
-    "baseUrl": "src"
+    "lib": ["DOM", "ESNext"],
+    "noEmit": false,
+    "incremental": true,
+    "tsBuildInfoFile": "./lib/.tsbuildinfo",
+    "rootDir": "src",
+    "outDir": "lib"
   },
-  "include": ["src/"]
+  "include": ["src"],
+  "exclude": [
+    "src/fontawesome.ts",
+    "src/prism-include-languages.ts",
+    "src/nprogress.ts",
+    "src/theme",
+    "src/contexts"
+  ]
 }

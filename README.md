@@ -2,8 +2,6 @@
 
 ## Installation
 
-## Installation
-
 ```bash
 npx create-docusaurus@latest website classic
 npm i --save docusaurus-preset-nonepress

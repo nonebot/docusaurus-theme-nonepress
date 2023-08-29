@@ -1,0 +1,61 @@
+.doc-search-page {
+  &-form {
+    @apply w-full;
+
+    &-input {
+      @apply w-full;
+    }
+  }
+
+  &-tagline {
+    @apply flex items-center w-full py-2 px-1 text-sm;
+
+    &-result {
+      @apply grow font-bold text-left;
+    }
+
+    &-logo {
+      @apply grow-0 shrink-0 text-right;
+
+      & > a {
+        @apply flex items-center gap-2 text-inherit;
+      }
+
+      & svg {
+        @apply h-4 w-auto;
+      }
+    }
+  }
+
+  &-spinner {
+    @apply text-primary w-12;
+
+    &-container {
+      @apply w-full text-center;
+    }
+  }
+
+  &-result {
+    @apply border-b border-base-content/10;
+
+    &-title {
+      @apply mt-[1em] mb-0;
+    }
+
+    &-breadcrumbs {
+      @apply text-sm;
+    }
+
+    &-summary {
+      @apply mt-2 italic;
+    }
+
+    &-more {
+      @apply mt-8;
+    }
+
+    &-match {
+      @apply bg-warning/20;
+    }
+  }
+}

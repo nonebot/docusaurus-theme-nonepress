@@ -1,29 +1,18 @@
-import clsx from "clsx";
 import React from "react";
 
 import Link from "@docusaurus/Link";
+
+import "./styles.css";
 import type { Props } from "@theme/Tag";
-import styles from "./styles.module.css";
 
-function Tag(props: Props): JSX.Element {
-  const { permalink, name, count } = props;
-
+export default function Tag({ permalink, label, count }: Props): JSX.Element {
   return (
     <Link
       href={permalink}
-      className={clsx(
-        "transition-all no-underline text-base text-light-text-active dark:text-dark-text-active",
-        "border border-gray-300 dark:border-gray-500 hover:border-light-text-active dark:hover:border-dark-text-active",
-        {
-          "rounded-lg px-2 py-1 text-[smaller]": !count,
-          [styles.tagWithCount]: count,
-        }
-      )}
+      className="btn btn-xs btn-outline btn-primary no-animation doc-tag"
     >
-      {name}
-      {count && <span>{count}</span>}
+      {label}
+      {count && <span className="doc-tag-badge">{count}</span>}
     </Link>
   );
 }
-
-export default Tag;

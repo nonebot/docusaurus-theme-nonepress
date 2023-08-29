@@ -1,0 +1,21 @@
+.doc {
+  &-footer {
+    @apply mt-12;
+
+    &-tags-row {
+      @apply mb-4;
+    }
+
+    &-edit-meta-row {
+      @apply flex flex-row flex-wrap;
+
+      & > * {
+        @apply lg:flex-1 shrink-0 ml-0 w-full max-w-full;
+
+        & + * {
+          @apply max-lg:mt-1 lg:text-right;
+        }
+      }
+    }
+  }
+}

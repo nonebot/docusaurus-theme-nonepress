@@ -1,0 +1,31 @@
+.appearance-toggle {
+  @apply inline-flex items-center shrink-0 h-6 w-11 rounded-full;
+  @apply bg-base-200 cursor-pointer;
+  @apply border border-base-content/10 hover:border-base-content/30;
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+
+  &-switcher {
+    @apply relative inline-block h-5 w-5 rounded-full;
+    @apply bg-base-100 shadow ring-0;
+    @apply transition-transform ease-in-out duration-200;
+    @apply translate-x-0 pointer-events-none;
+
+    &-active {
+      @apply !translate-x-5;
+    }
+  }
+
+  &-container {
+    @apply flex items-center justify-center;
+    @apply absolute h-full w-full ring-0 outline-none;
+    @apply transition-opacity opacity-0;
+
+    &-active {
+      @apply !opacity-100;
+    }
+  }
+
+  &-icon {
+    @apply w-4 h-4 fill-current;
+  }
+}

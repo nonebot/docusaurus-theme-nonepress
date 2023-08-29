@@ -1,0 +1,34 @@
+.admonition {
+  @apply alert mb-4 gap-0;
+  @apply grid-flow-col grid-cols-[auto_minmax(auto,1fr)] justify-items-start text-left;
+
+  &-success {
+    @apply alert-success;
+  }
+
+  &-error {
+    @apply alert-error;
+  }
+
+  &-info {
+    @apply alert-info;
+  }
+
+  &-warning {
+    @apply alert-warning;
+  }
+
+  &-title {
+    @apply flex items-center gap-1 uppercase font-bold;
+  }
+
+  &-icon {
+    @apply inline-block w-6 h-6 stroke-current fill-none;
+  }
+
+  &-content {
+    & > *:last-child {
+      @apply mb-0;
+    }
+  }
+}

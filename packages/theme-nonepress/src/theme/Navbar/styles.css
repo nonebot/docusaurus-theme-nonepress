@@ -1,0 +1,29 @@
+.navbar {
+  @apply bg-base-100 text-base-content;
+  @apply border-b border-base-content/10;
+  @apply backdrop-blur;
+  @apply sticky top-0 z-40 w-full h-16 !p-0;
+  @apply transition-transform duration-150;
+
+  &:has(&-secondary-layout) {
+    @apply h-[6.5rem];
+  }
+
+  &-hidden {
+    @apply -translate-y-full;
+  }
+
+  &-style-dark {
+    @apply bg-neutral text-neutral-content;
+  }
+
+  &-style-primary {
+    @apply bg-primary text-primary-content;
+  }
+
+  /* container restrict the navbar content width */
+  & > &-container {
+    @apply flex flex-col;
+    @apply max-w-[90rem] mx-auto w-full;
+  }
+}

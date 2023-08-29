@@ -1,0 +1,7 @@
+.doc-version-badge {
+  @apply badge badge-ghost font-semibold;
+
+  &-container {
+    @apply mb-2;
+  }
+}

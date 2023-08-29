@@ -1,0 +1,11 @@
+.doc-paginator {
+  @apply flex flex-row gap-4 mt-12;
+
+  & > * {
+    @apply flex-1 shrink-0;
+
+    & + * {
+      @apply text-right;
+    }
+  }
+}

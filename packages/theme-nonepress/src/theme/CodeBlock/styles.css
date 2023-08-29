@@ -1,8 +1,116 @@
-.docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.1);
-  display: block;
-}
+.code-block {
+  &-container {
+    color: var(--prism-color);
+    background-color: var(--prism-background-color);
 
-.dark .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+    @apply relative w-full max-w-full h-auto overflow-hidden;
+    @apply rounded-box leading-6;
+  }
+
+  &-title {
+    @apply relative w-full px-4 pt-2;
+
+    &-btn-group {
+      @apply absolute left-4;
+    }
+
+    &-btn {
+      @apply inline-block h-3 w-3 rounded-full;
+
+      &:not(:last-child) {
+        @apply mr-1;
+      }
+
+      &-error {
+        @apply bg-error;
+      }
+
+      &-warning {
+        @apply bg-warning;
+      }
+
+      &-success {
+        @apply bg-success;
+      }
+    }
+
+    &-content {
+      @apply w-full text-center align-bottom font-medium inline-block truncate;
+    }
+  }
+
+  &-wrapper {
+    @apply relative w-full;
+  }
+
+  &-content {
+    @apply overflow-auto w-full;
+  }
+
+  &-content > &-lines {
+    @apply block min-w-full p-4 float-left;
+
+    @media print {
+      @apply whitespace-pre-wrap;
+    }
+
+    &-with-number {
+      display: table !important;
+
+      @apply !px-0;
+    }
+  }
+
+  &-line {
+    &-with-number {
+      counter-increment: line;
+
+      @apply !table-row;
+    }
+
+    &-number {
+      overflow-wrap: normal;
+      background-color: var(--prism-background-color);
+
+      @apply table-cell sticky left-0 text-right px-4 select-none w-[1%];
+
+      &::before {
+        content: counter(line);
+
+        @apply opacity-50;
+
+        .theme-code-block-highlighted-line > & {
+          @apply opacity-80;
+        }
+      }
+    }
+
+    &-content {
+      @apply table-cell pr-4;
+    }
+
+    &.theme-code-block-highlighted-line {
+      @apply block px-4 -mx-4 bg-base-content/10;
+    }
+  }
+
+  &-btn-group {
+    @apply absolute right-2 top-2 flex flex-row gap-x-2;
+  }
+
+  &-btn {
+    @apply transition text-base-content;
+    @apply opacity-0 group-hover:opacity-50 hover:!opacity-100 focus-visible:!opacity-100;
+    @apply bg-transparent hover:bg-transparent focus-visible:bg-transparent;
+    @apply border border-base-content hover:!border-base-content focus-visible:!border-base-content;
+
+    &-active {
+      @apply text-success;
+      @apply border-success hover:!border-success focus-visible:!border-success;
+    }
+
+    &-icon {
+      @apply w-4 h-4 fill-current;
+    }
+  }
 }

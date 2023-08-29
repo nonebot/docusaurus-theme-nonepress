@@ -1,21 +1,42 @@
 import React from "react";
 
-import Layout from "@theme/Layout";
+import clsx from "clsx";
+
 import Link from "@docusaurus/Link";
+import Translate, { translate } from "@docusaurus/Translate";
+import {
+  PageMetadata,
+  HtmlClassNameProvider,
+  ThemeClassNames,
+  usePluralForm,
+} from "@docusaurus/theme-common";
+
 import type { Props } from "@theme/DocTagDocListPage";
-import { ThemeClassNames, usePluralForm } from "@docusaurus/theme-common";
-import type { PropTagDocListDoc } from "@docusaurus/plugin-content-docs-types";
+import Layout from "@theme/Layout";
+import Page from "@theme/Page";
+import SearchMetadata from "@theme/SearchMetadata";
 
 // Very simple pluralization: probably good enough for now
 function useNDocsTaggedPlural() {
   const { selectMessage } = usePluralForm();
   return (count: number) =>
-    selectMessage(count, `One doc tagged|${count} docs tagged`);
+    selectMessage(
+      count,
+      translate(
+        {
+          id: "theme.docs.tagDocListPageTitle.nDocsTagged",
+          description:
+            'Pluralized label for "{count} docs tagged". Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
+          message: "One doc tagged|{count} docs tagged",
+        },
+        { count },
+      ),
+    );
 }
 
-function DocItem({ doc }: { doc: PropTagDocListDoc }): JSX.Element {
+function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): JSX.Element {
   return (
-    <article className="my-8">
+    <article>
       <Link to={doc.permalink}>
         <h2>{doc.title}</h2>
       </Link>
@@ -24,39 +45,50 @@ function DocItem({ doc }: { doc: PropTagDocListDoc }): JSX.Element {
   );
 }
 
-function DocTagDocListPage({ tag }: Props): JSX.Element {
+export default function DocTagDocListPage({ tag }: Props): JSX.Element {
   const nDocsTaggedPlural = useNDocsTaggedPlural();
-  const title = `${nDocsTaggedPlural(tag.docs.length)} with "${tag.name}"`;
+  const title = translate(
+    {
+      id: "theme.docs.tagDocListPageTitle",
+      description: "The title of the page for a docs tag",
+      message: '{nDocsTagged} with "{tagName}"',
+    },
+    { nDocsTagged: nDocsTaggedPlural(tag.count), tagName: tag.label },
+  );
 
   return (
-    <Layout
-      title={title}
-      wrapperClassName={ThemeClassNames.wrapper.docsPages}
-      pageClassName={ThemeClassNames.page.docsTagDocListPage}
-      searchMetadata={{
-        // assign unique search tag to exclude this page from search results!
-        tag: "doc_tag_doc_list",
-      }}
+    <HtmlClassNameProvider
+      className={clsx(
+        ThemeClassNames.wrapper.docsPages,
+        ThemeClassNames.page.docsTagDocListPage,
+      )}
     >
-      <div className="w-full">
-        <main className="container mx-auto mt-20 pb-8 px-4 lg:px-12">
-          <div className="p-4">
-            <div className="prose dark:prose-dark">
-              <header className="mb-12">
+      <PageMetadata title={title} />
+      <SearchMetadata tag="doc_tag_doc_list" />
+      <Layout>
+        <Page hideSidebar hideTableOfContents>
+          <main>
+            <div className="prose max-w-none">
+              <header>
                 <h1>{title}</h1>
-                <Link to={tag.allTagsPath}>View All Tags</Link>
+                <Link href={tag.allTagsPath}>
+                  <Translate
+                    id="theme.tags.tagsPageLink"
+                    description="The label of the link targeting the tag list page"
+                  >
+                    View All Tags
+                  </Translate>
+                </Link>
               </header>
-              <section className="my-8">
-                {tag.docs.map((doc) => (
+              <section>
+                {tag.items.map((doc) => (
                   <DocItem key={doc.id} doc={doc} />
                 ))}
               </section>
             </div>
-          </div>
-        </main>
-      </div>
-    </Layout>
+          </main>
+        </Page>
+      </Layout>
+    </HtmlClassNameProvider>
   );
 }
-
-export default DocTagDocListPage;

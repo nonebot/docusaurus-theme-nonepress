@@ -1,16 +1,35 @@
 :root {
-  --docsearch-primary-color: theme("colors.light.text.active");
+  --docsearch-primary-color: hsl(var(--p));
 }
 
-html[data-theme="dark"] {
-  --docsearch-primary-color: theme("colors.dark.text.active");
+.doc-search-btn {
+  @apply flex items-center text-sm py-1;
+  @apply transition-opacity opacity-60 hover:opacity-100;
+
+  &-container {
+    @apply flex items-center gap-2;
+  }
+
+  &-icon {
+    @apply w-4 h-4 fill-current;
+  }
+
+  &-placeholder {
+    @apply max-lg:hidden;
+  }
+
+  &-keys {
+    @apply ml-8;
+    @apply hidden xl:flex items-center gap-1;
+  }
 }
 
-.DocSearch-Button {
-  margin: 0 !important;
-  transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
+/* stylelint-disable selector-class-pattern */
+.DocSearch-Container {
+  @apply backdrop-blur-sm;
 }
 
-.DocSearch-Screen-Icon > svg {
-  display: inline;
+.DocSearch-Hit-content-wrapper {
+  line-height: inherit;
 }
+/* stylelint-enable selector-class-pattern */

@@ -1,0 +1,12 @@
+.paginator {
+  @apply block w-full p-4 rounded-lg transition-colors;
+  @apply border border-base-content/10 hover:border-primary;
+
+  &-label {
+    @apply text-base-content/80 text-sm font-medium;
+  }
+
+  &-title {
+    @apply text-primary font-bold;
+  }
+}

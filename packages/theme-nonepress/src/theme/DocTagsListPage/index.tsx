@@ -1,37 +1,41 @@
 import React from "react";
 
-import Layout from "@theme/Layout";
-import type { Props } from "@theme/DocTagsListPage";
-import TagsListByLetter from "@theme/TagsListByLetter";
+import clsx from "clsx";
+
 import {
+  PageMetadata,
+  HtmlClassNameProvider,
   ThemeClassNames,
   translateTagsPageTitle,
 } from "@docusaurus/theme-common";
 
-function DocTagsListPage({ tags }: Props): JSX.Element {
+import type { Props } from "@theme/DocTagsListPage";
+import Layout from "@theme/Layout";
+import Page from "@theme/Page";
+import SearchMetadata from "@theme/SearchMetadata";
+import TagsListByLetter from "@theme/TagsListByLetter";
+
+export default function DocTagsListPage({ tags }: Props): JSX.Element {
   const title = translateTagsPageTitle();
   return (
-    <Layout
-      title={title}
-      wrapperClassName={ThemeClassNames.wrapper.docsPages}
-      pageClassName={ThemeClassNames.page.docsTagsListPage}
-      searchMetadata={{
-        // assign unique search tag to exclude this page from search results!
-        tag: "doc_tags_list",
-      }}
+    <HtmlClassNameProvider
+      className={clsx(
+        ThemeClassNames.wrapper.docsPages,
+        ThemeClassNames.page.docsTagsListPage,
+      )}
     >
-      <div className="w-full">
-        <main className="container mx-auto mt-20 pb-8 px-4 lg:px-12">
-          <div className="p-4">
-            <div className="prose dark:prose-dark">
+      <PageMetadata title={title} />
+      <SearchMetadata tag="doc_tags_list" />
+      <Layout>
+        <Page>
+          <main>
+            <div className="prose max-w-none">
               <h1>{title}</h1>
               <TagsListByLetter tags={tags} />
             </div>
-          </div>
-        </main>
-      </div>
-    </Layout>
+          </main>
+        </Page>
+      </Layout>
+    </HtmlClassNameProvider>
   );
 }
-
-export default DocTagsListPage;

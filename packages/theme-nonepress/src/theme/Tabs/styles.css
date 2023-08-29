@@ -1,0 +1,15 @@
+.tabs-list {
+  @apply z-10 -mb-px;
+}
+
+.tab-item {
+  --tab-border-color: transparent;
+
+  &-active {
+    --tab-border-color: hsl(var(--bc) / 10%);
+  }
+}
+
+.tab-spacer {
+  @apply flex-1 mr-6 cursor-default;
+}

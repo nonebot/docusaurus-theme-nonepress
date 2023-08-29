@@ -1,104 +1,55 @@
-import clsx from "clsx";
 import React from "react";
 
-import { ThemeClassNames } from "@docusaurus/theme-common";
+import { HtmlClassNameProvider } from "@docusaurus/theme-common";
+import { DocProvider } from "@docusaurus/theme-common/internal";
+
+import "./styles.css";
+import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
+import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import type { Props } from "@theme/DocItem";
-import DocItemFooter from "@theme/DocItemFooter";
-import DocPaginator from "@theme/DocPaginator";
+import DocItemContent from "@theme/DocItem/Content";
+import DocItemFooter from "@theme/DocItem/Footer";
+import DocItemMetadata from "@theme/DocItem/Metadata";
+import DocItemPaginator from "@theme/DocItem/Paginator";
+import DocVersionBadge from "@theme/DocVersionBadge";
 import DocVersionBanner from "@theme/DocVersionBanner";
-import { MainHeading } from "@theme/Heading";
-import Seo from "@theme/Seo";
-import TOC from "@theme/TOC";
-import TOCCollapsible from "@theme/TOCCollapsible";
-import useWindowSize from "@theme/hooks/useWindowSize";
 
-import styles from "./styles.module.css";
+export default function DocItem({ content }: Props): JSX.Element {
+  const docHtmlClassName = `docs-doc-id-${content.metadata.unversionedId}`;
+  const MDXComponent = content;
 
-function DocItem(props: Props): JSX.Element {
-  const { content: DocContent, versionMetadata } = props;
-  const { metadata, frontMatter } = DocContent;
+  const { toc, frontMatter } = content;
   const {
-    image,
-    keywords,
-    hide_title: hideTitle,
-    hide_table_of_contents: hideTableOfContents,
-    toc_min_heading_level: tocMinHeadingLevel,
-    toc_max_heading_level: tocMaxHeadingLevel,
+    hide_table_of_contents,
+    toc_min_heading_level,
+    toc_max_heading_level,
   } = frontMatter;
-  const { description, title } = metadata;
-
-  // We only add a title if:
-  // - user asks to hide it with frontmatter
-  // - the markdown content does not already contain a top-level h1 heading
-  const shouldAddTitle =
-    !hideTitle && typeof DocContent.contentTitle === "undefined";
-
-  const windowSize = useWindowSize();
-
-  const canRenderTOC =
-    !hideTableOfContents && DocContent.toc && DocContent.toc.length > 0;
-
-  const renderTocDesktop =
-    canRenderTOC && (windowSize === "desktop" || windowSize === "ssr");
 
   return (
-    <>
-      <Seo {...{ title, description, keywords, image }} />
+    <DocProvider content={content}>
+      <HtmlClassNameProvider className={docHtmlClassName}>
+        <DocItemMetadata />
 
-      <div className="relative flex flex-row w-full">
-        <div className="grow lg:max-w-[75%] prose dark:prose-dark p-4 lg:px-16 mx-auto">
-          <DocVersionBanner versionMetadata={versionMetadata} />
-          <div className="doc-content">
-            <article>
-              {versionMetadata.badge && (
-                <span
-                  className={clsx(
-                    ThemeClassNames.docs.docVersionBadge,
-                    "px-2 py-1 rounded-md",
-                    "font-mono font-bold text-black text-xs",
-                    "bg-gray-300 opacity-70"
-                  )}
-                >
-                  Version: {versionMetadata.label}
-                </span>
-              )}
+        <TOCContentFiller
+          toc={toc}
+          minHeadingLevel={toc_min_heading_level}
+          maxHeadingLevel={toc_max_heading_level}
+          hideTableOfContents={hide_table_of_contents as unknown as boolean}
+        />
 
-              {canRenderTOC && (
-                <TOCCollapsible
-                  toc={DocContent.toc}
-                  minHeadingLevel={tocMinHeadingLevel}
-                  maxHeadingLevel={tocMaxHeadingLevel}
-                  className={clsx(
-                    ThemeClassNames.docs.docTocMobile,
-                    "lg:hidden"
-                  )}
-                />
-              )}
+        <DocVersionBanner />
 
-              <div className={clsx(ThemeClassNames.docs.docMarkdown, "pt-2")}>
-                {shouldAddTitle && <MainHeading>{title}</MainHeading>}
+        <article>
+          <DocBreadcrumbs />
+          <DocVersionBadge />
+          <DocItemContent>
+            <MDXComponent />
+          </DocItemContent>
+          <DocItemFooter />
+        </article>
 
-                <DocContent />
-              </div>
-
-              <DocItemFooter {...props} />
-            </article>
-            <DocPaginator metadata={metadata} />
-          </div>
-        </div>
-        {renderTocDesktop && (
-          <div className={clsx("p-4", styles.toc)}>
-            <TOC
-              toc={DocContent.toc}
-              minHeadingLevel={tocMinHeadingLevel}
-              maxHeadingLevel={tocMaxHeadingLevel}
-              className={ThemeClassNames.docs.docTocDesktop}
-            />
-          </div>
-        )}
-      </div>
-    </>
+        <DocItemPaginator />
+      </HtmlClassNameProvider>
+    </DocProvider>
   );
 }
-
-export default DocItem;

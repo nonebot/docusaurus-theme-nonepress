@@ -1,0 +1,20 @@
+.doc-card {
+  @apply h-full bg-base-100;
+  @apply transition border border-base-content/10 shadow;
+
+  &:hover {
+    @apply border-primary shadow-md;
+  }
+
+  &-icon {
+    @apply w-5 h-5 fill-current;
+  }
+
+  &-title {
+    @apply truncate;
+  }
+
+  &-description {
+    @apply font-normal truncate text-base-content;
+  }
+}

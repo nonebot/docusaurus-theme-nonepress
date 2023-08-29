@@ -1,0 +1,25 @@
+.page {
+  @apply flex flex-row;
+  @apply max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 w-full;
+
+  &-sidebar {
+    @apply sticky top-0 -ml-8;
+    @apply w-[19rem] h-full;
+  }
+
+  &-main {
+    @apply grow w-full flex justify-center pt-8 pb-10;
+  }
+
+  &-sidebar + &-main {
+    @apply ml-4 max-w-[calc(100%-18rem)];
+  }
+
+  &-content {
+    @apply grow w-full lg:max-w-[calc(100%-256px)] mx-auto;
+  }
+
+  &-toc {
+    @apply w-[256px];
+  }
+}

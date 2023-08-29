@@ -1,44 +1,82 @@
 import React from "react";
 
 import Link from "@docusaurus/Link";
-import type { Props } from "@theme/Logo";
-import styles from "./styles.module.css";
-import ThemedImage from "@theme/ThemedImage";
+import type { NavbarLogo } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import useThemeConfig from "@theme/hooks/useThemeConfig";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import clsx from "clsx";
 
-function Logo(props: Props): JSX.Element {
-  const { className, imageClassName, disabled, children, ...propsRest } = props;
-  const {
-    siteConfig: { title },
-  } = useDocusaurusContext();
-  const { logo = { src: "" } } = useThemeConfig();
+import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+import type { Props } from "@theme/Logo";
+import ThemedImage from "@theme/ThemedImage";
 
-  const logoLink = useBaseUrl(logo.href || "/");
+function LogoThemedImage({
+  logo,
+  alt,
+  imageClassName,
+}: {
+  logo: NavbarLogo;
+  alt: string;
+  imageClassName?: string;
+}) {
   const sources = {
     light: useBaseUrl(logo.src),
     dark: useBaseUrl(logo.srcDark || logo.src),
   };
+  const themedImage = (
+    <ThemedImage
+      className={logo.className}
+      sources={sources}
+      height={logo.height}
+      width={logo.width}
+      alt={alt}
+      style={logo.style}
+    />
+  );
+
+  // Is this extra div really necessary?
+  // introduced in https://github.com/facebook/docusaurus/pull/5666
+  return imageClassName ? (
+    <div className={imageClassName}>{themedImage}</div>
+  ) : (
+    themedImage
+  );
+}
+
+export default function Logo(props: Props): JSX.Element {
+  const {
+    siteConfig: { title },
+  } = useDocusaurusContext();
+  const {
+    navbar: { title: navbarTitle, logo },
+  } = useNonepressThemeConfig();
+
+  const { imageClassName, titleClassName, ...propsRest } = props;
+  const logoLink = useBaseUrl(logo?.href || "/");
+
+  // If visible title is shown, fallback alt text should be
+  // an empty string to mark the logo as decorative.
+  const fallbackAlt = navbarTitle ? "" : title;
+
+  // Use logo alt text if provided (including empty string),
+  // and provide a sensible fallback otherwise.
+  const alt = logo?.alt ?? fallbackAlt;
 
   return (
     <Link
       to={logoLink}
-      className={clsx(className, { [styles.disabled]: disabled })}
       {...propsRest}
-      {...(logo.target && { target: logo.target })}
+      {...(logo?.target && { target: logo.target })}
     >
-      {logo.src && (
-        <ThemedImage
-          className={imageClassName}
-          sources={sources}
-          alt={logo.alt || title}
+      {logo && (
+        <LogoThemedImage
+          logo={logo}
+          alt={alt}
+          imageClassName={imageClassName}
         />
       )}
-      {children}
+      {navbarTitle != null && (
+        <span className={titleClassName}>{navbarTitle}</span>
+      )}
     </Link>
   );
 }
-
-export default Logo;

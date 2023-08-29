@@ -1,23 +1,67 @@
 import React from "react";
 
-import FooterLinks from "@theme/FooterLinks";
-import FooterCopyright from "@theme/FooterCopyright";
+import "./styles.css";
+import clsx from "clsx";
 
-function Footer(): JSX.Element {
+import {
+  useSiteConfig,
+  useNonepressThemeConfig,
+} from "@nullbot/docusaurus-theme-nonepress/client";
+import FooterCopyright from "@theme/Footer/Copyright";
+import FooterLinks from "@theme/Footer/Links";
+import FooterLogo from "@theme/Footer/Logo";
+import FooterSocialLinks from "@theme/Footer/SocialLinks";
+
+function Footer(): JSX.Element | null {
+  const { tagline } = useSiteConfig();
+  const {
+    footer,
+    nonepress: {
+      footer: { socialLinks },
+    },
+  } = useNonepressThemeConfig();
+
+  if (!footer) {
+    return null;
+  }
+
+  const { copyright, links, logo, style } = footer;
+
   return (
-    <footer
-      className="bg-light-nonepress-100 dark:bg-dark-nonepress-100"
-      aria-labelledby="footerHeading"
+    <div
+      className={clsx(
+        "footer-wrapper",
+        style === "dark" && "footer-wrapper-dark",
+      )}
     >
-      <h2 id="footerHeading" className="sr-only">
-        Footer
-      </h2>
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:py-12 lg:px-8">
-        <FooterLinks />
-        <FooterCopyright />
+      <div className="footer-container">
+        <footer
+          className={clsx(
+            "footer footer-content",
+            links.length === 0 && "footer-center",
+          )}
+        >
+          {(logo || socialLinks) && (
+            <div className="gap-4">
+              {logo && <FooterLogo logo={logo} />}
+              {logo && <p>{tagline}</p>}
+              {socialLinks?.length && (
+                <FooterSocialLinks socialLinks={socialLinks} />
+              )}
+            </div>
+          )}
+          {links.length && <FooterLinks links={links} />}
+        </footer>
+        {copyright && (
+          <footer className="footer footer-center footer-copyright">
+            <div>
+              <FooterCopyright copyright={copyright} />
+            </div>
+          </footer>
+        )}
       </div>
-    </footer>
+    </div>
   );
 }
 
-export default Footer;
+export default React.memo(Footer);
