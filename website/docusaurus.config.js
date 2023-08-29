@@ -6,7 +6,7 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "NonePress",
-  tagline: "Dinosaurs are cool",
+  tagline: "A Docusaurus theme for NoneBot",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -27,8 +27,8 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "zh-Hans",
-    locales: ["zh-Hans", "en"],
+    defaultLocale: "en",
+    locales: ["en", "zh-Hans"],
   },
 
   presets: [
@@ -78,7 +78,7 @@ const config = {
         items: [
           {
             type: "docsMenu",
-            label: "Contents",
+            label: "Guide",
             category: "guide",
           },
           {
@@ -115,15 +115,15 @@ const config = {
             items: [
               {
                 label: "Introduction",
-                to: "/docs/guide/introduction",
+                to: "/docs/guide/",
               },
               {
                 label: "Components",
                 to: "/docs/components/",
               },
               {
-                label: "Introduction",
-                to: "/docs/guide/introduction",
+                label: "Examples",
+                to: "/page-example",
               },
             ],
           },
@@ -159,12 +159,6 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      algolia: {
-        appId: "X0X5UACHZQ",
-        apiKey: "ac03e1ac2bd0812e2ea38c0cc1ea38c5",
-        indexName: "nonebot",
-        contextualSearch: true,
       },
       nonepress: {
         navbar: {

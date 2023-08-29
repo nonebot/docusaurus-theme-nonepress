@@ -3,6 +3,10 @@
   &-toggle {
     @apply ml-auto lg:hidden order-last;
 
+    .navbar-search ~ & {
+      @apply ml-4;
+    }
+
     & > &-icon {
       @apply w-4 h-4 fill-current;
     }

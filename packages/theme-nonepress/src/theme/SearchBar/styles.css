@@ -20,7 +20,7 @@
 
   &-keys {
     @apply ml-8;
-    @apply hidden lg:flex items-center gap-1;
+    @apply hidden xl:flex items-center gap-1;
   }
 }
 

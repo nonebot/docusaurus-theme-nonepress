@@ -1,5 +1,9 @@
 .navbar-extra {
-  @apply hidden lg:max-xl:block order-last pl-4;
+  @apply hidden order-last pl-4;
+
+  @media screen(lg) and (not screen(xl)) {
+    @apply block;
+  }
 
   &-icon {
     @apply w-4 h-5 fill-current;
