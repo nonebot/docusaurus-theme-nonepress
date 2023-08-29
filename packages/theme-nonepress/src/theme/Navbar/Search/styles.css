@@ -1,10 +1,14 @@
 .navbar-search {
-  @apply ml-auto lg:ml-4;
-  @apply order-last lg:order-none;
+  @apply flex;
+  @apply max-lg:ml-auto max-lg:order-last;
 
   @media screen(lg) {
-    &::before {
-      @apply mx-2 w-px h-full bg-base-content/10 content-[""];
+    &-group {
+      @apply flex items-center;
+
+      &::before {
+        @apply mx-4 w-px h-full bg-base-content/10 content-[""];
+      }
     }
   }
 }

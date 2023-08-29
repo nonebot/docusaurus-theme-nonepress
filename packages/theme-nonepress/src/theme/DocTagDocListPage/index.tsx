@@ -37,7 +37,7 @@ function useNDocsTaggedPlural() {
 function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): JSX.Element {
   return (
     <article>
-      <Link to={doc.permalink} className="no-underline">
+      <Link to={doc.permalink}>
         <h2>{doc.title}</h2>
       </Link>
       {doc.description && <p>{doc.description}</p>}
@@ -66,7 +66,7 @@ export default function DocTagDocListPage({ tag }: Props): JSX.Element {
       <PageMetadata title={title} />
       <SearchMetadata tag="doc_tag_doc_list" />
       <Layout>
-        <Page>
+        <Page hideSidebar hideTableOfContents>
           <main>
             <div className="prose max-w-none">
               <header>

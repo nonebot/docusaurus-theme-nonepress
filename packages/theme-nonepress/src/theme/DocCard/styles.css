@@ -1,5 +1,5 @@
 .doc-card {
-  @apply h-full no-underline bg-base-100;
+  @apply h-full bg-base-100;
   @apply transition border border-base-content/10 shadow;
 
   &:hover {
@@ -15,6 +15,6 @@
   }
 
   &-description {
-    @apply font-normal truncate;
+    @apply font-normal truncate text-base-content;
   }
 }

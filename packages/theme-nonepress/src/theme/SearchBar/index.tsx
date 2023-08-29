@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 
-import "./styles.css";
 import type { AutocompleteState } from "@algolia/autocomplete-core";
 import { useDocSearchKeyboardEvents } from "@docsearch/react";
 import type {
@@ -35,6 +34,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import type { SearchClient } from "algoliasearch/lite";
 import { createPortal } from "react-dom";
 
+import "./styles.css";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import IconSearch from "@theme/Icon/Search";
 import translations from "@theme/SearchTranslations";
@@ -118,17 +118,17 @@ const DocSearchButton = React.forwardRef<
   return (
     <button
       type="button"
-      className="opacity-60 hover:opacity-100"
+      className="doc-search-btn"
       aria-label={buttonAriaLabel}
       {...props}
       ref={ref}
     >
-      <span className="">
-        <IconSearch className="w-4 h-4 fill-current" />
-        <span className="hidden lg:flex">{buttonText}</span>
+      <span className="doc-search-btn-container">
+        <IconSearch className="doc-search-btn-icon" />
+        <span className="doc-search-btn-placeholder">{buttonText}</span>
       </span>
 
-      <span className="adsolute gap-1 hidden lg:flex">
+      <span className="doc-search-btn-keys">
         {key !== null && (
           <>
             <kbd className="kbd kbd-sm">{key}</kbd>
@@ -181,6 +181,7 @@ function DocSearch({
 
     return Promise.all([
       import("@docsearch/react/dist/esm/DocSearchModal.js"),
+      import("@docsearch/css/dist/_variables.css"),
       import("@docsearch/css/dist/modal.css"),
     ]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal;

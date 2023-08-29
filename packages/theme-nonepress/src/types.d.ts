@@ -526,6 +526,15 @@ declare module "@theme/Heading" {
   export default function Heading(props: Props): JSX.Element;
 }
 
+declare module "@theme/Icon/Algolia" {
+  import type { ComponentProps } from "react";
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
+
+  export default function IconAlgolia(props: Props): JSX.Element;
+}
+
 declare module "@theme/Icon/Close" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 

@@ -5,7 +5,7 @@
   @apply sticky top-0 z-40 w-full h-16 !p-0;
   @apply transition-transform duration-150;
 
-  &-mobile {
+  &:has(&-secondary-layout) {
     @apply h-[6.5rem];
   }
 
