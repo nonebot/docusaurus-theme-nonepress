@@ -13,25 +13,29 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Needed to get the commit number with "git rev-list --count HEAD"
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: yarn
+
       - name: Prepare git
         run: |
-          git config --global user.name "NoneBot"
-          git config --global user.email "admin@nonebot.dev"
+          git config user.name noneflow[bot]
+          git config user.email 129742071+noneflow[bot]@users.noreply.github.com
           git fetch
           git checkout master
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
       - name: Installation
         run: yarn
+
       - name: Publish Canary release
         run: |
           yarn build
