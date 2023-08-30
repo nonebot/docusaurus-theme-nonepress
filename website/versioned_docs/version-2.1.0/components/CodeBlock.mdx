@@ -1,0 +1,28 @@
+# CodeBlock
+
+import CodeBlock from "@theme/CodeBlock";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+```tsx
+import CodeBlock from "@theme/CodeBlock";
+
+<CodeBlock language="jsx" title="Code" showLineNumbers>
+  {[
+    "function HelloCodeTitle(props) {",
+    "  // highlight-next-line",
+    "  return <h1>Hello, {props.name}</h1>;",
+    "}",
+  ].join("\n")}
+</CodeBlock>;
+```
+
+<BrowserWindow>
+  <CodeBlock language="jsx" title="Code" showLineNumbers>
+    {[
+      "function HelloCodeTitle(props) {",
+      "  // highlight-next-line",
+      "  return <h1>Hello, {props.name}</h1>;",
+      "}",
+    ].join("\n")}
+  </CodeBlock>
+</BrowserWindow>

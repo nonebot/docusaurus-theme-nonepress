@@ -1,0 +1,68 @@
+---
+sidebar_position: 1
+description: Introduction to Nonepress
+tags:
+  - guide
+  - introduction
+
+options:
+  menu:
+    - category: guide
+      weight: 10
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Docusaurus Theme Nonepress
+
+## Installation
+
+<Tabs>
+  <TabItem value="yarn" default>
+
+```bash
+yarn add @nullbot/docusaurus-preset-nonepress
+```
+
+  </TabItem>
+  <TabItem value="npm" default>
+
+```bash
+npm i @nullbot/docusaurus-preset-nonepress
+```
+
+  </TabItem>
+</Tabs>
+
+## Usage
+
+```js title="docusaurus.config.js" showLineNumbers
+presets: [
+  [
+    "@nullbot/docusaurus-preset-nonepress",
+    /** @type {import('@nullbot/docusaurus-preset-nonepress').Options} */
+    ({
+      // options
+      docs: {
+        sidebarPath: require.resolve("./sidebars.js"),
+      },
+    }),
+  ],
+];
+```
+
+## TODO
+
+- [x] NonePress Theme Components
+- [x] NonePress Theme Preset
+- [x] Plugins useful to NonePress Theme
+  - [x] DocsMenu
+  - [x] SideBar Keeper
+- [ ] Documentation
+  - [x] Introduction
+  - [ ] Config
+  - [ ] Components
+  - [ ] Plugins
+  - [ ] Preset
+  - [ ] Custom Theme
