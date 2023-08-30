@@ -1,7 +1,7 @@
 {
   "name": "@nullbot/docusaurus-plugin-getsidebar",
   "version": "2.1.0",
-  "description": "DocMenu plugin for Nonepress theme",
+  "description": "GetSidebar plugin for Nonepress theme",
   "main": "lib/index.js",
   "exports": {
     "./lib/*": "./lib/*",
