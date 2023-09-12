@@ -2,7 +2,7 @@
   @apply mb-2;
 
   &-btn {
-    @apply btn btn-ghost btn-xs no-animation rounded-2xl;
+    @apply btn btn-ghost btn-xs no-animation rounded-2xl !no-underline;
 
     &-active {
       @apply btn-active text-primary;
