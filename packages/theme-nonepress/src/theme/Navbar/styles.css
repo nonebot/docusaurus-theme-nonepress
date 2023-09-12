@@ -1,7 +1,7 @@
 .navbar {
   @apply bg-base-100 text-base-content;
   @apply border-b border-base-content/10;
-  @apply backdrop-blur;
+  @apply supports-[backdrop-filter]:backdrop-blur supports-[backdrop-filter]:bg-base-100/95;
   @apply sticky top-0 z-40 w-full h-16 !p-0;
   @apply transition-transform duration-150;
 
