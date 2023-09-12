@@ -1,15 +1,25 @@
-.tabs-list {
-  @apply z-10 -mb-px;
-}
+.tabs {
+  /* vertical margin applied in prose css */
 
-.tab-item {
-  --tab-border-color: transparent;
+  /* &-container {
+    @apply my-4;
+  } */
 
-  &-active {
-    --tab-border-color: hsl(var(--bc) / 10%);
+  &-list {
+    @apply z-10 -mb-px;
   }
 }
 
-.tab-spacer {
-  @apply flex-1 mr-6 cursor-default;
+.tab {
+  &-item {
+    --tab-border-color: transparent;
+
+    &-active {
+      --tab-border-color: hsl(var(--bc) / 10%);
+    }
+  }
+
+  &-spacer {
+    @apply flex-1 mr-6 cursor-default;
+  }
 }

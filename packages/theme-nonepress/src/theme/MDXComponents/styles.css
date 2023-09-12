@@ -18,4 +18,8 @@
       @apply mr-2 my-0;
     }
   }
+
+  & .tabs-container {
+    @apply my-4;
+  }
 }
