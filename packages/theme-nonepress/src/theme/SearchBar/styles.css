@@ -1,5 +1,5 @@
 :root {
-  --docsearch-primary-color: hsl(var(--p));
+  --docsearch-primary-color: hsl(var(--p)) !important;
 }
 
 .doc-search-btn {
@@ -30,6 +30,6 @@
 }
 
 .DocSearch-Hit-content-wrapper {
-  line-height: inherit;
+  line-height: inherit !important;
 }
 /* stylelint-enable selector-class-pattern */
