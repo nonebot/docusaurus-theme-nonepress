@@ -1,21 +1,40 @@
 .admonition {
-  @apply alert mb-4 gap-0;
-  @apply grid-flow-col grid-cols-[auto_minmax(auto,1fr)] justify-items-start text-left;
+  @apply mb-4 gap-0 justify-items-start text-left;
+  @apply grid-flow-col grid-cols-[auto_minmax(auto,1fr)];
+
+  &-note {
+    --alert-bg: hsl(var(--bc) / 10%);
+    --alert-bg-mix: hsl(var(--b1));
+
+    @apply text-base-content border-base-content/20;
+  }
 
   &-success {
-    @apply alert-success;
+    --alert-bg: hsl(var(--su) / 40%);
+    --alert-bg-mix: hsl(var(--b1));
+
+    @apply text-success-content border-success/20;
   }
 
   &-error {
-    @apply alert-error;
+    --alert-bg: hsl(var(--er) / 40%);
+    --alert-bg-mix: hsl(var(--b1));
+
+    @apply text-error-content border-error/20;
   }
 
   &-info {
-    @apply alert-info;
+    --alert-bg: hsl(var(--in) / 40%);
+    --alert-bg-mix: hsl(var(--b1));
+
+    @apply text-info-content border-info/20;
   }
 
   &-warning {
-    @apply alert-warning;
+    --alert-bg: hsl(var(--wa) / 40%);
+    --alert-bg-mix: hsl(var(--b1));
+
+    @apply text-warning-content border-warning/20;
   }
 
   &-title {

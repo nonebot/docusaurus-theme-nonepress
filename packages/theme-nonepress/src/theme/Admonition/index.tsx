@@ -101,6 +101,7 @@ type AdmonitionConfig = {
 
 const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
   note: {
+    className: "note",
     iconComponent: NoteIcon,
     label: (
       <Translate
@@ -230,7 +231,7 @@ export default function Admonition(props: Props): JSX.Element {
   return (
     <div
       className={clsx(
-        "admonition",
+        "alert admonition",
         typeConfig.className && `admonition-${typeConfig.className}`,
         ThemeClassNames.common.admonition,
         ThemeClassNames.common.admonitionType(props.type),
