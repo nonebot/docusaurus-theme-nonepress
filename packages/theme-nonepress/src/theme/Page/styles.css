@@ -16,7 +16,11 @@
   }
 
   &-content {
-    @apply grow w-full lg:max-w-[calc(100%-256px)] mx-auto;
+    @apply grow w-full mx-auto;
+
+    &-narrow {
+      @apply lg:max-w-[calc(100%-256px)];
+    }
   }
 
   &-toc {

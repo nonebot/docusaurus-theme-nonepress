@@ -1,12 +1,12 @@
 .sidebar {
-  @apply flex flex-col h-full max-h-screen;
+  @apply flex flex-col h-full max-h-screen -mt-16;
 
-  &-with-hideable-navbar {
-    @apply -mt-16;
+  &:not(:has(> &-brand)) {
+    @apply pt-16;
   }
 
   &-brand {
-    @apply flex items-center px-4 sm:px-6 md:px-8 py-4;
+    @apply flex items-center h-16 px-4 sm:px-6 md:px-8 py-4;
 
     &-logo {
       @apply h-auto w-auto;

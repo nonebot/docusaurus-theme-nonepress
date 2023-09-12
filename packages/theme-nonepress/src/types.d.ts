@@ -1217,6 +1217,7 @@ declare module "@theme/Page" {
     children?: ReactNode;
     hideSidebar?: boolean;
     hideTableOfContents?: boolean;
+    reduceContentWidth?: boolean;
   }
 
   export default function Page(props: Props): JSX.Element;

@@ -69,6 +69,7 @@ const config = {
       },
       navbar: {
         title: "NonePress",
+        hideOnScroll: true,
         logo: {
           alt: "NonePress",
           src: "img/logo.svg",

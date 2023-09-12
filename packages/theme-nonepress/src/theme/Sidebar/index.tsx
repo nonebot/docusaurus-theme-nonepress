@@ -50,13 +50,7 @@ export default function Sidebar({ className }: Props): JSX.Element | null {
   }
 
   return (
-    <div
-      className={clsx(
-        "sidebar",
-        hideOnScroll && "sidebar-with-hideable-navbar",
-        className,
-      )}
-    >
+    <div className={clsx("sidebar", className)}>
       {hideOnScroll && (
         <Logo
           className="sidebar-brand"
