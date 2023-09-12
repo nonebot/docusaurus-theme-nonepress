@@ -1,7 +1,7 @@
 import React from "react";
 
 import Link from "@docusaurus/Link";
-import { translate } from "@docusaurus/Translate";
+import Translate, { translate } from "@docusaurus/Translate";
 
 import type { Props } from "@theme/Footer/Copyright";
 import IconDocusaurus from "@theme/Icon/Docusaurus";
@@ -16,7 +16,12 @@ export default function FooterCopyright({ copyright }: Props): JSX.Element {
         dangerouslySetInnerHTML={{ __html: copyright }}
       />
       <div className="footer-support">
-        Powered by
+        <Translate
+          id="theme.FooterCopyright.powerMessage"
+          description="The powered by message of footer copyright"
+        >
+          Powered by
+        </Translate>
         <Link
           to="https://docusaurus.io/"
           title={translate({
