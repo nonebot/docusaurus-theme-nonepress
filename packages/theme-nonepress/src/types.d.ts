@@ -978,7 +978,9 @@ declare module "@theme/Navbar/LocaleDropdown" {
     readonly mobile?: boolean;
   }
 
-  export default function NavbarLocaleDropdown(props: Props): JSX.Element;
+  export default function NavbarLocaleDropdown(
+    props: Props,
+  ): JSX.Element | null;
 }
 
 declare module "@theme/Navbar/Logo" {

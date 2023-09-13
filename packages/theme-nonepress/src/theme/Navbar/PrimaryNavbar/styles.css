@@ -15,7 +15,7 @@
   &-group {
     @apply hidden xl:flex items-center;
 
-    &::before {
+    &:has(*)::before {
       @apply mx-4 w-px h-full bg-base-content/10 content-[""];
     }
   }

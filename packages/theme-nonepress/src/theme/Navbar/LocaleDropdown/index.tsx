@@ -19,7 +19,7 @@ export default function NavbarLocaleDropdown({
   dropdownItemsAfter,
   queryString = "",
   mobile = false,
-}: Props): JSX.Element {
+}: Props): JSX.Element | null {
   const {
     i18n: { currentLocale, locales, localeConfigs },
   } = useDocusaurusContext();
@@ -51,6 +51,10 @@ export default function NavbarLocaleDropdown({
   });
 
   const items = [...dropdownItemsBefore, ...localeItems, ...dropdownItemsAfter];
+
+  if (items.length <= 1) {
+    return null;
+  }
 
   return (
     <Menu className={clsx("navbar-locales", !mobile && "navbar-primary-menu")}>
