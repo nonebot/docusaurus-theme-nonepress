@@ -6,9 +6,11 @@ import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
 import {
   type GlobalVersion,
+  type GlobalDoc,
   useActiveDocContext,
 } from "@docusaurus/plugin-content-docs/client";
 import { useDocsPreferredVersion } from "@docusaurus/theme-common";
+import type { Doc } from "@nullbot/docusaurus-plugin-docsmenu/client";
 
 import {
   useDocsMenuCategory,
@@ -24,6 +26,13 @@ import type {
 const getVersionMainDoc = (version: GlobalVersion) =>
   version.docs.find((doc) => doc.id === version.mainDocId)!;
 
+function containsActiveDocsMenuItems(
+  docs: Doc[],
+  activeDoc: GlobalDoc | undefined,
+): boolean {
+  return docs.some((doc) => activeDoc?.path === doc.permalink);
+}
+
 function DocsMenuDropdownNavbarItemDesktop({
   label,
   children,
@@ -38,18 +47,22 @@ function DocsMenuDropdownNavbarItemDesktop({
   const versions = useDocsMenuVersions(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
   const { savePreferredVersionName } = useDocsPreferredVersion(docsPluginId);
+  const isActive = containsActiveDocsMenuItems(
+    docs,
+    activeDocContext.activeDoc,
+  );
 
-  // category has no docs
-  if (!docs) {
-    return (
-      <DefaultNavbarItem
-        {...props}
-        isActive={() => activeDocContext.activeDoc?.path === link}
-        label={label ?? category}
-        to={link}
-      />
-    );
-  }
+  // category has no docs, unexpected
+  // if (docs.length === 0) {
+  //   return (
+  //     <DefaultNavbarItem
+  //       {...props}
+  //       label={label ?? category}
+  //       to={link ?? autoLink}
+  //       isActive={(match) => !!match || isActive}
+  //     />
+  //   );
+  // }
 
   const docsInfo = docs.map((doc) => ({
     to: doc.permalink,
@@ -123,7 +136,11 @@ function DocsMenuDropdownNavbarItemDesktop({
         aria-haspopup="true"
         role="button"
         to={link}
-        className={clsx("menu-link menu-item", className)}
+        className={clsx(
+          "menu-link menu-item",
+          isActive && "menu-link-active",
+          className,
+        )}
         activeClassName={clsx("menu-link-active", activeClassName)}
         {...props}
       >
@@ -207,14 +224,19 @@ function DocsMenuDropdownNavbarItemMobile({
   ...props
 }: DesktopOrMobileNavBarItemProps): JSX.Element {
   const { activeDoc } = useActiveDocContext(docsPluginId);
-  const { link, autoLink } = useDocsMenuCategory(category, docId, docsPluginId);
+  const { link, autoLink, docs } = useDocsMenuCategory(
+    category,
+    docId,
+    docsPluginId,
+  );
+  const isActive = containsActiveDocsMenuItems(docs, activeDoc);
 
   return (
     <DefaultNavbarItem
       {...props}
-      isActive={() => !!activeDoc && activeDoc.path === link}
       label={label ?? category}
       to={link ?? autoLink}
+      isActive={(match) => !!match || isActive}
     />
   );
 }

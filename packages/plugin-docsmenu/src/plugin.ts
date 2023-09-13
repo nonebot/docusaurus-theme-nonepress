@@ -6,6 +6,7 @@ import type { LoadContext, Plugin } from "@docusaurus/types";
 
 import type {
   Doc,
+  DocsCategory,
   GlobalDocsInstance,
   GlobalDocsVersion,
   GlobalPluginData,
@@ -55,10 +56,12 @@ export default async function pluginDocMenu(
 
         return {
           versionName: version.versionName,
-          categories: Object.entries(groups).map(([name, docs]) => ({
-            name,
-            docs: docs.sort((a, b) => a.weight - b.weight),
-          })),
+          categories: Object.entries(groups)
+            .map(([name, docs]) => ({
+              name,
+              docs: docs.sort((a, b) => a.weight - b.weight),
+            }))
+            .filter(({ docs }) => docs.length > 0) as DocsCategory[],
         };
       };
 

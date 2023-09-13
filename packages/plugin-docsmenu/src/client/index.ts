@@ -12,7 +12,7 @@ export type Doc = {
 
 export type DocsCategory = {
   name: string;
-  docs: Doc[];
+  docs: [Doc, ...Doc[]];
 };
 
 export type GlobalDocsVersion = {

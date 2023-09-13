@@ -38,13 +38,13 @@ export function useDocsMenuCategory(
       return {
         link: doc.path,
         autoLink,
-        docs: categoryDocs?.docs,
+        docs: categoryDocs.docs,
       };
     }
 
     return {
       autoLink,
-      docs: categoryDocs?.docs,
+      docs: categoryDocs.docs,
     };
   }, [docId, versions, category, categoryDocs]);
 }

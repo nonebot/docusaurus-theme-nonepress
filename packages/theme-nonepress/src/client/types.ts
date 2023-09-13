@@ -4,7 +4,7 @@ import type { Doc } from "@nullbot/docusaurus-plugin-docsmenu/client";
 export type DocsMenuCategory = {
   link?: string;
   autoLink: string;
-  docs?: Doc[];
+  docs: [Doc, ...Doc[]];
 };
 export type DocsMenuVersions = {
   latest: GlobalVersion;
