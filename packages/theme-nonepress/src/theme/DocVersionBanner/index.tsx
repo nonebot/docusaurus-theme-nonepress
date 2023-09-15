@@ -146,7 +146,7 @@ function DocVersionBannerEnabled({
       className={clsx(
         className,
         ThemeClassNames.docs.docVersionBanner,
-        "admonition doc-version-banner",
+        "alert admonition admonition-warning doc-version-banner",
       )}
       role="alert"
     >

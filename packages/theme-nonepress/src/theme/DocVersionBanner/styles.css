@@ -1,7 +1,5 @@
 .doc-version-banner {
-  @apply bg-[#fff8e6] text-base-content;
-
-  [data-theme="dark"] & {
-    @apply bg-[#4d3800];
+  & a {
+    @apply text-primary;
   }
 }
