@@ -1,5 +1,6 @@
 .menu {
   &-item {
+    &:hover,
     &:active {
       @apply !bg-base-content/10 !text-base-content;
     }
@@ -9,6 +10,7 @@
     @apply flex items-center gap-2 whitespace-pre-wrap;
 
     &-active,
+    &-active:hover,
     &-active:active {
       @apply !text-primary;
     }
