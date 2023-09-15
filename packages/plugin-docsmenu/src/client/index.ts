@@ -51,7 +51,7 @@ export const useVersionedDocMenu = (
 export const useVersionedDocCategory = (
   version: string,
   category: string,
-  docPluginID: string | undefined,
+  docPluginID?: string,
 ): DocsCategory | undefined => {
   const data = useVersionedDocMenu(version, docPluginID);
   if (!data) {

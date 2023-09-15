@@ -41,7 +41,7 @@ export const useVersionedSidebars = (
 export const useVersionedSidebar = (
   version: string,
   sidebarId: string,
-  docPluginID: string | undefined,
+  docPluginID?: string,
 ): PropSidebar | undefined => {
   const data = useVersionedSidebars(version, docPluginID);
   if (!data) {
