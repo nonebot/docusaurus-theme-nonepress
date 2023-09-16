@@ -1,5 +1,9 @@
 @import url("tailwindcss/tailwind");
 
+[data-theme] {
+  @apply transition-[color,background-color] duration-500;
+}
+
 html {
   @apply h-full;
 }

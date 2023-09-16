@@ -6,35 +6,35 @@
     --alert-bg: hsl(var(--bc) / 10%);
     --alert-bg-mix: hsl(var(--b1));
 
-    @apply text-base-content border-base-content/20;
+    @apply border-base-content/20;
   }
 
   &-success {
     --alert-bg: hsl(var(--su) / 40%);
     --alert-bg-mix: hsl(var(--b1));
 
-    @apply text-success-content border-success/20;
+    @apply border-success/20;
   }
 
   &-error {
     --alert-bg: hsl(var(--er) / 40%);
     --alert-bg-mix: hsl(var(--b1));
 
-    @apply text-error-content border-error/20;
+    @apply border-error/20;
   }
 
   &-info {
     --alert-bg: hsl(var(--in) / 40%);
     --alert-bg-mix: hsl(var(--b1));
 
-    @apply text-info-content border-info/20;
+    @apply border-info/20;
   }
 
   &-warning {
     --alert-bg: hsl(var(--wa) / 40%);
     --alert-bg-mix: hsl(var(--b1));
 
-    @apply text-warning-content border-warning/20;
+    @apply border-warning/20;
   }
 
   &-title {

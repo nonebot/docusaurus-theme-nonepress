@@ -54,6 +54,7 @@ function DropdownNavbarItemDesktop({
       <Link
         aria-haspopup="true"
         role="button"
+        isNavLink
         href={props.to ? undefined : "#"}
         className={clsx("menu-link menu-item", className)}
         activeClassName={clsx("menu-link-active", activeClassName)}

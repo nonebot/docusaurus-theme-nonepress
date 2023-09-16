@@ -1,6 +1,6 @@
 .footer {
   &-wrapper {
-    @apply w-full bg-base-200 text-base-content;
+    @apply w-full bg-base-200 text-base-content transition-[color,background-color] duration-500;
 
     & &-dark {
       @apply bg-neutral text-neutral-content;

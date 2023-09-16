@@ -12,7 +12,7 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <main className="-mt-16 h-screen bg-base-100 flex flex-col justify-center items-center">
+      <main className="-mt-16 h-screen flex flex-col justify-center items-center">
         <div className="hero">
           <div className="hero-content text-center">
             <div className="max-w-md">
