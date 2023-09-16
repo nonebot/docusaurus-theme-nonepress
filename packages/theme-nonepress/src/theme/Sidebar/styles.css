@@ -18,6 +18,11 @@
   }
 
   &-content {
-    @apply px-4 pb-10 overflow-y-auto;
+    @apply px-4 overflow-y-auto;
+  }
+
+  &-curtain {
+    @apply sticky bottom-0 w-full h-8 z-10;
+    @apply bg-gradient-to-t from-base-100/80;
   }
 }

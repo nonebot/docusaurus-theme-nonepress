@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import clsx from "clsx";
 
 import { useLocation } from "@docusaurus/router";
-import {
-  useAnnouncementBar,
-  useScrollPosition,
-} from "@docusaurus/theme-common/internal";
 
 import "./styles.css";
 import {
@@ -60,6 +56,7 @@ export default function Sidebar({ className }: Props): JSX.Element | null {
       )}
       <div className="sidebar-content thin-scrollbar">
         <SidebarContent items={sidebarContent} path={pathname} />
+        <div className="sidebar-curtain"></div>
       </div>
     </div>
   );

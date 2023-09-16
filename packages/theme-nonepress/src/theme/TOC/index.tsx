@@ -28,6 +28,7 @@ export default function TOC({ className }: Props): JSX.Element | null {
       <div className="toc-container">
         <div className="toc-content thin-scrollbar">
           <TOCContent {...tocContent} />
+          <div className="toc-curtain"></div>
         </div>
       </div>
     </div>

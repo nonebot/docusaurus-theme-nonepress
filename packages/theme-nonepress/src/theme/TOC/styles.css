@@ -6,7 +6,12 @@
   }
 
   &-content {
-    @apply grow overflow-x-hidden overflow-y-auto;
+    @apply h-full overflow-x-hidden overflow-y-auto;
+  }
+
+  &-curtain {
+    @apply sticky bottom-0 w-full h-8 z-10;
+    @apply bg-gradient-to-t from-base-100/80;
   }
 
   &-tree::before {
