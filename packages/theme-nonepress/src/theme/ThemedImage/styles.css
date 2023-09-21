@@ -1,7 +1,8 @@
 .themed-image {
   display: none;
 
-  [data-theme="light"] &-light {
+  [data-theme="light"] &-light,
+  html:not([data-theme]) &-light {
     display: initial;
   }
 
