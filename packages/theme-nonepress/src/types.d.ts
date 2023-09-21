@@ -86,18 +86,15 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
 }
 
 declare module "@theme/Admonition" {
-  import type {
-    ComponentProps,
-    ComponentProps,
-    ComponentProps,
-    ReactNode,
-  } from "react";
+  import type { ReactNode } from "react";
+
   export interface Props {
     readonly children: ReactNode;
     readonly type: "note" | "tip" | "danger" | "info" | "caution";
     readonly icon?: ReactNode;
     readonly title?: ReactNode;
   }
+
   export default function Admonition(props: Props): JSX.Element;
 }
 
