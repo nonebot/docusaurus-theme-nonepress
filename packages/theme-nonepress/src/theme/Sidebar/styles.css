@@ -23,7 +23,7 @@
 
   &-curtain {
     @apply sticky bottom-0 w-full h-8 z-10;
-    @apply bg-gradient-to-t from-base-100/80;
+    @apply bg-base-100 [mask-image:linear-gradient(transparent,#000000)];
     @apply transition-[background-color] duration-500;
   }
 }

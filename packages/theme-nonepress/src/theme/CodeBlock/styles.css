@@ -5,6 +5,7 @@
 
     @apply relative w-full max-w-full h-auto overflow-hidden;
     @apply rounded-box leading-6;
+    @apply transition-[color,background-color] duration-500;
   }
 
   &-title {
@@ -70,7 +71,8 @@
 
     &-number {
       overflow-wrap: normal;
-      background-color: var(--prism-background-color);
+
+      /* background-color: var(--prism-background-color); */
 
       @apply table-cell sticky left-0 text-right px-4 select-none w-[1%];
 
