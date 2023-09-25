@@ -38,21 +38,20 @@ body {
 
 .thin-scrollbar {
   &::-webkit-scrollbar {
-    height: 7px;
-    width: 7px;
+    @apply !w-1.5 !h-1.5;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
+    @apply !rounded !bg-base-content/10;
+    @apply transition-[background-color] duration-500;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: silver;
-    border-radius: 10px;
+    @apply !rounded !bg-base-content/20;
+    @apply transition-[background-color] duration-500;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #a7a7a7;
+    @apply !bg-base-content/30;
   }
 }
