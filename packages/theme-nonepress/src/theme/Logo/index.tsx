@@ -17,29 +17,46 @@ function LogoThemedImage({
   logo: NavbarLogo;
   alt: string;
   imageClassName?: string;
-}) {
-  const sources = {
-    light: useBaseUrl(logo.src),
-    dark: useBaseUrl(logo.srcDark || logo.src),
-  };
-  const themedImage = (
-    <ThemedImage
-      className={logo.className}
-      sources={sources}
-      height={logo.height}
-      width={logo.width}
-      alt={alt}
-      style={logo.style}
-    />
-  );
+}): JSX.Element {
+  const lightSrc = useBaseUrl(logo.src);
+  const darkSrc = useBaseUrl(logo.srcDark || logo.src);
 
   // Is this extra div really necessary?
   // introduced in https://github.com/facebook/docusaurus/pull/5666
-  return imageClassName ? (
-    <div className={imageClassName}>{themedImage}</div>
-  ) : (
-    themedImage
-  );
+  const wrapper = (children: JSX.Element): JSX.Element =>
+    imageClassName ? (
+      <div className={imageClassName}>{children}</div>
+    ) : (
+      children
+    );
+
+  if (logo.srcDark == null) {
+    return wrapper(
+      <img
+        className={logo.className}
+        src={lightSrc}
+        height={logo.height}
+        width={logo.width}
+        alt={alt}
+        style={logo.style}
+      />,
+    );
+  } else {
+    const sources = {
+      light: lightSrc,
+      dark: darkSrc,
+    };
+    return wrapper(
+      <ThemedImage
+        className={logo.className}
+        sources={sources}
+        height={logo.height}
+        width={logo.width}
+        alt={alt}
+        style={logo.style}
+      />,
+    );
+  }
 }
 
 export default function Logo(props: Props): JSX.Element {
