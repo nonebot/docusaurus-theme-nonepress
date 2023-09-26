@@ -19,7 +19,7 @@ function LogoThemedImage({
   imageClassName?: string;
 }): JSX.Element {
   const lightSrc = useBaseUrl(logo.src);
-  const darkSrc = useBaseUrl(logo.srcDark || logo.src);
+  const darkSrc = useBaseUrl(logo.srcDark ?? logo.src);
 
   // Is this extra div really necessary?
   // introduced in https://github.com/facebook/docusaurus/pull/5666

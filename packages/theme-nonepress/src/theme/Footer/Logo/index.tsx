@@ -1,27 +1,42 @@
 import React from "react";
 
 import Link from "@docusaurus/Link";
-import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import type { Props } from "@theme/Footer/Logo";
 import ThemedImage from "@theme/ThemedImage";
 
 function LogoImage({ logo }: Props) {
-  const { withBaseUrl } = useBaseUrlUtils();
-  const sources = {
-    light: withBaseUrl(logo.src),
-    dark: withBaseUrl(logo.srcDark ?? logo.src),
-  };
-  return (
-    <ThemedImage
-      className={logo.className}
-      alt={logo.alt}
-      sources={sources}
-      width={logo.width}
-      height={logo.height}
-      style={logo.style}
-    />
-  );
+  const lightSrc = useBaseUrl(logo.src);
+  const darkSrc = useBaseUrl(logo.srcDark ?? logo.src);
+
+  if (logo.srcDark == null) {
+    return (
+      <img
+        className={logo.className}
+        src={lightSrc}
+        alt={logo.alt}
+        width={logo.width}
+        height={logo.height}
+        style={logo.style}
+      />
+    );
+  } else {
+    const sources = {
+      light: lightSrc,
+      dark: darkSrc,
+    };
+    return (
+      <ThemedImage
+        className={logo.className}
+        alt={logo.alt}
+        sources={sources}
+        width={logo.width}
+        height={logo.height}
+        style={logo.style}
+      />
+    );
+  }
 }
 
 export default function FooterLogo({ logo }: Props): JSX.Element {
