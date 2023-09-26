@@ -41,7 +41,7 @@ export default function MobileTOCPopdown(): JSX.Element | null {
     <div
       className={clsx(
         ThemeClassNames.docs.docTocMobile,
-        "navbar-tocpopdown thin-scrollbar",
+        "navbar-tocpopdown",
         shown && "navbar-tocpopdown-open",
       )}
     >

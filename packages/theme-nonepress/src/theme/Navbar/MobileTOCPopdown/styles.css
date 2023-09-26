@@ -2,8 +2,8 @@
   max-height: calc(50vh - 4rem);
   width: calc(100% - 2rem);
 
-  @apply absolute top-full m-4 z-30 bg-base-100;
-  @apply shadow-lg rounded-lg border border-base-content/10 overflow-y-auto;
+  @apply absolute top-full flex flex-col m-4 pt-4 z-30 bg-base-100;
+  @apply shadow-lg rounded-lg border border-base-content/10;
   @apply transition duration-200 ease-in-out origin-top scale-90 opacity-0 pointer-events-none;
 
   &-open {
