@@ -20,7 +20,7 @@ export default function DocVersionBadge({
           className={clsx(
             className,
             ThemeClassNames.docs.docVersionBadge,
-            "doc-version-badge",
+            "badge badge-ghost doc-version-badge",
           )}
         >
           <Translate

@@ -1,5 +1,6 @@
 .doc-version-badge {
-  @apply badge badge-ghost font-semibold;
+  @apply font-semibold;
+  @apply transition-[color,background-color,border-color] duration-500;
 
   &-container {
     @apply mb-2;

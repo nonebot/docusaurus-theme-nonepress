@@ -2,10 +2,11 @@
   @apply mb-2;
 
   &-btn {
-    @apply btn btn-ghost btn-xs no-animation rounded-2xl !no-underline;
+    @apply rounded-2xl !no-underline;
 
     &-active {
-      @apply btn-active text-primary;
+      @apply !bg-base-300 text-primary cursor-default;
+      @apply transition-[background-color] duration-500;
     }
   }
 }

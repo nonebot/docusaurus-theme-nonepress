@@ -2,7 +2,6 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
@@ -11,6 +10,7 @@ import {
   useHomePageRoute,
 } from "@docusaurus/theme-common/internal";
 
+import "./styles.css";
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
 
 function BreadcrumbsItemLink({
@@ -22,11 +22,11 @@ function BreadcrumbsItemLink({
   href: string | undefined;
   isLast: boolean;
 }): JSX.Element {
-  const className = "breadcrumbs-btn";
+  const className = "btn btn-ghost btn-xs no-animation breadcrumbs-btn";
   if (isLast) {
     return (
       <span
-        className={clsx(className, "breadcrumbs-btn-active")}
+        className={clsx(className, "btn-active breadcrumbs-btn-active")}
         itemProp="name"
       >
         {children}
