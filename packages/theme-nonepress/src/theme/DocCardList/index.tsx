@@ -24,7 +24,7 @@ export default function DocCardList(props: Props): JSX.Element {
   const filteredItems = filterDocCardListItems(items);
 
   return (
-    <section className={clsx("doc-card-list", className)}>
+    <section className={clsx("not-prose doc-card-list", className)}>
       {filteredItems.map((item, index) => (
         <article key={index}>
           <DocCard item={item} />

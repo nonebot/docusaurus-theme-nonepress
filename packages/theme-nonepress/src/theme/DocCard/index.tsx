@@ -30,7 +30,7 @@ function CardContainer({
   className?: string;
 }): JSX.Element {
   return (
-    <Link href={href} className={clsx("card doc-card not-prose", className)}>
+    <Link href={href} className={clsx("card doc-card", className)}>
       {children}
     </Link>
   );

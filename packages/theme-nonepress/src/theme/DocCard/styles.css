@@ -1,9 +1,9 @@
 .doc-card {
-  @apply h-full bg-base-100;
-  @apply transition border border-base-content/10 shadow;
+  @apply h-full bg-base-200 border border-base-200;
+  @apply transition-[background-color,border-color] duration-500;
 
   &:hover {
-    @apply border-primary shadow-md;
+    @apply border-primary;
   }
 
   &-icon {
@@ -15,6 +15,6 @@
   }
 
   &-description {
-    @apply font-normal truncate text-base-content;
+    @apply font-normal truncate;
   }
 }
