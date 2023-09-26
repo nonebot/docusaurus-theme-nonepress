@@ -21,6 +21,10 @@
   &-keys {
     @apply ml-8;
     @apply hidden xl:flex items-center gap-1;
+
+    & > kbd {
+      @apply transition-[color,background-color] duration-500;
+    }
   }
 }
 
