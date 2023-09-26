@@ -7,7 +7,7 @@
   }
 
   &-link {
-    @apply flex items-center gap-2 whitespace-pre-wrap [word-break:break-word];
+    @apply flex items-center gap-2 whitespace-pre-wrap;
 
     &-active,
     &-active:hover,

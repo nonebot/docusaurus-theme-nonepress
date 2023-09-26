@@ -18,4 +18,8 @@
   &-tree::before {
     @apply top-2 bottom-2;
   }
+
+  &-link {
+    @apply [word-break:break-word];
+  }
 }

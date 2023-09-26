@@ -1,6 +1,6 @@
 .navbar-appearance {
   &-mobile {
-    @apply flex justify-between items-center;
+    @apply flex justify-between items-center gap-2;
     @apply px-6 py-4;
   }
 }
