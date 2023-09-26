@@ -47,10 +47,13 @@ export default function TOCContent({
   useTOCHighlight(tocHighlightConfig);
 
   return (
-    <ul className="menu menu-sm">
-      <li>
-        <TOCTree toc={tocTree} linkClassName={linkClassName} />
-      </li>
-    </ul>
+    <div className="toc-content thin-scrollbar">
+      <ul className="menu menu-sm">
+        <li>
+          <TOCTree toc={tocTree} linkClassName={linkClassName} />
+        </li>
+      </ul>
+      <div className="toc-curtain"></div>
+    </div>
   );
 }
