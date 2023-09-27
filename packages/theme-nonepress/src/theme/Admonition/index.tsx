@@ -167,7 +167,7 @@ const aliases = {
   secondary: "note",
   important: "info",
   success: "tip",
-  warning: "danger",
+  warning: "caution",
 } as const;
 
 function getAdmonitionConfig(unsafeType: string): AdmonitionConfig {
