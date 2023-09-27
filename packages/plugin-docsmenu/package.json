@@ -1,6 +1,6 @@
 {
   "name": "@nullbot/docusaurus-plugin-docsmenu",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "DocMenu plugin for Nonepress theme",
   "main": "lib/index.js",
   "exports": {
