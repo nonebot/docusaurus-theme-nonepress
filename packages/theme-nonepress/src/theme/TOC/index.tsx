@@ -9,7 +9,7 @@ import TOCContent from "@theme/TOC/Content";
 
 export default function TOC({ className }: Props): JSX.Element | null {
   const windowSize = useWindowSize();
-  const isMobile = windowSize === "mobile" || windowSize === "ssr";
+  const isMobile = windowSize === "mobile";
 
   const [tocContent] = useTOCContent();
 

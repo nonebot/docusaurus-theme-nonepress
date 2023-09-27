@@ -32,7 +32,7 @@ import SidebarContent from "@theme/Sidebar/Content";
 export default function Sidebar({ className }: Props): JSX.Element | null {
   const { pathname } = useLocation();
   const windowSize = useWindowSize();
-  const isMobile = windowSize === "mobile" || windowSize === "ssr";
+  const isMobile = windowSize === "mobile";
 
   // const showAnnouncementBar = useShowAnnouncementBar();
   const {
