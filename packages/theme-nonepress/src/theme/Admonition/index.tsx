@@ -231,7 +231,7 @@ export default function Admonition(props: Props): JSX.Element {
   return (
     <div
       className={clsx(
-        "alert admonition",
+        "admonition",
         typeConfig.className && `admonition-${typeConfig.className}`,
         ThemeClassNames.common.admonition,
         ThemeClassNames.common.admonitionType(props.type),
