@@ -1,11 +1,10 @@
 import React from "react";
 
-import clsx from "clsx";
-
 import "./styles.css";
 import { useWindowSize } from "@nullbot/docusaurus-theme-nonepress/client";
 import { useTOCContent } from "@nullbot/docusaurus-theme-nonepress/contexts";
 import type { Props } from "@theme/TOC";
+import TOCContainer from "@theme/TOC/Container";
 import TOCContent from "@theme/TOC/Content";
 
 export default function TOC({ className }: Props): JSX.Element | null {
@@ -24,10 +23,8 @@ export default function TOC({ className }: Props): JSX.Element | null {
   }
 
   return (
-    <div className={clsx("toc", className)}>
-      <div className="toc-container">
-        <TOCContent {...tocContent} />
-      </div>
-    </div>
+    <TOCContainer className={className}>
+      <TOCContent {...tocContent} />
+    </TOCContainer>
   );
 }

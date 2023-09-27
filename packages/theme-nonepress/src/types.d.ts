@@ -1213,10 +1213,10 @@ declare module "@theme/Page" {
   import type { ReactNode } from "react";
 
   export interface Props {
-    children?: ReactNode;
-    hideSidebar?: boolean;
-    hideTableOfContents?: boolean;
-    reduceContentWidth?: boolean;
+    readonly children?: ReactNode;
+    readonly hideSidebar?: boolean;
+    readonly hideTableOfContents?: boolean;
+    readonly reduceContentWidth?: boolean;
   }
 
   export default function Page(props: Props): JSX.Element;
@@ -1413,6 +1413,16 @@ declare module "@theme/TOC" {
   }
 
   export default function TOC(props: Props): JSX.Element | null;
+}
+
+declare module "@theme/TOC/Container" {
+  import type { ReactNode } from "react";
+  export interface Props {
+    readonly className?: string;
+    readonly children?: ReactNode;
+  }
+
+  export default function TOCContainer(props: Props): JSX.Element;
 }
 
 declare module "@theme/TOC/Content" {
