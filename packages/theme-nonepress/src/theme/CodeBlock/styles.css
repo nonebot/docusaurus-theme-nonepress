@@ -9,7 +9,7 @@
   }
 
   &-title {
-    @apply relative w-full px-4 pt-2;
+    @apply relative w-full px-16 pt-2;
 
     &-btn-group {
       @apply absolute left-4;
