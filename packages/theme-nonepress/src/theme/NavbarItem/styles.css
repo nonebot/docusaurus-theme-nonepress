@@ -14,7 +14,7 @@
   /* docs menu */
   &-docs-menu {
     &-content {
-      @apply block w-[24rem] xl:w-[48rem] !m-0 !p-0 overflow-hidden whitespace-normal;
+      @apply block w-[28rem] xl:w-[36rem] 2xl:w-[48rem] !m-0 !p-0 overflow-hidden whitespace-normal;
 
       &::before {
         @apply content-none;
