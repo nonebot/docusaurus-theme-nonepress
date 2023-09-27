@@ -15,7 +15,7 @@
     @apply origin-top-right;
   }
 
-  & &-divider ~ &-divider {
+  & *:not(&-divider) + &-divider {
     @apply divider m-0 h-auto;
 
     &::before,
