@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nonebot/docusaurus-preset-nonepress.git",
+    "url": "https://github.com/nonebot/docusaurus-theme-nonepress.git",
     "directory": "packages/preset-nonepress"
   },
   "license": "MIT",
