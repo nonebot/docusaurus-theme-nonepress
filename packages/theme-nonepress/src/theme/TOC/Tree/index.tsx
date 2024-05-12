@@ -22,11 +22,15 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
         window.getComputedStyle(targetEl).paddingTop,
         10,
       );
-      const targetTop =
+      let targetTop =
         window.scrollY +
         targetEl.getBoundingClientRect().top -
         OFFSET +
         targetPadding;
+
+      // if scrolling down to the target, the header is hidden
+      // so add back the offset for the header
+      if (targetTop > window.scrollY) targetTop += OFFSET;
 
       requestAnimationFrame(() => {
         if (Math.abs(targetTop - window.scrollY) > window.innerHeight)
