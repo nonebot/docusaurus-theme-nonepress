@@ -11,7 +11,7 @@ import {
   useTOCDisplay,
   useTOCContent,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
-import TOCContent from "@theme/TOC/Content";
+import TOC from "@theme/TOC";
 
 export default function MobileTOCPopdown(): JSX.Element | null {
   const {
@@ -45,7 +45,7 @@ export default function MobileTOCPopdown(): JSX.Element | null {
         shown && "navbar-tocpopdown-open",
       )}
     >
-      <TOCContent {...tocContent} />
+      <TOC {...tocContent} />
     </div>
   );
 }

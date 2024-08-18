@@ -1,26 +1,23 @@
-import React, { useMemo } from "react";
-
+import React, {useMemo} from 'react';
+import {useThemeConfig} from '@docusaurus/theme-common';
 import {
   useTOCHighlight,
   useFilteredAndTreeifiedTOC,
   type TOCHighlightConfig,
-} from "@docusaurus/theme-common/internal";
+} from '@docusaurus/theme-common/internal';
+import TOCItemTree from '@theme/TOCItems/Tree';
+import type {Props} from '@theme/TOCItems';
 
-import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
-import type { Props } from "@theme/TOC/Content";
-import TOCTree from "@theme/TOC/Tree";
-
-const TOC_LINK_CLASS = "toc-link";
-const TOC_LINK_ACTIVE_CLASS = "menu-link-active";
-
-export default function TOCContent({
+export default function TOCItems({
   toc,
+  className = 'table-of-contents table-of-contents__left-border',
+  linkClassName = 'table-of-contents__link',
+  linkActiveClassName = undefined,
   minHeadingLevel: minHeadingLevelOption,
   maxHeadingLevel: maxHeadingLevelOption,
-  linkClassName = TOC_LINK_CLASS,
-  linkActiveClassName = TOC_LINK_ACTIVE_CLASS,
-}: Props): JSX.Element {
-  const themeConfig = useNonepressThemeConfig();
+  ...props
+}: Props): JSX.Element | null {
+  const themeConfig = useThemeConfig();
 
   const minHeadingLevel =
     minHeadingLevelOption ?? themeConfig.tableOfContents.minHeadingLevel;
@@ -47,13 +44,11 @@ export default function TOCContent({
   useTOCHighlight(tocHighlightConfig);
 
   return (
-    <div className="toc-content thin-scrollbar">
-      <ul className="menu menu-sm">
-        <li>
-          <TOCTree toc={tocTree} linkClassName={linkClassName} />
-        </li>
-      </ul>
-      <div className="toc-curtain" />
-    </div>
+    <TOCItemTree
+      toc={tocTree}
+      className={className}
+      linkClassName={linkClassName}
+      {...props}
+    />
   );
 }

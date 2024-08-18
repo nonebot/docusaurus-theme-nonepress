@@ -1,7 +1,8 @@
 import React from "react";
-
-import TOCContent from "@theme/TOC/Content";
+import TOCItems from "@theme/TOCItems";
 import type { Props } from "@theme/TOCInline";
+
+import styles from "./styles.module.css";
 
 export default function TOCInline({
   toc,
@@ -9,13 +10,13 @@ export default function TOCInline({
   maxHeadingLevel,
 }: Props): JSX.Element {
   return (
-    <div className="w-full mb-2 not-prose">
-      <TOCContent
+    <div className={styles.tableOfContentsInline}>
+      <TOCItems
         toc={toc}
         minHeadingLevel={minHeadingLevel}
         maxHeadingLevel={maxHeadingLevel}
+        className="table-of-contents"
         linkClassName={null}
-        linkActiveClassName={null}
       />
     </div>
   );

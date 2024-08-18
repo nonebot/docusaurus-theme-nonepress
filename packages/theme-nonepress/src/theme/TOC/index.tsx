@@ -1,30 +1,23 @@
-import React from "react";
+import React from 'react';
+import clsx from 'clsx';
+import TOCItems from '@theme/TOCItems';
+import type {Props} from '@theme/TOC';
 
-import "./styles.css";
-import { useWindowSize } from "@nullbot/docusaurus-theme-nonepress/client";
-import { useTOCContent } from "@nullbot/docusaurus-theme-nonepress/contexts";
-import type { Props } from "@theme/TOC";
-import TOCContainer from "@theme/TOC/Container";
-import TOCContent from "@theme/TOC/Content";
+import styles from './styles.module.css';
 
-export default function TOC({ className }: Props): JSX.Element | null {
-  const windowSize = useWindowSize();
-  const isMobile = windowSize === "mobile";
+// Using a custom className
+// This prevents TOCInline/TOCCollapsible getting highlighted by mistake
+const LINK_CLASS_NAME = 'table-of-contents__link toc-highlight';
+const LINK_ACTIVE_CLASS_NAME = 'table-of-contents__link--active';
 
-  const [tocContent] = useTOCContent();
-
-  if (
-    isMobile ||
-    !tocContent ||
-    tocContent.hideTableOfContents ||
-    tocContent.toc.length === 0
-  ) {
-    return null;
-  }
-
+export default function TOC({className, ...props}: Props): JSX.Element {
   return (
-    <TOCContainer className={className}>
-      <TOCContent {...tocContent} />
-    </TOCContainer>
+    <div className={clsx(styles.tableOfContents, 'thin-scrollbar', className)}>
+      <TOCItems
+        {...props}
+        linkClassName={LINK_CLASS_NAME}
+        linkActiveClassName={LINK_ACTIVE_CLASS_NAME}
+      />
+    </div>
   );
 }

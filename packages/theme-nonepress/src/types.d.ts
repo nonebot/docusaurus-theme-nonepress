@@ -16,7 +16,6 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
   import type { Config as tailwindConfig } from "tailwindcss";
   import type { DeepPartial } from "utility-types";
 
-
   export type PluginOptions = {
     customCss: string[];
   };
@@ -88,9 +87,10 @@ declare module "@theme/Admonition" {
 
   export interface Props {
     readonly children: ReactNode;
-    readonly type: "note" | "tip" | "danger" | "info" | "caution";
+    readonly type: string;
     readonly icon?: ReactNode;
     readonly title?: ReactNode;
+    readonly className?: string;
   }
 
   export default function Admonition(props: Props): JSX.Element;
@@ -102,7 +102,6 @@ declare module "@theme/AnnouncementBar" {
 declare module "@theme/AnnouncementBar/Content" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"div"> {}
 
   export default function AnnouncementBarContent(props: Props): JSX.Element;
@@ -110,7 +109,6 @@ declare module "@theme/AnnouncementBar/Content" {
 declare module "@theme/AnnouncementBar/CloseButton" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"button"> {}
 
   export default function AnnouncementBarCloseButton(props: Props): JSX.Element;
@@ -229,7 +227,6 @@ declare module "@theme/ColorModeToggle" {
 declare module "@theme/Details" {
   import { Details, type DetailsProps } from "@docusaurus/theme-common/Details";
 
-   
   export interface Props extends DetailsProps {}
 
   export default Details;
@@ -274,8 +271,24 @@ declare module "@theme/DocItem/Footer" {
   export default function DocItemFooter(): JSX.Element;
 }
 
+declare module "@theme/DocItem/Layout" {
+  export interface Props {
+    readonly children: JSX.Element;
+  }
+
+  export default function DocItemLayout(props: Props): JSX.Element;
+}
+
 declare module "@theme/DocItem/Metadata" {
   export default function DocItemMetadata(): JSX.Element;
+}
+
+declare module "@theme/DocItem/TOC/Mobile" {
+  export default function DocItemTOCMobile(): JSX.Element;
+}
+
+declare module "@theme/DocItem/TOC/Desktop" {
+  export default function DocItemTOCDesktop(): JSX.Element;
 }
 
 declare module "@theme/DocItem/Paginator" {
@@ -330,7 +343,7 @@ declare module "@theme/DocPaginator" {
   import type { PropNavigation } from "@docusaurus/plugin-content-docs";
 
   // May be simpler to provide a {navigation: PropNavigation} prop?
-   
+
   export interface Props extends PropNavigation {}
 
   export default function DocPaginator(props: Props): JSX.Element;
@@ -352,7 +365,6 @@ declare module "@theme/DocSidebar" {
 declare module "@theme/DocSidebar/Mobile" {
   import type { Props as DocSidebarProps } from "@theme/DocSidebar";
 
-   
   export interface Props extends DocSidebarProps {}
 
   export default function DocSidebarMobile(props: Props): JSX.Element;
@@ -361,7 +373,6 @@ declare module "@theme/DocSidebar/Mobile" {
 declare module "@theme/DocSidebar/Desktop" {
   import type { Props as DocSidebarProps } from "@theme/DocSidebar";
 
-   
   export interface Props extends DocSidebarProps {}
 
   export default function DocSidebarDesktop(props: Props): JSX.Element;
@@ -406,7 +417,6 @@ declare module "@theme/DocSidebarItem/Link" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
   import type { PropSidebarItemLink } from "@docusaurus/plugin-content-docs";
 
-
   export interface Props extends DocSidebarItemProps {
     readonly item: PropSidebarItemLink;
   }
@@ -417,7 +427,6 @@ declare module "@theme/DocSidebarItem/Link" {
 declare module "@theme/DocSidebarItem/Html" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
   import type { PropSidebarItemHtml } from "@docusaurus/plugin-content-docs";
-
 
   export interface Props extends DocSidebarItemProps {
     readonly item: PropSidebarItemHtml;
@@ -430,7 +439,6 @@ declare module "@theme/DocSidebarItem/Category" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
   import type { PropSidebarItemCategory } from "@docusaurus/plugin-content-docs";
 
-
   export interface Props extends DocSidebarItemProps {
     readonly item: PropSidebarItemCategory;
   }
@@ -441,7 +449,6 @@ declare module "@theme/DocSidebarItem/Category" {
 declare module "@theme/DocSidebarItems" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
-
 
   export interface Props extends Omit<DocSidebarItemProps, "item" | "index"> {
     readonly items: readonly PropSidebarItem[];
@@ -573,7 +580,6 @@ declare module "@theme/Heading" {
 declare module "@theme/Icon/Algolia" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconAlgolia(props: Props): JSX.Element;
@@ -582,7 +588,6 @@ declare module "@theme/Icon/Algolia" {
 declare module "@theme/Icon/Close" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconClose(props: Props): JSX.Element;
@@ -591,7 +596,6 @@ declare module "@theme/Icon/Close" {
 declare module "@theme/Icon/Category" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconCategory(props: Props): JSX.Element;
@@ -600,7 +604,6 @@ declare module "@theme/Icon/Category" {
 declare module "@theme/Icon/Copy" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconCopy(props: Props): JSX.Element;
@@ -609,7 +612,6 @@ declare module "@theme/Icon/Copy" {
 declare module "@theme/Icon/DarkMode" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconDarkMode(props: Props): JSX.Element;
@@ -618,7 +620,6 @@ declare module "@theme/Icon/DarkMode" {
 declare module "@theme/Icon/Docusaurus" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconDocusaurus(props: Props): JSX.Element;
@@ -627,7 +628,6 @@ declare module "@theme/Icon/Docusaurus" {
 declare module "@theme/Icon/Dropdown" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconDropdown(props: Props): JSX.Element;
@@ -636,7 +636,6 @@ declare module "@theme/Icon/Dropdown" {
 declare module "@theme/Icon/Edit" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconEdit(props: Props): JSX.Element;
@@ -645,7 +644,6 @@ declare module "@theme/Icon/Edit" {
 declare module "@theme/Icon/ExternalLink" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconExternalLink(props: Props): JSX.Element;
@@ -654,7 +652,6 @@ declare module "@theme/Icon/ExternalLink" {
 declare module "@theme/Icon/Extra" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconExtra(props: Props): JSX.Element;
@@ -663,7 +660,6 @@ declare module "@theme/Icon/Extra" {
 declare module "@theme/Icon/File" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconFile(props: Props): JSX.Element;
@@ -672,7 +668,6 @@ declare module "@theme/Icon/File" {
 declare module "@theme/Icon/Home" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconHome(props: Props): JSX.Element;
@@ -681,7 +676,6 @@ declare module "@theme/Icon/Home" {
 declare module "@theme/Icon/Language" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconLanguage(props: Props): JSX.Element;
@@ -690,7 +684,6 @@ declare module "@theme/Icon/Language" {
 declare module "@theme/Icon/LightMode" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconLightMode(props: Props): JSX.Element;
@@ -699,7 +692,6 @@ declare module "@theme/Icon/LightMode" {
 declare module "@theme/Icon/Link" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconLink(props: Props): JSX.Element;
@@ -708,7 +700,6 @@ declare module "@theme/Icon/Link" {
 declare module "@theme/Icon/Menu" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconMenu(props: Props): JSX.Element;
@@ -717,7 +708,6 @@ declare module "@theme/Icon/Menu" {
 declare module "@theme/Icon/React" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconReact(props: Props): JSX.Element;
@@ -726,7 +716,6 @@ declare module "@theme/Icon/React" {
 declare module "@theme/Icon/Search" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconSearch(props: Props): JSX.Element;
@@ -735,7 +724,6 @@ declare module "@theme/Icon/Search" {
 declare module "@theme/Icon/Sidebar" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconSidebar(props: Props): JSX.Element;
@@ -744,7 +732,6 @@ declare module "@theme/Icon/Sidebar" {
 declare module "@theme/Icon/Success" {
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-   
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
   export default function IconSuccess(props: Props): JSX.Element;
@@ -753,7 +740,6 @@ declare module "@theme/Icon/Success" {
 declare module "@theme/Icon/WordWrap" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconWordWrap(props: Props): JSX.Element;
@@ -856,7 +842,6 @@ declare module "@theme/MDXComponents" {
 declare module "@theme/MDXComponents/A" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"a"> {}
 
   export default function MDXA(props: Props): JSX.Element;
@@ -865,7 +850,6 @@ declare module "@theme/MDXComponents/A" {
 declare module "@theme/MDXComponents/Code" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"code"> {}
 
   export default function MDXCode(props: Props): JSX.Element;
@@ -874,7 +858,6 @@ declare module "@theme/MDXComponents/Code" {
 declare module "@theme/MDXComponents/Details" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"details"> {}
 
   export default function MDXDetails(props: Props): JSX.Element;
@@ -883,7 +866,6 @@ declare module "@theme/MDXComponents/Details" {
 declare module "@theme/MDXComponents/Head" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"head"> {}
 
   export default function MDXHead(props: Props): JSX.Element;
@@ -894,7 +876,6 @@ declare module "@theme/MDXComponents/Heading" {
 
   import type Heading from "@theme/Heading";
 
-   
   export interface Props extends ComponentProps<typeof Heading> {}
 
   export default function MDXHeading(props: Props): JSX.Element;
@@ -903,7 +884,6 @@ declare module "@theme/MDXComponents/Heading" {
 declare module "@theme/MDXComponents/Img" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"img"> {}
 
   export default function MDXImg(props: Props): JSX.Element;
@@ -912,7 +892,6 @@ declare module "@theme/MDXComponents/Img" {
 declare module "@theme/MDXComponents/Pre" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"pre"> {}
 
   export default function MDXPre(props: Props): JSX.Element;
@@ -921,7 +900,6 @@ declare module "@theme/MDXComponents/Pre" {
 declare module "@theme/MDXComponents/Ul" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"ul"> {}
 
   export default function MDXUl(props: Props): JSX.Element;
@@ -940,7 +918,6 @@ declare module "@theme/MDXContent" {
 declare module "@theme/Menu" {
   import type { ComponentProps } from "react";
 
-   
   export interface Props extends ComponentProps<"ul"> {}
 
   export default function Menu(props: Props): JSX.Element;
@@ -1015,7 +992,6 @@ declare module "@theme/Navbar/ColorModeToggle" {
 declare module "@theme/Navbar/DocsVersion" {
   import type { DocsVersionDropdown } from "@nullbot/docusaurus-theme-nonepress";
 
-   
   export interface Props extends Omit<DocsVersionDropdown, "enabled"> {}
 
   export default function NavbarDocsVersion(props: Props): JSX.Element;
@@ -1317,7 +1293,6 @@ declare module "@theme/SearchTranslations" {
   const translations: DocSearchTranslations & { placeholder: string };
   export default translations;
 }
-
 declare module "@theme/Sidebar" {
   export interface Props {
     readonly className?: string;
@@ -1366,7 +1341,6 @@ declare module "@theme/SidebarItem/Link" {
   import type { Props as SidebarItemProps } from "@theme/SidebarItem";
   import type { PropSidebarItemLink } from "@docusaurus/plugin-content-docs";
 
-
   export interface Props extends SidebarItemProps {
     readonly item: PropSidebarItemLink;
   }
@@ -1378,7 +1352,6 @@ declare module "@theme/SidebarItem/Html" {
   import type { Props as SidebarItemProps } from "@theme/SidebarItem";
   import type { PropSidebarItemHtml } from "@docusaurus/plugin-content-docs";
 
-
   export interface Props extends SidebarItemProps {
     readonly item: PropSidebarItemHtml;
   }
@@ -1389,7 +1362,6 @@ declare module "@theme/SidebarItem/Html" {
 declare module "@theme/SidebarItem/Category" {
   import type { Props as SidebarItemProps } from "@theme/SidebarItem";
   import type { PropSidebarItemCategory } from "@docusaurus/plugin-content-docs";
-
 
   export interface Props extends SidebarItemProps {
     readonly item: PropSidebarItemCategory;
@@ -1405,7 +1377,6 @@ declare module "@theme/SkipToContent" {
 declare module "@theme/TabItem" {
   import type { TabItemProps } from "@docusaurus/theme-common/internal";
 
-   
   export interface Props extends TabItemProps {}
 
   export default function TabItem(props: Props): JSX.Element;
@@ -1414,7 +1385,6 @@ declare module "@theme/TabItem" {
 declare module "@theme/Tabs" {
   import type { TabsProps } from "@docusaurus/theme-common/internal";
 
-   
   export interface Props extends TabsProps {}
 
   export default function Tabs(props: Props): JSX.Element;
@@ -1424,10 +1394,37 @@ declare module "@theme/Tag" {
   import type { TagsListItem } from "@docusaurus/utils";
   import type { Optional } from "utility-types";
 
-   
   export interface Props extends Optional<TagsListItem, "count"> {}
 
   export default function Tag(props: Props): JSX.Element;
+}
+
+declare module "@theme/ContentVisibility" {
+  export interface Props {
+    readonly metadata: {
+      // the visibility metadata our 3 content plugins share in common
+      readonly unlisted: boolean;
+      readonly frontMatter: { draft?: boolean; unlisted?: boolean };
+    };
+  }
+
+  export default function ContentVisibility(props: Props): JSX.Element;
+}
+
+declare module "@theme/ContentVisibility/Unlisted" {
+  export interface Props {
+    className?: string;
+  }
+
+  export default function Unlisted(props: Props): JSX.Element;
+}
+
+declare module "@theme/ContentVisibility/Draft" {
+  export interface Props {
+    className?: string;
+  }
+
+  export default function Draft(props: Props): JSX.Element;
 }
 
 declare module "@theme/TagsListByLetter" {
@@ -1464,48 +1461,47 @@ declare module "@theme/ThemedImage" {
   export default function ThemedImage(props: Props): JSX.Element;
 }
 
-declare module "@theme/TOC" {
-  export interface Props {
-    readonly className?: string;
-  }
-
-  export default function TOC(props: Props): JSX.Element | null;
-}
-
-declare module "@theme/TOC/Container" {
-  import type { ReactNode } from "react";
-
-  export interface Props {
-    readonly className?: string;
-    readonly children?: ReactNode;
-  }
-
-  export default function TOCContainer(props: Props): JSX.Element;
-}
-
-declare module "@theme/TOC/Content" {
+declare module "@theme/TOCItems" {
   import type { TOCItem } from "@docusaurus/mdx-loader";
 
   export interface Props {
     readonly toc: readonly TOCItem[];
     readonly minHeadingLevel?: number;
     readonly maxHeadingLevel?: number;
+    readonly className?: string;
     readonly linkClassName?: string | null;
-    readonly linkActiveClassName?: string | null;
+    readonly linkActiveClassName?: string;
   }
 
-  export default function TOCContent(props: Props): JSX.Element;
+  export default function TOCItems(props: Props): JSX.Element;
 }
 
-declare module "@theme/TOC/Tree" {
+declare module "@theme/TOCItems/Tree" {
   import type { TOCTreeNode } from "@docusaurus/theme-common/internal";
 
   export interface Props {
     readonly toc: readonly TOCTreeNode[];
-    readonly linkClassName?: string | null;
+    readonly className: string;
+    readonly linkClassName: string | null;
+    readonly isChild?: boolean;
   }
 
-  export default function TOCTree(props: Props): JSX.Element | null;
+  export default function TOCItems(props: Props): JSX.Element;
+}
+
+declare module "@theme/TOC" {
+  import type { TOCItem } from "@docusaurus/mdx-loader";
+
+  // `minHeadingLevel` only comes from doc/post front matter, and won't have a
+  // default set by Joi. See TOC, TOCInline, TOCCollapsible for examples.
+  export interface Props {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
+  }
+
+  export default function TOC(props: Props): JSX.Element;
 }
 
 declare module "@theme/TOCInline" {
@@ -1518,6 +1514,31 @@ declare module "@theme/TOCInline" {
   }
 
   export default function TOCInline(props: Props): JSX.Element;
+}
+
+declare module "@theme/TOCCollapsible" {
+  import type { TOCItem } from "@docusaurus/mdx-loader";
+
+  export interface Props {
+    readonly className?: string;
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly toc: readonly TOCItem[];
+  }
+
+  export default function TOCCollapsible(props: Props): JSX.Element;
+}
+
+declare module "@theme/TOCCollapsible/CollapseButton" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"button"> {
+    collapsed: boolean;
+  }
+
+  export default function TOCCollapsibleCollapseButton(
+    props: Props,
+  ): JSX.Element;
 }
 
 declare module "@theme/prism-include-languages" {

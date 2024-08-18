@@ -182,7 +182,7 @@ function getAdmonitionConfig(unsafeType: string): AdmonitionConfig {
   console.warn(
     `No admonition config found for admonition type "${type}". Using Info as fallback.`,
   );
-  return AdmonitionConfigs.info;
+  return AdmonitionConfigs.info!;
 }
 
 // Workaround because it's difficult in MDX v1 to provide a MDX title as props

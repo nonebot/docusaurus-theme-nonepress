@@ -1,0 +1,27 @@
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 997px) {
+  .docItemCol {
+    max-width: 75% !important;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(1rem * -1);
+}
+
+.col {
+  --ifm-col-width: 100%;
+  flex: 1 0;
+  margin-left: 0;
+  max-width: var(--ifm-col-width);
+}
+
+.col--3 {
+  --ifm-col-width: 25%;
+}
