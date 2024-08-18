@@ -61,9 +61,9 @@ export default function CodeBlockString({
       {title && (
         <div className="code-block-title">
           <div className="code-block-title-btn-group">
-            <div className="code-block-title-btn code-block-title-btn-error"></div>
-            <div className="code-block-title-btn code-block-title-btn-warning"></div>
-            <div className="code-block-title-btn code-block-title-btn-success"></div>
+            <div className="code-block-title-btn code-block-title-btn-error" />
+            <div className="code-block-title-btn code-block-title-btn-warning" />
+            <div className="code-block-title-btn code-block-title-btn-success" />
           </div>
           <div className="code-block-title-content">{title}</div>
         </div>

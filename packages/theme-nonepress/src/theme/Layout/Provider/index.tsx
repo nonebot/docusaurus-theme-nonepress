@@ -5,6 +5,7 @@ import { composeProviders } from "@docusaurus/theme-common";
 import {
   AnnouncementBarProvider,
   ColorModeProvider,
+  NavbarProvider,
   PluginHtmlClassNameProvider,
   ScrollControllerProvider,
 } from "@docusaurus/theme-common/internal";
@@ -29,6 +30,7 @@ const Provider = composeProviders([
   SidebarDisplayProvider,
   TOCContentProvider,
   TOCDisplayProvider,
+  NavbarProvider,
 ]);
 
 export default function LayoutProvider({ children }: Props): JSX.Element {

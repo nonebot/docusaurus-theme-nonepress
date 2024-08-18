@@ -1,9 +1,9 @@
 import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
+import { usePluginData } from "@docusaurus/useGlobalData";
 import type {
   PropSidebars,
   PropSidebar,
 } from "@docusaurus/plugin-content-docs";
-import { usePluginData } from "@docusaurus/useGlobalData";
 
 export type GlobalDocsVersion = {
   readonly versionName: string;

@@ -41,7 +41,7 @@ export default function NavbarDocsVersion({
       label: (
         <>
           <span className="navbar-version-name">{version.label}</span>
-          <span className="navbar-version-badge"></span>
+          <span className="navbar-version-badge" />
         </>
       ),
       className: "navbar-version-link",

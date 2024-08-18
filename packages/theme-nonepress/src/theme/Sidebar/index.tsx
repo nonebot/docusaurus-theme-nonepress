@@ -56,7 +56,7 @@ export default function Sidebar({ className }: Props): JSX.Element | null {
       )}
       <div className="sidebar-content thin-scrollbar">
         <SidebarContent items={sidebarContent} path={pathname} />
-        <div className="sidebar-curtain"></div>
+        <div className="sidebar-curtain" />
       </div>
     </div>
   );

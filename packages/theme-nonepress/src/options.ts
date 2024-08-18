@@ -1,14 +1,14 @@
+import { Joi, URISchema } from "@docusaurus/utils-validation";
+import { themes } from "prism-react-renderer";
 import type {
   OptionValidationContext,
   ThemeConfigValidationContext,
 } from "@docusaurus/types";
-import { Joi, URISchema } from "@docusaurus/utils-validation";
 import type {
   Options,
   PluginOptions,
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
-import { themes } from "prism-react-renderer";
 
 const defaultPrismTheme = themes.palenight;
 

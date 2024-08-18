@@ -1,6 +1,12 @@
 .docMainContainer {
   display: flex;
   width: 100%;
+  margin-left: 1rem;
+  max-width: calc(100% - 18rem);
+  justify-content: center;
+  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  width: 100%;
 }
 
 @media (min-width: 997px) {

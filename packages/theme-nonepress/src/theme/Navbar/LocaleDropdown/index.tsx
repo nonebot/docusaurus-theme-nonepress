@@ -7,12 +7,12 @@ import { useLocation } from "@docusaurus/router";
 import { useAlternatePageUtils } from "@docusaurus/theme-common/internal";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import "./styles.css";
 import IconLanguage from "@theme/Icon/Language";
 import Menu from "@theme/Menu";
 import type { Props } from "@theme/Navbar/LocaleDropdown";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem";
+import "./styles.css";
 
 export default function NavbarLocaleDropdown({
   dropdownItemsBefore,
@@ -40,7 +40,7 @@ export default function NavbarLocaleDropdown({
       target: "_self",
       autoAddBaseUrl: false,
       className:
-        // eslint-disable-next-line no-nested-ternary
+         
         locale === currentLocale
           ? // Similar idea as DefaultNavbarItem: select the right Infima active
             // class name. This cannot be substituted with isActive, because the

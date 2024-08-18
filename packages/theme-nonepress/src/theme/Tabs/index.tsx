@@ -90,7 +90,7 @@ function TabList({
             {label ?? value}
           </li>
         ))}
-        <div className="tab tab-lifted tab-item tab-spacer"></div>
+        <div className="tab tab-lifted tab-item tab-spacer" />
       </ul>
     </div>
   );

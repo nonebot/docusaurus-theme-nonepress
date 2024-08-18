@@ -101,7 +101,7 @@ function DropdownNavbarItemMobile({
     <MenuCategory
       {...props}
       collapsed={collapsed}
-      collapsible={true}
+      collapsible
       setCollapsed={setCollapsed}
       items={subItems}
     />

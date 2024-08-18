@@ -2,14 +2,9 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import isInternalUrl from "@docusaurus/isInternalUrl";
-import type {
-  PropSidebarItemCategory,
-  PropSidebarItemLink,
-} from "@docusaurus/plugin-content-docs";
 import {
   findFirstSidebarItemLink,
   useDocById,
@@ -19,6 +14,11 @@ import type { Props } from "@theme/DocCard";
 import IconCategory from "@theme/Icon/Category";
 import IconFile from "@theme/Icon/File";
 import IconLink from "@theme/Icon/Link";
+import type {
+  PropSidebarItemCategory,
+  PropSidebarItemLink,
+} from "@docusaurus/plugin-content-docs";
+import "./styles.css";
 
 function CardContainer({
   href,

@@ -1,6 +1,7 @@
 // @ts-check
 
 import { themes } from "prism-react-renderer";
+
 const darkCodeTheme = themes.dracula;
 const lightCodeTheme = themes.github;
 
@@ -31,7 +32,6 @@ const config = {
     defaultLocale: "en",
     locales: ["en", "zh-Hans"],
   },
-
 
   presets: [
     [
@@ -103,6 +103,11 @@ const config = {
             href: "https://nonebot.dev",
           },
         ],
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
       },
       footer: {
         style: "light",

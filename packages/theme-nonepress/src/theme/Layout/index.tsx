@@ -10,7 +10,6 @@ import {
 } from "@docusaurus/theme-common";
 import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
 
-import "./styles.css";
 import AnnouncementBar from "@theme/AnnouncementBar";
 import ErrorPageContent from "@theme/ErrorPageContent";
 import Footer from "@theme/Footer";
@@ -18,6 +17,7 @@ import type { Props } from "@theme/Layout";
 import LayoutProvider from "@theme/Layout/Provider";
 import Navbar from "@theme/Navbar";
 import SkipToContent from "@theme/SkipToContent";
+import "./styles.css";
 
 export default function Layout(props: Props): JSX.Element {
   const {

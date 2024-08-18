@@ -1,3 +1,5 @@
+import _ from "lodash";
+import { mergeTranslations } from "@docusaurus/utils";
 import type {
   Footer,
   MultiColumnFooter,
@@ -9,9 +11,7 @@ import type {
   TranslationFile,
   TranslationFileContent,
 } from "@docusaurus/types";
-import { mergeTranslations } from "@docusaurus/utils";
 import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
-import _ from "lodash";
 
 function getNavbarTranslationFile(navbar: Navbar): TranslationFileContent {
   // TODO handle properly all the navbar item types here!

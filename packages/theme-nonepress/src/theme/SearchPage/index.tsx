@@ -299,7 +299,7 @@ function SearchPageContent(): JSX.Element {
           description: "The search page title for empty query",
         });
 
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
+   
   const makeSearch = useEvent((page: number = 0) => {
     algoliaHelper.addDisjunctiveFacetRefinement("docusaurus_tag", "default");
     algoliaHelper.addDisjunctiveFacetRefinement("language", currentLocale);

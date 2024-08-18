@@ -53,7 +53,7 @@ export default function TOCContent({
           <TOCTree toc={tocTree} linkClassName={linkClassName} />
         </li>
       </ul>
-      <div className="toc-curtain"></div>
+      <div className="toc-curtain" />
     </div>
   );
 }

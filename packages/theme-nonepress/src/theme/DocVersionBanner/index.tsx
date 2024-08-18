@@ -4,10 +4,6 @@ import clsx from "clsx";
 
 import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
-import type {
-  VersionBanner,
-  PropVersionMetadata,
-} from "@docusaurus/plugin-content-docs";
 import {
   useActivePlugin,
   useDocVersionSuggestions,
@@ -20,8 +16,12 @@ import {
 } from "@docusaurus/plugin-content-docs/client";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import "./styles.css";
 import type { Props } from "@theme/DocVersionBanner";
+import type {
+  VersionBanner,
+  PropVersionMetadata,
+} from "@docusaurus/plugin-content-docs";
+import "./styles.css";
 
 type BannerLabelComponentProps = {
   siteTitle: string;

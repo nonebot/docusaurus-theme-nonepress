@@ -2,20 +2,20 @@ import Module from "module";
 import path from "path";
 
 import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
-import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
+import autoprefixer from "autoprefixer";
+import postcssImport from "postcss-import";
+import tailwindcss from "tailwindcss";
+import tailwindNesting from "tailwindcss/nesting";
+
+import defaultTailwindConfig from "./tailwind.config";
+import { getTranslationFiles, translateThemeConfig } from "./translations";
+import type webpack from "webpack";
+import type { Config as tailwindConfigType } from "tailwindcss";
 import type {
   PluginOptions,
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
-import autoprefixer from "autoprefixer";
-import postcssImport from "postcss-import";
-import tailwindcss from "tailwindcss";
-import type { Config as tailwindConfigType } from "tailwindcss";
-import tailwindNesting from "tailwindcss/nesting";
-import type webpack from "webpack";
-
-import defaultTailwindConfig from "./tailwind.config";
-import { getTranslationFiles, translateThemeConfig } from "./translations";
+import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
 
 const requireFromDocusaurusCore = Module.createRequire(
   require.resolve("@docusaurus/core/package.json"),

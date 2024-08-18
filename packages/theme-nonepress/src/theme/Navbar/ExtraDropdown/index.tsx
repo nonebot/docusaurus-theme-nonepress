@@ -33,19 +33,19 @@ export default function NavbarExtraDrodown(): JSX.Element | null {
       <div className="dropdown-content navbar-extra-content">
         {localeDropdownEnabled && (
           <>
-            <div className="navbar-extra-divider"></div>
+            <div className="navbar-extra-divider" />
             <NavbarLocaleDropdown mobile {...localeDropdown} />
           </>
         )}
         {!disableColorMode && (
           <>
-            <div className="navbar-extra-divider"></div>
+            <div className="navbar-extra-divider" />
             <NavbarColorModeToggle mobile />
           </>
         )}
         {socialLinks && socialLinks.length >= 0 && (
           <>
-            <div className="navbar-extra-divider"></div>
+            <div className="navbar-extra-divider" />
             <NavbarSocialLinks mobile links={socialLinks} />
           </>
         )}

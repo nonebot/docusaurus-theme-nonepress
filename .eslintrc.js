@@ -2,38 +2,24 @@ const OFF = 0;
 const WARNING = 1;
 const ERROR = 2;
 
-const ClientRestrictedImportPatterns = [
-  // Prevent importing lodash in client bundle for bundle size
-  "lodash",
-  "lodash.**",
-  "lodash/**",
-  // Prevent importing server code in client bundle
-  "**/../babel/**",
-  "**/../server/**",
-  "**/../commands/**",
-  "**/../webpack/**",
-];
+// Prevent importing lodash, usually for browser bundle size reasons
+const LodashImportPatterns = ["lodash", "lodash.**", "lodash/**"];
 
 module.exports = {
   root: true,
   env: {
     browser: true,
     commonjs: true,
-    jest: true,
     node: true,
   },
   parser: "@typescript-eslint/parser",
-  parserOptions: {
-    // tsconfigRootDir: __dirname,
-    // project: ['./tsconfig.base.json', './website/tsconfig.base.json'],
-  },
+  parserOptions: {},
   globals: {
     JSX: true,
   },
   extends: [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
-    "plugin:jest/recommended",
     "airbnb",
     "plugin:@typescript-eslint/recommended",
     // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
@@ -50,13 +36,7 @@ module.exports = {
     },
   },
   reportUnusedDisableDirectives: true,
-  plugins: [
-    "react-hooks",
-    "header",
-    "@typescript-eslint",
-    "regexp",
-    "@docusaurus",
-  ],
+  plugins: ["react-hooks", "@typescript-eslint", "regexp", "@docusaurus"],
   rules: {
     "react/jsx-uses-react": OFF, // JSX runtime: automatic
     "react/react-in-jsx-scope": OFF, // JSX runtime: automatic
@@ -242,7 +222,6 @@ module.exports = {
             patternOptions: { matchBase: true },
             position: "after",
           },
-          { pattern: "@jest/globals", group: "builtin", position: "before" },
           { pattern: "react", group: "builtin", position: "before" },
           { pattern: "react-dom", group: "builtin", position: "before" },
           { pattern: "react-dom/**", group: "builtin", position: "before" },
@@ -268,31 +247,6 @@ module.exports = {
       },
     ],
     "import/prefer-default-export": OFF,
-
-    "jest/consistent-test-it": WARNING,
-    "jest/expect-expect": OFF,
-    "jest/no-large-snapshots": [
-      WARNING,
-      { maxSize: Infinity, inlineMaxSize: 10 },
-    ],
-    "jest/no-test-return-statement": ERROR,
-    "jest/prefer-expect-resolves": WARNING,
-    "jest/prefer-lowercase-title": [WARNING, { ignore: ["describe"] }],
-    "jest/prefer-spy-on": WARNING,
-    "jest/prefer-to-be": WARNING,
-    "jest/prefer-to-have-length": WARNING,
-    "jest/require-top-level-describe": ERROR,
-    "jest/valid-title": [
-      ERROR,
-      {
-        mustNotMatch: {
-          it: [
-            "^should|\\.$",
-            'Titles should not begin with "should" or end with a full-stop',
-          ],
-        },
-      },
-    ],
 
     "jsx-a11y/click-events-have-key-events": WARNING,
     "jsx-a11y/no-noninteractive-element-interactions": WARNING,
@@ -385,24 +339,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["packages/docusaurus/src/client/**/*.{js,ts,tsx}"],
-      rules: {
-        "no-restricted-imports": [
-          "error",
-          {
-            patterns: ClientRestrictedImportPatterns,
-          },
-        ],
-      },
-    },
-    {
-      files: ["packages/docusaurus-*/src/theme/**/*.{js,ts,tsx}"],
+      files: ["packages/*/src/theme/**/*.{js,ts,tsx}"],
       excludedFiles: "*.test.{js,ts,tsx}",
       rules: {
         "no-restricted-imports": [
           "error",
           {
-            patterns: ClientRestrictedImportPatterns.concat(
+            patterns: LodashImportPatterns.concat(
               // Prevents relative imports between React theme components
               [
                 "../**",
@@ -416,21 +359,9 @@ module.exports = {
       },
     },
     {
-      files: [
-        "packages/docusaurus-*/src/theme/**/*.{js,ts,tsx}",
-        "packages/docusaurus/src/client/theme-fallback/**/*.{js,ts,tsx}",
-      ],
+      files: ["packages/*/src/theme/**/*.{js,ts,tsx}"],
       rules: {
         "import/no-named-export": ERROR,
-      },
-    },
-    {
-      files: ["packages/create-docusaurus/templates/**/*.{js,ts,tsx}"],
-      rules: {
-        "header/header": OFF,
-        "global-require": OFF,
-        "@typescript-eslint/no-var-requires": OFF,
-        "@docusaurus/no-untranslated-text": OFF,
       },
     },
     {

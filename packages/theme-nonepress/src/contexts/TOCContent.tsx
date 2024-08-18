@@ -1,7 +1,7 @@
 import React, { useContext, useState, type ReactNode, useEffect } from "react";
 
-import type { TOCItem } from "@docusaurus/mdx-loader";
 import { ReactContextError } from "@docusaurus/theme-common";
+import type { TOCItem } from "@docusaurus/mdx-loader";
 
 type Content = {
   readonly toc: readonly TOCItem[];
