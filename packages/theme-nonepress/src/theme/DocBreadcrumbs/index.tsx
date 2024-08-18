@@ -5,13 +5,12 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import {
-  useSidebarBreadcrumbs,
-  useHomePageRoute,
-} from "@docusaurus/theme-common/internal";
+import { useHomePageRoute } from "@docusaurus/theme-common/internal";
 
-import "./styles.css";
+import { useSidebarBreadcrumbs } from "@docusaurus/plugin-content-docs/client";
+
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
+import "./styles.css";
 
 function BreadcrumbsItemLink({
   children,

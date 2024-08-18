@@ -1,5 +1,4 @@
 import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
-import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
 import { usePluginData } from "@docusaurus/useGlobalData";
 
 export type Doc = {

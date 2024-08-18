@@ -3,22 +3,21 @@ import React, { useEffect, useMemo } from "react";
 import clsx from "clsx";
 
 import {
-  ThemeClassNames,
-  usePrevious,
-  useCollapsible,
-} from "@docusaurus/theme-common";
-import {
+  findFirstSidebarItemLink,
   isActiveSidebarItem,
-  findFirstCategoryLink,
-  isSamePath,
   useDocSidebarItemsExpandedState,
-} from "@docusaurus/theme-common/internal";
+} from "@docusaurus/plugin-content-docs/client";
+import {
+  ThemeClassNames,
+  useCollapsible,
+  usePrevious,
+} from "@docusaurus/theme-common";
+import { isSamePath } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import MenuCategory from "@theme/Menu/Category";
 import SidebarItems from "@theme/Sidebar/Items";
-import SidebarItem from "@theme/SidebarItem";
 import type { Props } from "@theme/SidebarItem/Category";
 
 // If we navigate to a category and it becomes active, it should automatically
@@ -54,7 +53,7 @@ function useCategoryHrefWithSSRFallback(
 ): string | undefined {
   const isBrowser = useIsBrowser();
   return useMemo(() => {
-    if (item.href) {
+    if (item.href && !item.linkUnlisted) {
       return item.href;
     }
     // In these cases, it's not necessary to render a fallback
@@ -62,7 +61,7 @@ function useCategoryHrefWithSSRFallback(
     if (isBrowser || !item.collapsible) {
       return undefined;
     }
-    return findFirstCategoryLink(item);
+    return findFirstSidebarItemLink(item);
   }, [item, isBrowser]);
 }
 

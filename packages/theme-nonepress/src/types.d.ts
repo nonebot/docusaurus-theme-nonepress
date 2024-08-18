@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/triple-slash-reference */
+
 /// <reference types="@docusaurus/module-type-aliases" />
 /// <reference types="@docusaurus/plugin-content-docs" />
 /// <reference types="@docusaurus/plugin-content-pages" />
@@ -56,9 +57,6 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
     : U;
 
   type OverwriteConfig = {
-    navbar: {
-      items: NavbarItemProps[];
-    };
     nonepress: {
       tailwindConfig?: tailwindConfig;
       navbar: {
@@ -140,9 +138,10 @@ declare module "@theme/CodeBlock" {
 declare module "@theme/CodeBlock/Container" {
   import type { ComponentProps } from "react";
 
-  export default function CodeBlockContainer(
-    props: ComponentProps<"div">,
-  ): JSX.Element;
+  export default function CodeBlockContainer<T extends "div" | "pre">({
+    as: As,
+    ...props
+  }: { as: T } & ComponentProps<T>): JSX.Element;
 }
 
 declare module "@theme/CodeBlock/Content/Element" {
@@ -163,6 +162,14 @@ declare module "@theme/CodeBlock/Content/String" {
   export default function CodeBlockStringContent(props: Props): JSX.Element;
 }
 
+declare module "@theme/CodeInline" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"code"> {}
+
+  export default function CodeInline(props: Props): JSX.Element;
+}
+
 declare module "@theme/CodeBlock/CopyButton" {
   export interface Props {
     readonly code: string;
@@ -173,24 +180,20 @@ declare module "@theme/CodeBlock/CopyButton" {
 }
 
 declare module "@theme/CodeBlock/Line" {
-  import type { ComponentProps } from "react";
-
-  import type Highlight from "prism-react-renderer";
-
-  // Lib does not make this easy
-  type RenderProps = Parameters<
-    ComponentProps<typeof Highlight>["children"]
-  >[0];
-  type GetLineProps = RenderProps["getLineProps"];
-  type GetTokenProps = RenderProps["getTokenProps"];
-  type Token = RenderProps["tokens"][number][number];
+  import type {
+    LineInputProps,
+    LineOutputProps,
+    Token,
+    TokenInputProps,
+    TokenOutputProps,
+  } from "prism-react-renderer";
 
   export interface Props {
     readonly line: Token[];
     readonly classNames: string[] | undefined;
     readonly showLineNumbers: boolean;
-    readonly getLineProps: GetLineProps;
-    readonly getTokenProps: GetTokenProps;
+    readonly getLineProps: (input: LineInputProps) => LineOutputProps;
+    readonly getTokenProps: (input: TokenInputProps) => TokenOutputProps;
   }
 
   export default function CodeBlockLine(props: Props): JSX.Element;
@@ -277,6 +280,50 @@ declare module "@theme/DocItem/Metadata" {
 
 declare module "@theme/DocItem/Paginator" {
   export default function DocItemPaginator(): JSX.Element;
+}
+
+declare module "@theme/DocRoot/Layout" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly children: ReactNode;
+  }
+
+  export default function DocRootLayout(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocRoot/Layout/Sidebar" {
+  import type { Dispatch, SetStateAction } from "react";
+  import type { PropSidebar } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly sidebar: PropSidebar;
+    readonly hiddenSidebarContainer: boolean;
+    readonly setHiddenSidebarContainer: Dispatch<SetStateAction<boolean>>;
+  }
+
+  export default function DocRootLayoutSidebar(props: Props): JSX.Element;
+}
+
+declare module "@theme/DocRoot/Layout/Sidebar/ExpandButton" {
+  export interface Props {
+    toggleSidebar: () => void;
+  }
+
+  export default function DocRootLayoutSidebarExpandButton(
+    props: Props,
+  ): JSX.Element;
+}
+
+declare module "@theme/DocRoot/Layout/Main" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly hiddenSidebarContainer: boolean;
+    readonly children: ReactNode;
+  }
+
+  export default function DocRootLayoutMain(props: Props): JSX.Element;
 }
 
 declare module "@theme/DocPaginator" {
@@ -722,6 +769,14 @@ declare module "@theme/LastUpdated" {
   export default function LastUpdated(props: Props): JSX.Element;
 }
 
+declare module "@theme/NotFound/Content" {
+  export interface Props {
+    readonly className?: string;
+  }
+
+  export default function NotFoundContent(props: Props): JSX.Element;
+}
+
 declare module "@theme/Layout" {
   import type { ReactNode } from "react";
 
@@ -773,11 +828,13 @@ declare module "@theme/MDXComponents" {
   import type Mermaid from "@theme/Mermaid";
 
   export type MDXComponentsObject = {
-    readonly head: typeof MDXHead;
+    readonly Head: typeof Head;
+    readonly details: typeof MDXDetails;
+
+    readonly Details: typeof MDXDetails;
     readonly code: typeof MDXCode;
     readonly a: typeof MDXA;
     readonly pre: typeof MDXPre;
-    readonly details: typeof MDXDetails;
     readonly ul: typeof MDXUl;
     readonly img: typeof MDXImg;
     readonly h1: (props: ComponentProps<"h1">) => JSX.Element;

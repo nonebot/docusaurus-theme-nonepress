@@ -3,13 +3,13 @@ import React from "react";
 import clsx from "clsx";
 
 import {
-  useCurrentSidebarCategory,
   filterDocCardListItems,
-} from "@docusaurus/theme-common";
+  useCurrentSidebarCategory,
+} from "@docusaurus/plugin-content-docs/lib/client/docsUtils.js";
 
-import "./styles.css";
 import DocCard from "@theme/DocCard";
 import type { Props } from "@theme/DocCardList";
+import "./styles.css";
 
 function DocCardListForCurrentSidebarCategory(props: Props) {
   const category = useCurrentSidebarCategory();

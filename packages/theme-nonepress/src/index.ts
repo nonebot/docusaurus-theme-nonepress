@@ -149,15 +149,7 @@ export default async function themeNonepress(
         "./nprogress",
       ];
 
-      if (customCss) {
-        if (Array.isArray(customCss)) {
-          modules.push(
-            ...customCss.map((p) => path.resolve(context.siteDir, p)),
-          );
-        } else {
-          modules.push(path.resolve(context.siteDir, customCss));
-        }
-      }
+      modules.push(...customCss.map((p) => path.resolve(context.siteDir, p)));
 
       return modules;
     },

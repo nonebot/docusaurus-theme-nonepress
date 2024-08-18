@@ -7,27 +7,40 @@ import type {
   Options,
   PluginOptions,
   ThemeConfig,
-  UserThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
-import defaultPrismTheme from "prism-react-renderer/themes/palenight";
+import { themes } from "prism-react-renderer";
+
+const defaultPrismTheme = themes.palenight;
 
 const DEFAULT_DOCS_CONFIG: ThemeConfig["docs"] = {
   versionPersistence: "localStorage",
   sidebar: {
-    hideable: true,
-    autoCollapseCategories: true,
+    hideable: false,
+    autoCollapseCategories: false,
   },
 };
+
+const DocsSchema = Joi.object<ThemeConfig["docs"]>({
+  versionPersistence: Joi.string()
+    .equal("localStorage", "none")
+    .default(DEFAULT_DOCS_CONFIG.versionPersistence),
+  sidebar: Joi.object<ThemeConfig["docs"]["sidebar"]>({
+    hideable: Joi.bool().default(DEFAULT_DOCS_CONFIG.sidebar.hideable),
+    autoCollapseCategories: Joi.bool().default(
+      DEFAULT_DOCS_CONFIG.sidebar.autoCollapseCategories,
+    ),
+  }).default(DEFAULT_DOCS_CONFIG.sidebar),
+}).default(DEFAULT_DOCS_CONFIG);
 
 const DEFAULT_COLOR_MODE_CONFIG: ThemeConfig["colorMode"] = {
   defaultMode: "light",
   disableSwitch: false,
-  respectPrefersColorScheme: true,
+  respectPrefersColorScheme: false,
 };
 
-export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia"> = {
-  docs: DEFAULT_DOCS_CONFIG,
+export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia" | "blog"> = {
   colorMode: DEFAULT_COLOR_MODE_CONFIG,
+  docs: DEFAULT_DOCS_CONFIG,
   metadata: [],
   prism: {
     additionalLanguages: [],
@@ -41,7 +54,7 @@ export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia"> = {
     ],
   },
   navbar: {
-    hideOnScroll: true,
+    hideOnScroll: false,
     items: [],
   },
   tableOfContents: {
@@ -65,35 +78,7 @@ export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia"> = {
   },
 };
 
-const DocsSchema = Joi.object({
-  versionPersistence: Joi.string()
-    .equal("localStorage", "none")
-    .default(DEFAULT_DOCS_CONFIG.versionPersistence),
-  sidebar: Joi.object({
-    hideable: Joi.bool().default(DEFAULT_DOCS_CONFIG.sidebar.hideable),
-    autoCollapseCategories: Joi.bool().default(
-      DEFAULT_DOCS_CONFIG.sidebar.autoCollapseCategories,
-    ),
-  }).default(DEFAULT_DOCS_CONFIG.sidebar),
-}).default(DEFAULT_DOCS_CONFIG);
-
-const ColorModeSchema = Joi.object({
-  defaultMode: Joi.string()
-    .equal("dark", "light")
-    .default(DEFAULT_COLOR_MODE_CONFIG.defaultMode),
-  disableSwitch: Joi.bool().default(DEFAULT_COLOR_MODE_CONFIG.disableSwitch),
-  respectPrefersColorScheme: Joi.bool().default(
-    DEFAULT_COLOR_MODE_CONFIG.respectPrefersColorScheme,
-  ),
-}).default(DEFAULT_COLOR_MODE_CONFIG);
-
-const HtmlMetadataSchema = Joi.object({
-  id: Joi.string(),
-  name: Joi.string(),
-  property: Joi.string(),
-  content: Joi.string(),
-  itemprop: Joi.string(),
-}).unknown();
+const NavbarItemPosition = Joi.string().equal("left", "right").default("left");
 
 const NavbarItemBaseSchema = Joi.object({
   label: Joi.string(),
@@ -101,9 +86,10 @@ const NavbarItemBaseSchema = Joi.object({
   className: Joi.string(),
 })
   .nand("html", "label")
+  // We allow any unknown attributes on the links (users may need additional
+  // attributes like target, aria-role, data-customAttribute...)
   .unknown();
 
-// simple link
 const DefaultNavbarItemSchema = NavbarItemBaseSchema.append({
   to: Joi.string(),
   href: URISchema,
@@ -120,35 +106,32 @@ const DefaultNavbarItemSchema = NavbarItemBaseSchema.append({
     "object.xor": 'One and only one between "to" and "href" should be provided',
   });
 
-// docs version
 const DocsVersionNavbarItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("docsVersion").required(),
   to: Joi.string(),
   docsPluginId: Joi.string(),
 });
 
-// doc
 const DocItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("doc").required(),
   docId: Joi.string().required(),
   docsPluginId: Joi.string(),
 });
 
-// doc sidebar
 const DocSidebarItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("docSidebar").required(),
   sidebarId: Joi.string().required(),
   docsPluginId: Joi.string(),
 });
 
-// html
 const HtmlNavbarItemSchema = Joi.object({
-  type: Joi.string().equal("html").required(),
   className: Joi.string(),
+  type: Joi.string().equal("html").required(),
   value: Joi.string().required(),
 });
 
-// custom
+// A temporary workaround to allow users to add custom navbar items
+// See https://github.com/facebook/docusaurus/issues/7227
 const CustomNavbarItemRegexp = /custom-.*/;
 const CustomNavbarItemSchema = Joi.object({
   type: Joi.string().regex(CustomNavbarItemRegexp).required(),
@@ -157,6 +140,7 @@ const CustomNavbarItemSchema = Joi.object({
 const itemWithType = (type: string | RegExp | undefined) => {
   // Because equal(undefined) is not supported :/
   const typeSchema =
+    // eslint-disable-next-line no-nested-ternary
     type instanceof RegExp
       ? Joi.string().required().regex(type)
       : type
@@ -169,7 +153,6 @@ const itemWithType = (type: string | RegExp | undefined) => {
     .required();
 };
 
-// dropdown
 const DropdownSubitemSchema = Joi.object({
   position: Joi.forbidden(),
 }).when(".", {
@@ -203,6 +186,7 @@ const DropdownSubitemSchema = Joi.object({
         itemWithType("dropdown"),
         itemWithType("docsVersionDropdown"),
         itemWithType("localeDropdown"),
+        itemWithType("search"),
       ),
       then: Joi.forbidden().messages({
         "any.unknown": "Nested dropdowns are not allowed",
@@ -218,6 +202,26 @@ const DropdownNavbarItemSchema = NavbarItemBaseSchema.append({
   items: Joi.array().items(DropdownSubitemSchema).required(),
 });
 
+const DocsVersionDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
+  type: Joi.string().equal("docsVersionDropdown").required(),
+  docsPluginId: Joi.string(),
+  dropdownActiveClassDisabled: Joi.boolean(),
+  dropdownItemsBefore: Joi.array().items(DropdownSubitemSchema).default([]),
+  dropdownItemsAfter: Joi.array().items(DropdownSubitemSchema).default([]),
+});
+
+const LocaleDropdownNavbarItemSchema = NavbarItemBaseSchema.append({
+  type: Joi.string().equal("localeDropdown").required(),
+  dropdownItemsBefore: Joi.array().items(DropdownSubitemSchema).default([]),
+  dropdownItemsAfter: Joi.array().items(DropdownSubitemSchema).default([]),
+  queryString: Joi.string(),
+});
+
+const SearchItemSchema = Joi.object({
+  type: Joi.string().equal("search").required(),
+  className: Joi.string(),
+});
+
 // docs menu
 const DocsMenuNavbarItemSchema = NavbarItemBaseSchema.append({
   type: Joi.string().equal("docsMenu").required(),
@@ -226,7 +230,9 @@ const DocsMenuNavbarItemSchema = NavbarItemBaseSchema.append({
   category: Joi.string().required(),
 });
 
-const NavbarItemSchema = Joi.object().when(".", {
+const NavbarItemSchema = Joi.object({
+  position: NavbarItemPosition,
+}).when(".", {
   switch: [
     {
       is: itemWithType("docsVersion"),
@@ -235,6 +241,10 @@ const NavbarItemSchema = Joi.object().when(".", {
     {
       is: itemWithType("dropdown"),
       then: DropdownNavbarItemSchema,
+    },
+    {
+      is: itemWithType("docsVersionDropdown"),
+      then: DocsVersionDropdownNavbarItemSchema,
     },
     {
       is: itemWithType("doc"),
@@ -247,6 +257,14 @@ const NavbarItemSchema = Joi.object().when(".", {
     {
       is: itemWithType("docsMenu"),
       then: DocsMenuNavbarItemSchema,
+    },
+    {
+      is: itemWithType("localeDropdown"),
+      then: LocaleDropdownNavbarItemSchema,
+    },
+    {
+      is: itemWithType("search"),
+      then: SearchItemSchema,
     },
     {
       is: itemWithType("html"),
@@ -273,6 +291,28 @@ const NavbarItemSchema = Joi.object().when(".", {
   }),
 });
 
+const ColorModeSchema = Joi.object({
+  defaultMode: Joi.string()
+    .equal("dark", "light")
+    .default(DEFAULT_COLOR_MODE_CONFIG.defaultMode),
+  disableSwitch: Joi.bool().default(DEFAULT_COLOR_MODE_CONFIG.disableSwitch),
+  respectPrefersColorScheme: Joi.bool().default(
+    DEFAULT_COLOR_MODE_CONFIG.respectPrefersColorScheme,
+  ),
+  switchConfig: Joi.any().forbidden().messages({
+    "any.unknown":
+      "colorMode.switchConfig is deprecated. If you want to customize the icons for light and dark mode, swizzle IconLightMode, IconDarkMode, or ColorModeToggle instead.",
+  }),
+}).default(DEFAULT_COLOR_MODE_CONFIG);
+
+const HtmlMetadataSchema = Joi.object({
+  id: Joi.string(),
+  name: Joi.string(),
+  property: Joi.string(),
+  content: Joi.string(),
+  itemprop: Joi.string(),
+}).unknown();
+
 const FooterLinkItemSchema = Joi.object({
   to: Joi.string(),
   href: URISchema,
@@ -298,6 +338,10 @@ const LogoSchema = Joi.object({
   style: Joi.object(),
   className: Joi.string(),
 });
+
+// Normalize prism language to lowercase
+// See https://github.com/facebook/docusaurus/issues/9012
+const PrismLanguage = Joi.string().custom((val) => val.toLowerCase());
 
 // nonepress
 const SocialLinkSchema = Joi.object({
@@ -349,12 +393,28 @@ const NonepressSchema = Joi.object({
 }).default(DEFAULT_CONFIG.nonepress);
 
 export const ThemeConfigSchema = Joi.object({
+  // TODO temporary (@alpha-58)
+  disableDarkMode: Joi.any().forbidden().messages({
+    "any.unknown":
+      "disableDarkMode theme config is deprecated. Please use the new colorMode attribute. You likely want: config.themeConfig.colorMode.disableSwitch = true",
+  }),
+  // TODO temporary (@alpha-58)
+  defaultDarkMode: Joi.any().forbidden().messages({
+    "any.unknown":
+      'defaultDarkMode theme config is deprecated. Please use the new colorMode attribute. You likely want: config.themeConfig.colorMode.defaultMode = "dark"',
+  }),
   colorMode: ColorModeSchema,
   image: Joi.string(),
   docs: DocsSchema,
   metadata: Joi.array()
     .items(HtmlMetadataSchema)
     .default(DEFAULT_CONFIG.metadata),
+  // cSpell:ignore metadatas
+  metadatas: Joi.any().forbidden().messages({
+    "any.unknown":
+      // cSpell:ignore metadatas
+      "themeConfig.metadatas has been renamed as themeConfig.metadata. See https://github.com/facebook/docusaurus/pull/5871",
+  }),
   announcementBar: Joi.object({
     id: Joi.string().default("announcement-bar"),
     content: Joi.string().required(),
@@ -365,6 +425,11 @@ export const ThemeConfigSchema = Joi.object({
   navbar: Joi.object({
     style: Joi.string().equal("dark", "primary"),
     hideOnScroll: Joi.bool().default(DEFAULT_CONFIG.navbar.hideOnScroll),
+    // TODO temporary (@alpha-58)
+    links: Joi.any().forbidden().messages({
+      "any.unknown":
+        "themeConfig.navbar.links has been renamed as themeConfig.navbar.items",
+    }),
     items: Joi.array()
       .items(NavbarItemSchema)
       .default(DEFAULT_CONFIG.navbar.items),
@@ -385,8 +450,7 @@ export const ThemeConfigSchema = Joi.object({
       Joi.array().items(FooterLinkItemSchema),
     )
       .messages({
-        "alternatives.match":
-          "The footer must be either simple or multi-column, and not a mix of the two. See: https://docusaurus.io/docs/api/themes/configuration#footer-links",
+        "alternatives.match": `The footer must be either simple or multi-column, and not a mix of the two. See: https://docusaurus.io/docs/api/themes/configuration#footer-links`,
       })
       .default([]),
   }).optional(),
@@ -399,9 +463,9 @@ export const ThemeConfigSchema = Joi.object({
       plain: Joi.alternatives().try(Joi.array(), Joi.object()).required(),
       styles: Joi.alternatives().try(Joi.array(), Joi.object()).required(),
     }),
-    defaultLanguage: Joi.string(),
+    defaultLanguage: PrismLanguage,
     additionalLanguages: Joi.array()
-      .items(Joi.string())
+      .items(PrismLanguage)
       .default(DEFAULT_CONFIG.prism.additionalLanguages),
     magicComments: Joi.array()
       .items(
@@ -418,6 +482,18 @@ export const ThemeConfigSchema = Joi.object({
   })
     .default(DEFAULT_CONFIG.prism)
     .unknown(),
+  hideableSidebar: Joi.forbidden().messages({
+    "any.unknown":
+      "themeConfig.hideableSidebar has been moved to themeConfig.docs.sidebar.hideable.",
+  }),
+  autoCollapseSidebarCategories: Joi.forbidden().messages({
+    "any.unknown":
+      "themeConfig.autoCollapseSidebarCategories has been moved to themeConfig.docs.sidebar.autoCollapseCategories.",
+  }),
+  sidebarCollapsible: Joi.forbidden().messages({
+    "any.unknown":
+      "The themeConfig.sidebarCollapsible has been moved to docs plugin options. See: https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs",
+  }),
   tableOfContents: Joi.object({
     minHeadingLevel: Joi.number()
       .default(DEFAULT_CONFIG.tableOfContents.minHeadingLevel)
@@ -440,16 +516,17 @@ export const ThemeConfigSchema = Joi.object({
 });
 
 export function validateThemeConfig({
-  themeConfig,
   validate,
-}: ThemeConfigValidationContext<UserThemeConfig, ThemeConfig>): ThemeConfig {
+  themeConfig,
+}: ThemeConfigValidationContext<ThemeConfig>): ThemeConfig {
   return validate(ThemeConfigSchema, themeConfig);
 }
 
 const DEFAULT_OPTIONS = {
   customCss: [],
 };
-export const PluginOptionSchema = Joi.object<PluginOptions>({
+
+const PluginOptionSchema = Joi.object<PluginOptions>({
   customCss: Joi.alternatives()
     .try(
       Joi.array().items(Joi.string().required()),

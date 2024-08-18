@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import { isActiveSidebarItem } from "@docusaurus/theme-common/internal";
+import { isActiveSidebarItem } from "@docusaurus/plugin-content-docs/client";
 
 import IconExternalLink from "@theme/Icon/ExternalLink";
 import MenuLink from "@theme/Menu/Link";

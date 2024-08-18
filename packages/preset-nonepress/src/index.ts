@@ -53,6 +53,16 @@ export default function preset(
     if (getSidebar !== false) {
       plugins.push("@nullbot/docusaurus-plugin-getsidebar");
     }
+    plugins.push(
+      makePluginConfig("@docusaurus/plugin-ideal-image", {
+        quality: 70,
+        max: 1030,
+        min: 640,
+        steps: 2,
+        // Use false to debug, but it incurs huge perf costs
+        disableInDev: true,
+      }),
+    );
   }
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));

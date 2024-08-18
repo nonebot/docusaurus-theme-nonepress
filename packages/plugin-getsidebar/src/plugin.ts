@@ -20,7 +20,7 @@ export default async function pluginDocMenu(
 ): Promise<Plugin<void>> {
   return {
     name: "docusaurus-plugin-getsidebar",
-    async contentLoaded({
+    async allContentLoaded({
       allContent,
       actions: { setGlobalData },
     }): Promise<void> {

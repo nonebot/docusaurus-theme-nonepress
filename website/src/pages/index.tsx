@@ -18,7 +18,7 @@ export default function Home(): JSX.Element {
             <div className="max-w-md">
               <h1 className="text-5xl font-bold">NonePress</h1>
               <p className="py-6">
-                A Docusaurus v2 theme with DaisyUI(Tailwind CSS) integration.
+                A Docusaurus v3 theme with DaisyUI (Tailwind CSS) integration.
               </p>
               <Link className="btn btn-primary" to="/docs/guide">
                 Get Started

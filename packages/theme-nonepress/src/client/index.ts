@@ -4,4 +4,4 @@ export {
   useNonepressThemeConfig,
 } from "./useNonepressThemeConfig";
 export { useDocsMenuCategory, useDocsMenuVersions } from "./useDocsMenu";
-export { useWindowSize } from "./useWindowSize";
+export { useWindowSize } from "@docusaurus/theme-common";

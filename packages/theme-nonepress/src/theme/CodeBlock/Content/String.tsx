@@ -10,7 +10,7 @@ import {
   containsLineNumbers,
   useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
-import Highlight, { defaultProps, type Language } from "prism-react-renderer";
+import { Highlight, type Language } from "prism-react-renderer";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import Container from "@theme/CodeBlock/Container";
@@ -50,6 +50,7 @@ export default function CodeBlockString({
 
   return (
     <Container
+      as="div"
       className={clsx(
         blockClassName,
         language &&
@@ -69,7 +70,6 @@ export default function CodeBlockString({
       )}
       <div className="code-block-wrapper">
         <Highlight
-          {...defaultProps}
           theme={prismTheme}
           code={code}
           language={(language ?? "text") as Language}

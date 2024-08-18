@@ -6,7 +6,7 @@ export default function getSwizzleConfig(): SwizzleConfig {
       "prism-include-languages": {
         actions: {
           eject: "safe",
-          wrap: "forbidden",
+          wrap: "forbidden", // Not a component!
         },
         description:
           "The Prism languages to include for code block syntax highlighting. Meant to be ejected.",

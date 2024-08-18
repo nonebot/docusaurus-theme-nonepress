@@ -13,7 +13,7 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
       event.preventDefault();
       const eventTarget = event.currentTarget;
       const targetEl = document.getElementById(
-        decodeURIComponent(eventTarget.href.split("#")[1]),
+        decodeURIComponent(eventTarget.href.split("#")[1] || ""),
       );
       if (!targetEl) {
         return;

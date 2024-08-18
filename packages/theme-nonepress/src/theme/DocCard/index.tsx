@@ -11,9 +11,9 @@ import type {
   PropSidebarItemLink,
 } from "@docusaurus/plugin-content-docs";
 import {
-  findFirstCategoryLink,
+  findFirstSidebarItemLink,
   useDocById,
-} from "@docusaurus/theme-common/internal";
+} from "@docusaurus/plugin-content-docs/client";
 
 import type { Props } from "@theme/DocCard";
 import IconCategory from "@theme/Icon/Category";
@@ -72,7 +72,7 @@ function CardCategory({
   item: PropSidebarItemCategory;
   className?: string;
 }): JSX.Element | null {
-  const href = findFirstCategoryLink(item);
+  const href = findFirstSidebarItemLink(item);
 
   // Unexpected: categories that don't have a link have been filtered upfront
   if (!href) {

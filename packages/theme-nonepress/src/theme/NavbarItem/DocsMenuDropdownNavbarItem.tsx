@@ -9,7 +9,7 @@ import {
   type GlobalDoc,
   useActiveDocContext,
 } from "@docusaurus/plugin-content-docs/client";
-import { useDocsPreferredVersion } from "@docusaurus/theme-common";
+import { useDocsPreferredVersion } from "@docusaurus/plugin-content-docs/client";
 import type { Doc } from "@nullbot/docusaurus-plugin-docsmenu/client";
 
 import {

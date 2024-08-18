@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DocSidebarItemsExpandedStateProvider } from "@docusaurus/theme-common/internal";
+import { DocSidebarItemsExpandedStateProvider } from "@docusaurus/plugin-content-docs/client";
 
 import type { Props } from "@theme/Sidebar/Items";
 import SidebarItem from "@theme/SidebarItem";

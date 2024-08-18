@@ -1,9 +1,8 @@
 import React from "react";
 
+import { DocProvider } from "@docusaurus/plugin-content-docs/client";
 import { HtmlClassNameProvider } from "@docusaurus/theme-common";
-import { DocProvider } from "@docusaurus/theme-common/internal";
 
-import "./styles.css";
 import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import type { Props } from "@theme/DocItem";
@@ -13,9 +12,10 @@ import DocItemMetadata from "@theme/DocItem/Metadata";
 import DocItemPaginator from "@theme/DocItem/Paginator";
 import DocVersionBadge from "@theme/DocVersionBadge";
 import DocVersionBanner from "@theme/DocVersionBanner";
+import "./styles.css";
 
 export default function DocItem({ content }: Props): JSX.Element {
-  const docHtmlClassName = `docs-doc-id-${content.metadata.unversionedId}`;
+  const docHtmlClassName = `docs-doc-id-${content.metadata.id}`;
   const MDXComponent = content;
 
   const { toc, frontMatter } = content;

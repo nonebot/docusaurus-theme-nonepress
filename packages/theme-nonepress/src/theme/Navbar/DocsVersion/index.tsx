@@ -1,20 +1,20 @@
 import React from "react";
 
-import type { GlobalVersion } from "@docusaurus/plugin-content-docs/client";
 import {
-  useVersions,
   useActiveDocContext,
+  useDocsPreferredVersion,
+  useDocsVersionCandidates,
+  useVersions,
+  type GlobalVersion,
 } from "@docusaurus/plugin-content-docs/client";
 import { useLocation } from "@docusaurus/router";
-import { useDocsPreferredVersion } from "@docusaurus/theme-common";
-import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
 
-import "./styles.css";
 import IconDropdown from "@theme/Icon/Dropdown";
 import Menu from "@theme/Menu";
 import type { Props } from "@theme/Navbar/DocsVersion";
-import NavbarItem from "@theme/NavbarItem";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
+import NavbarItem from "@theme/NavbarItem";
+import "./styles.css";
 
 const getVersionMainDoc = (version: GlobalVersion) =>
   version.docs.find((doc) => doc.id === version.mainDocId)!;

@@ -1,8 +1,8 @@
-import _ from "lodash";
-
 import type {
   Footer,
   MultiColumnFooter,
+  Navbar,
+  NavbarItem,
   SimpleFooter,
 } from "@docusaurus/theme-common";
 import type {
@@ -11,38 +11,27 @@ import type {
 } from "@docusaurus/types";
 import { mergeTranslations } from "@docusaurus/utils";
 import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
+import _ from "lodash";
 
-import type { NavbarItemProps } from "@theme/NavbarItem";
-import type { Props as DropdownNavbarItemProps } from "@theme/NavbarItem/DropdownNavbarItem";
-
-function isDropdownNavbarItem(
-  item: NavbarItemProps,
-): item is { readonly type?: "dropdown" } & DropdownNavbarItemProps {
-  return "items" in item;
-}
-
-function getNavbarTranslationFile(
-  navbar: ThemeConfig["navbar"],
-): TranslationFileContent {
-  const flattenNavbarItems = (items: NavbarItemProps[]): NavbarItemProps[] => {
+function getNavbarTranslationFile(navbar: Navbar): TranslationFileContent {
+  // TODO handle properly all the navbar item types here!
+  function flattenNavbarItems(items: NavbarItem[]): NavbarItem[] {
     const subItems = items.flatMap((item) => {
-      const allSubItems = [
-        (isDropdownNavbarItem(item) && item.items) || [],
-      ].flat();
+      const allSubItems = [item.items ?? []].flat();
       return flattenNavbarItems(allSubItems);
     });
     return [...items, ...subItems];
-  };
+  }
 
   const allNavbarItems = flattenNavbarItems(navbar.items);
 
   const navbarItemsTranslations: TranslationFileContent = Object.fromEntries(
     allNavbarItems
-      .filter((navbarItem) => typeof navbarItem.label === "string")
+      .filter((navbarItem) => navbarItem.label)
       .map((navbarItem) => [
         `item.label.${navbarItem.label}`,
         {
-          message: navbarItem.label as string,
+          message: navbarItem.label!,
           description: `Navbar item with label ${navbarItem.label}`,
         },
       ]),
@@ -72,11 +61,10 @@ function getNavbarTranslationFile(
     navbarItemsTranslations,
   ]);
 }
-
 function translateNavbar(
-  navbar: ThemeConfig["navbar"],
+  navbar: Navbar,
   navbarTranslations: TranslationFileContent | undefined,
-): ThemeConfig["navbar"] {
+): Navbar {
   if (!navbarTranslations) {
     return navbar;
   }
@@ -84,7 +72,7 @@ function translateNavbar(
   const logo = navbar.logo
     ? {
         ...navbar.logo,
-        alt: navbarTranslations["logo.alt"]?.message ?? navbar.logo?.alt,
+        alt: navbarTranslations[`logo.alt`]?.message ?? navbar.logo?.alt,
       }
     : undefined;
 
@@ -92,16 +80,14 @@ function translateNavbar(
     ...navbar,
     title: navbarTranslations.title?.message ?? navbar.title,
     logo,
+    //  TODO handle properly all the navbar item types here!
     items: navbar.items.map((item) => {
-      const subItems =
-        isDropdownNavbarItem(item) &&
-        item.items?.map((subItem) => ({
-          ...subItem,
-          label:
-            navbarTranslations[`item.label.${subItem.label}`]?.message ??
-            subItem.label,
-        }));
-
+      const subItems = item.items?.map((subItem) => ({
+        ...subItem,
+        label:
+          navbarTranslations[`item.label.${subItem.label}`]?.message ??
+          subItem.label,
+      }));
       return {
         ...item,
         label:
@@ -172,7 +158,6 @@ function getFooterTranslationFile(footer: Footer): TranslationFileContent {
     logoAlt,
   ]);
 }
-
 function translateFooter(
   footer: Footer,
   footerTranslations: TranslationFileContent | undefined,
@@ -204,7 +189,7 @@ function translateFooter(
   const logo = footer.logo
     ? {
         ...footer.logo,
-        alt: footerTranslations["logo.alt"]?.message ?? footer.logo?.alt,
+        alt: footerTranslations[`logo.alt`]?.message ?? footer.logo?.alt,
       }
     : undefined;
 

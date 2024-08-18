@@ -34,8 +34,8 @@ export default function NavbarLocaleDropdown({
     // preserve ?search#hash suffix on locale switches
     const to = `${baseTo}${search}${hash}${queryString}`;
     return {
-      label: localeConfigs[locale].label,
-      lang: localeConfigs[locale].htmlLang,
+      label: localeConfigs?.[locale]?.label,
+      lang: localeConfigs?.[locale]?.htmlLang,
       to,
       target: "_self",
       autoAddBaseUrl: false,

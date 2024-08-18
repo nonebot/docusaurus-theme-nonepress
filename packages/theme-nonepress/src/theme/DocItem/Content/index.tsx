@@ -3,7 +3,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import { useDoc } from "@docusaurus/theme-common/internal";
+import { useDoc } from "@docusaurus/plugin-content-docs/client";
 
 import type { Props } from "@theme/DocItem/Content";
 import Heading from "@theme/Heading";

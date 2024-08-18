@@ -23,7 +23,7 @@ export default async function pluginDocMenu(
 ): Promise<Plugin<void>> {
   return {
     name: "docusaurus-plugin-docmenu",
-    async contentLoaded({
+    async allContentLoaded({
       allContent,
       actions: { setGlobalData },
     }): Promise<void> {
@@ -44,7 +44,7 @@ export default async function pluginDocMenu(
             (doc.frontMatter as DocFrontmatter).options?.menu ?? [];
           categories.forEach((options) => {
             groups[options.category] = groups[options.category] ?? [];
-            groups[options.category].push({
+            groups[options.category]?.push({
               id: doc.id,
               title: doc.title,
               description: doc.description,

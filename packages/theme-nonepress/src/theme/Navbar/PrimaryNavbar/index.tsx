@@ -3,9 +3,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { ErrorCauseBoundary } from "@docusaurus/theme-common";
-import { isDocsPluginEnabled } from "@docusaurus/theme-common/internal";
 
-import "./styles.css";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import Menu from "@theme/Menu";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
@@ -18,6 +16,7 @@ import NavbarSearch from "@theme/Navbar/Search";
 import NavbarSocialLinks from "@theme/Navbar/SocialLinks";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
 import SearchBar from "@theme/SearchBar";
+import "./styles.css";
 
 function NavbarItems({ items }: { items: NavbarItemConfig[] }): JSX.Element {
   return (
@@ -68,9 +67,7 @@ export default function PrimaryNavbar(): JSX.Element {
         <NavbarLogo />
 
         {/* docs version dropdown */}
-        {isDocsPluginEnabled && docsVersionEnabled && (
-          <NavbarDocsVersion {...docsVersionDropdown} />
-        )}
+        {docsVersionEnabled && <NavbarDocsVersion {...docsVersionDropdown} />}
 
         {/* search bar */}
         {searchBarEnabled && (

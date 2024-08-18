@@ -17,7 +17,7 @@ import { ThemeClassNames } from "@docusaurus/theme-common";
 import {
   useDocsPreferredVersion,
   useDocsVersion,
-} from "@docusaurus/theme-common/internal";
+} from "@docusaurus/plugin-content-docs/client";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import "./styles.css";

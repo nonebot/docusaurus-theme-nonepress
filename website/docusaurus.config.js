@@ -1,7 +1,8 @@
 // @ts-check
 
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-const lightCodeTheme = require("prism-react-renderer/themes/github");
+import { themes } from "prism-react-renderer";
+const darkCodeTheme = themes.dracula;
+const lightCodeTheme = themes.github;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -30,6 +31,7 @@ const config = {
     defaultLocale: "en",
     locales: ["en", "zh-Hans"],
   },
+
 
   presets: [
     [
