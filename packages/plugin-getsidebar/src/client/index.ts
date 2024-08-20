@@ -1,8 +1,8 @@
 import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
 import { usePluginData } from "@docusaurus/useGlobalData";
 import type {
-  PropSidebars,
   PropSidebar,
+  PropSidebars,
 } from "@docusaurus/plugin-content-docs";
 
 export type GlobalDocsVersion = {
@@ -29,11 +29,7 @@ export const useVersionedSidebars = (
 ): GlobalDocsVersion | undefined => {
   const data = useSidebarData();
 
-  if (!data) {
-    return;
-  }
-
-  return data[docPluginID ?? DEFAULT_PLUGIN_ID]?.loadedVersions.find(
+  return data?.[docPluginID ?? DEFAULT_PLUGIN_ID]?.loadedVersions?.find(
     (menuVersion) => menuVersion.versionName === version,
   );
 };
@@ -44,9 +40,6 @@ export const useVersionedSidebar = (
   docPluginID?: string,
 ): PropSidebar | undefined => {
   const data = useVersionedSidebars(version, docPluginID);
-  if (!data) {
-    return;
-  }
 
-  return data.sidebars[sidebarId];
+  return data?.sidebars?.[sidebarId];
 };

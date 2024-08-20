@@ -38,11 +38,7 @@ export const useVersionedDocMenu = (
 ): GlobalDocsVersion | undefined => {
   const data = useDocMenuData();
 
-  if (!data) {
-    return;
-  }
-
-  return data[docPluginID ?? DEFAULT_PLUGIN_ID]?.loadedVersions.find(
+  return data?.[docPluginID ?? DEFAULT_PLUGIN_ID]?.loadedVersions?.find(
     (menuVersion) => menuVersion.versionName === version,
   );
 };
@@ -53,9 +49,6 @@ export const useVersionedDocCategory = (
   docPluginID?: string,
 ): DocsCategory | undefined => {
   const data = useVersionedDocMenu(version, docPluginID);
-  if (!data) {
-    return;
-  }
 
-  return data.categories.find((c) => c.name === category);
+  return data?.categories?.find((c) => c.name === category);
 };
