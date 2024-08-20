@@ -3,12 +3,13 @@ import React from "react";
 import clsx from "clsx";
 
 import {
-  PageMetadata,
   HtmlClassNameProvider,
+  PageMetadata,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
 
 import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import BackToTopButton from "@theme/BackToTopButton";
 import Layout from "@theme/Layout";
 import MDXContent from "@theme/MDXContent";
@@ -28,6 +29,11 @@ export default function MDXPage(props: Props): JSX.Element {
     toc_max_heading_level,
   } = frontMatter;
 
+  const sidebarCustomProps = frontMatter.sidebar_custom_props as {
+    sidebar_id: string;
+  };
+  const sidebarId = sidebarCustomProps.sidebar_id;
+
   return (
     <HtmlClassNameProvider
       className={clsx(
@@ -45,8 +51,7 @@ export default function MDXPage(props: Props): JSX.Element {
           maxHeadingLevel={toc_max_heading_level}
           hideTableOfContents={hide_table_of_contents as unknown as boolean}
         />
-
-        <Page>
+        <Page sidebarId={sidebarId}>
           <article className="prose max-w-full">
             <MDXContent>
               <MDXPageContent />
