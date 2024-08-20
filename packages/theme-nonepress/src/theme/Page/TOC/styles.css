@@ -1,0 +1,25 @@
+.toc {
+  @apply block -mt-24;
+
+  &-container {
+    @apply sticky top-0 flex flex-col pt-24 max-h-screen;
+  }
+
+  &-content {
+    @apply h-full overflow-x-hidden overflow-y-auto;
+  }
+
+  &-curtain {
+    @apply sticky bottom-0 w-full h-8 z-10;
+    @apply bg-base-100 [mask-image:linear-gradient(transparent,#000000)];
+    @apply transition-[background-color] duration-500;
+  }
+
+  &-tree::before {
+    @apply top-2 bottom-2;
+  }
+
+  &-link {
+    @apply [word-break:break-word];
+  }
+}

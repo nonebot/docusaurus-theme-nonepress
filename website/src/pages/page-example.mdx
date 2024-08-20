@@ -1,15 +1,10 @@
 ---
 title: Markdown page example
+sidebar_custom_props:
+  sidebar_id: examples
 ---
 
 import TOCInline from "@theme/TOCInline";
-import { useDocsVersionCandidates } from "@docusaurus/plugin-content-docs/client";
-import { useVersionedSidebar } from "@nullbot/docusaurus-plugin-getsidebar/client";
-import { SidebarContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
-
-<SidebarContentFiller
-  items={useVersionedSidebar(useDocsVersionCandidates()[0].name, "examples")}
-/>
 
 # Markdown page example
 
