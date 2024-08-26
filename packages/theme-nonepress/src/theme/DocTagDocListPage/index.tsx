@@ -11,10 +11,8 @@ import {
   usePluralForm,
 } from "@docusaurus/theme-common";
 
-import DocRootLayout from "@theme/DocRoot/Layout";
 import type { Props } from "@theme/DocTagDocListPage";
 import Heading from "@theme/Heading";
-import Layout from "@theme/Layout";
 import SearchMetadata from "@theme/SearchMetadata";
 
 // Very simple pluralization: probably good enough for now

@@ -12,7 +12,6 @@ import {
 import type { Props } from "@theme/DocTagsListPage";
 import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
-import Page from "@theme/Page";
 import SearchMetadata from "@theme/SearchMetadata";
 import TagsListByLetter from "@theme/TagsListByLetter";
 

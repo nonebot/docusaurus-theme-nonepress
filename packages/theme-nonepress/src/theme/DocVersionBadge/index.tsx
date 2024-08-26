@@ -3,12 +3,12 @@ import React from "react";
 import clsx from "clsx";
 
 import Translate from "@docusaurus/Translate";
-import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useDocsVersion } from "@docusaurus/plugin-content-docs/client";
-
-import "./styles.css";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import type { Props } from "@theme/DocVersionBadge";
+
+import "./styles.css";
 
 export default function DocVersionBadge({
   className,
