@@ -7,20 +7,22 @@ import type { Props } from "@theme/DocRoot/Layout";
 import DocRootLayoutMain from "@theme/DocRoot/Layout/Main";
 import Sidebar from "@theme/Page/Sidebar";
 
-import styles from "./styles.module.css";
+import "./styles.css";
 
 export default function DocRootLayout({ children }: Props): JSX.Element {
   const sidebar = useDocsSidebar();
   const [hiddenSidebarContainer] = useState(false);
   return (
-    <div className={styles.docsWrapper}>
+    <>
       <BackToTopButton />
-      <div className={styles.docRoot}>
-        {sidebar && <Sidebar sidebarId={sidebar.name} />}
+      <div className="page">
+        {sidebar && (
+          <Sidebar sidebarId={sidebar.name} className="page-sidebar" />
+        )}
         <DocRootLayoutMain hiddenSidebarContainer={hiddenSidebarContainer}>
           {children}
         </DocRootLayoutMain>
       </div>
-    </div>
+    </>
   );
 }

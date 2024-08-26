@@ -5,7 +5,6 @@ import clsx from "clsx";
 import { useDocsSidebar } from "@docusaurus/plugin-content-docs/client";
 
 import type { Props } from "@theme/DocRoot/Layout/Main";
-import TOC from "@theme/TOC";
 
 import styles from "./styles.module.css";
 
@@ -17,19 +16,11 @@ export default function DocRootLayoutMain({
   return (
     <main
       className={clsx(
-        styles.docMainContainer,
+        "page-main",
         (hiddenSidebarContainer || !sidebar) && styles.docMainContainerEnhanced,
       )}
     >
-      <div
-        className={clsx(
-          "container",
-          styles.docItemWrapper,
-          hiddenSidebarContainer && styles.docItemWrapperEnhanced,
-        )}
-      >
-        {children}
-      </div>
+      {children}
     </main>
   );
 }
