@@ -6,6 +6,9 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start --host 0.0.0.0 --port 8080",
     "build": "docusaurus build",
+    "build:fast": "cross-env BUILD_FAST=true yarn build",
+    "build:fast:rsdoctor": "cross-env BUILD_FAST=true RSDOCTOR=true yarn build",
+    "build:fast:profile": "cross-env BUILD_FAST=true node --cpu-prof --cpu-prof-dir .cpu-prof ./node_modules/.bin/docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -19,7 +22,7 @@
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/plugin-ideal-image": "3.5.2",
     "@nullbot/docusaurus-preset-nonepress": "^2.1.0",
-    "@swc/core": "1.2.197",
+    "@swc/core": "^1.7.14",
     "clsx": "^2.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -27,7 +30,11 @@
   },
   "devDependencies": {
     "@docusaurus/eslint-plugin": "3.5.2",
-    "@nullbot/docusaurus-tsconfig": "^2.1.0"
+    "@nullbot/docusaurus-tsconfig": "^2.1.0",
+    "@rsdoctor/webpack-plugin": "^0.3.11",
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2",
+    "search-insights": "^2.8.2"
   },
   "browserslist": {
     "production": [

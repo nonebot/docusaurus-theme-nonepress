@@ -12,6 +12,7 @@
     "build:packages": "lerna run build --include-dependencies --no-private",
     "build:website": "yarn workspace website build",
     "build:website:baseUrl": "yarn workspace website build:baseUrl",
+    "build:website:fast": "yarn workspace website build:fast",
     "canary": "yarn canary:bumpVersion && yarn canary:publish",
     "canary:bumpVersion": "lerna version `yarn --silent canary:version` --exact --no-push --yes",
     "canary:publish": "lerna publish from-package --dist-tag canary --yes",
