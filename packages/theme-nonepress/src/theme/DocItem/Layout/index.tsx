@@ -49,7 +49,7 @@ export default function DocItemLayout({ children }: Props): JSX.Element {
       <div className="page-content page-content-narrow">
         <ContentVisibility metadata={metadata} />
         <DocVersionBanner />
-        <article className="prose max-w-full">
+        <article>
           <DocBreadcrumbs />
           <DocVersionBadge />
           {docTOC.mobile}

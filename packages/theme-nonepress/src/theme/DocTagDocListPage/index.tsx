@@ -64,26 +64,31 @@ export default function DocTagDocListPage({ tag }: Props): JSX.Element {
     >
       <PageMetadata title={title} />
       <SearchMetadata tag="doc_tag_doc_list" />
-      <main>
-        <div className="prose max-w-none">
-          <header>
-            <Heading as="h1">{title}</Heading>
-            <Link href={tag.allTagsPath}>
-              <Translate
-                id="theme.tags.tagsPageLink"
-                description="The label of the link targeting the tag list page"
-              >
-                View All Tags
-              </Translate>
-            </Link>
-          </header>
-          <section>
-            {tag.items.map((doc) => (
-              <DocItem key={doc.id} doc={doc} />
-            ))}
-          </section>
-        </div>
-      </main>
+
+      <div className="page">
+        <main className="page-main">
+          <div className={clsx("page-content", "page-content-narrow")}>
+            <div className="prose max-w-none">
+              <header>
+                <Heading as="h1">{title}</Heading>
+                <Link href={tag.allTagsPath}>
+                  <Translate
+                    id="theme.tags.tagsPageLink"
+                    description="The label of the link targeting the tag list page"
+                  >
+                    View All Tags
+                  </Translate>
+                </Link>
+              </header>
+              <section>
+                {tag.items.map((doc) => (
+                  <DocItem key={doc.id} doc={doc} />
+                ))}
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
     </HtmlClassNameProvider>
   );
 }

@@ -35,7 +35,7 @@ function DocCategoryGeneratedIndexPageContent({
     <div className="page-content page-content-narrow">
       <DocVersionBanner />
 
-      <article className="prose max-w-full">
+      <article>
         <DocBreadcrumbs />
         <DocVersionBadge />
         <div className="prose max-w-none">
