@@ -9,6 +9,7 @@ import tailwindNesting from "tailwindcss/nesting";
 
 import defaultTailwindConfig from "./tailwind.config";
 import { getTranslationFiles, translateThemeConfig } from "./translations";
+
 import type webpack from "webpack";
 import type { Config as tailwindConfigType } from "tailwindcss";
 import type {

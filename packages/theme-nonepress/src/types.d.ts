@@ -5,10 +5,8 @@
 /// <reference types="@docusaurus/plugin-content-pages" />
 
 declare module "@nullbot/docusaurus-theme-nonepress" {
-  import type {
-    LinkLikeNavbarItemProps,
-    NavbarItemProps,
-  } from "@theme/NavbarItem";
+  import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
+
   import type { ThemeConfig as DefaultThemeConfig } from "@docusaurus/theme-common";
   import type { ThemeConfig as SearchThemeConfig } from "@docusaurus/theme-search-algolia";
   import type { LoadContext, Plugin, PluginModule } from "@docusaurus/types";
@@ -232,10 +230,6 @@ declare module "@theme/Details" {
   export default Details;
 }
 
-declare module "@theme/DocBreadcrumbs" {
-  export default function DocBreadcrumbs(): JSX.Element | null;
-}
-
 declare module "@theme/DocBreadcrumbs/Items/Home" {
   export default function HomeBreadcrumbItem(): JSX.Element;
 }
@@ -307,6 +301,7 @@ declare module "@theme/DocRoot/Layout" {
 
 declare module "@theme/DocRoot/Layout/Sidebar" {
   import type { Dispatch, SetStateAction } from "react";
+
   import type { PropSidebar } from "@docusaurus/plugin-content-docs";
 
   export interface Props {
@@ -415,6 +410,7 @@ declare module "@theme/DocSidebarItem" {
 
 declare module "@theme/DocSidebarItem/Link" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
   import type { PropSidebarItemLink } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends DocSidebarItemProps {
@@ -426,6 +422,7 @@ declare module "@theme/DocSidebarItem/Link" {
 
 declare module "@theme/DocSidebarItem/Html" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
   import type { PropSidebarItemHtml } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends DocSidebarItemProps {
@@ -437,6 +434,7 @@ declare module "@theme/DocSidebarItem/Html" {
 
 declare module "@theme/DocSidebarItem/Category" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
   import type { PropSidebarItemCategory } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends DocSidebarItemProps {
@@ -448,6 +446,7 @@ declare module "@theme/DocSidebarItem/Category" {
 
 declare module "@theme/DocSidebarItems" {
   import type { Props as DocSidebarItemProps } from "@theme/DocSidebarItem";
+
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends Omit<DocSidebarItemProps, "item" | "index"> {
@@ -475,6 +474,16 @@ declare module "@theme/DocVersionBadge" {
 
 declare module "@theme/DocVersionSuggestions" {
   export default function DocVersionSuggestions(): JSX.Element;
+}
+
+declare module "@theme/EditMetaRow" {
+  export interface Props {
+    readonly className: string;
+    readonly editUrl: string | null | undefined;
+    readonly lastUpdatedAt: number | undefined;
+    readonly lastUpdatedBy: string | undefined;
+  }
+  export default function EditMetaRow(props: Props): JSX.Element;
 }
 
 declare module "@theme/EditThisPage" {
@@ -801,19 +810,23 @@ declare module "@theme/Logo" {
 }
 
 declare module "@theme/MDXComponents" {
-  import type { ComponentType, ComponentProps } from "react";
+  import type { ComponentProps, ComponentType } from "react";
 
   import type Admonition from "@theme/Admonition";
   import type MDXA from "@theme/MDXComponents/A";
   import type MDXCode from "@theme/MDXComponents/Code";
   import type MDXDetails from "@theme/MDXComponents/Details";
-  import type MDXHead from "@theme/MDXComponents/Head";
   import type MDXImg from "@theme/MDXComponents/Img";
   import type MDXPre from "@theme/MDXComponents/Pre";
   import type MDXUl from "@theme/MDXComponents/Ul";
   import type Mermaid from "@theme/Mermaid";
 
-  export type MDXComponentsObject = {
+  import type Head from "@docusaurus/Head";
+  import type { MDXProvider } from "@mdx-js/react";
+
+  type MDXComponentsBase = ComponentProps<typeof MDXProvider>["components"];
+
+  export type MDXComponentsObject = MDXComponentsBase & {
     readonly Head: typeof Head;
     readonly details: typeof MDXDetails;
 
@@ -903,6 +916,14 @@ declare module "@theme/MDXComponents/Ul" {
   export interface Props extends ComponentProps<"ul"> {}
 
   export default function MDXUl(props: Props): JSX.Element;
+}
+
+declare module "@theme/MDXComponents/Li" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"li"> {}
+
+  export default function MDXLi(props: Props): JSX.Element;
 }
 
 declare module "@theme/MDXContent" {
@@ -1250,9 +1271,63 @@ declare module "@theme/Page" {
     readonly hideSidebar?: boolean;
     readonly hideTableOfContents?: boolean;
     readonly reduceContentWidth?: boolean;
+    readonly sidebarId?: string;
+
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel: number;
+    readonly maxHeadingLevel: number;
   }
 
   export default function Page(props: Props): JSX.Element;
+}
+
+declare module "@theme/Page/TOC" {
+  export interface Props {
+    readonly className?: string;
+
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel: number;
+    readonly maxHeadingLevel: number;
+    readonly hideTableOfContents: boolean;
+  }
+
+  export default function TOC(props: Props): JSX.Element | null;
+}
+
+declare module "@theme/Page/TOC/Container" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    readonly className?: string;
+    readonly children?: ReactNode;
+  }
+
+  export default function TOCContainer(props: Props): JSX.Element;
+}
+
+declare module "@theme/Page/TOC/Content" {
+  import type { TOCItem } from "@docusaurus/mdx-loader";
+
+  export interface Props {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly linkClassName?: string | null;
+    readonly linkActiveClassName?: string | null;
+  }
+
+  export default function TOCContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/Page/TOC/Tree" {
+  import type { TOCTreeNode } from "@docusaurus/theme-common/internal";
+
+  export interface Props {
+    readonly toc: readonly TOCTreeNode[];
+    readonly linkClassName?: string | null;
+  }
+
+  export default function TOCTree(props: Props): JSX.Element | null;
 }
 
 declare module "@theme/PaginatorNavLink" {
@@ -1293,15 +1368,16 @@ declare module "@theme/SearchTranslations" {
   const translations: DocSearchTranslations & { placeholder: string };
   export default translations;
 }
-declare module "@theme/Sidebar" {
+declare module "@theme/Page/Sidebar" {
   export interface Props {
     readonly className?: string;
+    readonly sidebarId?: string;
   }
 
   export default function Sidebar(props: Props): JSX.Element | null;
 }
 
-declare module "@theme/Sidebar/Content" {
+declare module "@theme/Page/Sidebar/Content" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
   export interface Props {
@@ -1312,7 +1388,7 @@ declare module "@theme/Sidebar/Content" {
   export default function SidebarContent(props: Props): JSX.Element;
 }
 
-declare module "@theme/Sidebar/Items" {
+declare module "@theme/Page/Sidebar/Items" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
   export interface Props {
@@ -1324,7 +1400,7 @@ declare module "@theme/Sidebar/Items" {
   export default function SidebarItems(props: Props): JSX.Element;
 }
 
-declare module "@theme/SidebarItem" {
+declare module "@theme/Page/SidebarItem" {
   import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
   export interface Props {
@@ -1337,8 +1413,9 @@ declare module "@theme/SidebarItem" {
   export default function SidebarItem(props: Props): JSX.Element;
 }
 
-declare module "@theme/SidebarItem/Link" {
-  import type { Props as SidebarItemProps } from "@theme/SidebarItem";
+declare module "@theme/Page/SidebarItem/Link" {
+  import type { Props as SidebarItemProps } from "@theme/Page/SidebarItem";
+
   import type { PropSidebarItemLink } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends SidebarItemProps {
@@ -1348,8 +1425,9 @@ declare module "@theme/SidebarItem/Link" {
   export default function SidebarItemLink(props: Props): JSX.Element;
 }
 
-declare module "@theme/SidebarItem/Html" {
-  import type { Props as SidebarItemProps } from "@theme/SidebarItem";
+declare module "@theme/Page/SidebarItem/Html" {
+  import type { Props as SidebarItemProps } from "@theme/Page/SidebarItem";
+
   import type { PropSidebarItemHtml } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends SidebarItemProps {
@@ -1359,8 +1437,9 @@ declare module "@theme/SidebarItem/Html" {
   export default function SidebarItemHtml(props: Props): JSX.Element;
 }
 
-declare module "@theme/SidebarItem/Category" {
-  import type { Props as SidebarItemProps } from "@theme/SidebarItem";
+declare module "@theme/Page/SidebarItem/Category" {
+  import type { Props as SidebarItemProps } from "@theme/Page/SidebarItem";
+
   import type { PropSidebarItemCategory } from "@docusaurus/plugin-content-docs";
 
   export interface Props extends SidebarItemProps {

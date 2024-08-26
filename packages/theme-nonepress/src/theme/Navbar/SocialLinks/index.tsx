@@ -6,6 +6,7 @@ import Link from "@docusaurus/Link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./styles.css";
+
 import type { Props } from "@theme/Navbar/SocialLinks";
 
 export default function NavbarSocialLinks({

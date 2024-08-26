@@ -17,10 +17,12 @@ import {
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import type { Props } from "@theme/DocVersionBanner";
+
 import type {
   VersionBanner,
   PropVersionMetadata,
 } from "@docusaurus/plugin-content-docs";
+
 import "./styles.css";
 
 type BannerLabelComponentProps = {

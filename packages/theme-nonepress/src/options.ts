@@ -1,5 +1,6 @@
 import { Joi, URISchema } from "@docusaurus/utils-validation";
 import { themes } from "prism-react-renderer";
+
 import type {
   OptionValidationContext,
   ThemeConfigValidationContext,

@@ -10,6 +10,7 @@ import {
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import "./styles.css";
+
 import type { Props } from "@theme/Tabs";
 
 function TabList({

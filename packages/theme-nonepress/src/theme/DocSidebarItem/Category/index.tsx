@@ -1,5 +1,7 @@
 import React, { type ComponentProps, useEffect, useMemo } from "react";
+
 import clsx from "clsx";
+
 import Link from "@docusaurus/Link";
 import {
   findFirstSidebarItemLink,
@@ -16,6 +18,7 @@ import {
 import { isSamePath } from "@docusaurus/theme-common/internal";
 import { translate } from "@docusaurus/Translate";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+
 import type { Props } from "@theme/DocSidebarItem/Category";
 import DocSidebarItems from "@theme/DocSidebarItems";
 

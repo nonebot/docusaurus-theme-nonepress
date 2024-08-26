@@ -1,4 +1,5 @@
 import React from "react";
+
 import TOCItems from "@theme/TOCItems";
 import type { Props } from "@theme/TOCInline";
 

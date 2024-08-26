@@ -7,6 +7,7 @@ import React, {
 } from "react";
 
 import { createPortal } from "react-dom";
+
 import { useDocSearchKeyboardEvents } from "@docsearch/react";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
@@ -22,12 +23,16 @@ import {
   useSearchResultUrlProcessor,
 } from "@docusaurus/theme-search-algolia/client";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
 import type { SearchClient } from "algoliasearch/lite";
 
 import "./styles.css";
+
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import IconSearch from "@theme/Icon/Search";
 import translations from "@theme/SearchTranslations";
+
 import type {
   InternalDocSearchHit,
   StoredDocSearchHit,

@@ -1,10 +1,10 @@
 import { toSidebarsProp } from "@docusaurus/plugin-content-docs/lib/props.js";
+
 import type {
   LoadedContent,
   LoadedVersion,
 } from "@docusaurus/plugin-content-docs";
 import type { LoadContext, Plugin } from "@docusaurus/types";
-
 import type {
   GlobalDocsInstance,
   GlobalDocsVersion,

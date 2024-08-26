@@ -1,5 +1,7 @@
 import _ from "lodash";
+
 import { mergeTranslations } from "@docusaurus/utils";
+
 import type {
   Footer,
   MultiColumnFooter,

@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 
 import "./styles.css";
+
 import type { Props } from "@theme/PaginatorNavLink";
 
 export default function PaginatorNavLink({

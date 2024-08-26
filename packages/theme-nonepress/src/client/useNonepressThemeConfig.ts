@@ -1,4 +1,5 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
 import type { DocusaurusConfig } from "@docusaurus/types";
 import type { ThemeConfig } from "@nullbot/docusaurus-theme-nonepress";
 

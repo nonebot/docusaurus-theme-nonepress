@@ -30,12 +30,12 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
 
       // if scrolling down to the target, the header is hidden
       // so add back the offset for the header
-      if (targetTop > window.scrollY) targetTop += OFFSET;
+      if (targetTop > window.scrollY) {targetTop += OFFSET;}
 
       requestAnimationFrame(() => {
         if (Math.abs(targetTop - window.scrollY) > window.innerHeight)
-          window.scrollTo(0, targetTop);
-        else window.scrollTo({ left: 0, top: targetTop, behavior: "smooth" });
+          {window.scrollTo(0, targetTop);}
+        else {window.scrollTo({ left: 0, top: targetTop, behavior: "smooth" });}
       });
     },
     [],

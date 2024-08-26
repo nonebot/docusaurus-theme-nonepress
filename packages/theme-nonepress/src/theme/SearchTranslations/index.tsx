@@ -1,4 +1,5 @@
 import { translate } from "@docusaurus/Translate";
+
 import type { DocSearchTranslations } from "@docsearch/react";
 
 const translations: DocSearchTranslations & { placeholder: string } = {

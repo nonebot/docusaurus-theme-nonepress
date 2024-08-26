@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import React from "react";
+
 import CodeBlock from "@theme/CodeBlock";
 import CodeInline from "@theme/CodeInline";
 import type { Props } from "@theme/MDXComponents/Code";

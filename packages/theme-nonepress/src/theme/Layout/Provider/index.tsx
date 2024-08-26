@@ -9,7 +9,6 @@ import {
   PluginHtmlClassNameProvider,
   ScrollControllerProvider,
 } from "@docusaurus/theme-common/internal";
-
 import {
   MobileMenuProvider,
   SidebarContentProvider,
@@ -17,6 +16,7 @@ import {
   TOCContentProvider,
   TOCDisplayProvider,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import type { Props } from "@theme/Layout/Provider";
 
 const Provider = composeProviders([

@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useWindowSize } from "@docusaurus/theme-common";
+
 import DocSidebarDesktop from "@theme/DocSidebar/Desktop";
 import DocSidebarMobile from "@theme/DocSidebar/Mobile";
 import type { Props } from "@theme/DocSidebar";

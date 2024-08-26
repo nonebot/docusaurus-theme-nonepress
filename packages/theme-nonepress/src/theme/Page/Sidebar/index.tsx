@@ -3,16 +3,17 @@ import React from "react";
 import clsx from "clsx";
 
 import { useLocation } from "@docusaurus/router";
-
 import { useDocsVersionCandidates } from "@docusaurus/plugin-content-docs/client";
 import { useVersionedSidebar } from "@nullbot/docusaurus-plugin-getsidebar/client";
 import {
   useNonepressThemeConfig,
   useWindowSize,
 } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import Logo from "@theme/Logo";
 import type { Props } from "@theme/Page/Sidebar";
 import SidebarContent from "@theme/Page/Sidebar/Content";
+
 import "./styles.css";
 
 export default function Sidebar({

@@ -17,6 +17,7 @@ import type { Props } from "@theme/Layout";
 import LayoutProvider from "@theme/Layout/Provider";
 import Navbar from "@theme/Navbar";
 import SkipToContent from "@theme/SkipToContent";
+
 import "./styles.css";
 
 export default function Layout(props: Props): JSX.Element {

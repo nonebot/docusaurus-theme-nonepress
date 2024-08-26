@@ -1,16 +1,17 @@
 import React from "react";
 
 import "./styles.css";
+
 import clsx from "clsx";
 
 import Translate from "@docusaurus/Translate";
-
 import {
   useTOCContent,
   useSidebarContent,
   useTOCDisplay,
   useSidebarDisplay,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import IconDropdown from "@theme/Icon/Dropdown";
 import IconSidebar from "@theme/Icon/Sidebar";
 

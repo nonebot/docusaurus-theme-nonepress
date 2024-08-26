@@ -1,7 +1,9 @@
 import React from "react";
 
 import "./styles.css";
+
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import IconExtra from "@theme/Icon/Extra";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import NavbarLocaleDropdown from "@theme/Navbar/LocaleDropdown";

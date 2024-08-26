@@ -14,8 +14,8 @@ import {
 } from "@docusaurus/theme-common";
 import { isSamePath } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import MenuCategory from "@theme/Menu/Category";
 import SidebarItems from "@theme/Page/Sidebar/Items";
 import type { Props } from "@theme/Page/SidebarItem/Category";

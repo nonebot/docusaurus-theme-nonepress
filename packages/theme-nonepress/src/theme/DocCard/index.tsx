@@ -14,10 +14,12 @@ import type { Props } from "@theme/DocCard";
 import IconCategory from "@theme/Icon/Category";
 import IconFile from "@theme/Icon/File";
 import IconLink from "@theme/Icon/Link";
+
 import type {
   PropSidebarItemCategory,
   PropSidebarItemLink,
 } from "@docusaurus/plugin-content-docs";
+
 import "./styles.css";
 
 function CardContainer({

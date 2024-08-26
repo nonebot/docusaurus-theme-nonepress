@@ -3,10 +3,11 @@ import React from "react";
 import clsx from "clsx";
 
 import "./styles.css";
+
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
-
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import type { Props } from "@theme/Heading";
 
 export default function Heading({ as: As, id, ...props }: Props): JSX.Element {

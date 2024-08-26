@@ -1,5 +1,7 @@
 import React, { type ComponentProps } from "react";
+
 import Head from "@docusaurus/Head";
+
 import MDXCode from "@theme/MDXComponents/Code";
 import MDXA from "@theme/MDXComponents/A";
 import MDXPre from "@theme/MDXComponents/Pre";
@@ -10,7 +12,6 @@ import MDXLi from "@theme/MDXComponents/Li";
 import MDXImg from "@theme/MDXComponents/Img";
 import Admonition from "@theme/Admonition";
 import Mermaid from "@theme/Mermaid";
-
 import type { MDXComponentsObject } from "@theme/MDXComponents";
 
 const MDXComponents: MDXComponentsObject = {

@@ -1,5 +1,6 @@
 import { DEFAULT_PLUGIN_ID } from "@docusaurus/constants";
 import { usePluginData } from "@docusaurus/useGlobalData";
+
 import type {
   PropSidebar,
   PropSidebars,

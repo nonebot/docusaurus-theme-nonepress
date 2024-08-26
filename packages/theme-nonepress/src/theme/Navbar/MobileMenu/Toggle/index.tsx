@@ -1,8 +1,8 @@
 import React from "react";
 
 import { translate } from "@docusaurus/Translate";
-
 import { useMobileMenu } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import IconMenu from "@theme/Icon/Menu";
 
 export default function MobileMenuToggle(): JSX.Element {

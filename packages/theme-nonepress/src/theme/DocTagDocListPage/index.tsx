@@ -5,15 +5,16 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import Translate, { translate } from "@docusaurus/Translate";
 import {
-  PageMetadata,
   HtmlClassNameProvider,
+  PageMetadata,
   ThemeClassNames,
   usePluralForm,
 } from "@docusaurus/theme-common";
 
+import DocRootLayout from "@theme/DocRoot/Layout";
 import type { Props } from "@theme/DocTagDocListPage";
+import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
-import Page from "@theme/Page";
 import SearchMetadata from "@theme/SearchMetadata";
 
 // Very simple pluralization: probably good enough for now
@@ -38,7 +39,7 @@ function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): JSX.Element {
   return (
     <article>
       <Link to={doc.permalink}>
-        <h2>{doc.title}</h2>
+        <Heading as="h2">{doc.title}</Heading>
       </Link>
       {doc.description && <p>{doc.description}</p>}
     </article>
@@ -66,11 +67,10 @@ export default function DocTagDocListPage({ tag }: Props): JSX.Element {
       <PageMetadata title={title} />
       <SearchMetadata tag="doc_tag_doc_list" />
       <Layout>
-        <Page hideSidebar hideTableOfContents>
           <main>
             <div className="prose max-w-none">
               <header>
-                <h1>{title}</h1>
+                <Heading as="h1">{title}</Heading>
                 <Link href={tag.allTagsPath}>
                   <Translate
                     id="theme.tags.tagsPageLink"
@@ -87,7 +87,6 @@ export default function DocTagDocListPage({ tag }: Props): JSX.Element {
               </section>
             </div>
           </main>
-        </Page>
       </Layout>
     </HtmlClassNameProvider>
   );

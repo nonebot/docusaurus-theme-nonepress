@@ -3,6 +3,7 @@ import React from "react";
 import Translate, { translate } from "@docusaurus/Translate";
 
 import "./styles.css";
+
 import type { Props } from "@theme/DocPaginator";
 import PaginatorNavLink from "@theme/PaginatorNavLink";
 

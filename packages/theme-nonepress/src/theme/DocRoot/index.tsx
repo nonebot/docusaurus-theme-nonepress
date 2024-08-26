@@ -1,10 +1,13 @@
 import React from 'react';
+
 import clsx from 'clsx';
+
 import {HtmlClassNameProvider, ThemeClassNames} from '@docusaurus/theme-common';
 import {
   DocsSidebarProvider,
   useDocRootMetadata,
 } from "@docusaurus/plugin-content-docs/client";
+
 import DocRootLayout from '@theme/DocRoot/Layout';
 import NotFoundContent from '@theme/NotFound/Content';
 import type {Props} from '@theme/DocRoot';

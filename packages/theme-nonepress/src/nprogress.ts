@@ -1,4 +1,5 @@
 import nprogress from "nprogress";
+
 import type { ClientModule } from "@docusaurus/types";
 
 nprogress.configure({ showSpinner: false });

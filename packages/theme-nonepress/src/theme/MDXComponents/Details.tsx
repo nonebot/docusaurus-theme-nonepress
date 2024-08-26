@@ -1,4 +1,5 @@
 import React, { type ComponentProps, type ReactElement } from "react";
+
 import Details from "@theme/Details";
 import type { Props } from "@theme/MDXComponents/Details";
 

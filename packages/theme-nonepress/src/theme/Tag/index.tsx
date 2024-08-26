@@ -3,6 +3,7 @@ import React from "react";
 import Link from "@docusaurus/Link";
 
 import "./styles.css";
+
 import type { Props } from "@theme/Tag";
 
 export default function Tag({ permalink, label, count }: Props): JSX.Element {

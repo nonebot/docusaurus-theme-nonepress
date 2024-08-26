@@ -14,6 +14,7 @@ import Menu from "@theme/Menu";
 import type { Props } from "@theme/Navbar/DocsVersion";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 import NavbarItem from "@theme/NavbarItem";
+
 import "./styles.css";
 
 const getVersionMainDoc = (version: GlobalVersion) =>

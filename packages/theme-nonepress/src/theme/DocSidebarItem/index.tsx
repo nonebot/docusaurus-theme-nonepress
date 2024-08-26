@@ -1,4 +1,5 @@
 import React from "react";
+
 import DocSidebarItemCategory from "@theme/DocSidebarItem/Category";
 import DocSidebarItemLink from "@theme/DocSidebarItem/Link";
 import DocSidebarItemHtml from "@theme/DocSidebarItem/Html";

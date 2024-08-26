@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo, type ReactNode } from "react";
 
 import { ReactContextError } from "@docusaurus/theme-common";
 import { useHistoryPopHandler } from "@docusaurus/theme-common/internal";
-
 import { useWindowSize } from "@nullbot/docusaurus-theme-nonepress/client";
 
 type ContextValue = {

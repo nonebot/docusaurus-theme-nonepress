@@ -6,10 +6,10 @@ import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useHomePageRoute } from "@docusaurus/theme-common/internal";
-
 import { useSidebarBreadcrumbs } from "@docusaurus/plugin-content-docs/client";
 
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
+
 import "./styles.css";
 
 function BreadcrumbsItemLink({

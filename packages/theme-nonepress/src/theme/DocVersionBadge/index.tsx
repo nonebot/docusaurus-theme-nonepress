@@ -7,6 +7,7 @@ import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useDocsVersion } from "@docusaurus/plugin-content-docs/client";
 
 import "./styles.css";
+
 import type { Props } from "@theme/DocVersionBadge";
 
 export default function DocVersionBadge({

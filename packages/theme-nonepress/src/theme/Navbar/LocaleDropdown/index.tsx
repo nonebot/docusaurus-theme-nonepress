@@ -12,6 +12,7 @@ import Menu from "@theme/Menu";
 import type { Props } from "@theme/Navbar/LocaleDropdown";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem";
+
 import "./styles.css";
 
 export default function NavbarLocaleDropdown({

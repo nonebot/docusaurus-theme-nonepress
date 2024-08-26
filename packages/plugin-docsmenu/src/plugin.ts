@@ -3,7 +3,6 @@ import type {
   LoadedVersion,
 } from "@docusaurus/plugin-content-docs";
 import type { Plugin } from "@docusaurus/types";
-
 import type {
   Doc,
   DocsCategory,

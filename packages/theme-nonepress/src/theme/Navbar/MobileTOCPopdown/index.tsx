@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 
 import "./styles.css";
+
 import clsx from "clsx";
 
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useHideableNavbar } from "@docusaurus/theme-common/internal";
-
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import {
   useTOCDisplay,
   useTOCContent,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import TOC from "@theme/TOC";
 
 export default function MobileTOCPopdown(): JSX.Element | null {

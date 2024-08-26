@@ -1,11 +1,14 @@
 import React from "react";
+
 import clsx from "clsx";
+
 import {
   NavbarSecondaryMenuFiller,
   type NavbarSecondaryMenuComponent,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
+
 import DocSidebarItems from "@theme/DocSidebarItems";
 import type { Props } from "@theme/DocSidebar/Mobile";
 

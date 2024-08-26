@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Link from '@docusaurus/Link';
+
 import type {Props} from '@theme/TOCItems/Tree';
 
 // Recursive component rendering the toc tree

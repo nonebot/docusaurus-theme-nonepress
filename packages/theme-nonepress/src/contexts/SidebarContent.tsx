@@ -1,6 +1,7 @@
 import React, { useContext, useState, type ReactNode, useEffect } from "react";
 
 import { ReactContextError } from "@docusaurus/theme-common";
+
 import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 
 type Content = readonly PropSidebarItem[] | null;

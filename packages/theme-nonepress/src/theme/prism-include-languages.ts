@@ -1,4 +1,5 @@
 import siteConfig from "@generated/docusaurus.config";
+
 import type * as PrismNamespace from "prismjs";
 
 export default function prismIncludeLanguages(

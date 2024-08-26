@@ -1,11 +1,14 @@
 import React, { type ReactNode, useCallback, useState } from "react";
+
 import clsx from "clsx";
+
 import { useDocsSidebar } from "@docusaurus/plugin-content-docs/client";
 import { useLocation } from "@docusaurus/router";
 import {
   prefersReducedMotion,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
+
 import type { Props } from "@theme/DocRoot/Layout/Sidebar";
 import DocSidebar from "@theme/DocSidebar";
 

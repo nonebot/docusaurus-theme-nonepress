@@ -9,6 +9,7 @@ import {
 
 import DocCard from "@theme/DocCard";
 import type { Props } from "@theme/DocCardList";
+
 import "./styles.css";
 
 function DocCardListForCurrentSidebarCategory(props: Props) {

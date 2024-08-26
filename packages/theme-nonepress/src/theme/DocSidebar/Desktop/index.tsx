@@ -1,6 +1,9 @@
 import React from "react";
+
 import clsx from "clsx";
+
 import { useThemeConfig } from "@docusaurus/theme-common";
+
 import type { Props } from "@theme/DocSidebar/Desktop";
 import Content from "@theme/DocSidebar/Desktop/Content";
 import Logo from "@theme/Logo";

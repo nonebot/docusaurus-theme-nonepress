@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./styles.css";
+
 import type { Props } from "@theme/Page/SidebarItem";
 import SidebarItemCategory from "@theme/Page/SidebarItem/Category";
 import SidebarItemHtml from "@theme/Page/SidebarItem/Html";

@@ -213,6 +213,7 @@ module.exports = {
           ["parent", "sibling", "index"],
           "type",
         ],
+        "newlines-between": "always",
         pathGroups: [
           // always put css import to the last, ref:
           // https://github.com/import-js/eslint-plugin-import/issues/1239
@@ -352,6 +353,8 @@ module.exports = {
                 "./**",
                 // Allows relative styles module import with consistent filename
                 "!./styles.module.css",
+                // Allows relative tailwind css import with consistent filename
+                "!./styles.css",
               ],
             ),
           },

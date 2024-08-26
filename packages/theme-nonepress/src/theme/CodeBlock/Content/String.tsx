@@ -11,8 +11,8 @@ import {
   useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
 import { Highlight, type Language } from "prism-react-renderer";
-
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import Container from "@theme/CodeBlock/Container";
 import type { Props } from "@theme/CodeBlock/Content/String";
 import CopyButton from "@theme/CodeBlock/CopyButton";

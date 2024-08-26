@@ -4,7 +4,6 @@ import type {
   PluginOptions,
   Preset,
 } from "@docusaurus/types";
-
 import type { Options, ThemeConfig } from "./options";
 
 function makePluginConfig(

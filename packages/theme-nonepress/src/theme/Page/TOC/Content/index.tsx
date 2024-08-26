@@ -5,8 +5,8 @@ import {
   useFilteredAndTreeifiedTOC,
   type TOCHighlightConfig,
 } from "@docusaurus/theme-common/internal";
-
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import type { Props } from "@theme/Page/TOC/Content";
 import TOCTree from "@theme/Page/TOC/Tree";
 

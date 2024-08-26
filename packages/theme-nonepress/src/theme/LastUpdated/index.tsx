@@ -6,6 +6,7 @@ import Translate from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import "./styles.css";
+
 import type { Props } from "@theme/LastUpdated";
 
 function LastUpdatedAtDate({

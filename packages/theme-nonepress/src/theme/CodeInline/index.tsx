@@ -1,4 +1,5 @@
 import React from "react";
+
 import type { Props } from "@theme/CodeInline";
 
 // Simple component used to render inline code blocks

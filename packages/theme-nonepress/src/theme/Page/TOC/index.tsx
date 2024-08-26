@@ -1,9 +1,11 @@
 import React from "react";
 
 import { useWindowSize } from "@docusaurus/theme-common";
+
 import type { Props } from "@theme/Page/TOC";
 import TOCContainer from "@theme/Page/TOC/Container";
 import TOCContent from "@theme/Page/TOC/Content";
+
 import "./styles.css";
 
 export default function TOC({
