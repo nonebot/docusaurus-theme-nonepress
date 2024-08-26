@@ -24,6 +24,6 @@
   /* container restrict the navbar content width */
   & > &-container {
     @apply flex flex-col;
-    @apply max-w-[90rem] w-full;
+    @apply w-full;
   }
 }

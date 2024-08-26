@@ -8,7 +8,7 @@ import { isActiveSidebarItem } from "@docusaurus/plugin-content-docs/client";
 
 import IconExternalLink from "@theme/Icon/ExternalLink";
 import MenuLink from "@theme/Menu/Link";
-import type { Props } from "@theme/SidebarItem/Link";
+import type { Props } from "@theme/Page/SidebarItem/Link";
 
 export default function SidebarItemLink({
   item,

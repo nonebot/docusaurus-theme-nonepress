@@ -8,8 +8,6 @@ import {
   ThemeClassNames,
 } from "@docusaurus/theme-common";
 
-import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
-
 import BackToTopButton from "@theme/BackToTopButton";
 import Layout from "@theme/Layout";
 import MDXContent from "@theme/MDXContent";
@@ -24,9 +22,9 @@ export default function MDXPage(props: Props): JSX.Element {
   } = MDXPageContent;
   const {
     wrapperClassName,
-    hide_table_of_contents,
-    toc_min_heading_level,
-    toc_max_heading_level,
+    hide_table_of_contents: hideTableOfContents,
+    toc_min_heading_level: tocMinHeadingLevel,
+    toc_max_heading_level: tocMaxHeadingLevel,
   } = frontMatter;
 
   const sidebarCustomProps = frontMatter.sidebar_custom_props as {
@@ -44,14 +42,13 @@ export default function MDXPage(props: Props): JSX.Element {
       <PageMetadata title={title} description={description} />
       <Layout>
         <BackToTopButton />
-
-        <TOCContentFiller
+        <Page
+          hideTableOfContents={!!hideTableOfContents}
+          minHeadingLevel={tocMinHeadingLevel!}
+          maxHeadingLevel={tocMaxHeadingLevel!}
+          sidebarId={sidebarId}
           toc={toc}
-          minHeadingLevel={toc_min_heading_level}
-          maxHeadingLevel={toc_max_heading_level}
-          hideTableOfContents={hide_table_of_contents as unknown as boolean}
-        />
-        <Page sidebarId={sidebarId}>
+        >
           <article className="prose max-w-full">
             <MDXContent>
               <MDXPageContent />

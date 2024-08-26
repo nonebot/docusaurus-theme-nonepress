@@ -1,11 +1,12 @@
 import React from "react";
 
 import clsx from "clsx";
-import "./styles.css";
 
 import type { Props } from "@theme/Page";
+import Sidebar from "@theme/Page/Sidebar";
 import TOC from "@theme/Page/TOC";
-import Sidebar from "@theme/Sidebar";
+
+import "./styles.css";
 
 export default function Page({
   children,
@@ -13,6 +14,9 @@ export default function Page({
   hideTableOfContents = false,
   reduceContentWidth = true,
   sidebarId = "",
+  toc,
+  minHeadingLevel,
+  maxHeadingLevel,
 }: Props): JSX.Element {
   const shouldReduceContent = !hideTableOfContents && reduceContentWidth;
 
@@ -33,7 +37,15 @@ export default function Page({
           {children}
         </div>
         {/* TOC */}
-        {!hideTableOfContents && <TOC className="page-toc" />}
+        {!hideTableOfContents && (
+          <TOC
+            className="page-toc"
+            toc={toc}
+            minHeadingLevel={minHeadingLevel}
+            maxHeadingLevel={maxHeadingLevel}
+            hideTableOfContents={hideTableOfContents}
+          />
+        )}
       </main>
     </div>
   );

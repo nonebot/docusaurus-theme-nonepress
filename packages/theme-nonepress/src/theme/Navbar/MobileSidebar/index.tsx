@@ -9,7 +9,7 @@ import {
   useSidebarDisplay,
   useSidebarContent,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
-import SidebarContent from "@theme/Sidebar/Content";
+import SidebarContent from "@theme/Page/Sidebar/Content";
 
 export default function MobileSidebar(): JSX.Element | null {
   const { pathname } = useLocation();

@@ -17,8 +17,8 @@ import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import MenuCategory from "@theme/Menu/Category";
-import SidebarItems from "@theme/Sidebar/Items";
-import type { Props } from "@theme/SidebarItem/Category";
+import SidebarItems from "@theme/Page/Sidebar/Items";
+import type { Props } from "@theme/Page/SidebarItem/Category";
 
 // If we navigate to a category and it becomes active, it should automatically
 // expand itself

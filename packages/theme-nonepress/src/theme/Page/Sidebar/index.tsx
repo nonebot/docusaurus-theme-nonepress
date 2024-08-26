@@ -4,42 +4,34 @@ import clsx from "clsx";
 
 import { useLocation } from "@docusaurus/router";
 
-import "./styles.css";
+import { useDocsVersionCandidates } from "@docusaurus/plugin-content-docs/client";
+import { useVersionedSidebar } from "@nullbot/docusaurus-plugin-getsidebar/client";
 import {
   useNonepressThemeConfig,
   useWindowSize,
 } from "@nullbot/docusaurus-theme-nonepress/client";
-import { useSidebarContent } from "@nullbot/docusaurus-theme-nonepress/contexts";
 import Logo from "@theme/Logo";
-import type { Props } from "@theme/Sidebar";
-import SidebarContent from "@theme/Sidebar/Content";
+import type { Props } from "@theme/Page/Sidebar";
+import SidebarContent from "@theme/Page/Sidebar/Content";
+import "./styles.css";
 
-// function useShowAnnouncementBar() {
-//   const { isActive } = useAnnouncementBar();
-//   const [showAnnouncementBar, setShowAnnouncementBar] = useState(isActive);
-
-//   useScrollPosition(
-//     ({ scrollY }) => {
-//       if (isActive) {
-//         setShowAnnouncementBar(scrollY === 0);
-//       }
-//     },
-//     [isActive],
-//   );
-//   return isActive && showAnnouncementBar;
-// }
-
-export default function Sidebar({ className }: Props): JSX.Element | null {
+export default function Sidebar({
+  className,
+  sidebarId = "",
+}: Props): JSX.Element | null {
   const { pathname } = useLocation();
   const windowSize = useWindowSize();
   const isMobile = windowSize === "mobile";
 
-  // const showAnnouncementBar = useShowAnnouncementBar();
   const {
     navbar: { hideOnScroll },
   } = useNonepressThemeConfig();
 
-  const [sidebarContent] = useSidebarContent();
+  const docsVersionCandidate = useDocsVersionCandidates();
+  const sidebarContent = useVersionedSidebar(
+    docsVersionCandidate[0].name,
+    sidebarId,
+  );
 
   if (isMobile || !sidebarContent || sidebarContent.length === 0) {
     return null;

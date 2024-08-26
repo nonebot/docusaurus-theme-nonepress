@@ -1,10 +1,10 @@
 import React from "react";
 
 import "./styles.css";
-import type { Props } from "@theme/SidebarItem";
-import SidebarItemCategory from "@theme/SidebarItem/Category";
-import SidebarItemHtml from "@theme/SidebarItem/Html";
-import SidebarItemLink from "@theme/SidebarItem/Link";
+import type { Props } from "@theme/Page/SidebarItem";
+import SidebarItemCategory from "@theme/Page/SidebarItem/Category";
+import SidebarItemHtml from "@theme/Page/SidebarItem/Html";
+import SidebarItemLink from "@theme/Page/SidebarItem/Link";
 
 export default function SidebarItem({
   item,

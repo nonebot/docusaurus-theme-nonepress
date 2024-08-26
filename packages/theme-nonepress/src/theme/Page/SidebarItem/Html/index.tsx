@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import MenuHtml from "@theme/Menu/Html";
-import type { Props } from "@theme/SidebarItem/Html";
+import type { Props } from "@theme/Page/SidebarItem/Html";
 
 export default function SidebarItemHtml({ item, level }: Props): JSX.Element {
   const { value, className } = item;
