@@ -46,7 +46,7 @@ export default function DocItemLayout({ children }: Props): JSX.Element {
 
   return (
     <>
-      <div className={clsx("page-content page-content-narrow")}>
+      <div className="page-content page-content-narrow">
         <ContentVisibility metadata={metadata} />
         <DocVersionBanner />
         <article className="prose max-w-full">

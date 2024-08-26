@@ -32,10 +32,10 @@ function DocCategoryGeneratedIndexPageContent({
   const category = useCurrentSidebarCategory();
 
   return (
-    <>
+    <div className="page-content page-content-narrow">
       <DocVersionBanner />
 
-      <article>
+      <article className="prose max-w-full">
         <DocBreadcrumbs />
         <DocVersionBadge />
         <div className="prose max-w-none">
@@ -53,7 +53,7 @@ function DocCategoryGeneratedIndexPageContent({
         previous={categoryGeneratedIndex.navigation.previous}
         next={categoryGeneratedIndex.navigation.next}
       />
-    </>
+    </div>
   );
 }
 
