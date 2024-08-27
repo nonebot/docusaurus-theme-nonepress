@@ -10,13 +10,13 @@ import tailwindNesting from "tailwindcss/nesting";
 import defaultTailwindConfig from "./tailwind.config";
 import { getTranslationFiles, translateThemeConfig } from "./translations";
 
-import type webpack from "webpack";
-import type { Config as tailwindConfigType } from "tailwindcss";
+import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
 import type {
   PluginOptions,
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
-import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
+import type { Config as tailwindConfigType } from "tailwindcss";
+import type webpack from "webpack";
 
 const requireFromDocusaurusCore = Module.createRequire(
   require.resolve("@docusaurus/core/package.json"),
@@ -107,7 +107,7 @@ export default async function themeNonepress(
 ): Promise<Plugin<void>> {
   const {
     siteDir,
-    i18n: { currentLocale, localeConfigs },
+    i18n: { currentLocale },
   } = context;
   const themeConfig = context.siteConfig.themeConfig as ThemeConfig;
   const {
@@ -214,4 +214,4 @@ export default async function themeNonepress(
 }
 
 export { default as getSwizzleConfig } from "./getSwizzleConfig";
-export { validateThemeConfig, validateOptions } from "./options";
+export { validateOptions, validateThemeConfig } from "./options";
