@@ -1,6 +1,7 @@
 .docusaurus/
 build/
 lib/
+website/changelog
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,linux,windows,macos,visualstudiocode,jetbrains,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,windows,macos,visualstudiocode,jetbrains,webstorm

@@ -70,6 +70,33 @@ export default async function createConfigAsync() {
       }),
     },
 
+    plugins: [
+      [
+        "./src/plugins/changelog/index.js",
+        {
+          blogTitle: "NoneBot changelog",
+          blogDescription:
+            "Keep yourself up-to-date about new features in every release",
+          blogSidebarCount: "ALL",
+          blogSidebarTitle: "Changelog",
+          routeBasePath: "/changelog",
+          showReadingTime: false,
+          postsPerPage: 20,
+          archiveBasePath: null,
+          authorsMapPath: "authors.json",
+          feedOptions: {
+            type: "all",
+            title: "NoneBot changelog",
+            description:
+              "Keep yourself up-to-date about new features in every release",
+            copyright: `Copyright © ${new Date().getFullYear()} NoneBot`,
+            language: "en",
+          },
+          onInlineAuthors: "warn",
+        },
+      ],
+    ],
+
     presets: [
       [
         "@nullbot/docusaurus-preset-nonepress",
