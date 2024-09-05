@@ -116,6 +116,199 @@ declare module "@theme/BackToTopButton" {
   export default function BackToTopButton(): JSX.Element;
 }
 
+declare module "@theme/Blog/Components/Author" {
+  import type { Author } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly as?: "h1" | "h2";
+    readonly author: Author;
+    readonly className?: string;
+    readonly count?: number;
+  }
+
+  export default function BlogAuthor(props: Props): JSX.Element;
+}
+
+declare module "@theme/Blog/Components/Author/Socials" {
+  import type { Author } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly author: Author;
+    readonly className?: string;
+  }
+
+  export default function BlogAuthorSocials(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogListPaginator" {
+  import type { BlogPaginatedMetadata } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly metadata: BlogPaginatedMetadata;
+  }
+  export default function BlogListPaginator(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogSidebar/Content" {
+  import type { ReactNode, ComponentType } from "react";
+
+  import type { BlogSidebarItem } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly items: BlogSidebarItem[];
+    readonly ListComponent: ComponentType<{ items: BlogSidebarItem[] }>;
+    readonly yearGroupHeadingClassName?: string;
+  }
+
+  export default function BlogSidebarContent(props: Props): ReactNode;
+}
+
+declare module "@theme/BlogSidebar/Desktop" {
+  import type { BlogSidebar } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly sidebar: BlogSidebar;
+  }
+
+  export default function BlogSidebarDesktop(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogSidebar/Mobile" {
+  import type { BlogSidebar } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly sidebar: BlogSidebar;
+  }
+
+  export default function BlogSidebarMobile(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogSidebar" {
+  import type { BlogSidebar } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    readonly sidebar?: BlogSidebar;
+  }
+
+  export default function BlogSidebar(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    children: ReactNode;
+    className?: string;
+  }
+
+  export default function BlogPostItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItems" {
+  import type { ComponentType, ReactNode } from "react";
+
+  import type { PropBlogPostContent } from "@docusaurus/plugin-content-blog";
+
+  export interface Props {
+    items: readonly { content: PropBlogPostContent }[];
+    component?: ComponentType<{ children: ReactNode }>;
+  }
+
+  export default function BlogPostItem(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Container" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    children: ReactNode;
+    className?: string;
+  }
+
+  export default function BlogPostItemContainer(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Header" {
+  export default function BlogPostItemHeader(): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Header/Title" {
+  export interface Props {
+    className?: string;
+  }
+
+  export default function BlogPostItemHeaderTitle(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Header/Info" {
+  export interface Props {
+    className?: string;
+  }
+
+  export default function BlogPostItemHeaderInfo(): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Header/Authors" {
+  export interface Props {
+    readonly className?: string;
+  }
+
+  export default function BlogPostItemHeaderAuthors(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Content" {
+  import type { ReactNode } from "react";
+
+  export interface Props {
+    children: ReactNode;
+    className?: string;
+  }
+
+  export default function BlogPostItemContent(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogPostItem/Footer" {
+  export default function BlogPostItemFooter(): JSX.Element | null;
+}
+
+declare module "@theme/BlogPostItem/Footer/ReadMoreLink" {
+  import type { Props as LinkProps } from "@docusaurus/Link";
+
+  export type Props = LinkProps & {
+    blogPostTitle: string;
+  };
+
+  export default function BlogPostItemFooterReadMoreLink(
+    props: Props,
+  ): JSX.Element | null;
+}
+
+declare module "@theme/BlogPostPaginator" {
+  type Item = { readonly title: string; readonly permalink: string };
+
+  export interface Props {
+    readonly nextItem?: Item;
+    readonly prevItem?: Item;
+  }
+
+  export default function BlogPostPaginator(props: Props): JSX.Element;
+}
+
+declare module "@theme/BlogLayout" {
+  import type { ReactNode } from "react";
+
+  import type { Props as LayoutProps } from "@theme/Layout";
+
+  import type { BlogSidebar } from "@docusaurus/plugin-content-blog";
+
+  export interface Props extends LayoutProps {
+    readonly sidebar?: BlogSidebar;
+    readonly toc?: ReactNode;
+  }
+
+  export default function BlogLayout(props: Props): JSX.Element;
+}
+
 declare module "@theme/CodeBlock" {
   import type { ReactNode } from "react";
 
@@ -752,6 +945,54 @@ declare module "@theme/Icon/WordWrap" {
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
   export default function IconWordWrap(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Socials/Twitter" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"svg"> {}
+
+  export default function Twitter(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Socials/GitHub" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"svg"> {}
+
+  export default function Github(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Socials/X" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"svg"> {}
+
+  export default function X(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Socials/LinkedIn" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"svg"> {}
+
+  export default function LinkedIn(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Socials/Default" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"svg"> {}
+
+  export default function DefaultSocialIcon(props: Props): JSX.Element;
+}
+
+declare module "@theme/Icon/Socials/StackOverflow" {
+  import type { ComponentProps } from "react";
+
+  export interface Props extends ComponentProps<"svg"> {}
+
+  export default function StackOverflow(props: Props): JSX.Element;
 }
 
 declare module "@theme/LastUpdated" {

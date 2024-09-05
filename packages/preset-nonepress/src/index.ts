@@ -27,6 +27,7 @@ export default function preset(
   const {
     debug,
     docs,
+    blog,
     pages,
     sitemap,
     docsMenu,
@@ -62,6 +63,9 @@ export default function preset(
         disableInDev: true,
       }),
     );
+  }
+  if (blog !== false) {
+    plugins.push(makePluginConfig("@docusaurus/plugin-content-blog", blog));
   }
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));

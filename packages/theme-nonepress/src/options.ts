@@ -33,15 +33,28 @@ const DocsSchema = Joi.object<ThemeConfig["docs"]>({
   }).default(DEFAULT_DOCS_CONFIG.sidebar),
 }).default(DEFAULT_DOCS_CONFIG);
 
+const DEFAULT_BLOG_CONFIG: ThemeConfig["blog"] = {
+  sidebar: {
+    groupByYear: true,
+  },
+};
+
+const BlogSchema = Joi.object<ThemeConfig["blog"]>({
+  sidebar: Joi.object<ThemeConfig["blog"]["sidebar"]>({
+    groupByYear: Joi.bool().default(DEFAULT_BLOG_CONFIG.sidebar.groupByYear),
+  }).default(DEFAULT_BLOG_CONFIG.sidebar),
+}).default(DEFAULT_BLOG_CONFIG);
+
 const DEFAULT_COLOR_MODE_CONFIG: ThemeConfig["colorMode"] = {
   defaultMode: "light",
   disableSwitch: false,
   respectPrefersColorScheme: false,
 };
 
-export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia" | "blog"> = {
+export const DEFAULT_CONFIG: Omit<ThemeConfig, "algolia"> = {
   colorMode: DEFAULT_COLOR_MODE_CONFIG,
   docs: DEFAULT_DOCS_CONFIG,
+  blog: DEFAULT_BLOG_CONFIG,
   metadata: [],
   prism: {
     additionalLanguages: [],
@@ -407,6 +420,7 @@ export const ThemeConfigSchema = Joi.object({
   colorMode: ColorModeSchema,
   image: Joi.string(),
   docs: DocsSchema,
+  blog: BlogSchema,
   metadata: Joi.array()
     .items(HtmlMetadataSchema)
     .default(DEFAULT_CONFIG.metadata),
