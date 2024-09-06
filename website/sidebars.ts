@@ -32,6 +32,7 @@ const sidebars: SidebarsConfig = {
       label: "Page",
       items: [{ type: "link", label: "Page", href: "/page-example" }],
     },
+    { type: "link", label: "Changelog", href: "/changelog" },
     {
       type: "link",
       label: "NoneBot",

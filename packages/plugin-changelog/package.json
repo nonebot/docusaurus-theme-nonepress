@@ -1,0 +1,41 @@
+{
+  "name": "@nullbot/docusaurus-plugin-changelog",
+  "version": "2.1.8",
+  "description": "DocMenu plugin for Nonepress theme",
+  "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    "./src/*": "./src/*",
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "default": "./lib/client/index.js"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "types": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nonebot/docusaurus-theme-nonepress.git",
+    "directory": "packages/plugin-changelog"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build",
+    "watch": "tsc --build --watch"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/plugin-content-docs": "^3.5.2",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.5.2",
+    "@docusaurus/types": "^3.5.2"
+  }
+}

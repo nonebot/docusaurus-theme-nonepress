@@ -72,7 +72,7 @@ export default async function createConfigAsync() {
 
     plugins: [
       [
-        "./src/plugins/changelog/index.js",
+        "@nullbot/docusaurus-plugin-changelog",
         {
           blogTitle: "NoneBot changelog",
           blogDescription:

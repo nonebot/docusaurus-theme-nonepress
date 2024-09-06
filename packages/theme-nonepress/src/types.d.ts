@@ -532,7 +532,9 @@ declare module "@theme/DocPaginator" {
 
   // May be simpler to provide a {navigation: PropNavigation} prop?
 
-  export interface Props extends PropNavigation {}
+  export interface Props extends PropNavigation {
+    readonly className?: string;
+  }
 
   export default function DocPaginator(props: Props): JSX.Element;
 }
