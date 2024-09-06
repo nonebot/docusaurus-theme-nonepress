@@ -1,3 +1,3 @@
-# Docusaurus Plugin DocsMenu
+# Docusaurus Plugin Changelog
 
-DocsMenu data provider for Docusaurus Theme Nonepress.
+Changelog plugin for Docusaurus Theme Nonepress.
