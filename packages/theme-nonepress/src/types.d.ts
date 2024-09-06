@@ -1251,6 +1251,10 @@ declare module "@theme/Navbar/ColorModeToggle" {
   export default function NavbarColorModeToggle(props: Props): JSX.Element;
 }
 
+declare module "@theme/Navbar/Logo" {
+  export default function NavbarLogo(): JSX.Element;
+}
+
 declare module "@theme/Navbar/DocsVersion" {
   import type { DocsVersionDropdown } from "@nullbot/docusaurus-theme-nonepress";
 
