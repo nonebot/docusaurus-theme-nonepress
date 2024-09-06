@@ -102,7 +102,7 @@ export default async function createConfigAsync() {
         "@nullbot/docusaurus-preset-nonepress",
         {
           docs: {
-            sidebarPath: require.resolve("./sidebars.js"),
+            sidebarPath: "./sidebars.ts",
             editUrl:
               "https://github.com/nonebot/docusaurus-theme-nonepress/edit/master/website/",
             showLastUpdateAuthor: true,
