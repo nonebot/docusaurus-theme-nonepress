@@ -7,6 +7,7 @@ import {
   PageMetadata,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
+import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import BackToTopButton from "@theme/BackToTopButton";
 import Layout from "@theme/Layout";
@@ -42,6 +43,14 @@ export default function MDXPage(props: Props): JSX.Element {
       <PageMetadata title={title} description={description} />
       <Layout>
         <BackToTopButton />
+
+        <TOCContentFiller
+          toc={toc}
+          minHeadingLevel={tocMinHeadingLevel}
+          maxHeadingLevel={tocMaxHeadingLevel}
+          hideTableOfContents={hideTableOfContents as unknown as boolean}
+        />
+
         <Page
           hideTableOfContents={!!hideTableOfContents}
           minHeadingLevel={tocMinHeadingLevel!}

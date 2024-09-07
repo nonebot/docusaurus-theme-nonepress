@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 
-import "./styles.css";
-
 import clsx from "clsx";
 
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useHideableNavbar } from "@docusaurus/theme-common/internal";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import {
-  useTOCDisplay,
   useTOCContent,
+  useTOCDisplay,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
-import TOC from "@theme/TOC";
+import TOCContent from "@theme/Page/TOC/Content";
+
+import "./styles.css";
 
 export default function MobileTOCPopdown(): JSX.Element | null {
   const {
@@ -46,7 +46,7 @@ export default function MobileTOCPopdown(): JSX.Element | null {
         shown && "navbar-tocpopdown-open",
       )}
     >
-      <TOC {...tocContent} />
+      <TOCContent {...tocContent} />
     </div>
   );
 }
