@@ -1,10 +1,10 @@
+import { toSidebarsProp } from "@docusaurus/plugin-content-docs/lib/props.js";
+
 import type {
   LoadedContent,
   LoadedVersion,
 } from "@docusaurus/plugin-content-docs";
-import { toSidebarsProp } from "@docusaurus/plugin-content-docs/lib/props.js";
 import type { LoadContext, Plugin } from "@docusaurus/types";
-
 import type {
   GlobalDocsInstance,
   GlobalDocsVersion,
@@ -20,7 +20,7 @@ export default async function pluginDocMenu(
 ): Promise<Plugin<void>> {
   return {
     name: "docusaurus-plugin-getsidebar",
-    async contentLoaded({
+    async allContentLoaded({
       allContent,
       actions: { setGlobalData },
     }): Promise<void> {

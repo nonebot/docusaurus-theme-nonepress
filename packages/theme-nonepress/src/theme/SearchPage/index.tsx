@@ -17,14 +17,15 @@ import {
   useSearchResultUrlProcessor,
 } from "@docusaurus/theme-search-algolia/client";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import algoliaSearch from "algoliasearch/lite";
 import algoliaSearchHelper from "algoliasearch-helper";
+import algoliaSearch from "algoliasearch/lite";
 
-import "./styles.css";
+import DocRootLayout from "@theme/DocRoot/Layout";
 import IconAlgolia from "@theme/Icon/Algolia";
 import Layout from "@theme/Layout";
-import Page from "@theme/Page";
 import translations from "@theme/SearchTranslations";
+
+import "./styles.css";
 
 // Very simple pluralization: probably good enough for now
 function useDocumentsFoundPlural() {
@@ -299,7 +300,6 @@ function SearchPageContent(): JSX.Element {
           description: "The search page title for empty query",
         });
 
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   const makeSearch = useEvent((page: number = 0) => {
     algoliaHelper.addDisjunctiveFacetRefinement("docusaurus_tag", "default");
     algoliaHelper.addDisjunctiveFacetRefinement("language", currentLocale);
@@ -359,7 +359,6 @@ function SearchPageContent(): JSX.Element {
         <meta property="robots" content="noindex, follow" />
       </Head>
 
-      <Page hideSidebar hideTableOfContents>
         <main className="prose max-w-none">
           <h1>{getTitle()}</h1>
 
@@ -493,7 +492,6 @@ function SearchPageContent(): JSX.Element {
             </div>
           )}
         </main>
-      </Page>
     </Layout>
   );
 }

@@ -3,7 +3,6 @@ import React, { useCallback, useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 
 import { translate } from "@docusaurus/Translate";
-// @ts-expect-error: TODO, we need to make theme-classic have type: module
 import copy from "copy-text-to-clipboard";
 
 import type { Props } from "@theme/CodeBlock/CopyButton";

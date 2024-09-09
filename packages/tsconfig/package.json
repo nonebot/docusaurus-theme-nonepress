@@ -1,0 +1,20 @@
+{
+  "name": "@nullbot/docusaurus-tsconfig",
+  "version": "2.1.8",
+  "description": "Docusaurus base TypeScript configuration.",
+  "main": "tsconfig.json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "tsconfig",
+    "typescript",
+    "docusaurus"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nonebot/docusaurus-theme-nonepress.git",
+    "directory": "packages/docusaurus-tsconfig"
+  },
+  "license": "MIT"
+}

@@ -6,17 +6,9 @@ import React, {
   useState,
 } from "react";
 
-import type { AutocompleteState } from "@algolia/autocomplete-core";
+import { createPortal } from "react-dom";
+
 import { useDocSearchKeyboardEvents } from "@docsearch/react";
-import type {
-  DocSearchModal as DocSearchModalType,
-  DocSearchModalProps,
-  DocSearchButtonProps,
-} from "@docsearch/react";
-import type {
-  InternalDocSearchHit,
-  StoredDocSearchHit,
-} from "@docsearch/react/dist/esm/types";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import Noop from "@docusaurus/Noop";
@@ -31,13 +23,26 @@ import {
   useSearchResultUrlProcessor,
 } from "@docusaurus/theme-search-algolia/client";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
 import type { SearchClient } from "algoliasearch/lite";
-import { createPortal } from "react-dom";
 
 import "./styles.css";
+
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import IconSearch from "@theme/Icon/Search";
 import translations from "@theme/SearchTranslations";
+
+import type {
+  InternalDocSearchHit,
+  StoredDocSearchHit,
+} from "@docsearch/react/dist/esm/types";
+import type {
+  DocSearchModal as DocSearchModalType,
+  DocSearchModalProps,
+  DocSearchButtonProps,
+} from "@docsearch/react";
+import type { AutocompleteState } from "@algolia/autocomplete-core";
 
 type DocSearchProps = Omit<
   DocSearchModalProps,
@@ -102,7 +107,7 @@ function isAppleDevice(): boolean {
 const DocSearchButton = React.forwardRef<
   HTMLButtonElement,
   DocSearchButtonProps
->(function DocSearchButton({ translations = {}, ...props }, ref) {
+>(({ translations = {}, ...props }, ref) => {
   const { buttonText = "Search", buttonAriaLabel = "Search" } = translations;
 
   const [key, setKey] = useState<
@@ -241,7 +246,7 @@ function DocSearch({
   const resultsFooterComponent: DocSearchProps["resultsFooterComponent"] =
     useMemo(
       () =>
-        // eslint-disable-next-line react/display-name
+         
         (footerProps: Omit<ResultsFooterProps, "onClose">): JSX.Element =>
           <ResultsFooter {...footerProps} onClose={onClose} />,
       [onClose],

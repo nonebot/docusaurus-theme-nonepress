@@ -2,15 +2,17 @@ import React from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 import { useMobileMenu } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import NavbarLocaleDropdown from "@theme/Navbar/LocaleDropdown";
 import NavbarMobileMenuHeader from "@theme/Navbar/MobileMenu/Header";
 import NavbarMobileMenuPrimaryMenu from "@theme/Navbar/MobileMenu/PrimaryMenu";
 import NavbarSocialLinks from "@theme/Navbar/SocialLinks";
 import type { Props as NavbarItemConfig } from "@theme/NavbarItem";
+
+import "./styles.css";
 
 export default function MobileMenu(): JSX.Element | null {
   const themeConfig = useNonepressThemeConfig();
@@ -42,23 +44,23 @@ export default function MobileMenu(): JSX.Element | null {
     >
       <form method="dialog" className="navbar-mobile-modal-content">
         <NavbarMobileMenuHeader />
-        <div className="navbar-mobile-divider"></div>
+        <div className="navbar-mobile-divider" />
         <NavbarMobileMenuPrimaryMenu items={items} />
         {localeDropdownEnabled && (
           <>
-            <div className="navbar-mobile-divider"></div>
+            <div className="navbar-mobile-divider" />
             <NavbarLocaleDropdown mobile {...localeDropdown} />
           </>
         )}
         {!disableColorMode && (
           <>
-            <div className="navbar-mobile-divider"></div>
+            <div className="navbar-mobile-divider" />
             <NavbarColorModeToggle mobile />
           </>
         )}
         {socialLinks && socialLinks.length >= 0 && (
           <>
-            <div className="navbar-mobile-divider"></div>
+            <div className="navbar-mobile-divider" />
             <NavbarSocialLinks mobile links={socialLinks} />
           </>
         )}

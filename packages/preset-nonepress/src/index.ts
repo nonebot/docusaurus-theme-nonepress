@@ -4,7 +4,6 @@ import type {
   PluginOptions,
   Preset,
 } from "@docusaurus/types";
-
 import type { Options, ThemeConfig } from "./options";
 
 function makePluginConfig(
@@ -28,6 +27,7 @@ export default function preset(
   const {
     debug,
     docs,
+    blog,
     pages,
     sitemap,
     docsMenu,
@@ -53,6 +53,19 @@ export default function preset(
     if (getSidebar !== false) {
       plugins.push("@nullbot/docusaurus-plugin-getsidebar");
     }
+    plugins.push(
+      makePluginConfig("@docusaurus/plugin-ideal-image", {
+        quality: 70,
+        max: 1030,
+        min: 640,
+        steps: 2,
+        // Use false to debug, but it incurs huge perf costs
+        disableInDev: true,
+      }),
+    );
+  }
+  if (blog !== false) {
+    plugins.push(makePluginConfig("@docusaurus/plugin-content-blog", blog));
   }
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));

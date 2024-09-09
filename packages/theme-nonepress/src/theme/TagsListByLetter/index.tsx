@@ -6,6 +6,7 @@ import {
 } from "@docusaurus/theme-common";
 
 import "./styles.css";
+
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListByLetter";
 

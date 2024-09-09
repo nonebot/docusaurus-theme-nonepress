@@ -10,9 +10,9 @@ import {
   containsLineNumbers,
   useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
-import Highlight, { defaultProps, type Language } from "prism-react-renderer";
-
+import { Highlight, type Language } from "prism-react-renderer";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import Container from "@theme/CodeBlock/Container";
 import type { Props } from "@theme/CodeBlock/Content/String";
 import CopyButton from "@theme/CodeBlock/CopyButton";
@@ -50,6 +50,7 @@ export default function CodeBlockString({
 
   return (
     <Container
+      as="div"
       className={clsx(
         blockClassName,
         language &&
@@ -60,16 +61,15 @@ export default function CodeBlockString({
       {title && (
         <div className="code-block-title">
           <div className="code-block-title-btn-group">
-            <div className="code-block-title-btn code-block-title-btn-error"></div>
-            <div className="code-block-title-btn code-block-title-btn-warning"></div>
-            <div className="code-block-title-btn code-block-title-btn-success"></div>
+            <div className="code-block-title-btn code-block-title-btn-error" />
+            <div className="code-block-title-btn code-block-title-btn-warning" />
+            <div className="code-block-title-btn code-block-title-btn-success" />
           </div>
           <div className="code-block-title-content">{title}</div>
         </div>
       )}
       <div className="code-block-wrapper">
         <Highlight
-          {...defaultProps}
           theme={prismTheme}
           code={code}
           language={(language ?? "text") as Language}

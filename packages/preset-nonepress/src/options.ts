@@ -1,3 +1,4 @@
+import type { Options as BlogPluginOptions } from "@docusaurus/plugin-content-blog";
 import type { Options as DocsPluginOptions } from "@docusaurus/plugin-content-docs";
 import type { Options as PagesPluginOptions } from "@docusaurus/plugin-content-pages";
 import type { Options as GtagPluginOptions } from "@docusaurus/plugin-google-gtag";
@@ -13,6 +14,8 @@ export type Options = {
   debug?: boolean;
   /** Options for `@docusaurus/plugin-content-docs`. Use `false` to disable. */
   docs?: false | DocsPluginOptions;
+  /** Options for `@docusaurus/plugin-content-blog`. Use `false` to disable. */
+  blog?: false | BlogPluginOptions;
   /** Options for `@docusaurus/plugin-content-pages`. Use `false` to disable. */
   pages?: false | PagesPluginOptions;
   /** Options for `@docusaurus/plugin-sitemap`. Use `false` to disable. */

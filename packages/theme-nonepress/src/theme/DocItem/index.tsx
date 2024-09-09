@@ -1,24 +1,18 @@
 import React from "react";
 
+import { DocProvider } from "@docusaurus/plugin-content-docs/client";
 import { HtmlClassNameProvider } from "@docusaurus/theme-common";
-import { DocProvider } from "@docusaurus/theme-common/internal";
-
-import "./styles.css";
 import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
-import DocBreadcrumbs from "@theme/DocBreadcrumbs";
+
 import type { Props } from "@theme/DocItem";
-import DocItemContent from "@theme/DocItem/Content";
-import DocItemFooter from "@theme/DocItem/Footer";
+import DocItemLayout from "@theme/DocItem/Layout";
 import DocItemMetadata from "@theme/DocItem/Metadata";
-import DocItemPaginator from "@theme/DocItem/Paginator";
-import DocVersionBadge from "@theme/DocVersionBadge";
-import DocVersionBanner from "@theme/DocVersionBanner";
 
-export default function DocItem({ content }: Props): JSX.Element {
-  const docHtmlClassName = `docs-doc-id-${content.metadata.unversionedId}`;
-  const MDXComponent = content;
+export default function DocItem(props: Props): JSX.Element {
+  const docHtmlClassName = `docs-doc-id-${props.content.metadata.id}`;
+  const MDXComponent = props.content;
 
-  const { toc, frontMatter } = content;
+  const { toc, frontMatter } = props.content;
   const {
     hide_table_of_contents,
     toc_min_heading_level,
@@ -26,7 +20,7 @@ export default function DocItem({ content }: Props): JSX.Element {
   } = frontMatter;
 
   return (
-    <DocProvider content={content}>
+    <DocProvider content={props.content}>
       <HtmlClassNameProvider className={docHtmlClassName}>
         <DocItemMetadata />
 
@@ -37,18 +31,9 @@ export default function DocItem({ content }: Props): JSX.Element {
           hideTableOfContents={hide_table_of_contents as unknown as boolean}
         />
 
-        <DocVersionBanner />
-
-        <article>
-          <DocBreadcrumbs />
-          <DocVersionBadge />
-          <DocItemContent>
-            <MDXComponent />
-          </DocItemContent>
-          <DocItemFooter />
-        </article>
-
-        <DocItemPaginator />
+        <DocItemLayout>
+          <MDXComponent />
+        </DocItemLayout>
       </HtmlClassNameProvider>
     </DocProvider>
   );

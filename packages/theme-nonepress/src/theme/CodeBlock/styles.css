@@ -3,7 +3,7 @@
     color: var(--prism-color);
     background-color: var(--prism-background-color);
 
-    @apply relative w-full max-w-full h-auto overflow-hidden;
+    @apply relative w-full max-w-full h-auto overflow-hidden my-4;
     @apply rounded-box leading-6;
     @apply transition-[color,background-color] duration-500;
   }

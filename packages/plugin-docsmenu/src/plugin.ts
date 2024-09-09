@@ -2,8 +2,7 @@ import type {
   LoadedContent,
   LoadedVersion,
 } from "@docusaurus/plugin-content-docs";
-import type { LoadContext, Plugin } from "@docusaurus/types";
-
+import type { Plugin } from "@docusaurus/types";
 import type {
   Doc,
   DocsCategory,
@@ -11,19 +10,14 @@ import type {
   GlobalDocsVersion,
   GlobalPluginData,
 } from "./client";
-import type { DocFrontmatter, PluginOptions } from "./types";
+import type { DocFrontmatter } from "./types";
 
 const DEFAULT_WEIGHT = 9999;
 
-export default async function pluginDocMenu(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  context: LoadContext,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  options: PluginOptions,
-): Promise<Plugin<void>> {
+export default async function pluginDocMenu(): Promise<Plugin<void>> {
   return {
     name: "docusaurus-plugin-docmenu",
-    async contentLoaded({
+    async allContentLoaded({
       allContent,
       actions: { setGlobalData },
     }): Promise<void> {
@@ -42,14 +36,14 @@ export default async function pluginDocMenu(
         version.docs.forEach((doc) => {
           const categories =
             (doc.frontMatter as DocFrontmatter).options?.menu ?? [];
-          categories.forEach((options) => {
-            groups[options.category] = groups[options.category] ?? [];
-            groups[options.category].push({
+          categories.forEach((item) => {
+            groups[item.category] = groups[item.category] ?? [];
+            groups[item.category]?.push({
               id: doc.id,
               title: doc.title,
               description: doc.description,
               permalink: doc.permalink,
-              weight: options.weight ?? DEFAULT_WEIGHT,
+              weight: item.weight ?? DEFAULT_WEIGHT,
             });
           });
         });

@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Translate from "@docusaurus/Translate";
 
 import "./styles.css";
+
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListInline";
 
@@ -23,9 +24,9 @@ export default function TagsListInline({
         </Translate>
       </b>
       <ul className="doc-tags-list">
-        {tags.map(({ label, permalink: tagPermalink }) => (
-          <li key={tagPermalink}>
-            <Tag label={label} permalink={tagPermalink} />
+        {tags.map((tag) => (
+          <li key={tag.permalink}>
+            <Tag {...tag} />
           </li>
         ))}
       </ul>

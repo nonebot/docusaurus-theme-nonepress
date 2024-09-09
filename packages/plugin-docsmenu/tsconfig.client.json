@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.client.json",
   "compilerOptions": {
     "types": ["@docusaurus/module-type-aliases"],
     "noEmit": false,

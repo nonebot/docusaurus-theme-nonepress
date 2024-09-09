@@ -1,21 +1,22 @@
 import React from "react";
 
+import { DocsPreferredVersionContextProvider } from "@docusaurus/plugin-content-docs/client";
 import { composeProviders } from "@docusaurus/theme-common";
 import {
-  ColorModeProvider,
   AnnouncementBarProvider,
-  DocsPreferredVersionContextProvider,
-  ScrollControllerProvider,
+  ColorModeProvider,
+  NavbarProvider,
   PluginHtmlClassNameProvider,
+  ScrollControllerProvider,
 } from "@docusaurus/theme-common/internal";
-
 import {
-  TOCContentProvider,
-  TOCDisplayProvider,
+  MobileMenuProvider,
   SidebarContentProvider,
   SidebarDisplayProvider,
-  MobileMenuProvider,
+  TOCContentProvider,
+  TOCDisplayProvider,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import type { Props } from "@theme/Layout/Provider";
 
 const Provider = composeProviders([
@@ -29,6 +30,7 @@ const Provider = composeProviders([
   SidebarDisplayProvider,
   TOCContentProvider,
   TOCDisplayProvider,
+  NavbarProvider,
 ]);
 
 export default function LayoutProvider({ children }: Props): JSX.Element {

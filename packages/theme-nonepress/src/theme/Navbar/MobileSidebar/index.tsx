@@ -3,13 +3,14 @@ import React from "react";
 import clsx from "clsx";
 
 import "./styles.css";
-import { useLocation } from "@docusaurus/router";
 
+import { useLocation } from "@docusaurus/router";
 import {
   useSidebarDisplay,
   useSidebarContent,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
-import SidebarContent from "@theme/Sidebar/Content";
+
+import SidebarContent from "@theme/Page/Sidebar/Content";
 
 export default function MobileSidebar(): JSX.Element | null {
   const { pathname } = useLocation();

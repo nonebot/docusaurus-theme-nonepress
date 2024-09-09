@@ -3,6 +3,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+
 import type { Props } from "@theme/AnnouncementBar/Content";
 
 export default function AnnouncementBarContent(props: Props): JSX.Element {

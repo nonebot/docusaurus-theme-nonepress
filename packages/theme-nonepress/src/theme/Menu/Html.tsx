@@ -14,6 +14,6 @@ export default function MenuHtml({
       className={clsx("menu-item", className)}
       {...props}
       dangerouslySetInnerHTML={{ __html: html }}
-    ></li>
+     />
   );
 }

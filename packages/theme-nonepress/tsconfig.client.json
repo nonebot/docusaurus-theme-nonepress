@@ -1,15 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.client.json",
   "compilerOptions": {
-    // "lib": ["DOM", "ESNext"],
-    "noEmit": false,
-    "composite": true,
-    "incremental": true,
-    "tsBuildInfoFile": "./lib/.tsbuildinfo-client",
-    "module": "ESNext",
-    "target": "ESNext",
     "rootDir": "src",
-    "outDir": "lib"
+    "outDir": "lib",
+    "tsBuildInfoFile": "lib/.tsbuildinfo-client"
   },
   "include": [
     "src/fontawesome.ts",

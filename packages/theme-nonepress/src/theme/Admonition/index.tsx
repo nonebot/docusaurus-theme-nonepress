@@ -2,11 +2,12 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
 import Translate from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import type { Props } from "@theme/Admonition";
+
+import "./styles.css";
 
 function NoteIcon() {
   return (
@@ -20,7 +21,7 @@ function NoteIcon() {
         strokeLinejoin="round"
         strokeWidth="2"
         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      ></path>
+      />
     </svg>
   );
 }
@@ -71,7 +72,7 @@ function InfoIcon() {
         strokeLinejoin="round"
         strokeWidth="2"
         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      ></path>
+      />
     </svg>
   );
 }
@@ -182,7 +183,7 @@ function getAdmonitionConfig(unsafeType: string): AdmonitionConfig {
   console.warn(
     `No admonition config found for admonition type "${type}". Using Info as fallback.`,
   );
-  return AdmonitionConfigs.info;
+  return AdmonitionConfigs.info!;
 }
 
 // Workaround because it's difficult in MDX v1 to provide a MDX title as props

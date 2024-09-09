@@ -1,7 +1,8 @@
 import React from "react";
 
-import "./styles.css";
 import Logo from "@theme/Logo";
+
+import "./styles.css";
 
 export default function NavbarLogo(): JSX.Element {
   return (

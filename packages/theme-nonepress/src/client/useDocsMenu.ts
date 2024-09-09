@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 
 import {
-  useVersions,
+  useDocsVersionCandidates,
   useLatestVersion,
+  useVersions,
 } from "@docusaurus/plugin-content-docs/client";
 import { CURRENT_VERSION_NAME } from "@docusaurus/plugin-content-docs/src/constants.ts";
-import { useDocsVersionCandidates } from "@docusaurus/theme-common/internal";
 import { useVersionedDocCategory } from "@nullbot/docusaurus-plugin-docsmenu/client";
 
 import type { DocsMenuCategory, DocsMenuVersions } from "./types";

@@ -3,6 +3,7 @@ import React from "react";
 import clsx from "clsx";
 
 import "./styles.css";
+
 import Translate, { translate } from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useBackToTopButton } from "@docusaurus/theme-common/internal";

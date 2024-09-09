@@ -7,7 +7,6 @@ import React, {
 } from "react";
 
 import { ReactContextError } from "@docusaurus/theme-common";
-
 import { useWindowSize } from "@nullbot/docusaurus-theme-nonepress/client";
 
 type ContextValue = {

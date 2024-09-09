@@ -8,7 +8,7 @@ export default function CodeBlockJSX({
   className,
 }: Props): JSX.Element {
   return (
-    <Container tabIndex={0} className={className}>
+    <Container as="pre" tabIndex={0} className={className}>
       {children}
     </Container>
   );

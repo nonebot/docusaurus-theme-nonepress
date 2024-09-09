@@ -2,23 +2,25 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import isInternalUrl from "@docusaurus/isInternalUrl";
-import type {
-  PropSidebarItemCategory,
-  PropSidebarItemLink,
-} from "@docusaurus/plugin-content-docs";
 import {
-  findFirstCategoryLink,
+  findFirstSidebarItemLink,
   useDocById,
-} from "@docusaurus/theme-common/internal";
+} from "@docusaurus/plugin-content-docs/client";
 
 import type { Props } from "@theme/DocCard";
 import IconCategory from "@theme/Icon/Category";
 import IconFile from "@theme/Icon/File";
 import IconLink from "@theme/Icon/Link";
+
+import type {
+  PropSidebarItemCategory,
+  PropSidebarItemLink,
+} from "@docusaurus/plugin-content-docs";
+
+import "./styles.css";
 
 function CardContainer({
   href,
@@ -72,7 +74,7 @@ function CardCategory({
   item: PropSidebarItemCategory;
   className?: string;
 }): JSX.Element | null {
-  const href = findFirstCategoryLink(item);
+  const href = findFirstSidebarItemLink(item);
 
   // Unexpected: categories that don't have a link have been filtered upfront
   if (!href) {

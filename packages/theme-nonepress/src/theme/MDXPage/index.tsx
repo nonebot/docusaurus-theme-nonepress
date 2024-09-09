@@ -3,12 +3,12 @@ import React from "react";
 import clsx from "clsx";
 
 import {
-  PageMetadata,
   HtmlClassNameProvider,
+  PageMetadata,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
-
 import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
+
 import BackToTopButton from "@theme/BackToTopButton";
 import Layout from "@theme/Layout";
 import MDXContent from "@theme/MDXContent";
@@ -23,10 +23,15 @@ export default function MDXPage(props: Props): JSX.Element {
   } = MDXPageContent;
   const {
     wrapperClassName,
-    hide_table_of_contents,
-    toc_min_heading_level,
-    toc_max_heading_level,
+    hide_table_of_contents: hideTableOfContents,
+    toc_min_heading_level: tocMinHeadingLevel,
+    toc_max_heading_level: tocMaxHeadingLevel,
   } = frontMatter;
+
+  const sidebarCustomProps = frontMatter.sidebar_custom_props as {
+    sidebar_id: string;
+  };
+  const sidebarId = sidebarCustomProps?.sidebar_id || "";
 
   return (
     <HtmlClassNameProvider
@@ -41,12 +46,18 @@ export default function MDXPage(props: Props): JSX.Element {
 
         <TOCContentFiller
           toc={toc}
-          minHeadingLevel={toc_min_heading_level}
-          maxHeadingLevel={toc_max_heading_level}
-          hideTableOfContents={hide_table_of_contents as unknown as boolean}
+          minHeadingLevel={tocMinHeadingLevel}
+          maxHeadingLevel={tocMaxHeadingLevel}
+          hideTableOfContents={hideTableOfContents as unknown as boolean}
         />
 
-        <Page>
+        <Page
+          hideTableOfContents={!!hideTableOfContents}
+          minHeadingLevel={tocMinHeadingLevel!}
+          maxHeadingLevel={tocMaxHeadingLevel!}
+          sidebarId={sidebarId}
+          toc={toc}
+        >
           <article className="prose max-w-full">
             <MDXContent>
               <MDXPageContent />

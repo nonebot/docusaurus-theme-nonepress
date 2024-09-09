@@ -1,9 +1,7 @@
 import React from "react";
 
-import {
-  PageMetadata,
-  useCurrentSidebarCategory,
-} from "@docusaurus/theme-common";
+import { useCurrentSidebarCategory } from "@docusaurus/plugin-content-docs/client";
+import { PageMetadata } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
@@ -34,7 +32,7 @@ function DocCategoryGeneratedIndexPageContent({
   const category = useCurrentSidebarCategory();
 
   return (
-    <>
+    <div className="page-content page-content-narrow">
       <DocVersionBanner />
 
       <article>
@@ -55,7 +53,7 @@ function DocCategoryGeneratedIndexPageContent({
         previous={categoryGeneratedIndex.navigation.previous}
         next={categoryGeneratedIndex.navigation.next}
       />
-    </>
+    </div>
   );
 }
 

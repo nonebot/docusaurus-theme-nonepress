@@ -10,6 +10,7 @@ import {
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import "./styles.css";
+
 import type { Props } from "@theme/Tabs";
 
 function TabList({
@@ -90,7 +91,7 @@ function TabList({
             {label ?? value}
           </li>
         ))}
-        <div className="tab tab-lifted tab-item tab-spacer"></div>
+        <div className="tab tab-lifted tab-item tab-spacer" />
       </ul>
     </div>
   );
