@@ -5,5 +5,5 @@
     "outDir": "lib",
     "tsBuildInfoFile": "lib/.tsbuildinfo-client"
   },
-  "include": ["src/client", "src/*.d.ts"]
+  "include": ["src/client"]
 }

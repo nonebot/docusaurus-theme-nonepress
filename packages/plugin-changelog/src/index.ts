@@ -12,6 +12,14 @@ import type {
 } from "@docusaurus/types";
 import type { Options, PluginOptions } from "./options";
 
+export const HEADER = `---
+hide_table_of_contents: true
+{{extraHeader}}
+---
+
+import DocPaginator from "@theme/DocPaginator"
+`;
+
 function processSection(section: string) {
   const title = section
     .match(/\n## .*/)?.[0]
@@ -53,7 +61,12 @@ export default async function pluginChangelog(
     chunks.map((chunk, index) =>
       fs.outputFile(
         path.join(generateDir, getChunkTitle(chunk)),
-        getChunkContent(chunks, chunk, index),
+        getChunkContent(
+          chunks,
+          chunk,
+          index,
+          HEADER.replaceAll("{{extraHeader}}", options.changelogHeader),
+        ),
       ),
     ),
   );
@@ -65,6 +78,7 @@ export default async function pluginChangelog(
 
 const pluginOptionsSchema = Joi.object<PluginOptions>({
   changelogPath: Joi.string().default("src/changelog/changelog.md"),
+  changelogHeader: Joi.string().default(HEADER),
 });
 
 export function validateOptions({

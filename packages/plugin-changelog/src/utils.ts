@@ -1,12 +1,3 @@
-const HEADER = `---
-hide_table_of_contents: true
-sidebar_custom_props:
-  sidebar_id: examples
----
-
-import DocPaginator from "@theme/DocPaginator"
-`;
-
 type Section = { title: string; content: string } | null;
 
 export function chunkArray<T>(array: Array<T>, size: number): Array<Array<T>> {
@@ -43,6 +34,7 @@ export function getChunkContent(
   chunks: Section[][],
   chunk: Section[],
   index: number,
+  header: string,
 ): string {
   let finalContent = "";
   for (const section of chunk) {
@@ -52,7 +44,7 @@ export function getChunkContent(
     finalContent += section!.content;
   }
 
-  return HEADER + finalContent + getPaginator(chunks, index - 1, index + 1);
+  return header + finalContent + getPaginator(chunks, index - 1, index + 1);
 }
 
 export function getChunkTitle(chunk: Section[]): string {
