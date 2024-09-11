@@ -5,31 +5,35 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
   publish-canary:
     name: Publish Canary
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Needed to get the commit number with "git rev-list --count HEAD"
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: lts/*
           cache: yarn
 
       - name: Prepare git
         run: |
-          git config user.name noneflow[bot]
-          git config user.email 129742071+noneflow[bot]@users.noreply.github.com
+          git config --global user.name "noneflow[bot]"
+          git config --global user.email "129742071+noneflow[bot]@users.noreply.github.com"
           git fetch
           git checkout master
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
+          cat .npmrc
+          echo "npm whoami"
+          npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
