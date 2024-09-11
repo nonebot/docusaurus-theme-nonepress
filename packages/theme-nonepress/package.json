@@ -36,6 +36,7 @@
     "copy:watch": "node ../../scripts/copyFiles.js --watch"
   },
   "dependencies": {
+    "@docsearch/react": "3.5.2",
     "@docusaurus/core": "3.5.2",
     "@docusaurus/mdx-loader": "3.5.2",
     "@docusaurus/module-type-aliases": "3.5.2",
