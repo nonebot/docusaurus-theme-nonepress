@@ -2,10 +2,10 @@
   "extends": "../../tsconfig.base.client.json",
   "include": [
     "src/fontawesome.ts",
-    "src/prism-include-languages.ts",
     "src/nprogress.ts",
+    "src/prism-include-languages.ts",
     "src/theme",
-    "src/contexts",
-    "src/*.d.ts"
+    "src/*.d.ts",
+    "src/contexts"
   ]
 }
