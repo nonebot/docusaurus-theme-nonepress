@@ -1,0 +1,14 @@
+# Stylelint runs on everything by default; we only lint CSS files.
+*
+!*/
+!*.css
+__tests__/
+build
+coverage
+examples/
+
+packages/plugin-*/lib/*
+packages/preset-*/lib/*
+packages/theme-*/lib/*
+packages/tsconfig/lib/*
+website/static/katex/katex.min.css
