@@ -1,15 +1,7 @@
 {
   "extends": "../../tsconfig.base.client.json",
   "compilerOptions": {
-    "types": ["@docusaurus/module-type-aliases"],
-    "noEmit": false,
-    "composite": true,
-    "incremental": true,
-    "tsBuildInfoFile": "./lib/.tsbuildinfo-client",
-    "module": "esnext",
-    "target": "esnext",
-    "rootDir": "src",
-    "outDir": "lib"
+    "types": ["@docusaurus/module-type-aliases"]
   },
   "include": ["src/client"]
 }

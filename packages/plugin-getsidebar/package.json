@@ -3,6 +3,7 @@
   "version": "2.1.8",
   "description": "GetSidebar plugin for Nonepress theme",
   "main": "lib/index.js",
+  "sideEffects": false,
   "exports": {
     "./lib/*": "./lib/*",
     "./src/*": "./src/*",
