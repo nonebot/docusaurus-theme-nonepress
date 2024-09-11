@@ -1,6 +1,7 @@
 import { themes } from "prism-react-renderer";
 
 import type { Config } from "@docusaurus/types";
+import type { Options as ChangelogOptions } from "@nullbot/docusaurus-plugin-changelog";
 import type * as Preset from "@nullbot/docusaurus-preset-nonepress";
 
 const darkCodeTheme = themes.dracula;
@@ -70,7 +71,15 @@ export default async function createConfigAsync() {
       }),
     },
 
-    plugins: ["@nullbot/docusaurus-plugin-changelog"],
+    plugins: [
+      [
+        "@nullbot/docusaurus-plugin-changelog",
+        {
+          changelogHeader: `sidebar_custom_props:
+  sidebar_id: examples`,
+        } satisfies ChangelogOptions,
+      ],
+    ],
 
     presets: [
       [
@@ -131,6 +140,10 @@ export default async function createConfigAsync() {
               {
                 label: "Page",
                 to: "/page-example",
+              },
+              {
+                label: "Changelog",
+                to: "/changelog",
               },
             ],
           },
