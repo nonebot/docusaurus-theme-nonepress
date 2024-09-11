@@ -2,10 +2,6 @@
   "name": "@nullbot/docusaurus-preset-nonepress",
   "version": "2.1.8",
   "description": "The presets for Nonepress theme",
-  "files": [
-    "lib/**/*",
-    "src/**/*"
-  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "publishConfig": {

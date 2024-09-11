@@ -3,22 +3,6 @@
   "version": "2.1.8",
   "description": "Nonepress theme for Docusaurus",
   "main": "lib/index.js",
-  "exports": {
-    "./lib/*": "./lib/*",
-    "./src/*": "./src/*",
-    "./client": {
-      "type": "./lib/client/index.d.ts",
-      "default": "./lib/client/index.js"
-    },
-    "./contexts": {
-      "type": "./lib/contexts/index.d.ts",
-      "default": "./lib/contexts/index.js"
-    },
-    ".": {
-      "types": "./src/types.d.ts",
-      "default": "./lib/index.js"
-    }
-  },
   "types": "src/types.d.ts",
   "publishConfig": {
     "access": "public"
@@ -30,8 +14,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc --build && node ../../scripts/copyFiles.js && yarn prettier",
-    "prettier": "prettier --config ../../.prettierrc --write \"lib/theme/*.js\""
+    "build": "tsc --build && node ../../scripts/copyFiles.js && prettier --config ../../.prettierrc --write \"lib/theme/**/*.js\"",
+    "watch": "run-p -c copy:watch build:watch",
+    "build:watch": "tsc --build --watch",
+    "copy:watch": "node ../../scripts/copyFiles.js --watch"
   },
   "dependencies": {
     "@docusaurus/core": "3.5.2",

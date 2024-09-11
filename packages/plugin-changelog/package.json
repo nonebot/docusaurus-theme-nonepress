@@ -3,18 +3,6 @@
   "version": "2.1.8",
   "description": "DocMenu plugin for Nonepress theme",
   "main": "lib/index.js",
-  "exports": {
-    "./lib/*": "./lib/*",
-    "./src/*": "./src/*",
-    "./client": {
-      "types": "./lib/client/index.d.ts",
-      "default": "./lib/client/index.js"
-    },
-    ".": {
-      "types": "./src/index.d.ts",
-      "default": "./lib/index.js"
-    }
-  },
   "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
