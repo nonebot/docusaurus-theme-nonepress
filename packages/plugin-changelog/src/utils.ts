@@ -14,14 +14,17 @@ function getPaginator(chunks: Section[][], prevIdx: number, nextIdx: number) {
   if (prevIdx >= 0 && prevIdx < chunks.length) {
     const chunk = chunks?.[prevIdx]?.[0];
     if (chunk) {
-      content += ` previous={{ title: "${chunk.title}", permalink: "/changelog/${encodeURIComponent(chunk.title)}" }}`;
+      const title = prevIdx === 0 ? "" : encodeURIComponent(chunk.title);
+      content += ` previous={{ title: "${chunk.title}", permalink: "/changelog/${title}" }}`;
     }
   }
 
   if (nextIdx >= 0 && nextIdx < chunks.length) {
     const chunk = chunks?.[nextIdx]?.[0];
     if (chunk) {
-      content += ` next={{ title: "${chunk.title}", permalink: "/changelog/${encodeURIComponent(chunk.title)}" }}`;
+      content += ` next={{ title: "${
+        chunk.title
+      }", permalink: "/changelog/${encodeURIComponent(chunk.title)}" }}`;
     }
   }
 
