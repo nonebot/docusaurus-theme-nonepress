@@ -21,7 +21,7 @@
   "dependencies": {
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/plugin-ideal-image": "3.5.2",
-    "@nullbot/docusaurus-preset-nonepress": "^2.1.0",
+    "@nullbot/docusaurus-preset-nonepress": "^3.0.0",
     "@swc/core": "^1.7.14",
     "clsx": "^2.0.0",
     "react": "^18.0.0",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@docusaurus/eslint-plugin": "3.5.2",
-    "@nullbot/docusaurus-tsconfig": "^2.1.0",
+    "@nullbot/docusaurus-tsconfig": "^3.0.0",
     "@rsdoctor/webpack-plugin": "^0.3.11",
     "cross-env": "^7.0.3",
     "rimraf": "^3.0.2",
