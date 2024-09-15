@@ -30,7 +30,6 @@ jobs:
 
       - name: Publish release
         run: |
-          yarn build
           yarn lerna publish from-package --yes --no-verify-access
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

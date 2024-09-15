@@ -41,7 +41,6 @@ jobs:
 
       - name: Publish Canary release
         run: |
-          yarn build
           yarn canary
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
