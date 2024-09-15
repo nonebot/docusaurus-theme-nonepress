@@ -1519,10 +1519,9 @@ declare module "@theme/Page" {
     readonly hideTableOfContents?: boolean;
     readonly reduceContentWidth?: boolean;
     readonly sidebarId?: string;
-
-    readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel: number;
-    readonly maxHeadingLevel: number;
+    readonly toc?: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
   }
 
   export default function Page(props: Props): JSX.Element;

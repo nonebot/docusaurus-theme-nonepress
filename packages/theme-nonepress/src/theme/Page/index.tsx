@@ -37,7 +37,7 @@ export default function Page({
           {children}
         </div>
         {/* TOC */}
-        {!hideTableOfContents && (
+        {!hideTableOfContents && toc && minHeadingLevel && maxHeadingLevel && (
           <TOC
             className="page-toc"
             toc={toc}
