@@ -30,7 +30,7 @@
     "@docusaurus/theme-common": "3.5.2",
     "@docusaurus/theme-search-algolia": "3.5.2",
     "@docusaurus/types": "3.5.2",
-    "@nullbot/docusaurus-theme-nonepress": "^2.1.8"
+    "@nullbot/docusaurus-theme-nonepress": "^3.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",
