@@ -20,7 +20,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import algoliaSearchHelper from "algoliasearch-helper";
 import algoliaSearch from "algoliasearch/lite";
 
-import DocRootLayout from "@theme/DocRoot/Layout";
+import Heading from "@theme/Heading";
 import IconAlgolia from "@theme/Icon/Algolia";
 import Layout from "@theme/Layout";
 import translations from "@theme/SearchTranslations";
@@ -147,8 +147,9 @@ function SearchPageContent(): JSX.Element {
     i18n: { currentLocale },
   } = useDocusaurusContext();
   const {
-    algolia: { appId, apiKey, indexName },
+    algolia: { appId, apiKey, indexName, contextualSearch },
   } = useAlgoliaThemeConfig();
+
   const processSearchResultUrl = useSearchResultUrlProcessor();
   const documentsFoundPlural = useDocumentsFoundPlural();
 
@@ -201,11 +202,18 @@ function SearchPageContent(): JSX.Element {
     initialSearchResultState,
   );
 
+  // respect settings from the theme config for facets
+  const disjunctiveFacets = contextualSearch
+    ? ["language", "docusaurus_tag"]
+    : [];
+
   const algoliaClient = algoliaSearch(appId, apiKey);
   const algoliaHelper = algoliaSearchHelper(algoliaClient, indexName, {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: why errors happens after upgrading to TS 5.5 ?
     hitsPerPage: 15,
     advancedSyntax: true,
-    disjunctiveFacets: ["language", "docusaurus_tag"],
+    disjunctiveFacets,
   });
 
   algoliaHelper.on(
@@ -301,17 +309,19 @@ function SearchPageContent(): JSX.Element {
         });
 
   const makeSearch = useEvent((page: number = 0) => {
-    algoliaHelper.addDisjunctiveFacetRefinement("docusaurus_tag", "default");
-    algoliaHelper.addDisjunctiveFacetRefinement("language", currentLocale);
+    if (contextualSearch) {
+      algoliaHelper.addDisjunctiveFacetRefinement("docusaurus_tag", "default");
+      algoliaHelper.addDisjunctiveFacetRefinement("language", currentLocale);
 
-    Object.entries(docsSearchVersionsHelpers.searchVersions).forEach(
-      ([pluginId, searchVersion]) => {
-        algoliaHelper.addDisjunctiveFacetRefinement(
-          "docusaurus_tag",
-          `docs-${pluginId}-${searchVersion}`,
-        );
-      },
-    );
+      Object.entries(docsSearchVersionsHelpers.searchVersions).forEach(
+        ([pluginId, searchVersion]) => {
+          algoliaHelper.addDisjunctiveFacetRefinement(
+            "docusaurus_tag",
+            `docs-${pluginId}-${searchVersion}`,
+          );
+        },
+      );
+    }
 
     algoliaHelper.setQuery(searchQuery).setPage(page).search();
   });
@@ -359,139 +369,137 @@ function SearchPageContent(): JSX.Element {
         <meta property="robots" content="noindex, follow" />
       </Head>
 
-        <main className="prose max-w-none">
-          <h1>{getTitle()}</h1>
+      <main className="prose max-w-none">
+        <Heading as="h1">{getTitle()}</Heading>
 
-          <form
-            className="join doc-search-page-form"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="search"
-              name="q"
-              className="input input-bordered join-item doc-search-page-form-input"
-              placeholder={translate({
-                id: "theme.SearchPage.inputPlaceholder",
-                message: "Type your search here",
-                description: "The placeholder for search page input",
-              })}
-              aria-label={translate({
-                id: "theme.SearchPage.inputLabel",
-                message: "Search",
-                description: "The ARIA label for search page input",
-              })}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              value={searchQuery}
-              autoComplete="off"
-              autoFocus
+        <form
+          className="join doc-search-page-form"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            type="search"
+            name="q"
+            className="input input-bordered join-item doc-search-page-form-input"
+            placeholder={translate({
+              id: "theme.SearchPage.inputPlaceholder",
+              message: "Type your search here",
+              description: "The placeholder for search page input",
+            })}
+            aria-label={translate({
+              id: "theme.SearchPage.inputLabel",
+              message: "Search",
+              description: "The ARIA label for search page input",
+            })}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            autoComplete="off"
+            autoFocus
+          />
+
+          {contextualSearch && docsSearchVersionsHelpers.versioningEnabled && (
+            <SearchVersionSelectList
+              docsSearchVersionsHelpers={docsSearchVersionsHelpers}
             />
+          )}
+        </form>
 
-            {docsSearchVersionsHelpers.versioningEnabled && (
-              <SearchVersionSelectList
-                docsSearchVersionsHelpers={docsSearchVersionsHelpers}
-              />
-            )}
-          </form>
-
-          <div className="doc-search-page-tagline">
-            <div className="doc-search-page-tagline-result">
-              {!!searchResultState.totalResults &&
-                documentsFoundPlural(searchResultState.totalResults)}
-            </div>
-
-            <div className="doc-search-page-tagline-logo">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.algolia.com/"
-                aria-label={translate({
-                  id: "theme.SearchPage.algoliaLabel",
-                  message: "Search by Algolia",
-                  description: "The ARIA label for Algolia mention",
-                })}
-              >
-                <span>
-                  {translations.modal?.footer?.searchByText ?? "Search by"}
-                </span>
-                <IconAlgolia />
-              </a>
-            </div>
+        <div className="doc-search-page-tagline">
+          <div className="doc-search-page-tagline-result">
+            {!!searchResultState.totalResults &&
+              documentsFoundPlural(searchResultState.totalResults)}
           </div>
 
-          {searchResultState.items.length > 0 ? (
-            <section>
-              {searchResultState.items.map(
-                ({ title, url, summary, breadcrumbs }, i) => (
-                  <article key={i} className="doc-search-page-result">
-                    <h2 className="doc-search-page-result-title">
-                      <Link
-                        to={url}
-                        dangerouslySetInnerHTML={{ __html: title }}
-                      />
-                    </h2>
+          <div className="doc-search-page-tagline-logo">
+            <Link
+              to="https://www.algolia.com/"
+              aria-label={translate({
+                id: "theme.SearchPage.algoliaLabel",
+                message: "Search by Algolia",
+                description: "The ARIA label for Algolia mention",
+              })}
+            >
+              <span>
+                {translations.modal?.footer?.searchByText ?? "Search by"}
+              </span>
+              <IconAlgolia />
+            </Link>
+          </div>
+        </div>
 
-                    {breadcrumbs.length > 0 && (
-                      <nav
-                        className="breadcrumbs doc-search-page-result-breadcrumbs not-prose"
-                        aria-label="breadcrumbs"
-                      >
-                        <ul>
-                          {breadcrumbs.map((html, index) => (
-                            <li
-                              key={index}
-                              // Developer provided the HTML, so assume it's safe.
-                              dangerouslySetInnerHTML={{ __html: html }}
-                            />
-                          ))}
-                        </ul>
-                      </nav>
-                    )}
+        {searchResultState.items.length > 0 ? (
+          <section>
+            {searchResultState.items.map(
+              ({ title, url, summary, breadcrumbs }, i) => (
+                <article key={i} className="doc-search-page-result">
+                  <Heading as="h2" className="doc-search-page-result-title">
+                    <Link
+                      to={url}
+                      dangerouslySetInnerHTML={{ __html: title }}
+                    />
+                  </Heading>
 
-                    {summary && (
-                      <p
-                        className="doc-search-page-result-summary"
-                        // Developer provided the HTML, so assume it's safe.
-                        dangerouslySetInnerHTML={{ __html: summary }}
-                      />
-                    )}
-                  </article>
-                ),
-              )}
-            </section>
-          ) : (
-            [
-              searchQuery && !searchResultState.loading && (
-                <p key="no-results">
-                  <Translate
-                    id="theme.SearchPage.noResultsText"
-                    description="The paragraph for empty search result"
-                  >
-                    No results were found
-                  </Translate>
-                </p>
+                  {breadcrumbs.length > 0 && (
+                    <nav
+                      className="breadcrumbs doc-search-page-result-breadcrumbs not-prose"
+                      aria-label="breadcrumbs"
+                    >
+                      <ul>
+                        {breadcrumbs.map((html, index) => (
+                          <li
+                            key={index}
+                            // Developer provided the HTML, so assume it's safe.
+                            dangerouslySetInnerHTML={{ __html: html }}
+                          />
+                        ))}
+                      </ul>
+                    </nav>
+                  )}
+
+                  {summary && (
+                    <p
+                      className="doc-search-page-result-summary"
+                      // Developer provided the HTML, so assume it's safe.
+                      dangerouslySetInnerHTML={{ __html: summary }}
+                    />
+                  )}
+                </article>
               ),
-              !!searchResultState.loading && (
-                <div className="doc-search-page-spinner-container">
-                  <div
-                    key="spinner"
-                    className="loading loading-spinner doc-search-page-spinner"
-                  />
-                </div>
-              ),
-            ]
-          )}
+            )}
+          </section>
+        ) : (
+          [
+            searchQuery && !searchResultState.loading && (
+              <p key="no-results">
+                <Translate
+                  id="theme.SearchPage.noResultsText"
+                  description="The paragraph for empty search result"
+                >
+                  No results were found
+                </Translate>
+              </p>
+            ),
+            !!searchResultState.loading && (
+              <div className="doc-search-page-spinner-container">
+                <div
+                  key="spinner"
+                  className="loading loading-spinner doc-search-page-spinner"
+                />
+              </div>
+            ),
+          ]
+        )}
 
-          {searchResultState.hasMore && (
-            <div className="doc-search-page-result-more" ref={setLoaderRef}>
-              <Translate
-                id="theme.SearchPage.fetchingNewResults"
-                description="The paragraph for fetching new search results"
-              >
-                Fetching new results...
-              </Translate>
-            </div>
-          )}
-        </main>
+        {searchResultState.hasMore && (
+          <div className="doc-search-page-result-more" ref={setLoaderRef}>
+            <Translate
+              id="theme.SearchPage.fetchingNewResults"
+              description="The paragraph for fetching new search results"
+            >
+              Fetching new results...
+            </Translate>
+          </div>
+        )}
+      </main>
     </Layout>
   );
 }
