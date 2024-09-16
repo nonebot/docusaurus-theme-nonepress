@@ -1,6 +1,6 @@
 {
   "name": "@nullbot/docusaurus-theme-nonepress",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Nonepress theme for Docusaurus",
   "main": "lib/index.js",
   "types": "src/types.d.ts",
