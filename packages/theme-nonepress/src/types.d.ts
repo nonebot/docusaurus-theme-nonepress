@@ -1532,8 +1532,8 @@ declare module "@theme/Page/TOC" {
     readonly className?: string;
 
     readonly toc: readonly TOCItem[];
-    readonly minHeadingLevel: number;
-    readonly maxHeadingLevel: number;
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
     readonly hideTableOfContents: boolean;
   }
 

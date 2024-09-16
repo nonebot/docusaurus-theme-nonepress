@@ -13,7 +13,7 @@ export default function Page({
   hideSidebar = false,
   hideTableOfContents = false,
   reduceContentWidth = true,
-  sidebarId = "",
+  sidebarId,
   toc,
   minHeadingLevel,
   maxHeadingLevel,
@@ -37,7 +37,7 @@ export default function Page({
           {children}
         </div>
         {/* TOC */}
-        {!hideTableOfContents && toc && minHeadingLevel && maxHeadingLevel && (
+        {!hideTableOfContents && toc && (
           <TOC
             className="page-toc"
             toc={toc}
