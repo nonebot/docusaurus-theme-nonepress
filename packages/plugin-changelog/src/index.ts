@@ -13,7 +13,6 @@ import type {
 import type { Options, PluginOptions } from "./options";
 
 export const HEADER = `---
-hide_table_of_contents: true
 {{extraHeader}}
 ---
 
@@ -36,9 +35,9 @@ function processSection(section: string) {
   return {
     title: title.replace(/ \(.*\)/, ""),
     content: `
-# ${title.replace(/ \(.*\)/, "")}
+## ${title.replace(/ \(.*\)/, "")}
 
-${content.replace(/###/g, "##")}
+${content}
 `,
   };
 }
@@ -78,7 +77,7 @@ export default async function pluginChangelog(
 
 const pluginOptionsSchema = Joi.object<PluginOptions>({
   changelogPath: Joi.string().default("src/changelog/changelog.md"),
-  changelogHeader: Joi.string().default(HEADER),
+  changelogHeader: Joi.string().default(""),
 });
 
 export function validateOptions({
