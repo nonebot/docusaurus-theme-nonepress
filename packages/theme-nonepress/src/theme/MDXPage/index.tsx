@@ -31,7 +31,7 @@ export default function MDXPage(props: Props): JSX.Element {
   const sidebarCustomProps = frontMatter.sidebar_custom_props as {
     sidebar_id: string;
   };
-  const sidebarId = sidebarCustomProps?.sidebar_id || "";
+  const sidebarId = sidebarCustomProps?.sidebar_id;
 
   return (
     <HtmlClassNameProvider
@@ -48,7 +48,7 @@ export default function MDXPage(props: Props): JSX.Element {
           toc={toc}
           minHeadingLevel={tocMinHeadingLevel}
           maxHeadingLevel={tocMaxHeadingLevel}
-          hideTableOfContents={hideTableOfContents as unknown as boolean}
+          hideTableOfContents={!!hideTableOfContents}
         />
 
         <Page
