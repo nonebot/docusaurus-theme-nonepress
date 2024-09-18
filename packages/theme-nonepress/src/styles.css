@@ -55,3 +55,9 @@ body {
     @apply !bg-base-content/30;
   }
 }
+
+.prose :where(a):not(:where([class~="not-prose"] *)) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--p) / var(--tw-text-opacity));
+  text-decoration-line: none;
+}
