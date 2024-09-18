@@ -17,7 +17,7 @@
     @apply transition-[color,background-color] duration-500;
 
     &-active {
-      --tab-border-color: hsl(var(--bc) / 10%);
+      --tab-border-color: oklch(var(--bc) / 10%);
     }
   }
 

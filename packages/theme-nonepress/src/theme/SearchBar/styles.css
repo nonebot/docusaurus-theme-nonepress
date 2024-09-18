@@ -1,5 +1,5 @@
 :root {
-  --docsearch-primary-color: hsl(var(--p)) !important;
+  --docsearch-primary-color: oklch(var(--p)) !important;
 }
 
 .doc-search-btn {

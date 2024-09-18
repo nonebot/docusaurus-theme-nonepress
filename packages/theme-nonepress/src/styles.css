@@ -30,7 +30,7 @@ body {
   }
 
   & .peg {
-    box-shadow: 0 0 10px hsl(var(--p)), 0 0 5px hsl(var(--p));
+    box-shadow: 0 0 10px oklch(var(--p)), 0 0 5px oklch(var(--p));
 
     @apply absolute right-0 w-[100px] h-full opacity-100 rotate-3 -translate-y-1;
   }
@@ -58,6 +58,6 @@ body {
 
 .prose :where(a):not(:where([class~="not-prose"] *)) {
   --tw-text-opacity: 1;
-  color: hsl(var(--p) / var(--tw-text-opacity));
+  color: oklch(var(--p) / var(--tw-text-opacity));
   text-decoration-line: none;
 }
