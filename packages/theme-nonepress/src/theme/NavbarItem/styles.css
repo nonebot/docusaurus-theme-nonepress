@@ -1,4 +1,8 @@
 .navbar {
+  & .dropdown-content {
+    @apply mt-1;
+  }
+
   /* dropdown */
   &-dropdown {
     &-icon {
@@ -14,7 +18,7 @@
   /* docs menu */
   &-docs-menu {
     &-content {
-      @apply block w-[28rem] xl:w-[36rem] 2xl:w-[48rem] !m-0 !p-0 overflow-hidden whitespace-normal;
+      @apply block w-[28rem] xl:w-[36rem] 2xl:w-[48rem] pl-0 overflow-hidden whitespace-normal;
 
       &::before {
         @apply content-none;
