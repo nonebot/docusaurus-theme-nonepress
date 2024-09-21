@@ -1,13 +1,20 @@
-.anchor {
-  display: block;
-  position: relative;
-  top: -0.5rem;
+.anchor-sticky-navbar {
+  @apply scroll-mt-[7.5rem] lg:scroll-mt-[4.5rem];
+}
+
+.anchor-hide-navbar {
+  scroll-margin-top: 0.5rem;
 }
 
 .hash-link {
   opacity: 0;
   padding-left: 0.5rem;
-  transition: opacity var(--ifm-transition-fast);
+  transition: opacity 200ms;
+  user-select: none;
+}
+
+.hash-link::before {
+  content: "#";
 }
 
 .hash-link:focus,

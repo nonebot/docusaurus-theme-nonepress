@@ -2,15 +2,17 @@ import React from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
-
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
+import useBrokenLinks from "@docusaurus/useBrokenLinks";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import type { Props } from "@theme/Heading";
 
+import "./styles.css";
+
 export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
+  const brokenLinks = useBrokenLinks();
   const {
     navbar: { hideOnScroll },
   } = useNonepressThemeConfig();
@@ -18,6 +20,8 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   if (As === "h1" || !id) {
     return <As {...props} id={undefined} />;
   }
+
+  brokenLinks.collectAnchor(id);
 
   const anchorTitle = translate(
     {
@@ -33,7 +37,11 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   return (
     <As
       {...props}
-      className={clsx("anchor", hideOnScroll ? "" : "", props.className)}
+      className={clsx(
+        "anchor",
+        hideOnScroll ? "anchor-hide-navbar" : "anchor-sticky-navbar",
+        props.className,
+      )}
       id={id}
     >
       {props.children}

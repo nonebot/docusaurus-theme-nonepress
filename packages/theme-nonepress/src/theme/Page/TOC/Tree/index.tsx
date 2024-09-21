@@ -2,12 +2,25 @@ import React, { useCallback } from "react";
 
 import clsx from "clsx";
 
-import type { Props } from "@theme/Page/TOC/Tree";
+import Link from "@docusaurus/Link";
+import {
+  useNonepressThemeConfig,
+  useWindowSize,
+} from "@nullbot/docusaurus-theme-nonepress/client";
 
-const OFFSET = 70;
+import type { Props } from "@theme/Page/TOC/Tree";
 
 // Recursive component rendering the toc tree
 function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
+  const {
+    navbar: { hideOnScroll },
+  } = useNonepressThemeConfig();
+
+  const windowSize = useWindowSize();
+  const isMobile = windowSize === "mobile";
+
+  const OFFSET = isMobile ? 105 : 70;
+
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
@@ -30,15 +43,20 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
 
       // if scrolling down to the target, the header is hidden
       // so add back the offset for the header
-      if (targetTop > window.scrollY) {targetTop += OFFSET;}
+      if (hideOnScroll && targetTop > window.scrollY) {
+        targetTop += OFFSET;
+      }
+      window.history.pushState({}, "", eventTarget.href);
 
       requestAnimationFrame(() => {
-        if (Math.abs(targetTop - window.scrollY) > window.innerHeight)
-          {window.scrollTo(0, targetTop);}
-        else {window.scrollTo({ left: 0, top: targetTop, behavior: "smooth" });}
+        if (Math.abs(targetTop - window.scrollY) > window.innerHeight) {
+          window.scrollTo(0, targetTop);
+        } else {
+          window.scrollTo({ left: 0, top: targetTop, behavior: "smooth" });
+        }
       });
     },
-    [],
+    [OFFSET, hideOnScroll],
   );
   if (!toc.length) {
     return null;
@@ -48,14 +66,13 @@ function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
     <ul className="toc-tree">
       {toc.map((heading) => (
         <li key={heading.id}>
-          <a
-            href={`#${heading.id}`}
+          <Link
+            to={`#${heading.id}`}
             onClick={handleClick}
             className={clsx("menu-link menu-item", linkClassName)}
-          >
-            {/* Developer provided the HTML, so assume it's safe. */}
-            <span dangerouslySetInnerHTML={{ __html: heading.value }} />
-          </a>
+            // Developer provided the HTML, so assume it's safe.
+            dangerouslySetInnerHTML={{ __html: heading.value }}
+          />
           <TOCTree toc={heading.children} linkClassName={linkClassName} />
         </li>
       ))}
