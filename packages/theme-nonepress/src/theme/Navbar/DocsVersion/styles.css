@@ -11,7 +11,7 @@
   }
 
   &-content {
-    @apply rounded-md bg-base-200 shadow-lg;
+    @apply rounded-md bg-base-200 shadow-md;
     @apply w-40 z-10;
   }
 

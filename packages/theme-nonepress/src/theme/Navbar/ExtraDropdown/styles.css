@@ -11,7 +11,7 @@
 
   &-content {
     @apply min-w-[8rem] p-3;
-    @apply shadow-lg rounded-md bg-base-100 text-base-content;
+    @apply shadow-md rounded-md bg-base-100 text-base-content;
     @apply origin-top-right;
   }
 
