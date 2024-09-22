@@ -1,6 +1,10 @@
 .navbar {
   /* dropdown */
   &-dropdown {
+    &::before {
+      @apply content-[''] block h-1 left-0 absolute -bottom-1 w-full bg-transparent;
+    }
+
     &-icon {
       @apply w-2 h-2 fill-current;
     }
@@ -18,7 +22,7 @@
       @apply block w-[28rem] xl:w-[36rem] 2xl:w-[48rem] pl-0 overflow-hidden whitespace-normal;
 
       &::before {
-        @apply content-none;
+        @apply content-[''] block h-1 left-0 absolute -top-1 w-full bg-transparent;
       }
     }
 
