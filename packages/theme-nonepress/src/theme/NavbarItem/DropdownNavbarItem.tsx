@@ -56,7 +56,7 @@ function DropdownNavbarItemDesktop({
         role="button"
         isNavLink
         href={props.to ? undefined : "#"}
-        className={clsx("menu-link", className)}
+        className={clsx("menu-link menu-item", className)}
         activeClassName={clsx("menu-link-active", activeClassName)}
         {...props}
         onClick={props.to ? undefined : (e) => e.preventDefault()}

@@ -138,7 +138,11 @@ function DocsMenuDropdownNavbarItemDesktop({
         aria-haspopup="true"
         role="button"
         to={link}
-        className={clsx("menu-link", isActive && "menu-link-active", className)}
+        className={clsx(
+          "menu-link menu-item",
+          isActive && "menu-link-active",
+          className,
+        )}
         activeClassName={clsx("menu-link-active", activeClassName)}
         {...props}
       >

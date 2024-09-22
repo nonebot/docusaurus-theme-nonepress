@@ -8,6 +8,7 @@
     &-content {
       @apply rounded-md bg-base-100 shadow-lg border border-base-200;
       @apply w-max z-10 m-0 left-1/2 -translate-x-1/2;
+      @apply absolute !top-[calc(100%+0.25rem)];
     }
   }
 
@@ -15,10 +16,6 @@
   &-docs-menu {
     &-content {
       @apply block w-[28rem] xl:w-[36rem] 2xl:w-[48rem] pl-0 overflow-hidden whitespace-normal;
-
-      &::before {
-        @apply content-none;
-      }
     }
 
     &-docs {

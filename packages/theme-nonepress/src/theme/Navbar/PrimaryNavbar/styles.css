@@ -26,7 +26,7 @@
 
   /* navbar item */
   &-item {
-    @apply flex items-center text-base-content font-medium opacity-75 !bg-transparent;
+    @apply flex items-center text-base-content font-medium opacity-75;
 
     &:hover {
       @apply opacity-100;
