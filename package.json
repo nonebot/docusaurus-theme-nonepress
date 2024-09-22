@@ -31,7 +31,7 @@
     "lint:style": "stylelint \"**/*.css\"",
     "lint:style:fix": "stylelint --fix \"**/*.css\"",
     "prettier": "prettier",
-    "release:bumpVersion": "yarn lerna version --no-private --force-publish --no-push",
+    "release:bumpVersion": "yarn lerna version --no-private --force-publish --no-push -m",
     "serve:website": "yarn workspace website serve",
     "start": "yarn build:packages && yarn start:website",
     "start:website": "yarn workspace website start",
