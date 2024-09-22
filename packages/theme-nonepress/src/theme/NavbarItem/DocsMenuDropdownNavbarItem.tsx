@@ -5,21 +5,22 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
 import {
-  type GlobalVersion,
   type GlobalDoc,
+  type GlobalVersion,
   useActiveDocContext,
+  useDocsPreferredVersion,
 } from "@docusaurus/plugin-content-docs/client";
-import { useDocsPreferredVersion } from "@docusaurus/plugin-content-docs/client";
 import {
   useDocsMenuCategory,
   useDocsMenuVersions,
 } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import Heading from "@theme/Heading";
 import IconDropdown from "@theme/Icon/Dropdown";
 import DefaultNavbarItem from "@theme/NavbarItem/DefaultNavbarItem";
 import type {
-  Props,
   DesktopOrMobileNavBarItemProps,
+  Props,
 } from "@theme/NavbarItem/DocsMenuDropdownNavbarItem";
 
 import type { Doc } from "@nullbot/docusaurus-plugin-docsmenu/client";
@@ -137,11 +138,7 @@ function DocsMenuDropdownNavbarItemDesktop({
         aria-haspopup="true"
         role="button"
         to={link}
-        className={clsx(
-          "menu-link menu-item",
-          isActive && "menu-link-active",
-          className,
-        )}
+        className={clsx("menu-link", isActive && "menu-link-active", className)}
         activeClassName={clsx("menu-link-active", activeClassName)}
         {...props}
       >
@@ -175,7 +172,7 @@ function DocsMenuDropdownNavbarItemDesktop({
               onClick={versionInfo.latest.onClick}
               className="navbar-docs-menu-version-link"
             >
-              <h4 className="navbar-docs-menu-version-link-title">
+              <Heading as="h4" className="navbar-docs-menu-version-link-title">
                 {versionInfo.latest.label}
                 <span className="navbar-docs-menu-version-link-badge navbar-docs-menu-version-link-badge-stable">
                   <Translate
@@ -185,7 +182,7 @@ function DocsMenuDropdownNavbarItemDesktop({
                     Stable
                   </Translate>
                 </span>
-              </h4>
+              </Heading>
               <span className="navbar-docs-menu-version-link-description">
                 {stableInfo}
               </span>
@@ -195,7 +192,7 @@ function DocsMenuDropdownNavbarItemDesktop({
               onClick={versionInfo.next.onClick}
               className="navbar-docs-menu-version-link"
             >
-              <h4 className="navbar-docs-menu-version-link-title">
+              <Heading as="h4" className="navbar-docs-menu-version-link-title">
                 {versionInfo.next.label}
                 <span className="navbar-docs-menu-version-link-badge navbar-docs-menu-version-link-badge-next">
                   <Translate
@@ -205,7 +202,7 @@ function DocsMenuDropdownNavbarItemDesktop({
                     Development
                   </Translate>
                 </span>
-              </h4>
+              </Heading>
               <span className="navbar-docs-menu-version-link-description">
                 {nextInfo}
               </span>
