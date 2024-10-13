@@ -8,6 +8,5 @@ export default {
   plugins: [typography, daisyui],
   daisyui: {
     themes: ["light", "dark"],
-    darkTheme: false,
   },
 } satisfies Config;
