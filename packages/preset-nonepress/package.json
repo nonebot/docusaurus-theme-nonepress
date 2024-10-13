@@ -1,6 +1,6 @@
 {
   "name": "@nullbot/docusaurus-preset-nonepress",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "description": "The presets for Nonepress theme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -30,7 +30,7 @@
     "@docusaurus/theme-common": "3.5.2",
     "@docusaurus/theme-search-algolia": "3.5.2",
     "@docusaurus/types": "3.5.2",
-    "@nullbot/docusaurus-theme-nonepress": "^3.0.9"
+    "@nullbot/docusaurus-theme-nonepress": "^3.0.10"
   },
   "peerDependencies": {
     "react": "^18.0.0",
