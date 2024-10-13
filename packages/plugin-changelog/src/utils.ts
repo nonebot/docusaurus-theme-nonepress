@@ -9,36 +9,7 @@ export function chunkArray<T>(array: Array<T>, size: number): Array<Array<T>> {
   return result;
 }
 
-function getPaginator(chunks: Section[][], prevIdx: number, nextIdx: number) {
-  let content = '\n<DocPaginator className="not-prose"';
-  if (prevIdx >= 0 && prevIdx < chunks.length) {
-    const chunk = chunks?.[prevIdx]?.[0];
-    if (chunk) {
-      const title = prevIdx === 0 ? "" : encodeURIComponent(chunk.title);
-      content += ` previous={{ title: "${chunk.title}", permalink: "/changelog/${title}" }}`;
-    }
-  }
-
-  if (nextIdx >= 0 && nextIdx < chunks.length) {
-    const chunk = chunks?.[nextIdx]?.[0];
-    if (chunk) {
-      content += ` next={{ title: "${
-        chunk.title
-      }", permalink: "/changelog/${encodeURIComponent(chunk.title)}" }}`;
-    }
-  }
-
-  content += "/>";
-
-  return content;
-}
-
-export function getChunkContent(
-  chunks: Section[][],
-  chunk: Section[],
-  index: number,
-  header: string,
-): string {
+export function getChunkContent(chunk: Section[], header: string): string {
   let finalContent = "";
   for (const section of chunk) {
     if (finalContent.length !== 0) {
@@ -47,13 +18,17 @@ export function getChunkContent(
     finalContent += section!.content;
   }
 
-  return header + finalContent + getPaginator(chunks, index - 1, index + 1);
+  return header + finalContent;
 }
 
-export function getChunkTitle(chunk: Section[]): string {
+export function getChunkFilename(chunk: Section[]): string {
   const firstSectionTitle = chunk[0]!.title;
 
   return !firstSectionTitle.startsWith("v")
     ? "index.mdx"
     : `${chunk[0]!.title}.mdx`;
+}
+
+export function getChunkTitle(chunk: Section[]): string {
+  return `${chunk[0]!.title}~${chunk[chunk.length - 1]!.title}`;
 }

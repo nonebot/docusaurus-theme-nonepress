@@ -3,7 +3,12 @@ import path from "path";
 
 import { Joi } from "@docusaurus/utils-validation";
 
-import { chunkArray, getChunkContent, getChunkTitle } from "./utils";
+import {
+  chunkArray,
+  getChunkContent,
+  getChunkFilename,
+  getChunkTitle,
+} from "./utils";
 
 import type {
   LoadContext,
@@ -13,10 +18,11 @@ import type {
 import type { Options, PluginOptions } from "./options";
 
 export const HEADER = `---
+sidebar_position: {{position}}
 {{extraHeader}}
 ---
 
-import DocPaginator from "@theme/DocPaginator"
+# {{chunkTitle}}
 `;
 
 function processSection(section: string) {
@@ -47,7 +53,7 @@ export default async function pluginChangelog(
   options: PluginOptions,
 ): Promise<Plugin<void>> {
   const { siteDir } = context;
-  const generateDir = path.join(siteDir, "src/pages/changelog");
+  const generateDir = path.join(siteDir, options.changelogDestPath);
   const changelogPath = path.join(siteDir, options.changelogPath);
 
   const fileContent = await fs.readFile(changelogPath, "utf-8");
@@ -59,12 +65,12 @@ export default async function pluginChangelog(
   await Promise.all(
     chunks.map((chunk, index) =>
       fs.outputFile(
-        path.join(generateDir, getChunkTitle(chunk)),
+        path.join(generateDir, getChunkFilename(chunk)),
         getChunkContent(
-          chunks,
           chunk,
-          index,
-          HEADER.replaceAll("{{extraHeader}}", options.changelogHeader),
+          HEADER.replaceAll("{{extraHeader}}", options.changelogHeader)
+            .replaceAll("{{position}}", index.toString())
+            .replaceAll("{{chunkTitle}}", getChunkTitle(chunk)),
         ),
       ),
     ),
@@ -77,6 +83,7 @@ export default async function pluginChangelog(
 
 const pluginOptionsSchema = Joi.object<PluginOptions>({
   changelogPath: Joi.string().default("src/changelog/changelog.md"),
+  changelogDestPath: Joi.string().default("docs/changelog"),
   changelogHeader: Joi.string().default(""),
 });
 
