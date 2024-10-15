@@ -1,5 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // Only use for Tailwind IntelliSense
 
-module.exports = {
-  presets: [require("docusaurus-theme-nonepress/src/tailwind.config.js")],
+import tailwindConfig from "@nullbot/docusaurus-theme-nonepress/src/tailwind.config.ts";
+
+export default {
+  presets: [tailwindConfig],
 };
