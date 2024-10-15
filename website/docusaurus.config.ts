@@ -143,7 +143,7 @@ export default async function createConfigAsync() {
               },
               {
                 label: "Changelog",
-                to: "/changelog",
+                to: "/docs/next/changelog",
               },
             ],
           },
