@@ -1,6 +1,6 @@
 {
   "name": "@nullbot/docusaurus-tsconfig",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "description": "Docusaurus base TypeScript configuration.",
   "main": "tsconfig.json",
   "publishConfig": {
