@@ -7,6 +7,7 @@ export default {
   content: [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`],
   plugins: [typography, daisyui],
   daisyui: {
+    base: false,
     themes: ["light", "dark"],
     darkTheme: false,
   },
