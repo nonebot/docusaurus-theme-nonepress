@@ -75,8 +75,10 @@ export default async function createConfigAsync() {
       [
         "@nullbot/docusaurus-plugin-changelog",
         {
-          changelogHeader: `sidebar_custom_props:
-  sidebar_id: examples`,
+          changelogHeader: `description: Changelog
+toc_max_heading_level: 2
+sidebar_custom_props:
+  sidebar_id: changelog`,
         } satisfies ChangelogOptions,
       ],
     ],
@@ -143,7 +145,7 @@ export default async function createConfigAsync() {
               },
               {
                 label: "Changelog",
-                to: "/docs/next/changelog",
+                to: "/changelog",
               },
             ],
           },
