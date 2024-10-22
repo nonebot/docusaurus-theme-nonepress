@@ -157,6 +157,7 @@ sidebar_custom_props:
       },
       docs: {
         sidebar: {
+          autoCollapseCategories: true,
           hideable: true,
         },
       },

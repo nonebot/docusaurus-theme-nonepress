@@ -17,7 +17,7 @@ const DEFAULT_DOCS_CONFIG: ThemeConfig["docs"] = {
   versionPersistence: "localStorage",
   sidebar: {
     hideable: false,
-    autoCollapseCategories: false,
+    autoCollapseCategories: true,
   },
 };
 
