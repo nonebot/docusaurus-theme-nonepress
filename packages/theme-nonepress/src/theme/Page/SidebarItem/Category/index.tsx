@@ -25,19 +25,19 @@ import type { Props } from "@theme/Page/SidebarItem/Category";
 function useAutoExpandActiveCategory({
   isActive,
   collapsed,
-  setCollapsed,
+  updateCollapsed,
 }: {
   isActive: boolean;
   collapsed: boolean;
-  setCollapsed: (b: boolean) => void;
+  updateCollapsed: (b: boolean) => void;
 }) {
   const wasActive = usePrevious(isActive);
   useEffect(() => {
     const justBecameActive = isActive && !wasActive;
     if (justBecameActive && collapsed) {
-      setCollapsed(false);
+      updateCollapsed(false);
     }
-  }, [isActive, wasActive, collapsed, setCollapsed]);
+  }, [isActive, wasActive, collapsed, updateCollapsed]);
 }
 
 /**
@@ -94,12 +94,12 @@ export default function SidebarItemCategory({
   });
 
   const { expandedItem, setExpandedItem } = useDocSidebarItemsExpandedState();
-
-  const updateCollapsed = (collapsed: boolean) => {
-    setExpandedItem(collapsed ? null : index);
-    setCollapsed(collapsed);
+  // Use this instead of `setCollapsed`, because it is also reactive
+  const updateCollapsed = (toCollapsed: boolean = !collapsed) => {
+    setExpandedItem(toCollapsed ? null : index);
+    setCollapsed(toCollapsed);
   };
-
+  useAutoExpandActiveCategory({ isActive, collapsed, updateCollapsed });
   useEffect(() => {
     if (
       collapsible &&
@@ -110,12 +110,6 @@ export default function SidebarItemCategory({
       setCollapsed(true);
     }
   }, [collapsible, expandedItem, index, setCollapsed, autoCollapseCategories]);
-
-  useAutoExpandActiveCategory({
-    isActive,
-    collapsed,
-    setCollapsed: updateCollapsed,
-  });
 
   const subItems = (
     <SidebarItems level={level + 1} path={activePath} items={items} />

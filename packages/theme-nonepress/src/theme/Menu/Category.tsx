@@ -46,6 +46,7 @@ export default function MenuCategory({
         </Link>
         {collapsible && (
           <button
+            type="button"
             className="menu-category-button"
             onClick={(e) => {
               e.preventDefault();
