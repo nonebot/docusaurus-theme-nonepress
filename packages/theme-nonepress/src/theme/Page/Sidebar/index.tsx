@@ -39,7 +39,7 @@ export default function Sidebar({
   }
 
   return (
-    <div className={clsx("sidebar", className)}>
+    <div className={clsx("sidebar thin-scrollbar", className)}>
       {hideOnScroll && (
         <Logo
           className="sidebar-brand"
@@ -47,7 +47,7 @@ export default function Sidebar({
           titleClassName="sidebar-brand-title"
         />
       )}
-      <div className="sidebar-content thin-scrollbar">
+      <div className="sidebar-content">
         <SidebarContent items={sidebarContent} path={pathname} />
         <div className="sidebar-curtain" />
       </div>

@@ -1,5 +1,5 @@
 .sidebar {
-  @apply flex flex-col h-full max-h-screen -mt-16;
+  @apply flex flex-col h-full max-h-screen -mt-16 overflow-y-auto;
 
   &:not(:has(> &-brand)) {
     @apply pt-16;
@@ -18,7 +18,7 @@
   }
 
   &-content {
-    @apply px-4 overflow-y-auto;
+    @apply px-4;
   }
 
   &-curtain {
