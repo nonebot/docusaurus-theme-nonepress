@@ -95,7 +95,7 @@ export default async function pluginChangelog(
   await Promise.all(
     chunks.map((chunk, index) =>
       fs.outputFile(
-        path.join(generateDir, getChunkFilename(chunk)),
+        path.join(generateDir, getChunkFilename(chunk, index)),
         getChunkContent(
           chunk,
           HEADER.replaceAll("{{extraHeader}}", options.changelogHeader)

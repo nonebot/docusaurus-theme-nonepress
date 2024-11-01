@@ -49,12 +49,8 @@ export function getChunkContent(chunk: Section[], header: string): string {
   return header + finalContent;
 }
 
-export function getChunkFilename(chunk: Section[]): string {
-  const firstSectionTitle = chunk[0]!.title;
-
-  return !firstSectionTitle.startsWith("v")
-    ? "index.mdx"
-    : `${chunk[0]!.title}.mdx`;
+export function getChunkFilename(chunk: Section[], index: number): string {
+  return index > 0 ? `${chunk[0]!.title}.mdx` : "index.mdx";
 }
 
 export function getChunkTitle(chunk: Section[]): string {

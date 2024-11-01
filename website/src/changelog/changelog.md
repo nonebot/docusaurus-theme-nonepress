@@ -1,22 +1,93 @@
+---
+description: Changelog
+toc_max_heading_level: 2
+---
+
 # 更新日志
 
-## 最近更新
+## v2.4.0
 
 ### 🚀 新功能
 
+- Feature: 跳过部分非必要的 task group 创建 [@yanyongyu](https://github.com/yanyongyu) ([#3095](https://github.com/nonebot/nonebot2/pull/3095))
+- Feature: 迁移至结构化并发框架 AnyIO [@yanyongyu](https://github.com/yanyongyu) ([#3053](https://github.com/nonebot/nonebot2/pull/3053))
 - Feature: 添加 websockets 驱动器 proxy 连接警告 [@shoucandanghehe](https://github.com/shoucandanghehe) ([#2916](https://github.com/nonebot/nonebot2/pull/2916))
+
+### 🐛 Bug 修复
+
+- Fix: 修复结构化并发子依赖取消缓存问题 [@yanyongyu](https://github.com/yanyongyu) ([#3084](https://github.com/nonebot/nonebot2/pull/3084))
 
 ### 📝 文档
 
+- Docs: 新增 nonebug 新版启动需要的配置 [@yanyongyu](https://github.com/yanyongyu) ([#3087](https://github.com/nonebot/nonebot2/pull/3087))
+- Docs: 修复侧边栏滚动 [@StarHeartHunt](https://github.com/StarHeartHunt) ([#3062](https://github.com/nonebot/nonebot2/pull/3062))
+- Docs: 升级到 Docusaurus V3 [@StarHeartHunt](https://github.com/StarHeartHunt) ([#2956](https://github.com/nonebot/nonebot2/pull/2956))
+- Docs: 修改文档示例代码与部分表述 [@yixinNB](https://github.com/yixinNB) ([#2797](https://github.com/nonebot/nonebot2/pull/2797))
 - Docs: 添加钩子函数 IgnoredException 用法 [@refparo](https://github.com/refparo) ([#2912](https://github.com/nonebot/nonebot2/pull/2912))
 
 ### 💫 杂项
 
+- Plugin: 移除不再维护的插件 [@ssttkkl](https://github.com/ssttkkl) ([#3040](https://github.com/nonebot/nonebot2/pull/3040))
+- Plugin: 删除不再维护的 simplemusic hikarisearch 插件 [@MeetWq](https://github.com/MeetWq) ([#2933](https://github.com/nonebot/nonebot2/pull/2933))
 - Plugin: 删除插件 `nonebot-plugin-ntqq-restart` [@kanbereina](https://github.com/kanbereina) ([#2926](https://github.com/nonebot/nonebot2/pull/2926))
 - Adapter: 移除社区版 mirai 适配器 [@RF-Tar-Railt](https://github.com/RF-Tar-Railt) ([#2909](https://github.com/nonebot/nonebot2/pull/2909))
 
 ### 🍻 插件发布
 
+- Plugin: Comfyui绘图插件 [@noneflow](https://github.com/noneflow) ([#3081](https://github.com/nonebot/nonebot2/pull/3081))
+- Plugin: 每日wife [@noneflow](https://github.com/noneflow) ([#3094](https://github.com/nonebot/nonebot2/pull/3094))
+- Plugin: nonebot_plugin_impart [@noneflow](https://github.com/noneflow) ([#3079](https://github.com/nonebot/nonebot2/pull/3079))
+- Plugin: Pix图库 [@noneflow](https://github.com/noneflow) ([#3083](https://github.com/nonebot/nonebot2/pull/3083))
+- Plugin: nonebot_plugin_partner_join [@noneflow](https://github.com/noneflow) ([#3051](https://github.com/nonebot/nonebot2/pull/3051))
+- Plugin: pong [@noneflow](https://github.com/noneflow) ([#3066](https://github.com/nonebot/nonebot2/pull/3066))
+- Plugin: Bot的消息也是消息 [@noneflow](https://github.com/noneflow) ([#3064](https://github.com/nonebot/nonebot2/pull/3064))
+- Plugin: BiliMusic Downloader [@noneflow](https://github.com/noneflow) ([#3046](https://github.com/nonebot/nonebot2/pull/3046))
+- Plugin: 防撤回 [@noneflow](https://github.com/noneflow) ([#3055](https://github.com/nonebot/nonebot2/pull/3055))
+- Plugin: nonebot_plugin_mai_arcade [@noneflow](https://github.com/noneflow) ([#3047](https://github.com/nonebot/nonebot2/pull/3047))
+- Plugin: DDNet 成绩查询 [@noneflow](https://github.com/noneflow) ([#3031](https://github.com/nonebot/nonebot2/pull/3031))
+- Plugin: 省流 [@noneflow](https://github.com/noneflow) ([#3052](https://github.com/nonebot/nonebot2/pull/3052))
+- Plugin: FishSpeechTTS [@noneflow](https://github.com/noneflow) ([#3050](https://github.com/nonebot/nonebot2/pull/3050))
+- Plugin: 语音点歌 [@noneflow](https://github.com/noneflow) ([#3037](https://github.com/nonebot/nonebot2/pull/3037))
+- Plugin: Gotify [@noneflow](https://github.com/noneflow) ([#3043](https://github.com/nonebot/nonebot2/pull/3043))
+- Plugin: 涩图插件 [@noneflow](https://github.com/noneflow) ([#3039](https://github.com/nonebot/nonebot2/pull/3039))
+- Plugin: boom [@noneflow](https://github.com/noneflow) ([#3017](https://github.com/nonebot/nonebot2/pull/3017))
+- Plugin: 恶魔轮盘赌 [@noneflow](https://github.com/noneflow) ([#3033](https://github.com/nonebot/nonebot2/pull/3033))
+- Plugin: 机厅 [@noneflow](https://github.com/noneflow) ([#3029](https://github.com/nonebot/nonebot2/pull/3029))
+- Plugin: PM帮助 [@noneflow](https://github.com/noneflow) ([#3023](https://github.com/nonebot/nonebot2/pull/3023))
+- Plugin: NailongRemove [@noneflow](https://github.com/noneflow) ([#2972](https://github.com/nonebot/nonebot2/pull/2972))
+- Plugin: 团购 [@noneflow](https://github.com/noneflow) ([#3027](https://github.com/nonebot/nonebot2/pull/3027))
+- Plugin: 真寻日报 [@noneflow](https://github.com/noneflow) ([#3021](https://github.com/nonebot/nonebot2/pull/3021))
+- Plugin: 运行状态 [@noneflow](https://github.com/noneflow) ([#3019](https://github.com/nonebot/nonebot2/pull/3019))
+- Plugin: 西工大翱翔门户成绩监控 [@noneflow](https://github.com/noneflow) ([#3013](https://github.com/nonebot/nonebot2/pull/3013))
+- Plugin: nb插件更新器 [@noneflow](https://github.com/noneflow) ([#3015](https://github.com/nonebot/nonebot2/pull/3015))
+- Plugin: 涩涩保存器 [@noneflow](https://github.com/noneflow) ([#2988](https://github.com/nonebot/nonebot2/pull/2988))
+- Plugin: nonebot_plugin_BFVsearch [@noneflow](https://github.com/noneflow) ([#3008](https://github.com/nonebot/nonebot2/pull/3008))
+- Plugin: lingyi_chat [@noneflow](https://github.com/noneflow) ([#3006](https://github.com/nonebot/nonebot2/pull/3006))
+- Plugin: ZXPM插件管理 [@noneflow](https://github.com/noneflow) ([#3003](https://github.com/nonebot/nonebot2/pull/3003))
+- Plugin: MinecraftWatcher [@noneflow](https://github.com/noneflow) ([#3010](https://github.com/nonebot/nonebot2/pull/3010))
+- Plugin: BF5_grouptools [@noneflow](https://github.com/noneflow) ([#3004](https://github.com/nonebot/nonebot2/pull/3004))
+- Plugin: lolinfo [@noneflow](https://github.com/noneflow) ([#2997](https://github.com/nonebot/nonebot2/pull/2997))
+- Plugin: osu! Match Monitor [@noneflow](https://github.com/noneflow) ([#2985](https://github.com/nonebot/nonebot2/pull/2985))
+- Plugin: Marsho AI插件 [@noneflow](https://github.com/noneflow) ([#2993](https://github.com/nonebot/nonebot2/pull/2993))
+- Plugin: nonechat [@noneflow](https://github.com/noneflow) ([#2990](https://github.com/nonebot/nonebot2/pull/2990))
+- Plugin: nonebot_plugin_SimpleToWrite [@noneflow](https://github.com/noneflow) ([#2995](https://github.com/nonebot/nonebot2/pull/2995))
+- Plugin: Beat Saber查分器 [@noneflow](https://github.com/noneflow) ([#2974](https://github.com/nonebot/nonebot2/pull/2974))
+- Plugin: githubmodels [@noneflow](https://github.com/noneflow) ([#2945](https://github.com/nonebot/nonebot2/pull/2945))
+- Plugin: 给我点颜色瞧瞧 [@noneflow](https://github.com/noneflow) ([#2984](https://github.com/nonebot/nonebot2/pull/2984))
+- Plugin: pjsk-helper [@noneflow](https://github.com/noneflow) ([#2980](https://github.com/nonebot/nonebot2/pull/2980))
+- Plugin: 趣味内容插件 [@noneflow](https://github.com/noneflow) ([#2981](https://github.com/nonebot/nonebot2/pull/2981))
+- Plugin: 计算器：游戏 [@noneflow](https://github.com/noneflow) ([#2976](https://github.com/nonebot/nonebot2/pull/2976))
+- Plugin: nonebot-plugin-yareminder [@noneflow](https://github.com/noneflow) ([#2964](https://github.com/nonebot/nonebot2/pull/2964))
+- Plugin: 批量撤回 [@noneflow](https://github.com/noneflow) ([#2966](https://github.com/nonebot/nonebot2/pull/2966))
+- Plugin: inspect [@noneflow](https://github.com/noneflow) ([#2971](https://github.com/nonebot/nonebot2/pull/2971))
+- Plugin: 通用信息 [@noneflow](https://github.com/noneflow) ([#2969](https://github.com/nonebot/nonebot2/pull/2969))
+- Plugin: SSE日志输出流 [@noneflow](https://github.com/noneflow) ([#2960](https://github.com/nonebot/nonebot2/pull/2960))
+- Plugin: WITFF [@noneflow](https://github.com/noneflow) ([#2955](https://github.com/nonebot/nonebot2/pull/2955))
+- Plugin: weather-rank [@noneflow](https://github.com/noneflow) ([#2949](https://github.com/nonebot/nonebot2/pull/2949))
+- Plugin: 二维码生成器 [@noneflow](https://github.com/noneflow) ([#2942](https://github.com/nonebot/nonebot2/pull/2942))
+- Plugin: 次元星辰 [@noneflow](https://github.com/noneflow) ([#2935](https://github.com/nonebot/nonebot2/pull/2935))
+- Plugin: nonebot-plugin-tarina-lang-turbo [@noneflow](https://github.com/noneflow) ([#2938](https://github.com/nonebot/nonebot2/pull/2938))
+- Plugin: 狼人杀 [@noneflow](https://github.com/noneflow) ([#2932](https://github.com/nonebot/nonebot2/pull/2932))
 - Plugin: 阿瓦隆 [@noneflow](https://github.com/noneflow) ([#2915](https://github.com/nonebot/nonebot2/pull/2915))
 - Plugin: 消音器 [@noneflow](https://github.com/noneflow) ([#2919](https://github.com/nonebot/nonebot2/pull/2919))
 - Plugin: 悠悠 [@noneflow](https://github.com/noneflow) ([#2928](https://github.com/nonebot/nonebot2/pull/2928))
@@ -29,6 +100,11 @@
 - Plugin: nonebot_plugin_mute [@noneflow](https://github.com/noneflow) ([#2893](https://github.com/nonebot/nonebot2/pull/2893))
 - Plugin: LiteyukiBot(plugin) [@noneflow](https://github.com/noneflow) ([#2905](https://github.com/nonebot/nonebot2/pull/2905))
 - Plugin: 复读6 [@noneflow](https://github.com/noneflow) ([#2900](https://github.com/nonebot/nonebot2/pull/2900))
+
+### 🍻 机器人发布
+
+- Bot: CanrotBot [@noneflow](https://github.com/noneflow) ([#3086](https://github.com/nonebot/nonebot2/pull/3086))
+- Bot: 小安提Bot [@noneflow](https://github.com/noneflow) ([#3061](https://github.com/nonebot/nonebot2/pull/3061))
 
 ## v2.3.3
 
