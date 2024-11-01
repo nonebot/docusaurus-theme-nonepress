@@ -18,17 +18,16 @@ export function getPaginator(
   if (prevIdx >= 0 && prevIdx < chunks.length) {
     const chunk = chunks?.[prevIdx]?.[0];
     if (chunk) {
-      const title = prevIdx === 0 ? "" : encodeURIComponent(chunk.title);
-      content += ` previous={{ title: "${chunk.title}", permalink: "/changelog/${title}" }}`;
+      const href = prevIdx > 0 ? prevIdx.toString() : "";
+      content += ` previous={{ title: "${chunk.title}", permalink: "/changelog/${href}" }}`;
     }
   }
 
   if (nextIdx >= 0 && nextIdx < chunks.length) {
     const chunk = chunks?.[nextIdx]?.[0];
     if (chunk) {
-      content += ` next={{ title: "${
-        chunk.title
-      }", permalink: "/changelog/${encodeURIComponent(chunk.title)}" }}`;
+      const href = nextIdx > 0 ? nextIdx.toString() : "";
+      content += ` next={{ title: "${chunk.title}", permalink: "/changelog/${href}" }}`;
     }
   }
 
@@ -49,8 +48,8 @@ export function getChunkContent(chunk: Section[], header: string): string {
   return header + finalContent;
 }
 
-export function getChunkFilename(chunk: Section[], index: number): string {
-  return index > 0 ? `${chunk[0]!.title}.mdx` : "index.mdx";
+export function getChunkFilename(index: number): string {
+  return index > 0 ? `${index}.mdx` : "index.mdx";
 }
 
 export function getChunkTitle(chunk: Section[]): string {

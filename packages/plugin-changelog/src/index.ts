@@ -19,13 +19,19 @@ import type {
 import type { Options, PluginOptions } from "./options";
 import type { ChangelogChunk } from "./types";
 
-export const HEADER = `---
-{{extraHeader}}
+export const HEADER = ({
+  extraHeader,
+  chunkTitle,
+}: {
+  extraHeader: string;
+  chunkTitle: string;
+}): string => `---
+${extraHeader}
 ---
 
 import DocPaginator from "@theme/DocPaginator"
 
-# {{chunkTitle}}
+# ${chunkTitle}
 `;
 
 function processSection(section: string) {
@@ -95,12 +101,13 @@ export default async function pluginChangelog(
   await Promise.all(
     chunks.map((chunk, index) =>
       fs.outputFile(
-        path.join(generateDir, getChunkFilename(chunk, index)),
+        path.join(generateDir, getChunkFilename(index)),
         getChunkContent(
           chunk,
-          HEADER.replaceAll("{{extraHeader}}", options.changelogHeader)
-            .replaceAll("{{position}}", index.toString())
-            .replaceAll("{{chunkTitle}}", getChunkTitle(chunk)),
+          HEADER({
+            extraHeader: options.changelogHeader,
+            chunkTitle: getChunkTitle(chunk),
+          }),
         ) + getPaginator(chunks, index - 1, index + 1),
       ),
     ),
@@ -116,6 +123,7 @@ const pluginOptionsSchema = Joi.object<PluginOptions>({
   changelogDestPath: Joi.string().default("src/pages/changelog"),
   changelogHeader: Joi.string().default(""),
   changelogPerPage: Joi.number().default(10),
+  changelogSidebarID: Joi.string().default("changelog"),
 });
 
 export function validateOptions({
