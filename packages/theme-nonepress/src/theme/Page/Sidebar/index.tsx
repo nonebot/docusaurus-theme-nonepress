@@ -18,7 +18,8 @@ import "./styles.css";
 
 export default function Sidebar({
   className,
-  sidebarId = "",
+  sidebarId,
+  sidebarVersion,
 }: Props): JSX.Element | null {
   const { pathname } = useLocation();
   const windowSize = useWindowSize();
@@ -30,8 +31,8 @@ export default function Sidebar({
 
   const docsVersionCandidate = useDocsVersionCandidates();
   const sidebarContent = useVersionedSidebar(
-    docsVersionCandidate[0].name,
-    sidebarId,
+    sidebarVersion || docsVersionCandidate[0].name,
+    sidebarId || "",
   );
 
   if (isMobile || !sidebarContent || sidebarContent.length === 0) {

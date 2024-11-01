@@ -29,9 +29,11 @@ export default function MDXPage(props: Props): JSX.Element {
   } = frontMatter;
 
   const sidebarCustomProps = frontMatter.sidebar_custom_props as {
-    sidebar_id: string;
+    sidebar_id?: string;
+    sidebar_version?: string;
   };
   const sidebarId = sidebarCustomProps?.sidebar_id;
+  const sidebarVersion = sidebarCustomProps?.sidebar_version;
 
   return (
     <HtmlClassNameProvider
@@ -56,6 +58,7 @@ export default function MDXPage(props: Props): JSX.Element {
           minHeadingLevel={tocMinHeadingLevel!}
           maxHeadingLevel={tocMaxHeadingLevel!}
           sidebarId={sidebarId}
+          sidebarVersion={sidebarVersion}
           toc={toc}
         >
           <article className="prose max-w-full">

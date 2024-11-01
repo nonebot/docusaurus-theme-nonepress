@@ -1519,6 +1519,7 @@ declare module "@theme/Page" {
     readonly hideTableOfContents?: boolean;
     readonly reduceContentWidth?: boolean;
     readonly sidebarId?: string;
+    readonly sidebarVersion?: string;
     readonly toc?: readonly TOCItem[];
     readonly minHeadingLevel?: number;
     readonly maxHeadingLevel?: number;
@@ -1618,6 +1619,7 @@ declare module "@theme/Page/Sidebar" {
   export interface Props {
     readonly className?: string;
     readonly sidebarId?: string;
+    readonly sidebarVersion?: string;
   }
 
   export default function Sidebar(props: Props): JSX.Element | null;

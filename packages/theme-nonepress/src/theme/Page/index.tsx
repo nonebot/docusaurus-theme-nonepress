@@ -14,6 +14,7 @@ export default function Page({
   hideTableOfContents = false,
   reduceContentWidth = true,
   sidebarId,
+  sidebarVersion,
   toc,
   minHeadingLevel,
   maxHeadingLevel,
@@ -24,7 +25,7 @@ export default function Page({
     <div className="page">
       {/* sidebar */}
       {!hideSidebar && (
-        <Sidebar sidebarId={sidebarId} className="page-sidebar" />
+        <Sidebar sidebarId={sidebarId} sidebarVersion={sidebarVersion} className="page-sidebar" />
       )}
       {/* main */}
       <main className="page-main">
