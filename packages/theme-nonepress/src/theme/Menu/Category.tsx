@@ -13,7 +13,7 @@ export default function MenuCategory({
   items,
   href,
   collapsed = false,
-  setCollapsed = () => undefined,
+  updateCollapsed = () => undefined,
   collapsible = true,
   className,
   activeClassName,
@@ -31,10 +31,10 @@ export default function MenuCategory({
             collapsible
               ? (e) => {
                   if (href) {
-                    setCollapsed(false);
+                    updateCollapsed(false);
                   } else {
                     e.preventDefault();
-                    setCollapsed(!collapsed);
+                    updateCollapsed();
                   }
                 }
               : undefined
@@ -50,7 +50,7 @@ export default function MenuCategory({
             className="menu-category-button"
             onClick={(e) => {
               e.preventDefault();
-              setCollapsed(!collapsed);
+              updateCollapsed();
             }}
           >
             <IconDropdown

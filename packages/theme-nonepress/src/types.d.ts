@@ -1195,7 +1195,7 @@ declare module "@theme/Menu/Category" {
     readonly items: React.ReactNode;
     readonly collapsed?: boolean;
     readonly collapsible?: boolean;
-    readonly setCollapsed?: (collapsed: boolean) => void;
+    readonly updateCollapsed?: (toCollapsed?: boolean) => void;
     readonly wrapperClassName?: string;
   }
 

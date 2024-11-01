@@ -10,7 +10,7 @@ function SidebarItems({ items, path, level }: Props): JSX.Element {
     <DocSidebarItemsExpandedStateProvider>
       {items.map((item, index) => (
         <SidebarItem
-          key={index}
+          key={`${path}_${index}`}
           index={index}
           level={level}
           item={item}

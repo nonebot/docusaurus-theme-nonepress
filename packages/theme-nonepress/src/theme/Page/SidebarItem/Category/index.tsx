@@ -92,7 +92,7 @@ export default function SidebarItemCategory({
       return isActive ? false : item.collapsed;
     },
   });
-
+  
   const { expandedItem, setExpandedItem } = useDocSidebarItemsExpandedState();
   // Use this instead of `setCollapsed`, because it is also reactive
   const updateCollapsed = (toCollapsed: boolean = !collapsed) => {
@@ -126,7 +126,7 @@ export default function SidebarItemCategory({
       label={label}
       items={subItems}
       collapsed={collapsed}
-      setCollapsed={updateCollapsed}
+      updateCollapsed={updateCollapsed}
       collapsible={collapsible}
       aria-current={isCurrentPage ? "page" : undefined}
       aria-expanded={collapsible ? !collapsed : undefined}

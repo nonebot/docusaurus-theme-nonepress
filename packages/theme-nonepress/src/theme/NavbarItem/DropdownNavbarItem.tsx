@@ -85,6 +85,9 @@ function DropdownNavbarItemMobile({
   const { collapsed, setCollapsed } = useCollapsible({
     initialState: () => !containsActive,
   });
+  const updateCollapsed = (toCollapsed: boolean = !collapsed) => {
+    setCollapsed(toCollapsed);
+  };
 
   // Expand/collapse if any item active after a navigation
   useEffect(() => {
@@ -102,7 +105,7 @@ function DropdownNavbarItemMobile({
       {...props}
       collapsed={collapsed}
       collapsible
-      setCollapsed={setCollapsed}
+      updateCollapsed={updateCollapsed}
       items={subItems}
     />
   );
