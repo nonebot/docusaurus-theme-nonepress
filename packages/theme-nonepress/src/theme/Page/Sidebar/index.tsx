@@ -50,7 +50,6 @@ export default function Sidebar({
       )}
       <div className="sidebar-content">
         <SidebarContent items={sidebarContent} path={pathname} />
-        <div className="sidebar-curtain" />
       </div>
     </div>
   );
