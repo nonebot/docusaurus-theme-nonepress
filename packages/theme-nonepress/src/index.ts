@@ -155,14 +155,17 @@ export default async function themeNonepress(
       return modules;
     },
 
-    configureWebpack() {
+    configureWebpack(__config, __isServer, { currentBundler }) {
       const prismLanguages = additionalLanguages
         .map((lang) => `prism-${lang}`)
         .join("|");
 
       return {
         plugins: [
-          new ContextReplacementPlugin(
+          // This allows better optimization by only bundling those components
+          // that the user actually needs, because the modules are dynamically
+          // required and can't be known during compile time.
+          new currentBundler.instance.ContextReplacementPlugin(
             /prismjs[\\/]components$/,
             new RegExp(`^./(${prismLanguages})$`),
           ),

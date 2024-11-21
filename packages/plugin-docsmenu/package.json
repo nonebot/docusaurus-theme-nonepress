@@ -30,12 +30,12 @@
     "watch": "tsc --build --watch"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.5.2",
-    "@docusaurus/plugin-content-docs": "^3.5.2"
+    "@docusaurus/core": "^3.6.2",
+    "@docusaurus/plugin-content-docs": "^3.6.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.5.2",
-    "@docusaurus/types": "^3.5.2"
+    "@docusaurus/module-type-aliases": "3.6.2",
+    "@docusaurus/types": "^3.6.2"
   },
   "gitHead": "043290be093671405869575d2af51b1d71c23bce"
 }
