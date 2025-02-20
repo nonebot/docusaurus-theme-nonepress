@@ -1,9 +1,14 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, {
+  type ReactNode,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
-import Translate, { translate } from "@docusaurus/Translate";
 import { useAllDocsData } from "@docusaurus/plugin-content-docs/client";
 import {
   HtmlClassNameProvider,
@@ -16,9 +21,10 @@ import {
   useAlgoliaThemeConfig,
   useSearchResultUrlProcessor,
 } from "@docusaurus/theme-search-algolia/client";
+import Translate, { translate } from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import algoliaSearchHelper from "algoliasearch-helper";
-import algoliaSearch from "algoliasearch/lite";
+import { liteClient } from "algoliasearch/lite";
 
 import Heading from "@theme/Heading";
 import IconAlgolia from "@theme/Icon/Algolia";
@@ -142,7 +148,7 @@ type ResultDispatcher =
   | { type: "update"; value: ResultDispatcherState }
   | { type: "advance"; value?: undefined };
 
-function SearchPageContent(): JSX.Element {
+function SearchPageContent(): ReactNode {
   const {
     i18n: { currentLocale },
   } = useDocusaurusContext();
@@ -207,7 +213,7 @@ function SearchPageContent(): JSX.Element {
     ? ["language", "docusaurus_tag"]
     : [];
 
-  const algoliaClient = algoliaSearch(appId, apiKey);
+  const algoliaClient = liteClient(appId, apiKey);
   const algoliaHelper = algoliaSearchHelper(algoliaClient, indexName, {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: why errors happens after upgrading to TS 5.5 ?
@@ -369,7 +375,7 @@ function SearchPageContent(): JSX.Element {
         <meta property="robots" content="noindex, follow" />
       </Head>
 
-      <main className="prose max-w-none">
+      <main className="doc-search-page prose">
         <Heading as="h1">{getTitle()}</Heading>
 
         <form
@@ -393,6 +399,7 @@ function SearchPageContent(): JSX.Element {
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
             autoComplete="off"
+            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
           />
 
@@ -447,7 +454,9 @@ function SearchPageContent(): JSX.Element {
                         {breadcrumbs.map((html, index) => (
                           <li
                             key={index}
+                            className="breadcrumbs__item"
                             // Developer provided the HTML, so assume it's safe.
+                            // eslint-disable-next-line react/no-danger
                             dangerouslySetInnerHTML={{ __html: html }}
                           />
                         ))}
@@ -459,6 +468,7 @@ function SearchPageContent(): JSX.Element {
                     <p
                       className="doc-search-page-result-summary"
                       // Developer provided the HTML, so assume it's safe.
+                      // eslint-disable-next-line react/no-danger
                       dangerouslySetInnerHTML={{ __html: summary }}
                     />
                   )}
@@ -479,7 +489,7 @@ function SearchPageContent(): JSX.Element {
               </p>
             ),
             !!searchResultState.loading && (
-              <div className="doc-search-page-spinner-container">
+              <div key="spinner-container" className="doc-search-page-spinner-container">
                 <div
                   key="spinner"
                   className="loading loading-spinner doc-search-page-spinner"
@@ -504,7 +514,7 @@ function SearchPageContent(): JSX.Element {
   );
 }
 
-export default function SearchPage(): JSX.Element {
+export default function SearchPage(): ReactNode {
   return (
     <HtmlClassNameProvider className="search-page-wrapper">
       <SearchPageContent />

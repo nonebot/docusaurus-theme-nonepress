@@ -1,4 +1,6 @@
 .doc-search-page {
+  @apply max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 w-full pt-8;
+
   &-form {
     @apply w-full;
 

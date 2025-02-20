@@ -30,11 +30,11 @@
     "build": "tsc --build"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.6.2",
-    "@docusaurus/plugin-content-docs": "^3.6.2"
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/plugin-content-docs": "3.7.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.6.2",
-    "@docusaurus/types": "^3.6.2"
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/types": "3.7.0"
   }
 }

@@ -36,19 +36,18 @@
     "copy:watch": "node ../../scripts/copyFiles.js --watch"
   },
   "dependencies": {
-    "@docsearch/react": "3.5.2",
-    "@docusaurus/core": "3.6.2",
-    "@docusaurus/mdx-loader": "3.6.2",
-    "@docusaurus/module-type-aliases": "3.6.2",
-    "@docusaurus/plugin-content-blog": "3.6.2",
-    "@docusaurus/plugin-content-docs": "3.6.2",
-    "@docusaurus/plugin-content-pages": "3.6.2",
-    "@docusaurus/theme-common": "3.6.2",
-    "@docusaurus/theme-translations": "3.6.2",
-    "@docusaurus/types": "3.6.2",
-    "@docusaurus/utils": "3.6.2",
-    "@docusaurus/utils-common": "3.6.2",
-    "@docusaurus/utils-validation": "3.6.2",
+    "@docsearch/react": "^3.8.1",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/mdx-loader": "3.7.0",
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/plugin-content-docs": "3.7.0",
+    "@docusaurus/plugin-content-pages": "3.7.0",
+    "@docusaurus/theme-common": "3.7.0",
+    "@docusaurus/theme-translations": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "@docusaurus/utils": "3.7.0",
+    "@docusaurus/utils-common": "3.7.0",
+    "@docusaurus/utils-validation": "3.7.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
@@ -58,8 +57,8 @@
     "@nullbot/docusaurus-plugin-docsmenu": "^3.3.0",
     "@nullbot/docusaurus-plugin-getsidebar": "^3.3.0",
     "@tailwindcss/typography": "^0.5.0",
-    "algoliasearch": "^4.18.0",
-    "algoliasearch-helper": "^3.13.3",
+    "algoliasearch": "^5.17.1",
+    "algoliasearch-helper": "^3.22.6",
     "autoprefixer": "^10.3.1",
     "clsx": "^2.0.0",
     "copy-text-to-clipboard": "^3.2.0",
@@ -86,8 +85,8 @@
     "utility-types": "^3.10.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
     "node": ">=18.0"

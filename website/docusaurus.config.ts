@@ -7,14 +7,6 @@ import type * as Preset from "@nullbot/docusaurus-preset-nonepress";
 const darkCodeTheme = themes.dracula;
 const lightCodeTheme = themes.github;
 
-// By default, we use Docusaurus Faster
-// DOCUSAURUS_SLOWER=true is useful for benchmarking faster against slower
-// hyperfine --prepare 'yarn clear:website' --runs 3 'DOCUSAURUS_SLOWER=true yarn build:website:fast' 'yarn build:website:fast'
-const isSlower = process.env.DOCUSAURUS_SLOWER === "true";
-if (isSlower) {
-  console.log("🐢 Using slower Docusaurus build");
-}
-
 export default async function createConfigAsync() {
   return {
     title: "NonePress",
@@ -24,9 +16,9 @@ export default async function createConfigAsync() {
     // Set the production url of your site here
     url: "https://nonepress.nonebot.dev",
 
-    // future: {
-    //   experimental_faster: !isSlower,
-    // },
+    future: {
+      experimental_faster: true,
+    },
 
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
@@ -46,10 +38,6 @@ export default async function createConfigAsync() {
     i18n: {
       defaultLocale: "en",
       locales: ["en", "zh-Hans"],
-    },
-
-    future: {
-      experimental_faster: true,
     },
 
     plugins: [
@@ -88,6 +76,12 @@ sidebar_custom_props:
     ],
 
     themeConfig: {
+      // algolia: {
+      //   appId: "X0X5UACHZQ",
+      //   apiKey: "ac03e1ac2bd0812e2ea38c0cc1ea38c5",
+      //   indexName: "nonebot",
+      //   contextualSearch: true,
+      // },
       colorMode: {
         respectPrefersColorScheme: true,
       },

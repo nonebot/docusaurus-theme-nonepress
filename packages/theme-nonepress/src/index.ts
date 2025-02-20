@@ -1,4 +1,3 @@
-import Module from "module";
 import path from "path";
 
 import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
@@ -16,14 +15,6 @@ import type {
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
 import type { Config as tailwindConfigType } from "tailwindcss";
-import type webpack from "webpack";
-
-const requireFromDocusaurusCore = Module.createRequire(
-  require.resolve("@docusaurus/core/package.json"),
-);
-const ContextReplacementPlugin = requireFromDocusaurusCore(
-  "webpack/lib/ContextReplacementPlugin",
-) as typeof webpack.ContextReplacementPlugin;
 
 const ThemeStorageKey = "theme";
 const ThemeQueryStringKey = "docusaurus-theme";

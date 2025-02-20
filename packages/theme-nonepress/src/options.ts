@@ -39,12 +39,6 @@ const DEFAULT_BLOG_CONFIG: ThemeConfig["blog"] = {
   },
 };
 
-const BlogSchema = Joi.object<ThemeConfig["blog"]>({
-  sidebar: Joi.object<ThemeConfig["blog"]["sidebar"]>({
-    groupByYear: Joi.bool().default(DEFAULT_BLOG_CONFIG.sidebar.groupByYear),
-  }).default(DEFAULT_BLOG_CONFIG.sidebar),
-}).default(DEFAULT_BLOG_CONFIG);
-
 const DEFAULT_COLOR_MODE_CONFIG: ThemeConfig["colorMode"] = {
   defaultMode: "light",
   disableSwitch: false,
@@ -420,7 +414,6 @@ export const ThemeConfigSchema = Joi.object({
   colorMode: ColorModeSchema,
   image: Joi.string(),
   docs: DocsSchema,
-  blog: BlogSchema,
   metadata: Joi.array()
     .items(HtmlMetadataSchema)
     .default(DEFAULT_CONFIG.metadata),

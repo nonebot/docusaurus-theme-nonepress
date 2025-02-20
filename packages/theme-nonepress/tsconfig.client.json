@@ -6,6 +6,7 @@
     "src/prism-include-languages.ts",
     "src/theme",
     "src/*.d.ts",
-    "src/contexts"
+    "src/contexts",
+    "src/client"
   ]
 }

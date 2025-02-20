@@ -27,7 +27,6 @@ export default function preset(
   const {
     debug,
     docs,
-    blog,
     pages,
     sitemap,
     docsMenu,
@@ -64,9 +63,6 @@ export default function preset(
       }),
     );
   }
-  if (blog !== false) {
-    plugins.push(makePluginConfig("@docusaurus/plugin-content-blog", blog));
-  }
   if (pages !== false) {
     plugins.push(makePluginConfig("@docusaurus/plugin-content-pages", pages));
   }
@@ -91,7 +87,7 @@ export default function preset(
     throw new Error(
       `Unrecognized keys ${Object.keys(rest).join(
         ", ",
-      )} found in preset-classic configuration. The allowed keys are debug, docs, blog, pages, sitemap, theme, googleAnalytics, gtag, and googleTagManager. Check the documentation: https://docusaurus.io/docs/using-plugins#docusauruspreset-classic for more information on how to configure individual plugins.`,
+      )} found in preset-classic configuration. The allowed keys are debug, docs, pages, sitemap, theme, googleAnalytics, gtag, and googleTagManager. Check the documentation: https://docusaurus.io/docs/using-plugins#docusauruspreset-classic for more information on how to configure individual plugins.`,
     );
   }
 

@@ -5,7 +5,7 @@ import {
   useLatestVersion,
   useVersions,
 } from "@docusaurus/plugin-content-docs/client";
-import { CURRENT_VERSION_NAME } from "@docusaurus/plugin-content-docs/src/constants.ts";
+import { CURRENT_VERSION_NAME } from "@docusaurus/plugin-content-docs/lib/constants.js";
 import { useVersionedDocCategory } from "@nullbot/docusaurus-plugin-docsmenu/client";
 
 import type { DocsMenuCategory, DocsMenuVersions } from "./types";

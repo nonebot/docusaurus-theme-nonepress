@@ -36,4 +36,9 @@
 .DocSearch-Hit-content-wrapper {
   line-height: inherit !important;
 }
+
+.DocSearch-Screen-Icon {
+  display: flex;
+  justify-content: center;
+}
 /* stylelint-enable selector-class-pattern */

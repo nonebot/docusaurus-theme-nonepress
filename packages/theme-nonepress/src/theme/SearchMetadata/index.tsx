@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Head from "@docusaurus/Head";
 
@@ -13,7 +13,7 @@ export default function SearchMetadata({
   locale,
   version,
   tag,
-}: Props): JSX.Element {
+}: Props): ReactNode {
   // Seems safe to consider here the locale is the language, as the existing
   // docsearch:language filter is afaik a regular string-based filter
   const language = locale;
