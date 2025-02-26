@@ -36,6 +36,5 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/types": "3.7.0"
-  },
-  "gitHead": "043290be093671405869575d2af51b1d71c23bce"
+  }
 }

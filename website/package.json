@@ -22,17 +22,14 @@
     "@docusaurus/core": "3.7.0",
     "@docusaurus/plugin-ideal-image": "3.7.0",
     "@nullbot/docusaurus-preset-nonepress": "^3.0.0",
-    "@swc/core": "^1.7.14",
     "clsx": "^2.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "swc-loader": "^0.2.3"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@docusaurus/eslint-plugin": "3.7.0",
     "@docusaurus/faster": "3.7.0",
     "@nullbot/docusaurus-tsconfig": "^3.0.0",
-    "@rsdoctor/webpack-plugin": "^0.3.11",
     "cross-env": "^7.0.3",
     "rimraf": "^3.0.2",
     "search-insights": "^2.8.2"
