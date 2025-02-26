@@ -16,7 +16,7 @@ function shouldBeInline(props: Props) {
   );
 }
 
-export default function MDXCode(props: Props): JSX.Element {
+export default function MDXCode(props: Props): React.ReactNode {
   return shouldBeInline(props) ? (
     <CodeInline {...props} />
   ) : (

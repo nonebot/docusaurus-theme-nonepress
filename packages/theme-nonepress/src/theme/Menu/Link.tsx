@@ -13,7 +13,7 @@ export default function MenuLink({
   activeClassName,
   wrapperClassName,
   ...props
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <li className={wrapperClassName}>
       <Link

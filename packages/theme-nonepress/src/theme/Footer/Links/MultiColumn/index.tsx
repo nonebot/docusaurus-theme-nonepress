@@ -31,7 +31,7 @@ function Column({ column }: { column: ColumnType }) {
 
 export default function FooterLinksMultiColumn({
   columns,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <>
       {columns.map((column, i) => (

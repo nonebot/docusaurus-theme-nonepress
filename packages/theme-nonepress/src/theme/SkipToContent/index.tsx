@@ -4,6 +4,6 @@ import "./styles.css";
 
 import { SkipToContentLink } from "@docusaurus/theme-common";
 
-export default function SkipToContent(): JSX.Element {
+export default function SkipToContent(): React.ReactNode {
   return <SkipToContentLink className="skip-to-content" />;
 }

@@ -6,21 +6,19 @@ import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
 import {
   useActivePlugin,
+  useDocsPreferredVersion,
+  useDocsVersion,
   useDocVersionSuggestions,
   type GlobalVersion,
 } from "@docusaurus/plugin-content-docs/client";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import {
-  useDocsPreferredVersion,
-  useDocsVersion,
-} from "@docusaurus/plugin-content-docs/client";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import type { Props } from "@theme/DocVersionBanner";
 
 import type {
-  VersionBanner,
   PropVersionMetadata,
+  VersionBanner,
 } from "@docusaurus/plugin-content-docs";
 
 import "./styles.css";
@@ -77,7 +75,7 @@ const BannerLabelComponents: {
   unmaintained: UnmaintainedVersionLabel,
 };
 
-function BannerLabel(props: BannerLabelComponentProps): JSX.Element {
+function BannerLabel(props: BannerLabelComponentProps): React.ReactNode {
   const BannerLabelComponent =
     BannerLabelComponents[props.versionMetadata.banner!];
   return <BannerLabelComponent {...props} />;
@@ -91,7 +89,7 @@ function LatestVersionSuggestionLabel({
   to: string;
   onClick: () => void;
   versionLabel: string;
-}): JSX.Element {
+}): React.ReactNode {
   return (
     <Translate
       id="theme.docs.versions.latestVersionSuggestionLabel"
@@ -124,7 +122,7 @@ function DocVersionBannerEnabled({
   versionMetadata,
 }: Props & {
   versionMetadata: PropVersionMetadata;
-}): JSX.Element {
+}): React.ReactNode {
   const {
     siteConfig: { title: siteTitle },
   } = useDocusaurusContext();
@@ -175,7 +173,7 @@ function DocVersionBannerEnabled({
 
 export default function DocVersionBanner({
   className,
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const versionMetadata = useDocsVersion();
   if (versionMetadata.banner) {
     return (

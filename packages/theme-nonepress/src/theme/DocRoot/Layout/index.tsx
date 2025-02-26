@@ -9,7 +9,7 @@ import Sidebar from "@theme/Page/Sidebar";
 
 import "./styles.css";
 
-export default function DocRootLayout({ children }: Props): JSX.Element {
+export default function DocRootLayout({ children }: Props): React.ReactNode {
   const sidebar = useDocsSidebar();
   const [hiddenSidebarContainer] = useState(false);
   return (

@@ -30,7 +30,7 @@ function CardContainer({
   href: string;
   children: ReactNode;
   className?: string;
-}): JSX.Element {
+}): React.ReactNode {
   return (
     <Link href={href} className={clsx("card doc-card", className)}>
       {children}
@@ -50,7 +50,7 @@ function CardLayout({
   title: string;
   className?: string;
   description?: string;
-}): JSX.Element {
+}): React.ReactNode {
   return (
     <CardContainer href={href} className={className}>
       <div className="card-body">
@@ -73,7 +73,7 @@ function CardCategory({
 }: {
   item: PropSidebarItemCategory;
   className?: string;
-}): JSX.Element | null {
+}): React.ReactNode | null {
   const href = findFirstSidebarItemLink(item);
 
   // Unexpected: categories that don't have a link have been filtered upfront
@@ -103,7 +103,7 @@ function CardCategory({
   );
 }
 
-function CardLink({ item }: { item: PropSidebarItemLink }): JSX.Element {
+function CardLink({ item }: { item: PropSidebarItemLink }): React.ReactNode {
   const icon = isInternalUrl(item.href) ? (
     <IconFile className="doc-card-icon" />
   ) : (
@@ -120,7 +120,7 @@ function CardLink({ item }: { item: PropSidebarItemLink }): JSX.Element {
   );
 }
 
-export default function DocCard({ item }: Props): JSX.Element {
+export default function DocCard({ item }: Props): React.ReactNode {
   switch (item.type) {
     case "link":
       return <CardLink item={item} />;

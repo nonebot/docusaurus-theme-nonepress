@@ -3,7 +3,7 @@ import React, { type ComponentProps, type ReactElement } from "react";
 import Details from "@theme/Details";
 import type { Props } from "@theme/MDXComponents/Details";
 
-export default function MDXDetails(props: Props): JSX.Element {
+export default function MDXDetails(props: Props): React.ReactNode {
   const items = React.Children.toArray(props.children);
   // Split summary item from the rest to pass it as a separate prop to the
   // Details theme component

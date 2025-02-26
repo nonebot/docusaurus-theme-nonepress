@@ -11,7 +11,7 @@ export default function WordWrapButton({
   className,
   onClick,
   isEnabled,
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const title = translate({
     id: "theme.CodeBlock.wordWrapToggle",
     message: "Toggle word wrap",

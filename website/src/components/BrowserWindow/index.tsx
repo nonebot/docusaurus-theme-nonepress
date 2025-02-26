@@ -5,7 +5,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export default function browserWindow(props: Props): JSX.Element {
+export default function browserWindow(props: Props): React.ReactNode {
   const { title, children } = props;
   return (
     <div className="mockup-window border pt-0 before:content-none not-prose">

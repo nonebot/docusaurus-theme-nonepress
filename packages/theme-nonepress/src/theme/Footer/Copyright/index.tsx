@@ -7,7 +7,7 @@ import type { Props } from "@theme/Footer/Copyright";
 import IconDocusaurus from "@theme/Icon/Docusaurus";
 import IconReact from "@theme/Icon/React";
 
-export default function FooterCopyright({ copyright }: Props): JSX.Element {
+export default function FooterCopyright({ copyright }: Props): React.ReactNode {
   return (
     <>
       <div

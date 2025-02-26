@@ -6,7 +6,7 @@ import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/cli
 
 import type { Props } from "@theme/AnnouncementBar/Content";
 
-export default function AnnouncementBarContent(props: Props): JSX.Element {
+export default function AnnouncementBarContent(props: Props): React.ReactNode {
   const { announcementBar } = useNonepressThemeConfig();
   const { content } = announcementBar!;
   return (

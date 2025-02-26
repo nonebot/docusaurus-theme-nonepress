@@ -4,14 +4,14 @@ import clsx from "clsx";
 
 import { usePrismTheme } from "@docusaurus/theme-common";
 import {
+  containsLineNumbers,
   parseCodeBlockTitle,
   parseLanguage,
   parseLines,
-  containsLineNumbers,
   useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
-import { Highlight, type Language } from "prism-react-renderer";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
+import { Highlight, type Language } from "prism-react-renderer";
 
 import Container from "@theme/CodeBlock/Container";
 import type { Props } from "@theme/CodeBlock/Content/String";
@@ -26,7 +26,7 @@ export default function CodeBlockString({
   title: titleProp,
   showLineNumbers: showLineNumbersProp,
   language: languageProp,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const {
     prism: { defaultLanguage, magicComments },
   } = useNonepressThemeConfig();

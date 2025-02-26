@@ -6,7 +6,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import IconHome from "@theme/Icon/Home";
 
-export default function HomeBreadcrumbItem(): JSX.Element {
+export default function HomeBreadcrumbItem(): React.ReactNode {
   const homeHref = useBaseUrl("/");
 
   return (

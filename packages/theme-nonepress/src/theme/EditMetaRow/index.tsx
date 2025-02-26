@@ -2,8 +2,8 @@ import React from "react";
 
 import clsx from "clsx";
 
-import EditThisPage from "@theme/EditThisPage";
 import type { Props } from "@theme/EditMetaRow";
+import EditThisPage from "@theme/EditThisPage";
 import LastUpdated from "@theme/LastUpdated";
 
 import styles from "./styles.module.css";
@@ -13,7 +13,7 @@ export default function EditMetaRow({
   editUrl,
   lastUpdatedAt,
   lastUpdatedBy,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div className={clsx("row", className)}>
       <div className="col">{editUrl && <EditThisPage editUrl={editUrl} />}</div>

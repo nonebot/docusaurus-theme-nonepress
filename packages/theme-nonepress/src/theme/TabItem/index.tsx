@@ -10,7 +10,7 @@ export default function TabItem({
   children,
   hidden,
   className,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div
       role="tabpanel"

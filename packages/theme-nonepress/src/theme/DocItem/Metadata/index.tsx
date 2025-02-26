@@ -1,9 +1,9 @@
 import React from "react";
 
-import { PageMetadata } from "@docusaurus/theme-common";
 import { useDoc } from "@docusaurus/plugin-content-docs/client";
+import { PageMetadata } from "@docusaurus/theme-common";
 
-export default function DocItemMetadata(): JSX.Element {
+export default function DocItemMetadata(): React.ReactNode {
   const { metadata, frontMatter, assets } = useDoc();
   return (
     <PageMetadata

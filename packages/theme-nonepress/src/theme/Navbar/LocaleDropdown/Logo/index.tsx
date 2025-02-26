@@ -4,7 +4,7 @@ import "./styles.css";
 
 import Logo from "@theme/Logo";
 
-export default function NavbarLogo(): JSX.Element {
+export default function NavbarLogo(): React.ReactNode {
   return (
     <Logo
       className="navbar-brand"

@@ -6,6 +6,6 @@ import "./styles.css";
 
 import type { Props } from "@theme/Menu";
 
-export default function Menu({ className, ...props }: Props): JSX.Element {
+export default function Menu({ className, ...props }: Props): React.ReactNode {
   return <ul className={clsx("menu", className)} {...props} />;
 }

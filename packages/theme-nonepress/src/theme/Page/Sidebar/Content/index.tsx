@@ -6,7 +6,10 @@ import Menu from "@theme/Menu";
 import type { Props } from "@theme/Page/Sidebar/Content";
 import SidebarItems from "@theme/Page/Sidebar/Items";
 
-export default function SidebarContent({ items, path }: Props): JSX.Element {
+export default function SidebarContent({
+  items,
+  path,
+}: Props): React.ReactNode {
   return (
     <nav>
       <Menu className={ThemeClassNames.docs.docSidebarMenu}>

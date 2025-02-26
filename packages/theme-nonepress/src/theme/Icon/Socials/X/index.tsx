@@ -5,7 +5,7 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 // SVG Source: https://svgl.app/
-function X(props: SVGProps<SVGSVGElement>): JSX.Element {
+function X(props: SVGProps<SVGSVGElement>): React.ReactNode {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

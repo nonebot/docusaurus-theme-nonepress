@@ -13,7 +13,7 @@ import type { Props } from "@theme/Navbar/ColorModeToggle";
 export default function NavbarColorModeToggle({
   className,
   mobile = false,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const navbarStyle = useNonepressThemeConfig().navbar.style;
   const { colorMode, setColorMode } = useColorMode();
 

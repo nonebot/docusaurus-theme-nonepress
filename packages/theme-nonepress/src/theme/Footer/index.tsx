@@ -5,8 +5,8 @@ import "./styles.css";
 import clsx from "clsx";
 
 import {
-  useSiteConfig,
   useNonepressThemeConfig,
+  useSiteConfig,
 } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import FooterCopyright from "@theme/Footer/Copyright";
@@ -14,7 +14,7 @@ import FooterLinks from "@theme/Footer/Links";
 import FooterLogo from "@theme/Footer/Logo";
 import FooterSocialLinks from "@theme/Footer/SocialLinks";
 
-function Footer(): JSX.Element | null {
+function Footer(): React.ReactNode | null {
   const { tagline } = useSiteConfig();
   const {
     footer,

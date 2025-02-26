@@ -5,7 +5,7 @@ import { useMobileMenu } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import IconMenu from "@theme/Icon/Menu";
 
-export default function MobileMenuToggle(): JSX.Element {
+export default function MobileMenuToggle(): React.ReactNode {
   const { setShown, shown } = useMobileMenu();
 
   return (

@@ -11,7 +11,7 @@ import {
 import type { Props } from "@theme/Page/TOC/Tree";
 
 // Recursive component rendering the toc tree
-function TOCTree({ toc, linkClassName }: Props): JSX.Element | null {
+function TOCTree({ toc, linkClassName }: Props): React.ReactNode | null {
   const {
     navbar: { hideOnScroll },
   } = useNonepressThemeConfig();

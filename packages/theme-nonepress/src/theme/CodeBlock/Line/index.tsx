@@ -10,7 +10,7 @@ export default function CodeBlockLine({
   showLineNumbers,
   getLineProps,
   getTokenProps,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   if (line.length === 1 && line[0]!.content === "\n") {
     line[0]!.content = "";
   }

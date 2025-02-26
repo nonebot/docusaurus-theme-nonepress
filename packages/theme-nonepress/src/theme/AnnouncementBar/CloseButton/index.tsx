@@ -9,7 +9,7 @@ import IconClose from "@theme/Icon/Close";
 
 export default function AnnouncementBarCloseButton(
   props: Props,
-): JSX.Element | null {
+): React.ReactNode | null {
   return (
     <div className={clsx(props.className, "announcement-button")}>
       <button

@@ -4,9 +4,9 @@ import clsx from "clsx";
 
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
+import { useSidebarBreadcrumbs } from "@docusaurus/plugin-content-docs/client";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useHomePageRoute } from "@docusaurus/theme-common/internal";
-import { useSidebarBreadcrumbs } from "@docusaurus/plugin-content-docs/client";
 
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
 
@@ -20,7 +20,7 @@ function BreadcrumbsItemLink({
   children: ReactNode;
   href: string | undefined;
   isLast: boolean;
-}): JSX.Element {
+}): React.ReactNode {
   const className = "btn btn-ghost btn-xs no-animation breadcrumbs-btn";
   if (isLast) {
     return (
@@ -49,7 +49,7 @@ function BreadcrumbsItem({
   children: ReactNode;
   index: number;
   addMicrodata: boolean;
-}): JSX.Element {
+}): React.ReactNode {
   return (
     <li
       {...(addMicrodata && {
@@ -64,7 +64,7 @@ function BreadcrumbsItem({
   );
 }
 
-export default function DocBreadcrumbs(): JSX.Element | null {
+export default function DocBreadcrumbs(): React.ReactNode | null {
   const breadcrumbs = useSidebarBreadcrumbs();
   const homePageRoute = useHomePageRoute();
 

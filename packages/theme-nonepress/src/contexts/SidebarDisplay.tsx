@@ -1,9 +1,9 @@
 import React, {
-  useState,
   useContext,
-  useMemo,
-  type ReactNode,
   useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
 } from "react";
 
 import { ReactContextError } from "@docusaurus/theme-common";
@@ -40,7 +40,7 @@ export function SidebarDisplayProvider({
   children,
 }: {
   children: ReactNode;
-}): JSX.Element {
+}): React.ReactNode {
   const value = useContextValue();
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

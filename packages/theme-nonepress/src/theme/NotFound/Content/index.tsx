@@ -7,7 +7,7 @@ import Translate from "@docusaurus/Translate";
 import Heading from "@theme/Heading";
 import type { Props } from "@theme/NotFound/Content";
 
-export default function NotFoundContent({ className }: Props): JSX.Element {
+export default function NotFoundContent({ className }: Props): React.ReactNode {
   return (
     <div className={clsx("page", className)}>
       <main className="hero">

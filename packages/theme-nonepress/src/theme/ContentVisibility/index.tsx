@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import type {Props} from '@theme/ContentVisibility';
-import Draft from '@theme/ContentVisibility/Draft';
-import Unlisted from '@theme/ContentVisibility/Unlisted';
+import type { Props } from "@theme/ContentVisibility";
+import Draft from "@theme/ContentVisibility/Draft";
+import Unlisted from "@theme/ContentVisibility/Unlisted";
 
 export default function ContentVisibility({
   metadata,
-}: Props): JSX.Element | null {
-  const {unlisted, frontMatter} = metadata;
+}: Props): React.ReactNode | null {
+  const { unlisted, frontMatter } = metadata;
   // Reading draft/unlisted status from frontMatter is useful to display
   // the banners in dev mode (in dev, metadata.unlisted is always false)
   // See https://github.com/facebook/docusaurus/issues/8285

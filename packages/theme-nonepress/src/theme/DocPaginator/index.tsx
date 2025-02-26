@@ -9,7 +9,7 @@ import PaginatorNavLink from "@theme/PaginatorNavLink";
 
 import "./styles.css";
 
-export default function DocPaginator(props: Props): JSX.Element {
+export default function DocPaginator(props: Props): React.ReactNode {
   const { previous, next, className } = props;
   return (
     <nav

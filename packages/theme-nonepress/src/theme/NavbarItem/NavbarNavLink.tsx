@@ -20,7 +20,7 @@ export default function NavbarNavLink({
   className,
   prependBaseUrlToHref,
   ...props
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const toUrl = useBaseUrl(to);
   const activeBaseUrl = useBaseUrl(activeBasePath);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });

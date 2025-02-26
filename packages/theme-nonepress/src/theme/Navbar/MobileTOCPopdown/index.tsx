@@ -14,7 +14,7 @@ import TOCContent from "@theme/Page/TOC/Content";
 
 import "./styles.css";
 
-export default function MobileTOCPopdown(): JSX.Element | null {
+export default function MobileTOCPopdown(): React.ReactNode | null {
   const {
     navbar: { hideOnScroll },
   } = useNonepressThemeConfig();

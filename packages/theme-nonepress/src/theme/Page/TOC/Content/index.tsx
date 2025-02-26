@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 
 import {
-  useTOCHighlight,
   useFilteredAndTreeifiedTOC,
+  useTOCHighlight,
   type TOCHighlightConfig,
 } from "@docusaurus/theme-common/internal";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
@@ -19,7 +19,7 @@ export default function TOCContent({
   maxHeadingLevel: maxHeadingLevelOption,
   linkClassName = TOC_LINK_CLASS,
   linkActiveClassName = TOC_LINK_ACTIVE_CLASS,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const themeConfig = useNonepressThemeConfig();
 
   const minHeadingLevel =

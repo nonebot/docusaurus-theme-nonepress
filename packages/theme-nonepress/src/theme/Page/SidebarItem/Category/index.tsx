@@ -70,7 +70,7 @@ export default function SidebarItemCategory({
   activePath,
   level,
   index,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const { items, label, collapsible, className, href } = item;
   const {
     docs: {
@@ -92,7 +92,7 @@ export default function SidebarItemCategory({
       return isActive ? false : item.collapsed;
     },
   });
-  
+
   const { expandedItem, setExpandedItem } = useDocSidebarItemsExpandedState();
   // Use this instead of `setCollapsed`, because it is also reactive
   const updateCollapsed = (toCollapsed: boolean = !collapsed) => {

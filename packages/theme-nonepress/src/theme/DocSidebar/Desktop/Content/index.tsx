@@ -9,8 +9,8 @@ import {
 } from "@docusaurus/theme-common/internal";
 import { translate } from "@docusaurus/Translate";
 
-import DocSidebarItems from "@theme/DocSidebarItems";
 import type { Props } from "@theme/DocSidebar/Desktop/Content";
+import DocSidebarItems from "@theme/DocSidebarItems";
 
 import styles from "./styles.module.css";
 
@@ -33,7 +33,7 @@ export default function DocSidebarDesktopContent({
   path,
   sidebar,
   className,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const showAnnouncementBar = useShowAnnouncementBar();
 
   return (

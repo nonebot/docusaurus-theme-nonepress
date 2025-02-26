@@ -14,7 +14,7 @@ function normalizeComponentType(type: NavbarItemType, props: object) {
   return type;
 }
 
-export default function NavbarItem({ type, ...props }: Props): JSX.Element {
+export default function NavbarItem({ type, ...props }: Props): React.ReactNode {
   const componentType = normalizeComponentType(type, props);
   const NavbarItemComponent = ComponentTypes[componentType];
   if (!NavbarItemComponent) {

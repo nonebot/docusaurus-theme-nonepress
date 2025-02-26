@@ -5,7 +5,7 @@ import { DocSidebarItemsExpandedStateProvider } from "@docusaurus/plugin-content
 import type { Props } from "@theme/Page/Sidebar/Items";
 import SidebarItem from "@theme/Page/SidebarItem";
 
-function SidebarItems({ items, path, level }: Props): JSX.Element {
+function SidebarItems({ items, path, level }: Props): React.ReactNode {
   return (
     <DocSidebarItemsExpandedStateProvider>
       {items.map((item, index) => (

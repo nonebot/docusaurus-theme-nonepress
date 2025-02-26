@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 export default function DocRootLayoutMain({
   hiddenSidebarContainer,
   children,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const sidebar = useDocsSidebar();
   return (
     <main

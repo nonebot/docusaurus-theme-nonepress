@@ -7,7 +7,9 @@ import type { Props } from "@theme/Navbar/MobileMenu/PrimaryMenu";
 import NavbarItem from "@theme/NavbarItem";
 
 // The primary menu displays the navbar items
-export default function NavbarMobilePrimaryMenu({ items }: Props): JSX.Element {
+export default function NavbarMobilePrimaryMenu({
+  items,
+}: Props): React.ReactNode {
   const { setShown } = useMobileMenu();
 
   return (

@@ -15,7 +15,7 @@ function LastUpdatedAtDate({
 }: {
   lastUpdatedAt: number;
   formattedLastUpdatedAt: string;
-}): JSX.Element {
+}): React.ReactNode {
   return (
     <Translate
       id="theme.lastUpdated.atDate"
@@ -39,7 +39,7 @@ function LastUpdatedByUser({
   lastUpdatedBy,
 }: {
   lastUpdatedBy: string;
-}): JSX.Element {
+}): React.ReactNode {
   return (
     <Translate
       id="theme.lastUpdated.byUser"
@@ -57,7 +57,7 @@ export default function LastUpdated({
   lastUpdatedAt,
   formattedLastUpdatedAt,
   lastUpdatedBy,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <span className={clsx(ThemeClassNames.common.lastUpdated, "last-updated")}>
       <Translate

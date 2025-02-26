@@ -17,7 +17,7 @@ function DocCardListForCurrentSidebarCategory(props: Props) {
   return <DocCardList {...props} items={category.items} />;
 }
 
-export default function DocCardList(props: Props): JSX.Element {
+export default function DocCardList(props: Props): React.ReactNode {
   const { items, className } = props;
   if (!items) {
     return <DocCardListForCurrentSidebarCategory {...props} />;

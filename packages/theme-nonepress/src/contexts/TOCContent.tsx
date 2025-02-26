@@ -1,4 +1,4 @@
-import React, { useContext, useState, type ReactNode, useEffect } from "react";
+import React, { useContext, useEffect, useState, type ReactNode } from "react";
 
 import { ReactContextError } from "@docusaurus/theme-common";
 
@@ -22,7 +22,7 @@ export function TOCContentProvider({
   children,
 }: {
   children: ReactNode;
-}): JSX.Element {
+}): React.ReactNode {
   const value = useState<Content>(null);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

@@ -7,7 +7,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import type { Props } from "@theme/Footer/LinkItem";
 import IconExternalLink from "@theme/Icon/ExternalLink";
 
-export default function FooterLinkItem({ item }: Props): JSX.Element {
+export default function FooterLinkItem({ item }: Props): React.ReactNode {
   const { to, href, label, prependBaseUrlToHref, ...props } = item;
   const toUrl = useBaseUrl(to);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });

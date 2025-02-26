@@ -15,7 +15,7 @@ import MDXContent from "@theme/MDXContent";
 import type { Props } from "@theme/MDXPage";
 import Page from "@theme/Page";
 
-export default function MDXPage(props: Props): JSX.Element {
+export default function MDXPage(props: Props): React.ReactNode {
   const { content: MDXPageContent } = props;
   const {
     toc,

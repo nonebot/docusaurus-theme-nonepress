@@ -18,14 +18,18 @@ export default function Page({
   toc,
   minHeadingLevel,
   maxHeadingLevel,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const shouldReduceContent = !hideTableOfContents && reduceContentWidth;
 
   return (
     <div className="page">
       {/* sidebar */}
       {!hideSidebar && (
-        <Sidebar sidebarId={sidebarId} sidebarVersion={sidebarVersion} className="page-sidebar" />
+        <Sidebar
+          sidebarId={sidebarId}
+          sidebarVersion={sidebarVersion}
+          className="page-sidebar"
+        />
       )}
       {/* main */}
       <main className="page-main">

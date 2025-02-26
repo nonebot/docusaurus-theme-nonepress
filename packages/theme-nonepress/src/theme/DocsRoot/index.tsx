@@ -1,14 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import {ThemeClassNames, HtmlClassNameProvider} from '@docusaurus/theme-common';
-import renderRoutes from '@docusaurus/renderRoutes';
+import renderRoutes from "@docusaurus/renderRoutes";
+import {
+  HtmlClassNameProvider,
+  ThemeClassNames,
+} from "@docusaurus/theme-common";
 
-import Layout from '@theme/Layout';
-import type {Props} from '@theme/DocVersionRoot';
+import type { Props } from "@theme/DocVersionRoot";
+import Layout from "@theme/Layout";
 
-export default function DocsRoot(props: Props): JSX.Element {
+export default function DocsRoot(props: Props): React.ReactNode {
   return (
     <HtmlClassNameProvider className={clsx(ThemeClassNames.wrapper.docsPages)}>
       <Layout>{renderRoutes(props.route.routes!)}</Layout>

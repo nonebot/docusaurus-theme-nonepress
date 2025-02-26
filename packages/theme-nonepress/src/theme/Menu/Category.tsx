@@ -20,7 +20,7 @@ export default function MenuCategory({
   wrapperClassName,
   children,
   ...props
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <li className={wrapperClassName}>
       <div className="menu-category menu-item">

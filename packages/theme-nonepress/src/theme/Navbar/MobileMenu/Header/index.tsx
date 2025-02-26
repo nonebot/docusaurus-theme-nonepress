@@ -24,7 +24,7 @@ function CloseButton() {
   );
 }
 
-export default function NavbarMobileMenuHeader(): JSX.Element {
+export default function NavbarMobileMenuHeader(): React.ReactNode {
   return (
     <div className="navbar-mobile-header">
       <NavbarLogo />

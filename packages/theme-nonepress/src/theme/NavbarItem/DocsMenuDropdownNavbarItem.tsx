@@ -44,7 +44,7 @@ function DocsMenuDropdownNavbarItemDesktop({
   category,
   docsPluginId,
   ...props
-}: DesktopOrMobileNavBarItemProps): JSX.Element {
+}: DesktopOrMobileNavBarItemProps): React.ReactNode {
   const { link, docs } = useDocsMenuCategory(category, docId, docsPluginId);
   const versions = useDocsMenuVersions(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
@@ -224,7 +224,7 @@ function DocsMenuDropdownNavbarItemMobile({
   category,
   label,
   ...props
-}: DesktopOrMobileNavBarItemProps): JSX.Element {
+}: DesktopOrMobileNavBarItemProps): React.ReactNode {
   const { activeDoc } = useActiveDocContext(docsPluginId);
   const { link, autoLink, docs } = useDocsMenuCategory(
     category,
@@ -246,7 +246,7 @@ function DocsMenuDropdownNavbarItemMobile({
 export default function DocsMenuDropdownNavbarItem({
   mobile = false,
   ...props
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const Comp = mobile
     ? DocsMenuDropdownNavbarItemMobile
     : DocsMenuDropdownNavbarItemDesktop;

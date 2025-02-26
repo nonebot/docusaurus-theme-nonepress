@@ -6,6 +6,6 @@ import type { Props } from "@theme/NavbarItem/HtmlNavbarItem";
 export default function HtmlNavbarItem({
   value,
   className,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return <MenuHtml className={className} html={value} />;
 }

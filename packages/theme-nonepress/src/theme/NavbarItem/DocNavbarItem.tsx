@@ -11,7 +11,7 @@ export default function DocNavbarItem({
   docsPluginId,
   label: staticLabel,
   ...props
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   // const { activeDoc } = useActiveDocContext(docsPluginId);
   const doc = useLayoutDoc(docId, docsPluginId);
 

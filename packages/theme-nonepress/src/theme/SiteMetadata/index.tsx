@@ -5,8 +5,8 @@ import { useLocation } from "@docusaurus/router";
 import { PageMetadata } from "@docusaurus/theme-common";
 import {
   DEFAULT_SEARCH_TAG,
-  useAlternatePageUtils,
   keyboardFocusedClassName,
+  useAlternatePageUtils,
 } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -18,7 +18,7 @@ import SearchMetadata from "@theme/SearchMetadata";
 // Useful for i18n/SEO
 // See https://developers.google.com/search/docs/advanced/crawling/localized-versions
 // See https://github.com/facebook/docusaurus/issues/3317
-function AlternateLangHeaders(): JSX.Element {
+function AlternateLangHeaders(): React.ReactNode {
   const {
     i18n: { defaultLocale, localeConfigs },
   } = useDocusaurusContext();
@@ -78,7 +78,7 @@ function CanonicalUrlHeaders({ permalink }: { permalink?: string }) {
   );
 }
 
-export default function SiteMetadata(): JSX.Element {
+export default function SiteMetadata(): React.ReactNode {
   const {
     i18n: { currentLocale },
   } = useDocusaurusContext();

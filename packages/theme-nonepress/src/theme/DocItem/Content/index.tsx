@@ -2,8 +2,8 @@ import React from "react";
 
 import clsx from "clsx";
 
-import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useDoc } from "@docusaurus/plugin-content-docs/client";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import type { Props } from "@theme/DocItem/Content";
 import Heading from "@theme/Heading";
@@ -29,7 +29,7 @@ function useSyntheticTitle(): string | null {
   return metadata.title;
 }
 
-export default function DocItemContent({ children }: Props): JSX.Element {
+export default function DocItemContent({ children }: Props): React.ReactNode {
   const syntheticTitle = useSyntheticTitle();
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, "prose max-w-none")}>

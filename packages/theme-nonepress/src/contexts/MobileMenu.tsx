@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, type ReactNode } from "react";
+import React, { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import { ReactContextError } from "@docusaurus/theme-common";
 import { useHistoryPopHandler } from "@docusaurus/theme-common/internal";
@@ -42,7 +42,7 @@ export function MobileMenuProvider({
   children,
 }: {
   children: ReactNode;
-}): JSX.Element {
+}): ReactNode {
   const value = useContextValue();
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

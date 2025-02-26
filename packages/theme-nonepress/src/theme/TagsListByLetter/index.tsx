@@ -26,7 +26,7 @@ function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   );
 }
 
-export default function TagsListByLetter({ tags }: Props): JSX.Element {
+export default function TagsListByLetter({ tags }: Props): React.ReactNode {
   const letterList = listTagsByLetters(tags);
   return (
     <section>

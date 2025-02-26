@@ -17,7 +17,7 @@ import SecondaryNavbar from "@theme/Navbar/SecondaryNavbar";
 
 import "./styles.css";
 
-export default function Navbar(): JSX.Element {
+export default function Navbar(): React.ReactNode {
   const {
     navbar: { hideOnScroll, style },
   } = useNonepressThemeConfig();

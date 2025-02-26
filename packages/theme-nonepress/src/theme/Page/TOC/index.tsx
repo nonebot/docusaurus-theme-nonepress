@@ -14,7 +14,7 @@ export default function TOC({
   minHeadingLevel,
   maxHeadingLevel,
   hideTableOfContents,
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const windowSize = useWindowSize();
   const isMobile = windowSize === "mobile";
 

@@ -2,8 +2,8 @@ import React from "react";
 
 import clsx from "clsx";
 
-import { useLocation } from "@docusaurus/router";
 import { useDocsVersionCandidates } from "@docusaurus/plugin-content-docs/client";
+import { useLocation } from "@docusaurus/router";
 import { useVersionedSidebar } from "@nullbot/docusaurus-plugin-getsidebar/client";
 import {
   useNonepressThemeConfig,
@@ -20,7 +20,7 @@ export default function Sidebar({
   className,
   sidebarId,
   sidebarVersion,
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const { pathname } = useLocation();
   const windowSize = useWindowSize();
   const isMobile = windowSize === "mobile";

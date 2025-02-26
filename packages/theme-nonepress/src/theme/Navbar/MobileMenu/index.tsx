@@ -14,7 +14,7 @@ import type { Props as NavbarItemConfig } from "@theme/NavbarItem";
 
 import "./styles.css";
 
-export default function MobileMenu(): JSX.Element | null {
+export default function MobileMenu(): React.ReactNode | null {
   const themeConfig = useNonepressThemeConfig();
   const { shown, setShown } = useMobileMenu();
 

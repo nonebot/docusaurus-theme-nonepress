@@ -78,7 +78,9 @@ function TabList({
             tabIndex={selectedValue === value ? 0 : -1}
             aria-selected={selectedValue === value}
             key={value}
-            ref={(tabControl) => tabRefs.push(tabControl)}
+            ref={(tabControl) => {
+              tabRefs.push(tabControl);
+            }}
             onKeyDown={handleKeydown}
             onClick={handleTabChange}
             {...attributes}
@@ -127,7 +129,7 @@ function TabContent({
   );
 }
 
-function TabsComponent(props: Props): JSX.Element {
+function TabsComponent(props: Props): React.ReactNode {
   const tabs = useTabs(props);
   return (
     <div className="tabs-container">
@@ -137,7 +139,7 @@ function TabsComponent(props: Props): JSX.Element {
   );
 }
 
-export default function Tabs(props: Props): JSX.Element {
+export default function Tabs(props: Props): React.ReactNode {
   const isBrowser = useIsBrowser();
   return (
     <TabsComponent

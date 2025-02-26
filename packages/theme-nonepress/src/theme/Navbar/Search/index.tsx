@@ -9,7 +9,7 @@ import type { Props } from "@theme/Navbar/Search";
 export default function NavbarSearch({
   children,
   className,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div className={clsx("navbar-search", className)}>
       <div className="navbar-search-group">{children}</div>

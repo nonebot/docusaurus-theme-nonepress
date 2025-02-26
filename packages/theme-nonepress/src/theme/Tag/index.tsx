@@ -6,7 +6,11 @@ import "./styles.css";
 
 import type { Props } from "@theme/Tag";
 
-export default function Tag({ permalink, label, count }: Props): JSX.Element {
+export default function Tag({
+  permalink,
+  label,
+  count,
+}: Props): React.ReactNode {
   return (
     <Link
       href={permalink}

@@ -18,13 +18,13 @@ function LogoThemedImage({
   logo: NavbarLogo;
   alt: string;
   imageClassName?: string;
-}): JSX.Element {
+}): React.ReactNode {
   const lightSrc = useBaseUrl(logo.src);
   const darkSrc = useBaseUrl(logo.srcDark ?? logo.src);
 
   // Is this extra div really necessary?
   // introduced in https://github.com/facebook/docusaurus/pull/5666
-  const wrapper = (children: JSX.Element): JSX.Element =>
+  const wrapper = (children: React.ReactNode): React.ReactNode =>
     imageClassName ? (
       <div className={imageClassName}>{children}</div>
     ) : (
@@ -60,7 +60,7 @@ function LogoThemedImage({
   }
 }
 
-export default function Logo(props: Props): JSX.Element {
+export default function Logo(props: Props): React.ReactNode {
   const {
     siteConfig: { title },
   } = useDocusaurusContext();

@@ -16,7 +16,7 @@ import type { Props } from "@theme/DocRoot";
 import DocRootLayout from "@theme/DocRoot/Layout";
 import NotFoundContent from "@theme/NotFound/Content";
 
-export default function DocRoot(props: Props): JSX.Element {
+export default function DocRoot(props: Props): React.ReactNode {
   const currentDocRouteMetadata = useDocRootMetadata(props);
   if (!currentDocRouteMetadata) {
     // We only render the not found content to avoid a double layout

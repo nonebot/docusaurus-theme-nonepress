@@ -12,7 +12,7 @@ import "./styles.css";
 
 export default function DocVersionBadge({
   className,
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const versionMetadata = useDocsVersion();
   if (versionMetadata.badge) {
     return (

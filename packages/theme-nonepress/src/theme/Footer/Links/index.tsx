@@ -6,7 +6,7 @@ import type { Props } from "@theme/Footer/Links";
 import FooterLinksMultiColumn from "@theme/Footer/Links/MultiColumn";
 import FooterLinksSimple from "@theme/Footer/Links/Simple";
 
-export default function FooterLinks({ links }: Props): JSX.Element {
+export default function FooterLinks({ links }: Props): React.ReactNode {
   return isMultiColumnFooterLinks(links) ? (
     <FooterLinksMultiColumn columns={links} />
   ) : (

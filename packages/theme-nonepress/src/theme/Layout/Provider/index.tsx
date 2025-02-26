@@ -33,6 +33,6 @@ const Provider = composeProviders([
   NavbarProvider,
 ]);
 
-export default function LayoutProvider({ children }: Props): JSX.Element {
+export default function LayoutProvider({ children }: Props): React.ReactNode {
   return <Provider>{children}</Provider>;
 }

@@ -1,29 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import clsx from 'clsx';
+import clsx from "clsx";
 
 import {
   ThemeClassNames,
-  UnlistedBannerTitle,
   UnlistedBannerMessage,
+  UnlistedBannerTitle,
   UnlistedMetadata,
-} from '@docusaurus/theme-common';
+} from "@docusaurus/theme-common";
 
-import Admonition from '@theme/Admonition';
-import type {Props} from '@theme/ContentVisibility/Unlisted';
+import Admonition from "@theme/Admonition";
+import type { Props } from "@theme/ContentVisibility/Unlisted";
 
-function UnlistedBanner({className}: Props) {
+function UnlistedBanner({ className }: Props) {
   return (
     <Admonition
       type="caution"
       title={<UnlistedBannerTitle />}
-      className={clsx(className, ThemeClassNames.common.unlistedBanner)}>
+      className={clsx(className, ThemeClassNames.common.unlistedBanner)}
+    >
       <UnlistedBannerMessage />
     </Admonition>
   );
 }
 
-export default function Unlisted(props: Props): JSX.Element | null {
+export default function Unlisted(props: Props): React.ReactNode | null {
   return (
     <>
       {/*

@@ -33,7 +33,11 @@ function useNDocsTaggedPlural() {
     );
 }
 
-function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): JSX.Element {
+function DocItem({
+  doc,
+}: {
+  doc: Props["tag"]["items"][number];
+}): React.ReactNode {
   return (
     <article>
       <Link to={doc.permalink}>
@@ -44,7 +48,7 @@ function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): JSX.Element {
   );
 }
 
-export default function DocTagDocListPage({ tag }: Props): JSX.Element {
+export default function DocTagDocListPage({ tag }: Props): React.ReactNode {
   const nDocsTaggedPlural = useNDocsTaggedPlural();
   const title = translate(
     {

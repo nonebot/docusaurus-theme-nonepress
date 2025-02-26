@@ -11,7 +11,11 @@ import type { Props } from "@theme/Heading";
 
 import "./styles.css";
 
-export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
+export default function Heading({
+  as: As,
+  id,
+  ...props
+}: Props): React.ReactNode {
   const brokenLinks = useBrokenLinks();
   const {
     navbar: { hideOnScroll },

@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import {HtmlClassNameProvider, PageMetadata} from '@docusaurus/theme-common';
 import {
-  getDocsVersionSearchTag,
   DocsVersionProvider,
+  getDocsVersionSearchTag,
 } from "@docusaurus/plugin-content-docs/client";
-import renderRoutes from '@docusaurus/renderRoutes';
+import renderRoutes from "@docusaurus/renderRoutes";
+import { HtmlClassNameProvider, PageMetadata } from "@docusaurus/theme-common";
 
-import SearchMetadata from '@theme/SearchMetadata';
-import type {Props} from '@theme/DocVersionRoot';
+import type { Props } from "@theme/DocVersionRoot";
+import SearchMetadata from "@theme/SearchMetadata";
 
-function DocVersionRootMetadata(props: Props): JSX.Element {
-  const {version} = props;
+function DocVersionRootMetadata(props: Props): React.ReactNode {
+  const { version } = props;
   return (
     <>
       <SearchMetadata
@@ -25,8 +25,8 @@ function DocVersionRootMetadata(props: Props): JSX.Element {
   );
 }
 
-function DocVersionRootContent(props: Props): JSX.Element {
-  const {version, route} = props;
+function DocVersionRootContent(props: Props): React.ReactNode {
+  const { version, route } = props;
   return (
     <HtmlClassNameProvider className={version.className}>
       <DocsVersionProvider version={version}>
@@ -35,7 +35,7 @@ function DocVersionRootContent(props: Props): JSX.Element {
     </HtmlClassNameProvider>
   );
 }
-export default function DocVersionRoot(props: Props): JSX.Element {
+export default function DocVersionRoot(props: Props): React.ReactNode {
   return (
     <>
       <DocVersionRootMetadata {...props} />

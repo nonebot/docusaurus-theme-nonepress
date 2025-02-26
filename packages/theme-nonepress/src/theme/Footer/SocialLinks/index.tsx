@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/Footer/SocialLinks";
 
-export default function FooterSocialLinks(props: Props): JSX.Element {
+export default function FooterSocialLinks(props: Props): React.ReactNode {
   const { socialLinks } = props;
   return (
     <div className="footer-social-links">

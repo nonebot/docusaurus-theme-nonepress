@@ -19,7 +19,11 @@ import SearchBar from "@theme/SearchBar";
 
 import "./styles.css";
 
-function NavbarItems({ items }: { items: NavbarItemConfig[] }): JSX.Element {
+function NavbarItems({
+  items,
+}: {
+  items: NavbarItemConfig[];
+}): React.ReactNode {
   return (
     <Menu className="navbar-primary-menu">
       {items.map((item, i) => (
@@ -44,7 +48,7 @@ ${JSON.stringify(item, null, 2)}`,
   );
 }
 
-export default function PrimaryNavbar(): JSX.Element {
+export default function PrimaryNavbar(): React.ReactNode {
   const themeConfig = useNonepressThemeConfig();
 
   const { enabled: docsVersionEnabled, ...docsVersionDropdown } =

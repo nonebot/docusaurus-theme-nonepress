@@ -1,4 +1,4 @@
-import React, { type ReactNode, useCallback, useState } from "react";
+import React, { useCallback, useState, type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -30,7 +30,7 @@ export default function DocRootLayoutSidebar({
   sidebar,
   hiddenSidebarContainer,
   setHiddenSidebarContainer,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const { pathname } = useLocation();
 
   const [hiddenSidebar, setHiddenSidebar] = useState(false);

@@ -10,7 +10,7 @@ import "./styles.css";
 import type { Props } from "@theme/EditThisPage";
 import IconEdit from "@theme/Icon/Edit";
 
-export default function EditThisPage({ editUrl }: Props): JSX.Element {
+export default function EditThisPage({ editUrl }: Props): React.ReactNode {
   return (
     <a
       href={editUrl}

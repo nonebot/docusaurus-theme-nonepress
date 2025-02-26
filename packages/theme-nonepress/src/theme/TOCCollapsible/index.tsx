@@ -2,11 +2,11 @@ import React from "react";
 
 import clsx from "clsx";
 
-import { useCollapsible, Collapsible } from "@docusaurus/theme-common";
+import { Collapsible, useCollapsible } from "@docusaurus/theme-common";
 
-import TOCItems from "@theme/TOCItems";
-import CollapseButton from "@theme/TOCCollapsible/CollapseButton";
 import type { Props } from "@theme/TOCCollapsible";
+import CollapseButton from "@theme/TOCCollapsible/CollapseButton";
+import TOCItems from "@theme/TOCItems";
 
 import styles from "./styles.module.css";
 
@@ -15,7 +15,7 @@ export default function TOCCollapsible({
   className,
   minHeadingLevel,
   maxHeadingLevel,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const { collapsed, toggleCollapsed } = useCollapsible({
     initialState: true,
   });

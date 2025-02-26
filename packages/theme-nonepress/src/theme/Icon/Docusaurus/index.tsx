@@ -2,7 +2,7 @@ import React from "react";
 
 import type { Props } from "@theme/Icon/Docusaurus";
 
-export default function IconDocusaurus(props: Props): JSX.Element {
+export default function IconDocusaurus(props: Props): React.ReactNode {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" {...props}>
       <g fill="none" fillRule="evenodd">

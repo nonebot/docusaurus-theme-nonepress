@@ -12,7 +12,7 @@ import type { Props } from "@theme/TagsListInline";
 export default function TagsListInline({
   tags,
   className,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div className={clsx("doc-tags-list-container", className)}>
       <b>

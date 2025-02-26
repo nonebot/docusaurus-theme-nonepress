@@ -9,7 +9,7 @@ import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import type { Props } from "@theme/ThemedImage";
 
-export default function ThemedImage(props: Props): JSX.Element {
+export default function ThemedImage(props: Props): React.ReactNode {
   const isBrowser = useIsBrowser();
   const { colorMode } = useColorMode();
   const { sources, className, alt, ...propsRest } = props;

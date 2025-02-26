@@ -7,7 +7,10 @@ import { ThemeClassNames } from "@docusaurus/theme-common";
 import MenuHtml from "@theme/Menu/Html";
 import type { Props } from "@theme/Page/SidebarItem/Html";
 
-export default function SidebarItemHtml({ item, level }: Props): JSX.Element {
+export default function SidebarItemHtml({
+  item,
+  level,
+}: Props): React.ReactNode {
   const { value, className } = item;
   return (
     <MenuHtml

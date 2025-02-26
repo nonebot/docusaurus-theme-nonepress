@@ -9,7 +9,7 @@ import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/cli
 import AnnouncementBarCloseButton from "@theme/AnnouncementBar/CloseButton";
 import AnnouncementBarContent from "@theme/AnnouncementBar/Content";
 
-export default function AnnouncementBar(): JSX.Element | null {
+export default function AnnouncementBar(): React.ReactNode | null {
   const { announcementBar } = useNonepressThemeConfig();
   const { isActive, close } = useAnnouncementBar();
   if (!announcementBar || !isActive) {

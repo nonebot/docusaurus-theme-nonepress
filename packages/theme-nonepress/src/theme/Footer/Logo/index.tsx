@@ -39,7 +39,7 @@ function LogoImage({ logo }: Props) {
   }
 }
 
-export default function FooterLogo({ logo }: Props): JSX.Element {
+export default function FooterLogo({ logo }: Props): React.ReactNode {
   return logo.href ? (
     <Link href={logo.href} target={logo.target}>
       <LogoImage logo={logo} />

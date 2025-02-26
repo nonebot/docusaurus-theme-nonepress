@@ -15,7 +15,7 @@ function SimpleLinkItem({ item }: { item: Props["links"][number] }) {
   );
 }
 
-export default function FooterLinksSimple({ links }: Props): JSX.Element {
+export default function FooterLinksSimple({ links }: Props): React.ReactNode {
   return (
     <div>
       {links.map((item, i) => (

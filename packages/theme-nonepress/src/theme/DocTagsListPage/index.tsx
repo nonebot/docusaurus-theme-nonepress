@@ -14,7 +14,7 @@ import Heading from "@theme/Heading";
 import SearchMetadata from "@theme/SearchMetadata";
 import TagsListByLetter from "@theme/TagsListByLetter";
 
-export default function DocTagsListPage({ tags }: Props): JSX.Element {
+export default function DocTagsListPage({ tags }: Props): React.ReactNode {
   const title = translateTagsPageTitle();
 
   return (

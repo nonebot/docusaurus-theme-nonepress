@@ -8,12 +8,12 @@ export default function MenuHtml({
   html,
   className,
   ...props
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <li
       className={clsx("menu-item", className)}
       {...props}
       dangerouslySetInnerHTML={{ __html: html }}
-     />
+    />
   );
 }

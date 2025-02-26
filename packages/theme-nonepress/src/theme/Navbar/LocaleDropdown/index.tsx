@@ -20,7 +20,7 @@ export default function NavbarLocaleDropdown({
   dropdownItemsAfter,
   queryString = "",
   mobile = false,
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   const {
     i18n: { currentLocale, locales, localeConfigs },
   } = useDocusaurusContext();
@@ -41,7 +41,6 @@ export default function NavbarLocaleDropdown({
       target: "_self",
       autoAddBaseUrl: false,
       className:
-         
         locale === currentLocale
           ? // Similar idea as DefaultNavbarItem: select the right Infima active
             // class name. This cannot be substituted with isActive, because the

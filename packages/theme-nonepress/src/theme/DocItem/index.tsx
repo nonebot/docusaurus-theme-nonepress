@@ -8,7 +8,7 @@ import type { Props } from "@theme/DocItem";
 import DocItemLayout from "@theme/DocItem/Layout";
 import DocItemMetadata from "@theme/DocItem/Metadata";
 
-export default function DocItem(props: Props): JSX.Element {
+export default function DocItem(props: Props): React.ReactNode {
   const docHtmlClassName = `docs-doc-id-${props.content.metadata.id}`;
   const MDXComponent = props.content;
 

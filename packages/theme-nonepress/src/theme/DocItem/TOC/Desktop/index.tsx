@@ -4,7 +4,7 @@ import { useDoc } from "@docusaurus/plugin-content-docs/client";
 
 import TOC from "@theme/Page/TOC";
 
-export default function DocItemTOCDesktop(): JSX.Element {
+export default function DocItemTOCDesktop(): React.ReactNode {
   const { toc, frontMatter } = useDoc();
   return (
     <TOC

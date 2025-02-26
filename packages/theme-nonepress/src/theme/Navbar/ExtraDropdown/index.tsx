@@ -9,7 +9,7 @@ import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import NavbarLocaleDropdown from "@theme/Navbar/LocaleDropdown";
 import NavbarSocialLinks from "@theme/Navbar/SocialLinks";
 
-export default function NavbarExtraDrodown(): JSX.Element | null {
+export default function NavbarExtraDrodown(): React.ReactNode | null {
   const themeConfig = useNonepressThemeConfig();
 
   const { enabled: localeDropdownEnabled, ...localeDropdown } =

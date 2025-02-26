@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import clsx from "clsx";
 
 import isInternalUrl from "@docusaurus/isInternalUrl";
-import { ThemeClassNames } from "@docusaurus/theme-common";
 import { isActiveSidebarItem } from "@docusaurus/plugin-content-docs/client";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 
 import IconExternalLink from "@theme/Icon/ExternalLink";
 import MenuLink from "@theme/Menu/Link";
@@ -14,7 +14,7 @@ export default function SidebarItemLink({
   item,
   level,
   activePath,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const { href, label, className, autoAddBaseUrl } = item;
   const isActive = isActiveSidebarItem(item, activePath);
   const isInternalLink = isInternalUrl(href);

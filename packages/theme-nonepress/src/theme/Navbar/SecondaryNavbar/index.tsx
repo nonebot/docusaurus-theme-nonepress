@@ -6,16 +6,16 @@ import clsx from "clsx";
 
 import Translate from "@docusaurus/Translate";
 import {
-  useTOCContent,
   useSidebarContent,
-  useTOCDisplay,
   useSidebarDisplay,
+  useTOCContent,
+  useTOCDisplay,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import IconDropdown from "@theme/Icon/Dropdown";
 import IconSidebar from "@theme/Icon/Sidebar";
 
-export default function SecondaryNavbar(): JSX.Element | null {
+export default function SecondaryNavbar(): React.ReactNode | null {
   const { shown: tocShown, setShown: setTOCShown } = useTOCDisplay();
   const { shown: sidebarShown, setShown: setSidebarShown } =
     useSidebarDisplay();

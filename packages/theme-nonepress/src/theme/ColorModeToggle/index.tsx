@@ -16,7 +16,7 @@ function ColorModeToggle({
   dark = false,
   value,
   onChange,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const isBrowser = useIsBrowser();
 
   const title = translate(

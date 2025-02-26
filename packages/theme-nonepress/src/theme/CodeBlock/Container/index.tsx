@@ -8,7 +8,7 @@ import { getPrismCssVariables } from "@docusaurus/theme-common/internal";
 export default function CodeBlockContainer<T extends "div" | "pre">({
   as: As,
   ...props
-}: { as: T } & ComponentProps<T>): JSX.Element {
+}: { as: T } & ComponentProps<T>): React.ReactNode {
   const prismTheme = usePrismTheme();
   const prismCssVariables = getPrismCssVariables(prismTheme);
   return (

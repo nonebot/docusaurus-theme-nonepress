@@ -7,7 +7,7 @@ import type { Props } from "@theme/Page/TOC/Container";
 export default function TOCContainer({
   className,
   children,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div className={clsx("toc", className)}>
       <div className="toc-container">{children}</div>

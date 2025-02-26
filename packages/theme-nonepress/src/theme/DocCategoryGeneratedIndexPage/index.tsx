@@ -14,7 +14,7 @@ import Heading from "@theme/Heading";
 
 function DocCategoryGeneratedIndexPageMetadata({
   categoryGeneratedIndex,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <PageMetadata
       title={categoryGeneratedIndex.title}
@@ -28,7 +28,7 @@ function DocCategoryGeneratedIndexPageMetadata({
 
 function DocCategoryGeneratedIndexPageContent({
   categoryGeneratedIndex,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const category = useCurrentSidebarCategory();
 
   return (
@@ -59,7 +59,7 @@ function DocCategoryGeneratedIndexPageContent({
 
 export default function DocCategoryGeneratedIndexPage(
   props: Props,
-): JSX.Element {
+): React.ReactNode {
   return (
     <>
       <DocCategoryGeneratedIndexPageMetadata {...props} />

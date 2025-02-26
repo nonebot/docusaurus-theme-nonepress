@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 export default function TOCCollapsibleCollapseButton({
   collapsed,
   ...props
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <button
       type="button"

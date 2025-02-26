@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 // SVG Source: https://svgl.app/
-function Twitter(props: SVGProps<SVGSVGElement>): JSX.Element {
+function Twitter(props: SVGProps<SVGSVGElement>): React.ReactNode {
   return (
     <svg
       viewBox="0 0 256 209"

@@ -2,7 +2,7 @@ import React from "react";
 
 import type { Props } from "@theme/Icon/WordWrap";
 
-export default function IconWordWrap(props: Props): JSX.Element {
+export default function IconWordWrap(props: Props): React.ReactNode {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path

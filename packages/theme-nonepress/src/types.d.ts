@@ -93,29 +93,31 @@ declare module "@theme/Admonition" {
     readonly className?: string;
   }
 
-  export default function Admonition(props: Props): JSX.Element;
+  export default function Admonition(props: Props): React.ReactNode;
 }
 
 declare module "@theme/AnnouncementBar" {
-  export default function AnnouncementBar(): JSX.Element | null;
+  export default function AnnouncementBar(): React.ReactNode | null;
 }
 declare module "@theme/AnnouncementBar/Content" {
   import type { ComponentProps } from "react";
 
   export interface Props extends ComponentProps<"div"> {}
 
-  export default function AnnouncementBarContent(props: Props): JSX.Element;
+  export default function AnnouncementBarContent(props: Props): React.ReactNode;
 }
 declare module "@theme/AnnouncementBar/CloseButton" {
   import type { ComponentProps } from "react";
 
   export interface Props extends ComponentProps<"button"> {}
 
-  export default function AnnouncementBarCloseButton(props: Props): JSX.Element;
+  export default function AnnouncementBarCloseButton(
+    props: Props,
+  ): React.ReactNode;
 }
 
 declare module "@theme/BackToTopButton" {
-  export default function BackToTopButton(): JSX.Element;
+  export default function BackToTopButton(): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock" {
@@ -130,7 +132,7 @@ declare module "@theme/CodeBlock" {
     readonly showLineNumbers?: boolean;
   }
 
-  export default function CodeBlock(props: Props): JSX.Element;
+  export default function CodeBlock(props: Props): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock/Container" {
@@ -139,7 +141,7 @@ declare module "@theme/CodeBlock/Container" {
   export default function CodeBlockContainer<T extends "div" | "pre">({
     as: As,
     ...props
-  }: { as: T } & ComponentProps<T>): JSX.Element;
+  }: { as: T } & ComponentProps<T>): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock/Content/Element" {
@@ -147,7 +149,9 @@ declare module "@theme/CodeBlock/Content/Element" {
 
   export type { Props };
 
-  export default function CodeBlockElementContent(props: Props): JSX.Element;
+  export default function CodeBlockElementContent(
+    props: Props,
+  ): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock/Content/String" {
@@ -157,7 +161,7 @@ declare module "@theme/CodeBlock/Content/String" {
     readonly children: string;
   }
 
-  export default function CodeBlockStringContent(props: Props): JSX.Element;
+  export default function CodeBlockStringContent(props: Props): React.ReactNode;
 }
 
 declare module "@theme/CodeInline" {
@@ -165,7 +169,7 @@ declare module "@theme/CodeInline" {
 
   export interface Props extends ComponentProps<"code"> {}
 
-  export default function CodeInline(props: Props): JSX.Element;
+  export default function CodeInline(props: Props): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock/CopyButton" {
@@ -174,7 +178,7 @@ declare module "@theme/CodeBlock/CopyButton" {
     readonly className?: string;
   }
 
-  export default function CopyButton(props: Props): JSX.Element;
+  export default function CopyButton(props: Props): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock/Line" {
@@ -194,7 +198,7 @@ declare module "@theme/CodeBlock/Line" {
     readonly getTokenProps: (input: TokenInputProps) => TokenOutputProps;
   }
 
-  export default function CodeBlockLine(props: Props): JSX.Element;
+  export default function CodeBlockLine(props: Props): React.ReactNode;
 }
 
 declare module "@theme/CodeBlock/WordWrapButton" {
@@ -204,7 +208,7 @@ declare module "@theme/CodeBlock/WordWrapButton" {
     readonly isEnabled: boolean;
   }
 
-  export default function WordWrapButton(props: Props): JSX.Element;
+  export default function WordWrapButton(props: Props): React.ReactNode;
 }
 
 declare module "@theme/ColorModeToggle" {
@@ -221,7 +225,7 @@ declare module "@theme/ColorModeToggle" {
     readonly onChange: (colorMode: ColorMode) => void;
   }
 
-  export default function ColorModeToggle(props: Props): JSX.Element;
+  export default function ColorModeToggle(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Details" {
@@ -233,7 +237,7 @@ declare module "@theme/Details" {
 }
 
 declare module "@theme/DocBreadcrumbs/Items/Home" {
-  export default function HomeBreadcrumbItem(): JSX.Element;
+  export default function HomeBreadcrumbItem(): React.ReactNode;
 }
 
 declare module "@theme/DocCard" {
@@ -242,7 +246,7 @@ declare module "@theme/DocCard" {
   export interface Props {
     readonly item: PropSidebarItem;
   }
-  export default function DocCard(props: Props): JSX.Element;
+  export default function DocCard(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocCardList" {
@@ -252,43 +256,43 @@ declare module "@theme/DocCardList" {
     readonly items?: PropSidebarItem[];
     readonly className?: string;
   }
-  export default function DocCardList(props: Props): JSX.Element;
+  export default function DocCardList(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocItem/Content" {
   export interface Props {
-    readonly children: JSX.Element;
+    readonly children: React.ReactNode;
   }
 
-  export default function DocItemContent(props: Props): JSX.Element;
+  export default function DocItemContent(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocItem/Footer" {
-  export default function DocItemFooter(): JSX.Element;
+  export default function DocItemFooter(): React.ReactNode;
 }
 
 declare module "@theme/DocItem/Layout" {
   export interface Props {
-    readonly children: JSX.Element;
+    readonly children: React.ReactNode;
   }
 
-  export default function DocItemLayout(props: Props): JSX.Element;
+  export default function DocItemLayout(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocItem/Metadata" {
-  export default function DocItemMetadata(): JSX.Element;
+  export default function DocItemMetadata(): React.ReactNode;
 }
 
 declare module "@theme/DocItem/TOC/Mobile" {
-  export default function DocItemTOCMobile(): JSX.Element;
+  export default function DocItemTOCMobile(): React.ReactNode;
 }
 
 declare module "@theme/DocItem/TOC/Desktop" {
-  export default function DocItemTOCDesktop(): JSX.Element;
+  export default function DocItemTOCDesktop(): React.ReactNode;
 }
 
 declare module "@theme/DocItem/Paginator" {
-  export default function DocItemPaginator(): JSX.Element;
+  export default function DocItemPaginator(): React.ReactNode;
 }
 
 declare module "@theme/DocRoot/Layout" {
@@ -298,7 +302,7 @@ declare module "@theme/DocRoot/Layout" {
     readonly children: ReactNode;
   }
 
-  export default function DocRootLayout(props: Props): JSX.Element;
+  export default function DocRootLayout(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocRoot/Layout/Sidebar" {
@@ -312,7 +316,7 @@ declare module "@theme/DocRoot/Layout/Sidebar" {
     readonly setHiddenSidebarContainer: Dispatch<SetStateAction<boolean>>;
   }
 
-  export default function DocRootLayoutSidebar(props: Props): JSX.Element;
+  export default function DocRootLayoutSidebar(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocRoot/Layout/Sidebar/ExpandButton" {
@@ -322,7 +326,7 @@ declare module "@theme/DocRoot/Layout/Sidebar/ExpandButton" {
 
   export default function DocRootLayoutSidebarExpandButton(
     props: Props,
-  ): JSX.Element;
+  ): React.ReactNode;
 }
 
 declare module "@theme/DocRoot/Layout/Main" {
@@ -333,7 +337,7 @@ declare module "@theme/DocRoot/Layout/Main" {
     readonly children: ReactNode;
   }
 
-  export default function DocRootLayoutMain(props: Props): JSX.Element;
+  export default function DocRootLayoutMain(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocPaginator" {
@@ -345,7 +349,7 @@ declare module "@theme/DocPaginator" {
     readonly className?: string;
   }
 
-  export default function DocPaginator(props: Props): JSX.Element;
+  export default function DocPaginator(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebar" {
@@ -358,7 +362,7 @@ declare module "@theme/DocSidebar" {
     readonly isHidden: boolean;
   }
 
-  export default function DocSidebar(props: Props): JSX.Element;
+  export default function DocSidebar(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebar/Mobile" {
@@ -366,7 +370,7 @@ declare module "@theme/DocSidebar/Mobile" {
 
   export interface Props extends DocSidebarProps {}
 
-  export default function DocSidebarMobile(props: Props): JSX.Element;
+  export default function DocSidebarMobile(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebar/Desktop" {
@@ -374,7 +378,7 @@ declare module "@theme/DocSidebar/Desktop" {
 
   export interface Props extends DocSidebarProps {}
 
-  export default function DocSidebarDesktop(props: Props): JSX.Element;
+  export default function DocSidebarDesktop(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebar/Desktop/Content" {
@@ -386,7 +390,7 @@ declare module "@theme/DocSidebar/Desktop/Content" {
     readonly sidebar: readonly PropSidebarItem[];
   }
 
-  export default function Content(props: Props): JSX.Element;
+  export default function Content(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebar/Desktop/CollapseButton" {
@@ -394,7 +398,7 @@ declare module "@theme/DocSidebar/Desktop/CollapseButton" {
     readonly onClick: React.MouseEventHandler;
   }
 
-  export default function CollapseButton(props: Props): JSX.Element;
+  export default function CollapseButton(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebarItem" {
@@ -409,7 +413,7 @@ declare module "@theme/DocSidebarItem" {
     readonly index: number;
   }
 
-  export default function DocSidebarItem(props: Props): JSX.Element;
+  export default function DocSidebarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebarItem/Link" {
@@ -421,7 +425,7 @@ declare module "@theme/DocSidebarItem/Link" {
     readonly item: PropSidebarItemLink;
   }
 
-  export default function DocSidebarItemLink(props: Props): JSX.Element;
+  export default function DocSidebarItemLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebarItem/Html" {
@@ -433,7 +437,7 @@ declare module "@theme/DocSidebarItem/Html" {
     readonly item: PropSidebarItemHtml;
   }
 
-  export default function DocSidebarItemHtml(props: Props): JSX.Element;
+  export default function DocSidebarItemHtml(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebarItem/Category" {
@@ -445,7 +449,7 @@ declare module "@theme/DocSidebarItem/Category" {
     readonly item: PropSidebarItemCategory;
   }
 
-  export default function DocSidebarItemCategory(props: Props): JSX.Element;
+  export default function DocSidebarItemCategory(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocSidebarItems" {
@@ -457,7 +461,7 @@ declare module "@theme/DocSidebarItems" {
     readonly items: readonly PropSidebarItem[];
   }
 
-  export default function DocSidebarItems(props: Props): JSX.Element;
+  export default function DocSidebarItems(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocVersionBanner" {
@@ -465,7 +469,9 @@ declare module "@theme/DocVersionBanner" {
     readonly className?: string;
   }
 
-  export default function DocVersionBanner(props: Props): JSX.Element | null;
+  export default function DocVersionBanner(
+    props: Props,
+  ): React.ReactNode | null;
 }
 
 declare module "@theme/DocVersionBadge" {
@@ -473,11 +479,11 @@ declare module "@theme/DocVersionBadge" {
     readonly className?: string;
   }
 
-  export default function DocVersionBadge(props: Props): JSX.Element;
+  export default function DocVersionBadge(props: Props): React.ReactNode;
 }
 
 declare module "@theme/DocVersionSuggestions" {
-  export default function DocVersionSuggestions(): JSX.Element;
+  export default function DocVersionSuggestions(): React.ReactNode;
 }
 
 declare module "@theme/EditMetaRow" {
@@ -487,7 +493,7 @@ declare module "@theme/EditMetaRow" {
     readonly lastUpdatedAt: number | undefined;
     readonly lastUpdatedBy: string | undefined;
   }
-  export default function EditMetaRow(props: Props): JSX.Element;
+  export default function EditMetaRow(props: Props): React.ReactNode;
 }
 
 declare module "@theme/EditThisPage" {
@@ -495,7 +501,7 @@ declare module "@theme/EditThisPage" {
     readonly editUrl: string;
   }
 
-  export default function EditThisPage(props: Props): JSX.Element;
+  export default function EditThisPage(props: Props): React.ReactNode;
 }
 
 declare module "@theme/ErrorPageContent" {
@@ -506,7 +512,7 @@ declare module "@theme/ErrorPageContent" {
 }
 
 declare module "@theme/Footer" {
-  export default function Footer(): JSX.Element | null;
+  export default function Footer(): React.ReactNode | null;
 }
 
 declare module "@theme/Footer/Copyright" {
@@ -514,8 +520,10 @@ declare module "@theme/Footer/Copyright" {
     readonly copyright: string;
   }
 
-  export function DocusaurusLogo(props: { className?: string }): JSX.Element;
-  export default function FooterCopyright(props: Props): JSX.Element;
+  export function DocusaurusLogo(props: {
+    className?: string;
+  }): React.ReactNode;
+  export default function FooterCopyright(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Footer/LinkItem" {
@@ -525,7 +533,7 @@ declare module "@theme/Footer/LinkItem" {
     readonly item: FooterLinkItem;
   }
 
-  export default function FooterLinkItem(props: Props): JSX.Element;
+  export default function FooterLinkItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Footer/Links" {
@@ -535,7 +543,7 @@ declare module "@theme/Footer/Links" {
     readonly links: Footer["links"];
   }
 
-  export default function FooterLinks(props: Props): JSX.Element;
+  export default function FooterLinks(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Footer/Links/MultiColumn" {
@@ -545,7 +553,7 @@ declare module "@theme/Footer/Links/MultiColumn" {
     readonly columns: MultiColumnFooter["links"];
   }
 
-  export default function FooterLinksMultiColumn(props: Props): JSX.Element;
+  export default function FooterLinksMultiColumn(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Footer/Links/Simple" {
@@ -555,7 +563,7 @@ declare module "@theme/Footer/Links/Simple" {
     readonly links: SimpleFooter["links"];
   }
 
-  export default function FooterLinksSimple(props: Props): JSX.Element;
+  export default function FooterLinksSimple(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Footer/Logo" {
@@ -565,7 +573,7 @@ declare module "@theme/Footer/Logo" {
     readonly logo: FooterLogo;
   }
 
-  export default function FooterLogo(props: Props): JSX.Element;
+  export default function FooterLogo(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Footer/SocialLinks" {
@@ -575,7 +583,7 @@ declare module "@theme/Footer/SocialLinks" {
     readonly socialLinks: SocialLink[];
   }
 
-  export default function FooterSocialLinks(props: Props): JSX.Element;
+  export default function FooterSocialLinks(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Heading" {
@@ -587,7 +595,7 @@ declare module "@theme/Heading" {
     readonly as: HeadingType;
   }
 
-  export default function Heading(props: Props): JSX.Element;
+  export default function Heading(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Algolia" {
@@ -595,7 +603,7 @@ declare module "@theme/Icon/Algolia" {
 
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
-  export default function IconAlgolia(props: Props): JSX.Element;
+  export default function IconAlgolia(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Close" {
@@ -603,7 +611,7 @@ declare module "@theme/Icon/Close" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconClose(props: Props): JSX.Element;
+  export default function IconClose(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Category" {
@@ -611,7 +619,7 @@ declare module "@theme/Icon/Category" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconCategory(props: Props): JSX.Element;
+  export default function IconCategory(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Copy" {
@@ -619,7 +627,7 @@ declare module "@theme/Icon/Copy" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconCopy(props: Props): JSX.Element;
+  export default function IconCopy(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/DarkMode" {
@@ -627,7 +635,7 @@ declare module "@theme/Icon/DarkMode" {
 
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
-  export default function IconDarkMode(props: Props): JSX.Element;
+  export default function IconDarkMode(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Docusaurus" {
@@ -635,7 +643,7 @@ declare module "@theme/Icon/Docusaurus" {
 
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
-  export default function IconDocusaurus(props: Props): JSX.Element;
+  export default function IconDocusaurus(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Dropdown" {
@@ -643,7 +651,7 @@ declare module "@theme/Icon/Dropdown" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconDropdown(props: Props): JSX.Element;
+  export default function IconDropdown(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Edit" {
@@ -651,7 +659,7 @@ declare module "@theme/Icon/Edit" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconEdit(props: Props): JSX.Element;
+  export default function IconEdit(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/ExternalLink" {
@@ -659,7 +667,7 @@ declare module "@theme/Icon/ExternalLink" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconExternalLink(props: Props): JSX.Element;
+  export default function IconExternalLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Extra" {
@@ -667,7 +675,7 @@ declare module "@theme/Icon/Extra" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconExtra(props: Props): JSX.Element;
+  export default function IconExtra(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/File" {
@@ -675,7 +683,7 @@ declare module "@theme/Icon/File" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconFile(props: Props): JSX.Element;
+  export default function IconFile(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Home" {
@@ -683,7 +691,7 @@ declare module "@theme/Icon/Home" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconHome(props: Props): JSX.Element;
+  export default function IconHome(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Language" {
@@ -691,7 +699,7 @@ declare module "@theme/Icon/Language" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconLanguage(props: Props): JSX.Element;
+  export default function IconLanguage(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/LightMode" {
@@ -699,7 +707,7 @@ declare module "@theme/Icon/LightMode" {
 
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
-  export default function IconLightMode(props: Props): JSX.Element;
+  export default function IconLightMode(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Link" {
@@ -707,7 +715,7 @@ declare module "@theme/Icon/Link" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconLink(props: Props): JSX.Element;
+  export default function IconLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Menu" {
@@ -715,7 +723,7 @@ declare module "@theme/Icon/Menu" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconMenu(props: Props): JSX.Element;
+  export default function IconMenu(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/React" {
@@ -723,7 +731,7 @@ declare module "@theme/Icon/React" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconReact(props: Props): JSX.Element;
+  export default function IconReact(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Search" {
@@ -731,7 +739,7 @@ declare module "@theme/Icon/Search" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconSearch(props: Props): JSX.Element;
+  export default function IconSearch(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Sidebar" {
@@ -739,7 +747,7 @@ declare module "@theme/Icon/Sidebar" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconSidebar(props: Props): JSX.Element;
+  export default function IconSidebar(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Success" {
@@ -747,7 +755,7 @@ declare module "@theme/Icon/Success" {
 
   export interface Props extends Omit<FontAwesomeIconProps, "icon"> {}
 
-  export default function IconSuccess(props: Props): JSX.Element;
+  export default function IconSuccess(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/WordWrap" {
@@ -755,7 +763,7 @@ declare module "@theme/Icon/WordWrap" {
 
   export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
 
-  export default function IconWordWrap(props: Props): JSX.Element;
+  export default function IconWordWrap(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Socials/Twitter" {
@@ -763,7 +771,7 @@ declare module "@theme/Icon/Socials/Twitter" {
 
   export interface Props extends ComponentProps<"svg"> {}
 
-  export default function Twitter(props: Props): JSX.Element;
+  export default function Twitter(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Socials/GitHub" {
@@ -771,7 +779,7 @@ declare module "@theme/Icon/Socials/GitHub" {
 
   export interface Props extends ComponentProps<"svg"> {}
 
-  export default function Github(props: Props): JSX.Element;
+  export default function Github(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Socials/X" {
@@ -779,7 +787,7 @@ declare module "@theme/Icon/Socials/X" {
 
   export interface Props extends ComponentProps<"svg"> {}
 
-  export default function X(props: Props): JSX.Element;
+  export default function X(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Socials/LinkedIn" {
@@ -787,7 +795,7 @@ declare module "@theme/Icon/Socials/LinkedIn" {
 
   export interface Props extends ComponentProps<"svg"> {}
 
-  export default function LinkedIn(props: Props): JSX.Element;
+  export default function LinkedIn(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Socials/Default" {
@@ -795,7 +803,7 @@ declare module "@theme/Icon/Socials/Default" {
 
   export interface Props extends ComponentProps<"svg"> {}
 
-  export default function DefaultSocialIcon(props: Props): JSX.Element;
+  export default function DefaultSocialIcon(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Icon/Socials/StackOverflow" {
@@ -803,7 +811,7 @@ declare module "@theme/Icon/Socials/StackOverflow" {
 
   export interface Props extends ComponentProps<"svg"> {}
 
-  export default function StackOverflow(props: Props): JSX.Element;
+  export default function StackOverflow(props: Props): React.ReactNode;
 }
 
 declare module "@theme/LastUpdated" {
@@ -813,7 +821,7 @@ declare module "@theme/LastUpdated" {
     readonly lastUpdatedBy?: string;
   }
 
-  export default function LastUpdated(props: Props): JSX.Element;
+  export default function LastUpdated(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NotFound/Content" {
@@ -821,7 +829,7 @@ declare module "@theme/NotFound/Content" {
     readonly className?: string;
   }
 
-  export default function NotFoundContent(props: Props): JSX.Element;
+  export default function NotFoundContent(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Layout" {
@@ -837,7 +845,7 @@ declare module "@theme/Layout" {
     readonly description?: string;
   }
 
-  export default function Layout(props: Props): JSX.Element;
+  export default function Layout(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Layout/Provider" {
@@ -847,7 +855,7 @@ declare module "@theme/Layout/Provider" {
     readonly children: ReactNode;
   }
 
-  export default function LayoutProvider(props: Props): JSX.Element;
+  export default function LayoutProvider(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Logo" {
@@ -858,7 +866,7 @@ declare module "@theme/Logo" {
     readonly titleClassName?: string;
   }
 
-  export default function Logo(props: Props): JSX.Element;
+  export default function Logo(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents" {
@@ -888,12 +896,12 @@ declare module "@theme/MDXComponents" {
     readonly pre: typeof MDXPre;
     readonly ul: typeof MDXUl;
     readonly img: typeof MDXImg;
-    readonly h1: (props: ComponentProps<"h1">) => JSX.Element;
-    readonly h2: (props: ComponentProps<"h2">) => JSX.Element;
-    readonly h3: (props: ComponentProps<"h3">) => JSX.Element;
-    readonly h4: (props: ComponentProps<"h4">) => JSX.Element;
-    readonly h5: (props: ComponentProps<"h5">) => JSX.Element;
-    readonly h6: (props: ComponentProps<"h6">) => JSX.Element;
+    readonly h1: (props: ComponentProps<"h1">) => React.ReactNode;
+    readonly h2: (props: ComponentProps<"h2">) => React.ReactNode;
+    readonly h3: (props: ComponentProps<"h3">) => React.ReactNode;
+    readonly h4: (props: ComponentProps<"h4">) => React.ReactNode;
+    readonly h5: (props: ComponentProps<"h5">) => React.ReactNode;
+    readonly h6: (props: ComponentProps<"h6">) => React.ReactNode;
     readonly admonition: typeof Admonition;
     readonly mermaid: typeof Mermaid;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -909,7 +917,7 @@ declare module "@theme/MDXComponents/A" {
 
   export interface Props extends ComponentProps<"a"> {}
 
-  export default function MDXA(props: Props): JSX.Element;
+  export default function MDXA(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Code" {
@@ -917,7 +925,7 @@ declare module "@theme/MDXComponents/Code" {
 
   export interface Props extends ComponentProps<"code"> {}
 
-  export default function MDXCode(props: Props): JSX.Element;
+  export default function MDXCode(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Details" {
@@ -925,7 +933,7 @@ declare module "@theme/MDXComponents/Details" {
 
   export interface Props extends ComponentProps<"details"> {}
 
-  export default function MDXDetails(props: Props): JSX.Element;
+  export default function MDXDetails(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Head" {
@@ -933,7 +941,7 @@ declare module "@theme/MDXComponents/Head" {
 
   export interface Props extends ComponentProps<"head"> {}
 
-  export default function MDXHead(props: Props): JSX.Element;
+  export default function MDXHead(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Heading" {
@@ -943,7 +951,7 @@ declare module "@theme/MDXComponents/Heading" {
 
   export interface Props extends ComponentProps<typeof Heading> {}
 
-  export default function MDXHeading(props: Props): JSX.Element;
+  export default function MDXHeading(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Img" {
@@ -951,7 +959,7 @@ declare module "@theme/MDXComponents/Img" {
 
   export interface Props extends ComponentProps<"img"> {}
 
-  export default function MDXImg(props: Props): JSX.Element;
+  export default function MDXImg(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Pre" {
@@ -959,7 +967,7 @@ declare module "@theme/MDXComponents/Pre" {
 
   export interface Props extends ComponentProps<"pre"> {}
 
-  export default function MDXPre(props: Props): JSX.Element;
+  export default function MDXPre(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Ul" {
@@ -967,7 +975,7 @@ declare module "@theme/MDXComponents/Ul" {
 
   export interface Props extends ComponentProps<"ul"> {}
 
-  export default function MDXUl(props: Props): JSX.Element;
+  export default function MDXUl(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXComponents/Li" {
@@ -975,7 +983,7 @@ declare module "@theme/MDXComponents/Li" {
 
   export interface Props extends ComponentProps<"li"> {}
 
-  export default function MDXLi(props: Props): JSX.Element;
+  export default function MDXLi(props: Props): React.ReactNode;
 }
 
 declare module "@theme/MDXContent" {
@@ -985,7 +993,7 @@ declare module "@theme/MDXContent" {
     readonly children: ReactNode;
   }
 
-  export default function MDXContent(props: Props): JSX.Element;
+  export default function MDXContent(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Menu" {
@@ -993,7 +1001,7 @@ declare module "@theme/Menu" {
 
   export interface Props extends ComponentProps<"ul"> {}
 
-  export default function Menu(props: Props): JSX.Element;
+  export default function Menu(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Menu/Category" {
@@ -1008,7 +1016,7 @@ declare module "@theme/Menu/Category" {
     readonly wrapperClassName?: string;
   }
 
-  export default function MenuCategory(props: Props): JSX.Element;
+  export default function MenuCategory(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Menu/Html" {
@@ -1018,7 +1026,7 @@ declare module "@theme/Menu/Html" {
     readonly html: string;
   }
 
-  export default function MenuHtml(props: Props): JSX.Element;
+  export default function MenuHtml(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Menu/Link" {
@@ -1029,7 +1037,7 @@ declare module "@theme/Menu/Link" {
     readonly wrapperClassName?: string;
   }
 
-  export default function MenuLink(props: Props): JSX.Element;
+  export default function MenuLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Menu/Title" {
@@ -1038,7 +1046,7 @@ declare module "@theme/Menu/Title" {
     readonly className?: string;
   }
 
-  export default function MenuTitle(props: Props): JSX.Element;
+  export default function MenuTitle(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Mermaid" {
@@ -1046,11 +1054,11 @@ declare module "@theme/Mermaid" {
     value: string;
   }
 
-  export default function Mermaid(props: Props): JSX.Element;
+  export default function Mermaid(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Navbar" {
-  export default function Navbar(): JSX.Element;
+  export default function Navbar(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/ColorModeToggle" {
@@ -1059,11 +1067,11 @@ declare module "@theme/Navbar/ColorModeToggle" {
     readonly mobile?: boolean;
   }
 
-  export default function NavbarColorModeToggle(props: Props): JSX.Element;
+  export default function NavbarColorModeToggle(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Navbar/Logo" {
-  export default function NavbarLogo(): JSX.Element;
+  export default function NavbarLogo(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/DocsVersion" {
@@ -1071,11 +1079,11 @@ declare module "@theme/Navbar/DocsVersion" {
 
   export interface Props extends Omit<DocsVersionDropdown, "enabled"> {}
 
-  export default function NavbarDocsVersion(props: Props): JSX.Element;
+  export default function NavbarDocsVersion(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Navbar/ExtraDropdown" {
-  export default function NavbarExtraDropdown(): JSX.Element | null;
+  export default function NavbarExtraDropdown(): React.ReactNode | null;
 }
 
 declare module "@theme/Navbar/LocaleDropdown" {
@@ -1087,19 +1095,19 @@ declare module "@theme/Navbar/LocaleDropdown" {
 
   export default function NavbarLocaleDropdown(
     props: Props,
-  ): JSX.Element | null;
+  ): React.ReactNode | null;
 }
 
 declare module "@theme/Navbar/Logo" {
-  export default function NavbarLogo(): JSX.Element;
+  export default function NavbarLogo(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/MobileMenu" {
-  export default function MobileMenu(): JSX.Element | null;
+  export default function MobileMenu(): React.ReactNode | null;
 }
 
 declare module "@theme/Navbar/MobileMenu/Header" {
-  export default function MobileMenuHeader(): JSX.Element;
+  export default function MobileMenuHeader(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/MobileMenu/PrimaryMenu" {
@@ -1109,23 +1117,23 @@ declare module "@theme/Navbar/MobileMenu/PrimaryMenu" {
     readonly items: NavbarItemProps[];
   }
 
-  export default function MobileMenuPrimaryMenu(props: Props): JSX.Element;
+  export default function MobileMenuPrimaryMenu(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Navbar/MobileMenu/Toggle" {
-  export default function MobileMenuToggle(): JSX.Element;
+  export default function MobileMenuToggle(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/MobileSidebar" {
-  export default function MobileSidebar(): JSX.Element;
+  export default function MobileSidebar(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/MobileTOCPopdown" {
-  export default function MobileTOCPopdown(): JSX.Element | null;
+  export default function MobileTOCPopdown(): React.ReactNode | null;
 }
 
 declare module "@theme/Navbar/PrimaryNavbar" {
-  export default function PrimaryNavbar(): JSX.Element;
+  export default function PrimaryNavbar(): React.ReactNode;
 }
 
 declare module "@theme/Navbar/Search" {
@@ -1136,11 +1144,11 @@ declare module "@theme/Navbar/Search" {
     readonly className?: string;
   }
 
-  export default function NavbarSearch(props: Props): JSX.Element;
+  export default function NavbarSearch(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Navbar/SecondaryNavbar" {
-  export default function SecondaryNavbar(): JSX.Element | null;
+  export default function SecondaryNavbar(): React.ReactNode | null;
 }
 
 declare module "@theme/Navbar/SocialLinks" {
@@ -1151,7 +1159,7 @@ declare module "@theme/Navbar/SocialLinks" {
     readonly mobile?: boolean;
   }
 
-  export default function NavbarSocialLinks(props: Props): JSX.Element;
+  export default function NavbarSocialLinks(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem" {
@@ -1183,7 +1191,7 @@ declare module "@theme/NavbarItem" {
 
   export type NavbarItemType = Props["type"];
 
-  export default function NavbarItem(props: Props): JSX.Element;
+  export default function NavbarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/ComponentTypes" {
@@ -1222,7 +1230,7 @@ declare module "@theme/NavbarItem/DefaultNavbarItem" {
     readonly mobile?: boolean;
   }
 
-  export default function DefaultNavbarItem(props: Props): JSX.Element;
+  export default function DefaultNavbarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/DocNavbarItem" {
@@ -1233,7 +1241,7 @@ declare module "@theme/NavbarItem/DocNavbarItem" {
     readonly docsPluginId?: string;
   }
 
-  export default function DocNavbarItem(props: Props): JSX.Element | null;
+  export default function DocNavbarItem(props: Props): React.ReactNode | null;
 }
 
 declare module "@theme/NavbarItem/DocSidebarNavbarItem" {
@@ -1244,7 +1252,7 @@ declare module "@theme/NavbarItem/DocSidebarNavbarItem" {
     readonly docsPluginId?: string;
   }
 
-  export default function DocSidebarNavbarItem(props: Props): JSX.Element;
+  export default function DocSidebarNavbarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/DocsMenuDropdownNavbarItem" {
@@ -1260,7 +1268,9 @@ declare module "@theme/NavbarItem/DocsMenuDropdownNavbarItem" {
     readonly mobile?: boolean;
   }
 
-  export default function DocsMenuDropdownNavbarItem(props: Props): JSX.Element;
+  export default function DocsMenuDropdownNavbarItem(
+    props: Props,
+  ): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/DocsVersionNavbarItem" {
@@ -1270,7 +1280,7 @@ declare module "@theme/NavbarItem/DocsVersionNavbarItem" {
     readonly docsPluginId?: string;
   }
 
-  export default function DocsVersionNavbarItem(props: Props): JSX.Element;
+  export default function DocsVersionNavbarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/DropdownNavbarItem" {
@@ -1288,7 +1298,7 @@ declare module "@theme/NavbarItem/DropdownNavbarItem" {
     readonly mobile?: boolean;
   }
 
-  export default function DropdownNavbarItem(props: Props): JSX.Element;
+  export default function DropdownNavbarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/HtmlNavbarItem" {
@@ -1298,7 +1308,7 @@ declare module "@theme/NavbarItem/HtmlNavbarItem" {
     value: string;
   }
 
-  export default function HtmlNavbarItem(props: Props): JSX.Element;
+  export default function HtmlNavbarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/NavbarItem/NavbarNavLink" {
@@ -1316,7 +1326,7 @@ declare module "@theme/NavbarItem/NavbarNavLink" {
     readonly isDropdownLink?: boolean;
   }
 
-  export default function NavbarNavLink(props: Props): JSX.Element;
+  export default function NavbarNavLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page" {
@@ -1334,7 +1344,7 @@ declare module "@theme/Page" {
     readonly maxHeadingLevel?: number;
   }
 
-  export default function Page(props: Props): JSX.Element;
+  export default function Page(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/TOC" {
@@ -1347,7 +1357,7 @@ declare module "@theme/Page/TOC" {
     readonly hideTableOfContents: boolean;
   }
 
-  export default function TOC(props: Props): JSX.Element | null;
+  export default function TOC(props: Props): React.ReactNode | null;
 }
 
 declare module "@theme/Page/TOC/Container" {
@@ -1358,7 +1368,7 @@ declare module "@theme/Page/TOC/Container" {
     readonly children?: ReactNode;
   }
 
-  export default function TOCContainer(props: Props): JSX.Element;
+  export default function TOCContainer(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/TOC/Content" {
@@ -1372,7 +1382,7 @@ declare module "@theme/Page/TOC/Content" {
     readonly linkActiveClassName?: string | null;
   }
 
-  export default function TOCContent(props: Props): JSX.Element;
+  export default function TOCContent(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/TOC/Tree" {
@@ -1383,7 +1393,7 @@ declare module "@theme/Page/TOC/Tree" {
     readonly linkClassName?: string | null;
   }
 
-  export default function TOCTree(props: Props): JSX.Element | null;
+  export default function TOCTree(props: Props): React.ReactNode | null;
 }
 
 declare module "@theme/PaginatorNavLink" {
@@ -1393,11 +1403,11 @@ declare module "@theme/PaginatorNavLink" {
 
   export interface Props extends Omit<PropNavigationLink, "title"> {
     readonly title: ReactNode;
-    readonly subLabel?: JSX.Element;
+    readonly subLabel?: React.ReactNode;
     readonly isNext?: boolean;
   }
 
-  export default function PaginatorNavLink(props: Props): JSX.Element;
+  export default function PaginatorNavLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/SearchMetadata" {
@@ -1407,15 +1417,15 @@ declare module "@theme/SearchMetadata" {
     readonly tag?: string;
   }
 
-  export default function SearchMetadata(props: Props): JSX.Element;
+  export default function SearchMetadata(props: Props): React.ReactNode;
 }
 
 declare module "@theme/SearchBar" {
-  export default function SearchBar(): JSX.Element;
+  export default function SearchBar(): React.ReactNode;
 }
 
 declare module "@theme/SearchPage" {
-  export default function SearchPage(): JSX.Element;
+  export default function SearchPage(): React.ReactNode;
 }
 
 declare module "@theme/SearchTranslations" {
@@ -1431,7 +1441,7 @@ declare module "@theme/Page/Sidebar" {
     readonly sidebarVersion?: string;
   }
 
-  export default function Sidebar(props: Props): JSX.Element | null;
+  export default function Sidebar(props: Props): React.ReactNode | null;
 }
 
 declare module "@theme/Page/Sidebar/Content" {
@@ -1442,7 +1452,7 @@ declare module "@theme/Page/Sidebar/Content" {
     readonly items: readonly PropSidebarItem[];
   }
 
-  export default function SidebarContent(props: Props): JSX.Element;
+  export default function SidebarContent(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/Sidebar/Items" {
@@ -1454,7 +1464,7 @@ declare module "@theme/Page/Sidebar/Items" {
     readonly items: readonly PropSidebarItem[];
   }
 
-  export default function SidebarItems(props: Props): JSX.Element;
+  export default function SidebarItems(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/SidebarItem" {
@@ -1467,7 +1477,7 @@ declare module "@theme/Page/SidebarItem" {
     readonly item: PropSidebarItem;
   }
 
-  export default function SidebarItem(props: Props): JSX.Element;
+  export default function SidebarItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/SidebarItem/Link" {
@@ -1479,7 +1489,7 @@ declare module "@theme/Page/SidebarItem/Link" {
     readonly item: PropSidebarItemLink;
   }
 
-  export default function SidebarItemLink(props: Props): JSX.Element;
+  export default function SidebarItemLink(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/SidebarItem/Html" {
@@ -1491,7 +1501,7 @@ declare module "@theme/Page/SidebarItem/Html" {
     readonly item: PropSidebarItemHtml;
   }
 
-  export default function SidebarItemHtml(props: Props): JSX.Element;
+  export default function SidebarItemHtml(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Page/SidebarItem/Category" {
@@ -1503,11 +1513,11 @@ declare module "@theme/Page/SidebarItem/Category" {
     readonly item: PropSidebarItemCategory;
   }
 
-  export default function SidebarItemCategory(props: Props): JSX.Element;
+  export default function SidebarItemCategory(props: Props): React.ReactNode;
 }
 
 declare module "@theme/SkipToContent" {
-  export default function SkipToContent(): JSX.Element;
+  export default function SkipToContent(): React.ReactNode;
 }
 
 declare module "@theme/TabItem" {
@@ -1515,7 +1525,7 @@ declare module "@theme/TabItem" {
 
   export interface Props extends TabItemProps {}
 
-  export default function TabItem(props: Props): JSX.Element;
+  export default function TabItem(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Tabs" {
@@ -1523,7 +1533,7 @@ declare module "@theme/Tabs" {
 
   export interface Props extends TabsProps {}
 
-  export default function Tabs(props: Props): JSX.Element;
+  export default function Tabs(props: Props): React.ReactNode;
 }
 
 declare module "@theme/Tag" {
@@ -1532,7 +1542,7 @@ declare module "@theme/Tag" {
 
   export interface Props extends Optional<TagsListItem, "count"> {}
 
-  export default function Tag(props: Props): JSX.Element;
+  export default function Tag(props: Props): React.ReactNode;
 }
 
 declare module "@theme/ContentVisibility" {
@@ -1544,7 +1554,7 @@ declare module "@theme/ContentVisibility" {
     };
   }
 
-  export default function ContentVisibility(props: Props): JSX.Element;
+  export default function ContentVisibility(props: Props): React.ReactNode;
 }
 
 declare module "@theme/ContentVisibility/Unlisted" {
@@ -1552,7 +1562,7 @@ declare module "@theme/ContentVisibility/Unlisted" {
     className?: string;
   }
 
-  export default function Unlisted(props: Props): JSX.Element;
+  export default function Unlisted(props: Props): React.ReactNode;
 }
 
 declare module "@theme/ContentVisibility/Draft" {
@@ -1560,7 +1570,7 @@ declare module "@theme/ContentVisibility/Draft" {
     className?: string;
   }
 
-  export default function Draft(props: Props): JSX.Element;
+  export default function Draft(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TagsListByLetter" {
@@ -1570,7 +1580,7 @@ declare module "@theme/TagsListByLetter" {
     readonly tags: readonly TagsListItem[];
   }
 
-  export default function TagsListByLetter(props: Props): JSX.Element;
+  export default function TagsListByLetter(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TagsListInline" {
@@ -1581,7 +1591,7 @@ declare module "@theme/TagsListInline" {
     readonly tags: readonly Tag[];
   }
 
-  export default function TagsListInline(props: Props): JSX.Element;
+  export default function TagsListInline(props: Props): React.ReactNode;
 }
 
 declare module "@theme/ThemedImage" {
@@ -1594,7 +1604,7 @@ declare module "@theme/ThemedImage" {
     };
   }
 
-  export default function ThemedImage(props: Props): JSX.Element;
+  export default function ThemedImage(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TOCItems" {
@@ -1609,7 +1619,7 @@ declare module "@theme/TOCItems" {
     readonly linkActiveClassName?: string;
   }
 
-  export default function TOCItems(props: Props): JSX.Element;
+  export default function TOCItems(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TOCItems/Tree" {
@@ -1622,7 +1632,7 @@ declare module "@theme/TOCItems/Tree" {
     readonly isChild?: boolean;
   }
 
-  export default function TOCItems(props: Props): JSX.Element;
+  export default function TOCItems(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TOC" {
@@ -1637,7 +1647,7 @@ declare module "@theme/TOC" {
     readonly className?: string;
   }
 
-  export default function TOC(props: Props): JSX.Element;
+  export default function TOC(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TOCInline" {
@@ -1649,7 +1659,7 @@ declare module "@theme/TOCInline" {
     readonly maxHeadingLevel?: number;
   }
 
-  export default function TOCInline(props: Props): JSX.Element;
+  export default function TOCInline(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TOCCollapsible" {
@@ -1662,7 +1672,7 @@ declare module "@theme/TOCCollapsible" {
     readonly toc: readonly TOCItem[];
   }
 
-  export default function TOCCollapsible(props: Props): JSX.Element;
+  export default function TOCCollapsible(props: Props): React.ReactNode;
 }
 
 declare module "@theme/TOCCollapsible/CollapseButton" {
@@ -1674,7 +1684,7 @@ declare module "@theme/TOCCollapsible/CollapseButton" {
 
   export default function TOCCollapsibleCollapseButton(
     props: Props,
-  ): JSX.Element;
+  ): React.ReactNode;
 }
 
 declare module "@theme/prism-include-languages" {

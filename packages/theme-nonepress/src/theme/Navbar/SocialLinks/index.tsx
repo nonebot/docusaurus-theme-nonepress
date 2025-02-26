@@ -12,7 +12,7 @@ import type { Props } from "@theme/Navbar/SocialLinks";
 export default function NavbarSocialLinks({
   links,
   mobile,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div
       className={clsx(

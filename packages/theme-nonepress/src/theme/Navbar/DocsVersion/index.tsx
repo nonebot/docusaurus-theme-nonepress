@@ -24,7 +24,7 @@ export default function NavbarDocsVersion({
   docsPluginId,
   dropdownItemsBefore,
   dropdownItemsAfter,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const dropdownVersion = useDocsVersionCandidates(docsPluginId)[0];
   const dropdownLabel = dropdownVersion.label;
 

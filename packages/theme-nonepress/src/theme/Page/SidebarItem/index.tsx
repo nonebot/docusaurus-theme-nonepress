@@ -10,7 +10,7 @@ import SidebarItemLink from "@theme/Page/SidebarItem/Link";
 export default function SidebarItem({
   item,
   ...props
-}: Props): JSX.Element | null {
+}: Props): React.ReactNode | null {
   switch (item.type) {
     case "category":
       return <SidebarItemCategory item={item} {...props} />;

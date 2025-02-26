@@ -13,7 +13,7 @@ export default function PaginatorNavLink({
   title,
   subLabel,
   isNext,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <Link className={clsx("paginator")} to={permalink}>
       {subLabel && <div className="paginator-label">{subLabel}</div>}

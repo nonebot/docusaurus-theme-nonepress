@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { type ReactNode } from "react";
 
-import Link from '@docusaurus/Link';
+import Link from "@docusaurus/Link";
 
-import type {Props} from '@theme/TOCItems/Tree';
+import type { Props } from "@theme/TOCItems/Tree";
 
 // Recursive component rendering the toc tree
 function TOCItemTree({
@@ -10,7 +10,7 @@ function TOCItemTree({
   className,
   linkClassName,
   isChild,
-}: Props): JSX.Element | null {
+}: Props): ReactNode | null {
   if (!toc.length) {
     return null;
   }
@@ -22,7 +22,7 @@ function TOCItemTree({
             to={`#${heading.id}`}
             className={linkClassName ?? undefined}
             // Developer provided the HTML, so assume it's safe.
-            dangerouslySetInnerHTML={{__html: heading.value}}
+            dangerouslySetInnerHTML={{ __html: heading.value }}
           />
           <TOCItemTree
             isChild

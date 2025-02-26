@@ -6,13 +6,13 @@ import "./styles.css";
 
 import { useLocation } from "@docusaurus/router";
 import {
-  useSidebarDisplay,
   useSidebarContent,
+  useSidebarDisplay,
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import SidebarContent from "@theme/Page/Sidebar/Content";
 
-export default function MobileSidebar(): JSX.Element | null {
+export default function MobileSidebar(): React.ReactNode | null {
   const { pathname } = useLocation();
   const { shown, setShown } = useSidebarDisplay();
   const [content] = useSidebarContent();

@@ -8,7 +8,7 @@ import {
 import DocSidebarItem from "@theme/DocSidebarItem";
 import type { Props } from "@theme/DocSidebarItems";
 
-function DocSidebarItems({ items, ...props }: Props): JSX.Element {
+function DocSidebarItems({ items, ...props }: Props): React.ReactNode {
   const visibleItems = useVisibleSidebarItems(items, props.activePath);
   return (
     <DocSidebarItemsExpandedStateProvider>

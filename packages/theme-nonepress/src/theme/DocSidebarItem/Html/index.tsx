@@ -12,7 +12,7 @@ export default function DocSidebarItemHtml({
   item,
   level,
   index,
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const { value, defaultStyle, className } = item;
   return (
     <li
