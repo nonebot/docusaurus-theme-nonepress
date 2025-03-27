@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -20,7 +20,7 @@ export default function MenuCategory({
   wrapperClassName,
   children,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <li className={wrapperClassName}>
       <div className="menu-category menu-item">

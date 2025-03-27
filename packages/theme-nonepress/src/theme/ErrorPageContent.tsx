@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Translate from "@docusaurus/Translate";
 import {
@@ -12,7 +12,7 @@ import Heading from "@theme/Heading";
 export default function ErrorPageContent({
   error,
   tryAgain,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <main className="hero">
       <div className="hero-content">

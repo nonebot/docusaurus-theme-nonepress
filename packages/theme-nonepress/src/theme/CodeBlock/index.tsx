@@ -2,11 +2,11 @@ import React, { isValidElement, type ReactNode } from "react";
 
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
-import "./styles.css";
-
 import type { Props } from "@theme/CodeBlock";
 import ElementContent from "@theme/CodeBlock/Content/Element";
 import StringContent from "@theme/CodeBlock/Content/String";
+
+import "./styles.css";
 
 /**
  * Best attempt to make the children a plain string so it is copyable. If there
@@ -25,7 +25,7 @@ function maybeStringifyChildren(children: ReactNode): ReactNode {
 export default function CodeBlock({
   children: rawChildren,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   // The Prism theme on SSR is always the default theme but the site theme can
   // be in a different mode. React hydration doesn't update DOM styles that come
   // from SSR. Hence force a re-render after mounting to apply the current

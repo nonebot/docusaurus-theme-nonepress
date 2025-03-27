@@ -1,8 +1,8 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import type { Props } from "@theme/Icon/Docusaurus";
 
-export default function IconDocusaurus(props: Props): React.ReactNode {
+export default function IconDocusaurus(props: Props): ReactNode {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" {...props}>
       <g fill="none" fillRule="evenodd">

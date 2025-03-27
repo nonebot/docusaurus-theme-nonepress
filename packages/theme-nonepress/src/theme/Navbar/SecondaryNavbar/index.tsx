@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import "./styles.css";
 
@@ -15,7 +15,7 @@ import {
 import IconDropdown from "@theme/Icon/Dropdown";
 import IconSidebar from "@theme/Icon/Sidebar";
 
-export default function SecondaryNavbar(): React.ReactNode | null {
+export default function SecondaryNavbar(): ReactNode | null {
   const { shown: tocShown, setShown: setTOCShown } = useTOCDisplay();
   const { shown: sidebarShown, setShown: setSidebarShown } =
     useSidebarDisplay();

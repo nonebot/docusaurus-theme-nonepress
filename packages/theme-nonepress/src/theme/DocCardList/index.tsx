@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -17,7 +17,7 @@ function DocCardListForCurrentSidebarCategory(props: Props) {
   return <DocCardList {...props} items={category.items} />;
 }
 
-export default function DocCardList(props: Props): React.ReactNode {
+export default function DocCardList(props: Props): ReactNode {
   const { items, className } = props;
   if (!items) {
     return <DocCardListForCurrentSidebarCategory {...props} />;

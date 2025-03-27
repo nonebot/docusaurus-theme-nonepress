@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -17,7 +17,7 @@ import SecondaryNavbar from "@theme/Navbar/SecondaryNavbar";
 
 import "./styles.css";
 
-export default function Navbar(): React.ReactNode {
+export default function Navbar(): ReactNode {
   const {
     navbar: { hideOnScroll, style },
   } = useNonepressThemeConfig();

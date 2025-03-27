@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -44,7 +44,7 @@ function DocsMenuDropdownNavbarItemDesktop({
   category,
   docsPluginId,
   ...props
-}: DesktopOrMobileNavBarItemProps): React.ReactNode {
+}: DesktopOrMobileNavBarItemProps): ReactNode {
   const { link, docs } = useDocsMenuCategory(category, docId, docsPluginId);
   const versions = useDocsMenuVersions(docsPluginId);
   const activeDocContext = useActiveDocContext(docsPluginId);
@@ -224,7 +224,7 @@ function DocsMenuDropdownNavbarItemMobile({
   category,
   label,
   ...props
-}: DesktopOrMobileNavBarItemProps): React.ReactNode {
+}: DesktopOrMobileNavBarItemProps): ReactNode {
   const { activeDoc } = useActiveDocContext(docsPluginId);
   const { link, autoLink, docs } = useDocsMenuCategory(
     category,
@@ -246,7 +246,7 @@ function DocsMenuDropdownNavbarItemMobile({
 export default function DocsMenuDropdownNavbarItem({
   mobile = false,
   ...props
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const Comp = mobile
     ? DocsMenuDropdownNavbarItemMobile
     : DocsMenuDropdownNavbarItemDesktop;

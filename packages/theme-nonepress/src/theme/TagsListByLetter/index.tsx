@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import {
   listTagsByLetters,
@@ -26,7 +26,7 @@ function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   );
 }
 
-export default function TagsListByLetter({ tags }: Props): React.ReactNode {
+export default function TagsListByLetter({ tags }: Props): ReactNode {
   const letterList = listTagsByLetters(tags);
   return (
     <section>

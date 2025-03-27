@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -11,11 +11,7 @@ import type { Props } from "@theme/Heading";
 
 import "./styles.css";
 
-export default function Heading({
-  as: As,
-  id,
-  ...props
-}: Props): React.ReactNode {
+export default function Heading({ as: As, id, ...props }: Props): ReactNode {
   const brokenLinks = useBrokenLinks();
   const {
     navbar: { hideOnScroll },

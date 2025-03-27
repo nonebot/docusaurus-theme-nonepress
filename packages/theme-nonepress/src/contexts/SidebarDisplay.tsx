@@ -40,7 +40,7 @@ export function SidebarDisplayProvider({
   children,
 }: {
   children: ReactNode;
-}): React.ReactNode {
+}): ReactNode {
   const value = useContextValue();
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

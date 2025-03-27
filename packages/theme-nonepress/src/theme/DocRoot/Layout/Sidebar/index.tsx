@@ -30,7 +30,7 @@ export default function DocRootLayoutSidebar({
   sidebar,
   hiddenSidebarContainer,
   setHiddenSidebarContainer,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const { pathname } = useLocation();
 
   const [hiddenSidebar, setHiddenSidebar] = useState(false);

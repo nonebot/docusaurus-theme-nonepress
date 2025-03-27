@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Translate from "@docusaurus/Translate";
 import { useColorMode } from "@docusaurus/theme-common";
@@ -13,7 +13,7 @@ import type { Props } from "@theme/Navbar/ColorModeToggle";
 export default function NavbarColorModeToggle({
   className,
   mobile = false,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const navbarStyle = useNonepressThemeConfig().navbar.style;
   const { colorMode, setColorMode } = useColorMode();
 

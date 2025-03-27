@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -29,7 +29,7 @@ function useSyntheticTitle(): string | null {
   return metadata.title;
 }
 
-export default function DocItemContent({ children }: Props): React.ReactNode {
+export default function DocItemContent({ children }: Props): ReactNode {
   const syntheticTitle = useSyntheticTitle();
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, "prose max-w-none")}>

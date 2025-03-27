@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -13,7 +13,7 @@ export default function MenuLink({
   activeClassName,
   wrapperClassName,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <li className={wrapperClassName}>
       <Link

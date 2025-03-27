@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import LinkItem from "@theme/Footer/LinkItem";
 import type { Props } from "@theme/Footer/Links/Simple";
@@ -15,7 +15,7 @@ function SimpleLinkItem({ item }: { item: Props["links"][number] }) {
   );
 }
 
-export default function FooterLinksSimple({ links }: Props): React.ReactNode {
+export default function FooterLinksSimple({ links }: Props): ReactNode {
   return (
     <div>
       {links.map((item, i) => (

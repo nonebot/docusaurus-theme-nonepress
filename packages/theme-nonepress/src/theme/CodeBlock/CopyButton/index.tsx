@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 
 import clsx from "clsx";
 
@@ -9,10 +15,7 @@ import type { Props } from "@theme/CodeBlock/CopyButton";
 import IconCopy from "@theme/Icon/Copy";
 import IconSuccess from "@theme/Icon/Success";
 
-export default function CopyButton({
-  code,
-  className,
-}: Props): React.ReactNode {
+export default function CopyButton({ code, className }: Props): ReactNode {
   const [isCopied, setIsCopied] = useState(false);
   const copyTimeout = useRef<number | undefined>(undefined);
   const handleCopyCode = useCallback(() => {

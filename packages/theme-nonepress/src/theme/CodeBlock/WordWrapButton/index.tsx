@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -11,7 +11,7 @@ export default function WordWrapButton({
   className,
   onClick,
   isEnabled,
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const title = translate({
     id: "theme.CodeBlock.wordWrapToggle",
     message: "Toggle word wrap",

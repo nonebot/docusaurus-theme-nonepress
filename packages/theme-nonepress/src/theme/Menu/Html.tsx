@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -8,7 +8,7 @@ export default function MenuHtml({
   html,
   className,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <li
       className={clsx("menu-item", className)}

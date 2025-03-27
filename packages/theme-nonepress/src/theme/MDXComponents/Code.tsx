@@ -1,5 +1,4 @@
-import type { ComponentProps } from "react";
-import React from "react";
+import React, { type ComponentProps, type ReactNode } from "react";
 
 import CodeBlock from "@theme/CodeBlock";
 import CodeInline from "@theme/CodeInline";
@@ -16,7 +15,7 @@ function shouldBeInline(props: Props) {
   );
 }
 
-export default function MDXCode(props: Props): React.ReactNode {
+export default function MDXCode(props: Props): ReactNode {
   return shouldBeInline(props) ? (
     <CodeInline {...props} />
   ) : (

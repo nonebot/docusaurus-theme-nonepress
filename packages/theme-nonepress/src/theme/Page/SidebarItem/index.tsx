@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import "./styles.css";
 
@@ -10,7 +10,7 @@ import SidebarItemLink from "@theme/Page/SidebarItem/Link";
 export default function SidebarItem({
   item,
   ...props
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   switch (item.type) {
     case "category":
       return <SidebarItemCategory item={item} {...props} />;

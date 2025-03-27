@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -7,10 +7,7 @@ import { ThemeClassNames } from "@docusaurus/theme-common";
 import MenuHtml from "@theme/Menu/Html";
 import type { Props } from "@theme/Page/SidebarItem/Html";
 
-export default function SidebarItemHtml({
-  item,
-  level,
-}: Props): React.ReactNode {
+export default function SidebarItemHtml({ item, level }: Props): ReactNode {
   const { value, className } = item;
   return (
     <MenuHtml

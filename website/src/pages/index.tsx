@@ -4,7 +4,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
 
-export default function Home(): React.ReactNode {
+export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout

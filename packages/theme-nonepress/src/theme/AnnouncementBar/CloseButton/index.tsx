@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -9,7 +9,7 @@ import IconClose from "@theme/Icon/Close";
 
 export default function AnnouncementBarCloseButton(
   props: Props,
-): React.ReactNode | null {
+): ReactNode | null {
   return (
     <div className={clsx(props.className, "announcement-button")}>
       <button

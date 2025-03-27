@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { DocsPreferredVersionContextProvider } from "@docusaurus/plugin-content-docs/client";
 import { composeProviders } from "@docusaurus/theme-common";
@@ -33,6 +33,6 @@ const Provider = composeProviders([
   NavbarProvider,
 ]);
 
-export default function LayoutProvider({ children }: Props): React.ReactNode {
+export default function LayoutProvider({ children }: Props): ReactNode {
   return <Provider>{children}</Provider>;
 }

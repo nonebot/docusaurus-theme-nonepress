@@ -131,7 +131,7 @@ function Hit({
   children,
 }: {
   hit: InternalDocSearchHit | StoredDocSearchHit;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return <Link to={hit.url}>{children}</Link>;
 }

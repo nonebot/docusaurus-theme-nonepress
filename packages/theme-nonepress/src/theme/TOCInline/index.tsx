@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import type { Props } from "@theme/TOCInline";
 import TOCItems from "@theme/TOCItems";
@@ -9,7 +9,7 @@ export default function TOCInline({
   toc,
   minHeadingLevel,
   maxHeadingLevel,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <div className={styles.tableOfContentsInline}>
       <TOCItems

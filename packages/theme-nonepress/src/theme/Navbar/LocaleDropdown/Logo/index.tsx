@@ -1,10 +1,10 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import "./styles.css";
 
 import Logo from "@theme/Logo";
 
-export default function NavbarLogo(): React.ReactNode {
+export default function NavbarLogo(): ReactNode {
   return (
     <Logo
       className="navbar-brand"

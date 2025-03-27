@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -16,8 +16,8 @@ import { isSamePath } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
+import SidebarItems from "@theme/DocSidebarItems";
 import MenuCategory from "@theme/Menu/Category";
-import SidebarItems from "@theme/Page/Sidebar/Items";
 import type { Props } from "@theme/Page/SidebarItem/Category";
 
 // If we navigate to a category and it becomes active, it should automatically
@@ -70,7 +70,7 @@ export default function SidebarItemCategory({
   activePath,
   level,
   index,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const { items, label, collapsible, className, href } = item;
   const {
     docs: {
@@ -112,7 +112,7 @@ export default function SidebarItemCategory({
   }, [collapsible, expandedItem, index, setCollapsed, autoCollapseCategories]);
 
   const subItems = (
-    <SidebarItems level={level + 1} path={activePath} items={items} />
+    <SidebarItems level={level + 1} activePath={activePath} items={items} />
   );
 
   return (

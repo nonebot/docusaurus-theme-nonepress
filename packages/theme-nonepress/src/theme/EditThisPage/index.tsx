@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ import "./styles.css";
 import type { Props } from "@theme/EditThisPage";
 import IconEdit from "@theme/Icon/Edit";
 
-export default function EditThisPage({ editUrl }: Props): React.ReactNode {
+export default function EditThisPage({ editUrl }: Props): ReactNode {
   return (
     <a
       href={editUrl}

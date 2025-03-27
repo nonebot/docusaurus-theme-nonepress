@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -33,11 +33,7 @@ function useNDocsTaggedPlural() {
     );
 }
 
-function DocItem({
-  doc,
-}: {
-  doc: Props["tag"]["items"][number];
-}): React.ReactNode {
+function DocItem({ doc }: { doc: Props["tag"]["items"][number] }): ReactNode {
   return (
     <article>
       <Link to={doc.permalink}>
@@ -48,7 +44,7 @@ function DocItem({
   );
 }
 
-export default function DocTagDocListPage({ tag }: Props): React.ReactNode {
+export default function DocTagDocListPage({ tag }: Props): ReactNode {
   const nDocsTaggedPlural = useNDocsTaggedPlural();
   const title = translate(
     {

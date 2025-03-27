@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 // import { useActiveDocContext } from "@docusaurus/plugin-content-docs/client";
 import { useLayoutDoc } from "@docusaurus/plugin-content-docs/client";
@@ -11,7 +11,7 @@ export default function DocNavbarItem({
   docsPluginId,
   label: staticLabel,
   ...props
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   // const { activeDoc } = useActiveDocContext(docsPluginId);
   const doc = useLayoutDoc(docId, docsPluginId);
 

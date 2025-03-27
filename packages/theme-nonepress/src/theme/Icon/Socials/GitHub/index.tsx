@@ -1,11 +1,11 @@
-import type { SVGProps } from "react";
+import type { ReactNode, SVGProps } from "react";
 
 import clsx from "clsx";
 
 import styles from "./styles.module.css";
 
 // SVG Source: https://svgl.app/
-function GitHub(props: SVGProps<SVGSVGElement>): React.ReactNode {
+function GitHub(props: SVGProps<SVGSVGElement>): ReactNode {
   return (
     <svg
       viewBox="0 0 256 250"

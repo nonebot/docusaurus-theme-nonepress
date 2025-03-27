@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { type ReactNode, useState } from "react";
 
 import clsx from "clsx";
 
@@ -33,7 +33,7 @@ export default function DocSidebarDesktopContent({
   path,
   sidebar,
   className,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const showAnnouncementBar = useShowAnnouncementBar();
 
   return (

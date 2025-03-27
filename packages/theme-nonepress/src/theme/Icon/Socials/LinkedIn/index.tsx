@@ -1,7 +1,7 @@
-import type { SVGProps } from "react";
+import type { ReactNode, SVGProps } from "react";
 
 // SVG Source: https://svgl.app/
-function LinkedIn(props: SVGProps<SVGSVGElement>): React.ReactNode {
+function LinkedIn(props: SVGProps<SVGSVGElement>): ReactNode {
   return (
     <svg
       width="1em"

@@ -1,11 +1,11 @@
-import type { SVGProps } from "react";
+import type { ReactNode, SVGProps } from "react";
 
 import clsx from "clsx";
 
 import styles from "./styles.module.css";
 
 // SVG Source: https://svgl.app/
-function X(props: SVGProps<SVGSVGElement>): React.ReactNode {
+function X(props: SVGProps<SVGSVGElement>): ReactNode {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

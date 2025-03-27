@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -9,7 +9,7 @@ import TOCCollapsible from "@theme/TOCCollapsible";
 
 import styles from "./styles.module.css";
 
-export default function DocItemTOCMobile(): React.ReactNode {
+export default function DocItemTOCMobile(): ReactNode {
   const { toc, frontMatter } = useDoc();
   return (
     <TOCCollapsible

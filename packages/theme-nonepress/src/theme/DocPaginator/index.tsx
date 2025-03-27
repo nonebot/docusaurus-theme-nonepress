@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -9,7 +9,7 @@ import PaginatorNavLink from "@theme/PaginatorNavLink";
 
 import "./styles.css";
 
-export default function DocPaginator(props: Props): React.ReactNode {
+export default function DocPaginator(props: Props): ReactNode {
   const { previous, next, className } = props;
   return (
     <nav

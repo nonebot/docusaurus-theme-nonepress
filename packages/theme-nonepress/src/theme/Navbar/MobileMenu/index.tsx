@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -14,7 +14,7 @@ import type { Props as NavbarItemConfig } from "@theme/NavbarItem";
 
 import "./styles.css";
 
-export default function MobileMenu(): React.ReactNode | null {
+export default function MobileMenu(): ReactNode | null {
   const themeConfig = useNonepressThemeConfig();
   const { shown, setShown } = useMobileMenu();
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useDoc } from "@docusaurus/plugin-content-docs/client";
 import { useWindowSize } from "@docusaurus/theme-common";
@@ -38,7 +38,7 @@ function useDocTOC() {
   };
 }
 
-export default function DocItemLayout({ children }: Props): React.ReactNode {
+export default function DocItemLayout({ children }: Props): ReactNode {
   const docTOC = useDocTOC();
   const { metadata } = useDoc();
 

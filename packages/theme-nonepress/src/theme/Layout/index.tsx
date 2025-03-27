@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -20,7 +20,7 @@ import SkipToContent from "@theme/SkipToContent";
 
 import "./styles.css";
 
-export default function Layout(props: Props): React.ReactNode {
+export default function Layout(props: Props): ReactNode {
   const {
     children,
     noFooter,

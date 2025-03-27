@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ export default function CodeBlockLine({
   showLineNumbers,
   getLineProps,
   getTokenProps,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   if (line.length === 1 && line[0]!.content === "\n") {
     line[0]!.content = "";
   }

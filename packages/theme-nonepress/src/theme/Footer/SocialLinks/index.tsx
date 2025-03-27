@@ -1,11 +1,11 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Link from "@docusaurus/Link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import type { Props } from "@theme/Footer/SocialLinks";
 
-export default function FooterSocialLinks(props: Props): React.ReactNode {
+export default function FooterSocialLinks(props: Props): ReactNode {
   const { socialLinks } = props;
   return (
     <div className="footer-social-links">

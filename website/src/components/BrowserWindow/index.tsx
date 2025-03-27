@@ -1,11 +1,9 @@
-import React from "react";
-
 type Props = {
   title?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-export default function browserWindow(props: Props): React.ReactNode {
+export default function browserWindow(props: Props): ReactNode {
   const { title, children } = props;
   return (
     <div className="mockup-window border pt-0 before:content-none not-prose">

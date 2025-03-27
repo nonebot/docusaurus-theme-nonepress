@@ -1,11 +1,11 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { translate } from "@docusaurus/Translate";
 import { useMobileMenu } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import IconMenu from "@theme/Icon/Menu";
 
-export default function MobileMenuToggle(): React.ReactNode {
+export default function MobileMenuToggle(): ReactNode {
   const { setShown, shown } = useMobileMenu();
 
   return (

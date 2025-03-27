@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -19,11 +19,7 @@ import SearchBar from "@theme/SearchBar";
 
 import "./styles.css";
 
-function NavbarItems({
-  items,
-}: {
-  items: NavbarItemConfig[];
-}): React.ReactNode {
+function NavbarItems({ items }: { items: NavbarItemConfig[] }): ReactNode {
   return (
     <Menu className="navbar-primary-menu">
       {items.map((item, i) => (
@@ -48,7 +44,7 @@ ${JSON.stringify(item, null, 2)}`,
   );
 }
 
-export default function PrimaryNavbar(): React.ReactNode {
+export default function PrimaryNavbar(): ReactNode {
   const themeConfig = useNonepressThemeConfig();
 
   const { enabled: docsVersionEnabled, ...docsVersionDropdown } =

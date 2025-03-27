@@ -22,7 +22,7 @@ export function TOCContentProvider({
   children,
 }: {
   children: ReactNode;
-}): React.ReactNode {
+}): ReactNode {
   const value = useState<Content>(null);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

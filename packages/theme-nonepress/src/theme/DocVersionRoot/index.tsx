@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import {
   DocsVersionProvider,
@@ -10,7 +10,7 @@ import { HtmlClassNameProvider, PageMetadata } from "@docusaurus/theme-common";
 import type { Props } from "@theme/DocVersionRoot";
 import SearchMetadata from "@theme/SearchMetadata";
 
-function DocVersionRootMetadata(props: Props): React.ReactNode {
+function DocVersionRootMetadata(props: Props): ReactNode {
   const { version } = props;
   return (
     <>
@@ -25,7 +25,7 @@ function DocVersionRootMetadata(props: Props): React.ReactNode {
   );
 }
 
-function DocVersionRootContent(props: Props): React.ReactNode {
+function DocVersionRootContent(props: Props): ReactNode {
   const { version, route } = props;
   return (
     <HtmlClassNameProvider className={version.className}>
@@ -35,7 +35,7 @@ function DocVersionRootContent(props: Props): React.ReactNode {
     </HtmlClassNameProvider>
   );
 }
-export default function DocVersionRoot(props: Props): React.ReactNode {
+export default function DocVersionRoot(props: Props): ReactNode {
   return (
     <>
       <DocVersionRootMetadata {...props} />

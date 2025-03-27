@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 export default function DocRootLayoutMain({
   hiddenSidebarContainer,
   children,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const sidebar = useDocsSidebar();
   return (
     <main

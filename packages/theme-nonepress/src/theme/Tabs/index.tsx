@@ -1,4 +1,4 @@
-import React, { cloneElement, type ReactElement } from "react";
+import React, { cloneElement, type ReactElement, type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -129,7 +129,7 @@ function TabContent({
   );
 }
 
-function TabsComponent(props: Props): React.ReactNode {
+function TabsComponent(props: Props): ReactNode {
   const tabs = useTabs(props);
   return (
     <div className="tabs-container">
@@ -139,7 +139,7 @@ function TabsComponent(props: Props): React.ReactNode {
   );
 }
 
-export default function Tabs(props: Props): React.ReactNode {
+export default function Tabs(props: Props): ReactNode {
   const isBrowser = useIsBrowser();
   return (
     <TabsComponent

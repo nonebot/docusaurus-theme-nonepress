@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Link from "@docusaurus/Link";
 
@@ -6,11 +6,7 @@ import "./styles.css";
 
 import type { Props } from "@theme/Tag";
 
-export default function Tag({
-  permalink,
-  label,
-  count,
-}: Props): React.ReactNode {
+export default function Tag({ permalink, label, count }: Props): ReactNode {
   return (
     <Link
       href={permalink}

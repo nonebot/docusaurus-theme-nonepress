@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -13,7 +13,7 @@ export default function PaginatorNavLink({
   title,
   subLabel,
   isNext,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <Link className={clsx("paginator")} to={permalink}>
       {subLabel && <div className="paginator-label">{subLabel}</div>}

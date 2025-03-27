@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ function transformImgClassName(className?: string): string {
   return clsx(className, styles.img);
 }
 
-export default function MDXImg(props: Props): React.ReactNode {
+export default function MDXImg(props: Props): ReactNode {
   return (
     // eslint-disable-next-line jsx-a11y/alt-text
     <img

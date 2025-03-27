@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -13,7 +13,7 @@ export default function EditMetaRow({
   editUrl,
   lastUpdatedAt,
   lastUpdatedBy,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <div className={clsx("row", className)}>
       <div className="col">{editUrl && <EditThisPage editUrl={editUrl} />}</div>

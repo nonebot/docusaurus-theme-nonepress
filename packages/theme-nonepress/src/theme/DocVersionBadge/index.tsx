@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -12,7 +12,7 @@ import "./styles.css";
 
 export default function DocVersionBadge({
   className,
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const versionMetadata = useDocsVersion();
   if (versionMetadata.badge) {
     return (

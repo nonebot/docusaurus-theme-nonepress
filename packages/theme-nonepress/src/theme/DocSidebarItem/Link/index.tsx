@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -19,7 +19,7 @@ export default function DocSidebarItemLink({
   level,
   index,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const { href, label, className, autoAddBaseUrl } = item;
   const isActive = isActiveSidebarItem(item, activePath);
   const isInternalLink = isInternalUrl(href);

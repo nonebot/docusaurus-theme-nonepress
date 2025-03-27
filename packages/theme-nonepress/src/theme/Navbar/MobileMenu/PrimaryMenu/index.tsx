@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useMobileMenu } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
@@ -7,9 +7,7 @@ import type { Props } from "@theme/Navbar/MobileMenu/PrimaryMenu";
 import NavbarItem from "@theme/NavbarItem";
 
 // The primary menu displays the navbar items
-export default function NavbarMobilePrimaryMenu({
-  items,
-}: Props): React.ReactNode {
+export default function NavbarMobilePrimaryMenu({ items }: Props): ReactNode {
   const { setShown } = useMobileMenu();
 
   return (

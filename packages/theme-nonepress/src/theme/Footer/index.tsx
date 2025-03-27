@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import "./styles.css";
 
@@ -14,7 +14,7 @@ import FooterLinks from "@theme/Footer/Links";
 import FooterLogo from "@theme/Footer/Logo";
 import FooterSocialLinks from "@theme/Footer/SocialLinks";
 
-function Footer(): React.ReactNode | null {
+function Footer(): ReactNode | null {
   const { tagline } = useSiteConfig();
   const {
     footer,

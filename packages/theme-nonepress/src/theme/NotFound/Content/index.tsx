@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -7,7 +7,7 @@ import Translate from "@docusaurus/Translate";
 import Heading from "@theme/Heading";
 import type { Props } from "@theme/NotFound/Content";
 
-export default function NotFoundContent({ className }: Props): React.ReactNode {
+export default function NotFoundContent({ className }: Props): ReactNode {
   return (
     <div className={clsx("page", className)}>
       <main className="hero">

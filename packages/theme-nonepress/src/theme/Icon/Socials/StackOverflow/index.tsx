@@ -1,7 +1,7 @@
-import type { SVGProps } from "react";
+import type { ReactNode, SVGProps } from "react";
 
 // SVG Source: https://svgl.app/
-function StackOverflow(props: SVGProps<SVGSVGElement>): React.ReactNode {
+function StackOverflow(props: SVGProps<SVGSVGElement>): ReactNode {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

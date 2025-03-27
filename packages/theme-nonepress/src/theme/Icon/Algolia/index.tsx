@@ -1,8 +1,8 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import type { Props } from "@theme/Icon/Algolia";
 
-export default function IconAlgolia(props: Props): React.ReactNode {
+export default function IconAlgolia(props: Props): ReactNode {
   return (
     <svg viewBox="0 0 2197 501" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -15,7 +15,7 @@ import MDXContent from "@theme/MDXContent";
 import type { Props } from "@theme/MDXPage";
 import Page from "@theme/Page";
 
-export default function MDXPage(props: Props): React.ReactNode {
+export default function MDXPage(props: Props): ReactNode {
   const { content: MDXPageContent } = props;
   const {
     toc,

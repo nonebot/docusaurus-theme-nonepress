@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -14,7 +14,7 @@ import Heading from "@theme/Heading";
 import SearchMetadata from "@theme/SearchMetadata";
 import TagsListByLetter from "@theme/TagsListByLetter";
 
-export default function DocTagsListPage({ tags }: Props): React.ReactNode {
+export default function DocTagsListPage({ tags }: Props): ReactNode {
   const title = translateTagsPageTitle();
 
   return (

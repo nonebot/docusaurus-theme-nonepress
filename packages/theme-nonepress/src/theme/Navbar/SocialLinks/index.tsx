@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -9,10 +9,7 @@ import "./styles.css";
 
 import type { Props } from "@theme/Navbar/SocialLinks";
 
-export default function NavbarSocialLinks({
-  links,
-  mobile,
-}: Props): React.ReactNode {
+export default function NavbarSocialLinks({ links, mobile }: Props): ReactNode {
   return (
     <div
       className={clsx(

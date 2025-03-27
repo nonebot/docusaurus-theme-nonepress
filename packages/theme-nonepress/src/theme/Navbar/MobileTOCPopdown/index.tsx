@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { type ReactNode, useEffect } from "react";
 
 import clsx from "clsx";
 
@@ -14,7 +14,7 @@ import TOCContent from "@theme/Page/TOC/Content";
 
 import "./styles.css";
 
-export default function MobileTOCPopdown(): React.ReactNode | null {
+export default function MobileTOCPopdown(): ReactNode | null {
   const {
     navbar: { hideOnScroll },
   } = useNonepressThemeConfig();

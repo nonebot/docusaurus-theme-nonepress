@@ -4,13 +4,13 @@ import clsx from "clsx";
 
 import {
   NavbarSecondaryMenuFiller,
-  type NavbarSecondaryMenuComponent,
   ThemeClassNames,
+  type NavbarSecondaryMenuComponent,
 } from "@docusaurus/theme-common";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 
-import DocSidebarItems from "@theme/DocSidebarItems";
 import type { Props } from "@theme/DocSidebar/Mobile";
+import DocSidebarItems from "@theme/DocSidebarItems";
 
 // eslint-disable-next-line react/function-component-definition
 const DocSidebarMobileSecondaryMenu: NavbarSecondaryMenuComponent<Props> = ({

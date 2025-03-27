@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -20,7 +20,7 @@ export default function NavbarNavLink({
   className,
   prependBaseUrlToHref,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const toUrl = useBaseUrl(to);
   const activeBaseUrl = useBaseUrl(activeBasePath);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -24,7 +24,7 @@ function UnlistedBanner({ className }: Props) {
   );
 }
 
-export default function Unlisted(props: Props): React.ReactNode | null {
+export default function Unlisted(props: Props): ReactNode | null {
   return (
     <>
       {/*

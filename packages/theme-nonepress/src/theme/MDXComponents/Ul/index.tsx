@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -20,6 +20,6 @@ function transformUlClassName(className?: string): string | undefined {
   );
 }
 
-export default function MDXUl(props: Props): React.ReactNode {
+export default function MDXUl(props: Props): ReactNode {
   return <ul {...props} className={transformUlClassName(props.className)} />;
 }

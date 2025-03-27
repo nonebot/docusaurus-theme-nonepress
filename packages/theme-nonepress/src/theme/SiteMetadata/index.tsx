@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Head from "@docusaurus/Head";
 import { useLocation } from "@docusaurus/router";
@@ -18,7 +18,7 @@ import SearchMetadata from "@theme/SearchMetadata";
 // Useful for i18n/SEO
 // See https://developers.google.com/search/docs/advanced/crawling/localized-versions
 // See https://github.com/facebook/docusaurus/issues/3317
-function AlternateLangHeaders(): React.ReactNode {
+function AlternateLangHeaders(): ReactNode {
   const {
     i18n: { defaultLocale, localeConfigs },
   } = useDocusaurusContext();
@@ -78,7 +78,7 @@ function CanonicalUrlHeaders({ permalink }: { permalink?: string }) {
   );
 }
 
-export default function SiteMetadata(): React.ReactNode {
+export default function SiteMetadata(): ReactNode {
   const {
     i18n: { currentLocale },
   } = useDocusaurusContext();

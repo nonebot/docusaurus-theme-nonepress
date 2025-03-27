@@ -1,10 +1,10 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useDoc } from "@docusaurus/plugin-content-docs/client";
 
 import TOC from "@theme/Page/TOC";
 
-export default function DocItemTOCDesktop(): React.ReactNode {
+export default function DocItemTOCDesktop(): ReactNode {
   const { toc, frontMatter } = useDoc();
   return (
     <TOC

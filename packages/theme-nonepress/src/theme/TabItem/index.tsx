@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ export default function TabItem({
   children,
   hidden,
   className,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <div
       role="tabpanel"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -15,7 +15,7 @@ export default function TOCCollapsible({
   className,
   minHeadingLevel,
   maxHeadingLevel,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const { collapsed, toggleCollapsed } = useCollapsible({
     initialState: true,
   });

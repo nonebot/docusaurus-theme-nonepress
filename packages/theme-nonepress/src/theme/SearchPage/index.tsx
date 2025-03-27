@@ -489,7 +489,10 @@ function SearchPageContent(): ReactNode {
               </p>
             ),
             !!searchResultState.loading && (
-              <div key="spinner-container" className="doc-search-page-spinner-container">
+              <div
+                key="spinner-container"
+                className="doc-search-page-spinner-container"
+              >
                 <div
                   key="spinner"
                   className="loading loading-spinner doc-search-page-spinner"

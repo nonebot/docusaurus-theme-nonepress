@@ -1,15 +1,15 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
-
-import "./styles.css";
 
 import Translate, { translate } from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useBackToTopButton } from "@docusaurus/theme-common/internal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function BackToTopButton(): React.ReactNode {
+import "./styles.css";
+
+export default function BackToTopButton(): ReactNode {
   const { shown, scrollToTop } = useBackToTopButton({ threshold: 300 });
   return (
     <button

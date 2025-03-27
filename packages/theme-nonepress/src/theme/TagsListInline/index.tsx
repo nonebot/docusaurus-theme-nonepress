@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -9,10 +9,7 @@ import "./styles.css";
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListInline";
 
-export default function TagsListInline({
-  tags,
-  className,
-}: Props): React.ReactNode {
+export default function TagsListInline({ tags, className }: Props): ReactNode {
   return (
     <div className={clsx("doc-tags-list-container", className)}>
       <b>

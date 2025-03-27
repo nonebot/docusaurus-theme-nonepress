@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import {
   useActiveDocContext,
@@ -13,7 +13,7 @@ export default function DocSidebarNavbarItem({
   docsPluginId,
   label,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const { activeDoc } = useActiveDocContext(docsPluginId);
   const sidebarLink = useLayoutDocsSidebar(sidebarId, docsPluginId).link;
   if (!sidebarLink) {

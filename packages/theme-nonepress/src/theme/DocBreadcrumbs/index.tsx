@@ -20,7 +20,7 @@ function BreadcrumbsItemLink({
   children: ReactNode;
   href: string | undefined;
   isLast: boolean;
-}): React.ReactNode {
+}): ReactNode {
   const className = "btn btn-ghost btn-xs no-animation breadcrumbs-btn";
   if (isLast) {
     return (
@@ -49,7 +49,7 @@ function BreadcrumbsItem({
   children: ReactNode;
   index: number;
   addMicrodata: boolean;
-}): React.ReactNode {
+}): ReactNode {
   return (
     <li
       {...(addMicrodata && {
@@ -64,7 +64,7 @@ function BreadcrumbsItem({
   );
 }
 
-export default function DocBreadcrumbs(): React.ReactNode | null {
+export default function DocBreadcrumbs(): ReactNode | null {
   const breadcrumbs = useSidebarBreadcrumbs();
   const homePageRoute = useHomePageRoute();
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import type { Props } from "@theme/ContentVisibility";
 import Draft from "@theme/ContentVisibility/Draft";
@@ -6,7 +6,7 @@ import Unlisted from "@theme/ContentVisibility/Unlisted";
 
 export default function ContentVisibility({
   metadata,
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const { unlisted, frontMatter } = metadata;
   // Reading draft/unlisted status from frontMatter is useful to display
   // the banners in dev mode (in dev, metadata.unlisted is always false)

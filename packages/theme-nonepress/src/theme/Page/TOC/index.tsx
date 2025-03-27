@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useWindowSize } from "@docusaurus/theme-common";
 
@@ -14,7 +14,7 @@ export default function TOC({
   minHeadingLevel,
   maxHeadingLevel,
   hideTableOfContents,
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const windowSize = useWindowSize();
   const isMobile = windowSize === "mobile";
 

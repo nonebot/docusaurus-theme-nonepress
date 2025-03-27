@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { type ReactNode, useEffect } from "react";
 
 import clsx from "clsx";
 
@@ -114,7 +114,7 @@ function DropdownNavbarItemMobile({
 export default function DropdownNavbarItem({
   mobile = false,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const Comp = mobile ? DropdownNavbarItemMobile : DropdownNavbarItemDesktop;
   return <Comp {...props} />;
 }

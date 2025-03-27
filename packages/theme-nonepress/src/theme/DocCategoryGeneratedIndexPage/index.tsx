@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useCurrentSidebarCategory } from "@docusaurus/plugin-content-docs/client";
 import { PageMetadata } from "@docusaurus/theme-common";
@@ -14,7 +14,7 @@ import Heading from "@theme/Heading";
 
 function DocCategoryGeneratedIndexPageMetadata({
   categoryGeneratedIndex,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <PageMetadata
       title={categoryGeneratedIndex.title}
@@ -28,7 +28,7 @@ function DocCategoryGeneratedIndexPageMetadata({
 
 function DocCategoryGeneratedIndexPageContent({
   categoryGeneratedIndex,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const category = useCurrentSidebarCategory();
 
   return (
@@ -57,9 +57,7 @@ function DocCategoryGeneratedIndexPageContent({
   );
 }
 
-export default function DocCategoryGeneratedIndexPage(
-  props: Props,
-): React.ReactNode {
+export default function DocCategoryGeneratedIndexPage(props: Props): ReactNode {
   return (
     <>
       <DocCategoryGeneratedIndexPageMetadata {...props} />

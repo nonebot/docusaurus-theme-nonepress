@@ -1,4 +1,4 @@
-import React, { type ComponentType } from "react";
+import React, { type ComponentType, type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -75,7 +75,7 @@ const BannerLabelComponents: {
   unmaintained: UnmaintainedVersionLabel,
 };
 
-function BannerLabel(props: BannerLabelComponentProps): React.ReactNode {
+function BannerLabel(props: BannerLabelComponentProps): ReactNode {
   const BannerLabelComponent =
     BannerLabelComponents[props.versionMetadata.banner!];
   return <BannerLabelComponent {...props} />;
@@ -89,7 +89,7 @@ function LatestVersionSuggestionLabel({
   to: string;
   onClick: () => void;
   versionLabel: string;
-}): React.ReactNode {
+}): ReactNode {
   return (
     <Translate
       id="theme.docs.versions.latestVersionSuggestionLabel"
@@ -122,7 +122,7 @@ function DocVersionBannerEnabled({
   versionMetadata,
 }: Props & {
   versionMetadata: PropVersionMetadata;
-}): React.ReactNode {
+}): ReactNode {
   const {
     siteConfig: { title: siteTitle },
   } = useDocusaurusContext();
@@ -173,7 +173,7 @@ function DocVersionBannerEnabled({
 
 export default function DocVersionBanner({
   className,
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const versionMetadata = useDocsVersion();
   if (versionMetadata.banner) {
     return (

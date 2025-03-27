@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -12,7 +12,7 @@ import {
 
 import SidebarContent from "@theme/Page/Sidebar/Content";
 
-export default function MobileSidebar(): React.ReactNode | null {
+export default function MobileSidebar(): ReactNode | null {
   const { pathname } = useLocation();
   const { shown, setShown } = useSidebarDisplay();
   const [content] = useSidebarContent();

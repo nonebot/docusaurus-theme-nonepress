@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Link from "@docusaurus/Link";
 import Translate, { translate } from "@docusaurus/Translate";
@@ -7,7 +7,7 @@ import type { Props } from "@theme/Footer/Copyright";
 import IconDocusaurus from "@theme/Icon/Docusaurus";
 import IconReact from "@theme/Icon/React";
 
-export default function FooterCopyright({ copyright }: Props): React.ReactNode {
+export default function FooterCopyright({ copyright }: Props): ReactNode {
   return (
     <>
       <div

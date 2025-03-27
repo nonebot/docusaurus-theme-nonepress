@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { type ReactNode, useState } from "react";
 
 import { useDocsSidebar } from "@docusaurus/plugin-content-docs/client";
 
@@ -9,7 +9,7 @@ import Sidebar from "@theme/Page/Sidebar";
 
 import "./styles.css";
 
-export default function DocRootLayout({ children }: Props): React.ReactNode {
+export default function DocRootLayout({ children }: Props): ReactNode {
   const sidebar = useDocsSidebar();
   const [hiddenSidebarContainer] = useState(false);
   return (

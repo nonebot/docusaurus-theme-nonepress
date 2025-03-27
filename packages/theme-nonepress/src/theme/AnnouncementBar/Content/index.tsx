@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -6,7 +6,7 @@ import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/cli
 
 import type { Props } from "@theme/AnnouncementBar/Content";
 
-export default function AnnouncementBarContent(props: Props): React.ReactNode {
+export default function AnnouncementBarContent(props: Props): ReactNode {
   const { announcementBar } = useNonepressThemeConfig();
   const { content } = announcementBar!;
   return (

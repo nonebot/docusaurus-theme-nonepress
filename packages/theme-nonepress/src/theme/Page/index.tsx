@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -18,7 +18,7 @@ export default function Page({
   toc,
   minHeadingLevel,
   maxHeadingLevel,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const shouldReduceContent = !hideTableOfContents && reduceContentWidth;
 
   return (

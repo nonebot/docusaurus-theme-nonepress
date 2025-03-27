@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -12,7 +12,7 @@ export default function DocSidebarItemHtml({
   item,
   level,
   index,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const { value, defaultStyle, className } = item;
   return (
     <li

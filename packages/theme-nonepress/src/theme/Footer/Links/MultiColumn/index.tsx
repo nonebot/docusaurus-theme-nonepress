@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import LinkItem from "@theme/Footer/LinkItem";
 import type { Props } from "@theme/Footer/Links/MultiColumn";
@@ -29,9 +29,7 @@ function Column({ column }: { column: ColumnType }) {
   );
 }
 
-export default function FooterLinksMultiColumn({
-  columns,
-}: Props): React.ReactNode {
+export default function FooterLinksMultiColumn({ columns }: Props): ReactNode {
   return (
     <>
       {columns.map((column, i) => (

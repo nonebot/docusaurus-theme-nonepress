@@ -36,8 +36,15 @@ module.exports = {
     },
   },
   reportUnusedDisableDirectives: true,
-  plugins: ["react-hooks", "@typescript-eslint", "regexp", "@docusaurus"],
+  plugins: [
+    "react-compiler",
+    "react-hooks",
+    "@typescript-eslint",
+    "regexp",
+    "@docusaurus",
+  ],
   rules: {
+    "react-compiler/react-compiler": ERROR,
     "react/jsx-uses-react": OFF, // JSX runtime: automatic
     "react/react-in-jsx-scope": OFF, // JSX runtime: automatic
     "array-callback-return": WARNING,
@@ -213,7 +220,6 @@ module.exports = {
           ["parent", "sibling", "index"],
           "type",
         ],
-        "newlines-between": "always",
         pathGroups: [
           // always put css import to the last, ref:
           // https://github.com/import-js/eslint-plugin-import/issues/1239

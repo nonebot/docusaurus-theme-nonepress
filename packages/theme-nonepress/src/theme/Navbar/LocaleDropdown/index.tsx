@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -20,7 +20,7 @@ export default function NavbarLocaleDropdown({
   dropdownItemsAfter,
   queryString = "",
   mobile = false,
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const {
     i18n: { currentLocale, locales, localeConfigs },
   } = useDocusaurusContext();

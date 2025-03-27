@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, type ReactNode } from "react";
 
 import { useThemeConfig } from "@docusaurus/theme-common";
 import {
@@ -18,7 +18,7 @@ export default function TOCItems({
   minHeadingLevel: minHeadingLevelOption,
   maxHeadingLevel: maxHeadingLevelOption,
   ...props
-}: Props): React.ReactNode | null {
+}: Props): ReactNode | null {
   const themeConfig = useThemeConfig();
 
   const minHeadingLevel =

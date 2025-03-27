@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -54,7 +54,7 @@ function EditMetaRow({
   );
 }
 
-export default function DocItemFooter(): React.ReactNode | null {
+export default function DocItemFooter(): ReactNode | null {
   const { metadata } = useDoc();
   const { editUrl, lastUpdatedAt, lastUpdatedBy, tags } = metadata;
 

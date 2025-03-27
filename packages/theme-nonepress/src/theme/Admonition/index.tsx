@@ -217,7 +217,7 @@ function processAdmonitionProps(props: Props): Props {
   };
 }
 
-export default function Admonition(props: Props): React.ReactNode {
+export default function Admonition(props: Props): ReactNode {
   const {
     children,
     type,

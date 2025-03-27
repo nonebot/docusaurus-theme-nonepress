@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, type ReactNode } from "react";
 
 import {
   useFilteredAndTreeifiedTOC,
@@ -19,7 +19,7 @@ export default function TOCContent({
   maxHeadingLevel: maxHeadingLevelOption,
   linkClassName = TOC_LINK_CLASS,
   linkActiveClassName = TOC_LINK_ACTIVE_CLASS,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const themeConfig = useNonepressThemeConfig();
 
   const minHeadingLevel =

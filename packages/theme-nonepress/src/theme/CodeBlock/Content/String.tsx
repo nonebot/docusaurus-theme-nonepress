@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -26,7 +26,7 @@ export default function CodeBlockString({
   title: titleProp,
   showLineNumbers: showLineNumbersProp,
   language: languageProp,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const {
     prism: { defaultLanguage, magicComments },
   } = useNonepressThemeConfig();

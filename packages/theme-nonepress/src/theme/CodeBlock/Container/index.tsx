@@ -1,4 +1,4 @@
-import React, { type ComponentProps } from "react";
+import React, { type ComponentProps, type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -8,7 +8,7 @@ import { getPrismCssVariables } from "@docusaurus/theme-common/internal";
 export default function CodeBlockContainer<T extends "div" | "pre">({
   as: As,
   ...props
-}: { as: T } & ComponentProps<T>): React.ReactNode {
+}: { as: T } & ComponentProps<T>): ReactNode {
   const prismTheme = usePrismTheme();
   const prismCssVariables = getPrismCssVariables(prismTheme);
   return (

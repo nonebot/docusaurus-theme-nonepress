@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -11,7 +11,7 @@ import {
 import type { Props } from "@theme/DocVersionRoot";
 import Layout from "@theme/Layout";
 
-export default function DocsRoot(props: Props): React.ReactNode {
+export default function DocsRoot(props: Props): ReactNode {
   return (
     <HtmlClassNameProvider className={clsx(ThemeClassNames.wrapper.docsPages)}>
       <Layout>{renderRoutes(props.route.routes!)}</Layout>

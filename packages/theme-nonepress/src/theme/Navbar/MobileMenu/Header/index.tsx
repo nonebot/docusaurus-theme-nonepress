@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { translate } from "@docusaurus/Translate";
 import { useMobileMenu } from "@nullbot/docusaurus-theme-nonepress/contexts";
@@ -24,7 +24,7 @@ function CloseButton() {
   );
 }
 
-export default function NavbarMobileMenuHeader(): React.ReactNode {
+export default function NavbarMobileMenuHeader(): ReactNode {
   return (
     <div className="navbar-mobile-header">
       <NavbarLogo />

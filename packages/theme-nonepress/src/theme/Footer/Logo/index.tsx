@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
@@ -39,7 +39,7 @@ function LogoImage({ logo }: Props) {
   }
 }
 
-export default function FooterLogo({ logo }: Props): React.ReactNode {
+export default function FooterLogo({ logo }: Props): ReactNode {
   return logo.href ? (
     <Link href={logo.href} target={logo.target}>
       <LogoImage logo={logo} />

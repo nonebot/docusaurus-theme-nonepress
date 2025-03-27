@@ -1,8 +1,6 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
-
-import "./styles.css";
 
 import { translate } from "@docusaurus/Translate";
 import useIsBrowser from "@docusaurus/useIsBrowser";
@@ -11,12 +9,14 @@ import type { Props } from "@theme/ColorModeToggle";
 import IconDarkMode from "@theme/Icon/DarkMode";
 import IconLightMode from "@theme/Icon/LightMode";
 
+import "./styles.css";
+
 function ColorModeToggle({
   className,
   dark = false,
   value,
   onChange,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const isBrowser = useIsBrowser();
 
   const title = translate(

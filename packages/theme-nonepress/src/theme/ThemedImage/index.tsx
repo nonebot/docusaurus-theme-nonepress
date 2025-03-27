@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
@@ -9,7 +9,7 @@ import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import type { Props } from "@theme/ThemedImage";
 
-export default function ThemedImage(props: Props): React.ReactNode {
+export default function ThemedImage(props: Props): ReactNode {
   const isBrowser = useIsBrowser();
   const { colorMode } = useColorMode();
   const { sources, className, alt, ...propsRest } = props;

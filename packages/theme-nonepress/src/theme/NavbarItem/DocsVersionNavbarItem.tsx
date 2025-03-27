@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useDocsVersionCandidates } from "@docusaurus/plugin-content-docs/client";
 
@@ -15,7 +15,7 @@ export default function DocsVersionNavbarItem({
   to: staticTo,
   docsPluginId,
   ...props
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   const version = useDocsVersionCandidates(docsPluginId)[0];
   const label = staticLabel ?? version.label;
   const path = staticTo ?? getVersionMainDoc(version).path;

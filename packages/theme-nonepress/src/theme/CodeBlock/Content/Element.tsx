@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import Container from "@theme/CodeBlock/Container";
 import type { Props } from "@theme/CodeBlock/Content/Element";
@@ -6,7 +6,7 @@ import type { Props } from "@theme/CodeBlock/Content/Element";
 export default function CodeBlockJSX({
   children,
   className,
-}: Props): React.ReactNode {
+}: Props): ReactNode {
   return (
     <Container as="pre" tabIndex={0} className={className}>
       {children}

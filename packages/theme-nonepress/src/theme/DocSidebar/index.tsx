@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import { useWindowSize } from "@docusaurus/theme-common";
 
@@ -6,7 +6,7 @@ import type { Props } from "@theme/DocSidebar";
 import DocSidebarDesktop from "@theme/DocSidebar/Desktop";
 import DocSidebarMobile from "@theme/DocSidebar/Mobile";
 
-export default function DocSidebar(props: Props): React.ReactNode {
+export default function DocSidebar(props: Props): ReactNode {
   const windowSize = useWindowSize();
 
   // Desktop sidebar visible on hydration: need SSR rendering
