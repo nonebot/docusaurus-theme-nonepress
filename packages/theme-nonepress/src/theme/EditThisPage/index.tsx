@@ -26,6 +26,6 @@ export default function EditThisPage({ editUrl }: Props): ReactNode {
       >
         Edit this page
       </Translate>
-    </a>
+    </Link>
   );
 }
