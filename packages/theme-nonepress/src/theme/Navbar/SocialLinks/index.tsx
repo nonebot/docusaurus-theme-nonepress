@@ -5,9 +5,9 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "./styles.css";
-
 import type { Props } from "@theme/Navbar/SocialLinks";
+
+import "./styles.css";
 
 export default function NavbarSocialLinks({ links, mobile }: Props): ReactNode {
   return (

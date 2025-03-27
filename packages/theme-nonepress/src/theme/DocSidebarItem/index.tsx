@@ -5,10 +5,7 @@ import DocSidebarItemCategory from "@theme/DocSidebarItem/Category";
 import DocSidebarItemHtml from "@theme/DocSidebarItem/Html";
 import DocSidebarItemLink from "@theme/DocSidebarItem/Link";
 
-export default function DocSidebarItem({
-  item,
-  ...props
-}: Props): ReactNode | null {
+export default function DocSidebarItem({ item, ...props }: Props): ReactNode {
   switch (item.type) {
     case "category":
       return <DocSidebarItemCategory item={item} {...props} />;

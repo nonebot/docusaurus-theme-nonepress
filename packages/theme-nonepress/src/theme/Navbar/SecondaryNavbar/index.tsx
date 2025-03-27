@@ -1,7 +1,5 @@
 import React, { type ReactNode } from "react";
 
-import "./styles.css";
-
 import clsx from "clsx";
 
 import Translate from "@docusaurus/Translate";
@@ -14,6 +12,8 @@ import {
 
 import IconDropdown from "@theme/Icon/Dropdown";
 import IconSidebar from "@theme/Icon/Sidebar";
+
+import "./styles.css";
 
 export default function SecondaryNavbar(): ReactNode | null {
   const { shown: tocShown, setShown: setTOCShown } = useTOCDisplay();

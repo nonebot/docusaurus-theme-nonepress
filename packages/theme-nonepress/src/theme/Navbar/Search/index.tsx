@@ -2,9 +2,9 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
-
 import type { Props } from "@theme/Navbar/Search";
+
+import "./styles.css";
 
 export default function NavbarSearch({
   children,

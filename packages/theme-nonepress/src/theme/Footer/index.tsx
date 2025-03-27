@@ -1,7 +1,5 @@
 import React, { type ReactNode } from "react";
 
-import "./styles.css";
-
 import clsx from "clsx";
 
 import {
@@ -13,6 +11,8 @@ import FooterCopyright from "@theme/Footer/Copyright";
 import FooterLinks from "@theme/Footer/Links";
 import FooterLogo from "@theme/Footer/Logo";
 import FooterSocialLinks from "@theme/Footer/SocialLinks";
+
+import "./styles.css";
 
 function Footer(): ReactNode | null {
   const { tagline } = useSiteConfig();

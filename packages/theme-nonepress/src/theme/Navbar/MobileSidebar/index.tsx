@@ -2,8 +2,6 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
-
 import { useLocation } from "@docusaurus/router";
 import {
   useSidebarContent,
@@ -11,6 +9,8 @@ import {
 } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import SidebarContent from "@theme/Page/Sidebar/Content";
+
+import "./styles.css";
 
 export default function MobileSidebar(): ReactNode | null {
   const { pathname } = useLocation();

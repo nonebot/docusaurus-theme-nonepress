@@ -1,8 +1,8 @@
 import React, { type ReactNode } from "react";
 
-import "./styles.css";
-
 import Logo from "@theme/Logo";
+
+import "./styles.css";
 
 export default function NavbarLogo(): ReactNode {
   return (

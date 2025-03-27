@@ -1,9 +1,9 @@
 import React, { type ReactNode } from "react";
 
-import "./styles.css";
-
 import type { NavbarItemType, Props } from "@theme/NavbarItem";
 import ComponentTypes from "@theme/NavbarItem/ComponentTypes";
+
+import "./styles.css";
 
 function normalizeComponentType(type: NavbarItemType, props: object) {
   // Backward compatibility: navbar item with no type set

@@ -9,9 +9,9 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
-import "./styles.css";
-
 import type { Props } from "@theme/Tabs";
+
+import "./styles.css";
 
 function TabList({
   className,

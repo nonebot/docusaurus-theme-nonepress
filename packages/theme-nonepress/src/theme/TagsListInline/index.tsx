@@ -4,10 +4,10 @@ import clsx from "clsx";
 
 import Translate from "@docusaurus/Translate";
 
-import "./styles.css";
-
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListInline";
+
+import "./styles.css";
 
 export default function TagsListInline({ tags, className }: Props): ReactNode {
   return (

@@ -5,9 +5,9 @@ import clsx from "clsx";
 import Translate from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 
-import "./styles.css";
-
 import type { Props } from "@theme/LastUpdated";
+
+import "./styles.css";
 
 function LastUpdatedAtDate({
   lastUpdatedAt,

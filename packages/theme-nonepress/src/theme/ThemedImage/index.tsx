@@ -2,12 +2,12 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import "./styles.css";
-
 import { useColorMode } from "@docusaurus/theme-common";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import type { Props } from "@theme/ThemedImage";
+
+import "./styles.css";
 
 export default function ThemedImage(props: Props): ReactNode {
   const isBrowser = useIsBrowser();

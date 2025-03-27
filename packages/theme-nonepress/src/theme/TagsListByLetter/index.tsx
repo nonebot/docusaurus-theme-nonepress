@@ -5,15 +5,16 @@ import {
   type TagLetterEntry,
 } from "@docusaurus/theme-common";
 
-import "./styles.css";
-
+import Heading from "@theme/Heading";
 import Tag from "@theme/Tag";
 import type { Props } from "@theme/TagsListByLetter";
+
+import "./styles.css";
 
 function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   return (
     <article>
-      <h2>{letterEntry.letter}</h2>
+      <Heading as="h2">{letterEntry.letter}</Heading>
       <ul>
         {letterEntry.tags.map((tag) => (
           <li key={tag.permalink} className="tags-list-item">

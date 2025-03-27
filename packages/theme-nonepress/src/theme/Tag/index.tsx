@@ -2,9 +2,9 @@ import React, { type ReactNode } from "react";
 
 import Link from "@docusaurus/Link";
 
-import "./styles.css";
-
 import type { Props } from "@theme/Tag";
+
+import "./styles.css";
 
 export default function Tag({ permalink, label, count }: Props): ReactNode {
   return (
