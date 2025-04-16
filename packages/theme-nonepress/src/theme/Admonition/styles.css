@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .admonition {
   @apply block w-full mb-4 p-4 text-left;
   @apply rounded-box bg-base-200 text-base-content;

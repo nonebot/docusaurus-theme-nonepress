@@ -1,8 +1,9 @@
+@reference "../../../styles.css";
 .navbar-version {
   @apply ml-4;
 
   &-label {
-    @apply btn btn-sm no-animation rounded-full;
+    @apply btn btn-sm  rounded-full;
     @apply text-xs leading-5 font-semibold text-base-content/80 normal-case;
   }
 

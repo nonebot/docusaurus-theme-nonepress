@@ -50,7 +50,7 @@ export default function CopyButton({ code, className }: Props): ReactNode {
         description: "The copy button label on code blocks",
       })}
       className={clsx(
-        "btn btn-square btn-sm no-animation swap swap-rotate code-block-btn",
+        "btn btn-square btn-sm  swap swap-rotate code-block-btn",
         className,
         isCopied && "swap-active",
       )}

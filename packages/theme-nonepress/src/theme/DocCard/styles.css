@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .doc-card {
   @apply h-full bg-base-200 border border-base-200;
   @apply transition-[background-color,border-color] duration-500;

@@ -1,3 +1,4 @@
+@reference "../../../styles.css";
 .sidebar {
   @apply flex flex-col h-full max-h-screen -mt-16 overflow-y-auto;
 

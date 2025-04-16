@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .navbar {
   /* dropdown */
   &-dropdown {
@@ -27,7 +28,7 @@
   /* docs menu */
   &-docs-menu {
     &-content {
-      @apply block w-[28rem] xl:w-[36rem] 2xl:w-[48rem] pl-0 overflow-hidden whitespace-normal;
+      @apply p-0 w-[28rem] xl:w-[36rem] 2xl:w-[48rem] pl-0 overflow-hidden whitespace-normal;
 
       &::before {
         @apply content-[''] block h-1 left-0 absolute -top-1 w-full bg-transparent;

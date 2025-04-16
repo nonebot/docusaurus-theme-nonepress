@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .breadcrumbs {
   @apply mb-2;
 

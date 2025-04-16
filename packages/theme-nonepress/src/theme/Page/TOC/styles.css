@@ -1,3 +1,4 @@
+@reference "../../../styles.css";
 .toc {
   @apply block -mt-24;
 

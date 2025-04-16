@@ -25,7 +25,7 @@ export default function WordWrapButton({
       aria-label={title}
       title={title}
       className={clsx(
-        "btn btn-square btn-sm no-animation code-block-btn",
+        "btn btn-square btn-sm  code-block-btn",
         className,
         isEnabled && "code-block-btn-active",
       )}

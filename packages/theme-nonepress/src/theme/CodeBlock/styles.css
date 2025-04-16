@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .code-block {
   &-container {
     color: var(--prism-color);

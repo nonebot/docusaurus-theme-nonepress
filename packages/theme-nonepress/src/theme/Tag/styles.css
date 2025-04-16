@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .doc-tag {
   @apply rounded-full;
 
