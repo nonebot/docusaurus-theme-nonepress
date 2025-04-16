@@ -27,7 +27,7 @@
     }
 
     &-button {
-      @apply btn btn-ghost btn-sm ;
+      @apply btn btn-ghost btn-sm;
     }
 
     &-icon {
