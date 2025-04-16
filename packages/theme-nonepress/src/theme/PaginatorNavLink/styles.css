@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .paginator {
   @apply block w-full p-4 rounded-lg transition-colors;
   @apply border border-base-content/10 hover:border-primary;

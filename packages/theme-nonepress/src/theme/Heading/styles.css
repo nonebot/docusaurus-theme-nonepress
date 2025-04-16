@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .anchor-sticky-navbar {
   @apply scroll-mt-[7.5rem] lg:scroll-mt-[4.5rem];
 }

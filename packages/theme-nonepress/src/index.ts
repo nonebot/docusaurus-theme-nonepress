@@ -1,12 +1,9 @@
 import path from "path";
 
 import { readDefaultCodeTranslationMessages } from "@docusaurus/theme-translations";
-import autoprefixer from "autoprefixer";
-import postcssImport from "postcss-import";
-import tailwindcss from "tailwindcss";
-import tailwindNesting from "tailwindcss/nesting";
+import tailwindcss from "@tailwindcss/postcss";
+import postcssNested from "postcss-nested";
 
-import defaultTailwindConfig from "./tailwind.config";
 import { getTranslationFiles, translateThemeConfig } from "./translations";
 
 import type { LoadContext, Plugin, PostCssOptions } from "@docusaurus/types";
@@ -14,7 +11,6 @@ import type {
   PluginOptions,
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
-import type { Config as tailwindConfigType } from "tailwindcss";
 
 const ThemeStorageKey = "theme";
 const ThemeQueryStringKey = "docusaurus-theme";
@@ -83,14 +79,6 @@ const AnnouncementBarInlineJavaScript = `
   }
   document.documentElement.setAttribute('${AnnouncementBarDismissDataAttribute}', isDismissed());
 })();`;
-
-function getPurgeCSSPath(siteDir?: string): string[] {
-  const purge = [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`];
-  if (siteDir) {
-    purge.push(`${siteDir}/**/*.{js,jsx,ts,tsx,mdx}`);
-  }
-  return purge;
-}
 
 export default async function themeNonepress(
   context: LoadContext,
@@ -165,25 +153,7 @@ export default async function themeNonepress(
     },
 
     configurePostCss(postCssOptions: PostCssOptions): PostCssOptions {
-      const purgeFiles = getPurgeCSSPath(siteDir);
-      const content = tailwindConfig?.content;
-      if (Array.isArray(content)) {
-        content.unshift(...purgeFiles);
-      } else {
-        content?.files.unshift(...purgeFiles);
-      }
-      const finalTailwindConfig: tailwindConfigType = {
-        presets: [defaultTailwindConfig, tailwindConfig].filter(
-          (config): config is tailwindConfigType => !!config,
-        ),
-        content: content ?? purgeFiles,
-      };
-      postCssOptions.plugins.unshift(
-        postcssImport(),
-        tailwindNesting(),
-        tailwindcss(finalTailwindConfig),
-        autoprefixer(),
-      );
+      postCssOptions.plugins.unshift(postcssNested(), tailwindcss());
 
       return postCssOptions;
     },

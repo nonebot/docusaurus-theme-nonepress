@@ -1,3 +1,4 @@
+@reference "../../../styles.css";
 .navbar-search {
   @apply flex;
   @apply max-lg:ml-auto max-lg:order-last;

@@ -21,7 +21,7 @@ function BreadcrumbsItemLink({
   href: string | undefined;
   isLast: boolean;
 }): ReactNode {
-  const className = "btn btn-ghost btn-xs no-animation breadcrumbs-btn";
+  const className = "btn btn-ghost btn-xs  breadcrumbs-btn";
   if (isLast) {
     return (
       <span

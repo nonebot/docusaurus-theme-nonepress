@@ -1,3 +1,5 @@
+@reference "../../../styles.css";
+
 .navbar-appearance {
   &-mobile {
     @apply flex justify-between items-center gap-2;

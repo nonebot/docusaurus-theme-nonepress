@@ -1,4 +1,9 @@
-@import url("tailwindcss/tailwind");
+@import "tailwindcss";
+@source '**/theme/**/*.{js,jsx,ts,tsx}';
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 [data-theme] {
   @apply transition-[color,background-color] duration-500;
