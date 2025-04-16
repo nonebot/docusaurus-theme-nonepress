@@ -69,7 +69,7 @@ function TabList({
       <ul
         role="tablist"
         aria-orientation="horizontal"
-        className={clsx("tabs tabs-list", className)}
+        className={clsx("tabs tabs-list tabs-lifted", className)}
       >
         {tabValues.map(({ value, label, attributes }) => (
           <li

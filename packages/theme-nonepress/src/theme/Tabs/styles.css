@@ -14,8 +14,6 @@
   &-item {
     --tab-border-color: transparent;
 
-    @apply transition-[color,background-color] duration-500;
-
     &-active {
       --tab-border-color: oklch(var(--bc) / 10%);
     }
