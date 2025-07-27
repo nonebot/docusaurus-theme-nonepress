@@ -57,7 +57,7 @@ export default function CopyButton({ code, className }: Props): ReactNode {
       onClick={handleCopyCode}
     >
       <IconCopy className="swap-off code-block-btn-icon" />
-      <IconSuccess className="swap-on code-block-btn-icon" />
+      <IconSuccess className="swap-on code-block-btn-icon text-success" />
     </button>
   );
 }
