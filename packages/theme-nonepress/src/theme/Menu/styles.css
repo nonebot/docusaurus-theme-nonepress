@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .menu {
   &-item {
     &:hover,
@@ -26,7 +27,7 @@
     }
 
     &-button {
-      @apply btn btn-ghost btn-sm no-animation;
+      @apply btn btn-ghost btn-sm;
     }
 
     &-icon {

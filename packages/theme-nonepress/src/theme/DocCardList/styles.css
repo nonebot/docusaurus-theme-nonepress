@@ -1,3 +1,4 @@
+@reference "../../styles.css";
 .doc-card-list {
   @apply grid grid-cols-2 gap-8;
 }

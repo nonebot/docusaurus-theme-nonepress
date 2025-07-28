@@ -1,5 +1,7 @@
+@reference "../../styles.css";
+
 .back-to-top {
-  @apply btn btn-circle btn-primary no-animation;
+  @apply btn btn-circle btn-primary;
   @apply fixed z-10 right-5 bottom-5 shadow-md;
   @apply transition transform opacity-0 scale-0;
 

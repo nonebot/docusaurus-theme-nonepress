@@ -10,7 +10,7 @@ export default function Tag({ permalink, label, count }: Props): ReactNode {
   return (
     <Link
       href={permalink}
-      className="btn btn-xs btn-outline btn-primary no-animation doc-tag"
+      className="btn btn-xs btn-outline btn-primary  doc-tag"
     >
       {label}
       {count && <span className="doc-tag-badge">{count}</span>}
