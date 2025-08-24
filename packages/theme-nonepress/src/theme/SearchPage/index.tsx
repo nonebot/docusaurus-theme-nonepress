@@ -12,6 +12,7 @@ import Link from "@docusaurus/Link";
 import { useAllDocsData } from "@docusaurus/plugin-content-docs/client";
 import {
   HtmlClassNameProvider,
+  PageMetadata,
   useEvent,
   usePluralForm,
   useSearchQueryString,
@@ -148,6 +149,26 @@ type ResultDispatcher =
   | { type: "update"; value: ResultDispatcherState }
   | { type: "advance"; value?: undefined };
 
+
+function getSearchPageTitle(searchQuery: string | undefined): string {
+  return searchQuery
+    ? translate(
+        {
+          id: 'theme.SearchPage.existingResultsTitle',
+          message: 'Search results for "{query}"',
+          description: 'The search page title for non-empty query',
+        },
+        {
+          query: searchQuery,
+        },
+      )
+    : translate({
+        id: 'theme.SearchPage.emptyResultsTitle',
+        message: 'Search the documentation',
+        description: 'The search page title for empty query',
+      });
+}
+
 function SearchPageContent(): ReactNode {
   const {
     i18n: { currentLocale },
@@ -161,6 +182,8 @@ function SearchPageContent(): ReactNode {
 
   const docsSearchVersionsHelpers = useDocsSearchVersionsHelpers();
   const [searchQuery, setSearchQuery] = useSearchQueryString();
+  const pageTitle = getSearchPageTitle(searchQuery);
+
   const initialSearchResultState: ResultDispatcherState = {
     items: [],
     query: null,
@@ -295,25 +318,6 @@ function SearchPageContent(): ReactNode {
         { threshold: 1 },
       ),
   );
-
-  const getTitle = () =>
-    searchQuery
-      ? translate(
-          {
-            id: "theme.SearchPage.existingResultsTitle",
-            message: 'Search results for "{query}"',
-            description: "The search page title for non-empty query",
-          },
-          {
-            query: searchQuery,
-          },
-        )
-      : translate({
-          id: "theme.SearchPage.emptyResultsTitle",
-          message: "Search the documentation",
-          description: "The search page title for empty query",
-        });
-
   const makeSearch = useEvent((page: number = 0) => {
     if (contextualSearch) {
       algoliaHelper.addDisjunctiveFacetRefinement("docusaurus_tag", "default");
@@ -366,8 +370,8 @@ function SearchPageContent(): ReactNode {
 
   return (
     <Layout>
+      <PageMetadata title={pageTitle} />
       <Head>
-        <title>{useTitleFormatter(getTitle())}</title>
         {/*
          We should not index search pages
           See https://github.com/facebook/docusaurus/pull/3233
@@ -376,7 +380,7 @@ function SearchPageContent(): ReactNode {
       </Head>
 
       <main className="doc-search-page prose">
-        <Heading as="h1">{getTitle()}</Heading>
+        <Heading as="h1">{pageTitle}</Heading>
 
         <form
           className="join doc-search-page-form"
