@@ -73,8 +73,8 @@ export default function DocItemFooter(): ReactNode | null {
       {canDisplayEditMetaRow && (
         <EditMetaRow
           editUrl={editUrl}
-          lastUpdatedAt={lastUpdatedAt}
-          lastUpdatedBy={lastUpdatedBy}
+          lastUpdatedAt={lastUpdatedAt!}
+          lastUpdatedBy={lastUpdatedBy!}
         />
       )}
     </footer>

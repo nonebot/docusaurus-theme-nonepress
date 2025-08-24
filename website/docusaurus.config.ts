@@ -18,6 +18,7 @@ export default async function createConfigAsync() {
 
     future: {
       experimental_faster: true,
+      v4: true,
     },
 
     // Set the /<baseUrl>/ pathname under which your site is served
