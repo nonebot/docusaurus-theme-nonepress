@@ -1,6 +1,6 @@
 {
   "name": "@nullbot/docusaurus-plugin-getsidebar",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "description": "GetSidebar plugin for Nonepress theme",
   "main": "lib/index.js",
   "sideEffects": false,

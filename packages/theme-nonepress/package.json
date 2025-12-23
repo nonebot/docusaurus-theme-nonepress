@@ -1,6 +1,6 @@
 {
   "name": "@nullbot/docusaurus-theme-nonepress",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "description": "Nonepress theme for Docusaurus",
   "main": "lib/index.js",
   "types": "src/types.d.ts",
@@ -54,8 +54,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mdx-js/react": "^3.0.0",
-    "@nullbot/docusaurus-plugin-docsmenu": "^3.5.1",
-    "@nullbot/docusaurus-plugin-getsidebar": "^3.5.1",
+    "@nullbot/docusaurus-plugin-docsmenu": "^3.5.2",
+    "@nullbot/docusaurus-plugin-getsidebar": "^3.5.2",
     "@tailwindcss/typography": "^0.5.0",
     "algoliasearch": "^5.17.1",
     "algoliasearch-helper": "^3.22.6",
