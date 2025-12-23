@@ -27,10 +27,6 @@ jobs:
         run: |
           git config --global user.name "noneflow[bot]"
           git config --global user.email "129742071+noneflow[bot]@users.noreply.github.com"
-          git fetch
-          git checkout master
-          echo "npm whoami"
-          npm whoami
 
       - name: Installation
         run: yarn
