@@ -62,7 +62,7 @@
     "eslint-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-regexp": "^1.15.0",
-    "lerna": "^6.6.2",
+    "lerna": "^9.0.0",
     "lerna-changelog": "^2.2.0",
     "prettier": "^2.8.8",
     "react": "^18.0.0",
