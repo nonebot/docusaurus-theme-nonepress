@@ -32,4 +32,4 @@ jobs:
 
       - name: Publish release
         run: |
-          yarn lerna publish from-package --yes
+          yarn lerna publish from-package --yes --no-private
