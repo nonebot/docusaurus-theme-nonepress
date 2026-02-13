@@ -61,7 +61,6 @@
     "algoliasearch-helper": "^3.22.6",
     "autoprefixer": "^10.3.1",
     "clsx": "^2.0.0",
-    "copy-text-to-clipboard": "^3.2.0",
     "daisyui": "^4.0.0",
     "infima": "0.2.0-alpha.43",
     "lodash": "^4.17.21",
