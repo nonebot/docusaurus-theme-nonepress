@@ -659,15 +659,6 @@ declare module "@theme/Heading" {
   export default function Heading(props: Props): ReactNode;
 }
 
-declare module "@theme/Icon/Algolia" {
-  import type { ComponentProps } from "react";
-  import { type ReactNode } from "react";
-
-  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
-
-  export default function IconAlgolia(props: Props): ReactNode;
-}
-
 declare module "@theme/Icon/Close" {
   import { type ReactNode } from "react";
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
