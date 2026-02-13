@@ -45,9 +45,9 @@
     "@types/node": "^18.16.19",
     "@types/postcss-import": "^14.0.3",
     "@types/prompts": "^2.4.4",
-    "@types/react": "^18.2.15",
+    "@types/react": "^19.2.10",
     "@types/react-dev-utils": "^9.0.11",
-    "@types/react-dom": "^18.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/react-test-renderer": "^18.0.0",
     "@types/shelljs": "^0.8.12",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
@@ -71,5 +71,9 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^29.0.0",
     "typescript": "~5.8.2"
+  },
+  "resolutions": {
+    "**/@types/react": "^19.2.10",
+    "**/@types/react-dom": "^19.2.3"
   }
 }

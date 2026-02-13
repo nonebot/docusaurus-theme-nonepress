@@ -65,7 +65,7 @@
     "infima": "0.2.0-alpha.43",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
-    "postcss": "^8.4.26",
+    "postcss": "^8.5.4",
     "postcss-import": "^15.1.0",
     "prism-react-renderer": "^2.3.0",
     "prismjs": "^1.29.0",
@@ -88,6 +88,6 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.0"
   }
 }
