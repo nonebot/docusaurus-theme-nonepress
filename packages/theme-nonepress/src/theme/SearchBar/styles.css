@@ -1,5 +1,7 @@
 :root {
   --docsearch-primary-color: oklch(var(--p)) !important;
+  --docsearch-highlight-color: oklch(var(--p)) !important;
+  --docsearch-secondary-text-color: var(--docsearch-muted-color) !important;
 }
 
 .doc-search-btn {
@@ -29,6 +31,10 @@
 }
 
 /* stylelint-disable selector-class-pattern */
+.DocSearch-Button {
+  border-radius: 40px;
+}
+
 .DocSearch-Container {
   @apply backdrop-blur-sm;
 }
