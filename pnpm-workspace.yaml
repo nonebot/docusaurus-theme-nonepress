@@ -1,0 +1,24 @@
+# TODO change later to "isolated" ?
+nodeLinker: 'hoisted'
+
+# For now we use this setting instead of the workspace:* protocol
+# To use workspace:* we probably need to adopt pnpm for publishing
+# See https://pnpm.io/workspaces#publishing-workspace-packages
+linkWorkspacePackages: true
+
+packages:
+  - 'packages/*'
+  - 'website'
+
+overrides:
+  '@types/react': ^19.2.10
+  '@types/react-dom': ^19.2.3
+
+allowBuilds:
+  '@swc/core': false
+  core-js: false
+  core-js-pure: false
+  nx: false
+  # sharp@0.32 (required by @docusaurus/plugin-ideal-image) downloads libvips
+  # in its install script and doesn't work without it
+  sharp: true

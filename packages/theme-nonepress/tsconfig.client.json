@@ -1,8 +1,5 @@
 {
   "extends": "../../tsconfig.base.client.json",
-  "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ESNext"]
-  },
   "include": [
     "src/fontawesome.ts",
     "src/nprogress.ts",

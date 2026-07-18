@@ -7,7 +7,7 @@
 
 ```bash
 npx create-docusaurus@latest website classic
-yarn add @nullbot/docusaurus-preset-nonepress
+pnpm add @nullbot/docusaurus-preset-nonepress
 ```
 
 Modify your `docusaurus.config.js`:

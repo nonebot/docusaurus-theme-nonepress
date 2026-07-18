@@ -1,42 +1,39 @@
 {
   "name": "root",
   "version": "0.0.0",
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "pnpm@11.10.0",
   "private": true,
   "license": "MIT",
-  "workspaces": [
-    "packages/*",
-    "website"
-  ],
   "scripts": {
-    "build": "yarn build:packages && yarn build:website",
-    "build:packages": "lerna run build --include-dependencies --no-private",
-    "build:website": "yarn workspace website build",
-    "build:website:baseUrl": "yarn workspace website build:baseUrl",
-    "build:website:fast": "yarn workspace website build:fast",
-    "canary": "yarn canary:bumpVersion && yarn canary:publish",
+    "build": "pnpm build:packages && pnpm build:website",
+    "build:packages": "lerna run build --no-private",
+    "build:website": "pnpm --filter website build",
+    "build:website:baseUrl": "pnpm --filter website build:baseUrl",
+    "build:website:fast": "pnpm --filter website build:fast",
+    "canary": "pnpm canary:bumpVersion && pnpm canary:publish",
     "canary:version": "echo 0.0.0-`git rev-list --count HEAD`+`git rev-parse --short HEAD`",
-    "canary:bumpVersion": "yarn lerna version `yarn --silent canary:version` --force-publish --exact --no-push --yes --no-private",
-    "canary:publish": "yarn lerna publish from-package --dist-tag canary --yes --no-private",
-    "clear": "(yarn workspace website clear || echo 'Failure while running docusaurus clear') && lerna exec --ignore docusaurus -- yarn rimraf lib",
-    "clear:website": "yarn workspace website clear",
+    "canary:bumpVersion": "pnpm lerna version `pnpm --silent canary:version` --force-publish --exact --no-push --yes --no-private",
+    "canary:publish": "pnpm lerna publish from-package --dist-tag canary --yes --no-private",
+    "clear": "(pnpm --filter website clear || echo 'Failure while running docusaurus clear') && pnpm lerna exec --ignore docusaurus pnpm rimraf lib",
+    "clear:website": "pnpm --filter website clear",
     "crowdin:download:website": "crowdin download --config ./crowdin-v2.yaml",
     "crowdin:upload:website": "crowdin upload sources --config ./crowdin-v2.yaml",
     "format": "prettier --write .",
     "format:diff": "prettier --list-different .",
-    "postinstall": "yarn build:packages",
+    "postinstall": "pnpm build:packages",
     "lerna": "lerna",
-    "lint": "yarn lint:js && yarn lint:style",
+    "lint": "pnpm lint:js && pnpm lint:style",
     "lint:js": "eslint --cache --report-unused-disable-directives \"**/*.{js,jsx,ts,tsx,mjs}\"",
     "lint:js:fix": "eslint --cache --report-unused-disable-directives --fix \"**/*.{js,jsx,ts,tsx,mjs}\"",
     "lint:style": "stylelint \"**/*.css\"",
     "lint:style:fix": "stylelint --fix \"**/*.css\"",
     "prettier": "prettier",
-    "release:bumpVersion": "yarn lerna version --no-private --force-publish --no-push -m",
-    "serve:website": "yarn workspace website serve",
-    "start": "yarn build:packages && yarn start:website",
-    "start:website": "yarn workspace website start",
-    "start:website:baseUrl": "yarn workspace website start:baseUrl"
+    "release:bumpVersion": "pnpm lerna version --no-private --force-publish --no-push -m",
+    "serve:website": "pnpm --filter website serve",
+    "start": "pnpm build:packages && pnpm start:website",
+    "start:website": "pnpm --filter website start",
+    "start:website:baseUrl": "pnpm --filter website start:baseUrl",
+    "lock:update": "pnpm install --lockfile-only"
   },
   "devDependencies": {
     "@crowdin/cli": "^3.13.0",
@@ -71,9 +68,5 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^29.0.0",
     "typescript": "~5.8.2"
-  },
-  "resolutions": {
-    "**/@types/react": "^19.2.10",
-    "**/@types/react-dom": "^19.2.3"
   }
 }

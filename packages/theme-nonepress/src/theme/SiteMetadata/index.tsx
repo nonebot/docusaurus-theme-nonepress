@@ -5,7 +5,6 @@ import { useLocation } from "@docusaurus/router";
 import { PageMetadata } from "@docusaurus/theme-common";
 import {
   DEFAULT_SEARCH_TAG,
-  keyboardFocusedClassName,
   useAlternatePageUtils,
 } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
@@ -93,7 +92,7 @@ export default function SiteMetadata(): ReactNode {
         <meta name="twitter:card" content="summary_large_image" />
         {/* The keyboard focus class name need to be applied when SSR so links
         are outlined when JS is disabled */}
-        <body className={keyboardFocusedClassName} />
+        <body />
       </Head>
 
       {defaultImage && <PageMetadata image={defaultImage} />}

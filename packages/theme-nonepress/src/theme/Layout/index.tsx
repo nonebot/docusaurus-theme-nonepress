@@ -8,7 +8,6 @@ import {
   SkipToContentFallbackId,
   ThemeClassNames,
 } from "@docusaurus/theme-common";
-import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
 
 import AnnouncementBar from "@theme/AnnouncementBar";
 import ErrorPageContent from "@theme/ErrorPageContent";
@@ -29,8 +28,6 @@ export default function Layout(props: Props): ReactNode {
     title,
     description,
   } = props;
-
-  useKeyboardNavigation();
 
   return (
     <LayoutProvider>

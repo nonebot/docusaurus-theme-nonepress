@@ -17,7 +17,7 @@ export default async function createConfigAsync() {
     url: "https://nonepress.nonebot.dev",
 
     future: {
-      experimental_faster: true,
+      faster: true,
       v4: true,
     },
 
@@ -31,7 +31,12 @@ export default async function createConfigAsync() {
     projectName: "docusaurus-theme-nonepress", // Usually your repo name.
 
     onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: "warn",
+
+    markdown: {
+      hooks: {
+        onBrokenMarkdownLinks: "warn",
+      },
+    },
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want

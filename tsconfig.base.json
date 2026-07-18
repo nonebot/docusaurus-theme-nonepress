@@ -5,7 +5,8 @@
     "composite": true,
     "incremental": true,
     "tsBuildInfoFile": "${configDir}/lib/.tsbuildinfo",
-
+    "erasableSyntaxOnly": true,
+    "types": ["node"],
     /* Emit */
     "target": "ES2020",
     "lib": ["ESNext"],
@@ -45,7 +46,6 @@
     /* Handled by ESLint */
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "importsNotUsedAsValues": "remove",
 
     /* Module Resolution */
     "moduleResolution": "NodeNext",
@@ -57,6 +57,6 @@
     "allowJs": true,
     "skipLibCheck": true // @types/webpack and webpack/types.d.ts are not the same thing
   },
-  "include": ["./**/*", "./**/.eslintrc.js"],
+  "include": ["./**/*", "./**/eslint.config.*"],
   "exclude": ["node_modules", "**/lib/**/*", "website/**"]
 }

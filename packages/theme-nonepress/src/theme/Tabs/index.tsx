@@ -1,11 +1,13 @@
-import React, { cloneElement, type ReactElement, type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
 import {
+  sanitizeTabsChildren,
+  TabsProvider,
   useScrollPositionBlocker,
   useTabs,
-  type TabItemProps,
+  useTabsContextValue,
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
@@ -13,12 +15,9 @@ import type { Props } from "@theme/Tabs";
 
 import "./styles.css";
 
-function TabList({
-  className,
-  selectedValue,
-  selectValue,
-  tabValues,
-}: Props & ReturnType<typeof useTabs>) {
+function TabList({ className }: { className?: string }) {
+  const { selectedValue, selectValue, tabValues } = useTabs();
+
   const tabRefs: (HTMLLIElement | null)[] = [];
   const { blockElementScrollPositionUntilNextRender } =
     useScrollPositionBlocker();
@@ -99,54 +98,42 @@ function TabList({
   );
 }
 
-function TabContent({
-  lazy,
-  children,
-  selectedValue,
-}: Props & ReturnType<typeof useTabs>) {
-  const childTabs = (Array.isArray(children) ? children : [children]).filter(
-    Boolean,
-  ) as ReactElement<TabItemProps>[];
-  if (lazy) {
-    const selectedTabItem = childTabs.find(
-      (tabItem) => tabItem.props.value === selectedValue,
-    );
-    if (!selectedTabItem) {
-      // fail-safe or fail-fast? not sure what's best here
-      return null;
-    }
-    return <div>{cloneElement(selectedTabItem)}</div>;
-  }
-  return (
-    <div>
-      {childTabs.map((tabItem, i) =>
-        cloneElement(tabItem, {
-          key: i,
-          hidden: tabItem.props.value !== selectedValue,
-        }),
-      )}
-    </div>
-  );
+function TabContent({ children }: { children: ReactNode }) {
+  return <div>{children}</div>;
 }
 
-function TabsComponent(props: Props): ReactNode {
-  const tabs = useTabs(props);
+function TabsContainer({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}): ReactNode {
   return (
     <div className="tabs-container">
-      <TabList {...props} {...tabs} />
-      <TabContent {...props} {...tabs} />
+      <TabList
+        // Surprising but historical
+        // className is applied on TabList, not on TabsContainer
+        className={className}
+      />
+      <TabContent>{children}</TabContent>
     </div>
   );
 }
 
 export default function Tabs(props: Props): ReactNode {
   const isBrowser = useIsBrowser();
+  const value = useTabsContextValue(props);
   return (
-    <TabsComponent
+    <TabsProvider
+      value={value}
       // Remount tabs after hydration
       // Temporary fix for https://github.com/facebook/docusaurus/issues/5653
       key={String(isBrowser)}
-      {...props}
-    />
+    >
+      <TabsContainer className={props.className}>
+        {sanitizeTabsChildren(props.children)}
+      </TabsContainer>
+    </TabsProvider>
   );
 }

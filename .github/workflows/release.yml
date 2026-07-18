@@ -16,11 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
           node-version: lts/*
-          cache: yarn
+          cache: pnpm
 
       - name: Prepare git
         run: |
@@ -28,8 +31,8 @@ jobs:
           git config user.email 129742071+noneflow[bot]@users.noreply.github.com
 
       - name: Installation
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
       - name: Publish release
         run: |
-          yarn lerna publish from-package --yes --no-private
+          pnpm lerna publish from-package --yes --no-private

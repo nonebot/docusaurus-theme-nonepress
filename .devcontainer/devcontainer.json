@@ -1,7 +1,7 @@
 {
   "name": "Default Linux Universal",
   "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
-  "postCreateCommand": "yarn install && yarn global add gitmoji-cli",
+  "postCreateCommand": "corepack enable && pnpm install && npm install --global gitmoji-cli",
   "customizations": {
     "vscode": {
       "settings": {
