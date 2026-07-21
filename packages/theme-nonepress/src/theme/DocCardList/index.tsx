@@ -4,8 +4,8 @@ import clsx from "clsx";
 
 import {
   filterDocCardListItems,
-  useCurrentSidebarCategory,
-} from "@docusaurus/plugin-content-docs/lib/client/docsUtils.js";
+  useCurrentSidebarSiblings,
+} from "@docusaurus/plugin-content-docs/client";
 
 import DocCard from "@theme/DocCard";
 import type { Props } from "@theme/DocCardList";
@@ -13,8 +13,8 @@ import type { Props } from "@theme/DocCardList";
 import "./styles.css";
 
 function DocCardListForCurrentSidebarCategory(props: Props) {
-  const category = useCurrentSidebarCategory();
-  return <DocCardList {...props} items={category.items} />;
+  const items = useCurrentSidebarSiblings();
+  return <DocCardList {...props} items={items} />;
 }
 
 export default function DocCardList(props: Props): ReactNode {

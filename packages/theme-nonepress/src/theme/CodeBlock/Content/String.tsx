@@ -2,12 +2,11 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import {
-  containsLineNumbers,
-  parseCodeBlockTitle,
-  parseLanguage,
-  parseLines,
+  type CodeBlockMetadata,
+  createCodeBlockMetadata,
   useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
@@ -19,45 +18,31 @@ import CopyButton from "@theme/CodeBlock/CopyButton";
 import Line from "@theme/CodeBlock/Line";
 import WordWrapButton from "@theme/CodeBlock/WordWrapButton";
 
-export default function CodeBlockString({
-  children,
-  className: blockClassName = "",
-  metastring,
-  title: titleProp,
-  showLineNumbers: showLineNumbersProp,
-  language: languageProp,
-}: Props): ReactNode {
+function useCodeBlockMetadata(props: Props): CodeBlockMetadata {
   const {
     prism: { defaultLanguage, magicComments },
   } = useNonepressThemeConfig();
-  const language =
-    languageProp ?? parseLanguage(blockClassName) ?? defaultLanguage;
+  return createCodeBlockMetadata({
+    code: props.children,
+    className: props.className,
+    metastring: props.metastring,
+    magicComments,
+    defaultLanguage,
+    language: props.language,
+    title: props.title,
+    showLineNumbers: props.showLineNumbers,
+  });
+}
+
+export default function CodeBlockString(props: Props): ReactNode {
+  const metadata = useCodeBlockMetadata(props);
+  const { code, language, title, lineClassNames, lineNumbersStart } = metadata;
   const prismTheme = usePrismTheme();
   const wordWrap = useCodeWordWrap();
-
-  // We still parse the metastring in case we want to support more syntax in the
-  // future. Note that MDX doesn't strip quotes when parsing metastring:
-  // "title=\"xyz\"" => title: "\"xyz\""
-  const title = parseCodeBlockTitle(metastring) || titleProp;
-
-  const { lineClassNames, code } = parseLines(children, {
-    metastring,
-    language,
-    magicComments,
-  });
-  const showLineNumbers =
-    showLineNumbersProp ?? containsLineNumbers(metastring);
+  const showLineNumbers = lineNumbersStart !== undefined;
 
   return (
-    <Container
-      as="div"
-      className={clsx(
-        blockClassName,
-        language &&
-          !blockClassName.includes(`language-${language}`) &&
-          `language-${language}`,
-      )}
-    >
+    <Container as="div" className={metadata.className}>
       {title && (
         <div className="code-block-title">
           <div className="code-block-title-btn-group">
@@ -72,10 +57,11 @@ export default function CodeBlockString({
         <Highlight
           theme={prismTheme}
           code={code}
-          language={(language ?? "text") as Language}
+          language={language as Language}
         >
           {({ className, tokens, getLineProps, getTokenProps }) => (
             <pre
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               tabIndex={0}
               ref={wordWrap.codeBlockRef}
               className={clsx(className, "code-block-content thin-scrollbar")}
@@ -85,6 +71,12 @@ export default function CodeBlockString({
                   "code-block-lines",
                   showLineNumbers && "code-block-lines-with-number",
                 )}
+                style={{
+                  counterReset:
+                    lineNumbersStart === undefined
+                      ? undefined
+                      : `line ${lineNumbersStart - 1}`,
+                }}
               >
                 {tokens.map((line, i) => (
                   <Line
@@ -100,15 +92,22 @@ export default function CodeBlockString({
             </pre>
           )}
         </Highlight>
-        <div className="code-block-btn-group">
-          {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
-            <WordWrapButton
-              onClick={() => wordWrap.toggle()}
-              isEnabled={wordWrap.isEnabled}
-            />
+        {/* Code block buttons are not server-rendered on purpose: adding them
+            to the initial HTML is useless and expensive, and they require
+            React to become interactive anyway */}
+        <BrowserOnly>
+          {() => (
+            <div className="code-block-btn-group">
+              {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
+                <WordWrapButton
+                  onClick={() => wordWrap.toggle()}
+                  isEnabled={wordWrap.isEnabled}
+                />
+              )}
+              <CopyButton code={code} />
+            </div>
           )}
-          <CopyButton code={code} />
-        </div>
+        </BrowserOnly>
       </div>
     </Container>
   );

@@ -2,6 +2,7 @@ import React, { type ReactNode } from "react";
 
 import clsx from "clsx";
 
+import { ThemeClassNames } from "@docusaurus/theme-common";
 import {
   sanitizeTabsChildren,
   TabsProvider,
@@ -16,7 +17,7 @@ import type { Props } from "@theme/Tabs";
 import "./styles.css";
 
 function TabList({ className }: { className?: string }) {
-  const { selectedValue, selectValue, tabValues } = useTabs();
+  const { selectedValue, selectValue, tabValues, block } = useTabs();
 
   const tabRefs: (HTMLLIElement | null)[] = [];
   const { blockElementScrollPositionUntilNextRender } =
@@ -68,7 +69,11 @@ function TabList({ className }: { className?: string }) {
       <ul
         role="tablist"
         aria-orientation="horizontal"
-        className={clsx("tabs tabs-list tabs-lifted", className)}
+        className={clsx(
+          "tabs tabs-list tabs-lifted",
+          block && "tabs-block",
+          className,
+        )}
       >
         {tabValues.map(({ value, label, attributes }) => (
           <li
@@ -110,7 +115,7 @@ function TabsContainer({
   children: ReactNode;
 }): ReactNode {
   return (
-    <div className="tabs-container">
+    <div className={clsx(ThemeClassNames.tabs.container, "tabs-container")}>
       <TabList
         // Surprising but historical
         // className is applied on TabList, not on TabsContainer

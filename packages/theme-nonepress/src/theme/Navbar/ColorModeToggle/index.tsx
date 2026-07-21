@@ -14,14 +14,19 @@ export default function NavbarColorModeToggle({
   className,
   mobile = false,
 }: Props): ReactNode {
-  const navbarStyle = useNonepressThemeConfig().navbar.style;
-  const { colorMode, setColorMode } = useColorMode();
+  const { disableSwitch, respectPrefersColorScheme } =
+    useNonepressThemeConfig().colorMode;
+  const { colorModeChoice, setColorMode } = useColorMode();
+
+  if (disableSwitch) {
+    return null;
+  }
 
   const element = (
     <ColorModeToggle
       className={className}
-      dark={navbarStyle === "dark"}
-      value={colorMode}
+      respectPrefersColorScheme={respectPrefersColorScheme}
+      value={colorModeChoice}
       onChange={setColorMode}
     />
   );

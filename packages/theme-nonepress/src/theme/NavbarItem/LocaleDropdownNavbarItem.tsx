@@ -1,30 +1,26 @@
 import React, { type ReactNode } from "react";
 
-import clsx from "clsx";
-
-import Translate from "@docusaurus/Translate";
+import { translate } from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useLocaleDropdownUtils } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import IconLanguage from "@theme/Icon/Language";
-import Menu from "@theme/Menu";
-import type { Props } from "@theme/Navbar/LocaleDropdown";
 import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem";
+import type { Props } from "@theme/NavbarItem/LocaleDropdownNavbarItem";
 
-import "./styles.css";
-
-export default function NavbarLocaleDropdown({
+export default function LocaleDropdownNavbarItem({
+  mobile,
   dropdownItemsBefore,
   dropdownItemsAfter,
   queryString,
-  mobile = false,
-}: Props): ReactNode | null {
+  ...props
+}: Props): ReactNode {
+  const utils = useLocaleDropdownUtils();
+
   const {
     i18n: { currentLocale, locales },
   } = useDocusaurusContext();
-  const utils = useLocaleDropdownUtils();
-
   const localeItems = locales.map((locale): LinkLikeNavbarItemProps => {
     return {
       label: utils.getLabel(locale),
@@ -44,24 +40,19 @@ export default function NavbarLocaleDropdown({
 
   const items = [...dropdownItemsBefore, ...localeItems, ...dropdownItemsAfter];
 
-  if (items.length <= 1) {
-    return null;
-  }
+  // Mobile is handled a bit differently
+  const dropdownLabel = mobile
+    ? translate({
+        message: "Languages",
+        id: "theme.navbar.mobileLanguageDropdown.label",
+        description: "The label for the mobile language switcher dropdown",
+      })
+    : utils.getLabel(currentLocale);
 
   return (
-    <Menu className={clsx("navbar-locales", !mobile && "navbar-primary-menu")}>
-      <DropdownNavbarItem
-        className={clsx(!mobile && "navbar-primary-item")}
-        items={items}
-        mobile={mobile}
-      >
-        <IconLanguage className="navbar-locales-icon" />
-        {mobile && (
-          <Translate id="theme.navbar.mobileLanguageDropdown.label">
-            Languages
-          </Translate>
-        )}
-      </DropdownNavbarItem>
-    </Menu>
+    <DropdownNavbarItem {...props} mobile={mobile} items={items}>
+      <IconLanguage className="navbar-locales-icon" />
+      {dropdownLabel}
+    </DropdownNavbarItem>
   );
 }

@@ -6,6 +6,7 @@ import {
   findFirstSidebarItemLink,
   isActiveSidebarItem,
   useDocSidebarItemsExpandedState,
+  useVisibleSidebarItems,
 } from "@docusaurus/plugin-content-docs/client";
 import {
   ThemeClassNames,
@@ -19,6 +20,12 @@ import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/cli
 import SidebarItems from "@theme/DocSidebarItems";
 import MenuCategory from "@theme/Menu/Category";
 import type { Props } from "@theme/Page/SidebarItem/Category";
+import SidebarItemLink from "@theme/Page/SidebarItem/Link";
+
+import type {
+  PropSidebarItemCategory,
+  PropSidebarItemLink,
+} from "@docusaurus/plugin-content-docs";
 
 // If we navigate to a category and it becomes active, it should automatically
 // expand itself
@@ -26,18 +33,30 @@ function useAutoExpandActiveCategory({
   isActive,
   collapsed,
   updateCollapsed,
+  activePath,
 }: {
   isActive: boolean;
   collapsed: boolean;
   updateCollapsed: (b: boolean) => void;
+  activePath: string;
 }) {
   const wasActive = usePrevious(isActive);
+  const previousActivePath = usePrevious(activePath);
   useEffect(() => {
     const justBecameActive = isActive && !wasActive;
-    if (justBecameActive && collapsed) {
+    const stillActiveButPathChanged =
+      isActive && wasActive && activePath !== previousActivePath;
+    if ((justBecameActive || stillActiveButPathChanged) && collapsed) {
       updateCollapsed(false);
     }
-  }, [isActive, wasActive, collapsed, updateCollapsed]);
+  }, [
+    isActive,
+    wasActive,
+    collapsed,
+    updateCollapsed,
+    activePath,
+    previousActivePath,
+  ]);
 }
 
 /**
@@ -65,7 +84,47 @@ function useCategoryHrefWithSSRFallback(
   }, [item, isBrowser]);
 }
 
-export default function SidebarItemCategory({
+export default function SidebarItemCategory(props: Props): ReactNode {
+  const visibleChildren = useVisibleSidebarItems(
+    props.item.items,
+    props.activePath,
+  );
+  if (visibleChildren.length === 0) {
+    return <SidebarItemCategoryEmpty {...props} />;
+  }
+  return <SidebarItemCategoryCollapsible {...props} />;
+}
+
+function isCategoryWithHref(
+  category: PropSidebarItemCategory,
+): category is PropSidebarItemCategory & { href: string } {
+  return typeof category.href === "string";
+}
+
+// If a category doesn't have any visible children, we render it as a link
+function SidebarItemCategoryEmpty({ item, ...props }: Props): ReactNode {
+  // If the category has no link, we don't render anything
+  // It's not super useful to render a category you can't open nor click
+  if (!isCategoryWithHref(item)) {
+    return null;
+  }
+  // We remove props that don't make sense for a link and forward the rest
+  const {
+    type,
+    collapsed,
+    collapsible,
+    items,
+    linkUnlisted,
+    ...forwardableProps
+  } = item;
+  const linkItem: PropSidebarItemLink = {
+    type: "link",
+    ...forwardableProps,
+  };
+  return <SidebarItemLink item={linkItem} {...props} />;
+}
+
+function SidebarItemCategoryCollapsible({
   item,
   activePath,
   level,
@@ -99,7 +158,12 @@ export default function SidebarItemCategory({
     setExpandedItem(toCollapsed ? null : index);
     setCollapsed(toCollapsed);
   };
-  useAutoExpandActiveCategory({ isActive, collapsed, updateCollapsed });
+  useAutoExpandActiveCategory({
+    isActive,
+    collapsed,
+    updateCollapsed,
+    activePath,
+  });
   useEffect(() => {
     if (
       collapsible &&
@@ -128,8 +192,8 @@ export default function SidebarItemCategory({
       collapsed={collapsed}
       updateCollapsed={updateCollapsed}
       collapsible={collapsible}
+      isCurrentPage={isCurrentPage}
       aria-current={isCurrentPage ? "page" : undefined}
-      aria-expanded={collapsible ? !collapsed : undefined}
       href={hrefWithSSRFallback}
     />
   );

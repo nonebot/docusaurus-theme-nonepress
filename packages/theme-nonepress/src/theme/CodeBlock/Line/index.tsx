@@ -4,16 +4,23 @@ import clsx from "clsx";
 
 import type { Props } from "@theme/CodeBlock/Line";
 
+// An empty line is a single token with a "\n" content: render it as an empty
+// token instead, without mutating the token array Prism gave us
+function fixLineBreak(line: Props["line"]): Props["line"] {
+  if (line.length === 1 && line[0]!.content === "\n") {
+    return [{ ...line[0]!, content: "" }];
+  }
+  return line;
+}
+
 export default function CodeBlockLine({
-  line,
+  line: lineProp,
   classNames,
   showLineNumbers,
   getLineProps,
   getTokenProps,
 }: Props): ReactNode {
-  if (line.length === 1 && line[0]!.content === "\n") {
-    line[0]!.content = "";
-  }
+  const line = fixLineBreak(lineProp);
 
   const lineProps = getLineProps({
     line,

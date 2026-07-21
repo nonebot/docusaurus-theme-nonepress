@@ -3,7 +3,10 @@ import React, { type ReactNode } from "react";
 import clsx from "clsx";
 
 import Translate from "@docusaurus/Translate";
-import { ThemeClassNames } from "@docusaurus/theme-common";
+import {
+  processAdmonitionProps,
+  ThemeClassNames,
+} from "@docusaurus/theme-common";
 
 import type { Props } from "@theme/Admonition";
 
@@ -100,7 +103,7 @@ type AdmonitionConfig = {
   label: ReactNode;
 };
 
-const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
+const AdmonitionConfigs: Record<string, AdmonitionConfig> = {
   note: {
     className: "note",
     iconComponent: NoteIcon,
@@ -149,9 +152,31 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
       </Translate>
     ),
   },
-  caution: {
+  warning: {
     className: "warning",
     iconComponent: CautionIcon,
+    label: (
+      <Translate
+        id="theme.admonition.warning"
+        description="The default label used for the Warning admonition (:::warning)"
+      >
+        warning
+      </Translate>
+    ),
+  },
+};
+
+// Undocumented legacy admonition type aliases
+// Provide hardcoded/untranslated retrocompatible label
+// See also https://github.com/facebook/docusaurus/issues/7767
+const AdmonitionAliases: Record<string, AdmonitionConfig> = {
+  secondary: { ...AdmonitionConfigs.note!, label: "secondary" },
+  important: { ...AdmonitionConfigs.info!, label: "important" },
+  success: { ...AdmonitionConfigs.tip!, label: "success" },
+  // TODO remove before v4: Caution replaced by Warning
+  // see https://github.com/facebook/docusaurus/issues/7558
+  caution: {
+    ...AdmonitionConfigs.warning!,
     label: (
       <Translate
         id="theme.admonition.caution"
@@ -163,58 +188,15 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
   },
 };
 
-// Legacy aliases, undocumented but kept for retro-compatibility
-const aliases = {
-  secondary: "note",
-  important: "info",
-  success: "tip",
-  warning: "caution",
-} as const;
-
 function getAdmonitionConfig(unsafeType: string): AdmonitionConfig {
-  const type =
-    (aliases as { [key: string]: Props["type"] })[unsafeType] ?? unsafeType;
-  const config = (AdmonitionConfigs as { [key: string]: AdmonitionConfig })[
-    type
-  ];
+  const config = AdmonitionConfigs[unsafeType] ?? AdmonitionAliases[unsafeType];
   if (config) {
     return config;
   }
   console.warn(
-    `No admonition config found for admonition type "${type}". Using Info as fallback.`,
+    `No admonition config found for admonition type "${unsafeType}". Using Info as fallback.`,
   );
   return AdmonitionConfigs.info!;
-}
-
-// Workaround because it's difficult in MDX v1 to provide a MDX title as props
-// See https://github.com/facebook/docusaurus/pull/7152#issuecomment-1145779682
-function extractMDXAdmonitionTitle(children: ReactNode): {
-  mdxAdmonitionTitle: ReactNode | undefined;
-  rest: ReactNode;
-} {
-  const items = React.Children.toArray(children);
-  const mdxAdmonitionTitle = items.find(
-    (item) =>
-      React.isValidElement(item) &&
-      (item.props as { mdxType: string } | null)?.mdxType ===
-        "mdxAdmonitionTitle",
-  );
-  const rest = <>{items.filter((item) => item !== mdxAdmonitionTitle)}</>;
-  return {
-    mdxAdmonitionTitle,
-    rest,
-  };
-}
-
-function processAdmonitionProps(props: Props): Props {
-  const { mdxAdmonitionTitle, rest } = extractMDXAdmonitionTitle(
-    props.children,
-  );
-  return {
-    ...props,
-    title: props.title ?? mdxAdmonitionTitle,
-    children: rest,
-  };
 }
 
 export default function Admonition(props: Props): ReactNode {
@@ -223,6 +205,7 @@ export default function Admonition(props: Props): ReactNode {
     type,
     title,
     icon: iconProp,
+    className,
   } = processAdmonitionProps(props);
 
   const typeConfig = getAdmonitionConfig(type);
@@ -236,6 +219,7 @@ export default function Admonition(props: Props): ReactNode {
         typeConfig.className && `admonition-${typeConfig.className}`,
         ThemeClassNames.common.admonition,
         ThemeClassNames.common.admonitionType(props.type),
+        className,
       )}
     >
       <div>

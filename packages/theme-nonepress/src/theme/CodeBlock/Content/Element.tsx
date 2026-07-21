@@ -9,7 +9,7 @@ export default function CodeBlockJSX({
 }: Props): ReactNode {
   return (
     <Container as="pre" tabIndex={0} className={className}>
-      {children}
+      <code className="code-block-lines thin-scrollbar">{children}</code>
     </Container>
   );
 }

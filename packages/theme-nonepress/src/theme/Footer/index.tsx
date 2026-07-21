@@ -40,7 +40,7 @@ function Footer(): ReactNode | null {
         <footer
           className={clsx(
             "footer footer-content",
-            links.length === 0 && "footer-center",
+            (!links || links.length === 0) && "footer-center",
           )}
         >
           {(logo || socialLinks) && (
@@ -52,7 +52,7 @@ function Footer(): ReactNode | null {
               )}
             </div>
           )}
-          {links.length && <FooterLinks links={links} />}
+          {links && links.length > 0 && <FooterLinks links={links} />}
         </footer>
         {copyright && (
           <footer className="footer footer-center footer-copyright">

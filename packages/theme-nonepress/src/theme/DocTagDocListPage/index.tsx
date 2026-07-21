@@ -11,6 +11,7 @@ import {
   usePluralForm,
 } from "@docusaurus/theme-common";
 
+import Unlisted from "@theme/ContentVisibility/Unlisted";
 import type { Props } from "@theme/DocTagDocListPage";
 import Heading from "@theme/Heading";
 import SearchMetadata from "@theme/SearchMetadata";
@@ -62,15 +63,17 @@ export default function DocTagDocListPage({ tag }: Props): ReactNode {
         ThemeClassNames.page.docsTagDocListPage,
       )}
     >
-      <PageMetadata title={title} />
+      <PageMetadata title={title} description={tag.description} />
       <SearchMetadata tag="doc_tag_doc_list" />
 
       <div className="page">
         <main className="page-main">
           <div className={clsx("page-content", "page-content-narrow")}>
             <div className="prose max-w-none">
+              {tag.unlisted && <Unlisted />}
               <header>
                 <Heading as="h1">{title}</Heading>
+                {tag.description && <p>{tag.description}</p>}
                 <Link href={tag.allTagsPath}>
                   <Translate
                     id="theme.tags.tagsPageLink"

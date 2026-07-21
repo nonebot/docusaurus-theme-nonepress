@@ -9,6 +9,7 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { applyTrailingSlash } from "@docusaurus/utils-common";
 import { useNonepressThemeConfig } from "@nullbot/docusaurus-theme-nonepress/client";
 
 import SearchMetadata from "@theme/SearchMetadata";
@@ -19,9 +20,18 @@ import SearchMetadata from "@theme/SearchMetadata";
 // See https://github.com/facebook/docusaurus/issues/3317
 function AlternateLangHeaders(): ReactNode {
   const {
-    i18n: { defaultLocale, localeConfigs },
+    i18n: { currentLocale, defaultLocale, localeConfigs },
   } = useDocusaurusContext();
   const alternatePageUtils = useAlternatePageUtils();
+
+  const currentHtmlLang = localeConfigs[currentLocale]!.htmlLang;
+
+  // HTML lang is a BCP 47 tag, but the Open Graph protocol requires
+  // using underscores instead of dashes.
+  // See https://ogp.me/#optional
+  // See https://en.wikipedia.org/wiki/IETF_language_tag)
+  const bcp47ToOpenGraphLocale = (code: string): string =>
+    code.replace("-", "_");
 
   // Note: it is fine to use both "x-default" and "en" to target the same url
   // See https://www.searchviu.com/en/multiple-hreflang-tags-one-url/
@@ -46,6 +56,20 @@ function AlternateLangHeaders(): ReactNode {
         })}
         hrefLang="x-default"
       />
+
+      <meta
+        property="og:locale"
+        content={bcp47ToOpenGraphLocale(currentHtmlLang)}
+      />
+      {Object.values(localeConfigs)
+        .filter((config) => currentHtmlLang !== config.htmlLang)
+        .map((config) => (
+          <meta
+            key={`meta-og-${config.htmlLang}`}
+            property="og:locale:alternate"
+            content={bcp47ToOpenGraphLocale(config.htmlLang)}
+          />
+        ))}
     </Head>
   );
 }
@@ -53,10 +77,19 @@ function AlternateLangHeaders(): ReactNode {
 // Default canonical url inferred from current page location pathname
 function useDefaultCanonicalUrl() {
   const {
-    siteConfig: { url: siteUrl },
+    siteConfig: { url: siteUrl, baseUrl, trailingSlash },
   } = useDocusaurusContext();
+
+  // TODO using useLocation().pathname is not a super idea
+  // See https://github.com/facebook/docusaurus/issues/9170
   const { pathname } = useLocation();
-  return siteUrl + useBaseUrl(pathname);
+
+  const canonicalPathname = applyTrailingSlash(useBaseUrl(pathname), {
+    trailingSlash,
+    baseUrl,
+  });
+
+  return siteUrl + canonicalPathname;
 }
 
 // TODO move to SiteMetadataDefaults or theme-common ?

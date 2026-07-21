@@ -8,64 +8,114 @@ import useIsBrowser from "@docusaurus/useIsBrowser";
 import type { Props } from "@theme/ColorModeToggle";
 import IconDarkMode from "@theme/Icon/DarkMode";
 import IconLightMode from "@theme/Icon/LightMode";
+import IconSystemColorMode from "@theme/Icon/SystemColorMode";
+
+import type { ColorMode } from "@docusaurus/theme-common";
 
 import "./styles.css";
 
+// The order of color modes is defined here, and can be customized with swizzle
+function getNextColorMode(
+  colorMode: ColorMode | null,
+  respectPrefersColorScheme: boolean,
+) {
+  // 2-value transition
+  if (!respectPrefersColorScheme) {
+    return colorMode === "dark" ? "light" : "dark";
+  }
+
+  // 3-value transition
+  switch (colorMode) {
+    case null:
+      return "light";
+    case "light":
+      return "dark";
+    case "dark":
+      return null;
+    default:
+      throw new Error(`unexpected color mode ${colorMode}`);
+  }
+}
+
+function getColorModeLabel(colorMode: ColorMode | null): string {
+  switch (colorMode) {
+    case null:
+      return translate({
+        message: "system mode",
+        id: "theme.colorToggle.ariaLabel.mode.system",
+        description: "The name for the system color mode",
+      });
+    case "light":
+      return translate({
+        message: "light mode",
+        id: "theme.colorToggle.ariaLabel.mode.light",
+        description: "The name for the light color mode",
+      });
+    case "dark":
+      return translate({
+        message: "dark mode",
+        id: "theme.colorToggle.ariaLabel.mode.dark",
+        description: "The name for the dark color mode",
+      });
+    default:
+      throw new Error(`unexpected color mode ${colorMode}`);
+  }
+}
+
+function getColorModeAriaLabel(colorMode: ColorMode | null) {
+  return translate(
+    {
+      message: "Switch between dark and light mode (currently {mode})",
+      id: "theme.colorToggle.ariaLabel",
+      description: "The ARIA label for the color mode toggle",
+    },
+    {
+      mode: getColorModeLabel(colorMode),
+    },
+  );
+}
+
 function ColorModeToggle({
   className,
-  dark = false,
+  buttonClassName,
+  respectPrefersColorScheme,
   value,
   onChange,
 }: Props): ReactNode {
   const isBrowser = useIsBrowser();
 
-  const title = translate(
-    {
-      message: "Switch between dark and light mode (currently {mode})",
-      id: "theme.colorToggle.ariaLabel",
-      description: "The ARIA label for the navbar color mode toggle",
-    },
-    {
-      mode:
-        value === "dark"
-          ? translate({
-              message: "dark mode",
-              id: "theme.colorToggle.ariaLabel.mode.dark",
-              description: "The name for the dark color mode",
-            })
-          : translate({
-              message: "light mode",
-              id: "theme.colorToggle.ariaLabel.mode.light",
-              description: "The name for the light color mode",
-            }),
-    },
-  );
-
   return (
     <button
-      className={clsx("appearance-toggle", className)}
+      className={clsx("appearance-toggle", className, buttonClassName)}
       type="button"
-      role="switch"
-      title={title}
-      aria-label={title}
-      aria-live="polite"
+      title={getColorModeLabel(value)}
+      aria-label={getColorModeAriaLabel(value)}
+      // aria-live disabled on purpose (see upstream a11y decisions in
+      // https://github.com/facebook/docusaurus/issues/7667): with it,
+      // VoiceOver/NVDA announce the state change multiple times
       disabled={!isBrowser}
-      onClick={() => onChange(value === "dark" ? "light" : "dark")}
+      onClick={() =>
+        onChange(getNextColorMode(value, respectPrefersColorScheme))
+      }
     >
-      <span className="sr-only">Use dark theme</span>
       <span
         className={clsx(
           "appearance-toggle-switcher",
           value === "dark" && "appearance-toggle-switcher-active",
+          respectPrefersColorScheme &&
+            value === null &&
+            "appearance-toggle-switcher-half",
         )}
       >
         <span
           className={clsx(
             "appearance-toggle-container",
-            value === "light" && "appearance-toggle-container-active",
+            (value === "light" ||
+              (!respectPrefersColorScheme && value === null)) &&
+              "appearance-toggle-container-active",
           )}
         >
-          <IconLightMode className="appearance-toggle-icon" />
+          <IconLightMode aria-hidden className="appearance-toggle-icon" />
         </span>
         <span
           className={clsx(
@@ -73,32 +123,24 @@ function ColorModeToggle({
             value === "dark" && "appearance-toggle-container-active",
           )}
         >
-          <IconDarkMode className="appearance-toggle-icon" />
+          <IconDarkMode aria-hidden className="appearance-toggle-icon" />
         </span>
+        {respectPrefersColorScheme && (
+          <span
+            className={clsx(
+              "appearance-toggle-container",
+              value === null && "appearance-toggle-container-active",
+            )}
+          >
+            <IconSystemColorMode
+              aria-hidden
+              className="appearance-toggle-icon"
+            />
+          </span>
+        )}
       </span>
     </button>
   );
-
-  // return (
-  //   <div className="navbar-label">
-  //     <button
-  //       className={clsx(
-  //         "appearance-toggle swap swap-rotate",
-  //         value === "dark" && "swap-active",
-  //         className,
-  //       )}
-  //       type="button"
-  //       onClick={() => onChange(value === "dark" ? "light" : "dark")}
-  //       disabled={!isBrowser}
-  //       title={title}
-  //       aria-label={title}
-  //       aria-live="polite"
-  //     >
-  //       <IconLightMode className="appearance-toggle-icon swap-off" />
-  //       <IconDarkMode className="appearance-toggle-icon swap-on" />
-  //     </button>
-  //   </div>
-  // );
 }
 
 export default React.memo(ColorModeToggle);

@@ -14,7 +14,9 @@ import "./styles.css";
 function TagLetterEntryItem({ letterEntry }: { letterEntry: TagLetterEntry }) {
   return (
     <article>
-      <Heading as="h2">{letterEntry.letter}</Heading>
+      <Heading as="h2" id={letterEntry.letter}>
+        {letterEntry.letter}
+      </Heading>
       <ul>
         {letterEntry.tags.map((tag) => (
           <li key={tag.permalink} className="tags-list-item">

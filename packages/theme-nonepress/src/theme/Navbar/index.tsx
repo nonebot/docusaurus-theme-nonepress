@@ -3,6 +3,7 @@ import React, { type ReactNode } from "react";
 import clsx from "clsx";
 
 import { translate } from "@docusaurus/Translate";
+import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useHideableNavbar } from "@docusaurus/theme-common/internal";
 import {
   useNonepressThemeConfig,
@@ -37,6 +38,7 @@ export default function Navbar(): ReactNode {
           description: "The ARIA label for the main navigation",
         })}
         className={clsx(
+          ThemeClassNames.layout.navbar.container,
           "navbar",
           hideOnScroll && !isNavbarVisible && "navbar-hidden",
           {

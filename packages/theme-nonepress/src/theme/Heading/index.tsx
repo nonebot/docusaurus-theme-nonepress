@@ -50,6 +50,7 @@ export default function Heading({ as: As, id, ...props }: Props): ReactNode {
         to={`#${id}`}
         aria-label={anchorTitle}
         title={anchorTitle}
+        translate="no"
       >
         &#8203;
       </Link>

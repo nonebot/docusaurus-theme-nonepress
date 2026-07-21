@@ -3,14 +3,18 @@ import React, { type ReactNode } from "react";
 import clsx from "clsx";
 
 import Link from "@docusaurus/Link";
-import { translate } from "@docusaurus/Translate";
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import {
   findFirstSidebarItemLink,
   useDocById,
 } from "@docusaurus/plugin-content-docs/client";
+import {
+  extractLeadingEmoji,
+  useDocCardDescriptionCategoryItemsPlural,
+} from "@docusaurus/theme-common/internal";
 
 import type { Props } from "@theme/DocCard";
+import Heading from "@theme/Heading";
 import IconCategory from "@theme/Icon/Category";
 import IconFile from "@theme/Icon/File";
 import IconLink from "@theme/Icon/Link";
@@ -54,9 +58,9 @@ function CardLayout({
   return (
     <CardContainer href={href} className={className}>
       <div className="card-body">
-        <h2 className="card-title doc-card-title" title={title}>
+        <Heading as="h2" className="card-title doc-card-title" title={title}>
           {icon} {title}
-        </h2>
+        </Heading>
         {description && (
           <p className="doc-card-description" title={description}>
             {description}
@@ -67,6 +71,31 @@ function CardLayout({
   );
 }
 
+function getFallbackIcon(
+  item: PropSidebarItemLink | PropSidebarItemCategory,
+): ReactNode {
+  if (item.type === "category") {
+    return <IconCategory className="doc-card-icon" />;
+  }
+  return isInternalUrl(item.href) ? (
+    <IconFile className="doc-card-icon" />
+  ) : (
+    <IconLink className="doc-card-icon" />
+  );
+}
+
+// A leading emoji in the sidebar label is used as the card icon and
+// stripped from the card title, like upstream theme-classic does
+function getIconTitleProps(
+  item: PropSidebarItemLink | PropSidebarItemCategory,
+): { icon: ReactNode; title: string } {
+  const extracted = extractLeadingEmoji(item.label ?? "");
+  return {
+    icon: extracted.emoji ?? getFallbackIcon(item),
+    title: extracted.rest.trim(),
+  };
+}
+
 function CardCategory({
   item,
   className,
@@ -75,6 +104,7 @@ function CardCategory({
   className?: string;
 }): ReactNode | null {
   const href = findFirstSidebarItemLink(item);
+  const categoryItemsPlural = useDocCardDescriptionCategoryItemsPlural();
 
   // Unexpected: categories that don't have a link have been filtered upfront
   if (!href) {
@@ -84,38 +114,20 @@ function CardCategory({
   return (
     <CardLayout
       href={href}
-      icon={<IconCategory className="doc-card-icon" />}
-      title={item.label}
       className={className}
-      description={
-        item.description ??
-        translate(
-          {
-            message: "{count} items",
-            id: "theme.docs.DocCard.categoryDescription",
-            description:
-              "The default description for a category card in the generated index about how many items this category includes",
-          },
-          { count: item.items.length },
-        )
-      }
+      description={item.description ?? categoryItemsPlural(item.items.length)}
+      {...getIconTitleProps(item)}
     />
   );
 }
 
 function CardLink({ item }: { item: PropSidebarItemLink }): ReactNode {
-  const icon = isInternalUrl(item.href) ? (
-    <IconFile className="doc-card-icon" />
-  ) : (
-    <IconLink className="doc-card-icon" />
-  );
   const doc = useDocById(item.docId ?? undefined);
   return (
     <CardLayout
       href={item.href}
-      icon={icon}
-      title={item.label}
       description={item.description ?? doc?.description}
+      {...getIconTitleProps(item)}
     />
   );
 }

@@ -224,17 +224,18 @@ declare module "@theme/CodeBlock/WordWrapButton" {
 
 declare module "@theme/ColorModeToggle" {
   import { type ReactNode } from "react";
-  import type { ColorMode } from "@docusaurus/theme-common";
+  import type { ColorModeChoice } from "@docusaurus/theme-common";
 
   export interface Props {
     readonly className?: string;
-    readonly dark?: boolean;
-    readonly value: ColorMode;
+    readonly buttonClassName?: string;
+    readonly respectPrefersColorScheme: boolean;
+    readonly value: ColorModeChoice;
     /**
      * The parameter represents the "to-be" value. For example, if currently in
      * dark mode, clicking the button should call `onChange("light")`
      */
-    readonly onChange: (colorMode: ColorMode) => void;
+    readonly onChange: (colorMode: ColorModeChoice) => void;
   }
 
   export default function ColorModeToggle(props: Props): ReactNode;
@@ -252,6 +253,18 @@ declare module "@theme/DocBreadcrumbs/Items/Home" {
   import { type ReactNode } from "react";
 
   export default function HomeBreadcrumbItem(): ReactNode;
+}
+
+declare module "@theme/DocBreadcrumbs/StructuredData" {
+  import { type ReactNode } from "react";
+
+  import type { PropSidebarBreadcrumbsItem } from "@docusaurus/plugin-content-docs";
+
+  export interface Props {
+    readonly breadcrumbs: PropSidebarBreadcrumbsItem[];
+  }
+
+  export default function DocBreadcrumbsStructuredData(props: Props): ReactNode;
 }
 
 declare module "@theme/DocCard" {
@@ -776,6 +789,15 @@ declare module "@theme/Icon/LightMode" {
   export default function IconLightMode(props: Props): ReactNode;
 }
 
+declare module "@theme/Icon/SystemColorMode" {
+  import type { ComponentProps } from "react";
+  import { type ReactNode } from "react";
+
+  export interface Props extends Omit<ComponentProps<"svg">, "viewBox"> {}
+
+  export default function IconSystemColorMode(props: Props): ReactNode;
+}
+
 declare module "@theme/Icon/Link" {
   import { type ReactNode } from "react";
   import type { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
@@ -898,7 +920,6 @@ declare module "@theme/LastUpdated" {
 
   export interface Props {
     readonly lastUpdatedAt?: number;
-    readonly formattedLastUpdatedAt?: string;
     readonly lastUpdatedBy?: string;
   }
 
@@ -1109,6 +1130,7 @@ declare module "@theme/Menu/Category" {
     readonly collapsed?: boolean;
     readonly collapsible?: boolean;
     readonly updateCollapsed?: (toCollapsed?: boolean) => void;
+    readonly isCurrentPage?: boolean;
     readonly wrapperClassName?: string;
   }
 
@@ -1296,9 +1318,12 @@ declare module "@theme/NavbarItem" {
   import type { Props as DocNavbarItemProps } from "@theme/NavbarItem/DocNavbarItem";
   import type { Props as DocSidebarNavbarItemProps } from "@theme/NavbarItem/DocSidebarNavbarItem";
   import type { Props as DocsMenuDropdownNavbarItemProps } from "@theme/NavbarItem/DocsMenuDropdownNavbarItem";
+  import type { Props as DocsVersionDropdownNavbarItemProps } from "@theme/NavbarItem/DocsVersionDropdownNavbarItem";
   import type { Props as DocsVersionNavbarItemProps } from "@theme/NavbarItem/DocsVersionNavbarItem";
   import type { Props as DropdownNavbarItemProps } from "@theme/NavbarItem/DropdownNavbarItem";
   import type { Props as HtmlNavbarItemProps } from "@theme/NavbarItem/HtmlNavbarItem";
+  import type { Props as LocaleDropdownNavbarItemProps } from "@theme/NavbarItem/LocaleDropdownNavbarItem";
+  import type { Props as SearchNavbarItemProps } from "@theme/NavbarItem/SearchNavbarItem";
 
   export type LinkLikeNavbarItemProps =
     | ({ readonly type?: "default" } & DefaultNavbarItemProps)
@@ -1310,6 +1335,11 @@ declare module "@theme/NavbarItem" {
   export type NavbarItemProps =
     | LinkLikeNavbarItemProps
     | ({ readonly type?: "dropdown" } & DropdownNavbarItemProps)
+    | ({
+        readonly type: "docsVersionDropdown";
+      } & DocsVersionDropdownNavbarItemProps)
+    | ({ readonly type: "localeDropdown" } & LocaleDropdownNavbarItemProps)
+    | ({ readonly type: "search" } & SearchNavbarItemProps)
     | ({ readonly type: "docsMenu" } & DocsMenuDropdownNavbarItemProps)
     | ({
         readonly type: `custom-${string}`;
@@ -1330,16 +1360,22 @@ declare module "@theme/NavbarItem/ComponentTypes" {
   import type DocNavbarItem from "@theme/NavbarItem/DocNavbarItem";
   import type DocSidebarNavbarItem from "@theme/NavbarItem/DocSidebarNavbarItem";
   import type DocsMenuDropdownNavbarItem from "@theme/NavbarItem/DocsMenuDropdownNavbarItem";
+  import type DocsVersionDropdownNavbarItem from "@theme/NavbarItem/DocsVersionDropdownNavbarItem";
   import type DocsVersionNavbarItem from "@theme/NavbarItem/DocsVersionNavbarItem";
   import type DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem";
   import type HtmlNavbarItem from "@theme/NavbarItem/HtmlNavbarItem";
+  import type LocaleDropdownNavbarItem from "@theme/NavbarItem/LocaleDropdownNavbarItem";
+  import type SearchNavbarItem from "@theme/NavbarItem/SearchNavbarItem";
 
   export type ComponentTypesObject = {
     readonly default: typeof DefaultNavbarItem;
+    readonly localeDropdown: typeof LocaleDropdownNavbarItem;
+    readonly search: typeof SearchNavbarItem;
     readonly doc: typeof DocNavbarItem;
     readonly docSidebar: typeof DocSidebarNavbarItem;
     readonly docsMenu: typeof DocsMenuDropdownNavbarItem;
     readonly docsVersion: typeof DocsVersionNavbarItem;
+    readonly docsVersionDropdown: typeof DocsVersionDropdownNavbarItem;
     readonly dropdown: typeof DropdownNavbarItem;
     readonly html: typeof HtmlNavbarItem;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1432,6 +1468,59 @@ declare module "@theme/NavbarItem/DropdownNavbarItem" {
   }
 
   export default function DropdownNavbarItem(props: Props): ReactNode;
+}
+
+declare module "@theme/NavbarItem/LocaleDropdownNavbarItem" {
+  import { type ReactNode } from "react";
+  import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
+  import type { Props as DropdownNavbarItemProps } from "@theme/NavbarItem/DropdownNavbarItem";
+
+  export interface Props extends Omit<DropdownNavbarItemProps, "items"> {
+    readonly dropdownItemsBefore: LinkLikeNavbarItemProps[];
+    readonly dropdownItemsAfter: LinkLikeNavbarItemProps[];
+    readonly queryString?: string;
+  }
+
+  export default function LocaleDropdownNavbarItem(props: Props): ReactNode;
+}
+
+declare module "@theme/NavbarItem/DocsVersionDropdownNavbarItem" {
+  import { type ReactNode } from "react";
+  import type { LinkLikeNavbarItemProps } from "@theme/NavbarItem";
+  import type { Props as DropdownNavbarItemProps } from "@theme/NavbarItem/DropdownNavbarItem";
+
+  export type PropVersionItem = {
+    readonly label?: string;
+  };
+
+  export type PropVersionItems = {
+    readonly [version: string]: PropVersionItem;
+  };
+
+  export type PropVersions = string[] | PropVersionItems;
+
+  export interface Props extends Omit<DropdownNavbarItemProps, "items"> {
+    readonly docsPluginId?: string;
+    readonly dropdownActiveClassDisabled?: boolean;
+    readonly dropdownItemsBefore: LinkLikeNavbarItemProps[];
+    readonly dropdownItemsAfter: LinkLikeNavbarItemProps[];
+    readonly versions?: PropVersions;
+  }
+
+  export default function DocsVersionDropdownNavbarItem(
+    props: Props,
+  ): ReactNode;
+}
+
+declare module "@theme/NavbarItem/SearchNavbarItem" {
+  import { type ReactNode } from "react";
+
+  export interface Props {
+    readonly mobile?: boolean;
+    readonly className?: string;
+  }
+
+  export default function SearchNavbarItem(props: Props): ReactNode | null;
 }
 
 declare module "@theme/NavbarItem/HtmlNavbarItem" {
@@ -1760,8 +1849,8 @@ declare module "@theme/ThemedImage" {
   export default function ThemedImage(props: Props): ReactNode;
 }
 
-declare module '@theme/ThemeProvider/TitleFormatter' {
-  import type {ReactNode} from 'react';
+declare module "@theme/ThemeProvider/TitleFormatter" {
+  import type { ReactNode } from "react";
 
   export interface Props {
     readonly children: ReactNode;

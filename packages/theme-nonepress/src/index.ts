@@ -6,6 +6,11 @@ import postcssImport from "postcss-import";
 import tailwindcss from "tailwindcss";
 import tailwindNesting from "tailwindcss/nesting";
 
+import {
+  DataAttributeQueryStringInlineJavaScript,
+  getAnnouncementBarInlineScript,
+  getThemeInlineScript,
+} from "./inlineScripts";
 import defaultTailwindConfig from "./tailwind.config";
 import { getTranslationFiles, translateThemeConfig } from "./translations";
 
@@ -15,74 +20,6 @@ import type {
   ThemeConfig,
 } from "@nullbot/docusaurus-theme-nonepress";
 import type { Config as tailwindConfigType } from "tailwindcss";
-
-const ThemeStorageKey = "theme";
-const ThemeQueryStringKey = "docusaurus-theme";
-const noFlashColorMode = ({
-  defaultMode = "light",
-  respectPrefersColorScheme = false,
-}: {
-  defaultMode: "light" | "dark";
-  respectPrefersColorScheme: boolean;
-}) =>
-  `(function() {
-  var defaultMode = "${defaultMode}";
-  var respectPrefersColorScheme = ${respectPrefersColorScheme};
-
-  function setDataThemeAttribute(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-  }
-
-  function getQueryStringTheme() {
-    var theme = null;
-    try {
-      theme = new URLSearchParams(window.location.search).get('${ThemeQueryStringKey}')
-    } catch(e) {}
-    return theme;
-  }
-
-  function getStoredTheme() {
-    var theme = null;
-    try {
-      theme = localStorage.getItem("${ThemeStorageKey}");
-    } catch (err) {}
-    return theme;
-  }
-
-  var initialTheme = getQueryStringTheme() || getStoredTheme();
-  if (initialTheme !== null) {
-    setDataThemeAttribute(initialTheme);
-  } else {
-    if (
-      respectPrefersColorScheme &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setDataThemeAttribute('dark');
-    } else if (
-      respectPrefersColorScheme &&
-      window.matchMedia('(prefers-color-scheme: light)').matches
-    ) {
-      setDataThemeAttribute('light');
-    } else {
-      setDataThemeAttribute(defaultMode === 'dark' ? 'dark' : 'light');
-    }
-  }
-})();`;
-
-export const AnnouncementBarDismissStorageKey =
-  "docusaurus.announcement.dismiss";
-const AnnouncementBarDismissDataAttribute =
-  "data-announcement-bar-initially-dismissed";
-const AnnouncementBarInlineJavaScript = `
-(function() {
-  function isDismissed() {
-    try {
-      return localStorage.getItem('${AnnouncementBarDismissStorageKey}') === 'true';
-    } catch (err) {}
-    return false;
-  }
-  document.documentElement.setAttribute('${AnnouncementBarDismissDataAttribute}', isDismissed());
-})();`;
 
 function getPurgeCSSPath(siteDir?: string): string[] {
   const purge = [`${__dirname}/theme/**/*.{js,jsx,ts,tsx}`];
@@ -99,6 +36,7 @@ export default async function themeNonepress(
   const {
     siteDir,
     i18n: { currentLocale },
+    siteStorage,
   } = context;
   const themeConfig = context.siteConfig.themeConfig as ThemeConfig;
   const {
@@ -197,8 +135,9 @@ export default async function themeNonepress(
               type: "text/javascript",
             },
             innerHTML: `
-              ${noFlashColorMode(colorMode)}
-              ${announcementBar ? AnnouncementBarInlineJavaScript : ""}
+${getThemeInlineScript({ colorMode, siteStorage })}
+${DataAttributeQueryStringInlineJavaScript}
+${announcementBar ? getAnnouncementBarInlineScript({ siteStorage }) : ""}
             `,
           },
         ],

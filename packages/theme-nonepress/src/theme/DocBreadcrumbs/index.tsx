@@ -9,6 +9,7 @@ import { ThemeClassNames } from "@docusaurus/theme-common";
 import { useHomePageRoute } from "@docusaurus/theme-common/internal";
 
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
+import DocBreadcrumbsStructuredData from "@theme/DocBreadcrumbs/StructuredData";
 
 import "./styles.css";
 
@@ -24,44 +25,22 @@ function BreadcrumbsItemLink({
   const className = "btn btn-ghost btn-xs no-animation breadcrumbs-btn";
   if (isLast) {
     return (
-      <span
-        className={clsx(className, "btn-active breadcrumbs-btn-active")}
-        itemProp="name"
-      >
+      <span className={clsx(className, "btn-active breadcrumbs-btn-active")}>
         {children}
       </span>
     );
   }
   return href ? (
-    <Link className={className} href={href} itemProp="item">
-      <span itemProp="name">{children}</span>
+    <Link className={className} href={href}>
+      <span>{children}</span>
     </Link>
   ) : (
     <span className={className}>{children}</span>
   );
 }
 
-function BreadcrumbsItem({
-  children,
-  index,
-  addMicrodata,
-}: {
-  children: ReactNode;
-  index: number;
-  addMicrodata: boolean;
-}): ReactNode {
-  return (
-    <li
-      {...(addMicrodata && {
-        itemScope: true,
-        itemProp: "itemListElement",
-        itemType: "https://schema.org/ListItem",
-      })}
-    >
-      {children}
-      <meta itemProp="position" content={String(index + 1)} />
-    </li>
-  );
+function BreadcrumbsItem({ children }: { children: ReactNode }): ReactNode {
+  return <li>{children}</li>;
 }
 
 export default function DocBreadcrumbs(): ReactNode | null {
@@ -73,27 +52,34 @@ export default function DocBreadcrumbs(): ReactNode | null {
   }
 
   return (
-    <div
-      className={clsx(ThemeClassNames.docs.docBreadcrumbs, "breadcrumbs")}
-      aria-label={translate({
-        id: "theme.docs.breadcrumbs.navAriaLabel",
-        message: "Breadcrumbs",
-        description: "The ARIA label for the breadcrumbs",
-      })}
-    >
-      <ul itemScope itemType="https://schema.org/BreadcrumbList">
-        {homePageRoute && <HomeBreadcrumbItem />}
-        {breadcrumbs.map((item, idx) => {
-          const isLast = idx === breadcrumbs.length - 1;
-          return (
-            <BreadcrumbsItem key={idx} index={idx} addMicrodata={!!item.href}>
-              <BreadcrumbsItemLink href={item.href} isLast={isLast}>
-                {item.label}
-              </BreadcrumbsItemLink>
-            </BreadcrumbsItem>
-          );
+    <>
+      <DocBreadcrumbsStructuredData breadcrumbs={breadcrumbs} />
+      <div
+        className={clsx(ThemeClassNames.docs.docBreadcrumbs, "breadcrumbs")}
+        aria-label={translate({
+          id: "theme.docs.breadcrumbs.navAriaLabel",
+          message: "Breadcrumbs",
+          description: "The ARIA label for the breadcrumbs",
         })}
-      </ul>
-    </div>
+      >
+        <ul>
+          {homePageRoute && <HomeBreadcrumbItem />}
+          {breadcrumbs.map((item, idx) => {
+            const isLast = idx === breadcrumbs.length - 1;
+            const href =
+              item.type === "category" && item.linkUnlisted
+                ? undefined
+                : item.href;
+            return (
+              <BreadcrumbsItem key={idx}>
+                <BreadcrumbsItemLink href={href} isLast={isLast}>
+                  {item.label}
+                </BreadcrumbsItemLink>
+              </BreadcrumbsItem>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 }

@@ -10,6 +10,7 @@ import {
 import { TOCContentFiller } from "@nullbot/docusaurus-theme-nonepress/contexts";
 
 import BackToTopButton from "@theme/BackToTopButton";
+import ContentVisibility from "@theme/ContentVisibility";
 import Layout from "@theme/Layout";
 import MDXContent from "@theme/MDXContent";
 import type { Props } from "@theme/MDXPage";
@@ -17,16 +18,16 @@ import Page from "@theme/Page";
 
 export default function MDXPage(props: Props): ReactNode {
   const { content: MDXPageContent } = props;
+  const { toc, metadata, assets } = MDXPageContent;
+  const { title, description, frontMatter } = metadata;
   const {
-    toc,
-    metadata: { title, description, frontMatter },
-  } = MDXPageContent;
-  const {
+    keywords,
     wrapperClassName,
     hide_table_of_contents: hideTableOfContents,
     toc_min_heading_level: tocMinHeadingLevel,
     toc_max_heading_level: tocMaxHeadingLevel,
   } = frontMatter;
+  const image = assets.image ?? frontMatter.image;
 
   const sidebarCustomProps = frontMatter.sidebar_custom_props as {
     sidebar_id?: string;
@@ -42,7 +43,12 @@ export default function MDXPage(props: Props): ReactNode {
         ThemeClassNames.page.mdxPage,
       )}
     >
-      <PageMetadata title={title} description={description} />
+      <PageMetadata
+        title={title}
+        description={description}
+        keywords={keywords}
+        image={image}
+      />
       <Layout>
         <BackToTopButton />
 
@@ -61,6 +67,7 @@ export default function MDXPage(props: Props): ReactNode {
           sidebarVersion={sidebarVersion}
           toc={toc}
         >
+          <ContentVisibility metadata={metadata} />
           <article className="prose max-w-full">
             <MDXContent>
               <MDXPageContent />

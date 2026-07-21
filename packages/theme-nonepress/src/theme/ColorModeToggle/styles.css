@@ -13,6 +13,10 @@
     &-active {
       @apply !translate-x-5;
     }
+
+    &-half {
+      @apply !translate-x-2.5;
+    }
   }
 
   &-container {

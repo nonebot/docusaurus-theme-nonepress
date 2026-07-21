@@ -8,6 +8,14 @@
   &-list {
     @apply z-10 -mb-px;
   }
+
+  &-block {
+    @apply w-full;
+
+    .tab-item {
+      @apply grow justify-center;
+    }
+  }
 }
 
 .tab {
