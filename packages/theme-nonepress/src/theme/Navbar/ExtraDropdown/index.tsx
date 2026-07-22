@@ -29,6 +29,7 @@ export default function NavbarExtraDrodown(): ReactNode | null {
 
   return (
     <div className="dropdown dropdown-end navbar-extra">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/no-noninteractive-tabindex -- daisyUI dropdown trigger */}
       <label tabIndex={0} className="navbar-item">
         <IconExtra className="navbar-extra-icon" />
       </label>

@@ -133,8 +133,8 @@ function useResultsFooterComponent({
 }): DocSearchProps["resultsFooterComponent"] {
   return useMemo(
     () =>
-      ({ state }) =>
-        <ResultsFooter state={state} onClose={closeModal} />,
+      // eslint-disable-next-line react/display-name
+      ({ state }) => <ResultsFooter state={state} onClose={closeModal} />,
     [closeModal],
   );
 }
@@ -281,6 +281,8 @@ function DocSearch({ externalUrlRegex, ...props }: DocSearchV4Props) {
 
       {isOpen &&
         DocSearchModal &&
+        // TODO fix this
+        // eslint-disable-next-line react-hooks/refs
         searchContainer.current &&
         createPortal(
           <DocSearchModal
@@ -301,6 +303,9 @@ function DocSearch({ externalUrlRegex, ...props }: DocSearchV4Props) {
             searchParameters={searchParameters}
             {...extraAskAiProps}
           />,
+
+          // TODO fix this
+          // eslint-disable-next-line react-hooks/refs
           searchContainer.current,
         )}
     </>

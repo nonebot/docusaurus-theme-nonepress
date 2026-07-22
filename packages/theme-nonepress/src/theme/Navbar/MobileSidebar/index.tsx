@@ -24,6 +24,7 @@ export default function MobileSidebar(): ReactNode | null {
   return (
     <>
       {/* overlay */}
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control -- daisyUI drawer overlay */}
       <label
         className={clsx(
           "navbar-mobile-sidebar-overlay",

@@ -63,6 +63,7 @@ export default function NavbarDocsVersion({
 
   return (
     <div className="navbar-version dropdown">
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- daisyUI dropdown trigger */}
       <label tabIndex={0} className="navbar-version-label">
         {dropdownLabel}
         <IconDropdown className="navbar-version-label-icon" />

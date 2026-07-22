@@ -358,7 +358,7 @@ function SearchPageContent(): ReactNode {
     ExecutionEnvironment.canUseIntersectionObserver &&
       new IntersectionObserver(
         // TODO need to fix this React Compiler lint error
-        // eslint-disable-next-line react-compiler/react-compiler
+        // eslint-disable-next-line react-hooks/refs
         (entries) => {
           const {
             isIntersecting,
@@ -523,7 +523,6 @@ function SearchPageContent(): ReactNode {
                             key={index}
                             className="breadcrumbs__item"
                             // Developer provided the HTML, so assume it's safe.
-                            // eslint-disable-next-line react/no-danger
                             dangerouslySetInnerHTML={{ __html: html }}
                           />
                         ))}
@@ -535,7 +534,6 @@ function SearchPageContent(): ReactNode {
                     <p
                       className="doc-search-page-result-summary"
                       // Developer provided the HTML, so assume it's safe.
-                      // eslint-disable-next-line react/no-danger
                       dangerouslySetInnerHTML={{ __html: summary }}
                     />
                   )}
