@@ -74,7 +74,7 @@ export default function MenuCategory({
           }
           role={collapsible && !href ? "button" : undefined}
           aria-expanded={collapsible && !href ? !collapsed : undefined}
-          href={collapsible ? href ?? "#" : href}
+          href={collapsible ? (href ?? "#") : href}
           {...props}
         >
           {label ?? children}

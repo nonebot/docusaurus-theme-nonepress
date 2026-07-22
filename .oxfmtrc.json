@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "arrowParens": "always",
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    ".yarn",
+    ".history",
+    "**/build/**",
+    "coverage",
+    ".docusaurus",
+    "*.svg",
+    "pnpm-lock.yaml",
+    "packages/*/lib/",
+    "!packages/theme-nonepress/lib/theme/**",
+    "website/i18n",
+    "website/versions.json",
+    "website/versioned_docs/",
+    "website/versioned_sidebars/*.json",
+    "examples/",
+    "website/static/katex/katex.min.css"
+  ],
+  "insertFinalNewline": true,
+  "printWidth": 80,
+  "singleQuote": false,
+  "sortPackageJson": false,
+  "trailingComma": "all"
+}

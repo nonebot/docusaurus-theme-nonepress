@@ -44,14 +44,14 @@ declare module "@nullbot/docusaurus-theme-nonepress" {
   type DeepOverwrite<T, U> = U extends (infer V)[]
     ? V[]
     : U extends object
-    ? {
-        [K in keyof (T & U)]: K extends keyof U
-          ? K extends keyof T
-            ? DeepOverwrite<T[K], U[K]>
-            : U[K]
-          : T[K];
-      }
-    : U;
+      ? {
+          [K in keyof (T & U)]: K extends keyof U
+            ? K extends keyof T
+              ? DeepOverwrite<T[K], U[K]>
+              : U[K]
+            : T[K];
+        }
+      : U;
 
   type OverwriteConfig = {
     nonepress: {
