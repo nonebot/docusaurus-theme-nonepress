@@ -1,4 +1,4 @@
-@media (min-width: 997px) {
+@media (width >= 997px) {
   .menuHtmlItem {
     padding: var(--ifm-menu-link-padding-vertical)
       var(--ifm-menu-link-padding-horizontal);
